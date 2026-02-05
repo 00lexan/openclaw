@@ -1,12 +1,11 @@
 ﻿{
-  "name": "@/feishu",
+  "name": "@link-ai/feishu",
   "version": "2026.2.4",
-  "description": " Feishu channel plugin",
+  "description": "Feishu channel plugin",
   "type": "module",
-  "devDependencies": {
-    "": "*"
-  },
-  "": {
+  "dependencies": {},
+  "devDependencies": {},
+  "openclaw": {
     "extensions": [
       "./index.ts"
     ],
@@ -25,12 +24,9 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@/feishu",
+      "npmSpec": "@link-ai/feishu",
       "localPath": "extensions/feishu",
       "defaultChoice": "npm"
     }
   }
 }
-
-
-
