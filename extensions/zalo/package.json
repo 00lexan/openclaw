@@ -4,11 +4,11 @@
   "description": " Zalo channel plugin",
   "type": "module",
   "dependencies": {
-    "": "workspace:*",
+    "": "*",
     "undici": "7.20.0"
   },
   "devDependencies": {
-    "": "workspace:*"
+    "": "*"
   },
   "": {
     "extensions": [
@@ -34,5 +34,6 @@
     }
   }
 }
+
 
 

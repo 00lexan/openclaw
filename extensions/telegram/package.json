@@ -4,7 +4,7 @@
   "description": " Telegram channel plugin",
   "type": "module",
   "devDependencies": {
-    "": "workspace:*"
+    "": "*"
   },
   "": {
     "extensions": [
@@ -12,5 +12,6 @@
     ]
   }
 }
+
 
 

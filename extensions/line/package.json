@@ -4,7 +4,7 @@
   "description": " LINE channel plugin",
   "type": "module",
   "devDependencies": {
-    "": "workspace:*"
+    "": "*"
   },
   "": {
     "extensions": [
@@ -27,5 +27,6 @@
     }
   }
 }
+
 
 

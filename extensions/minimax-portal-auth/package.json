@@ -4,7 +4,7 @@
   "description": " MiniMax Portal OAuth provider plugin",
   "type": "module",
   "devDependencies": {
-    "": "workspace:*"
+    "": "*"
   },
   "": {
     "extensions": [
@@ -12,5 +12,6 @@
     ]
   }
 }
+
 
 

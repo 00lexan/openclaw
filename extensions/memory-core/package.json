@@ -4,7 +4,7 @@
   "description": " core memory search plugin",
   "type": "module",
   "devDependencies": {
-    "": "workspace:*"
+    "": "*"
   },
   "peerDependencies": {
     "": ">=2026.1.26"
@@ -15,5 +15,6 @@
     ]
   }
 }
+
 
 

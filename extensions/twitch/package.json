@@ -10,7 +10,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "": "workspace:*"
+    "": "*"
   },
   "": {
     "extensions": [
@@ -18,5 +18,6 @@
     ]
   }
 }
+
 
 

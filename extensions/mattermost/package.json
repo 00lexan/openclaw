@@ -4,7 +4,7 @@
   "description": " Mattermost channel plugin",
   "type": "module",
   "devDependencies": {
-    "": "workspace:*"
+    "": "*"
   },
   "": {
     "extensions": [
@@ -26,5 +26,6 @@
     }
   }
 }
+
 
 
