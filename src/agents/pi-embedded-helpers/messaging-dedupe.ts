@@ -1,4 +1,4 @@
-const MIN_DUPLICATE_TEXT_LENGTH = 10;
+﻿const MIN_DUPLICATE_TEXT_LENGTH = 10;
 
 /**
  * Normalize text for duplicate comparison.
@@ -44,3 +44,4 @@ export function isMessagingToolDuplicate(text: string, sentTexts: string[]): boo
   }
   return isMessagingToolDuplicateNormalized(normalized, sentTexts.map(normalizeTextForComparison));
 }
+

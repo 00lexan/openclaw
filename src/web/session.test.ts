@@ -1,4 +1,4 @@
-import { EventEmitter } from "node:events";
+﻿import { EventEmitter } from "node:events";
 import fsSync from "node:fs";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -108,7 +108,7 @@ describe("web session", () => {
   });
 
   it("does not clobber creds backup when creds.json is corrupted", async () => {
-    const credsSuffix = path.join(".openclaw", "credentials", "whatsapp", "default", "creds.json");
+    const credsSuffix = path.join(".", "credentials", "whatsapp", "default", "creds.json");
 
     const copySpy = vi.spyOn(fsSync, "copyFileSync").mockImplementation(() => {});
     const existsSpy = vi.spyOn(fsSync, "existsSync").mockImplementation((p) => {
@@ -186,9 +186,9 @@ describe("web session", () => {
   });
 
   it("rotates creds backup when creds.json is valid JSON", async () => {
-    const credsSuffix = path.join(".openclaw", "credentials", "whatsapp", "default", "creds.json");
+    const credsSuffix = path.join(".", "credentials", "whatsapp", "default", "creds.json");
     const backupSuffix = path.join(
-      ".openclaw",
+      ".",
       "credentials",
       "whatsapp",
       "default",
@@ -234,3 +234,4 @@ describe("web session", () => {
     readSpy.mockRestore();
   });
 });
+

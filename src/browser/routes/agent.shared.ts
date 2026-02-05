@@ -1,4 +1,4 @@
-import type { PwAiModule } from "../pw-ai-module.js";
+﻿import type { PwAiModule } from "../pw-ai-module.js";
 import type { BrowserRouteContext, ProfileContext } from "../server-context.js";
 import type { BrowserRequest, BrowserResponse } from "./types.js";
 import { getPwAiModule as getPwAiModuleBase } from "../pw-ai-module.js";
@@ -66,3 +66,4 @@ export async function requirePwAi(
   );
   return null;
 }
+

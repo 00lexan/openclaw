@@ -1,4 +1,4 @@
-import AjvPkg, { type ErrorObject, type ValidateFunction } from "ajv";
+﻿import AjvPkg, { type ErrorObject, type ValidateFunction } from "ajv";
 
 const ajv = new (AjvPkg as unknown as new (opts?: object) => import("ajv").default)({
   allErrors: true,
@@ -42,3 +42,4 @@ export function validateJsonSchemaValue(params: {
   }
   return { ok: false, errors: formatAjvErrors(cached.validate.errors) };
 }
+

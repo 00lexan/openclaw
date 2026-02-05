@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   DimensionalFileInfo,
   EncryptedFile,
   FileWithThumbnailInfo,
@@ -227,3 +227,4 @@ export async function uploadMediaMaybeEncrypted(
   const mxc = await uploadFile(client, buffer, params);
   return { url: mxc };
 }
+

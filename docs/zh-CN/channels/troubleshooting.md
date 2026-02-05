@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 渠道已连接但消息无法流通
-  - 排查渠道配置错误（意图、权限、隐私模式）
-summary: 渠道专属故障排除快捷指南（Discord/Telegram/WhatsApp）
-title: 渠道故障排除
+  - æ¸ é“å·²è¿žæŽ¥ä½†æ¶ˆæ¯æ— æ³•æµé€š
+  - æŽ’æŸ¥æ¸ é“é…ç½®é”™è¯¯ï¼ˆæ„å›¾ã€æƒé™ã€éšç§æ¨¡å¼ï¼‰
+summary: æ¸ é“ä¸“å±žæ•…éšœæŽ’é™¤å¿«æ·æŒ‡å—ï¼ˆDiscord/Telegram/WhatsAppï¼‰
+title: æ¸ é“æ•…éšœæŽ’é™¤
 x-i18n:
   generated_at: "2026-02-01T19:58:09Z"
   model: claude-opus-4-5
@@ -13,24 +13,25 @@ x-i18n:
   workflow: 14
 ---
 
-# 渠道故障排除
+# æ¸ é“æ•…éšœæŽ’é™¤
 
-首先运行：
+é¦–å…ˆè¿è¡Œï¼š
 
 ```bash
-openclaw doctor
-openclaw channels status --probe
+ doctor
+ channels status --probe
 ```
 
-`channels status --probe` 会在检测到常见渠道配置错误时输出警告，并包含小型实时检查（凭据、部分权限/成员资格）。
+`channels status --probe` ä¼šåœ¨æ£€æµ‹åˆ°å¸¸è§æ¸ é“é…ç½®é”™è¯¯æ—¶è¾“å‡ºè­¦å‘Šï¼Œå¹¶åŒ…å«å°åž‹å®žæ—¶æ£€æŸ¥ï¼ˆå‡­æ®ã€éƒ¨åˆ†æƒé™/æˆå‘˜èµ„æ ¼ï¼‰ã€‚
 
-## 渠道
+## æ¸ é“
 
-- Discord：[/channels/discord#troubleshooting](/channels/discord#troubleshooting)
-- Telegram：[/channels/telegram#troubleshooting](/channels/telegram#troubleshooting)
-- WhatsApp：[/channels/whatsapp#troubleshooting-quick](/channels/whatsapp#troubleshooting-quick)
+- Discordï¼š[/channels/discord#troubleshooting](/channels/discord#troubleshooting)
+- Telegramï¼š[/channels/telegram#troubleshooting](/channels/telegram#troubleshooting)
+- WhatsAppï¼š[/channels/whatsapp#troubleshooting-quick](/channels/whatsapp#troubleshooting-quick)
 
-## Telegram 快速修复
+## Telegram å¿«é€Ÿä¿®å¤
 
-- 日志显示 `HttpError: Network request for 'sendMessage' failed` 或 `sendChatAction` → 检查 IPv6 DNS。如果 `api.telegram.org` 优先解析为 IPv6 而主机缺少 IPv6 出站连接，请强制使用 IPv4 或启用 IPv6。参见 [/channels/telegram#troubleshooting](/channels/telegram#troubleshooting)。
-- 日志显示 `setMyCommands failed` → 检查到 `api.telegram.org` 的出站 HTTPS 和 DNS 可达性（常见于限制严格的 VPS 或代理环境）。
+- æ—¥å¿—æ˜¾ç¤º `HttpError: Network request for 'sendMessage' failed` æˆ– `sendChatAction` â†’ æ£€æŸ¥ IPv6 DNSã€‚å¦‚æžœ `api.telegram.org` ä¼˜å…ˆè§£æžä¸º IPv6 è€Œä¸»æœºç¼ºå°‘ IPv6 å‡ºç«™è¿žæŽ¥ï¼Œè¯·å¼ºåˆ¶ä½¿ç”¨ IPv4 æˆ–å¯ç”¨ IPv6ã€‚å‚è§ [/channels/telegram#troubleshooting](/channels/telegram#troubleshooting)ã€‚
+- æ—¥å¿—æ˜¾ç¤º `setMyCommands failed` â†’ æ£€æŸ¥åˆ° `api.telegram.org` çš„å‡ºç«™ HTTPS å’Œ DNS å¯è¾¾æ€§ï¼ˆå¸¸è§äºŽé™åˆ¶ä¸¥æ ¼çš„ VPS æˆ–ä»£ç†çŽ¯å¢ƒï¼‰ã€‚
+

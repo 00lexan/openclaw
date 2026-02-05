@@ -1,4 +1,4 @@
-import JSON5 from "json5";
+﻿import JSON5 from "json5";
 import fs from "node:fs";
 
 export type SessionEntryLike = {
@@ -59,3 +59,4 @@ export function readSessionStoreJson5(storePath: string): {
   }
   return { store: {}, ok: false };
 }
+

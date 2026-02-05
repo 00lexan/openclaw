@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as ssrf from "../../infra/net/ssrf.js";
 
 const lookupMock = vi.fn();
@@ -162,3 +162,4 @@ describe("web_fetch SSRF protection", () => {
     });
   });
 });
+

@@ -1,4 +1,4 @@
-import type { ChannelDirectoryEntry } from "openclaw/plugin-sdk";
+﻿import type { ChannelDirectoryEntry } from "/plugin-sdk";
 import { GRAPH_ROOT } from "./attachments/shared.js";
 import { loadMSTeamsSdkWithAuth } from "./sdk.js";
 import { resolveMSTeamsCredentials } from "./token.js";
@@ -203,3 +203,4 @@ export async function listMSTeamsDirectoryGroupsLive(params: {
 
   return results;
 }
+

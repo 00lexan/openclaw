@@ -1,5 +1,5 @@
-import type { ChannelId } from "../channels/plugins/types.js";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { ChannelId } from "../channels/plugins/types.js";
+import type { Config } from "../config/config.js";
 import type { ExecFn } from "./windows-acl.js";
 import { resolveBrowserConfig, resolveProfile } from "../browser/config.js";
 import { resolveChannelDefaultAccountId } from "../channels/plugins/helpers.js";
@@ -62,7 +62,7 @@ export type SecurityAuditReport = {
 };
 
 export type SecurityAuditOptions = {
-  config: OpenClawConfig;
+  config: Config;
   env?: NodeJS.ProcessEnv;
   platform?: NodeJS.Platform;
   deep?: boolean;
@@ -151,7 +151,7 @@ async function collectFilesystemFindings(params: {
         checkId: "fs.state_dir.perms_world_writable",
         severity: "critical",
         title: "State dir is world-writable",
-        detail: `${formatPermissionDetail(params.stateDir, stateDirPerms)}; other users can write into your OpenClaw state.`,
+        detail: `${formatPermissionDetail(params.stateDir, stateDirPerms)}; other users can write into your  state.`,
         remediation: formatPermissionRemediation({
           targetPath: params.stateDir,
           perms: stateDirPerms,
@@ -165,7 +165,7 @@ async function collectFilesystemFindings(params: {
         checkId: "fs.state_dir.perms_group_writable",
         severity: "warn",
         title: "State dir is group-writable",
-        detail: `${formatPermissionDetail(params.stateDir, stateDirPerms)}; group users can write into your OpenClaw state.`,
+        detail: `${formatPermissionDetail(params.stateDir, stateDirPerms)}; group users can write into your  state.`,
         remediation: formatPermissionRemediation({
           targetPath: params.stateDir,
           perms: stateDirPerms,
@@ -254,7 +254,7 @@ async function collectFilesystemFindings(params: {
 }
 
 function collectGatewayConfigFindings(
-  cfg: OpenClawConfig,
+  cfg: Config,
   env: NodeJS.ProcessEnv,
 ): SecurityAuditFinding[] {
   const findings: SecurityAuditFinding[] = [];
@@ -362,7 +362,7 @@ function collectGatewayConfigFindings(
   return findings;
 }
 
-function collectBrowserControlFindings(cfg: OpenClawConfig): SecurityAuditFinding[] {
+function collectBrowserControlFindings(cfg: Config): SecurityAuditFinding[] {
   const findings: SecurityAuditFinding[] = [];
 
   let resolved: ReturnType<typeof resolveBrowserConfig>;
@@ -374,7 +374,7 @@ function collectBrowserControlFindings(cfg: OpenClawConfig): SecurityAuditFindin
       severity: "warn",
       title: "Browser control config looks invalid",
       detail: String(err),
-      remediation: `Fix browser.cdpUrl in ${resolveConfigPath()} and re-run "${formatCliCommand("openclaw security audit --deep")}".`,
+      remediation: `Fix browser.cdpUrl in ${resolveConfigPath()} and re-run "${formatCliCommand(" security audit --deep")}".`,
     });
     return findings;
   }
@@ -408,7 +408,7 @@ function collectBrowserControlFindings(cfg: OpenClawConfig): SecurityAuditFindin
   return findings;
 }
 
-function collectLoggingFindings(cfg: OpenClawConfig): SecurityAuditFinding[] {
+function collectLoggingFindings(cfg: Config): SecurityAuditFinding[] {
   const redact = cfg.logging?.redactSensitive;
   if (redact !== "off") {
     return [];
@@ -424,7 +424,7 @@ function collectLoggingFindings(cfg: OpenClawConfig): SecurityAuditFinding[] {
   ];
 }
 
-function collectElevatedFindings(cfg: OpenClawConfig): SecurityAuditFinding[] {
+function collectElevatedFindings(cfg: Config): SecurityAuditFinding[] {
   const findings: SecurityAuditFinding[] = [];
   const enabled = cfg.tools?.elevated?.enabled;
   const allowFrom = cfg.tools?.elevated?.allowFrom ?? {};
@@ -460,7 +460,7 @@ function collectElevatedFindings(cfg: OpenClawConfig): SecurityAuditFinding[] {
 }
 
 async function collectChannelSecurityFindings(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   plugins: ReturnType<typeof listChannelPlugins>;
 }): Promise<SecurityAuditFinding[]> {
   const findings: SecurityAuditFinding[] = [];
@@ -632,7 +632,7 @@ async function collectChannelSecurityFindings(params: {
             severity: "critical",
             title: "Discord slash commands are unrestricted",
             detail:
-              "commands.useAccessGroups=false disables sender allowlists for Discord slash commands unless a per-guild/channel users allowlist is configured; with no users allowlist, any user in allowed guild channels can invoke /… commands.",
+              "commands.useAccessGroups=false disables sender allowlists for Discord slash commands unless a per-guild/channel users allowlist is configured; with no users allowlist, any user in allowed guild channels can invoke /â€¦ commands.",
             remediation:
               "Set commands.useAccessGroups=true (recommended), or configure channels.discord.guilds.<id>.users (or channels.discord.guilds.<id>.channels.<channel>.users).",
           });
@@ -648,7 +648,7 @@ async function collectChannelSecurityFindings(params: {
             severity: "warn",
             title: "Discord slash commands have no allowlists",
             detail:
-              "Discord slash commands are enabled, but neither an owner allowFrom list nor any per-guild/channel users allowlist is configured; /… commands will be rejected for everyone.",
+              "Discord slash commands are enabled, but neither an owner allowFrom list nor any per-guild/channel users allowlist is configured; /â€¦ commands will be rejected for everyone.",
             remediation:
               "Add your user id to channels.discord.dm.allowFrom (or approve yourself via pairing), or configure channels.discord.guilds.<id>.users.",
           });
@@ -686,7 +686,7 @@ async function collectChannelSecurityFindings(params: {
             severity: "critical",
             title: "Slack slash commands bypass access groups",
             detail:
-              "Slack slash/native commands are enabled while commands.useAccessGroups=false; this can allow unrestricted /… command execution from channels/users you didn't explicitly authorize.",
+              "Slack slash/native commands are enabled while commands.useAccessGroups=false; this can allow unrestricted /â€¦ command execution from channels/users you didn't explicitly authorize.",
             remediation: "Set commands.useAccessGroups=true (recommended).",
           });
         } else {
@@ -710,7 +710,7 @@ async function collectChannelSecurityFindings(params: {
               severity: "warn",
               title: "Slack slash commands have no allowlists",
               detail:
-                "Slack slash/native commands are enabled, but neither an owner allowFrom list nor any channels.<id>.users allowlist is configured; /… commands will be rejected for everyone.",
+                "Slack slash/native commands are enabled, but neither an owner allowFrom list nor any channels.<id>.users allowlist is configured; /â€¦ commands will be rejected for everyone.",
               remediation:
                 "Approve yourself via pairing (recommended), or set channels.slack.dm.allowFrom and/or channels.slack.channels.<id>.users.",
             });
@@ -817,7 +817,7 @@ async function collectChannelSecurityFindings(params: {
           severity: "critical",
           title: "Telegram group allowlist contains wildcard",
           detail:
-            'Telegram group sender allowlist contains "*", which allows any group member to run /… commands and control directives.',
+            'Telegram group sender allowlist contains "*", which allows any group member to run /â€¦ commands and control directives.',
           remediation:
             'Remove "*" from channels.telegram.groupAllowFrom and pairing store; prefer explicit user ids/usernames.',
         });
@@ -838,7 +838,7 @@ async function collectChannelSecurityFindings(params: {
           severity: "critical",
           title: "Telegram group commands have no sender allowlist",
           detail:
-            `Telegram group access is enabled but no sender allowlist is configured; this allows any group member to invoke /… commands` +
+            `Telegram group access is enabled but no sender allowlist is configured; this allows any group member to invoke /â€¦ commands` +
             (skillsEnabled ? " (including skill commands)." : "."),
           remediation:
             "Approve yourself via pairing (recommended), or set channels.telegram.groupAllowFrom (or per-group groups.<id>.allowFrom).",
@@ -851,7 +851,7 @@ async function collectChannelSecurityFindings(params: {
 }
 
 async function maybeProbeGateway(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   timeoutMs: number;
   probe: typeof probeGateway;
 }): Promise<SecurityAuditReport["deep"]> {
@@ -871,10 +871,10 @@ async function maybeProbeGateway(params: {
         ? typeof remote?.token === "string" && remote.token.trim()
           ? remote.token.trim()
           : undefined
-        : process.env.OPENCLAW_GATEWAY_TOKEN?.trim() ||
+        : process.env._GATEWAY_TOKEN?.trim() ||
           (typeof authToken === "string" && authToken.trim() ? authToken.trim() : undefined);
     const password =
-      process.env.OPENCLAW_GATEWAY_PASSWORD?.trim() ||
+      process.env._GATEWAY_PASSWORD?.trim() ||
       (mode === "remote"
         ? typeof remote?.password === "string" && remote.password.trim()
           ? remote.password.trim()
@@ -977,10 +977,11 @@ export async function runSecurityAudit(opts: SecurityAuditOptions): Promise<Secu
       severity: "warn",
       title: "Gateway probe failed (deep)",
       detail: deep.gateway.error ?? "gateway unreachable",
-      remediation: `Run "${formatCliCommand("openclaw status --all")}" to debug connectivity/auth, then re-run "${formatCliCommand("openclaw security audit --deep")}".`,
+      remediation: `Run "${formatCliCommand(" status --all")}" to debug connectivity/auth, then re-run "${formatCliCommand(" security audit --deep")}".`,
     });
   }
 
   const summary = countBySeverity(findings);
   return { ts: Date.now(), summary, findings, deep };
 }
+

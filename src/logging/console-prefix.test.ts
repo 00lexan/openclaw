@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { stripRedundantSubsystemPrefixForConsole } from "../logging.js";
 
 describe("stripRedundantSubsystemPrefixForConsole", () => {
@@ -28,3 +28,4 @@ describe("stripRedundantSubsystemPrefixForConsole", () => {
     );
   });
 });
+

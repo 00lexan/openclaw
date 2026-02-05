@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   createActionGate,
   readNumberParam,
@@ -81,11 +81,12 @@ describe("readReactionParams", () => {
   });
 
   it("passes through remove flag", () => {
-    const params = { emoji: "✅", remove: true };
+    const params = { emoji: "âœ…", remove: true };
     const result = readReactionParams(params, {
       removeErrorMessage: "Emoji is required",
     });
     expect(result.remove).toBe(true);
-    expect(result.emoji).toBe("✅");
+    expect(result.emoji).toBe("âœ…");
   });
 });
+

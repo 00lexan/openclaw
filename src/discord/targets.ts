@@ -1,4 +1,4 @@
-import type { DirectoryConfigParams } from "../channels/plugins/directory-config.js";
+﻿import type { DirectoryConfigParams } from "../channels/plugins/directory-config.js";
 import {
   buildMessagingTarget,
   ensureTargetId,
@@ -160,3 +160,4 @@ function isLikelyUsername(input: string): boolean {
   // Likely a username if it doesn't match known patterns
   return true;
 }
+

@@ -1,6 +1,6 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import type { SkillCommandSpec } from "../agents/skills.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import type { MediaUnderstandingDecision } from "../media-understanding/types.js";
 import type { CommandCategory } from "./commands-registry.types.js";
 import type { ElevatedLevel, ReasoningLevel, ThinkLevel, VerboseLevel } from "./thinking.js";
@@ -39,7 +39,7 @@ import {
   type ChatCommandDefinition,
 } from "./commands-registry.js";
 
-type AgentConfig = Partial<NonNullable<NonNullable<OpenClawConfig["agents"]>["defaults"]>>;
+type AgentConfig = Partial<NonNullable<NonNullable<Config["agents"]>["defaults"]>>;
 
 export const formatTokenCount = formatTokenCountShared;
 
@@ -53,7 +53,7 @@ type QueueStatus = {
 };
 
 type StatusArgs = {
-  config?: OpenClawConfig;
+  config?: Config;
   agent: AgentConfig;
   sessionEntry?: SessionEntry;
   sessionKey?: string;
@@ -177,7 +177,7 @@ const formatQueueDetails = (queue?: QueueStatus) => {
   if (queue.dropPolicy) {
     detailParts.push(`drop ${queue.dropPolicy}`);
   }
-  return detailParts.length ? ` (${detailParts.join(" · ")})` : "";
+  return detailParts.length ? ` (${detailParts.join(" Â· ")})` : "";
 };
 
 const readUsageFromSessionLog = (
@@ -192,7 +192,7 @@ const readUsageFromSessionLog = (
       model?: string;
     }
   | undefined => {
-  // Transcripts are stored at the session file path (fallback: ~/.openclaw/sessions/<SessionId>.jsonl)
+  // Transcripts are stored at the session file path (fallback: ~/./sessions/<SessionId>.jsonl)
   if (!sessionId) {
     return undefined;
   }
@@ -255,7 +255,7 @@ const formatUsagePair = (input?: number | null, output?: number | null) => {
   }
   const inputLabel = typeof input === "number" ? formatTokenCount(input) : "?";
   const outputLabel = typeof output === "number" ? formatTokenCount(output) : "?";
-  return `🧮 Tokens: ${inputLabel} in / ${outputLabel} out`;
+  return `ðŸ§® Tokens: ${inputLabel} in / ${outputLabel} out`;
 };
 
 const formatMediaUnderstandingLine = (decisions?: MediaUnderstandingDecision[]) => {
@@ -298,11 +298,11 @@ const formatMediaUnderstandingLine = (decisions?: MediaUnderstandingDecision[]) 
   if (parts.every((part) => part.endsWith(" none"))) {
     return null;
   }
-  return `📎 Media: ${parts.join(" · ")}`;
+  return `ðŸ“Ž Media: ${parts.join(" Â· ")}`;
 };
 
 const formatVoiceModeLine = (
-  config?: OpenClawConfig,
+  config?: Config,
   sessionEntry?: SessionEntry,
 ): string | null => {
   if (!config) {
@@ -321,7 +321,7 @@ const formatVoiceModeLine = (
   const provider = getTtsProvider(ttsConfig, prefsPath);
   const maxLength = getTtsMaxLength(prefsPath);
   const summarize = isSummarizationEnabled(prefsPath) ? "on" : "off";
-  return `🔊 Voice: ${autoMode} · provider=${provider} · limit=${maxLength} · summary=${summarize}`;
+  return `ðŸ”Š Voice: ${autoMode} Â· provider=${provider} Â· limit=${maxLength} Â· summary=${summarize}`;
 };
 
 export function buildStatusMessage(args: StatusArgs): string {
@@ -332,7 +332,7 @@ export function buildStatusMessage(args: StatusArgs): string {
       agents: {
         defaults: args.agent ?? {},
       },
-    } as OpenClawConfig,
+    } as Config,
     defaultProvider: DEFAULT_PROVIDER,
     defaultModel: DEFAULT_MODEL,
   });
@@ -389,7 +389,7 @@ export function buildStatusMessage(args: StatusArgs): string {
     typeof updatedAt === "number" ? `updated ${formatAge(now - updatedAt)}` : "no activity",
   ]
     .filter(Boolean)
-    .join(" • ");
+    .join(" â€¢ ");
 
   const isGroupSession =
     entry?.chatType === "group" ||
@@ -402,10 +402,10 @@ export function buildStatusMessage(args: StatusArgs): string {
 
   const contextLine = [
     `Context: ${formatTokens(totalTokens, contextTokens ?? null)}`,
-    `🧹 Compactions: ${entry?.compactionCount ?? 0}`,
+    `ðŸ§¹ Compactions: ${entry?.compactionCount ?? 0}`,
   ]
     .filter(Boolean)
-    .join(" · ");
+    .join(" Â· ");
 
   const queueMode = args.queue?.mode ?? "unknown";
   const queueDetails = formatQueueDetails(args.queue);
@@ -424,12 +424,12 @@ export function buildStatusMessage(args: StatusArgs): string {
     reasoningLevel !== "off" ? `Reasoning: ${reasoningLevel}` : null,
     elevatedLabel,
   ];
-  const optionsLine = optionParts.filter(Boolean).join(" · ");
+  const optionsLine = optionParts.filter(Boolean).join(" Â· ");
   const activationParts = [
-    groupActivationValue ? `👥 Activation: ${groupActivationValue}` : null,
-    `🪢 Queue: ${queueMode}${queueDetails}`,
+    groupActivationValue ? `ðŸ‘¥ Activation: ${groupActivationValue}` : null,
+    `ðŸª¢ Queue: ${queueMode}${queueDetails}`,
   ];
-  const activationLine = activationParts.filter(Boolean).join(" · ");
+  const activationLine = activationParts.filter(Boolean).join(" Â· ");
 
   const authMode = resolveModelAuthMode(provider, args.config);
   const authLabelValue =
@@ -456,14 +456,14 @@ export function buildStatusMessage(args: StatusArgs): string {
   const costLabel = showCost && hasUsage ? formatUsd(cost) : undefined;
 
   const modelLabel = model ? `${provider}/${model}` : "unknown";
-  const authLabel = authLabelValue ? ` · 🔑 ${authLabelValue}` : "";
-  const modelLine = `🧠 Model: ${modelLabel}${authLabel}`;
+  const authLabel = authLabelValue ? ` Â· ðŸ”‘ ${authLabelValue}` : "";
+  const modelLine = `ðŸ§  Model: ${modelLabel}${authLabel}`;
   const commit = resolveCommitHash();
-  const versionLine = `🦞 OpenClaw ${VERSION}${commit ? ` (${commit})` : ""}`;
+  const versionLine = `ðŸ¦ž  ${VERSION}${commit ? ` (${commit})` : ""}`;
   const usagePair = formatUsagePair(inputTokens, outputTokens);
-  const costLine = costLabel ? `💵 Cost: ${costLabel}` : null;
+  const costLine = costLabel ? `ðŸ’µ Cost: ${costLabel}` : null;
   const usageCostLine =
-    usagePair && costLine ? `${usagePair} · ${costLine}` : (usagePair ?? costLine);
+    usagePair && costLine ? `${usagePair} Â· ${costLine}` : (usagePair ?? costLine);
   const mediaLine = formatMediaUnderstandingLine(args.mediaDecisions);
   const voiceLine = formatVoiceModeLine(args.config, args.sessionEntry);
 
@@ -472,12 +472,12 @@ export function buildStatusMessage(args: StatusArgs): string {
     args.timeLine,
     modelLine,
     usageCostLine,
-    `📚 ${contextLine}`,
+    `ðŸ“š ${contextLine}`,
     mediaLine,
     args.usageLine,
-    `🧵 ${sessionLine}`,
+    `ðŸ§µ ${sessionLine}`,
     args.subagentsLine,
-    `⚙️ ${optionsLine}`,
+    `âš™ï¸ ${optionsLine}`,
     voiceLine,
     activationLine,
   ]
@@ -521,8 +521,8 @@ function groupCommandsByCategory(
   return grouped;
 }
 
-export function buildHelpMessage(cfg?: OpenClawConfig): string {
-  const lines = ["ℹ️ Help", ""];
+export function buildHelpMessage(cfg?: Config): string {
+  const lines = ["â„¹ï¸ Help", ""];
 
   lines.push("Session");
   lines.push("  /new  |  /reset  |  /compact [instructions]  |  /stop");
@@ -642,7 +642,7 @@ function formatCommandList(items: CommandsListItem[]): string {
 }
 
 export function buildCommandsMessage(
-  cfg?: OpenClawConfig,
+  cfg?: Config,
   skillCommands?: SkillCommandSpec[],
   options?: CommandsMessageOptions,
 ): string {
@@ -651,7 +651,7 @@ export function buildCommandsMessage(
 }
 
 export function buildCommandsMessagePaginated(
-  cfg?: OpenClawConfig,
+  cfg?: Config,
   skillCommands?: SkillCommandSpec[],
   options?: CommandsMessageOptions,
 ): CommandsMessageResult {
@@ -666,7 +666,7 @@ export function buildCommandsMessagePaginated(
   const items = buildCommandItems(commands, pluginCommands);
 
   if (!isTelegram) {
-    const lines = ["ℹ️ Slash commands", ""];
+    const lines = ["â„¹ï¸ Slash commands", ""];
     lines.push(formatCommandList(items));
     return {
       text: lines.join("\n").trim(),
@@ -684,7 +684,7 @@ export function buildCommandsMessagePaginated(
   const endIndex = startIndex + COMMANDS_PER_PAGE;
   const pageItems = items.slice(startIndex, endIndex);
 
-  const lines = [`ℹ️ Commands (${currentPage}/${totalPages})`, ""];
+  const lines = [`â„¹ï¸ Commands (${currentPage}/${totalPages})`, ""];
   lines.push(formatCommandList(pageItems));
 
   return {
@@ -695,3 +695,4 @@ export function buildCommandsMessagePaginated(
     hasPrev: currentPage > 1,
   };
 }
+

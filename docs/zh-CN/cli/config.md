@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你想以非交互方式读取或编辑配置
-summary: "`openclaw config` 的 CLI 参考（获取/设置/取消设置配置值）"
+  - ä½ æƒ³ä»¥éžäº¤äº’æ–¹å¼è¯»å–æˆ–ç¼–è¾‘é…ç½®
+summary: "` config` çš„ CLI å‚è€ƒï¼ˆèŽ·å–/è®¾ç½®/å–æ¶ˆè®¾ç½®é…ç½®å€¼ï¼‰"
 title: config
 x-i18n:
   generated_at: "2026-02-03T10:04:13Z"
@@ -12,46 +12,47 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw config`
+# ` config`
 
-配置辅助命令：通过路径获取/设置/取消设置值。不带子命令运行将打开
-配置向导（与 `openclaw configure` 相同）。
+é…ç½®è¾…åŠ©å‘½ä»¤ï¼šé€šè¿‡è·¯å¾„èŽ·å–/è®¾ç½®/å–æ¶ˆè®¾ç½®å€¼ã€‚ä¸å¸¦å­å‘½ä»¤è¿è¡Œå°†æ‰“å¼€
+é…ç½®å‘å¯¼ï¼ˆä¸Ž ` configure` ç›¸åŒï¼‰ã€‚
 
-## 示例
-
-```bash
-openclaw config get browser.executablePath
-openclaw config set browser.executablePath "/usr/bin/google-chrome"
-openclaw config set agents.defaults.heartbeat.every "2h"
-openclaw config set agents.list[0].tools.exec.node "node-id-or-name"
-openclaw config unset tools.web.search.apiKey
-```
-
-## 路径
-
-路径使用点号或括号表示法：
+## ç¤ºä¾‹
 
 ```bash
-openclaw config get agents.defaults.workspace
-openclaw config get agents.list[0].id
+ config get browser.executablePath
+ config set browser.executablePath "/usr/bin/google-chrome"
+ config set agents.defaults.heartbeat.every "2h"
+ config set agents.list[0].tools.exec.node "node-id-or-name"
+ config unset tools.web.search.apiKey
 ```
 
-使用智能体列表索引来定位特定智能体：
+## è·¯å¾„
+
+è·¯å¾„ä½¿ç”¨ç‚¹å·æˆ–æ‹¬å·è¡¨ç¤ºæ³•ï¼š
 
 ```bash
-openclaw config get agents.list
-openclaw config set agents.list[1].tools.exec.node "node-id-or-name"
+ config get agents.defaults.workspace
+ config get agents.list[0].id
 ```
 
-## 值
-
-值会尽可能解析为 JSON5；否则将被视为字符串。
-使用 `--json` 强制要求 JSON5 解析。
+ä½¿ç”¨æ™ºèƒ½ä½“åˆ—è¡¨ç´¢å¼•æ¥å®šä½ç‰¹å®šæ™ºèƒ½ä½“ï¼š
 
 ```bash
-openclaw config set agents.defaults.heartbeat.every "0m"
-openclaw config set gateway.port 19001 --json
-openclaw config set channels.whatsapp.groups '["*"]' --json
+ config get agents.list
+ config set agents.list[1].tools.exec.node "node-id-or-name"
 ```
 
-编辑后请重启 Gateway 网关。
+## å€¼
+
+å€¼ä¼šå°½å¯èƒ½è§£æžä¸º JSON5ï¼›å¦åˆ™å°†è¢«è§†ä¸ºå­—ç¬¦ä¸²ã€‚
+ä½¿ç”¨ `--json` å¼ºåˆ¶è¦æ±‚ JSON5 è§£æžã€‚
+
+```bash
+ config set agents.defaults.heartbeat.every "0m"
+ config set gateway.port 19001 --json
+ config set channels.whatsapp.groups '["*"]' --json
+```
+
+ç¼–è¾‘åŽè¯·é‡å¯ Gateway ç½‘å…³ã€‚
+

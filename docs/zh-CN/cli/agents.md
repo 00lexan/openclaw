@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你需要多个隔离的智能体（工作区 + 路由 + 认证）
-summary: "`openclaw agents` 的 CLI 参考（列出/添加/删除/设置身份）"
+  - ä½ éœ€è¦å¤šä¸ªéš”ç¦»çš„æ™ºèƒ½ä½“ï¼ˆå·¥ä½œåŒº + è·¯ç”± + è®¤è¯ï¼‰
+summary: "` agents` çš„ CLI å‚è€ƒï¼ˆåˆ—å‡º/æ·»åŠ /åˆ é™¤/è®¾ç½®èº«ä»½ï¼‰"
 title: agents
 x-i18n:
   generated_at: "2026-02-01T19:58:38Z"
@@ -12,56 +12,56 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw agents`
+# ` agents`
 
-管理隔离的智能体（工作区 + 认证 + 路由）。
+ç®¡ç†éš”ç¦»çš„æ™ºèƒ½ä½“ï¼ˆå·¥ä½œåŒº + è®¤è¯ + è·¯ç”±ï¼‰ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 多智能体路由：[多智能体路由](/concepts/multi-agent)
-- 智能体工作区：[智能体工作区](/concepts/agent-workspace)
+- å¤šæ™ºèƒ½ä½“è·¯ç”±ï¼š[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)
+- æ™ºèƒ½ä½“å·¥ä½œåŒºï¼š[æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
-openclaw agents list
-openclaw agents add work --workspace ~/.openclaw/workspace-work
-openclaw agents set-identity --workspace ~/.openclaw/workspace --from-identity
-openclaw agents set-identity --agent main --avatar avatars/openclaw.png
-openclaw agents delete work
+ agents list
+ agents add work --workspace ~/./workspace-work
+ agents set-identity --workspace ~/./workspace --from-identity
+ agents set-identity --agent main --avatar avatars/.png
+ agents delete work
 ```
 
-## 身份文件
+## èº«ä»½æ–‡ä»¶
 
-每个智能体工作区可以在工作区根目录包含一个 `IDENTITY.md`：
+æ¯ä¸ªæ™ºèƒ½ä½“å·¥ä½œåŒºå¯ä»¥åœ¨å·¥ä½œåŒºæ ¹ç›®å½•åŒ…å«ä¸€ä¸ª `IDENTITY.md`ï¼š
 
-- 示例路径：`~/.openclaw/workspace/IDENTITY.md`
-- `set-identity --from-identity` 从工作区根目录读取（或从显式指定的 `--identity-file` 读取）
+- ç¤ºä¾‹è·¯å¾„ï¼š`~/./workspace/IDENTITY.md`
+- `set-identity --from-identity` ä»Žå·¥ä½œåŒºæ ¹ç›®å½•è¯»å–ï¼ˆæˆ–ä»Žæ˜¾å¼æŒ‡å®šçš„ `--identity-file` è¯»å–ï¼‰
 
-头像路径相对于工作区根目录解析。
+å¤´åƒè·¯å¾„ç›¸å¯¹äºŽå·¥ä½œåŒºæ ¹ç›®å½•è§£æžã€‚
 
-## 设置身份
+## è®¾ç½®èº«ä»½
 
-`set-identity` 将字段写入 `agents.list[].identity`：
+`set-identity` å°†å­—æ®µå†™å…¥ `agents.list[].identity`ï¼š
 
 - `name`
 - `theme`
 - `emoji`
-- `avatar`（工作区相对路径、http(s) URL 或 data URI）
+- `avatar`ï¼ˆå·¥ä½œåŒºç›¸å¯¹è·¯å¾„ã€http(s) URL æˆ– data URIï¼‰
 
-从 `IDENTITY.md` 加载：
-
-```bash
-openclaw agents set-identity --workspace ~/.openclaw/workspace --from-identity
-```
-
-显式覆盖字段：
+ä»Ž `IDENTITY.md` åŠ è½½ï¼š
 
 ```bash
-openclaw agents set-identity --agent main --name "OpenClaw" --emoji "🦞" --avatar avatars/openclaw.png
+ agents set-identity --workspace ~/./workspace --from-identity
 ```
 
-配置示例：
+æ˜¾å¼è¦†ç›–å­—æ®µï¼š
+
+```bash
+ agents set-identity --agent main --name "" --emoji "ðŸ¦ž" --avatar avatars/.png
+```
+
+é…ç½®ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -70,13 +70,14 @@ openclaw agents set-identity --agent main --name "OpenClaw" --emoji "🦞" --ava
       {
         id: "main",
         identity: {
-          name: "OpenClaw",
+          name: "",
           theme: "space lobster",
-          emoji: "🦞",
-          avatar: "avatars/openclaw.png",
+          emoji: "ðŸ¦ž",
+          avatar: "avatars/.png",
         },
       },
     ],
   },
 }
 ```
+

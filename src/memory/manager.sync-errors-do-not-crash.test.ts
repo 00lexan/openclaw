@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -36,7 +36,7 @@ describe("memory manager sync failures", () => {
 
   beforeEach(async () => {
     vi.useFakeTimers();
-    workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-mem-"));
+    workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "-mem-"));
     indexPath = path.join(workspaceDir, "index.sqlite");
     await fs.mkdir(path.join(workspaceDir, "memory"));
     await fs.writeFile(path.join(workspaceDir, "MEMORY.md"), "Hello");
@@ -95,3 +95,4 @@ describe("memory manager sync failures", () => {
     expect(unhandled).toHaveLength(0);
   });
 });
+

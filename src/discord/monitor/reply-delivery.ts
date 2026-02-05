@@ -1,4 +1,4 @@
-import type { RequestClient } from "@buape/carbon";
+﻿import type { RequestClient } from "@buape/carbon";
 import type { ChunkMode } from "../../auto-reply/chunk.js";
 import type { ReplyPayload } from "../../auto-reply/types.js";
 import type { MarkdownTableMode } from "../../config/types.base.js";
@@ -79,3 +79,4 @@ export async function deliverDiscordReply(params: {
     }
   }
 }
+

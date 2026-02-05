@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import {
   CHANNEL_TARGET_DESCRIPTION,
   CHANNEL_TARGETS_DESCRIPTION,
@@ -41,3 +41,4 @@ export function channelTargetsSchema(options?: { description?: string }) {
     channelTargetSchema({ description: options?.description ?? CHANNEL_TARGETS_DESCRIPTION }),
   );
 }
+

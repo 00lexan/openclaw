@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isAbortError, isTransientNetworkError } from "./unhandled-rejections.js";
 
 describe("isAbortError", () => {
@@ -126,3 +126,4 @@ describe("isTransientNetworkError", () => {
     expect(isTransientNetworkError(error)).toBe(false);
   });
 });
+

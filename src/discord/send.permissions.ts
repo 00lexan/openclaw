@@ -1,4 +1,4 @@
-import type { APIChannel, APIGuild, APIGuildMember, APIRole } from "discord-api-types/v10";
+﻿import type { APIChannel, APIGuild, APIGuildMember, APIRole } from "discord-api-types/v10";
 import { RequestClient } from "@buape/carbon";
 import { ChannelType, PermissionFlagsBits, Routes } from "discord-api-types/v10";
 import type { RetryConfig } from "../infra/retry.js";
@@ -152,3 +152,4 @@ export async function fetchChannelPermissionsDiscord(
     channelType,
   };
 }
+

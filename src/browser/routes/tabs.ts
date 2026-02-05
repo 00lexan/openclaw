@@ -1,4 +1,4 @@
-import type { BrowserRouteContext } from "../server-context.js";
+﻿import type { BrowserRouteContext } from "../server-context.js";
 import type { BrowserRouteRegistrar } from "./types.js";
 import { getProfileContext, jsonError, toNumber, toStringOrEmpty } from "./utils.js";
 
@@ -142,3 +142,4 @@ export function registerBrowserTabRoutes(app: BrowserRouteRegistrar, ctx: Browse
     }
   });
 }
+

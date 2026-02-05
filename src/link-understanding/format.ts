@@ -1,4 +1,4 @@
-export function formatLinkUnderstandingBody(params: { body?: string; outputs: string[] }): string {
+﻿export function formatLinkUnderstandingBody(params: { body?: string; outputs: string[] }): string {
   const outputs = params.outputs.map((output) => output.trim()).filter(Boolean);
   if (outputs.length === 0) {
     return params.body ?? "";
@@ -10,3 +10,4 @@ export function formatLinkUnderstandingBody(params: { body?: string; outputs: st
   }
   return `${base}\n\n${outputs.join("\n")}`;
 }
+

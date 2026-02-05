@@ -1,4 +1,4 @@
-import { CURRENT_SESSION_VERSION } from "@mariozechner/pi-coding-agent";
+﻿import { CURRENT_SESSION_VERSION } from "@mariozechner/pi-coding-agent";
 import { randomUUID } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
@@ -449,7 +449,7 @@ export const chatHandlers: GatewayRequestHandlers = {
       const commandBody = injectThinking ? `/think ${p.thinking} ${parsedMessage}` : parsedMessage;
       const clientInfo = client?.connect?.client;
       // Inject timestamp so agents know the current date/time.
-      // Only BodyForAgent gets the timestamp — Body stays raw for UI display.
+      // Only BodyForAgent gets the timestamp â€” Body stays raw for UI display.
       // See: https://github.com/moltbot/moltbot/issues/3658
       const stampedMessage = injectTimestamp(parsedMessage, timestampOptsFromConfig(cfg));
 
@@ -698,3 +698,4 @@ export const chatHandlers: GatewayRequestHandlers = {
     respond(true, { ok: true, messageId });
   },
 };
+

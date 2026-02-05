@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "voice-call",
   "uiHints": {
     "provider": {
@@ -557,3 +557,4 @@
     }
   }
 }
+

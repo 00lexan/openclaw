@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import type {
   EndReason,
   HangupCallInput,
@@ -163,3 +163,4 @@ export class MockProvider implements VoiceCallProvider {
     // No-op for mock
   }
 }
+

@@ -1,4 +1,4 @@
-declare module "cli-highlight" {
+﻿declare module "cli-highlight" {
   export type HighlightOptions = {
     language?: string;
     theme?: unknown;
@@ -8,3 +8,4 @@ declare module "cli-highlight" {
   export function highlight(code: string, options?: HighlightOptions): string;
   export function supportsLanguage(language: string): boolean;
 }
+

@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 运行或配置新手引导向导
-  - 设置新机器
-summary: CLI 新手引导向导：引导式配置 Gateway 网关、工作区、渠道和 Skills
-title: 新手引导向导
+  - è¿è¡Œæˆ–é…ç½®æ–°æ‰‹å¼•å¯¼å‘å¯¼
+  - è®¾ç½®æ–°æœºå™¨
+summary: CLI æ–°æ‰‹å¼•å¯¼å‘å¯¼ï¼šå¼•å¯¼å¼é…ç½® Gateway ç½‘å…³ã€å·¥ä½œåŒºã€æ¸ é“å’Œ Skills
+title: æ–°æ‰‹å¼•å¯¼å‘å¯¼
 x-i18n:
   generated_at: "2026-02-03T09:20:27Z"
   model: claude-opus-4-5
@@ -13,185 +13,185 @@ x-i18n:
   workflow: 15
 ---
 
-# 新手引导向导（CLI）
+# æ–°æ‰‹å¼•å¯¼å‘å¯¼ï¼ˆCLIï¼‰
 
-新手引导向导是在 macOS、Linux 或 Windows（通过 WSL2；强烈推荐）上设置 OpenClaw 的**推荐**方式。
-它可以在一个引导式流程中配置本地 Gateway 网关或远程 Gateway 网关连接，以及渠道、Skills 和工作区默认值。
+æ–°æ‰‹å¼•å¯¼å‘å¯¼æ˜¯åœ¨ macOSã€Linux æˆ– Windowsï¼ˆé€šè¿‡ WSL2ï¼›å¼ºçƒˆæŽ¨èï¼‰ä¸Šè®¾ç½®  çš„**æŽ¨è**æ–¹å¼ã€‚
+å®ƒå¯ä»¥åœ¨ä¸€ä¸ªå¼•å¯¼å¼æµç¨‹ä¸­é…ç½®æœ¬åœ° Gateway ç½‘å…³æˆ–è¿œç¨‹ Gateway ç½‘å…³è¿žæŽ¥ï¼Œä»¥åŠæ¸ é“ã€Skills å’Œå·¥ä½œåŒºé»˜è®¤å€¼ã€‚
 
-主要入口：
-
-```bash
-openclaw onboard
-```
-
-最快开始聊天的方式：打开控制界面（无需设置渠道）。运行 `openclaw dashboard` 并在浏览器中聊天。文档：[控制面板](/web/dashboard)。
-
-后续重新配置：
+ä¸»è¦å…¥å£ï¼š
 
 ```bash
-openclaw configure
+ onboard
 ```
 
-推荐：设置 Brave Search API 密钥，以便智能体可以使用 `web_search`（`web_fetch` 无需密钥即可使用）。最简单的方式：`openclaw configure --section web`，它会存储 `tools.web.search.apiKey`。文档：[Web 工具](/tools/web)。
+æœ€å¿«å¼€å§‹èŠå¤©çš„æ–¹å¼ï¼šæ‰“å¼€æŽ§åˆ¶ç•Œé¢ï¼ˆæ— éœ€è®¾ç½®æ¸ é“ï¼‰ã€‚è¿è¡Œ ` dashboard` å¹¶åœ¨æµè§ˆå™¨ä¸­èŠå¤©ã€‚æ–‡æ¡£ï¼š[æŽ§åˆ¶é¢æ¿](/web/dashboard)ã€‚
 
-## 快速开始 vs 高级
-
-向导从**快速开始**（默认值）vs **高级**（完全控制）开始。
-
-**快速开始**保持默认值：
-
-- 本地 Gateway 网关（loopback）
-- 默认工作区（或现有工作区）
-- Gateway 网关端口 **18789**
-- Gateway 网关认证 **Token**（自动生成，即使在 loopback 上）
-- Tailscale 暴露 **关闭**
-- Telegram + WhatsApp 私信默认使用**允许列表**（系统会提示你输入电话号码）
-
-**高级**暴露每个步骤（模式、工作区、Gateway 网关、渠道、守护进程、Skills）。
-
-## 向导做了什么
-
-**本地模式（默认）**引导你完成：
-
-- 模型/认证（OpenAI Code (Codex) 订阅 OAuth、Anthropic API 密钥（推荐）或 setup-token（粘贴），以及 MiniMax/GLM/Moonshot/AI Gateway 选项）
-- 工作区位置 + 引导文件
-- Gateway 网关设置（端口/绑定/认证/tailscale）
-- 提供商（Telegram、WhatsApp、Discord、Google Chat、Mattermost（插件）、Signal）
-- 守护进程安装（LaunchAgent / systemd 用户单元）
-- 健康检查
-- Skills（推荐）
-
-**远程模式**仅配置本地客户端连接到其他位置的 Gateway 网关。
-它**不会**在远程主机上安装或更改任何内容。
-
-要添加更多隔离的智能体（独立的工作区 + 会话 + 认证），使用：
+åŽç»­é‡æ–°é…ç½®ï¼š
 
 ```bash
-openclaw agents add <name>
+ configure
 ```
 
-提示：`--json` **不**意味着非交互模式。脚本中请使用 `--non-interactive`（和 `--workspace`）。
+æŽ¨èï¼šè®¾ç½® Brave Search API å¯†é’¥ï¼Œä»¥ä¾¿æ™ºèƒ½ä½“å¯ä»¥ä½¿ç”¨ `web_search`ï¼ˆ`web_fetch` æ— éœ€å¯†é’¥å³å¯ä½¿ç”¨ï¼‰ã€‚æœ€ç®€å•çš„æ–¹å¼ï¼š` configure --section web`ï¼Œå®ƒä¼šå­˜å‚¨ `tools.web.search.apiKey`ã€‚æ–‡æ¡£ï¼š[Web å·¥å…·](/tools/web)ã€‚
 
-## 流程详情（本地）
+## å¿«é€Ÿå¼€å§‹ vs é«˜çº§
 
-1. **现有配置检测**
-   - 如果 `~/.openclaw/openclaw.json` 存在，选择**保留 / 修改 / 重置**。
-   - 重新运行向导**不会**清除任何内容，除非你明确选择**重置**（或传递 `--reset`）。
-   - 如果配置无效或包含遗留键名，向导会停止并要求你在继续之前运行 `openclaw doctor`。
-   - 重置使用 `trash`（永不使用 `rm`）并提供范围选项：
-     - 仅配置
-     - 配置 + 凭证 + 会话
-     - 完全重置（同时删除工作区）
+å‘å¯¼ä»Ž**å¿«é€Ÿå¼€å§‹**ï¼ˆé»˜è®¤å€¼ï¼‰vs **é«˜çº§**ï¼ˆå®Œå…¨æŽ§åˆ¶ï¼‰å¼€å§‹ã€‚
 
-2. **模型/认证**
-   - **Anthropic API 密钥（推荐）**：如果存在则使用 `ANTHROPIC_API_KEY`，否则提示输入密钥，然后保存供守护进程使用。
-   - **Anthropic OAuth（Claude Code CLI）**：在 macOS 上，向导检查钥匙串项目"Claude Code-credentials"（选择"始终允许"以便 launchd 启动不会阻塞）；在 Linux/Windows 上，如果存在则复用 `~/.claude/.credentials.json`。
-   - **Anthropic 令牌（粘贴 setup-token）**：在任何机器上运行 `claude setup-token`，然后粘贴令牌（你可以命名它；空白 = 默认）。
-   - **OpenAI Code (Codex) 订阅（Codex CLI）**：如果 `~/.codex/auth.json` 存在，向导可以复用它。
-   - **OpenAI Code (Codex) 订阅（OAuth）**：浏览器流程；粘贴 `code#state`。
-     - 当模型未设置或为 `openai/*` 时，将 `agents.defaults.model` 设置为 `openai-codex/gpt-5.2`。
-   - **OpenAI API 密钥**：如果存在则使用 `OPENAI_API_KEY`，否则提示输入密钥，然后保存到 `~/.openclaw/.env` 以便 launchd 可以读取。
-   - **OpenCode Zen（多模型代理）**：提示输入 `OPENCODE_API_KEY`（或 `OPENCODE_ZEN_API_KEY`，在 https://opencode.ai/auth 获取）。
-   - **API 密钥**：为你存储密钥。
-   - **Vercel AI Gateway（多模型代理）**：提示输入 `AI_GATEWAY_API_KEY`。
-   - 更多详情：[Vercel AI Gateway](/providers/vercel-ai-gateway)
-   - **MiniMax M2.1**：自动写入配置。
-   - 更多详情：[MiniMax](/providers/minimax)
-   - **Synthetic（Anthropic 兼容）**：提示输入 `SYNTHETIC_API_KEY`。
-   - 更多详情：[Synthetic](/providers/synthetic)
-   - **Moonshot（Kimi K2）**：自动写入配置。
-   - **Kimi Coding**：自动写入配置。
-   - 更多详情：[Moonshot AI（Kimi + Kimi Coding）](/providers/moonshot)
-   - **跳过**：尚未配置认证。
-   - 从检测到的选项中选择默认模型（或手动输入提供商/模型）。
-   - 向导运行模型检查，如果配置的模型未知或缺少认证则发出警告。
+**å¿«é€Ÿå¼€å§‹**ä¿æŒé»˜è®¤å€¼ï¼š
 
-- OAuth 凭证存储在 `~/.openclaw/credentials/oauth.json`；认证配置文件存储在 `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`（API 密钥 + OAuth）。
-- 更多详情：[/concepts/oauth](/concepts/oauth)
+- æœ¬åœ° Gateway ç½‘å…³ï¼ˆloopbackï¼‰
+- é»˜è®¤å·¥ä½œåŒºï¼ˆæˆ–çŽ°æœ‰å·¥ä½œåŒºï¼‰
+- Gateway ç½‘å…³ç«¯å£ **18789**
+- Gateway ç½‘å…³è®¤è¯ **Token**ï¼ˆè‡ªåŠ¨ç”Ÿæˆï¼Œå³ä½¿åœ¨ loopback ä¸Šï¼‰
+- Tailscale æš´éœ² **å…³é—­**
+- Telegram + WhatsApp ç§ä¿¡é»˜è®¤ä½¿ç”¨**å…è®¸åˆ—è¡¨**ï¼ˆç³»ç»Ÿä¼šæç¤ºä½ è¾“å…¥ç”µè¯å·ç ï¼‰
 
-3. **工作区**
-   - 默认 `~/.openclaw/workspace`（可配置）。
-   - 为智能体引导仪式播种所需的工作区文件。
-   - 完整的工作区布局 + 备份指南：[智能体工作区](/concepts/agent-workspace)
+**é«˜çº§**æš´éœ²æ¯ä¸ªæ­¥éª¤ï¼ˆæ¨¡å¼ã€å·¥ä½œåŒºã€Gateway ç½‘å…³ã€æ¸ é“ã€å®ˆæŠ¤è¿›ç¨‹ã€Skillsï¼‰ã€‚
 
-4. **Gateway 网关**
-   - 端口、绑定、认证模式、tailscale 暴露。
-   - 认证建议：即使对于 loopback 也保持 **Token**，以便本地 WS 客户端必须进行认证。
-   - 仅当你完全信任每个本地进程时才禁用认证。
-   - 非 loopback 绑定仍需要认证。
+## å‘å¯¼åšäº†ä»€ä¹ˆ
 
-5. **渠道**
-   - [WhatsApp](/channels/whatsapp)：可选的二维码登录。
-   - [Telegram](/channels/telegram)：机器人令牌。
-   - [Discord](/channels/discord)：机器人令牌。
-   - [Google Chat](/channels/googlechat)：服务账户 JSON + webhook 受众。
-   - [Mattermost](/channels/mattermost)（插件）：机器人令牌 + 基础 URL。
-   - [Signal](/channels/signal)：可选的 `signal-cli` 安装 + 账户配置。
-   - [iMessage](/channels/imessage)：本地 `imsg` CLI 路径 + 数据库访问。
-   - 私信安全：默认为配对。第一条私信发送验证码；通过 `openclaw pairing approve <channel> <code>` 批准或使用允许列表。
+**æœ¬åœ°æ¨¡å¼ï¼ˆé»˜è®¤ï¼‰**å¼•å¯¼ä½ å®Œæˆï¼š
 
-6. **守护进程安装**
-   - macOS：LaunchAgent
-     - 需要已登录的用户会话；对于无头环境，使用自定义 LaunchDaemon（未提供）。
-   - Linux（和通过 WSL2 的 Windows）：systemd 用户单元
-     - 向导尝试通过 `loginctl enable-linger <user>` 启用 lingering，以便 Gateway 网关在注销后保持运行。
-     - 可能提示 sudo（写入 `/var/lib/systemd/linger`）；它首先尝试不使用 sudo。
-   - **运行时选择：**Node（推荐；WhatsApp/Telegram 需要）。**不推荐** Bun。
+- æ¨¡åž‹/è®¤è¯ï¼ˆOpenAI Code (Codex) è®¢é˜… OAuthã€Anthropic API å¯†é’¥ï¼ˆæŽ¨èï¼‰æˆ– setup-tokenï¼ˆç²˜è´´ï¼‰ï¼Œä»¥åŠ MiniMax/GLM/Moonshot/AI Gateway é€‰é¡¹ï¼‰
+- å·¥ä½œåŒºä½ç½® + å¼•å¯¼æ–‡ä»¶
+- Gateway ç½‘å…³è®¾ç½®ï¼ˆç«¯å£/ç»‘å®š/è®¤è¯/tailscaleï¼‰
+- æä¾›å•†ï¼ˆTelegramã€WhatsAppã€Discordã€Google Chatã€Mattermostï¼ˆæ’ä»¶ï¼‰ã€Signalï¼‰
+- å®ˆæŠ¤è¿›ç¨‹å®‰è£…ï¼ˆLaunchAgent / systemd ç”¨æˆ·å•å…ƒï¼‰
+- å¥åº·æ£€æŸ¥
+- Skillsï¼ˆæŽ¨èï¼‰
 
-7. **健康检查**
-   - 启动 Gateway 网关（如果需要）并运行 `openclaw health`。
-   - 提示：`openclaw status --deep` 在状态输出中添加 Gateway 网关健康探测（需要可达的 Gateway 网关）。
+**è¿œç¨‹æ¨¡å¼**ä»…é…ç½®æœ¬åœ°å®¢æˆ·ç«¯è¿žæŽ¥åˆ°å…¶ä»–ä½ç½®çš„ Gateway ç½‘å…³ã€‚
+å®ƒ**ä¸ä¼š**åœ¨è¿œç¨‹ä¸»æœºä¸Šå®‰è£…æˆ–æ›´æ”¹ä»»ä½•å†…å®¹ã€‚
 
-8. **Skills（推荐）**
-   - 读取可用的 Skills 并检查要求。
-   - 让你选择节点管理器：**npm / pnpm**（不推荐 bun）。
-   - 安装可选依赖项（某些在 macOS 上使用 Homebrew）。
+è¦æ·»åŠ æ›´å¤šéš”ç¦»çš„æ™ºèƒ½ä½“ï¼ˆç‹¬ç«‹çš„å·¥ä½œåŒº + ä¼šè¯ + è®¤è¯ï¼‰ï¼Œä½¿ç”¨ï¼š
 
-9. **完成**
-   - 总结 + 后续步骤，包括用于额外功能的 iOS/Android/macOS 应用。
+```bash
+ agents add <name>
+```
 
-- 如果未检测到 GUI，向导会打印控制界面的 SSH 端口转发说明，而不是打开浏览器。
-- 如果控制界面资源缺失，向导会尝试构建它们；回退方案是 `pnpm ui:build`（自动安装 UI 依赖）。
+æç¤ºï¼š`--json` **ä¸**æ„å‘³ç€éžäº¤äº’æ¨¡å¼ã€‚è„šæœ¬ä¸­è¯·ä½¿ç”¨ `--non-interactive`ï¼ˆå’Œ `--workspace`ï¼‰ã€‚
 
-## 远程模式
+## æµç¨‹è¯¦æƒ…ï¼ˆæœ¬åœ°ï¼‰
 
-远程模式配置本地客户端连接到其他位置的 Gateway 网关。
+1. **çŽ°æœ‰é…ç½®æ£€æµ‹**
+   - å¦‚æžœ `~/./.json` å­˜åœ¨ï¼Œé€‰æ‹©**ä¿ç•™ / ä¿®æ”¹ / é‡ç½®**ã€‚
+   - é‡æ–°è¿è¡Œå‘å¯¼**ä¸ä¼š**æ¸…é™¤ä»»ä½•å†…å®¹ï¼Œé™¤éžä½ æ˜Žç¡®é€‰æ‹©**é‡ç½®**ï¼ˆæˆ–ä¼ é€’ `--reset`ï¼‰ã€‚
+   - å¦‚æžœé…ç½®æ— æ•ˆæˆ–åŒ…å«é—ç•™é”®åï¼Œå‘å¯¼ä¼šåœæ­¢å¹¶è¦æ±‚ä½ åœ¨ç»§ç»­ä¹‹å‰è¿è¡Œ ` doctor`ã€‚
+   - é‡ç½®ä½¿ç”¨ `trash`ï¼ˆæ°¸ä¸ä½¿ç”¨ `rm`ï¼‰å¹¶æä¾›èŒƒå›´é€‰é¡¹ï¼š
+     - ä»…é…ç½®
+     - é…ç½® + å‡­è¯ + ä¼šè¯
+     - å®Œå…¨é‡ç½®ï¼ˆåŒæ—¶åˆ é™¤å·¥ä½œåŒºï¼‰
 
-你将设置的内容：
+2. **æ¨¡åž‹/è®¤è¯**
+   - **Anthropic API å¯†é’¥ï¼ˆæŽ¨èï¼‰**ï¼šå¦‚æžœå­˜åœ¨åˆ™ä½¿ç”¨ `ANTHROPIC_API_KEY`ï¼Œå¦åˆ™æç¤ºè¾“å…¥å¯†é’¥ï¼Œç„¶åŽä¿å­˜ä¾›å®ˆæŠ¤è¿›ç¨‹ä½¿ç”¨ã€‚
+   - **Anthropic OAuthï¼ˆClaude Code CLIï¼‰**ï¼šåœ¨ macOS ä¸Šï¼Œå‘å¯¼æ£€æŸ¥é’¥åŒ™ä¸²é¡¹ç›®"Claude Code-credentials"ï¼ˆé€‰æ‹©"å§‹ç»ˆå…è®¸"ä»¥ä¾¿ launchd å¯åŠ¨ä¸ä¼šé˜»å¡žï¼‰ï¼›åœ¨ Linux/Windows ä¸Šï¼Œå¦‚æžœå­˜åœ¨åˆ™å¤ç”¨ `~/.claude/.credentials.json`ã€‚
+   - **Anthropic ä»¤ç‰Œï¼ˆç²˜è´´ setup-tokenï¼‰**ï¼šåœ¨ä»»ä½•æœºå™¨ä¸Šè¿è¡Œ `claude setup-token`ï¼Œç„¶åŽç²˜è´´ä»¤ç‰Œï¼ˆä½ å¯ä»¥å‘½åå®ƒï¼›ç©ºç™½ = é»˜è®¤ï¼‰ã€‚
+   - **OpenAI Code (Codex) è®¢é˜…ï¼ˆCodex CLIï¼‰**ï¼šå¦‚æžœ `~/.codex/auth.json` å­˜åœ¨ï¼Œå‘å¯¼å¯ä»¥å¤ç”¨å®ƒã€‚
+   - **OpenAI Code (Codex) è®¢é˜…ï¼ˆOAuthï¼‰**ï¼šæµè§ˆå™¨æµç¨‹ï¼›ç²˜è´´ `code#state`ã€‚
+     - å½“æ¨¡åž‹æœªè®¾ç½®æˆ–ä¸º `openai/*` æ—¶ï¼Œå°† `agents.defaults.model` è®¾ç½®ä¸º `openai-codex/gpt-5.2`ã€‚
+   - **OpenAI API å¯†é’¥**ï¼šå¦‚æžœå­˜åœ¨åˆ™ä½¿ç”¨ `OPENAI_API_KEY`ï¼Œå¦åˆ™æç¤ºè¾“å…¥å¯†é’¥ï¼Œç„¶åŽä¿å­˜åˆ° `~/./.env` ä»¥ä¾¿ launchd å¯ä»¥è¯»å–ã€‚
+   - **OpenCode Zenï¼ˆå¤šæ¨¡åž‹ä»£ç†ï¼‰**ï¼šæç¤ºè¾“å…¥ `OPENCODE_API_KEY`ï¼ˆæˆ– `OPENCODE_ZEN_API_KEY`ï¼Œåœ¨ https://opencode.ai/auth èŽ·å–ï¼‰ã€‚
+   - **API å¯†é’¥**ï¼šä¸ºä½ å­˜å‚¨å¯†é’¥ã€‚
+   - **Vercel AI Gatewayï¼ˆå¤šæ¨¡åž‹ä»£ç†ï¼‰**ï¼šæç¤ºè¾“å…¥ `AI_GATEWAY_API_KEY`ã€‚
+   - æ›´å¤šè¯¦æƒ…ï¼š[Vercel AI Gateway](/providers/vercel-ai-gateway)
+   - **MiniMax M2.1**ï¼šè‡ªåŠ¨å†™å…¥é…ç½®ã€‚
+   - æ›´å¤šè¯¦æƒ…ï¼š[MiniMax](/providers/minimax)
+   - **Syntheticï¼ˆAnthropic å…¼å®¹ï¼‰**ï¼šæç¤ºè¾“å…¥ `SYNTHETIC_API_KEY`ã€‚
+   - æ›´å¤šè¯¦æƒ…ï¼š[Synthetic](/providers/synthetic)
+   - **Moonshotï¼ˆKimi K2ï¼‰**ï¼šè‡ªåŠ¨å†™å…¥é…ç½®ã€‚
+   - **Kimi Coding**ï¼šè‡ªåŠ¨å†™å…¥é…ç½®ã€‚
+   - æ›´å¤šè¯¦æƒ…ï¼š[Moonshot AIï¼ˆKimi + Kimi Codingï¼‰](/providers/moonshot)
+   - **è·³è¿‡**ï¼šå°šæœªé…ç½®è®¤è¯ã€‚
+   - ä»Žæ£€æµ‹åˆ°çš„é€‰é¡¹ä¸­é€‰æ‹©é»˜è®¤æ¨¡åž‹ï¼ˆæˆ–æ‰‹åŠ¨è¾“å…¥æä¾›å•†/æ¨¡åž‹ï¼‰ã€‚
+   - å‘å¯¼è¿è¡Œæ¨¡åž‹æ£€æŸ¥ï¼Œå¦‚æžœé…ç½®çš„æ¨¡åž‹æœªçŸ¥æˆ–ç¼ºå°‘è®¤è¯åˆ™å‘å‡ºè­¦å‘Šã€‚
 
-- 远程 Gateway 网关 URL（`ws://...`）
-- 如果远程 Gateway 网关需要认证则需要令牌（推荐）
+- OAuth å‡­è¯å­˜å‚¨åœ¨ `~/./credentials/oauth.json`ï¼›è®¤è¯é…ç½®æ–‡ä»¶å­˜å‚¨åœ¨ `~/./agents/<agentId>/agent/auth-profiles.json`ï¼ˆAPI å¯†é’¥ + OAuthï¼‰ã€‚
+- æ›´å¤šè¯¦æƒ…ï¼š[/concepts/oauth](/concepts/oauth)
 
-注意事项：
+3. **å·¥ä½œåŒº**
+   - é»˜è®¤ `~/./workspace`ï¼ˆå¯é…ç½®ï¼‰ã€‚
+   - ä¸ºæ™ºèƒ½ä½“å¼•å¯¼ä»ªå¼æ’­ç§æ‰€éœ€çš„å·¥ä½œåŒºæ–‡ä»¶ã€‚
+   - å®Œæ•´çš„å·¥ä½œåŒºå¸ƒå±€ + å¤‡ä»½æŒ‡å—ï¼š[æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)
 
-- 不执行远程安装或守护进程更改。
-- 如果 Gateway 网关仅限 loopback，使用 SSH 隧道或 tailnet。
-- 发现提示：
-  - macOS：Bonjour（`dns-sd`）
-  - Linux：Avahi（`avahi-browse`）
+4. **Gateway ç½‘å…³**
+   - ç«¯å£ã€ç»‘å®šã€è®¤è¯æ¨¡å¼ã€tailscale æš´éœ²ã€‚
+   - è®¤è¯å»ºè®®ï¼šå³ä½¿å¯¹äºŽ loopback ä¹Ÿä¿æŒ **Token**ï¼Œä»¥ä¾¿æœ¬åœ° WS å®¢æˆ·ç«¯å¿…é¡»è¿›è¡Œè®¤è¯ã€‚
+   - ä»…å½“ä½ å®Œå…¨ä¿¡ä»»æ¯ä¸ªæœ¬åœ°è¿›ç¨‹æ—¶æ‰ç¦ç”¨è®¤è¯ã€‚
+   - éž loopback ç»‘å®šä»éœ€è¦è®¤è¯ã€‚
 
-## 添加另一个智能体
+5. **æ¸ é“**
+   - [WhatsApp](/channels/whatsapp)ï¼šå¯é€‰çš„äºŒç»´ç ç™»å½•ã€‚
+   - [Telegram](/channels/telegram)ï¼šæœºå™¨äººä»¤ç‰Œã€‚
+   - [Discord](/channels/discord)ï¼šæœºå™¨äººä»¤ç‰Œã€‚
+   - [Google Chat](/channels/googlechat)ï¼šæœåŠ¡è´¦æˆ· JSON + webhook å—ä¼—ã€‚
+   - [Mattermost](/channels/mattermost)ï¼ˆæ’ä»¶ï¼‰ï¼šæœºå™¨äººä»¤ç‰Œ + åŸºç¡€ URLã€‚
+   - [Signal](/channels/signal)ï¼šå¯é€‰çš„ `signal-cli` å®‰è£… + è´¦æˆ·é…ç½®ã€‚
+   - [iMessage](/channels/imessage)ï¼šæœ¬åœ° `imsg` CLI è·¯å¾„ + æ•°æ®åº“è®¿é—®ã€‚
+   - ç§ä¿¡å®‰å…¨ï¼šé»˜è®¤ä¸ºé…å¯¹ã€‚ç¬¬ä¸€æ¡ç§ä¿¡å‘é€éªŒè¯ç ï¼›é€šè¿‡ ` pairing approve <channel> <code>` æ‰¹å‡†æˆ–ä½¿ç”¨å…è®¸åˆ—è¡¨ã€‚
 
-使用 `openclaw agents add <name>` 创建一个具有独立工作区、会话和认证配置文件的单独智能体。不带 `--workspace` 运行会启动向导。
+6. **å®ˆæŠ¤è¿›ç¨‹å®‰è£…**
+   - macOSï¼šLaunchAgent
+     - éœ€è¦å·²ç™»å½•çš„ç”¨æˆ·ä¼šè¯ï¼›å¯¹äºŽæ— å¤´çŽ¯å¢ƒï¼Œä½¿ç”¨è‡ªå®šä¹‰ LaunchDaemonï¼ˆæœªæä¾›ï¼‰ã€‚
+   - Linuxï¼ˆå’Œé€šè¿‡ WSL2 çš„ Windowsï¼‰ï¼šsystemd ç”¨æˆ·å•å…ƒ
+     - å‘å¯¼å°è¯•é€šè¿‡ `loginctl enable-linger <user>` å¯ç”¨ lingeringï¼Œä»¥ä¾¿ Gateway ç½‘å…³åœ¨æ³¨é”€åŽä¿æŒè¿è¡Œã€‚
+     - å¯èƒ½æç¤º sudoï¼ˆå†™å…¥ `/var/lib/systemd/linger`ï¼‰ï¼›å®ƒé¦–å…ˆå°è¯•ä¸ä½¿ç”¨ sudoã€‚
+   - **è¿è¡Œæ—¶é€‰æ‹©ï¼š**Nodeï¼ˆæŽ¨èï¼›WhatsApp/Telegram éœ€è¦ï¼‰ã€‚**ä¸æŽ¨è** Bunã€‚
 
-它设置的内容：
+7. **å¥åº·æ£€æŸ¥**
+   - å¯åŠ¨ Gateway ç½‘å…³ï¼ˆå¦‚æžœéœ€è¦ï¼‰å¹¶è¿è¡Œ ` health`ã€‚
+   - æç¤ºï¼š` status --deep` åœ¨çŠ¶æ€è¾“å‡ºä¸­æ·»åŠ  Gateway ç½‘å…³å¥åº·æŽ¢æµ‹ï¼ˆéœ€è¦å¯è¾¾çš„ Gateway ç½‘å…³ï¼‰ã€‚
+
+8. **Skillsï¼ˆæŽ¨èï¼‰**
+   - è¯»å–å¯ç”¨çš„ Skills å¹¶æ£€æŸ¥è¦æ±‚ã€‚
+   - è®©ä½ é€‰æ‹©èŠ‚ç‚¹ç®¡ç†å™¨ï¼š**npm / pnpm**ï¼ˆä¸æŽ¨è bunï¼‰ã€‚
+   - å®‰è£…å¯é€‰ä¾èµ–é¡¹ï¼ˆæŸäº›åœ¨ macOS ä¸Šä½¿ç”¨ Homebrewï¼‰ã€‚
+
+9. **å®Œæˆ**
+   - æ€»ç»“ + åŽç»­æ­¥éª¤ï¼ŒåŒ…æ‹¬ç”¨äºŽé¢å¤–åŠŸèƒ½çš„ iOS/Android/macOS åº”ç”¨ã€‚
+
+- å¦‚æžœæœªæ£€æµ‹åˆ° GUIï¼Œå‘å¯¼ä¼šæ‰“å°æŽ§åˆ¶ç•Œé¢çš„ SSH ç«¯å£è½¬å‘è¯´æ˜Žï¼Œè€Œä¸æ˜¯æ‰“å¼€æµè§ˆå™¨ã€‚
+- å¦‚æžœæŽ§åˆ¶ç•Œé¢èµ„æºç¼ºå¤±ï¼Œå‘å¯¼ä¼šå°è¯•æž„å»ºå®ƒä»¬ï¼›å›žé€€æ–¹æ¡ˆæ˜¯ `pnpm ui:build`ï¼ˆè‡ªåŠ¨å®‰è£… UI ä¾èµ–ï¼‰ã€‚
+
+## è¿œç¨‹æ¨¡å¼
+
+è¿œç¨‹æ¨¡å¼é…ç½®æœ¬åœ°å®¢æˆ·ç«¯è¿žæŽ¥åˆ°å…¶ä»–ä½ç½®çš„ Gateway ç½‘å…³ã€‚
+
+ä½ å°†è®¾ç½®çš„å†…å®¹ï¼š
+
+- è¿œç¨‹ Gateway ç½‘å…³ URLï¼ˆ`ws://...`ï¼‰
+- å¦‚æžœè¿œç¨‹ Gateway ç½‘å…³éœ€è¦è®¤è¯åˆ™éœ€è¦ä»¤ç‰Œï¼ˆæŽ¨èï¼‰
+
+æ³¨æ„äº‹é¡¹ï¼š
+
+- ä¸æ‰§è¡Œè¿œç¨‹å®‰è£…æˆ–å®ˆæŠ¤è¿›ç¨‹æ›´æ”¹ã€‚
+- å¦‚æžœ Gateway ç½‘å…³ä»…é™ loopbackï¼Œä½¿ç”¨ SSH éš§é“æˆ– tailnetã€‚
+- å‘çŽ°æç¤ºï¼š
+  - macOSï¼šBonjourï¼ˆ`dns-sd`ï¼‰
+  - Linuxï¼šAvahiï¼ˆ`avahi-browse`ï¼‰
+
+## æ·»åŠ å¦ä¸€ä¸ªæ™ºèƒ½ä½“
+
+ä½¿ç”¨ ` agents add <name>` åˆ›å»ºä¸€ä¸ªå…·æœ‰ç‹¬ç«‹å·¥ä½œåŒºã€ä¼šè¯å’Œè®¤è¯é…ç½®æ–‡ä»¶çš„å•ç‹¬æ™ºèƒ½ä½“ã€‚ä¸å¸¦ `--workspace` è¿è¡Œä¼šå¯åŠ¨å‘å¯¼ã€‚
+
+å®ƒè®¾ç½®çš„å†…å®¹ï¼š
 
 - `agents.list[].name`
 - `agents.list[].workspace`
 - `agents.list[].agentDir`
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 默认工作区遵循 `~/.openclaw/workspace-<agentId>`。
-- 添加 `bindings` 以路由入站消息（向导可以执行此操作）。
-- 非交互标志：`--model`、`--agent-dir`、`--bind`、`--non-interactive`。
+- é»˜è®¤å·¥ä½œåŒºéµå¾ª `~/./workspace-<agentId>`ã€‚
+- æ·»åŠ  `bindings` ä»¥è·¯ç”±å…¥ç«™æ¶ˆæ¯ï¼ˆå‘å¯¼å¯ä»¥æ‰§è¡Œæ­¤æ“ä½œï¼‰ã€‚
+- éžäº¤äº’æ ‡å¿—ï¼š`--model`ã€`--agent-dir`ã€`--bind`ã€`--non-interactive`ã€‚
 
-## 非交互模式
+## éžäº¤äº’æ¨¡å¼
 
-使用 `--non-interactive` 自动化或脚本化新手引导：
+ä½¿ç”¨ `--non-interactive` è‡ªåŠ¨åŒ–æˆ–è„šæœ¬åŒ–æ–°æ‰‹å¼•å¯¼ï¼š
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --mode local \
   --auth-choice apiKey \
   --anthropic-api-key "$ANTHROPIC_API_KEY" \
@@ -202,12 +202,12 @@ openclaw onboard --non-interactive \
   --skip-skills
 ```
 
-添加 `--json` 以获取机器可读的摘要。
+æ·»åŠ  `--json` ä»¥èŽ·å–æœºå™¨å¯è¯»çš„æ‘˜è¦ã€‚
 
-Gemini 示例：
+Gemini ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --mode local \
   --auth-choice gemini-api-key \
   --gemini-api-key "$GEMINI_API_KEY" \
@@ -215,10 +215,10 @@ openclaw onboard --non-interactive \
   --gateway-bind loopback
 ```
 
-Z.AI 示例：
+Z.AI ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --mode local \
   --auth-choice zai-api-key \
   --zai-api-key "$ZAI_API_KEY" \
@@ -226,10 +226,10 @@ openclaw onboard --non-interactive \
   --gateway-bind loopback
 ```
 
-Vercel AI Gateway 示例：
+Vercel AI Gateway ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --mode local \
   --auth-choice ai-gateway-api-key \
   --ai-gateway-api-key "$AI_GATEWAY_API_KEY" \
@@ -237,10 +237,10 @@ openclaw onboard --non-interactive \
   --gateway-bind loopback
 ```
 
-Moonshot 示例：
+Moonshot ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --mode local \
   --auth-choice moonshot-api-key \
   --moonshot-api-key "$MOONSHOT_API_KEY" \
@@ -248,10 +248,10 @@ openclaw onboard --non-interactive \
   --gateway-bind loopback
 ```
 
-Synthetic 示例：
+Synthetic ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --mode local \
   --auth-choice synthetic-api-key \
   --synthetic-api-key "$SYNTHETIC_API_KEY" \
@@ -259,10 +259,10 @@ openclaw onboard --non-interactive \
   --gateway-bind loopback
 ```
 
-OpenCode Zen 示例：
+OpenCode Zen ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --mode local \
   --auth-choice opencode-zen \
   --opencode-zen-api-key "$OPENCODE_API_KEY" \
@@ -270,45 +270,45 @@ openclaw onboard --non-interactive \
   --gateway-bind loopback
 ```
 
-添加智能体（非交互）示例：
+æ·»åŠ æ™ºèƒ½ä½“ï¼ˆéžäº¤äº’ï¼‰ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw agents add work \
-  --workspace ~/.openclaw/workspace-work \
+ agents add work \
+  --workspace ~/./workspace-work \
   --model openai/gpt-5.2 \
   --bind whatsapp:biz \
   --non-interactive \
   --json
 ```
 
-## Gateway 网关向导 RPC
+## Gateway ç½‘å…³å‘å¯¼ RPC
 
-Gateway 网关通过 RPC 暴露向导流程（`wizard.start`、`wizard.next`、`wizard.cancel`、`wizard.status`）。
-客户端（macOS 应用、控制界面）可以渲染步骤而无需重新实现新手引导逻辑。
+Gateway ç½‘å…³é€šè¿‡ RPC æš´éœ²å‘å¯¼æµç¨‹ï¼ˆ`wizard.start`ã€`wizard.next`ã€`wizard.cancel`ã€`wizard.status`ï¼‰ã€‚
+å®¢æˆ·ç«¯ï¼ˆmacOS åº”ç”¨ã€æŽ§åˆ¶ç•Œé¢ï¼‰å¯ä»¥æ¸²æŸ“æ­¥éª¤è€Œæ— éœ€é‡æ–°å®žçŽ°æ–°æ‰‹å¼•å¯¼é€»è¾‘ã€‚
 
-## Signal 设置（signal-cli）
+## Signal è®¾ç½®ï¼ˆsignal-cliï¼‰
 
-向导可以从 GitHub releases 安装 `signal-cli`：
+å‘å¯¼å¯ä»¥ä»Ž GitHub releases å®‰è£… `signal-cli`ï¼š
 
-- 下载适当的发布资源。
-- 存储在 `~/.openclaw/tools/signal-cli/<version>/` 下。
-- 将 `channels.signal.cliPath` 写入你的配置。
+- ä¸‹è½½é€‚å½“çš„å‘å¸ƒèµ„æºã€‚
+- å­˜å‚¨åœ¨ `~/./tools/signal-cli/<version>/` ä¸‹ã€‚
+- å°† `channels.signal.cliPath` å†™å…¥ä½ çš„é…ç½®ã€‚
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- JVM 构建需要 **Java 21**。
-- 可用时使用原生构建。
-- Windows 使用 WSL2；signal-cli 安装在 WSL 内遵循 Linux 流程。
+- JVM æž„å»ºéœ€è¦ **Java 21**ã€‚
+- å¯ç”¨æ—¶ä½¿ç”¨åŽŸç”Ÿæž„å»ºã€‚
+- Windows ä½¿ç”¨ WSL2ï¼›signal-cli å®‰è£…åœ¨ WSL å†…éµå¾ª Linux æµç¨‹ã€‚
 
-## 向导写入的内容
+## å‘å¯¼å†™å…¥çš„å†…å®¹
 
-`~/.openclaw/openclaw.json` 中的典型字段：
+`~/./.json` ä¸­çš„å…¸åž‹å­—æ®µï¼š
 
 - `agents.defaults.workspace`
-- `agents.defaults.model` / `models.providers`（如果选择了 Minimax）
-- `gateway.*`（模式、绑定、认证、tailscale）
-- `channels.telegram.botToken`、`channels.discord.token`、`channels.signal.*`、`channels.imessage.*`
-- 当你在提示中选择加入时的渠道允许列表（Slack/Discord/Matrix/Microsoft Teams）（名称在可能时解析为 ID）。
+- `agents.defaults.model` / `models.providers`ï¼ˆå¦‚æžœé€‰æ‹©äº† Minimaxï¼‰
+- `gateway.*`ï¼ˆæ¨¡å¼ã€ç»‘å®šã€è®¤è¯ã€tailscaleï¼‰
+- `channels.telegram.botToken`ã€`channels.discord.token`ã€`channels.signal.*`ã€`channels.imessage.*`
+- å½“ä½ åœ¨æç¤ºä¸­é€‰æ‹©åŠ å…¥æ—¶çš„æ¸ é“å…è®¸åˆ—è¡¨ï¼ˆSlack/Discord/Matrix/Microsoft Teamsï¼‰ï¼ˆåç§°åœ¨å¯èƒ½æ—¶è§£æžä¸º IDï¼‰ã€‚
 - `skills.install.nodeManager`
 - `wizard.lastRunAt`
 - `wizard.lastRunVersion`
@@ -316,16 +316,17 @@ Gateway 网关通过 RPC 暴露向导流程（`wizard.start`、`wizard.next`、`
 - `wizard.lastRunCommand`
 - `wizard.lastRunMode`
 
-`openclaw agents add` 写入 `agents.list[]` 和可选的 `bindings`。
+` agents add` å†™å…¥ `agents.list[]` å’Œå¯é€‰çš„ `bindings`ã€‚
 
-WhatsApp 凭证存储在 `~/.openclaw/credentials/whatsapp/<accountId>/` 下。
-会话存储在 `~/.openclaw/agents/<agentId>/sessions/` 下。
+WhatsApp å‡­è¯å­˜å‚¨åœ¨ `~/./credentials/whatsapp/<accountId>/` ä¸‹ã€‚
+ä¼šè¯å­˜å‚¨åœ¨ `~/./agents/<agentId>/sessions/` ä¸‹ã€‚
 
-某些渠道以插件形式提供。当你在新手引导期间选择一个时，向导会在配置之前提示安装它（npm 或本地路径）。
+æŸäº›æ¸ é“ä»¥æ’ä»¶å½¢å¼æä¾›ã€‚å½“ä½ åœ¨æ–°æ‰‹å¼•å¯¼æœŸé—´é€‰æ‹©ä¸€ä¸ªæ—¶ï¼Œå‘å¯¼ä¼šåœ¨é…ç½®ä¹‹å‰æç¤ºå®‰è£…å®ƒï¼ˆnpm æˆ–æœ¬åœ°è·¯å¾„ï¼‰ã€‚
 
-## 相关文档
+## ç›¸å…³æ–‡æ¡£
 
-- macOS 应用新手引导：[新手引导](/start/onboarding)
-- 配置参考：[Gateway 网关配置](/gateway/configuration)
-- 提供商：[WhatsApp](/channels/whatsapp)、[Telegram](/channels/telegram)、[Discord](/channels/discord)、[Google Chat](/channels/googlechat)、[Signal](/channels/signal)、[iMessage](/channels/imessage)
-- Skills：[Skills](/tools/skills)、[Skills 配置](/tools/skills-config)
+- macOS åº”ç”¨æ–°æ‰‹å¼•å¯¼ï¼š[æ–°æ‰‹å¼•å¯¼](/start/onboarding)
+- é…ç½®å‚è€ƒï¼š[Gateway ç½‘å…³é…ç½®](/gateway/configuration)
+- æä¾›å•†ï¼š[WhatsApp](/channels/whatsapp)ã€[Telegram](/channels/telegram)ã€[Discord](/channels/discord)ã€[Google Chat](/channels/googlechat)ã€[Signal](/channels/signal)ã€[iMessage](/channels/imessage)
+- Skillsï¼š[Skills](/tools/skills)ã€[Skills é…ç½®](/tools/skills-config)
+

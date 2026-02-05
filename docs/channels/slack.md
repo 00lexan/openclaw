@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Slack setup for socket or HTTP webhook mode"
 read_when: "Setting up Slack or debugging Slack socket/HTTP mode"
 title: "Slack"
@@ -12,7 +12,7 @@ title: "Slack"
 
 1. Create a Slack app and enable **Socket Mode**.
 2. Create an **App Token** (`xapp-...`) and **Bot Token** (`xoxb-...`).
-3. Set tokens for OpenClaw and start the gateway.
+3. Set tokens for  and start the gateway.
 
 Minimal config:
 
@@ -31,10 +31,10 @@ Minimal config:
 ### Setup
 
 1. Create a Slack app (From scratch) in https://api.slack.com/apps.
-2. **Socket Mode** → toggle on. Then go to **Basic Information** → **App-Level Tokens** → **Generate Token and Scopes** with scope `connections:write`. Copy the **App Token** (`xapp-...`).
-3. **OAuth & Permissions** → add bot token scopes (use the manifest below). Click **Install to Workspace**. Copy the **Bot User OAuth Token** (`xoxb-...`).
-4. Optional: **OAuth & Permissions** → add **User Token Scopes** (see the read-only list below). Reinstall the app and copy the **User OAuth Token** (`xoxp-...`).
-5. **Event Subscriptions** → enable events and subscribe to:
+2. **Socket Mode** â†’ toggle on. Then go to **Basic Information** â†’ **App-Level Tokens** â†’ **Generate Token and Scopes** with scope `connections:write`. Copy the **App Token** (`xapp-...`).
+3. **OAuth & Permissions** â†’ add bot token scopes (use the manifest below). Click **Install to Workspace**. Copy the **Bot User OAuth Token** (`xoxb-...`).
+4. Optional: **OAuth & Permissions** â†’ add **User Token Scopes** (see the read-only list below). Reinstall the app and copy the **User OAuth Token** (`xoxp-...`).
+5. **Event Subscriptions** â†’ enable events and subscribe to:
    - `message.*` (includes edits/deletes/thread broadcasts)
    - `app_mention`
    - `reaction_added`, `reaction_removed`
@@ -42,14 +42,14 @@ Minimal config:
    - `channel_rename`
    - `pin_added`, `pin_removed`
 6. Invite the bot to channels you want it to read.
-7. Slash Commands → create `/openclaw` if you use `channels.slack.slashCommand`. If you enable native commands, add one slash command per built-in command (same names as `/help`). Native defaults to off for Slack unless you set `channels.slack.commands.native: true` (global `commands.native` is `"auto"` which leaves Slack off).
-8. App Home → enable the **Messages Tab** so users can DM the bot.
+7. Slash Commands â†’ create `/` if you use `channels.slack.slashCommand`. If you enable native commands, add one slash command per built-in command (same names as `/help`). Native defaults to off for Slack unless you set `channels.slack.commands.native: true` (global `commands.native` is `"auto"` which leaves Slack off).
+8. App Home â†’ enable the **Messages Tab** so users can DM the bot.
 
 Use the manifest below so scopes and events stay in sync.
 
 Multi-account support: use `channels.slack.accounts` with per-account tokens and optional `name`. See [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) for the shared pattern.
 
-### OpenClaw config (minimal)
+###  config (minimal)
 
 Set tokens via env vars (recommended):
 
@@ -72,7 +72,7 @@ Or via config:
 
 ### User token (optional)
 
-OpenClaw can use a Slack user token (`xoxp-...`) for read operations (history,
+ can use a Slack user token (`xoxp-...`) for read operations (history,
 pins, reactions, emoji, member info). By default this stays read-only: reads
 prefer the user token when present, and writes still use the bot token unless
 you explicitly opt in. Even with `userTokenReadOnly: false`, the bot token stays
@@ -118,7 +118,7 @@ Example with userTokenReadOnly explicitly set (allow user token writes):
   search) prefer the user token when configured, otherwise the bot token.
 - Write operations (send/edit/delete messages, add/remove reactions, pin/unpin,
   file uploads) use the bot token by default. If `userTokenReadOnly: false` and
-  no bot token is available, OpenClaw falls back to the user token.
+  no bot token is available,  falls back to the user token.
 
 ### History context
 
@@ -133,16 +133,16 @@ HTTP mode uses the Events API + Interactivity + Slash Commands with a shared req
 ### Setup
 
 1. Create a Slack app and **disable Socket Mode** (optional if you only use HTTP).
-2. **Basic Information** → copy the **Signing Secret**.
-3. **OAuth & Permissions** → install the app and copy the **Bot User OAuth Token** (`xoxb-...`).
-4. **Event Subscriptions** → enable events and set the **Request URL** to your gateway webhook path (default `/slack/events`).
-5. **Interactivity & Shortcuts** → enable and set the same **Request URL**.
-6. **Slash Commands** → set the same **Request URL** for your command(s).
+2. **Basic Information** â†’ copy the **Signing Secret**.
+3. **OAuth & Permissions** â†’ install the app and copy the **Bot User OAuth Token** (`xoxb-...`).
+4. **Event Subscriptions** â†’ enable events and set the **Request URL** to your gateway webhook path (default `/slack/events`).
+5. **Interactivity & Shortcuts** â†’ enable and set the same **Request URL**.
+6. **Slash Commands** â†’ set the same **Request URL** for your command(s).
 
 Example request URL:
 `https://gateway-host/slack/events`
 
-### OpenClaw config (minimal)
+###  config (minimal)
 
 ```json5
 {
@@ -169,12 +169,12 @@ user scopes if you plan to configure a user token.
 ```json
 {
   "display_information": {
-    "name": "OpenClaw",
-    "description": "Slack connector for OpenClaw"
+    "name": "",
+    "description": "Slack connector for "
   },
   "features": {
     "bot_user": {
-      "display_name": "OpenClaw",
+      "display_name": "",
       "always_online": false
     },
     "app_home": {
@@ -183,8 +183,8 @@ user scopes if you plan to configure a user token.
     },
     "slash_commands": [
       {
-        "command": "/openclaw",
-        "description": "Send a message to OpenClaw",
+        "command": "/",
+        "description": "Send a message to ",
         "should_escape": false
       }
     ]
@@ -348,7 +348,7 @@ Slack uses Socket Mode only (no HTTP webhook server). Provide both tokens:
     },
     "slashCommand": {
       "enabled": true,
-      "name": "openclaw",
+      "name": "",
       "sessionPrefix": "slack:slash",
       "ephemeral": true
     },
@@ -375,7 +375,7 @@ ack reaction after the bot replies.
 
 ## Reply threading
 
-By default, OpenClaw replies in the main channel. Use `channels.slack.replyToMode` to control automatic threading:
+By default,  replies in the main channel. Use `channels.slack.replyToMode` to control automatic threading:
 
 | Mode    | Behavior                                                                                                                                                            |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -462,22 +462,22 @@ Make channels thread, keep DMs in the root:
 
 For fine-grained control, use these tags in agent responses:
 
-- `[[reply_to_current]]` — reply to the triggering message (start/continue thread).
-- `[[reply_to:<id>]]` — reply to a specific message id.
+- `[[reply_to_current]]` â€” reply to the triggering message (start/continue thread).
+- `[[reply_to:<id>]]` â€” reply to a specific message id.
 
 ## Sessions + routing
 
 - DMs share the `main` session (like WhatsApp/Telegram).
 - Channels map to `agent:<agentId>:slack:channel:<channelId>` sessions.
 - Slash commands use `agent:<agentId>:slack:slash:<userId>` sessions (prefix configurable via `channels.slack.slashCommand.sessionPrefix`).
-- If Slack doesn’t provide `channel_type`, OpenClaw infers it from the channel ID prefix (`D`, `C`, `G`) and defaults to `channel` to keep session keys stable.
-- Native command registration uses `commands.native` (global default `"auto"` → Slack off) and can be overridden per-workspace with `channels.slack.commands.native`. Text commands require standalone `/...` messages and can be disabled with `commands.text: false`. Slack slash commands are managed in the Slack app and are not removed automatically. Use `commands.useAccessGroups: false` to bypass access-group checks for commands.
+- If Slack doesnâ€™t provide `channel_type`,  infers it from the channel ID prefix (`D`, `C`, `G`) and defaults to `channel` to keep session keys stable.
+- Native command registration uses `commands.native` (global default `"auto"` â†’ Slack off) and can be overridden per-workspace with `channels.slack.commands.native`. Text commands require standalone `/...` messages and can be disabled with `commands.text: false`. Slack slash commands are managed in the Slack app and are not removed automatically. Use `commands.useAccessGroups: false` to bypass access-group checks for commands.
 - Full command list + config: [Slash commands](/tools/slash-commands)
 
 ## DM security (pairing)
 
-- Default: `channels.slack.dm.policy="pairing"` — unknown DM senders get a pairing code (expires after 1 hour).
-- Approve via: `openclaw pairing approve slack <code>`.
+- Default: `channels.slack.dm.policy="pairing"` â€” unknown DM senders get a pairing code (expires after 1 hour).
+- Approve via: ` pairing approve slack <code>`.
 - To allow anyone: set `channels.slack.dm.policy="open"` and `channels.slack.dm.allowFrom=["*"]`.
 - `channels.slack.dm.allowFrom` accepts user IDs, @handles, or emails (resolved at startup when tokens allow). The wizard accepts usernames and resolves them to ids during setup when tokens allow.
 
@@ -490,7 +490,7 @@ For fine-grained control, use these tags in agent responses:
   `channels.defaults.groupPolicy`, or a channel allowlist to lock it down.
 - The configure wizard accepts `#channel` names and resolves them to IDs when possible
   (public + private); if multiple matches exist, it prefers the active channel.
-- On startup, OpenClaw resolves channel/user names in allowlists to IDs (when tokens allow)
+- On startup,  resolves channel/user names in allowlists to IDs (when tokens allow)
   and logs the mapping; unresolved entries are kept as typed.
 - To allow **no channels**, set `channels.slack.groupPolicy: "disabled"` (or keep an empty allowlist).
 
@@ -546,3 +546,4 @@ Slack tool actions can be gated with `channels.slack.actions.*`:
 - Warning: If you allow replies to other bots (`channels.slack.allowBots=true` or `channels.slack.channels.<id>.allowBots=true`), prevent bot-to-bot reply loops with `requireMention`, `channels.slack.channels.<id>.users` allowlists, and/or clear guardrails in `AGENTS.md` and `SOUL.md`.
 - For the Slack tool, reaction removal semantics are in [/tools/reactions](/tools/reactions).
 - Attachments are downloaded to the media store when permitted and under the size limit.
+

@@ -1,4 +1,4 @@
-import type { Client } from "@larksuiteoapi/node-sdk";
+﻿import type { Client } from "@larksuiteoapi/node-sdk";
 import { formatErrorMessage } from "../infra/errors.js";
 import { getChildLogger } from "../logging.js";
 import { mediaKindFromMime } from "../media/constants.js";
@@ -317,3 +317,4 @@ export async function sendMessageFeishu(
     throw err;
   }
 }
+

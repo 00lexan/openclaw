@@ -1,4 +1,4 @@
-export type UsageLike = {
+﻿export type UsageLike = {
   input?: number;
   output?: number;
   cacheRead?: number;
@@ -103,3 +103,4 @@ export function derivePromptTokens(usage?: {
   const sum = input + cacheRead + cacheWrite;
   return sum > 0 ? sum : undefined;
 }
+

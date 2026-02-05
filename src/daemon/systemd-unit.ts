@@ -1,4 +1,4 @@
-function systemdEscapeArg(value: string): string {
+﻿function systemdEscapeArg(value: string): string {
   if (!/[\\s"\\\\]/.test(value)) {
     return value;
   }
@@ -32,7 +32,7 @@ export function buildSystemdUnit({
   environment?: Record<string, string | undefined>;
 }): string {
   const execStart = programArguments.map(systemdEscapeArg).join(" ");
-  const descriptionLine = `Description=${description?.trim() || "OpenClaw Gateway"}`;
+  const descriptionLine = `Description=${description?.trim() || " Gateway"}`;
   const workingDirLine = workingDirectory
     ? `WorkingDirectory=${systemdEscapeArg(workingDirectory)}`
     : null;
@@ -135,3 +135,4 @@ export function parseSystemdEnvAssignment(raw: string): { key: string; value: st
   const value = unquoted.slice(eq + 1);
   return { key, value };
 }
+

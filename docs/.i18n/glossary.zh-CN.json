@@ -1,11 +1,11 @@
-[
+﻿[
   {
-    "source": "OpenClaw",
-    "target": "OpenClaw"
+    "source": "",
+    "target": ""
   },
   {
     "source": "Gateway",
-    "target": "Gateway 网关"
+    "target": "Gateway ç½‘å…³"
   },
   {
     "source": "Pi",
@@ -17,11 +17,11 @@
   },
   {
     "source": "Skills config",
-    "target": "Skills 配置"
+    "target": "Skills é…ç½®"
   },
   {
     "source": "Skills Config",
-    "target": "Skills 配置"
+    "target": "Skills é…ç½®"
   },
   {
     "source": "local loopback",
@@ -33,131 +33,131 @@
   },
   {
     "source": "Getting Started",
-    "target": "入门指南"
+    "target": "å…¥é—¨æŒ‡å—"
   },
   {
     "source": "Getting started",
-    "target": "入门指南"
+    "target": "å…¥é—¨æŒ‡å—"
   },
   {
     "source": "Quick start",
-    "target": "快速开始"
+    "target": "å¿«é€Ÿå¼€å§‹"
   },
   {
     "source": "Quick Start",
-    "target": "快速开始"
+    "target": "å¿«é€Ÿå¼€å§‹"
   },
   {
     "source": "Docs directory",
-    "target": "文档目录"
+    "target": "æ–‡æ¡£ç›®å½•"
   },
   {
     "source": "Credits",
-    "target": "致谢"
+    "target": "è‡´è°¢"
   },
   {
     "source": "Features",
-    "target": "功能"
+    "target": "åŠŸèƒ½"
   },
   {
     "source": "DMs",
-    "target": "私信"
+    "target": "ç§ä¿¡"
   },
   {
     "source": "DM",
-    "target": "私信"
+    "target": "ç§ä¿¡"
   },
   {
     "source": "sandbox",
-    "target": "沙箱"
+    "target": "æ²™ç®±"
   },
   {
     "source": "Sandbox",
-    "target": "沙箱"
+    "target": "æ²™ç®±"
   },
   {
     "source": "sandboxing",
-    "target": "沙箱隔离"
+    "target": "æ²™ç®±éš”ç¦»"
   },
   {
     "source": "Sandboxing",
-    "target": "沙箱隔离"
+    "target": "æ²™ç®±éš”ç¦»"
   },
   {
     "source": "sandboxed",
-    "target": "沙箱隔离"
+    "target": "æ²™ç®±éš”ç¦»"
   },
   {
     "source": "Sandboxed",
-    "target": "沙箱隔离"
+    "target": "æ²™ç®±éš”ç¦»"
   },
   {
     "source": "Sandboxing note",
-    "target": "沙箱注意事项"
+    "target": "æ²™ç®±æ³¨æ„äº‹é¡¹"
   },
   {
     "source": "Companion apps",
-    "target": "配套应用"
+    "target": "é…å¥—åº”ç”¨"
   },
   {
     "source": "expected keys",
-    "target": "预期键名"
+    "target": "é¢„æœŸé”®å"
   },
   {
     "source": "block streaming",
-    "target": "分块流式传输"
+    "target": "åˆ†å—æµå¼ä¼ è¾“"
   },
   {
     "source": "Block streaming",
-    "target": "分块流式传输"
+    "target": "åˆ†å—æµå¼ä¼ è¾“"
   },
   {
     "source": "Discovery + transports",
-    "target": "设备发现 + 传输协议"
+    "target": "è®¾å¤‡å‘çŽ° + ä¼ è¾“åè®®"
   },
   {
     "source": "Discovery",
-    "target": "设备发现"
+    "target": "è®¾å¤‡å‘çŽ°"
   },
   {
     "source": "Network model",
-    "target": "网络模型"
+    "target": "ç½‘ç»œæ¨¡åž‹"
   },
   {
     "source": "for full details",
-    "target": "了解详情"
+    "target": "äº†è§£è¯¦æƒ…"
   },
   {
     "source": "First 60 seconds",
-    "target": "最初的六十秒"
+    "target": "æœ€åˆçš„å…­åç§’"
   },
   {
     "source": "Auth: where it lives (important)",
-    "target": "凭证：存储位置（重要）"
+    "target": "å‡­è¯ï¼šå­˜å‚¨ä½ç½®ï¼ˆé‡è¦ï¼‰"
   },
   {
     "source": "agent",
-    "target": "智能体"
+    "target": "æ™ºèƒ½ä½“"
   },
   {
     "source": "channel",
-    "target": "渠道"
+    "target": "æ¸ é“"
   },
   {
     "source": "session",
-    "target": "会话"
+    "target": "ä¼šè¯"
   },
   {
     "source": "provider",
-    "target": "提供商"
+    "target": "æä¾›å•†"
   },
   {
     "source": "model",
-    "target": "模型"
+    "target": "æ¨¡åž‹"
   },
   {
     "source": "tool",
-    "target": "工具"
+    "target": "å·¥å…·"
   },
   {
     "source": "CLI",
@@ -165,46 +165,47 @@
   },
   {
     "source": "install sanity",
-    "target": "安装完整性检查"
+    "target": "å®‰è£…å®Œæ•´æ€§æ£€æŸ¥"
   },
   {
     "source": "get unstuck",
-    "target": "解决问题"
+    "target": "è§£å†³é—®é¢˜"
   },
   {
     "source": "troubleshooting",
-    "target": "故障排除"
+    "target": "æ•…éšœæŽ’é™¤"
   },
   {
     "source": "FAQ",
-    "target": "常见问题"
+    "target": "å¸¸è§é—®é¢˜"
   },
   {
     "source": "onboarding",
-    "target": "新手引导"
+    "target": "æ–°æ‰‹å¼•å¯¼"
   },
   {
     "source": "Onboarding",
-    "target": "新手引导"
+    "target": "æ–°æ‰‹å¼•å¯¼"
   },
   {
     "source": "wizard",
-    "target": "向导"
+    "target": "å‘å¯¼"
   },
   {
     "source": "environment variables",
-    "target": "环境变量"
+    "target": "çŽ¯å¢ƒå˜é‡"
   },
   {
     "source": "environment variable",
-    "target": "环境变量"
+    "target": "çŽ¯å¢ƒå˜é‡"
   },
   {
     "source": "env vars",
-    "target": "环境变量"
+    "target": "çŽ¯å¢ƒå˜é‡"
   },
   {
     "source": "env var",
-    "target": "环境变量"
+    "target": "çŽ¯å¢ƒå˜é‡"
   }
 ]
+

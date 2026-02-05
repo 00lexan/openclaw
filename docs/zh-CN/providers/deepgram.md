@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想使用 Deepgram 语音转文字处理音频附件
-  - 你需要一个快速的 Deepgram 配置示例
-summary: Deepgram 语音转录，用于接收语音消息
+  - ä½ æƒ³ä½¿ç”¨ Deepgram è¯­éŸ³è½¬æ–‡å­—å¤„ç†éŸ³é¢‘é™„ä»¶
+  - ä½ éœ€è¦ä¸€ä¸ªå¿«é€Ÿçš„ Deepgram é…ç½®ç¤ºä¾‹
+summary: Deepgram è¯­éŸ³è½¬å½•ï¼Œç”¨äºŽæŽ¥æ”¶è¯­éŸ³æ¶ˆæ¯
 title: Deepgram
 x-i18n:
   generated_at: "2026-02-01T21:34:47Z"
@@ -13,24 +13,24 @@ x-i18n:
   workflow: 15
 ---
 
-# Deepgram（音频转录）
+# Deepgramï¼ˆéŸ³é¢‘è½¬å½•ï¼‰
 
-Deepgram 是一个语音转文字 API。在 OpenClaw 中，它通过 `tools.media.audio` 用于**接收音频/语音消息的转录**。
+Deepgram æ˜¯ä¸€ä¸ªè¯­éŸ³è½¬æ–‡å­— APIã€‚åœ¨  ä¸­ï¼Œå®ƒé€šè¿‡ `tools.media.audio` ç”¨äºŽ**æŽ¥æ”¶éŸ³é¢‘/è¯­éŸ³æ¶ˆæ¯çš„è½¬å½•**ã€‚
 
-启用后，OpenClaw 会将音频文件上传到 Deepgram，并将转录文本注入回复管道（`{{Transcript}}` + `[Audio]` 块）。这**不是流式**处理；它使用的是预录音转录端点。
+å¯ç”¨åŽï¼Œ ä¼šå°†éŸ³é¢‘æ–‡ä»¶ä¸Šä¼ åˆ° Deepgramï¼Œå¹¶å°†è½¬å½•æ–‡æœ¬æ³¨å…¥å›žå¤ç®¡é“ï¼ˆ`{{Transcript}}` + `[Audio]` å—ï¼‰ã€‚è¿™**ä¸æ˜¯æµå¼**å¤„ç†ï¼›å®ƒä½¿ç”¨çš„æ˜¯é¢„å½•éŸ³è½¬å½•ç«¯ç‚¹ã€‚
 
-网站：https://deepgram.com  
-文档：https://developers.deepgram.com
+ç½‘ç«™ï¼šhttps://deepgram.com  
+æ–‡æ¡£ï¼šhttps://developers.deepgram.com
 
-## 快速开始
+## å¿«é€Ÿå¼€å§‹
 
-1. 设置你的 API 密钥：
+1. è®¾ç½®ä½ çš„ API å¯†é’¥ï¼š
 
 ```
 DEEPGRAM_API_KEY=dg_...
 ```
 
-2. 启用提供商：
+2. å¯ç”¨æä¾›å•†ï¼š
 
 ```json5
 {
@@ -45,15 +45,15 @@ DEEPGRAM_API_KEY=dg_...
 }
 ```
 
-## 选项
+## é€‰é¡¹
 
-- `model`：Deepgram 模型 ID（默认：`nova-3`）
-- `language`：语言提示（可选）
-- `tools.media.audio.providerOptions.deepgram.detect_language`：启用语言检测（可选）
-- `tools.media.audio.providerOptions.deepgram.punctuate`：启用标点符号（可选）
-- `tools.media.audio.providerOptions.deepgram.smart_format`：启用智能格式化（可选）
+- `model`ï¼šDeepgram æ¨¡åž‹ IDï¼ˆé»˜è®¤ï¼š`nova-3`ï¼‰
+- `language`ï¼šè¯­è¨€æç¤ºï¼ˆå¯é€‰ï¼‰
+- `tools.media.audio.providerOptions.deepgram.detect_language`ï¼šå¯ç”¨è¯­è¨€æ£€æµ‹ï¼ˆå¯é€‰ï¼‰
+- `tools.media.audio.providerOptions.deepgram.punctuate`ï¼šå¯ç”¨æ ‡ç‚¹ç¬¦å·ï¼ˆå¯é€‰ï¼‰
+- `tools.media.audio.providerOptions.deepgram.smart_format`ï¼šå¯ç”¨æ™ºèƒ½æ ¼å¼åŒ–ï¼ˆå¯é€‰ï¼‰
 
-带语言参数的示例：
+å¸¦è¯­è¨€å‚æ•°çš„ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -68,7 +68,7 @@ DEEPGRAM_API_KEY=dg_...
 }
 ```
 
-带 Deepgram 选项的示例：
+å¸¦ Deepgram é€‰é¡¹çš„ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -90,8 +90,9 @@ DEEPGRAM_API_KEY=dg_...
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 认证遵循标准提供商认证顺序；`DEEPGRAM_API_KEY` 是最简单的方式。
-- 使用代理时，可通过 `tools.media.audio.baseUrl` 和 `tools.media.audio.headers` 覆盖端点或请求头。
-- 输出遵循与其他提供商相同的音频规则（大小限制、超时、转录文本注入）。
+- è®¤è¯éµå¾ªæ ‡å‡†æä¾›å•†è®¤è¯é¡ºåºï¼›`DEEPGRAM_API_KEY` æ˜¯æœ€ç®€å•çš„æ–¹å¼ã€‚
+- ä½¿ç”¨ä»£ç†æ—¶ï¼Œå¯é€šè¿‡ `tools.media.audio.baseUrl` å’Œ `tools.media.audio.headers` è¦†ç›–ç«¯ç‚¹æˆ–è¯·æ±‚å¤´ã€‚
+- è¾“å‡ºéµå¾ªä¸Žå…¶ä»–æä¾›å•†ç›¸åŒçš„éŸ³é¢‘è§„åˆ™ï¼ˆå¤§å°é™åˆ¶ã€è¶…æ—¶ã€è½¬å½•æ–‡æœ¬æ³¨å…¥ï¼‰ã€‚
+

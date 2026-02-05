@@ -1,4 +1,4 @@
-import chalk from "chalk";
+﻿import chalk from "chalk";
 
 type HighlightTheme = Record<string, (text: string) => string>;
 
@@ -50,3 +50,4 @@ export function createSyntaxTheme(fallback: (text: string) => string): Highlight
     default: fallback, // fallback to code color
   };
 }
+

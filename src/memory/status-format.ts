@@ -1,4 +1,4 @@
-export type Tone = "ok" | "warn" | "muted";
+﻿export type Tone = "ok" | "warn" | "muted";
 
 export function resolveMemoryVectorState(vector: { enabled: boolean; available?: boolean }): {
   tone: Tone;
@@ -43,3 +43,4 @@ export function resolveMemoryCacheState(cache: { enabled: boolean }): {
 } {
   return cache.enabled ? { tone: "ok", state: "enabled" } : { tone: "muted", state: "disabled" };
 }
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { danger } from "../../globals.js";
 import { defaultRuntime } from "../../runtime.js";
 import { addGatewayClientOptions, callGatewayFromCli } from "../gateway-rpc.js";
@@ -107,3 +107,4 @@ export function registerCronSimpleCommands(cron: Command) {
       }),
   );
 }
+

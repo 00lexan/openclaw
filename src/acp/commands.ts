@@ -1,4 +1,4 @@
-import type { AvailableCommand } from "@agentclientprotocol/sdk";
+﻿import type { AvailableCommand } from "@agentclientprotocol/sdk";
 
 export function getAvailableCommands(): AvailableCommand[] {
   return [
@@ -38,3 +38,4 @@ export function getAvailableCommands(): AvailableCommand[] {
     { name: "compact", description: "Compact the session history." },
   ];
 }
+

@@ -1,4 +1,4 @@
-import type { ChannelId } from "../channels/plugins/types.js";
+﻿import type { ChannelId } from "../channels/plugins/types.js";
 import type {
   BlockStreamingChunkConfig,
   BlockStreamingCoalesceConfig,
@@ -65,7 +65,7 @@ export type CliBackendConfig = {
   clearEnv?: string[];
   /** Flag used to pass model id (e.g. --model). */
   modelArg?: string;
-  /** Model aliases mapping (config model id → CLI model id). */
+  /** Model aliases mapping (config model id â†’ CLI model id). */
   modelAliases?: Record<string, string>;
   /** Flag used to pass session id (e.g. --session-id). */
   sessionArg?: string;
@@ -248,7 +248,7 @@ export type AgentCompactionConfig = {
   mode?: AgentCompactionMode;
   /** Minimum reserve tokens enforced for Pi compaction (0 disables the floor). */
   reserveTokensFloor?: number;
-  /** Max share of context window for history during safeguard pruning (0.1–0.9, default 0.5). */
+  /** Max share of context window for history during safeguard pruning (0.1â€“0.9, default 0.5). */
   maxHistoryShare?: number;
   /** Pre-compaction memory flush (agentic turn). Default: enabled. */
   memoryFlush?: AgentCompactionMemoryFlushConfig;
@@ -264,3 +264,4 @@ export type AgentCompactionMemoryFlushConfig = {
   /** System prompt appended for the memory flush turn. */
   systemPrompt?: string;
 };
+

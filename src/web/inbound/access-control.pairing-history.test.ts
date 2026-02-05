@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { checkInboundAccessControl } from "./access-control.js";
 
 const sendMessageMock = vi.fn();
@@ -83,3 +83,4 @@ describe("checkInboundAccessControl", () => {
     expect(sendMessageMock).toHaveBeenCalled();
   });
 });
+

@@ -1,12 +1,12 @@
----
+﻿---
 name: mcporter
 description: Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.
 homepage: http://mcporter.dev
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "📦",
+        "emoji": "ðŸ“¦",
         "requires": { "bins": ["mcporter"] },
         "install":
           [
@@ -59,3 +59,4 @@ Notes
 
 - Config default: `./config/mcporter.json` (override with `--config`).
 - Prefer `--output json` for machine-readable results.
+

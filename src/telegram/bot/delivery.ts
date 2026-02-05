@@ -1,4 +1,4 @@
-import { type Bot, GrammyError, InputFile } from "grammy";
+﻿import { type Bot, GrammyError, InputFile } from "grammy";
 import type { ReplyPayload } from "../../auto-reply/types.js";
 import type { ReplyToMode } from "../../config/config.js";
 import type { MarkdownTableMode } from "../../config/types.base.js";
@@ -560,3 +560,4 @@ async function sendTelegramText(
     throw err;
   }
 }
+

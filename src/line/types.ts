@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   WebhookEvent,
   TextMessage,
   ImageMessage,
@@ -152,3 +152,4 @@ export type LineChannelData = {
   flexMessage?: LineFlexMessagePayload;
   templateMessage?: LineTemplateMessagePayload;
 };
+

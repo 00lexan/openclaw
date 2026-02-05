@@ -1,5 +1,5 @@
-import { createRequire } from "node:module";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import { createRequire } from "node:module";
+import type { Config } from "../config/config.js";
 
 const requireConfig = createRequire(import.meta.url);
 
@@ -71,7 +71,7 @@ function maskToken(token: string): string {
   }
   const start = token.slice(0, DEFAULT_REDACT_KEEP_START);
   const end = token.slice(-DEFAULT_REDACT_KEEP_END);
-  return `${start}…${end}`;
+  return `${start}â€¦${end}`;
 }
 
 function redactPemBlock(block: string): string {
@@ -79,7 +79,7 @@ function redactPemBlock(block: string): string {
   if (lines.length < 2) {
     return "***";
   }
-  return `${lines[0]}\n…redacted…\n${lines[lines.length - 1]}`;
+  return `${lines[0]}\nâ€¦redactedâ€¦\n${lines[lines.length - 1]}`;
 }
 
 function redactMatch(match: string, groups: string[]): string {
@@ -106,10 +106,10 @@ function redactText(text: string, patterns: RegExp[]): string {
 }
 
 function resolveConfigRedaction(): RedactOptions {
-  let cfg: OpenClawConfig["logging"] | undefined;
+  let cfg: Config["logging"] | undefined;
   try {
     const loaded = requireConfig("../config/config.js") as {
-      loadConfig?: () => OpenClawConfig;
+      loadConfig?: () => Config;
     };
     cfg = loaded.loadConfig?.().logging;
   } catch {
@@ -147,3 +147,4 @@ export function redactToolDetail(detail: string): string {
 export function getDefaultRedactPatterns(): string[] {
   return [...DEFAULT_REDACT_PATTERNS];
 }
+

@@ -1,4 +1,4 @@
-import type { ChannelId } from "../channels/plugins/types.js";
+﻿import type { ChannelId } from "../channels/plugins/types.js";
 import type { GatewayDaemonRuntime } from "./daemon-runtime.js";
 
 export type OnboardMode = "local" | "remote";
@@ -99,3 +99,4 @@ export type OnboardOptions = {
   remoteToken?: string;
   json?: boolean;
 };
+

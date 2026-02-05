@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   buildRoleSnapshotFromAiSnapshot,
   buildRoleSnapshotFromAriaSnapshot,
@@ -88,3 +88,4 @@ describe("pw-role-snapshot", () => {
     expect(res.refs.e7).toMatchObject({ role: "button", name: "Save" });
   });
 });
+

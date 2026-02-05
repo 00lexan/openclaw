@@ -1,4 +1,4 @@
-const DEFAULT_PORT = 18792
+﻿const DEFAULT_PORT = 18792
 
 function clampPort(value) {
   const n = Number.parseInt(String(value || ''), 10)
@@ -31,7 +31,7 @@ async function checkRelayReachable(port) {
   } catch {
     setStatus(
       'error',
-      `Relay not reachable at ${url}. Start OpenClaw’s browser relay on this machine, then click the toolbar button again.`,
+      `Relay not reachable at ${url}. Start â€™s browser relay on this machine, then click the toolbar button again.`,
     )
   } finally {
     clearTimeout(t)
@@ -57,3 +57,4 @@ async function save() {
 
 document.getElementById('save').addEventListener('click', () => void save())
 void load()
+

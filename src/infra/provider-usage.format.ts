@@ -1,4 +1,4 @@
-import type { ProviderUsageSnapshot, UsageSummary, UsageWindow } from "./provider-usage.types.js";
+﻿import type { ProviderUsageSnapshot, UsageSummary, UsageWindow } from "./provider-usage.types.js";
 import { clampPercent } from "./provider-usage.shared.js";
 
 function formatResetRemaining(targetMs?: number, now?: number): string | null {
@@ -43,7 +43,7 @@ function pickPrimaryWindow(windows: UsageWindow[]): UsageWindow | undefined {
 function formatWindowShort(window: UsageWindow, now?: number): string {
   const remaining = clampPercent(100 - window.usedPercent);
   const reset = formatResetRemaining(window.resetAt, now);
-  const resetSuffix = reset ? ` ⏱${reset}` : "";
+  const resetSuffix = reset ? ` â±${reset}` : "";
   return `${remaining.toFixed(0)}% left (${window.label}${resetSuffix})`;
 }
 
@@ -67,10 +67,10 @@ export function formatUsageWindowSummary(
   const parts = windows.map((window) => {
     const remaining = clampPercent(100 - window.usedPercent);
     const reset = includeResets ? formatResetRemaining(window.resetAt, now) : null;
-    const resetSuffix = reset ? ` ⏱${reset}` : "";
+    const resetSuffix = reset ? ` â±${reset}` : "";
     return `${window.label} ${remaining.toFixed(0)}% left${resetSuffix}`;
   });
-  return parts.join(" · ");
+  return parts.join(" Â· ");
 }
 
 export function formatUsageSummaryLine(
@@ -97,7 +97,7 @@ export function formatUsageSummaryLine(
   if (parts.length === 0) {
     return null;
   }
-  return `📊 Usage: ${parts.join(" · ")}`;
+  return `ðŸ“Š Usage: ${parts.join(" Â· ")}`;
 }
 
 export function formatUsageReportLines(summary: UsageSummary, opts?: { now?: number }): string[] {
@@ -120,9 +120,10 @@ export function formatUsageReportLines(summary: UsageSummary, opts?: { now?: num
     for (const window of entry.windows) {
       const remaining = clampPercent(100 - window.usedPercent);
       const reset = formatResetRemaining(window.resetAt, opts?.now);
-      const resetSuffix = reset ? ` · resets ${reset}` : "";
+      const resetSuffix = reset ? ` Â· resets ${reset}` : "";
       lines.push(`    ${window.label}: ${remaining.toFixed(0)}% left${resetSuffix}`);
     }
   }
   return lines;
 }
+

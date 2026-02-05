@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 
 export function resolveCacheTtlMs(params: {
   envValue: string | undefined;
@@ -25,3 +25,4 @@ export function getFileMtimeMs(filePath: string): number | undefined {
     return undefined;
   }
 }
+

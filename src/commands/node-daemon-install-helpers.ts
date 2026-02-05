@@ -1,4 +1,4 @@
-import type { NodeDaemonRuntime } from "./node-daemon-runtime.js";
+﻿import type { NodeDaemonRuntime } from "./node-daemon-runtime.js";
 import { formatNodeServiceDescription } from "../daemon/constants.js";
 import { resolveNodeProgramArguments } from "../daemon/program-args.js";
 import {
@@ -60,8 +60,9 @@ export async function buildNodeInstallPlan(params: {
 
   const environment = buildNodeServiceEnvironment({ env: params.env });
   const description = formatNodeServiceDescription({
-    version: environment.OPENCLAW_SERVICE_VERSION,
+    version: environment._SERVICE_VERSION,
   });
 
   return { programArguments, workingDirectory, environment, description };
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { AuthProfileStore } from "../agents/auth-profiles.js";
 import { buildAuthChoiceOptions } from "./auth-choice-options.js";
 
@@ -115,3 +115,4 @@ describe("buildAuthChoiceOptions", () => {
     expect(options.some((opt) => opt.value === "qwen-portal")).toBe(true);
   });
 });
+

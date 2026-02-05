@@ -1,4 +1,4 @@
-export type TargetIdResolution =
+﻿export type TargetIdResolution =
   | { ok: true; targetId: string }
   | { ok: false; reason: "not_found" | "ambiguous"; matches?: string[] };
 
@@ -28,3 +28,4 @@ export function resolveTargetIdFromTabs(
   }
   return { ok: false, reason: "ambiguous", matches };
 }
+

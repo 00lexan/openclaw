@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   listThinkingLevelLabels,
   listThinkingLevels,
@@ -61,3 +61,4 @@ describe("normalizeReasoningLevel", () => {
     expect(normalizeReasoningLevel("streaming")).toBe("stream");
   });
 });
+

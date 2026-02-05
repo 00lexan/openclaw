@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想在保留 CLI 安装的同时清除本地状态
-  - 你想预览哪些内容会被移除
-summary: "`openclaw reset`（重置本地状态/配置）的 CLI 参考"
+  - ä½ æƒ³åœ¨ä¿ç•™ CLI å®‰è£…çš„åŒæ—¶æ¸…é™¤æœ¬åœ°çŠ¶æ€
+  - ä½ æƒ³é¢„è§ˆå“ªäº›å†…å®¹ä¼šè¢«ç§»é™¤
+summary: "` reset`ï¼ˆé‡ç½®æœ¬åœ°çŠ¶æ€/é…ç½®ï¼‰çš„ CLI å‚è€ƒ"
 title: reset
 x-i18n:
   generated_at: "2026-02-01T20:21:22Z"
@@ -13,12 +13,13 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw reset`
+# ` reset`
 
-重置本地配置/状态（保留 CLI 安装）。
+é‡ç½®æœ¬åœ°é…ç½®/çŠ¶æ€ï¼ˆä¿ç•™ CLI å®‰è£…ï¼‰ã€‚
 
 ```bash
-openclaw reset
-openclaw reset --dry-run
-openclaw reset --scope config+creds+sessions --yes --non-interactive
+ reset
+ reset --dry-run
+ reset --scope config+creds+sessions --yes --non-interactive
 ```
+

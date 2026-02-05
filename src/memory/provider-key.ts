@@ -1,4 +1,4 @@
-import { fingerprintHeaderNames } from "./headers-fingerprint.js";
+﻿import { fingerprintHeaderNames } from "./headers-fingerprint.js";
 import { hashText } from "./internal.js";
 
 export function computeEmbeddingProviderKey(params: {
@@ -31,3 +31,4 @@ export function computeEmbeddingProviderKey(params: {
   }
   return hashText(JSON.stringify({ provider: params.providerId, model: params.providerModel }));
 }
+

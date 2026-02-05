@@ -1,4 +1,4 @@
-import type { WebClient as SlackWebClient } from "@slack/web-api";
+﻿import type { WebClient as SlackWebClient } from "@slack/web-api";
 import type { FetchLike } from "../../media/fetch.js";
 import type { SlackFile } from "../types.js";
 import { fetchRemoteMedia } from "../../media/fetch.js";
@@ -206,3 +206,4 @@ export async function resolveSlackThreadStarter(params: {
     return null;
   }
 }
+

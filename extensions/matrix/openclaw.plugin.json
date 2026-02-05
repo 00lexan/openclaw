@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "matrix",
   "channels": ["matrix"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

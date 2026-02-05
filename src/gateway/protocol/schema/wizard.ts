@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString } from "./primitives.js";
 
 export const WizardStartParamsSchema = Type.Object(
@@ -118,3 +118,4 @@ export const WizardStatusResultSchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

@@ -1,8 +1,8 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import type { MsgContext, TemplateContext } from "../templating.js";
 import { assertSandboxPath } from "../../agents/sandbox-paths.js";
 import { ensureSandboxWorkspaceForSession } from "../../agents/sandbox.js";
@@ -13,7 +13,7 @@ import { CONFIG_DIR } from "../../utils.js";
 export async function stageSandboxMedia(params: {
   ctx: MsgContext;
   sessionCtx: TemplateContext;
-  cfg: OpenClawConfig;
+  cfg: Config;
   sessionKey?: string;
   workspaceDir: string;
 }) {
@@ -36,7 +36,7 @@ export async function stageSandboxMedia(params: {
     workspaceDir,
   });
 
-  // For remote attachments without sandbox, use ~/.openclaw/media (not agent workspace for privacy)
+  // For remote attachments without sandbox, use ~/./media (not agent workspace for privacy)
   const remoteMediaCacheDir = ctx.MediaRemoteHost
     ? path.join(CONFIG_DIR, "media", "remote-cache", sessionKey)
     : null;
@@ -195,3 +195,4 @@ async function scpFile(remoteHost: string, remotePath: string, localPath: string
     });
   });
 }
+

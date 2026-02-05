@@ -1,4 +1,4 @@
-import type { CronJobCreate, CronJobPatch } from "./types.js";
+﻿import type { CronJobCreate, CronJobPatch } from "./types.js";
 import * as ops from "./service/ops.js";
 import { type CronServiceDeps, createCronServiceState } from "./service/state.js";
 
@@ -46,3 +46,4 @@ export class CronService {
     return ops.wakeNow(this.state, opts);
   }
 }
+

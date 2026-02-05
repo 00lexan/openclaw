@@ -1,4 +1,4 @@
-import type { AuthProfileCredential, AuthProfileStore, OAuthCredential } from "./types.js";
+﻿import type { AuthProfileCredential, AuthProfileStore, OAuthCredential } from "./types.js";
 import {
   readQwenCliCredentialsCached,
   readMiniMaxCliCredentialsCached,
@@ -133,3 +133,4 @@ export function syncExternalCliCredentials(store: AuthProfileStore): boolean {
 
   return mutated;
 }
+

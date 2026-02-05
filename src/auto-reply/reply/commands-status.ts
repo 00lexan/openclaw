@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import type { SessionEntry, SessionScope } from "../../config/sessions.js";
 import type { MediaUnderstandingDecision } from "../../media-understanding/types.js";
 import type { ElevatedLevel, ReasoningLevel, ThinkLevel, VerboseLevel } from "../thinking.js";
@@ -40,12 +40,12 @@ function formatApiKeySnippet(apiKey: string): string {
   const edge = compact.length >= 12 ? 6 : 4;
   const head = compact.slice(0, edge);
   const tail = compact.slice(-edge);
-  return `${head}…${tail}`;
+  return `${head}â€¦${tail}`;
 }
 
 function resolveModelAuthLabel(
   provider?: string,
-  cfg?: OpenClawConfig,
+  cfg?: Config,
   sessionEntry?: SessionEntry,
   agentDir?: string,
 ): string | undefined {
@@ -101,7 +101,7 @@ function resolveModelAuthLabel(
 }
 
 export async function buildStatusReply(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   command: CommandContext;
   sessionEntry?: SessionEntry;
   sessionKey: string;
@@ -166,7 +166,7 @@ export async function buildStatusReply(params: {
           includeResets: true,
         });
         if (summaryLine) {
-          usageLine = `📊 Usage: ${summaryLine}`;
+          usageLine = `ðŸ“Š Usage: ${summaryLine}`;
         }
       }
     } catch {
@@ -199,9 +199,9 @@ export async function buildStatusReply(params: {
           .filter(Boolean)
           .slice(0, 3);
         const labelText = labels.length ? ` (${labels.join(", ")})` : "";
-        subagentsLine = `🤖 Subagents: ${active.length} active${labelText} · ${done} done`;
+        subagentsLine = `ðŸ¤– Subagents: ${active.length} active${labelText} Â· ${done} done`;
       } else if (active.length > 0) {
-        subagentsLine = `🤖 Subagents: ${active.length} active`;
+        subagentsLine = `ðŸ¤– Subagents: ${active.length} active`;
       }
     }
   }
@@ -247,3 +247,4 @@ export async function buildStatusReply(params: {
 
   return { text: statusText };
 }
+

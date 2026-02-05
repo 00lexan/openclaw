@@ -1,20 +1,20 @@
----
-summary: "CLI reference for `openclaw status` (diagnostics, probes, usage snapshots)"
+﻿---
+summary: "CLI reference for ` status` (diagnostics, probes, usage snapshots)"
 read_when:
   - You want a quick diagnosis of channel health + recent session recipients
-  - You want a pasteable “all” status for debugging
+  - You want a pasteable â€œallâ€ status for debugging
 title: "status"
 ---
 
-# `openclaw status`
+# ` status`
 
 Diagnostics for channels + sessions.
 
 ```bash
-openclaw status
-openclaw status --all
-openclaw status --deep
-openclaw status --usage
+ status
+ status --all
+ status --deep
+ status --usage
 ```
 
 Notes:
@@ -23,4 +23,5 @@ Notes:
 - Output includes per-agent session stores when multiple agents are configured.
 - Overview includes Gateway + node host service install/runtime status when available.
 - Overview includes update channel + git SHA (for source checkouts).
-- Update info surfaces in the Overview; if an update is available, status prints a hint to run `openclaw update` (see [Updating](/install/updating)).
+- Update info surfaces in the Overview; if an update is available, status prints a hint to run ` update` (see [Updating](/install/updating)).
+

@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想为 OpenClaw 选择一个聊天渠道
-  - 你需要快速了解支持的消息平台
-summary: OpenClaw 可连接的消息平台
-title: 聊天渠道
+  - ä½ æƒ³ä¸º  é€‰æ‹©ä¸€ä¸ªèŠå¤©æ¸ é“
+  - ä½ éœ€è¦å¿«é€Ÿäº†è§£æ”¯æŒçš„æ¶ˆæ¯å¹³å°
+summary:  å¯è¿žæŽ¥çš„æ¶ˆæ¯å¹³å°
+title: èŠå¤©æ¸ é“
 x-i18n:
   generated_at: "2026-02-03T07:43:27Z"
   model: claude-opus-4-5
@@ -13,41 +13,42 @@ x-i18n:
   workflow: 15
 ---
 
-# 聊天渠道
+# èŠå¤©æ¸ é“
 
-OpenClaw 可以在你已经使用的任何聊天应用上与你交流。每个渠道通过 Gateway 网关连接。
-所有渠道都支持文本；媒体和表情回应的支持因渠道而异。
+ å¯ä»¥åœ¨ä½ å·²ç»ä½¿ç”¨çš„ä»»ä½•èŠå¤©åº”ç”¨ä¸Šä¸Žä½ äº¤æµã€‚æ¯ä¸ªæ¸ é“é€šè¿‡ Gateway ç½‘å…³è¿žæŽ¥ã€‚
+æ‰€æœ‰æ¸ é“éƒ½æ”¯æŒæ–‡æœ¬ï¼›åª’ä½“å’Œè¡¨æƒ…å›žåº”çš„æ”¯æŒå› æ¸ é“è€Œå¼‚ã€‚
 
-## 支持的渠道
+## æ”¯æŒçš„æ¸ é“
 
-- [WhatsApp](/channels/whatsapp) — 最受欢迎；使用 Baileys，需要二维码配对。
-- [Telegram](/channels/telegram) — 通过 grammY 使用 Bot API；支持群组。
-- [Discord](/channels/discord) — Discord Bot API + Gateway；支持服务器、频道和私信。
-- [Slack](/channels/slack) — Bolt SDK；工作区应用。
-- [飞书](/channels/feishu) — 飞书（Lark）机器人（插件，需单独安装）。
-- [Google Chat](/channels/googlechat) — 通过 HTTP webhook 的 Google Chat API 应用。
-- [Mattermost](/channels/mattermost) — Bot API + WebSocket；频道、群组、私信（插件，需单独安装）。
-- [Signal](/channels/signal) — signal-cli；注重隐私。
-- [BlueBubbles](/channels/bluebubbles) — **推荐用于 iMessage**；使用 BlueBubbles macOS 服务器 REST API，功能完整（编辑、撤回、特效、回应、群组管理——编辑功能在 macOS 26 Tahoe 上目前不可用）。
-- [iMessage（旧版）](/channels/imessage) — 通过 imsg CLI 的旧版 macOS 集成（已弃用，新设置请使用 BlueBubbles）。
-- [Microsoft Teams](/channels/msteams) — Bot Framework；企业支持（插件，需单独安装）。
-- [LINE](/channels/line) — LINE Messaging API 机器人（插件，需单独安装）。
-- [Nextcloud Talk](/channels/nextcloud-talk) — 通过 Nextcloud Talk 的自托管聊天（插件，需单独安装）。
-- [Matrix](/channels/matrix) — Matrix 协议（插件，需单独安装）。
-- [Nostr](/channels/nostr) — 通过 NIP-04 的去中心化私信（插件，需单独安装）。
-- [Tlon](/channels/tlon) — 基于 Urbit 的消息应用（插件，需单独安装）。
-- [Twitch](/channels/twitch) — 通过 IRC 连接的 Twitch 聊天（插件，需单独安装）。
-- [Zalo](/channels/zalo) — Zalo Bot API；越南流行的消息应用（插件，需单独安装）。
-- [Zalo Personal](/channels/zalouser) — 通过二维码登录的 Zalo 个人账号（插件，需单独安装）。
-- [WebChat](/web/webchat) — 基于 WebSocket 的 Gateway 网关 WebChat 界面。
+- [WhatsApp](/channels/whatsapp) â€” æœ€å—æ¬¢è¿Žï¼›ä½¿ç”¨ Baileysï¼Œéœ€è¦äºŒç»´ç é…å¯¹ã€‚
+- [Telegram](/channels/telegram) â€” é€šè¿‡ grammY ä½¿ç”¨ Bot APIï¼›æ”¯æŒç¾¤ç»„ã€‚
+- [Discord](/channels/discord) â€” Discord Bot API + Gatewayï¼›æ”¯æŒæœåŠ¡å™¨ã€é¢‘é“å’Œç§ä¿¡ã€‚
+- [Slack](/channels/slack) â€” Bolt SDKï¼›å·¥ä½œåŒºåº”ç”¨ã€‚
+- [é£žä¹¦](/channels/feishu) â€” é£žä¹¦ï¼ˆLarkï¼‰æœºå™¨äººï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Google Chat](/channels/googlechat) â€” é€šè¿‡ HTTP webhook çš„ Google Chat API åº”ç”¨ã€‚
+- [Mattermost](/channels/mattermost) â€” Bot API + WebSocketï¼›é¢‘é“ã€ç¾¤ç»„ã€ç§ä¿¡ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Signal](/channels/signal) â€” signal-cliï¼›æ³¨é‡éšç§ã€‚
+- [BlueBubbles](/channels/bluebubbles) â€” **æŽ¨èç”¨äºŽ iMessage**ï¼›ä½¿ç”¨ BlueBubbles macOS æœåŠ¡å™¨ REST APIï¼ŒåŠŸèƒ½å®Œæ•´ï¼ˆç¼–è¾‘ã€æ’¤å›žã€ç‰¹æ•ˆã€å›žåº”ã€ç¾¤ç»„ç®¡ç†â€”â€”ç¼–è¾‘åŠŸèƒ½åœ¨ macOS 26 Tahoe ä¸Šç›®å‰ä¸å¯ç”¨ï¼‰ã€‚
+- [iMessageï¼ˆæ—§ç‰ˆï¼‰](/channels/imessage) â€” é€šè¿‡ imsg CLI çš„æ—§ç‰ˆ macOS é›†æˆï¼ˆå·²å¼ƒç”¨ï¼Œæ–°è®¾ç½®è¯·ä½¿ç”¨ BlueBubblesï¼‰ã€‚
+- [Microsoft Teams](/channels/msteams) â€” Bot Frameworkï¼›ä¼ä¸šæ”¯æŒï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [LINE](/channels/line) â€” LINE Messaging API æœºå™¨äººï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Nextcloud Talk](/channels/nextcloud-talk) â€” é€šè¿‡ Nextcloud Talk çš„è‡ªæ‰˜ç®¡èŠå¤©ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Matrix](/channels/matrix) â€” Matrix åè®®ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Nostr](/channels/nostr) â€” é€šè¿‡ NIP-04 çš„åŽ»ä¸­å¿ƒåŒ–ç§ä¿¡ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Tlon](/channels/tlon) â€” åŸºäºŽ Urbit çš„æ¶ˆæ¯åº”ç”¨ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Twitch](/channels/twitch) â€” é€šè¿‡ IRC è¿žæŽ¥çš„ Twitch èŠå¤©ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Zalo](/channels/zalo) â€” Zalo Bot APIï¼›è¶Šå—æµè¡Œçš„æ¶ˆæ¯åº”ç”¨ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [Zalo Personal](/channels/zalouser) â€” é€šè¿‡äºŒç»´ç ç™»å½•çš„ Zalo ä¸ªäººè´¦å·ï¼ˆæ’ä»¶ï¼Œéœ€å•ç‹¬å®‰è£…ï¼‰ã€‚
+- [WebChat](/web/webchat) â€” åŸºäºŽ WebSocket çš„ Gateway ç½‘å…³ WebChat ç•Œé¢ã€‚
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 渠道可以同时运行；配置多个渠道后，OpenClaw 会按聊天进行路由。
-- 最快的设置方式通常是 **Telegram**（简单的机器人令牌）。WhatsApp 需要二维码配对，
-  并在磁盘上存储更多状态。
-- 群组行为因渠道而异；参见[群组](/concepts/groups)。
-- 为安全起见，私信配对和允许列表会被强制执行；参见[安全](/gateway/security)。
-- Telegram 内部机制：[grammY 说明](/channels/grammy)。
-- 故障排除：[渠道故障排除](/channels/troubleshooting)。
-- 模型提供商单独记录；参见[模型提供商](/providers/models)。
+- æ¸ é“å¯ä»¥åŒæ—¶è¿è¡Œï¼›é…ç½®å¤šä¸ªæ¸ é“åŽï¼Œ ä¼šæŒ‰èŠå¤©è¿›è¡Œè·¯ç”±ã€‚
+- æœ€å¿«çš„è®¾ç½®æ–¹å¼é€šå¸¸æ˜¯ **Telegram**ï¼ˆç®€å•çš„æœºå™¨äººä»¤ç‰Œï¼‰ã€‚WhatsApp éœ€è¦äºŒç»´ç é…å¯¹ï¼Œ
+  å¹¶åœ¨ç£ç›˜ä¸Šå­˜å‚¨æ›´å¤šçŠ¶æ€ã€‚
+- ç¾¤ç»„è¡Œä¸ºå› æ¸ é“è€Œå¼‚ï¼›å‚è§[ç¾¤ç»„](/concepts/groups)ã€‚
+- ä¸ºå®‰å…¨èµ·è§ï¼Œç§ä¿¡é…å¯¹å’Œå…è®¸åˆ—è¡¨ä¼šè¢«å¼ºåˆ¶æ‰§è¡Œï¼›å‚è§[å®‰å…¨](/gateway/security)ã€‚
+- Telegram å†…éƒ¨æœºåˆ¶ï¼š[grammY è¯´æ˜Ž](/channels/grammy)ã€‚
+- æ•…éšœæŽ’é™¤ï¼š[æ¸ é“æ•…éšœæŽ’é™¤](/channels/troubleshooting)ã€‚
+- æ¨¡åž‹æä¾›å•†å•ç‹¬è®°å½•ï¼›å‚è§[æ¨¡åž‹æä¾›å•†](/providers/models)ã€‚
+

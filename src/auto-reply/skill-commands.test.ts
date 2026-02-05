@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
@@ -59,7 +59,7 @@ describe("resolveSkillCommandInvocation", () => {
 
 describe("listSkillCommandsForAgents", () => {
   it("merges command names across agents and de-duplicates", async () => {
-    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-skills-"));
+    const baseDir = await fs.mkdtemp(path.join(os.tmpdir(), "-skills-"));
     const mainWorkspace = path.join(baseDir, "main");
     const researchWorkspace = path.join(baseDir, "research");
     await writeSkill({
@@ -97,3 +97,4 @@ describe("listSkillCommandsForAgents", () => {
     expect(names).toContain("extra_skill");
   });
 });
+

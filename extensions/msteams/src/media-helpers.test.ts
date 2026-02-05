@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { extractFilename, extractMessageId, getMimeType, isLocalPath } from "./media-helpers.js";
 
 describe("msteams media-helpers", () => {
@@ -76,7 +76,7 @@ describe("msteams media-helpers", () => {
     });
 
     it("handles URLs without extension by deriving from MIME", async () => {
-      // Now defaults to application/octet-stream → .bin fallback
+      // Now defaults to application/octet-stream â†’ .bin fallback
       expect(await extractFilename("https://example.com/images/photo")).toBe("photo.bin");
     });
 
@@ -187,3 +187,4 @@ describe("msteams media-helpers", () => {
     });
   });
 });
+

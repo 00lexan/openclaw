@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 import {
   HeartbeatSchema,
   MemorySearchSchema,
@@ -171,3 +171,4 @@ export const AgentDefaultsSchema = z
   })
   .strict()
   .optional();
+

@@ -1,4 +1,4 @@
-import type { GatewayService } from "../daemon/service.js";
+﻿import type { GatewayService } from "../daemon/service.js";
 import { resolveNodeService } from "../daemon/node-service.js";
 import { resolveGatewayService } from "../daemon/service.js";
 import { formatDaemonRuntimeShort } from "./status.format.js";
@@ -41,3 +41,4 @@ export async function getDaemonStatusSummary(): Promise<DaemonStatusSummary> {
 export async function getNodeDaemonStatusSummary(): Promise<DaemonStatusSummary> {
   return await buildDaemonStatusSummary(resolveNodeService(), "Node");
 }
+

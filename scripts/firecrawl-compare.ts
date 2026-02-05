@@ -1,4 +1,4 @@
-import { extractReadableContent, fetchFirecrawlContent } from "../src/agents/tools/web-tools.js";
+﻿import { extractReadableContent, fetchFirecrawlContent } from "../src/agents/tools/web-tools.js";
 
 const DEFAULT_URLS = [
   "https://en.wikipedia.org/wiki/Web_scraping",
@@ -21,7 +21,7 @@ function truncate(value: string, max = 180): string {
   if (!value) {
     return "";
   }
-  return value.length > max ? `${value.slice(0, max)}…` : value;
+  return value.length > max ? `${value.slice(0, max)}â€¦` : value;
 }
 
 async function fetchHtml(url: string): Promise<{
@@ -137,3 +137,4 @@ run().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+

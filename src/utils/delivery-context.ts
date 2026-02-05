@@ -1,4 +1,4 @@
-import { normalizeAccountId } from "./account-id.js";
+﻿import { normalizeAccountId } from "./account-id.js";
 import { normalizeMessageChannel } from "./message-channel.js";
 
 export type DeliveryContext = {
@@ -138,3 +138,4 @@ export function deliveryContextKey(context?: DeliveryContext): string | undefine
     normalized.threadId != null && normalized.threadId !== "" ? String(normalized.threadId) : "";
   return `${normalized.channel}|${normalized.to}|${normalized.accountId ?? ""}|${threadId}`;
 }
+

@@ -1,4 +1,4 @@
-import { confirm as clackConfirm, select as clackSelect, text as clackText } from "@clack/prompts";
+﻿import { confirm as clackConfirm, select as clackSelect, text as clackText } from "@clack/prompts";
 import type { AuthProfileCredential } from "../../agents/auth-profiles/types.js";
 import type {
   ProviderAuthMethod,
@@ -16,7 +16,7 @@ import { normalizeProviderId } from "../../agents/model-selection.js";
 import { resolveDefaultAgentWorkspaceDir } from "../../agents/workspace.js";
 import { formatCliCommand } from "../../cli/command-format.js";
 import { parseDurationMs } from "../../cli/parse-duration.js";
-import { readConfigFileSnapshot, type OpenClawConfig } from "../../config/config.js";
+import { readConfigFileSnapshot, type Config } from "../../config/config.js";
 import { logConfigUpdated } from "../../config/logging.js";
 import { resolvePluginProviders } from "../../plugins/providers.js";
 import { stylePromptHint, stylePromptMessage } from "../../terminal/prompt-style.js";
@@ -292,7 +292,7 @@ function mergeConfigPatch<T>(base: T, patch: unknown): T {
   return next as T;
 }
 
-function applyDefaultModel(cfg: OpenClawConfig, model: string): OpenClawConfig {
+function applyDefaultModel(cfg: Config, model: string): Config {
   const models = { ...cfg.agents?.defaults?.models };
   models[model] = models[model] ?? {};
 
@@ -345,7 +345,7 @@ export async function modelsAuthLoginCommand(opts: LoginOptions, runtime: Runtim
   const providers = resolvePluginProviders({ config, workspaceDir });
   if (providers.length === 0) {
     throw new Error(
-      `No provider plugins found. Install one via \`${formatCliCommand("openclaw plugins install")}\`.`,
+      `No provider plugins found. Install one via \`${formatCliCommand(" plugins install")}\`.`,
     );
   }
 
@@ -445,3 +445,4 @@ export async function modelsAuthLoginCommand(opts: LoginOptions, runtime: Runtim
     await prompter.note(result.notes.join("\n"), "Provider notes");
   }
 }
+

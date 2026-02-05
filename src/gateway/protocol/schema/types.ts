@@ -1,4 +1,4 @@
-import type { Static } from "@sinclair/typebox";
+﻿import type { Static } from "@sinclair/typebox";
 import type {
   AgentEventSchema,
   AgentIdentityParamsSchema,
@@ -224,3 +224,4 @@ export type ChatEvent = Static<typeof ChatEventSchema>;
 export type UpdateRunParams = Static<typeof UpdateRunParamsSchema>;
 export type TickEvent = Static<typeof TickEventSchema>;
 export type ShutdownEvent = Static<typeof ShutdownEventSchema>;
+

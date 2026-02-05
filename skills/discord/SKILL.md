@@ -1,21 +1,21 @@
----
+﻿---
 name: discord
-description: Use when you need to control Discord from OpenClaw via the discord tool: send messages, react, post or upload stickers, upload emojis, run polls, manage threads/pins/search, create/edit/delete channels and categories, fetch permissions or member/role/channel info, set bot presence/activity, or handle moderation actions in Discord DMs or channels.
-metadata: {"openclaw":{"emoji":"🎮","requires":{"config":["channels.discord"]}}}
+description: Use when you need to control Discord from  via the discord tool: send messages, react, post or upload stickers, upload emojis, run polls, manage threads/pins/search, create/edit/delete channels and categories, fetch permissions or member/role/channel info, set bot presence/activity, or handle moderation actions in Discord DMs or channels.
+metadata: {"":{"emoji":"ðŸŽ®","requires":{"config":["channels.discord"]}}}
 ---
 
 # Discord Actions
 
 ## Overview
 
-Use `discord` to manage messages, reactions, threads, polls, and moderation. You can disable groups via `discord.actions.*` (defaults to enabled, except roles/moderation). The tool uses the bot token configured for OpenClaw.
+Use `discord` to manage messages, reactions, threads, polls, and moderation. You can disable groups via `discord.actions.*` (defaults to enabled, except roles/moderation). The tool uses the bot token configured for .
 
 ## Inputs to collect
 
 - For reactions: `channelId`, `messageId`, and an `emoji`.
 - For fetchMessage: `guildId`, `channelId`, `messageId`, or a `messageLink` like `https://discord.com/channels/<guildId>/<channelId>/<messageId>`.
 - For stickers/polls/sendMessage: a `to` target (`channel:<id>` or `user:<id>`). Optional `content` text.
-- Polls also need a `question` plus 2–10 `answers`.
+- Polls also need a `question` plus 2â€“10 `answers`.
 - For media: `mediaUrl` with `file:///path` for local files or `https://...` for remote.
 - For emoji uploads: `guildId`, `name`, `mediaUrl`, optional `roleIds` (limit 256KB, PNG/JPG/GIF).
 - For sticker uploads: `guildId`, `name`, `description`, `tags`, `mediaUrl` (limit 512KB, PNG/APNG/Lottie JSON).
@@ -34,7 +34,7 @@ Message context lines include `discord message id` and `channel` fields you can 
   "action": "react",
   "channelId": "123",
   "messageId": "456",
-  "emoji": "✅"
+  "emoji": "âœ…"
 }
 ```
 
@@ -84,9 +84,9 @@ Message context lines include `discord message id` and `channel` fields you can 
 {
   "action": "stickerUpload",
   "guildId": "999",
-  "name": "openclaw_wave",
-  "description": "OpenClaw waving hello",
-  "tags": "👋",
+  "name": "_wave",
+  "description": " waving hello",
+  "tags": "ðŸ‘‹",
   "mediaUrl": "file:///tmp/wave.png"
 }
 ```
@@ -121,12 +121,12 @@ Message context lines include `discord message id` and `channel` fields you can 
 
 ## Ideas to try
 
-- React with ✅/⚠️ to mark status updates.
+- React with âœ…/âš ï¸ to mark status updates.
 - Post a quick poll for release decisions or meeting times.
 - Send celebratory stickers after successful deploys.
 - Upload new emojis/stickers for release moments.
-- Run weekly “priority check” polls in team channels.
-- DM stickers as acknowledgements when a user’s request is completed.
+- Run weekly â€œpriority checkâ€ polls in team channels.
+- DM stickers as acknowledgements when a userâ€™s request is completed.
 
 ## Action gating
 
@@ -175,7 +175,7 @@ Use `discord.actions.*` to disable action groups:
 {
   "action": "sendMessage",
   "to": "channel:123",
-  "content": "Hello from OpenClaw"
+  "content": "Hello from "
 }
 ```
 
@@ -536,7 +536,7 @@ Result in sidebar: "Vibing". Note: `activityName` is ignored for custom type.
 
 - Short, punchy messages (1-3 sentences ideal)
 - Multiple quick replies > one wall of text
-- Use emoji for tone/emphasis 🦞
+- Use emoji for tone/emphasis ðŸ¦ž
 - Lowercase casual style is fine
 - Break up info into digestible chunks
 - Match the energy of the conversation
@@ -559,7 +559,7 @@ Result in sidebar: "Vibing". Note: `activityName` is ignored for custom type.
 
 ### Example transformations
 
-❌ Bad:
+âŒ Bad:
 
 ```
 I'd be happy to help with that! Here's a comprehensive overview of the versioning strategies available:
@@ -571,8 +571,9 @@ Semver uses MAJOR.MINOR.PATCH format where...
 CalVer uses date-based versions like...
 ```
 
-✅ Good:
+âœ… Good:
 
 ```
 versioning options: semver (1.2.3), calver (2026.01.04), or yolo (`latest` forever). what fits your release cadence?
 ```
+

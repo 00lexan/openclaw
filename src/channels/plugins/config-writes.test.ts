@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveChannelConfigWrites } from "./config-writes.js";
 
 describe("resolveChannelConfigWrites", () => {
@@ -40,3 +40,4 @@ describe("resolveChannelConfigWrites", () => {
     expect(resolveChannelConfigWrites({ cfg, channelId: "slack", accountId: "work" })).toBe(false);
   });
 });
+

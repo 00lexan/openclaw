@@ -1,4 +1,4 @@
----
+﻿---
 role: file-system-state-management
 summary: |
   File-system state management for OpenProse programs. This approach persists
@@ -34,35 +34,35 @@ File-based state persists all execution artifacts to disk. This enables:
 ```
 # Project-level state (in working directory)
 .prose/
-├── .env                              # Config (simple key=value format)
-├── runs/
-│   └── {YYYYMMDD}-{HHMMSS}-{random}/
-│       ├── program.prose             # Copy of running program
-│       ├── state.md                  # Execution state with code snippets
-│       ├── bindings/
-│       │   ├── {name}.md             # Root scope bindings
-│       │   └── {name}__{execution_id}.md  # Scoped bindings (block invocations)
-│       ├── imports/
-│       │   └── {handle}--{slug}/     # Nested program executions (same structure recursively)
-│       └── agents/
-│           └── {name}/
-│               ├── memory.md         # Agent's current state
-│               ├── {name}-001.md     # Historical segments (flattened)
-│               ├── {name}-002.md
-│               └── ...
-└── agents/                           # Project-scoped agent memory
-    └── {name}/
-        ├── memory.md
-        ├── {name}-001.md
-        └── ...
+â”œâ”€â”€ .env                              # Config (simple key=value format)
+â”œâ”€â”€ runs/
+â”‚   â””â”€â”€ {YYYYMMDD}-{HHMMSS}-{random}/
+â”‚       â”œâ”€â”€ program.prose             # Copy of running program
+â”‚       â”œâ”€â”€ state.md                  # Execution state with code snippets
+â”‚       â”œâ”€â”€ bindings/
+â”‚       â”‚   â”œâ”€â”€ {name}.md             # Root scope bindings
+â”‚       â”‚   â””â”€â”€ {name}__{execution_id}.md  # Scoped bindings (block invocations)
+â”‚       â”œâ”€â”€ imports/
+â”‚       â”‚   â””â”€â”€ {handle}--{slug}/     # Nested program executions (same structure recursively)
+â”‚       â””â”€â”€ agents/
+â”‚           â””â”€â”€ {name}/
+â”‚               â”œâ”€â”€ memory.md         # Agent's current state
+â”‚               â”œâ”€â”€ {name}-001.md     # Historical segments (flattened)
+â”‚               â”œâ”€â”€ {name}-002.md
+â”‚               â””â”€â”€ ...
+â””â”€â”€ agents/                           # Project-scoped agent memory
+    â””â”€â”€ {name}/
+        â”œâ”€â”€ memory.md
+        â”œâ”€â”€ {name}-001.md
+        â””â”€â”€ ...
 
 # User-level state (in home directory)
 ~/.prose/
-└── agents/                           # User-scoped agent memory (cross-project)
-    └── {name}/
-        ├── memory.md
-        ├── {name}-001.md
-        └── ...
+â””â”€â”€ agents/                           # User-scoped agent memory (cross-project)
+    â””â”€â”€ {name}/
+        â”œâ”€â”€ memory.md
+        â”œâ”€â”€ {name}-001.md
+        â””â”€â”€ ...
 ```
 
 ### Run ID Format
@@ -71,7 +71,7 @@ Format: `{YYYYMMDD}-{HHMMSS}-{random6}`
 
 Example: `20260115-143052-a7b3c9`
 
-No "run-" prefix needed—the directory name makes context obvious.
+No "run-" prefix neededâ€”the directory name makes context obvious.
 
 ### Segment Numbering
 
@@ -264,8 +264,8 @@ When a binding is created inside a block invocation, it's scoped to that executi
 
 Examples:
 
-- `bindings/result__43.md` — binding `result` in execution_id 43
-- `bindings/parts__44.md` — binding `parts` in execution_id 44
+- `bindings/result__43.md` â€” binding `result` in execution_id 43
+- `bindings/parts__44.md` â€” binding `parts` in execution_id 44
 
 **File format with execution scope:**
 
@@ -301,13 +301,13 @@ The first match wins.
 ```
 
 bindings/
-├── data.md # Root scope input
-├── result**1.md # First process() invocation
-├── parts**1.md # Parts from first invocation
-├── result**2.md # Recursive call (depth 2)
-├── parts**2.md # Parts from depth 2
-├── result\_\_3.md # Recursive call (depth 3)
-└── ...
+â”œâ”€â”€ data.md # Root scope input
+â”œâ”€â”€ result**1.md # First process() invocation
+â”œâ”€â”€ parts**1.md # Parts from first invocation
+â”œâ”€â”€ result**2.md # Recursive call (depth 2)
+â”œâ”€â”€ parts**2.md # Parts from depth 2
+â”œâ”€â”€ result\_\_3.md # Recursive call (depth 3)
+â””â”€â”€ ...
 
 ````
 
@@ -367,7 +367,7 @@ prompt: "Review the research findings"
 | `agents/{name}/memory.md`     | Persistent agent |
 | `agents/{name}/{name}-NNN.md` | Persistent agent |
 
-The VM orchestrates; subagents write their own outputs directly to the filesystem. **The VM never holds full binding values—it tracks file paths.**
+The VM orchestrates; subagents write their own outputs directly to the filesystem. **The VM never holds full binding valuesâ€”it tracks file paths.**
 
 ---
 
@@ -415,7 +415,7 @@ Also write your segment record to:
 
 ### What Subagents Return to the VM
 
-After writing output, the subagent returns a **confirmation message**—not the full content:
+After writing output, the subagent returns a **confirmation message**â€”not the full content:
 
 **Root scope (outside block invocations):**
 ```
@@ -436,7 +436,7 @@ Summary: Processed chunk into 3 sub-parts for recursive processing.
 
 ```
 
-The VM records the location and continues. It does NOT read the file—it passes the reference to subsequent sessions that need the context.
+The VM records the location and continues. It does NOT read the fileâ€”it passes the reference to subsequent sessions that need the context.
 
 ---
 
@@ -447,15 +447,15 @@ Imported programs use the **same unified structure recursively**:
 ```
 
 .prose/runs/{id}/imports/{handle}--{slug}/
-├── program.prose
-├── state.md
-├── bindings/
-│ └── {name}.md
-├── imports/ # Nested imports go here
-│ └── {handle2}--{slug2}/
-│ └── ...
-└── agents/
-└── {name}/
+â”œâ”€â”€ program.prose
+â”œâ”€â”€ state.md
+â”œâ”€â”€ bindings/
+â”‚ â””â”€â”€ {name}.md
+â”œâ”€â”€ imports/ # Nested imports go here
+â”‚ â””â”€â”€ {handle2}--{slug2}/
+â”‚ â””â”€â”€ ...
+â””â”€â”€ agents/
+â””â”€â”€ {name}/
 
 ```
 
@@ -482,7 +482,7 @@ After each statement completes, the VM:
 2. **Updates** `state.md` with new position and annotations
 3. **Continues** to next statement
 
-The VM never does compaction—that's the subagent's responsibility.
+The VM never does compactionâ€”that's the subagent's responsibility.
 
 ---
 
@@ -496,3 +496,4 @@ If execution is interrupted, resume by:
 
 The `state.md` file contains everything needed to understand where execution stopped and what has been accomplished.
 ```
+

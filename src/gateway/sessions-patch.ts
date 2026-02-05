@@ -1,6 +1,6 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import type { ModelCatalogEntry } from "../agents/model-catalog.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import type { SessionEntry } from "../config/sessions.js";
 import { resolveDefaultAgentId } from "../agents/agent-scope.js";
 import { resolveAllowedModelRef, resolveDefaultModelForAgent } from "../agents/model-selection.js";
@@ -59,7 +59,7 @@ function normalizeExecAsk(raw: string): "off" | "on-miss" | "always" | undefined
 }
 
 export async function applySessionsPatchToStore(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   store: Record<string, SessionEntry>;
   storeKey: string;
   patch: SessionsPatchParams;
@@ -338,3 +338,4 @@ export async function applySessionsPatchToStore(params: {
   store[storeKey] = next;
   return { ok: true, entry: next };
 }
+

@@ -1,4 +1,4 @@
-import type { ChannelOutboundAdapter } from "../types.js";
+﻿import type { ChannelOutboundAdapter } from "../types.js";
 import { sendMessageDiscord, sendPollDiscord } from "../../../discord/send.js";
 
 export const discordOutbound: ChannelOutboundAdapter = {
@@ -30,3 +30,4 @@ export const discordOutbound: ChannelOutboundAdapter = {
       accountId: accountId ?? undefined,
     }),
 };
+

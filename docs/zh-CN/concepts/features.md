@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想了解 OpenClaw 支持的完整功能列表
-summary: OpenClaw 在渠道、路由、媒体和用户体验方面的功能。
-title: 功能
+  - ä½ æƒ³äº†è§£  æ”¯æŒçš„å®Œæ•´åŠŸèƒ½åˆ—è¡¨
+summary:  åœ¨æ¸ é“ã€è·¯ç”±ã€åª’ä½“å’Œç”¨æˆ·ä½“éªŒæ–¹é¢çš„åŠŸèƒ½ã€‚
+title: åŠŸèƒ½
 x-i18n:
   generated_at: "2026-02-04T17:53:22Z"
   model: claude-opus-4-5
@@ -12,48 +12,49 @@ x-i18n:
   workflow: 15
 ---
 
-## 亮点
+## äº®ç‚¹
 
 <Columns>
-  <Card title="渠道" icon="message-square">
-    通过单个 Gateway 网关支持 WhatsApp、Telegram、Discord 和 iMessage。
+  <Card title="æ¸ é“" icon="message-square">
+    é€šè¿‡å•ä¸ª Gateway ç½‘å…³æ”¯æŒ WhatsAppã€Telegramã€Discord å’Œ iMessageã€‚
   </Card>
-  <Card title="插件" icon="plug">
-    通过扩展添加 Mattermost 等更多平台。
+  <Card title="æ’ä»¶" icon="plug">
+    é€šè¿‡æ‰©å±•æ·»åŠ  Mattermost ç­‰æ›´å¤šå¹³å°ã€‚
   </Card>
-  <Card title="路由" icon="route">
-    多智能体路由，支持隔离会话。
+  <Card title="è·¯ç”±" icon="route">
+    å¤šæ™ºèƒ½ä½“è·¯ç”±ï¼Œæ”¯æŒéš”ç¦»ä¼šè¯ã€‚
   </Card>
-  <Card title="媒体" icon="image">
-    支持图片、音频和文档的收发。
+  <Card title="åª’ä½“" icon="image">
+    æ”¯æŒå›¾ç‰‡ã€éŸ³é¢‘å’Œæ–‡æ¡£çš„æ”¶å‘ã€‚
   </Card>
-  <Card title="应用与界面" icon="monitor">
-    Web 控制界面和 macOS 配套应用。
+  <Card title="åº”ç”¨ä¸Žç•Œé¢" icon="monitor">
+    Web æŽ§åˆ¶ç•Œé¢å’Œ macOS é…å¥—åº”ç”¨ã€‚
   </Card>
-  <Card title="移动节点" icon="smartphone">
-    iOS 和 Android 节点，支持 Canvas。
+  <Card title="ç§»åŠ¨èŠ‚ç‚¹" icon="smartphone">
+    iOS å’Œ Android èŠ‚ç‚¹ï¼Œæ”¯æŒ Canvasã€‚
   </Card>
 </Columns>
 
-## 完整列表
+## å®Œæ•´åˆ—è¡¨
 
-- 通过 WhatsApp Web（Baileys）集成 WhatsApp
-- Telegram 机器人支持（grammY）
-- Discord 机器人支持（channels.discord.js）
-- Mattermost 机器人支持（插件）
-- 通过本地 imsg CLI 集成 iMessage（macOS）
-- Pi 的智能体桥接，支持 RPC 模式和工具流式传输
-- 长响应的流式传输和分块处理
-- 多智能体路由，按工作区或发送者隔离会话
-- 通过 OAuth 进行 Anthropic 和 OpenAI 的订阅认证
-- 会话：私信合并为共享的 `main`；群组相互隔离
-- 群聊支持，通过提及激活
-- 图片、音频和文档的媒体支持
-- 可选的语音消息转录钩子
-- WebChat 和 macOS 菜单栏应用
-- iOS 节点，支持配对和 Canvas 界面
-- Android 节点，支持配对、Canvas、聊天和相机
+- é€šè¿‡ WhatsApp Webï¼ˆBaileysï¼‰é›†æˆ WhatsApp
+- Telegram æœºå™¨äººæ”¯æŒï¼ˆgrammYï¼‰
+- Discord æœºå™¨äººæ”¯æŒï¼ˆchannels.discord.jsï¼‰
+- Mattermost æœºå™¨äººæ”¯æŒï¼ˆæ’ä»¶ï¼‰
+- é€šè¿‡æœ¬åœ° imsg CLI é›†æˆ iMessageï¼ˆmacOSï¼‰
+- Pi çš„æ™ºèƒ½ä½“æ¡¥æŽ¥ï¼Œæ”¯æŒ RPC æ¨¡å¼å’Œå·¥å…·æµå¼ä¼ è¾“
+- é•¿å“åº”çš„æµå¼ä¼ è¾“å’Œåˆ†å—å¤„ç†
+- å¤šæ™ºèƒ½ä½“è·¯ç”±ï¼ŒæŒ‰å·¥ä½œåŒºæˆ–å‘é€è€…éš”ç¦»ä¼šè¯
+- é€šè¿‡ OAuth è¿›è¡Œ Anthropic å’Œ OpenAI çš„è®¢é˜…è®¤è¯
+- ä¼šè¯ï¼šç§ä¿¡åˆå¹¶ä¸ºå…±äº«çš„ `main`ï¼›ç¾¤ç»„ç›¸äº’éš”ç¦»
+- ç¾¤èŠæ”¯æŒï¼Œé€šè¿‡æåŠæ¿€æ´»
+- å›¾ç‰‡ã€éŸ³é¢‘å’Œæ–‡æ¡£çš„åª’ä½“æ”¯æŒ
+- å¯é€‰çš„è¯­éŸ³æ¶ˆæ¯è½¬å½•é’©å­
+- WebChat å’Œ macOS èœå•æ åº”ç”¨
+- iOS èŠ‚ç‚¹ï¼Œæ”¯æŒé…å¯¹å’Œ Canvas ç•Œé¢
+- Android èŠ‚ç‚¹ï¼Œæ”¯æŒé…å¯¹ã€Canvasã€èŠå¤©å’Œç›¸æœº
 
 <Note>
-旧版 Claude、Codex、Gemini 和 Opencode 路径已被移除。Pi 是唯一的编程智能体路径。
+æ—§ç‰ˆ Claudeã€Codexã€Gemini å’Œ Opencode è·¯å¾„å·²è¢«ç§»é™¤ã€‚Pi æ˜¯å”¯ä¸€çš„ç¼–ç¨‹æ™ºèƒ½ä½“è·¯å¾„ã€‚
 </Note>
+

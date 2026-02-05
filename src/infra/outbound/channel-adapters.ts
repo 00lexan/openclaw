@@ -1,4 +1,4 @@
-import type { ChannelId } from "../../channels/plugins/types.js";
+﻿import type { ChannelId } from "../../channels/plugins/types.js";
 
 export type ChannelMessageAdapter = {
   supportsEmbeds: boolean;
@@ -24,3 +24,4 @@ export function getChannelMessageAdapter(channel: ChannelId): ChannelMessageAdap
   }
   return DEFAULT_ADAPTER;
 }
+

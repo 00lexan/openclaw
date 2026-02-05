@@ -1,8 +1,8 @@
----
+﻿---
 read_when: You are managing sandbox containers or debugging sandbox/tool-policy behavior.
 status: active
-summary: 管理沙箱容器并检查生效的沙箱策略
-title: 沙箱 CLI
+summary: ç®¡ç†æ²™ç®±å®¹å™¨å¹¶æ£€æŸ¥ç”Ÿæ•ˆçš„æ²™ç®±ç­–ç•¥
+title: æ²™ç®± CLI
 x-i18n:
   generated_at: "2026-02-03T07:45:18Z"
   model: claude-opus-4-5
@@ -12,122 +12,122 @@ x-i18n:
   workflow: 15
 ---
 
-# 沙箱 CLI
+# æ²™ç®± CLI
 
-管理基于 Docker 的沙箱容器，用于隔离智能体执行。
+ç®¡ç†åŸºäºŽ Docker çš„æ²™ç®±å®¹å™¨ï¼Œç”¨äºŽéš”ç¦»æ™ºèƒ½ä½“æ‰§è¡Œã€‚
 
-## 概述
+## æ¦‚è¿°
 
-OpenClaw 可以在隔离的 Docker 容器中运行智能体以确保安全。`sandbox` 命令帮助你管理这些容器，特别是在更新或配置更改后。
+ å¯ä»¥åœ¨éš”ç¦»çš„ Docker å®¹å™¨ä¸­è¿è¡Œæ™ºèƒ½ä½“ä»¥ç¡®ä¿å®‰å…¨ã€‚`sandbox` å‘½ä»¤å¸®åŠ©ä½ ç®¡ç†è¿™äº›å®¹å™¨ï¼Œç‰¹åˆ«æ˜¯åœ¨æ›´æ–°æˆ–é…ç½®æ›´æ”¹åŽã€‚
 
-## 命令
+## å‘½ä»¤
 
-### `openclaw sandbox explain`
+### ` sandbox explain`
 
-检查**生效的**沙箱模式/作用域/工作区访问权限、沙箱工具策略和提权门控（附带修复配置的键路径）。
-
-```bash
-openclaw sandbox explain
-openclaw sandbox explain --session agent:main:main
-openclaw sandbox explain --agent work
-openclaw sandbox explain --json
-```
-
-### `openclaw sandbox list`
-
-列出所有沙箱容器及其状态和配置。
+æ£€æŸ¥**ç”Ÿæ•ˆçš„**æ²™ç®±æ¨¡å¼/ä½œç”¨åŸŸ/å·¥ä½œåŒºè®¿é—®æƒé™ã€æ²™ç®±å·¥å…·ç­–ç•¥å’Œææƒé—¨æŽ§ï¼ˆé™„å¸¦ä¿®å¤é…ç½®çš„é”®è·¯å¾„ï¼‰ã€‚
 
 ```bash
-openclaw sandbox list
-openclaw sandbox list --browser  # List only browser containers
-openclaw sandbox list --json     # JSON output
+ sandbox explain
+ sandbox explain --session agent:main:main
+ sandbox explain --agent work
+ sandbox explain --json
 ```
 
-**输出包括：**
+### ` sandbox list`
 
-- 容器名称和状态（运行中/已停止）
-- Docker 镜像及其是否与配置匹配
-- 创建时间
-- 空闲时间（自上次使用以来的时间）
-- 关联的会话/智能体
-
-### `openclaw sandbox recreate`
-
-移除沙箱容器以强制使用更新的镜像/配置重新创建。
+åˆ—å‡ºæ‰€æœ‰æ²™ç®±å®¹å™¨åŠå…¶çŠ¶æ€å’Œé…ç½®ã€‚
 
 ```bash
-openclaw sandbox recreate --all                # Recreate all containers
-openclaw sandbox recreate --session main       # Specific session
-openclaw sandbox recreate --agent mybot        # Specific agent
-openclaw sandbox recreate --browser            # Only browser containers
-openclaw sandbox recreate --all --force        # Skip confirmation
+ sandbox list
+ sandbox list --browser  # List only browser containers
+ sandbox list --json     # JSON output
 ```
 
-**选项：**
+**è¾“å‡ºåŒ…æ‹¬ï¼š**
 
-- `--all`：重新创建所有沙箱容器
-- `--session <key>`：重新创建特定会话的容器
-- `--agent <id>`：重新创建特定智能体的容器
-- `--browser`：仅重新创建浏览器容器
-- `--force`：跳过确认提示
+- å®¹å™¨åç§°å’ŒçŠ¶æ€ï¼ˆè¿è¡Œä¸­/å·²åœæ­¢ï¼‰
+- Docker é•œåƒåŠå…¶æ˜¯å¦ä¸Žé…ç½®åŒ¹é…
+- åˆ›å»ºæ—¶é—´
+- ç©ºé—²æ—¶é—´ï¼ˆè‡ªä¸Šæ¬¡ä½¿ç”¨ä»¥æ¥çš„æ—¶é—´ï¼‰
+- å…³è”çš„ä¼šè¯/æ™ºèƒ½ä½“
 
-**重要：** 容器会在智能体下次使用时自动重新创建。
+### ` sandbox recreate`
 
-## 使用场景
+ç§»é™¤æ²™ç®±å®¹å™¨ä»¥å¼ºåˆ¶ä½¿ç”¨æ›´æ–°çš„é•œåƒ/é…ç½®é‡æ–°åˆ›å»ºã€‚
 
-### 更新 Docker 镜像后
+```bash
+ sandbox recreate --all                # Recreate all containers
+ sandbox recreate --session main       # Specific session
+ sandbox recreate --agent mybot        # Specific agent
+ sandbox recreate --browser            # Only browser containers
+ sandbox recreate --all --force        # Skip confirmation
+```
+
+**é€‰é¡¹ï¼š**
+
+- `--all`ï¼šé‡æ–°åˆ›å»ºæ‰€æœ‰æ²™ç®±å®¹å™¨
+- `--session <key>`ï¼šé‡æ–°åˆ›å»ºç‰¹å®šä¼šè¯çš„å®¹å™¨
+- `--agent <id>`ï¼šé‡æ–°åˆ›å»ºç‰¹å®šæ™ºèƒ½ä½“çš„å®¹å™¨
+- `--browser`ï¼šä»…é‡æ–°åˆ›å»ºæµè§ˆå™¨å®¹å™¨
+- `--force`ï¼šè·³è¿‡ç¡®è®¤æç¤º
+
+**é‡è¦ï¼š** å®¹å™¨ä¼šåœ¨æ™ºèƒ½ä½“ä¸‹æ¬¡ä½¿ç”¨æ—¶è‡ªåŠ¨é‡æ–°åˆ›å»ºã€‚
+
+## ä½¿ç”¨åœºæ™¯
+
+### æ›´æ–° Docker é•œåƒåŽ
 
 ```bash
 # Pull new image
-docker pull openclaw-sandbox:latest
-docker tag openclaw-sandbox:latest openclaw-sandbox:bookworm-slim
+docker pull -sandbox:latest
+docker tag -sandbox:latest -sandbox:bookworm-slim
 
 # Update config to use new image
 # Edit config: agents.defaults.sandbox.docker.image (or agents.list[].sandbox.docker.image)
 
 # Recreate containers
-openclaw sandbox recreate --all
+ sandbox recreate --all
 ```
 
-### 更改沙箱配置后
+### æ›´æ”¹æ²™ç®±é…ç½®åŽ
 
 ```bash
 # Edit config: agents.defaults.sandbox.* (or agents.list[].sandbox.*)
 
 # Recreate to apply new config
-openclaw sandbox recreate --all
+ sandbox recreate --all
 ```
 
-### 更改 setupCommand 后
+### æ›´æ”¹ setupCommand åŽ
 
 ```bash
-openclaw sandbox recreate --all
+ sandbox recreate --all
 # or just one agent:
-openclaw sandbox recreate --agent family
+ sandbox recreate --agent family
 ```
 
-### 仅针对特定智能体
+### ä»…é’ˆå¯¹ç‰¹å®šæ™ºèƒ½ä½“
 
 ```bash
 # Update only one agent's containers
-openclaw sandbox recreate --agent alfred
+ sandbox recreate --agent alfred
 ```
 
-## 为什么需要这个？
+## ä¸ºä»€ä¹ˆéœ€è¦è¿™ä¸ªï¼Ÿ
 
-**问题：** 当你更新沙箱 Docker 镜像或配置时：
+**é—®é¢˜ï¼š** å½“ä½ æ›´æ–°æ²™ç®± Docker é•œåƒæˆ–é…ç½®æ—¶ï¼š
 
-- 现有容器继续使用旧设置运行
-- 容器仅在空闲 24 小时后才被清理
-- 经常使用的智能体会无限期保持旧容器运行
+- çŽ°æœ‰å®¹å™¨ç»§ç»­ä½¿ç”¨æ—§è®¾ç½®è¿è¡Œ
+- å®¹å™¨ä»…åœ¨ç©ºé—² 24 å°æ—¶åŽæ‰è¢«æ¸…ç†
+- ç»å¸¸ä½¿ç”¨çš„æ™ºèƒ½ä½“ä¼šæ— é™æœŸä¿æŒæ—§å®¹å™¨è¿è¡Œ
 
-**解决方案：** 使用 `openclaw sandbox recreate` 强制移除旧容器。它们会在下次需要时自动使用当前设置重新创建。
+**è§£å†³æ–¹æ¡ˆï¼š** ä½¿ç”¨ ` sandbox recreate` å¼ºåˆ¶ç§»é™¤æ—§å®¹å™¨ã€‚å®ƒä»¬ä¼šåœ¨ä¸‹æ¬¡éœ€è¦æ—¶è‡ªåŠ¨ä½¿ç”¨å½“å‰è®¾ç½®é‡æ–°åˆ›å»ºã€‚
 
-提示：优先使用 `openclaw sandbox recreate` 而不是手动 `docker rm`。它使用 Gateway 网关的容器命名规则，避免在作用域/会话键更改时出现不匹配。
+æç¤ºï¼šä¼˜å…ˆä½¿ç”¨ ` sandbox recreate` è€Œä¸æ˜¯æ‰‹åŠ¨ `docker rm`ã€‚å®ƒä½¿ç”¨ Gateway ç½‘å…³çš„å®¹å™¨å‘½åè§„åˆ™ï¼Œé¿å…åœ¨ä½œç”¨åŸŸ/ä¼šè¯é”®æ›´æ”¹æ—¶å‡ºçŽ°ä¸åŒ¹é…ã€‚
 
-## 配置
+## é…ç½®
 
-沙箱设置位于 `~/.openclaw/openclaw.json` 的 `agents.defaults.sandbox` 下（每个智能体的覆盖设置在 `agents.list[].sandbox` 中）：
+æ²™ç®±è®¾ç½®ä½äºŽ `~/./.json` çš„ `agents.defaults.sandbox` ä¸‹ï¼ˆæ¯ä¸ªæ™ºèƒ½ä½“çš„è¦†ç›–è®¾ç½®åœ¨ `agents.list[].sandbox` ä¸­ï¼‰ï¼š
 
 ```jsonc
 {
@@ -137,8 +137,8 @@ openclaw sandbox recreate --agent alfred
         "mode": "all", // off, non-main, all
         "scope": "agent", // session, agent, shared
         "docker": {
-          "image": "openclaw-sandbox:bookworm-slim",
-          "containerPrefix": "openclaw-sbx-",
+          "image": "-sandbox:bookworm-slim",
+          "containerPrefix": "-sbx-",
           // ... more Docker options
         },
         "prune": {
@@ -151,8 +151,9 @@ openclaw sandbox recreate --agent alfred
 }
 ```
 
-## 另请参阅
+## å¦è¯·å‚é˜…
 
-- [沙箱文档](/gateway/sandboxing)
-- [智能体配置](/concepts/agent-workspace)
-- [Doctor 命令](/gateway/doctor) - 检查沙箱设置
+- [æ²™ç®±æ–‡æ¡£](/gateway/sandboxing)
+- [æ™ºèƒ½ä½“é…ç½®](/concepts/agent-workspace)
+- [Doctor å‘½ä»¤](/gateway/doctor) - æ£€æŸ¥æ²™ç®±è®¾ç½®
+

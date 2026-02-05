@@ -1,4 +1,4 @@
-export type GoogleChatSpace = {
+﻿export type GoogleChatSpace = {
   name?: string;
   displayName?: string;
   type?: string;
@@ -71,3 +71,4 @@ export type GoogleChatReaction = {
   user?: GoogleChatUser;
   emoji?: { unicode?: string };
 };
+

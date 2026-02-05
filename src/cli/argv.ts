@@ -1,4 +1,4 @@
-const HELP_FLAGS = new Set(["-h", "--help"]);
+﻿const HELP_FLAGS = new Set(["-h", "--help"]);
 const VERSION_FLAGS = new Set(["-v", "-V", "--version"]);
 const FLAG_TERMINATOR = "--";
 
@@ -119,7 +119,7 @@ export function buildParseArgv(params: {
   const normalizedArgv =
     programName && baseArgv[0] === programName
       ? baseArgv.slice(1)
-      : baseArgv[0]?.endsWith("openclaw")
+      : baseArgv[0]?.endsWith("")
         ? baseArgv.slice(1)
         : baseArgv;
   const executable = (normalizedArgv[0]?.split(/[/\\]/).pop() ?? "").toLowerCase();
@@ -128,7 +128,7 @@ export function buildParseArgv(params: {
   if (looksLikeNode) {
     return normalizedArgv;
   }
-  return ["node", programName || "openclaw", ...normalizedArgv];
+  return ["node", programName || "", ...normalizedArgv];
 }
 
 const nodeExecutablePattern = /^node-\d+(?:\.\d+)*(?:\.exe)?$/;
@@ -167,3 +167,4 @@ export function shouldMigrateStateFromPath(path: string[]): boolean {
 export function shouldMigrateState(argv: string[]): boolean {
   return shouldMigrateStateFromPath(getCommandPath(argv, 2));
 }
+

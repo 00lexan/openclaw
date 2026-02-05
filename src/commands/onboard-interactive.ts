@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../runtime.js";
+﻿import type { RuntimeEnv } from "../runtime.js";
 import type { OnboardOptions } from "./onboard-types.js";
 import { defaultRuntime } from "../runtime.js";
 import { restoreTerminalState } from "../terminal/restore.js";
@@ -23,3 +23,4 @@ export async function runInteractiveOnboarding(
     restoreTerminalState("onboarding finish");
   }
 }
+

@@ -1,4 +1,4 @@
-import type { ChannelsState } from "./channels.types.ts";
+﻿import type { ChannelsState } from "./channels.types.ts";
 import { ChannelsStatusSnapshot } from "../types.ts";
 
 export type { ChannelsState };
@@ -92,3 +92,4 @@ export async function logoutWhatsApp(state: ChannelsState) {
     state.whatsappBusy = false;
   }
 }
+

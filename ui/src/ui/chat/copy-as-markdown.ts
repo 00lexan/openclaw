@@ -1,4 +1,4 @@
-import { html, type TemplateResult } from "lit";
+﻿import { html, type TemplateResult } from "lit";
 import { icons } from "../icons.ts";
 
 const COPIED_FOR_MS = 1500;
@@ -95,3 +95,4 @@ function createCopyButton(options: CopyButtonOptions): TemplateResult {
 export function renderCopyAsMarkdownButton(markdown: string): TemplateResult {
   return createCopyButton({ text: () => markdown, label: COPY_LABEL });
 }
+

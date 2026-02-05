@@ -1,4 +1,4 @@
-import type { ApplyAuthChoiceParams, ApplyAuthChoiceResult } from "./auth-choice.apply.js";
+﻿import type { ApplyAuthChoiceParams, ApplyAuthChoiceResult } from "./auth-choice.apply.js";
 import { upsertAuthProfile } from "../agents/auth-profiles.js";
 import {
   formatApiKeyPreview,
@@ -99,3 +99,4 @@ export async function applyAuthChoiceAnthropic(
 
   return null;
 }
+

@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import type { CallRecord, CallState, NormalizedEvent } from "../types.js";
 import type { CallManagerContext } from "./context.js";
 import { isAllowlistedCaller, normalizePhoneNumber } from "../allowlist.js";
@@ -186,3 +186,4 @@ export function processEvent(ctx: CallManagerContext, event: NormalizedEvent): v
 
   persistCallRecord(ctx.storePath, call);
 }
+

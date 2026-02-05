@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "../../auto-reply/types.js";
+﻿import type { ReplyPayload } from "../../auto-reply/types.js";
 import {
   DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
   resolveHeartbeatPrompt,
@@ -337,3 +337,4 @@ export function resolveHeartbeatRecipients(
 ) {
   return resolveWhatsAppHeartbeatRecipients(cfg, opts);
 }
+

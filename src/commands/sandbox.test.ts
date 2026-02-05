@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { SandboxBrowserInfo, SandboxContainerInfo } from "../agents/sandbox.js";
 
 // --- Mocks ---
@@ -30,9 +30,9 @@ const NOW = Date.now();
 
 function createContainer(overrides: Partial<SandboxContainerInfo> = {}): SandboxContainerInfo {
   return {
-    containerName: "openclaw-sandbox-test",
+    containerName: "-sandbox-test",
     sessionKey: "test-session",
-    image: "openclaw/sandbox:latest",
+    image: "/sandbox:latest",
     imageMatch: true,
     running: true,
     createdAtMs: NOW - 3600000,
@@ -43,9 +43,9 @@ function createContainer(overrides: Partial<SandboxContainerInfo> = {}): Sandbox
 
 function createBrowser(overrides: Partial<SandboxBrowserInfo> = {}): SandboxBrowserInfo {
   return {
-    containerName: "openclaw-browser-test",
+    containerName: "-browser-test",
     sessionKey: "test-session",
-    image: "openclaw/browser:latest",
+    image: "/browser:latest",
     imageMatch: true,
     running: true,
     createdAtMs: NOW - 3600000,
@@ -104,7 +104,7 @@ describe("sandboxListCommand", () => {
 
       await sandboxListCommand({ browser: false, json: false }, runtime as never);
 
-      expectLogContains(runtime, "📦 Sandbox Containers");
+      expectLogContains(runtime, "ðŸ“¦ Sandbox Containers");
       expectLogContains(runtime, container1.containerName);
       expectLogContains(runtime, container2.containerName);
       expectLogContains(runtime, "Total");
@@ -116,7 +116,7 @@ describe("sandboxListCommand", () => {
 
       await sandboxListCommand({ browser: true, json: false }, runtime as never);
 
-      expectLogContains(runtime, "🌐 Sandbox Browser Containers");
+      expectLogContains(runtime, "ðŸŒ Sandbox Browser Containers");
       expectLogContains(runtime, browser.containerName);
       expectLogContains(runtime, String(browser.cdpPort));
     });
@@ -127,7 +127,7 @@ describe("sandboxListCommand", () => {
 
       await sandboxListCommand({ browser: false, json: false }, runtime as never);
 
-      expectLogContains(runtime, "⚠️");
+      expectLogContains(runtime, "âš ï¸");
       expectLogContains(runtime, "image mismatch");
       expectLogContains(runtime, "sandbox recreate --all");
     });
@@ -319,9 +319,10 @@ describe("sandboxRecreateCommand", () => {
 
       await sandboxRecreateCommand({ all: true, browser: false, force: true }, runtime as never);
 
-      expectLogContains(runtime, "✓ Removed");
+      expectLogContains(runtime, "âœ“ Removed");
       expectLogContains(runtime, "1 removed, 0 failed");
       expectLogContains(runtime, "automatically recreated");
     });
   });
 });
+

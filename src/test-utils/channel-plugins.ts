@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   ChannelCapabilities,
   ChannelId,
   ChannelOutboundAdapter,
@@ -102,3 +102,4 @@ export const createOutboundTestPlugin = (params: {
   },
   outbound: params.outbound,
 });
+

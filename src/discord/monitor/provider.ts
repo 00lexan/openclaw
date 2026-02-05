@@ -1,9 +1,9 @@
-import { Client } from "@buape/carbon";
+﻿import { Client } from "@buape/carbon";
 import { GatewayIntents, GatewayPlugin } from "@buape/carbon/gateway";
 import { Routes } from "discord-api-types/v10";
 import { inspect } from "node:util";
 import type { HistoryEntry } from "../../auto-reply/reply/history.js";
-import type { OpenClawConfig, ReplyToMode } from "../../config/config.js";
+import type { Config, ReplyToMode } from "../../config/config.js";
 import type { RuntimeEnv } from "../../runtime.js";
 import { resolveTextChunkLimit } from "../../auto-reply/chunk.js";
 import { listNativeCommandSpecsForConfig } from "../../auto-reply/commands-registry.js";
@@ -44,7 +44,7 @@ import {
 export type MonitorDiscordOpts = {
   token?: string;
   accountId?: string;
-  config?: OpenClawConfig;
+  config?: Config;
   runtime?: RuntimeEnv;
   abortSignal?: AbortSignal;
   mediaMaxMb?: number;
@@ -252,8 +252,8 @@ export async function monitorDiscordProvider(opts: MonitorDiscordOpts = {}) {
             }
             mapping.push(
               entry.channelId
-                ? `${entry.input}→${entry.guildId}/${entry.channelId}`
-                : `${entry.input}→${entry.guildId}`,
+                ? `${entry.input}â†’${entry.guildId}/${entry.channelId}`
+                : `${entry.input}â†’${entry.guildId}`,
             );
             const existing = nextGuilds[entry.guildId] ?? {};
             const mergedChannels = { ...sourceGuild.channels, ...existing.channels };
@@ -298,7 +298,7 @@ export async function monitorDiscordProvider(opts: MonitorDiscordOpts = {}) {
         const additions: string[] = [];
         for (const entry of resolvedUsers) {
           if (entry.resolved && entry.id) {
-            mapping.push(`${entry.input}→${entry.id}`);
+            mapping.push(`${entry.input}â†’${entry.id}`);
             additions.push(entry.id);
           } else {
             unresolved.push(entry.input);
@@ -355,7 +355,7 @@ export async function monitorDiscordProvider(opts: MonitorDiscordOpts = {}) {
           const resolvedMap = new Map(resolvedUsers.map((entry) => [entry.input, entry]));
           const mapping = resolvedUsers
             .filter((entry) => entry.resolved && entry.id)
-            .map((entry) => `${entry.input}→${entry.id}`);
+            .map((entry) => `${entry.input}â†’${entry.id}`);
           const unresolved = resolvedUsers
             .filter((entry) => !entry.resolved)
             .map((entry) => entry.input);
@@ -581,7 +581,7 @@ export async function monitorDiscordProvider(opts: MonitorDiscordOpts = {}) {
       client.listeners,
       new DiscordPresenceListener({ logger, accountId: account.accountId }),
     );
-    runtime.log?.("discord: GuildPresences intent enabled — presence listener registered");
+    runtime.log?.("discord: GuildPresences intent enabled â€” presence listener registered");
   }
 
   runtime.log?.(`logged in to discord${botUserId ? ` as ${botUserId}` : ""}`);
@@ -688,3 +688,4 @@ async function clearDiscordNativeCommands(params: {
     params.runtime.error?.(danger(`discord: failed to clear native commands: ${String(err)}`));
   }
 }
+

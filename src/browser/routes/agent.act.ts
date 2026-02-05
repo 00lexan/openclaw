@@ -1,4 +1,4 @@
-import type { BrowserFormField } from "../client-actions-core.js";
+﻿import type { BrowserFormField } from "../client-actions-core.js";
 import type { BrowserRouteContext } from "../server-context.js";
 import type { BrowserRouteRegistrar } from "./types.js";
 import {
@@ -257,7 +257,7 @@ export function registerBrowserAgentActRoutes(
               403,
               [
                 "wait --fn is disabled by config (browser.evaluateEnabled=false).",
-                "Docs: /gateway/configuration#browser-openclaw-managed-browser",
+                "Docs: /gateway/configuration#browser--managed-browser",
               ].join("\n"),
             );
           }
@@ -297,7 +297,7 @@ export function registerBrowserAgentActRoutes(
               403,
               [
                 "act:evaluate is disabled by config (browser.evaluateEnabled=false).",
-                "Docs: /gateway/configuration#browser-openclaw-managed-browser",
+                "Docs: /gateway/configuration#browser--managed-browser",
               ].join("\n"),
             );
           }
@@ -539,3 +539,4 @@ export function registerBrowserAgentActRoutes(
     }
   });
 }
+

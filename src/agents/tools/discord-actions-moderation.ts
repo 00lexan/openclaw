@@ -1,4 +1,4 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { DiscordActionConfig } from "../../config/config.js";
 import { banMemberDiscord, kickMemberDiscord, timeoutMemberDiscord } from "../../discord/send.js";
 import { type ActionGate, jsonResult, readStringParam } from "./common.js";
@@ -103,3 +103,4 @@ export async function handleDiscordModerationAction(
       throw new Error(`Unknown action: ${action}`);
   }
 }
+

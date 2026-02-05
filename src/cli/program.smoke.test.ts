@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const messageCommand = vi.fn();
 const statusCommand = vi.fn();
@@ -80,7 +80,7 @@ describe("cli program (smoke)", () => {
         "--message-id",
         "1737630212345",
         "--emoji",
-        "✅",
+        "âœ…",
         "--target-author-uuid",
         "123e4567-e89b-12d3-a456-426614174000",
       ],
@@ -227,3 +227,4 @@ describe("cli program (smoke)", () => {
     expect(runChannelLogout).toHaveBeenCalledWith({ channel: undefined, account: "work" }, runtime);
   });
 });
+

@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Runbook for the Gateway service, lifecycle, and operations"
 read_when:
   - Running or debugging the gateway process
@@ -12,22 +12,22 @@ Last updated: 2025-12-09
 ## What it is
 
 - The always-on process that owns the single Baileys/Telegram connection and the control/event plane.
-- Replaces the legacy `gateway` command. CLI entry point: `openclaw gateway`.
+- Replaces the legacy `gateway` command. CLI entry point: ` gateway`.
 - Runs until stopped; exits non-zero on fatal errors so the supervisor restarts it.
 
 ## How to run (local)
 
 ```bash
-openclaw gateway --port 18789
+ gateway --port 18789
 # for full debug/trace logs in stdio:
-openclaw gateway --port 18789 --verbose
+ gateway --port 18789 --verbose
 # if the port is busy, terminate listeners then start:
-openclaw gateway --force
+ gateway --force
 # dev loop (auto-reload on TS changes):
 pnpm gateway:watch
 ```
 
-- Config hot reload watches `~/.openclaw/openclaw.json` (or `OPENCLAW_CONFIG_PATH`).
+- Config hot reload watches `~/./.json` (or `_CONFIG_PATH`).
   - Default mode: `gateway.reload.mode="hybrid"` (hot-apply safe changes, restart on critical).
   - Hot reload uses in-process restart via **SIGUSR1** when needed.
   - Disable with `gateway.reload.mode="off"`.
@@ -36,15 +36,15 @@ pnpm gateway:watch
   - OpenAI Chat Completions (HTTP): [`/v1/chat/completions`](/gateway/openai-http-api).
   - OpenResponses (HTTP): [`/v1/responses`](/gateway/openresponses-http-api).
   - Tools Invoke (HTTP): [`/tools/invoke`](/gateway/tools-invoke-http-api).
-- Starts a Canvas file server by default on `canvasHost.port` (default `18793`), serving `http://<gateway-host>:18793/__openclaw__/canvas/` from `~/.openclaw/workspace/canvas`. Disable with `canvasHost.enabled=false` or `OPENCLAW_SKIP_CANVAS_HOST=1`.
+- Starts a Canvas file server by default on `canvasHost.port` (default `18793`), serving `http://<gateway-host>:18793/____/canvas/` from `~/./workspace/canvas`. Disable with `canvasHost.enabled=false` or `_SKIP_CANVAS_HOST=1`.
 - Logs to stdout; use launchd/systemd to keep it alive and rotate logs.
 - Pass `--verbose` to mirror debug logging (handshakes, req/res, events) from the log file into stdio when troubleshooting.
 - `--force` uses `lsof` to find listeners on the chosen port, sends SIGTERM, logs what it killed, then starts the gateway (fails fast if `lsof` is missing).
 - If you run under a supervisor (launchd/systemd/mac app child-process mode), a stop/restart typically sends **SIGTERM**; older builds may surface this as `pnpm` `ELIFECYCLE` exit code **143** (SIGTERM), which is a normal shutdown, not a crash.
 - **SIGUSR1** triggers an in-process restart when authorized (gateway tool/config apply/update, or enable `commands.restart` for manual restarts).
-- Gateway auth is required by default: set `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`) or `gateway.auth.password`. Clients must send `connect.params.auth.token/password` unless using Tailscale Serve identity.
+- Gateway auth is required by default: set `gateway.auth.token` (or `_GATEWAY_TOKEN`) or `gateway.auth.password`. Clients must send `connect.params.auth.token/password` unless using Tailscale Serve identity.
 - The wizard now generates a token by default, even on loopback.
-- Port precedence: `--port` > `OPENCLAW_GATEWAY_PORT` > `gateway.port` > default `18789`.
+- Port precedence: `--port` > `_GATEWAY_PORT` > `gateway.port` > default `18789`.
 
 ## Remote access
 
@@ -63,15 +63,15 @@ Supported if you isolate state + config and use unique ports. Full guide: [Multi
 
 Service names are profile-aware:
 
-- macOS: `bot.molt.<profile>` (legacy `com.openclaw.*` may still exist)
-- Linux: `openclaw-gateway-<profile>.service`
-- Windows: `OpenClaw Gateway (<profile>)`
+- macOS: `bot.molt.<profile>` (legacy `com..*` may still exist)
+- Linux: `-gateway-<profile>.service`
+- Windows: ` Gateway (<profile>)`
 
 Install metadata is embedded in the service config:
 
-- `OPENCLAW_SERVICE_MARKER=openclaw`
-- `OPENCLAW_SERVICE_KIND=gateway`
-- `OPENCLAW_SERVICE_VERSION=<version>`
+- `_SERVICE_MARKER=`
+- `_SERVICE_KIND=gateway`
+- `_SERVICE_VERSION=<version>`
 
 Rescue-Bot Pattern: keep a second Gateway isolated with its own profile, state dir, workspace, and base port spacing. Full guide: [Rescue-bot guide](/gateway/multiple-gateways#rescue-bot-guide).
 
@@ -80,49 +80,49 @@ Rescue-Bot Pattern: keep a second Gateway isolated with its own profile, state d
 Fast path: run a fully-isolated dev instance (config/state/workspace) without touching your primary setup.
 
 ```bash
-openclaw --dev setup
-openclaw --dev gateway --allow-unconfigured
+ --dev setup
+ --dev gateway --allow-unconfigured
 # then target the dev instance:
-openclaw --dev status
-openclaw --dev health
+ --dev status
+ --dev health
 ```
 
 Defaults (can be overridden via env/flags/config):
 
-- `OPENCLAW_STATE_DIR=~/.openclaw-dev`
-- `OPENCLAW_CONFIG_PATH=~/.openclaw-dev/openclaw.json`
-- `OPENCLAW_GATEWAY_PORT=19001` (Gateway WS + HTTP)
+- `_STATE_DIR=~/.-dev`
+- `_CONFIG_PATH=~/.-dev/.json`
+- `_GATEWAY_PORT=19001` (Gateway WS + HTTP)
 - browser control service port = `19003` (derived: `gateway.port+2`, loopback only)
 - `canvasHost.port=19005` (derived: `gateway.port+4`)
-- `agents.defaults.workspace` default becomes `~/.openclaw/workspace-dev` when you run `setup`/`onboard` under `--dev`.
+- `agents.defaults.workspace` default becomes `~/./workspace-dev` when you run `setup`/`onboard` under `--dev`.
 
 Derived ports (rules of thumb):
 
-- Base port = `gateway.port` (or `OPENCLAW_GATEWAY_PORT` / `--port`)
+- Base port = `gateway.port` (or `_GATEWAY_PORT` / `--port`)
 - browser control service port = base + 2 (loopback only)
-- `canvasHost.port = base + 4` (or `OPENCLAW_CANVAS_HOST_PORT` / config override)
+- `canvasHost.port = base + 4` (or `_CANVAS_HOST_PORT` / config override)
 - Browser profile CDP ports auto-allocate from `browser.controlPort + 9 .. + 108` (persisted per profile).
 
 Checklist per instance:
 
 - unique `gateway.port`
-- unique `OPENCLAW_CONFIG_PATH`
-- unique `OPENCLAW_STATE_DIR`
+- unique `_CONFIG_PATH`
+- unique `_STATE_DIR`
 - unique `agents.defaults.workspace`
 - separate WhatsApp numbers (if using WA)
 
 Service install per profile:
 
 ```bash
-openclaw --profile main gateway install
-openclaw --profile rescue gateway install
+ --profile main gateway install
+ --profile rescue gateway install
 ```
 
 Example:
 
 ```bash
-OPENCLAW_CONFIG_PATH=~/.openclaw/a.json OPENCLAW_STATE_DIR=~/.openclaw-a openclaw gateway --port 19001
-OPENCLAW_CONFIG_PATH=~/.openclaw/b.json OPENCLAW_STATE_DIR=~/.openclaw-b openclaw gateway --port 19002
+_CONFIG_PATH=~/./a.json _STATE_DIR=~/.-a  gateway --port 19001
+_CONFIG_PATH=~/./b.json _STATE_DIR=~/.-b  gateway --port 19002
 ```
 
 ## Protocol (operator view)
@@ -131,32 +131,32 @@ OPENCLAW_CONFIG_PATH=~/.openclaw/b.json OPENCLAW_STATE_DIR=~/.openclaw-b opencla
 - Mandatory first frame from client: `req {type:"req", id, method:"connect", params:{minProtocol,maxProtocol,client:{id,displayName?,version,platform,deviceFamily?,modelIdentifier?,mode,instanceId?}, caps, auth?, locale?, userAgent? } }`.
 - Gateway replies `res {type:"res", id, ok:true, payload:hello-ok }` (or `ok:false` with an error, then closes).
 - After handshake:
-  - Requests: `{type:"req", id, method, params}` → `{type:"res", id, ok, payload|error}`
+  - Requests: `{type:"req", id, method, params}` â†’ `{type:"res", id, ok, payload|error}`
   - Events: `{type:"event", event, payload, seq?, stateVersion?}`
 - Structured presence entries: `{host, ip, version, platform?, deviceFamily?, modelIdentifier?, mode, lastInputSeconds?, ts, reason?, tags?[], instanceId? }` (for WS clients, `instanceId` comes from `connect.client.instanceId`).
 - `agent` responses are two-stage: first `res` ack `{runId,status:"accepted"}`, then a final `res` `{runId,status:"ok"|"error",summary}` after the run finishes; streamed output arrives as `event:"agent"`.
 
 ## Methods (initial set)
 
-- `health` — full health snapshot (same shape as `openclaw health --json`).
-- `status` — short summary.
-- `system-presence` — current presence list.
-- `system-event` — post a presence/system note (structured).
-- `send` — send a message via the active channel(s).
-- `agent` — run an agent turn (streams events back on same connection).
-- `node.list` — list paired + currently-connected nodes (includes `caps`, `deviceFamily`, `modelIdentifier`, `paired`, `connected`, and advertised `commands`).
-- `node.describe` — describe a node (capabilities + supported `node.invoke` commands; works for paired nodes and for currently-connected unpaired nodes).
-- `node.invoke` — invoke a command on a node (e.g. `canvas.*`, `camera.*`).
-- `node.pair.*` — pairing lifecycle (`request`, `list`, `approve`, `reject`, `verify`).
+- `health` â€” full health snapshot (same shape as ` health --json`).
+- `status` â€” short summary.
+- `system-presence` â€” current presence list.
+- `system-event` â€” post a presence/system note (structured).
+- `send` â€” send a message via the active channel(s).
+- `agent` â€” run an agent turn (streams events back on same connection).
+- `node.list` â€” list paired + currently-connected nodes (includes `caps`, `deviceFamily`, `modelIdentifier`, `paired`, `connected`, and advertised `commands`).
+- `node.describe` â€” describe a node (capabilities + supported `node.invoke` commands; works for paired nodes and for currently-connected unpaired nodes).
+- `node.invoke` â€” invoke a command on a node (e.g. `canvas.*`, `camera.*`).
+- `node.pair.*` â€” pairing lifecycle (`request`, `list`, `approve`, `reject`, `verify`).
 
 See also: [Presence](/concepts/presence) for how presence is produced/deduped and why a stable `client.instanceId` matters.
 
 ## Events
 
-- `agent` — streamed tool/output events from the agent run (seq-tagged).
-- `presence` — presence updates (deltas with stateVersion) pushed to all connected clients.
-- `tick` — periodic keepalive/no-op to confirm liveness.
-- `shutdown` — Gateway is exiting; payload includes `reason` and optional `restartExpectedMs`. Clients should reconnect.
+- `agent` â€” streamed tool/output events from the agent run (seq-tagged).
+- `presence` â€” presence updates (deltas with stateVersion) pushed to all connected clients.
+- `tick` â€” periodic keepalive/no-op to confirm liveness.
+- `shutdown` â€” Gateway is exiting; payload includes `reason` and optional `restartExpectedMs`. Clients should reconnect.
 
 ## WebChat integration
 
@@ -167,7 +167,7 @@ See also: [Presence](/concepts/presence) for how presence is produced/deduped an
 ## Typing and validation
 
 - Server validates every inbound frame with AJV against JSON Schema emitted from the protocol definitions.
-- Clients (TS/Swift) consume generated types (TS directly; Swift via the repo’s generator).
+- Clients (TS/Swift) consume generated types (TS directly; Swift via the repoâ€™s generator).
 - Protocol definitions are the source of truth; regenerate schema/models with:
   - `pnpm protocol:gen`
   - `pnpm protocol:gen:swift`
@@ -181,10 +181,10 @@ See also: [Presence](/concepts/presence) for how presence is produced/deduped an
 
 - Errors use `{ code, message, details?, retryable?, retryAfterMs? }`.
 - Standard codes:
-  - `NOT_LINKED` — WhatsApp not authenticated.
-  - `AGENT_TIMEOUT` — agent did not respond within the configured deadline.
-  - `INVALID_REQUEST` — schema/param validation failed.
-  - `UNAVAILABLE` — Gateway is shutting down or a dependency is unavailable.
+  - `NOT_LINKED` â€” WhatsApp not authenticated.
+  - `AGENT_TIMEOUT` â€” agent did not respond within the configured deadline.
+  - `INVALID_REQUEST` â€” schema/param validation failed.
+  - `UNAVAILABLE` â€” Gateway is shutting down or a dependency is unavailable.
 
 ## Keepalive behavior
 
@@ -198,75 +198,75 @@ See also: [Presence](/concepts/presence) for how presence is produced/deduped an
 ## Supervision (macOS example)
 
 - Use launchd to keep the service alive:
-  - Program: path to `openclaw`
+  - Program: path to ``
   - Arguments: `gateway`
   - KeepAlive: true
   - StandardOut/Err: file paths or `syslog`
 - On failure, launchd restarts; fatal misconfig should keep exiting so the operator notices.
 - LaunchAgents are per-user and require a logged-in session; for headless setups use a custom LaunchDaemon (not shipped).
-  - `openclaw gateway install` writes `~/Library/LaunchAgents/bot.molt.gateway.plist`
-    (or `bot.molt.<profile>.plist`; legacy `com.openclaw.*` is cleaned up).
-  - `openclaw doctor` audits the LaunchAgent config and can update it to current defaults.
+  - ` gateway install` writes `~/Library/LaunchAgents/bot.molt.gateway.plist`
+    (or `bot.molt.<profile>.plist`; legacy `com..*` is cleaned up).
+  - ` doctor` audits the LaunchAgent config and can update it to current defaults.
 
 ## Gateway service management (CLI)
 
 Use the Gateway CLI for install/start/stop/restart/status:
 
 ```bash
-openclaw gateway status
-openclaw gateway install
-openclaw gateway stop
-openclaw gateway restart
-openclaw logs --follow
+ gateway status
+ gateway install
+ gateway stop
+ gateway restart
+ logs --follow
 ```
 
 Notes:
 
-- `gateway status` probes the Gateway RPC by default using the service’s resolved port/config (override with `--url`).
+- `gateway status` probes the Gateway RPC by default using the serviceâ€™s resolved port/config (override with `--url`).
 - `gateway status --deep` adds system-level scans (LaunchDaemons/system units).
 - `gateway status --no-probe` skips the RPC probe (useful when networking is down).
 - `gateway status --json` is stable for scripts.
 - `gateway status` reports **supervisor runtime** (launchd/systemd running) separately from **RPC reachability** (WS connect + status RPC).
-- `gateway status` prints config path + probe target to avoid “localhost vs LAN bind” confusion and profile mismatches.
+- `gateway status` prints config path + probe target to avoid â€œlocalhost vs LAN bindâ€ confusion and profile mismatches.
 - `gateway status` includes the last gateway error line when the service looks running but the port is closed.
 - `logs` tails the Gateway file log via RPC (no manual `tail`/`grep` needed).
-- If other gateway-like services are detected, the CLI warns unless they are OpenClaw profile services.
+- If other gateway-like services are detected, the CLI warns unless they are  profile services.
   We still recommend **one gateway per machine** for most setups; use isolated profiles/ports for redundancy or a rescue bot. See [Multiple gateways](/gateway/multiple-gateways).
-  - Cleanup: `openclaw gateway uninstall` (current service) and `openclaw doctor` (legacy migrations).
-- `gateway install` is a no-op when already installed; use `openclaw gateway install --force` to reinstall (profile/env/path changes).
+  - Cleanup: ` gateway uninstall` (current service) and ` doctor` (legacy migrations).
+- `gateway install` is a no-op when already installed; use ` gateway install --force` to reinstall (profile/env/path changes).
 
 Bundled mac app:
 
-- OpenClaw.app can bundle a Node-based gateway relay and install a per-user LaunchAgent labeled
-  `bot.molt.gateway` (or `bot.molt.<profile>`; legacy `com.openclaw.*` labels still unload cleanly).
-- To stop it cleanly, use `openclaw gateway stop` (or `launchctl bootout gui/$UID/bot.molt.gateway`).
-- To restart, use `openclaw gateway restart` (or `launchctl kickstart -k gui/$UID/bot.molt.gateway`).
-  - `launchctl` only works if the LaunchAgent is installed; otherwise use `openclaw gateway install` first.
+- .app can bundle a Node-based gateway relay and install a per-user LaunchAgent labeled
+  `bot.molt.gateway` (or `bot.molt.<profile>`; legacy `com..*` labels still unload cleanly).
+- To stop it cleanly, use ` gateway stop` (or `launchctl bootout gui/$UID/bot.molt.gateway`).
+- To restart, use ` gateway restart` (or `launchctl kickstart -k gui/$UID/bot.molt.gateway`).
+  - `launchctl` only works if the LaunchAgent is installed; otherwise use ` gateway install` first.
   - Replace the label with `bot.molt.<profile>` when running a named profile.
 
 ## Supervision (systemd user unit)
 
-OpenClaw installs a **systemd user service** by default on Linux/WSL2. We
+ installs a **systemd user service** by default on Linux/WSL2. We
 recommend user services for single-user machines (simpler env, per-user config).
 Use a **system service** for multi-user or always-on servers (no lingering
 required, shared supervision).
 
-`openclaw gateway install` writes the user unit. `openclaw doctor` audits the
+` gateway install` writes the user unit. ` doctor` audits the
 unit and can update it to match the current recommended defaults.
 
-Create `~/.config/systemd/user/openclaw-gateway[-<profile>].service`:
+Create `~/.config/systemd/user/-gateway[-<profile>].service`:
 
 ```
 [Unit]
-Description=OpenClaw Gateway (profile: <profile>, v<version>)
+Description= Gateway (profile: <profile>, v<version>)
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/openclaw gateway --port 18789
+ExecStart=/usr/local/bin/ gateway --port 18789
 Restart=always
 RestartSec=5
-Environment=OPENCLAW_GATEWAY_TOKEN=
+Environment=_GATEWAY_TOKEN=
 WorkingDirectory=/home/youruser
 
 [Install]
@@ -283,17 +283,17 @@ Onboarding runs this on Linux/WSL2 (may prompt for sudo; writes `/var/lib/system
 Then enable the service:
 
 ```
-systemctl --user enable --now openclaw-gateway[-<profile>].service
+systemctl --user enable --now -gateway[-<profile>].service
 ```
 
 **Alternative (system service)** - for always-on or multi-user servers, you can
 install a systemd **system** unit instead of a user unit (no lingering needed).
-Create `/etc/systemd/system/openclaw-gateway[-<profile>].service` (copy the unit above,
+Create `/etc/systemd/system/-gateway[-<profile>].service` (copy the unit above,
 switch `WantedBy=multi-user.target`, set `User=` + `WorkingDirectory=`), then:
 
 ```
 sudo systemctl daemon-reload
-sudo systemctl enable --now openclaw-gateway[-<profile>].service
+sudo systemctl enable --now -gateway[-<profile>].service
 ```
 
 ## Windows (WSL2)
@@ -302,8 +302,8 @@ Windows installs should use **WSL2** and follow the Linux systemd section above.
 
 ## Operational checks
 
-- Liveness: open WS and send `req:connect` → expect `res` with `payload.type="hello-ok"` (with snapshot).
-- Readiness: call `health` → expect `ok: true` and a linked channel in `linkChannel` (when applicable).
+- Liveness: open WS and send `req:connect` â†’ expect `res` with `payload.type="hello-ok"` (with snapshot).
+- Readiness: call `health` â†’ expect `ok: true` and a linked channel in `linkChannel` (when applicable).
 - Debug: subscribe to `tick` and `presence` events; ensure `status` shows linked/auth age; presence entries show Gateway host and connected clients.
 
 ## Safety guarantees
@@ -315,14 +315,15 @@ Windows installs should use **WSL2** and follow the Linux systemd section above.
 
 ## CLI helpers
 
-- `openclaw gateway health|status` — request health/status over the Gateway WS.
-- `openclaw message send --target <num> --message "hi" [--media ...]` — send via Gateway (idempotent for WhatsApp).
-- `openclaw agent --message "hi" --to <num>` — run an agent turn (waits for final by default).
-- `openclaw gateway call <method> --params '{"k":"v"}'` — raw method invoker for debugging.
-- `openclaw gateway stop|restart` — stop/restart the supervised gateway service (launchd/systemd).
+- ` gateway health|status` â€” request health/status over the Gateway WS.
+- ` message send --target <num> --message "hi" [--media ...]` â€” send via Gateway (idempotent for WhatsApp).
+- ` agent --message "hi" --to <num>` â€” run an agent turn (waits for final by default).
+- ` gateway call <method> --params '{"k":"v"}'` â€” raw method invoker for debugging.
+- ` gateway stop|restart` â€” stop/restart the supervised gateway service (launchd/systemd).
 - Gateway helper subcommands assume a running gateway on `--url`; they no longer auto-spawn one.
 
 ## Migration guidance
 
-- Retire uses of `openclaw gateway` and the legacy TCP control port.
+- Retire uses of ` gateway` and the legacy TCP control port.
 - Update clients to speak the WS protocol with mandatory connect and structured presence.
+

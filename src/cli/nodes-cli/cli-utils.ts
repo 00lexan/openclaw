@@ -1,4 +1,4 @@
-import { defaultRuntime } from "../../runtime.js";
+﻿import { defaultRuntime } from "../../runtime.js";
 import { isRich, theme } from "../../terminal/theme.js";
 import { runCommandWithRuntime } from "../cli-utils.js";
 import { unauthorizedHintForMessage } from "./rpc.js";
@@ -28,3 +28,4 @@ export function runNodesCommand(label: string, action: () => Promise<void>) {
     defaultRuntime.exit(1);
   });
 }
+

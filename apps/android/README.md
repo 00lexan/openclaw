@@ -1,6 +1,6 @@
-## OpenClaw Node (Android) (internal)
+﻿##  Node (Android) (internal)
 
-Modern Android node app: connects to the **Gateway WebSocket** (`_openclaw-gw._tcp`) and exposes **Canvas + Chat + Camera**.
+Modern Android node app: connects to the **Gateway WebSocket** (`_-gw._tcp`) and exposes **Canvas + Chat + Camera**.
 
 Notes:
 - The node keeps the connection alive via a **foreground service** (persistent notification with a Disconnect action).
@@ -23,19 +23,19 @@ cd apps/android
 
 ## Connect / Pair
 
-1) Start the gateway (on your “master” machine):
+1) Start the gateway (on your â€œmasterâ€ machine):
 ```bash
-pnpm openclaw gateway --port 18789 --verbose
+pnpm  gateway --port 18789 --verbose
 ```
 
 2) In the Android app:
 - Open **Settings**
-- Either select a discovered gateway under **Discovered Gateways**, or use **Advanced → Manual Gateway** (host + port).
+- Either select a discovered gateway under **Discovered Gateways**, or use **Advanced â†’ Manual Gateway** (host + port).
 
 3) Approve pairing (on the gateway machine):
 ```bash
-openclaw nodes pending
-openclaw nodes approve <requestId>
+ nodes pending
+ nodes approve <requestId>
 ```
 
 More details: `docs/platforms/android.md`.
@@ -49,3 +49,4 @@ More details: `docs/platforms/android.md`.
 - Camera:
   - `CAMERA` for `camera.snap` and `camera.clip`
   - `RECORD_AUDIO` for `camera.clip` when `includeAudio=true`
+

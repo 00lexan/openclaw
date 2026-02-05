@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { parsePollStartContent } from "./poll-types.js";
 
 describe("parsePollStartContent", () => {
@@ -19,3 +19,4 @@ describe("parsePollStartContent", () => {
     expect(summary?.answers).toEqual(["Yes", "No"]);
   });
 });
+

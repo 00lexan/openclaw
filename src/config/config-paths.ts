@@ -1,4 +1,4 @@
-type PathNode = Record<string, unknown>;
+﻿type PathNode = Record<string, unknown>;
 
 const BLOCKED_KEYS = new Set(["__proto__", "prototype", "constructor"]);
 
@@ -88,3 +88,4 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
     Object.prototype.toString.call(value) === "[object Object]"
   );
 }
+

@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 
 // -----------------------------------------------------------------------------
 // Phone Number Validation
@@ -521,3 +521,4 @@ export function validateProviderConfig(config: VoiceCallConfig): {
 
   return { valid: errors.length === 0, errors };
 }
+

@@ -1,4 +1,4 @@
-export type ThinkLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh";
+﻿export type ThinkLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh";
 export type VerboseLevel = "off" | "on" | "full";
 export type NoticeLevel = "off" | "on" | "full";
 export type ElevatedLevel = "off" | "on" | "ask" | "full";
@@ -227,3 +227,4 @@ export function normalizeReasoningLevel(raw?: string | null): ReasoningLevel | u
   }
   return undefined;
 }
+

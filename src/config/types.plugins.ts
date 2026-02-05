@@ -1,4 +1,4 @@
-export type PluginEntryConfig = {
+﻿export type PluginEntryConfig = {
   enabled?: boolean;
   config?: Record<string, unknown>;
 };
@@ -34,3 +34,4 @@ export type PluginsConfig = {
   entries?: Record<string, PluginEntryConfig>;
   installs?: Record<string, PluginInstallRecord>;
 };
+

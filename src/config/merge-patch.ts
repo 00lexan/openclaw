@@ -1,4 +1,4 @@
-type PlainObject = Record<string, unknown>;
+﻿type PlainObject = Record<string, unknown>;
 
 function isPlainObject(value: unknown): value is PlainObject {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -26,3 +26,4 @@ export function applyMergePatch(base: unknown, patch: unknown): unknown {
 
   return result;
 }
+

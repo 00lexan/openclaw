@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   AgentTool,
   AgentToolResult,
   AgentToolUpdateCallback,
@@ -163,3 +163,4 @@ export function toClientToolDefinitions(
     } satisfies ToolDefinition;
   });
 }
+

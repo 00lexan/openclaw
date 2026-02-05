@@ -1,4 +1,4 @@
-/**
+﻿/**
  * OneDrive/SharePoint upload utilities for MS Teams file sending.
  *
  * For group chats and channels, files are uploaded to SharePoint and shared via a link.
@@ -36,8 +36,8 @@ export async function uploadToOneDrive(params: {
   const fetchFn = params.fetchFn ?? fetch;
   const token = await params.tokenProvider.getAccessToken(GRAPH_SCOPE);
 
-  // Use "OpenClawShared" folder to organize bot-uploaded files
-  const uploadPath = `/OpenClawShared/${encodeURIComponent(params.filename)}`;
+  // Use "Shared" folder to organize bot-uploaded files
+  const uploadPath = `/Shared/${encodeURIComponent(params.filename)}`;
 
   const res = await fetchFn(`${GRAPH_ROOT}/me/drive/root:${uploadPath}:/content`, {
     method: "PUT",
@@ -179,8 +179,8 @@ export async function uploadToSharePoint(params: {
   const fetchFn = params.fetchFn ?? fetch;
   const token = await params.tokenProvider.getAccessToken(GRAPH_SCOPE);
 
-  // Use "OpenClawShared" folder to organize bot-uploaded files
-  const uploadPath = `/OpenClawShared/${encodeURIComponent(params.filename)}`;
+  // Use "Shared" folder to organize bot-uploaded files
+  const uploadPath = `/Shared/${encodeURIComponent(params.filename)}`;
 
   const res = await fetchFn(
     `${GRAPH_ROOT}/sites/${params.siteId}/drive/root:${uploadPath}:/content`,
@@ -451,3 +451,4 @@ export async function uploadAndShareSharePoint(params: {
     name: uploaded.name,
   };
 }
+

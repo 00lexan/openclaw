@@ -1,4 +1,4 @@
-import type { WebClient } from "@slack/web-api";
+﻿import type { WebClient } from "@slack/web-api";
 import { createSlackWebClient } from "./client.js";
 
 export type SlackChannelLookup = {
@@ -130,3 +130,4 @@ export async function resolveSlackChannelAllowlist(params: {
 
   return results;
 }
+

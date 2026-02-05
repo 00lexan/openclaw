@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -52,3 +52,4 @@ jobs:
 
       - name: Test
         run: swift test --parallel
+

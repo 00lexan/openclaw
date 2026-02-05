@@ -1,4 +1,4 @@
-export type ExecApprovalRequestPayload = {
+﻿export type ExecApprovalRequestPayload = {
   command: string;
   cwd?: string | null;
   host?: string | null;
@@ -98,3 +98,4 @@ export function removeExecApproval(
 ): ExecApprovalRequest[] {
   return pruneExecApprovalQueue(queue).filter((entry) => entry.id !== id);
 }
+

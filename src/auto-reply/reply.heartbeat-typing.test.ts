@@ -1,4 +1,4 @@
-import { join } from "node:path";
+﻿import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { withTempHome as withTempHomeBase } from "../../test/helpers/temp-home.js";
 
@@ -45,7 +45,7 @@ async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
       runEmbeddedPiAgentMock.mockClear();
       return await fn(home);
     },
-    { prefix: "openclaw-typing-" },
+    { prefix: "-typing-" },
   );
 }
 
@@ -54,7 +54,7 @@ function makeCfg(home: string) {
     agents: {
       defaults: {
         model: "anthropic/claude-opus-4-5",
-        workspace: join(home, "openclaw"),
+        workspace: join(home, ""),
       },
     },
     channels: {
@@ -107,3 +107,4 @@ describe("getReplyFromConfig typing (heartbeat)", () => {
     });
   });
 });
+

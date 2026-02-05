@@ -1,4 +1,4 @@
-import type { Message } from "@grammyjs/types";
+﻿import type { Message } from "@grammyjs/types";
 import type { TelegramMediaRef } from "./bot-message-context.js";
 import type { TelegramContext } from "./bot/types.js";
 import { resolveDefaultAgentId } from "../agents/agent-scope.js";
@@ -546,7 +546,7 @@ export const registerTelegramHandlers = ({
             totalPages,
             pageSize,
           });
-          const text = `Models (${provider}) — ${models.length} available`;
+          const text = `Models (${provider}) â€” ${models.length} available`;
           await editMessageWithButtons(text, buttons);
           return;
         }
@@ -612,7 +612,7 @@ export const registerTelegramHandlers = ({
       const newChatId = String(msg.migrate_to_chat_id);
       const chatTitle = msg.chat.title ?? "Unknown";
 
-      runtime.log?.(warn(`[telegram] Group migrated: "${chatTitle}" ${oldChatId} → ${newChatId}`));
+      runtime.log?.(warn(`[telegram] Group migrated: "${chatTitle}" ${oldChatId} â†’ ${newChatId}`));
 
       if (!resolveChannelConfigWrites({ cfg, channelId: "telegram", accountId })) {
         runtime.log?.(warn("[telegram] Config writes disabled; skipping group config migration."));
@@ -752,7 +752,7 @@ export const registerTelegramHandlers = ({
       }
 
       // Text fragment handling - Telegram splits long pastes into multiple inbound messages (~4096 chars).
-      // We buffer “near-limit” messages and append immediately-following parts.
+      // We buffer â€œnear-limitâ€ messages and append immediately-following parts.
       const text = typeof msg.text === "string" ? msg.text : undefined;
       const isCommandLike = (text ?? "").trim().startsWith("/");
       if (text && !isCommandLike) {
@@ -858,7 +858,7 @@ export const registerTelegramHandlers = ({
             operation: "sendMessage",
             runtime,
             fn: () =>
-              bot.api.sendMessage(chatId, `⚠️ File too large. Maximum size is ${limitMb}MB.`, {
+              bot.api.sendMessage(chatId, `âš ï¸ File too large. Maximum size is ${limitMb}MB.`, {
                 reply_to_message_id: msg.message_id,
               }),
           }).catch(() => {});
@@ -904,3 +904,4 @@ export const registerTelegramHandlers = ({
     }
   });
 };
+

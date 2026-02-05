@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import { loadConfig } from "../../config/config.js";
 import { listDevicePairing } from "../../infra/device-pairing.js";
 import {
@@ -535,3 +535,4 @@ export const nodeHandlers: GatewayRequestHandlers = {
     });
   },
 };
+

@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 设置 BlueBubbles 渠道
-  - 排查 webhook 配对问题
-  - 在 macOS 上配置 iMessage
-summary: 通过 BlueBubbles macOS 服务器使用 iMessage（REST 发送/接收、输入状态、回应、配对、高级操作）。
+  - è®¾ç½® BlueBubbles æ¸ é“
+  - æŽ’æŸ¥ webhook é…å¯¹é—®é¢˜
+  - åœ¨ macOS ä¸Šé…ç½® iMessage
+summary: é€šè¿‡ BlueBubbles macOS æœåŠ¡å™¨ä½¿ç”¨ iMessageï¼ˆREST å‘é€/æŽ¥æ”¶ã€è¾“å…¥çŠ¶æ€ã€å›žåº”ã€é…å¯¹ã€é«˜çº§æ“ä½œï¼‰ã€‚
 title: BlueBubbles
 x-i18n:
   generated_at: "2026-02-03T10:04:52Z"
@@ -14,26 +14,26 @@ x-i18n:
   workflow: 15
 ---
 
-# BlueBubbles（macOS REST）
+# BlueBubblesï¼ˆmacOS RESTï¼‰
 
-状态：内置插件，通过 HTTP 与 BlueBubbles macOS 服务器通信。由于其更丰富的 API 和更简便的设置，**推荐用于 iMessage 集成**，优于旧版 imsg 渠道。
+çŠ¶æ€ï¼šå†…ç½®æ’ä»¶ï¼Œé€šè¿‡ HTTP ä¸Ž BlueBubbles macOS æœåŠ¡å™¨é€šä¿¡ã€‚ç”±äºŽå…¶æ›´ä¸°å¯Œçš„ API å’Œæ›´ç®€ä¾¿çš„è®¾ç½®ï¼Œ**æŽ¨èç”¨äºŽ iMessage é›†æˆ**ï¼Œä¼˜äºŽæ—§ç‰ˆ imsg æ¸ é“ã€‚
 
-## 概述
+## æ¦‚è¿°
 
-- 通过 BlueBubbles 辅助应用在 macOS 上运行（[bluebubbles.app](https://bluebubbles.app)）。
-- 推荐/已测试版本：macOS Sequoia (15)。macOS Tahoe (26) 可用；但在 Tahoe 上编辑功能目前不可用，群组图标更新可能显示成功但实际未同步。
-- OpenClaw 通过其 REST API 与之通信（`GET /api/v1/ping`、`POST /message/text`、`POST /chat/:id/*`）。
-- 传入消息通过 webhook 到达；发出的回复、输入指示器、已读回执和 tapback 均为 REST 调用。
-- 附件和贴纸作为入站媒体被接收（并在可能时呈现给智能体）。
-- 配对/白名单的工作方式与其他渠道相同（`/start/pairing` 等），使用 `channels.bluebubbles.allowFrom` + 配对码。
-- 回应作为系统事件呈现，与 Slack/Telegram 类似，智能体可以在回复前"提及"它们。
-- 高级功能：编辑、撤回、回复线程、消息效果、群组管理。
+- é€šè¿‡ BlueBubbles è¾…åŠ©åº”ç”¨åœ¨ macOS ä¸Šè¿è¡Œï¼ˆ[bluebubbles.app](https://bluebubbles.app)ï¼‰ã€‚
+- æŽ¨è/å·²æµ‹è¯•ç‰ˆæœ¬ï¼šmacOS Sequoia (15)ã€‚macOS Tahoe (26) å¯ç”¨ï¼›ä½†åœ¨ Tahoe ä¸Šç¼–è¾‘åŠŸèƒ½ç›®å‰ä¸å¯ç”¨ï¼Œç¾¤ç»„å›¾æ ‡æ›´æ–°å¯èƒ½æ˜¾ç¤ºæˆåŠŸä½†å®žé™…æœªåŒæ­¥ã€‚
+-  é€šè¿‡å…¶ REST API ä¸Žä¹‹é€šä¿¡ï¼ˆ`GET /api/v1/ping`ã€`POST /message/text`ã€`POST /chat/:id/*`ï¼‰ã€‚
+- ä¼ å…¥æ¶ˆæ¯é€šè¿‡ webhook åˆ°è¾¾ï¼›å‘å‡ºçš„å›žå¤ã€è¾“å…¥æŒ‡ç¤ºå™¨ã€å·²è¯»å›žæ‰§å’Œ tapback å‡ä¸º REST è°ƒç”¨ã€‚
+- é™„ä»¶å’Œè´´çº¸ä½œä¸ºå…¥ç«™åª’ä½“è¢«æŽ¥æ”¶ï¼ˆå¹¶åœ¨å¯èƒ½æ—¶å‘ˆçŽ°ç»™æ™ºèƒ½ä½“ï¼‰ã€‚
+- é…å¯¹/ç™½åå•çš„å·¥ä½œæ–¹å¼ä¸Žå…¶ä»–æ¸ é“ç›¸åŒï¼ˆ`/start/pairing` ç­‰ï¼‰ï¼Œä½¿ç”¨ `channels.bluebubbles.allowFrom` + é…å¯¹ç ã€‚
+- å›žåº”ä½œä¸ºç³»ç»Ÿäº‹ä»¶å‘ˆçŽ°ï¼Œä¸Ž Slack/Telegram ç±»ä¼¼ï¼Œæ™ºèƒ½ä½“å¯ä»¥åœ¨å›žå¤å‰"æåŠ"å®ƒä»¬ã€‚
+- é«˜çº§åŠŸèƒ½ï¼šç¼–è¾‘ã€æ’¤å›žã€å›žå¤çº¿ç¨‹ã€æ¶ˆæ¯æ•ˆæžœã€ç¾¤ç»„ç®¡ç†ã€‚
 
-## 快速开始
+## å¿«é€Ÿå¼€å§‹
 
-1. 在你的 Mac 上安装 BlueBubbles 服务器（按照 [bluebubbles.app/install](https://bluebubbles.app/install) 的说明操作）。
-2. 在 BlueBubbles 配置中，启用 web API 并设置密码。
-3. 运行 `openclaw onboard` 并选择 BlueBubbles，或手动配置：
+1. åœ¨ä½ çš„ Mac ä¸Šå®‰è£… BlueBubbles æœåŠ¡å™¨ï¼ˆæŒ‰ç…§ [bluebubbles.app/install](https://bluebubbles.app/install) çš„è¯´æ˜Žæ“ä½œï¼‰ã€‚
+2. åœ¨ BlueBubbles é…ç½®ä¸­ï¼Œå¯ç”¨ web API å¹¶è®¾ç½®å¯†ç ã€‚
+3. è¿è¡Œ ` onboard` å¹¶é€‰æ‹© BlueBubblesï¼Œæˆ–æ‰‹åŠ¨é…ç½®ï¼š
    ```json5
    {
      channels: {
@@ -46,56 +46,56 @@ x-i18n:
      },
    }
    ```
-4. 将 BlueBubbles webhook 指向你的 Gateway 网关（示例：`https://your-gateway-host:3000/bluebubbles-webhook?password=<password>`）。
-5. 启动 Gateway 网关；它将注册 webhook 处理程序并开始配对。
+4. å°† BlueBubbles webhook æŒ‡å‘ä½ çš„ Gateway ç½‘å…³ï¼ˆç¤ºä¾‹ï¼š`https://your-gateway-host:3000/bluebubbles-webhook?password=<password>`ï¼‰ã€‚
+5. å¯åŠ¨ Gateway ç½‘å…³ï¼›å®ƒå°†æ³¨å†Œ webhook å¤„ç†ç¨‹åºå¹¶å¼€å§‹é…å¯¹ã€‚
 
-## 新手引导
+## æ–°æ‰‹å¼•å¯¼
 
-BlueBubbles 可在交互式设置向导中使用：
-
-```
-openclaw onboard
-```
-
-向导会提示输入：
-
-- **服务器 URL**（必填）：BlueBubbles 服务器地址（例如 `http://192.168.1.100:1234`）
-- **密码**（必填）：来自 BlueBubbles 服务器设置的 API 密码
-- **Webhook 路径**（可选）：默认为 `/bluebubbles-webhook`
-- **私信策略**：配对、白名单、开放或禁用
-- **白名单**：电话号码、电子邮件或聊天目标
-
-你也可以通过 CLI 添加 BlueBubbles：
+BlueBubbles å¯åœ¨äº¤äº’å¼è®¾ç½®å‘å¯¼ä¸­ä½¿ç”¨ï¼š
 
 ```
-openclaw channels add bluebubbles --http-url http://192.168.1.100:1234 --password <password>
+ onboard
 ```
 
-## 访问控制（私信 + 群组）
+å‘å¯¼ä¼šæç¤ºè¾“å…¥ï¼š
 
-私信：
+- **æœåŠ¡å™¨ URL**ï¼ˆå¿…å¡«ï¼‰ï¼šBlueBubbles æœåŠ¡å™¨åœ°å€ï¼ˆä¾‹å¦‚ `http://192.168.1.100:1234`ï¼‰
+- **å¯†ç **ï¼ˆå¿…å¡«ï¼‰ï¼šæ¥è‡ª BlueBubbles æœåŠ¡å™¨è®¾ç½®çš„ API å¯†ç 
+- **Webhook è·¯å¾„**ï¼ˆå¯é€‰ï¼‰ï¼šé»˜è®¤ä¸º `/bluebubbles-webhook`
+- **ç§ä¿¡ç­–ç•¥**ï¼šé…å¯¹ã€ç™½åå•ã€å¼€æ”¾æˆ–ç¦ç”¨
+- **ç™½åå•**ï¼šç”µè¯å·ç ã€ç”µå­é‚®ä»¶æˆ–èŠå¤©ç›®æ ‡
 
-- 默认：`channels.bluebubbles.dmPolicy = "pairing"`。
-- 未知发送者会收到配对码；在批准之前消息会被忽略（配对码 1 小时后过期）。
-- 批准方式：
-  - `openclaw pairing list bluebubbles`
-  - `openclaw pairing approve bluebubbles <CODE>`
-- 配对是默认的令牌交换方式。详情：[配对](/start/pairing)
+ä½ ä¹Ÿå¯ä»¥é€šè¿‡ CLI æ·»åŠ  BlueBubblesï¼š
 
-群组：
+```
+ channels add bluebubbles --http-url http://192.168.1.100:1234 --password <password>
+```
 
-- `channels.bluebubbles.groupPolicy = open | allowlist | disabled`（默认：`allowlist`）。
-- 当设置为 `allowlist` 时，`channels.bluebubbles.groupAllowFrom` 控制谁可以在群组中触发。
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ + ç¾¤ç»„ï¼‰
 
-### 提及门控（群组）
+ç§ä¿¡ï¼š
 
-BlueBubbles 支持群聊的提及门控，与 iMessage/WhatsApp 行为一致：
+- é»˜è®¤ï¼š`channels.bluebubbles.dmPolicy = "pairing"`ã€‚
+- æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼›åœ¨æ‰¹å‡†ä¹‹å‰æ¶ˆæ¯ä¼šè¢«å¿½ç•¥ï¼ˆé…å¯¹ç  1 å°æ—¶åŽè¿‡æœŸï¼‰ã€‚
+- æ‰¹å‡†æ–¹å¼ï¼š
+  - ` pairing list bluebubbles`
+  - ` pairing approve bluebubbles <CODE>`
+- é…å¯¹æ˜¯é»˜è®¤çš„ä»¤ç‰Œäº¤æ¢æ–¹å¼ã€‚è¯¦æƒ…ï¼š[é…å¯¹](/start/pairing)
 
-- 使用 `agents.list[].groupChat.mentionPatterns`（或 `messages.groupChat.mentionPatterns`）检测提及。
-- 当群组启用 `requireMention` 时，智能体仅在被提及时响应。
-- 来自授权发送者的控制命令会绕过提及门控。
+ç¾¤ç»„ï¼š
 
-单群组配置：
+- `channels.bluebubbles.groupPolicy = open | allowlist | disabled`ï¼ˆé»˜è®¤ï¼š`allowlist`ï¼‰ã€‚
+- å½“è®¾ç½®ä¸º `allowlist` æ—¶ï¼Œ`channels.bluebubbles.groupAllowFrom` æŽ§åˆ¶è°å¯ä»¥åœ¨ç¾¤ç»„ä¸­è§¦å‘ã€‚
+
+### æåŠé—¨æŽ§ï¼ˆç¾¤ç»„ï¼‰
+
+BlueBubbles æ”¯æŒç¾¤èŠçš„æåŠé—¨æŽ§ï¼Œä¸Ž iMessage/WhatsApp è¡Œä¸ºä¸€è‡´ï¼š
+
+- ä½¿ç”¨ `agents.list[].groupChat.mentionPatterns`ï¼ˆæˆ– `messages.groupChat.mentionPatterns`ï¼‰æ£€æµ‹æåŠã€‚
+- å½“ç¾¤ç»„å¯ç”¨ `requireMention` æ—¶ï¼Œæ™ºèƒ½ä½“ä»…åœ¨è¢«æåŠæ—¶å“åº”ã€‚
+- æ¥è‡ªæŽˆæƒå‘é€è€…çš„æŽ§åˆ¶å‘½ä»¤ä¼šç»•è¿‡æåŠé—¨æŽ§ã€‚
+
+å•ç¾¤ç»„é…ç½®ï¼š
 
 ```json5
 {
@@ -104,168 +104,169 @@ BlueBubbles 支持群聊的提及门控，与 iMessage/WhatsApp 行为一致：
       groupPolicy: "allowlist",
       groupAllowFrom: ["+15555550123"],
       groups: {
-        "*": { requireMention: true }, // 所有群组的默认设置
-        "iMessage;-;chat123": { requireMention: false }, // 特定群组的覆盖设置
+        "*": { requireMention: true }, // æ‰€æœ‰ç¾¤ç»„çš„é»˜è®¤è®¾ç½®
+        "iMessage;-;chat123": { requireMention: false }, // ç‰¹å®šç¾¤ç»„çš„è¦†ç›–è®¾ç½®
       },
     },
   },
 }
 ```
 
-### 命令门控
+### å‘½ä»¤é—¨æŽ§
 
-- 控制命令（例如 `/config`、`/model`）需要授权。
-- 使用 `allowFrom` 和 `groupAllowFrom` 确定命令授权。
-- 授权发送者即使在群组中未被提及也可以运行控制命令。
+- æŽ§åˆ¶å‘½ä»¤ï¼ˆä¾‹å¦‚ `/config`ã€`/model`ï¼‰éœ€è¦æŽˆæƒã€‚
+- ä½¿ç”¨ `allowFrom` å’Œ `groupAllowFrom` ç¡®å®šå‘½ä»¤æŽˆæƒã€‚
+- æŽˆæƒå‘é€è€…å³ä½¿åœ¨ç¾¤ç»„ä¸­æœªè¢«æåŠä¹Ÿå¯ä»¥è¿è¡ŒæŽ§åˆ¶å‘½ä»¤ã€‚
 
-## 输入状态 + 已读回执
+## è¾“å…¥çŠ¶æ€ + å·²è¯»å›žæ‰§
 
-- **输入指示器**：在响应生成前和生成期间自动发送。
-- **已读回执**：由 `channels.bluebubbles.sendReadReceipts` 控制（默认：`true`）。
-- **输入指示器**：OpenClaw 发送输入开始事件；BlueBubbles 在发送或超时时自动清除输入状态（通过 DELETE 手动停止不可靠）。
+- **è¾“å…¥æŒ‡ç¤ºå™¨**ï¼šåœ¨å“åº”ç”Ÿæˆå‰å’Œç”ŸæˆæœŸé—´è‡ªåŠ¨å‘é€ã€‚
+- **å·²è¯»å›žæ‰§**ï¼šç”± `channels.bluebubbles.sendReadReceipts` æŽ§åˆ¶ï¼ˆé»˜è®¤ï¼š`true`ï¼‰ã€‚
+- **è¾“å…¥æŒ‡ç¤ºå™¨**ï¼š å‘é€è¾“å…¥å¼€å§‹äº‹ä»¶ï¼›BlueBubbles åœ¨å‘é€æˆ–è¶…æ—¶æ—¶è‡ªåŠ¨æ¸…é™¤è¾“å…¥çŠ¶æ€ï¼ˆé€šè¿‡ DELETE æ‰‹åŠ¨åœæ­¢ä¸å¯é ï¼‰ã€‚
 
 ```json5
 {
   channels: {
     bluebubbles: {
-      sendReadReceipts: false, // 禁用已读回执
+      sendReadReceipts: false, // ç¦ç”¨å·²è¯»å›žæ‰§
     },
   },
 }
 ```
 
-## 高级操作
+## é«˜çº§æ“ä½œ
 
-BlueBubbles 在配置中启用时支持高级消息操作：
+BlueBubbles åœ¨é…ç½®ä¸­å¯ç”¨æ—¶æ”¯æŒé«˜çº§æ¶ˆæ¯æ“ä½œï¼š
 
 ```json5
 {
   channels: {
     bluebubbles: {
       actions: {
-        reactions: true, // tapback（默认：true）
-        edit: true, // 编辑已发送消息（macOS 13+，在 macOS 26 Tahoe 上不可用）
-        unsend: true, // 撤回消息（macOS 13+）
-        reply: true, // 通过消息 GUID 进行回复线程
-        sendWithEffect: true, // 消息效果（slam、loud 等）
-        renameGroup: true, // 重命名群聊
-        setGroupIcon: true, // 设置群聊图标/照片（在 macOS 26 Tahoe 上不稳定）
-        addParticipant: true, // 将参与者添加到群组
-        removeParticipant: true, // 从群组移除参与者
-        leaveGroup: true, // 离开群聊
-        sendAttachment: true, // 发送附件/媒体
+        reactions: true, // tapbackï¼ˆé»˜è®¤ï¼štrueï¼‰
+        edit: true, // ç¼–è¾‘å·²å‘é€æ¶ˆæ¯ï¼ˆmacOS 13+ï¼Œåœ¨ macOS 26 Tahoe ä¸Šä¸å¯ç”¨ï¼‰
+        unsend: true, // æ’¤å›žæ¶ˆæ¯ï¼ˆmacOS 13+ï¼‰
+        reply: true, // é€šè¿‡æ¶ˆæ¯ GUID è¿›è¡Œå›žå¤çº¿ç¨‹
+        sendWithEffect: true, // æ¶ˆæ¯æ•ˆæžœï¼ˆslamã€loud ç­‰ï¼‰
+        renameGroup: true, // é‡å‘½åç¾¤èŠ
+        setGroupIcon: true, // è®¾ç½®ç¾¤èŠå›¾æ ‡/ç…§ç‰‡ï¼ˆåœ¨ macOS 26 Tahoe ä¸Šä¸ç¨³å®šï¼‰
+        addParticipant: true, // å°†å‚ä¸Žè€…æ·»åŠ åˆ°ç¾¤ç»„
+        removeParticipant: true, // ä»Žç¾¤ç»„ç§»é™¤å‚ä¸Žè€…
+        leaveGroup: true, // ç¦»å¼€ç¾¤èŠ
+        sendAttachment: true, // å‘é€é™„ä»¶/åª’ä½“
       },
     },
   },
 }
 ```
 
-可用操作：
+å¯ç”¨æ“ä½œï¼š
 
-- **react**：添加/移除 tapback 回应（`messageId`、`emoji`、`remove`）
-- **edit**：编辑已发送的消息（`messageId`、`text`）
-- **unsend**：撤回消息（`messageId`）
-- **reply**：回复特定消息（`messageId`、`text`、`to`）
-- **sendWithEffect**：带 iMessage 效果发送（`text`、`to`、`effectId`）
-- **renameGroup**：重命名群聊（`chatGuid`、`displayName`）
-- **setGroupIcon**：设置群聊图标/照片（`chatGuid`、`media`）— 在 macOS 26 Tahoe 上不稳定（API 可能返回成功但图标未同步）。
-- **addParticipant**：将某人添加到群组（`chatGuid`、`address`）
-- **removeParticipant**：将某人从群组移除（`chatGuid`、`address`）
-- **leaveGroup**：离开群聊（`chatGuid`）
-- **sendAttachment**：发送媒体/文件（`to`、`buffer`、`filename`、`asVoice`）
-  - 语音备忘录：将 `asVoice: true` 与 **MP3** 或 **CAF** 音频一起设置，以 iMessage 语音消息形式发送。BlueBubbles 在发送语音备忘录时会将 MP3 转换为 CAF。
+- **react**ï¼šæ·»åŠ /ç§»é™¤ tapback å›žåº”ï¼ˆ`messageId`ã€`emoji`ã€`remove`ï¼‰
+- **edit**ï¼šç¼–è¾‘å·²å‘é€çš„æ¶ˆæ¯ï¼ˆ`messageId`ã€`text`ï¼‰
+- **unsend**ï¼šæ’¤å›žæ¶ˆæ¯ï¼ˆ`messageId`ï¼‰
+- **reply**ï¼šå›žå¤ç‰¹å®šæ¶ˆæ¯ï¼ˆ`messageId`ã€`text`ã€`to`ï¼‰
+- **sendWithEffect**ï¼šå¸¦ iMessage æ•ˆæžœå‘é€ï¼ˆ`text`ã€`to`ã€`effectId`ï¼‰
+- **renameGroup**ï¼šé‡å‘½åç¾¤èŠï¼ˆ`chatGuid`ã€`displayName`ï¼‰
+- **setGroupIcon**ï¼šè®¾ç½®ç¾¤èŠå›¾æ ‡/ç…§ç‰‡ï¼ˆ`chatGuid`ã€`media`ï¼‰â€” åœ¨ macOS 26 Tahoe ä¸Šä¸ç¨³å®šï¼ˆAPI å¯èƒ½è¿”å›žæˆåŠŸä½†å›¾æ ‡æœªåŒæ­¥ï¼‰ã€‚
+- **addParticipant**ï¼šå°†æŸäººæ·»åŠ åˆ°ç¾¤ç»„ï¼ˆ`chatGuid`ã€`address`ï¼‰
+- **removeParticipant**ï¼šå°†æŸäººä»Žç¾¤ç»„ç§»é™¤ï¼ˆ`chatGuid`ã€`address`ï¼‰
+- **leaveGroup**ï¼šç¦»å¼€ç¾¤èŠï¼ˆ`chatGuid`ï¼‰
+- **sendAttachment**ï¼šå‘é€åª’ä½“/æ–‡ä»¶ï¼ˆ`to`ã€`buffer`ã€`filename`ã€`asVoice`ï¼‰
+  - è¯­éŸ³å¤‡å¿˜å½•ï¼šå°† `asVoice: true` ä¸Ž **MP3** æˆ– **CAF** éŸ³é¢‘ä¸€èµ·è®¾ç½®ï¼Œä»¥ iMessage è¯­éŸ³æ¶ˆæ¯å½¢å¼å‘é€ã€‚BlueBubbles åœ¨å‘é€è¯­éŸ³å¤‡å¿˜å½•æ—¶ä¼šå°† MP3 è½¬æ¢ä¸º CAFã€‚
 
-### 消息 ID（短格式 vs 完整格式）
+### æ¶ˆæ¯ IDï¼ˆçŸ­æ ¼å¼ vs å®Œæ•´æ ¼å¼ï¼‰
 
-OpenClaw 可能会显示*短*消息 ID（例如 `1`、`2`）以节省 token。
+ å¯èƒ½ä¼šæ˜¾ç¤º*çŸ­*æ¶ˆæ¯ IDï¼ˆä¾‹å¦‚ `1`ã€`2`ï¼‰ä»¥èŠ‚çœ tokenã€‚
 
-- `MessageSid` / `ReplyToId` 可以是短 ID。
-- `MessageSidFull` / `ReplyToIdFull` 包含提供商的完整 ID。
-- 短 ID 存储在内存中；它们可能在重启或缓存清除后过期。
-- 操作接受短或完整的 `messageId`，但如果短 ID 不再可用将会报错。
+- `MessageSid` / `ReplyToId` å¯ä»¥æ˜¯çŸ­ IDã€‚
+- `MessageSidFull` / `ReplyToIdFull` åŒ…å«æä¾›å•†çš„å®Œæ•´ IDã€‚
+- çŸ­ ID å­˜å‚¨åœ¨å†…å­˜ä¸­ï¼›å®ƒä»¬å¯èƒ½åœ¨é‡å¯æˆ–ç¼“å­˜æ¸…é™¤åŽè¿‡æœŸã€‚
+- æ“ä½œæŽ¥å—çŸ­æˆ–å®Œæ•´çš„ `messageId`ï¼Œä½†å¦‚æžœçŸ­ ID ä¸å†å¯ç”¨å°†ä¼šæŠ¥é”™ã€‚
 
-对于持久化自动化和存储，请使用完整 ID：
+å¯¹äºŽæŒä¹…åŒ–è‡ªåŠ¨åŒ–å’Œå­˜å‚¨ï¼Œè¯·ä½¿ç”¨å®Œæ•´ IDï¼š
 
-- 模板：`{{MessageSidFull}}`、`{{ReplyToIdFull}}`
-- 上下文：入站负载中的 `MessageSidFull` / `ReplyToIdFull`
+- æ¨¡æ¿ï¼š`{{MessageSidFull}}`ã€`{{ReplyToIdFull}}`
+- ä¸Šä¸‹æ–‡ï¼šå…¥ç«™è´Ÿè½½ä¸­çš„ `MessageSidFull` / `ReplyToIdFull`
 
-参见[配置](/gateway/configuration)了解模板变量。
+å‚è§[é…ç½®](/gateway/configuration)äº†è§£æ¨¡æ¿å˜é‡ã€‚
 
-## 分块流式传输
+## åˆ†å—æµå¼ä¼ è¾“
 
-控制响应是作为单条消息发送还是分块流式传输：
+æŽ§åˆ¶å“åº”æ˜¯ä½œä¸ºå•æ¡æ¶ˆæ¯å‘é€è¿˜æ˜¯åˆ†å—æµå¼ä¼ è¾“ï¼š
 
 ```json5
 {
   channels: {
     bluebubbles: {
-      blockStreaming: true, // 启用分块流式传输（默认关闭）
+      blockStreaming: true, // å¯ç”¨åˆ†å—æµå¼ä¼ è¾“ï¼ˆé»˜è®¤å…³é—­ï¼‰
     },
   },
 }
 ```
 
-## 媒体 + 限制
+## åª’ä½“ + é™åˆ¶
 
-- 入站附件会被下载并存储在媒体缓存中。
-- 媒体上限通过 `channels.bluebubbles.mediaMaxMb` 设置（默认：8 MB）。
-- 出站文本按 `channels.bluebubbles.textChunkLimit` 分块（默认：4000 字符）。
+- å…¥ç«™é™„ä»¶ä¼šè¢«ä¸‹è½½å¹¶å­˜å‚¨åœ¨åª’ä½“ç¼“å­˜ä¸­ã€‚
+- åª’ä½“ä¸Šé™é€šè¿‡ `channels.bluebubbles.mediaMaxMb` è®¾ç½®ï¼ˆé»˜è®¤ï¼š8 MBï¼‰ã€‚
+- å‡ºç«™æ–‡æœ¬æŒ‰ `channels.bluebubbles.textChunkLimit` åˆ†å—ï¼ˆé»˜è®¤ï¼š4000 å­—ç¬¦ï¼‰ã€‚
 
-## 配置参考
+## é…ç½®å‚è€ƒ
 
-完整配置：[配置](/gateway/configuration)
+å®Œæ•´é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-提供商选项：
+æä¾›å•†é€‰é¡¹ï¼š
 
-- `channels.bluebubbles.enabled`：启用/禁用渠道。
-- `channels.bluebubbles.serverUrl`：BlueBubbles REST API 基础 URL。
-- `channels.bluebubbles.password`：API 密码。
-- `channels.bluebubbles.webhookPath`：Webhook 端点路径（默认：`/bluebubbles-webhook`）。
-- `channels.bluebubbles.dmPolicy`：`pairing | allowlist | open | disabled`（默认：`pairing`）。
-- `channels.bluebubbles.allowFrom`：私信白名单（句柄、电子邮件、E.164 号码、`chat_id:*`、`chat_guid:*`）。
-- `channels.bluebubbles.groupPolicy`：`open | allowlist | disabled`（默认：`allowlist`）。
-- `channels.bluebubbles.groupAllowFrom`：群组发送者白名单。
-- `channels.bluebubbles.groups`：单群组配置（`requireMention` 等）。
-- `channels.bluebubbles.sendReadReceipts`：发送已读回执（默认：`true`）。
-- `channels.bluebubbles.blockStreaming`：启用分块流式传输（默认：`false`；流式回复必需）。
-- `channels.bluebubbles.textChunkLimit`：出站分块大小（字符）（默认：4000）。
-- `channels.bluebubbles.chunkMode`：`length`（默认）仅在超过 `textChunkLimit` 时分割；`newline` 在长度分块前先按空行（段落边界）分割。
-- `channels.bluebubbles.mediaMaxMb`：入站媒体上限（MB）（默认：8）。
-- `channels.bluebubbles.historyLimit`：上下文的最大群组消息数（0 表示禁用）。
-- `channels.bluebubbles.dmHistoryLimit`：私信历史限制。
-- `channels.bluebubbles.actions`：启用/禁用特定操作。
-- `channels.bluebubbles.accounts`：多账户配置。
+- `channels.bluebubbles.enabled`ï¼šå¯ç”¨/ç¦ç”¨æ¸ é“ã€‚
+- `channels.bluebubbles.serverUrl`ï¼šBlueBubbles REST API åŸºç¡€ URLã€‚
+- `channels.bluebubbles.password`ï¼šAPI å¯†ç ã€‚
+- `channels.bluebubbles.webhookPath`ï¼šWebhook ç«¯ç‚¹è·¯å¾„ï¼ˆé»˜è®¤ï¼š`/bluebubbles-webhook`ï¼‰ã€‚
+- `channels.bluebubbles.dmPolicy`ï¼š`pairing | allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼š`pairing`ï¼‰ã€‚
+- `channels.bluebubbles.allowFrom`ï¼šç§ä¿¡ç™½åå•ï¼ˆå¥æŸ„ã€ç”µå­é‚®ä»¶ã€E.164 å·ç ã€`chat_id:*`ã€`chat_guid:*`ï¼‰ã€‚
+- `channels.bluebubbles.groupPolicy`ï¼š`open | allowlist | disabled`ï¼ˆé»˜è®¤ï¼š`allowlist`ï¼‰ã€‚
+- `channels.bluebubbles.groupAllowFrom`ï¼šç¾¤ç»„å‘é€è€…ç™½åå•ã€‚
+- `channels.bluebubbles.groups`ï¼šå•ç¾¤ç»„é…ç½®ï¼ˆ`requireMention` ç­‰ï¼‰ã€‚
+- `channels.bluebubbles.sendReadReceipts`ï¼šå‘é€å·²è¯»å›žæ‰§ï¼ˆé»˜è®¤ï¼š`true`ï¼‰ã€‚
+- `channels.bluebubbles.blockStreaming`ï¼šå¯ç”¨åˆ†å—æµå¼ä¼ è¾“ï¼ˆé»˜è®¤ï¼š`false`ï¼›æµå¼å›žå¤å¿…éœ€ï¼‰ã€‚
+- `channels.bluebubbles.textChunkLimit`ï¼šå‡ºç«™åˆ†å—å¤§å°ï¼ˆå­—ç¬¦ï¼‰ï¼ˆé»˜è®¤ï¼š4000ï¼‰ã€‚
+- `channels.bluebubbles.chunkMode`ï¼š`length`ï¼ˆé»˜è®¤ï¼‰ä»…åœ¨è¶…è¿‡ `textChunkLimit` æ—¶åˆ†å‰²ï¼›`newline` åœ¨é•¿åº¦åˆ†å—å‰å…ˆæŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- `channels.bluebubbles.mediaMaxMb`ï¼šå…¥ç«™åª’ä½“ä¸Šé™ï¼ˆMBï¼‰ï¼ˆé»˜è®¤ï¼š8ï¼‰ã€‚
+- `channels.bluebubbles.historyLimit`ï¼šä¸Šä¸‹æ–‡çš„æœ€å¤§ç¾¤ç»„æ¶ˆæ¯æ•°ï¼ˆ0 è¡¨ç¤ºç¦ç”¨ï¼‰ã€‚
+- `channels.bluebubbles.dmHistoryLimit`ï¼šç§ä¿¡åŽ†å²é™åˆ¶ã€‚
+- `channels.bluebubbles.actions`ï¼šå¯ç”¨/ç¦ç”¨ç‰¹å®šæ“ä½œã€‚
+- `channels.bluebubbles.accounts`ï¼šå¤šè´¦æˆ·é…ç½®ã€‚
 
-相关全局选项：
+ç›¸å…³å…¨å±€é€‰é¡¹ï¼š
 
-- `agents.list[].groupChat.mentionPatterns`（或 `messages.groupChat.mentionPatterns`）。
-- `messages.responsePrefix`。
+- `agents.list[].groupChat.mentionPatterns`ï¼ˆæˆ– `messages.groupChat.mentionPatterns`ï¼‰ã€‚
+- `messages.responsePrefix`ã€‚
 
-## 地址 / 投递目标
+## åœ°å€ / æŠ•é€’ç›®æ ‡
 
-优先使用 `chat_guid` 以获得稳定的路由：
+ä¼˜å…ˆä½¿ç”¨ `chat_guid` ä»¥èŽ·å¾—ç¨³å®šçš„è·¯ç”±ï¼š
 
-- `chat_guid:iMessage;-;+15555550123`（群组推荐）
+- `chat_guid:iMessage;-;+15555550123`ï¼ˆç¾¤ç»„æŽ¨èï¼‰
 - `chat_id:123`
 - `chat_identifier:...`
-- 直接句柄：`+15555550123`、`user@example.com`
-  - 如果直接句柄没有现有的私信聊天，OpenClaw 将通过 `POST /api/v1/chat/new` 创建一个。这需要启用 BlueBubbles Private API。
+- ç›´æŽ¥å¥æŸ„ï¼š`+15555550123`ã€`user@example.com`
+  - å¦‚æžœç›´æŽ¥å¥æŸ„æ²¡æœ‰çŽ°æœ‰çš„ç§ä¿¡èŠå¤©ï¼Œ å°†é€šè¿‡ `POST /api/v1/chat/new` åˆ›å»ºä¸€ä¸ªã€‚è¿™éœ€è¦å¯ç”¨ BlueBubbles Private APIã€‚
 
-## 安全性
+## å®‰å…¨æ€§
 
-- Webhook 请求通过比较 `guid`/`password` 查询参数或头部与 `channels.bluebubbles.password` 进行身份验证。来自 `localhost` 的请求也会被接受。
-- 保持 API 密码和 webhook 端点的机密性（将它们视为凭证）。
-- localhost 信任意味着同主机的反向代理可能无意中绕过密码验证。如果你使用代理 Gateway 网关，请在代理处要求身份验证并配置 `gateway.trustedProxies`。参见 [Gateway 网关安全性](/gateway/security#reverse-proxy-configuration)。
-- 如果将 BlueBubbles 服务器暴露在局域网之外，请启用 HTTPS + 防火墙规则。
+- Webhook è¯·æ±‚é€šè¿‡æ¯”è¾ƒ `guid`/`password` æŸ¥è¯¢å‚æ•°æˆ–å¤´éƒ¨ä¸Ž `channels.bluebubbles.password` è¿›è¡Œèº«ä»½éªŒè¯ã€‚æ¥è‡ª `localhost` çš„è¯·æ±‚ä¹Ÿä¼šè¢«æŽ¥å—ã€‚
+- ä¿æŒ API å¯†ç å’Œ webhook ç«¯ç‚¹çš„æœºå¯†æ€§ï¼ˆå°†å®ƒä»¬è§†ä¸ºå‡­è¯ï¼‰ã€‚
+- localhost ä¿¡ä»»æ„å‘³ç€åŒä¸»æœºçš„åå‘ä»£ç†å¯èƒ½æ— æ„ä¸­ç»•è¿‡å¯†ç éªŒè¯ã€‚å¦‚æžœä½ ä½¿ç”¨ä»£ç† Gateway ç½‘å…³ï¼Œè¯·åœ¨ä»£ç†å¤„è¦æ±‚èº«ä»½éªŒè¯å¹¶é…ç½® `gateway.trustedProxies`ã€‚å‚è§ [Gateway ç½‘å…³å®‰å…¨æ€§](/gateway/security#reverse-proxy-configuration)ã€‚
+- å¦‚æžœå°† BlueBubbles æœåŠ¡å™¨æš´éœ²åœ¨å±€åŸŸç½‘ä¹‹å¤–ï¼Œè¯·å¯ç”¨ HTTPS + é˜²ç«å¢™è§„åˆ™ã€‚
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-- 如果输入/已读事件停止工作，请检查 BlueBubbles webhook 日志并验证 Gateway 网关路径是否与 `channels.bluebubbles.webhookPath` 匹配。
-- 配对码在一小时后过期；使用 `openclaw pairing list bluebubbles` 和 `openclaw pairing approve bluebubbles <code>`。
-- 回应需要 BlueBubbles private API（`POST /api/v1/message/react`）；确保服务器版本支持它。
-- 编辑/撤回需要 macOS 13+ 和兼容的 BlueBubbles 服务器版本。在 macOS 26（Tahoe）上，由于 private API 变更，编辑功能目前不可用。
-- 在 macOS 26（Tahoe）上群组图标更新可能不稳定：API 可能返回成功但新图标未同步。
-- OpenClaw 会根据 BlueBubbles 服务器的 macOS 版本自动隐藏已知不可用的操作。如果在 macOS 26（Tahoe）上编辑仍然显示，请使用 `channels.bluebubbles.actions.edit=false` 手动禁用。
-- 查看状态/健康信息：`openclaw status --all` 或 `openclaw status --deep`。
+- å¦‚æžœè¾“å…¥/å·²è¯»äº‹ä»¶åœæ­¢å·¥ä½œï¼Œè¯·æ£€æŸ¥ BlueBubbles webhook æ—¥å¿—å¹¶éªŒè¯ Gateway ç½‘å…³è·¯å¾„æ˜¯å¦ä¸Ž `channels.bluebubbles.webhookPath` åŒ¹é…ã€‚
+- é…å¯¹ç åœ¨ä¸€å°æ—¶åŽè¿‡æœŸï¼›ä½¿ç”¨ ` pairing list bluebubbles` å’Œ ` pairing approve bluebubbles <code>`ã€‚
+- å›žåº”éœ€è¦ BlueBubbles private APIï¼ˆ`POST /api/v1/message/react`ï¼‰ï¼›ç¡®ä¿æœåŠ¡å™¨ç‰ˆæœ¬æ”¯æŒå®ƒã€‚
+- ç¼–è¾‘/æ’¤å›žéœ€è¦ macOS 13+ å’Œå…¼å®¹çš„ BlueBubbles æœåŠ¡å™¨ç‰ˆæœ¬ã€‚åœ¨ macOS 26ï¼ˆTahoeï¼‰ä¸Šï¼Œç”±äºŽ private API å˜æ›´ï¼Œç¼–è¾‘åŠŸèƒ½ç›®å‰ä¸å¯ç”¨ã€‚
+- åœ¨ macOS 26ï¼ˆTahoeï¼‰ä¸Šç¾¤ç»„å›¾æ ‡æ›´æ–°å¯èƒ½ä¸ç¨³å®šï¼šAPI å¯èƒ½è¿”å›žæˆåŠŸä½†æ–°å›¾æ ‡æœªåŒæ­¥ã€‚
+-  ä¼šæ ¹æ® BlueBubbles æœåŠ¡å™¨çš„ macOS ç‰ˆæœ¬è‡ªåŠ¨éšè—å·²çŸ¥ä¸å¯ç”¨çš„æ“ä½œã€‚å¦‚æžœåœ¨ macOS 26ï¼ˆTahoeï¼‰ä¸Šç¼–è¾‘ä»ç„¶æ˜¾ç¤ºï¼Œè¯·ä½¿ç”¨ `channels.bluebubbles.actions.edit=false` æ‰‹åŠ¨ç¦ç”¨ã€‚
+- æŸ¥çœ‹çŠ¶æ€/å¥åº·ä¿¡æ¯ï¼š` status --all` æˆ– ` status --deep`ã€‚
 
-有关通用渠道工作流参考，请参阅[渠道](/channels)和[插件](/plugins)指南。
+æœ‰å…³é€šç”¨æ¸ é“å·¥ä½œæµå‚è€ƒï¼Œè¯·å‚é˜…[æ¸ é“](/channels)å’Œ[æ’ä»¶](/plugins)æŒ‡å—ã€‚
+

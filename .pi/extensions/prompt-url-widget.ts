@@ -1,4 +1,4 @@
-import {
+﻿import {
   DynamicBorder,
   type ExtensionAPI,
   type ExtensionContext,
@@ -191,3 +191,4 @@ export default function promptUrlWidgetExtension(pi: ExtensionAPI) {
     rebuildFromSession(ctx);
   });
 }
+

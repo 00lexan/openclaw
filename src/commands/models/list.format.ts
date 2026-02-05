@@ -1,4 +1,4 @@
-import { colorize, isRich as isRichTerminal, theme } from "../../terminal/theme.js";
+﻿import { colorize, isRich as isRichTerminal, theme } from "../../terminal/theme.js";
 
 export const isRich = (opts?: { json?: boolean; plain?: boolean }) =>
   Boolean(isRichTerminal() && !opts?.json && !opts?.plain);
@@ -66,3 +66,4 @@ export const maskApiKey = (value: string): string => {
   }
   return `${trimmed.slice(0, 8)}...${trimmed.slice(-8)}`;
 };
+

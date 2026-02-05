@@ -1,4 +1,4 @@
-import { listChannelPlugins } from "../channels/plugins/index.js";
+﻿import { listChannelPlugins } from "../channels/plugins/index.js";
 
 const BASE_METHODS = [
   "health",
@@ -112,3 +112,4 @@ export const GATEWAY_EVENTS = [
   "exec.approval.requested",
   "exec.approval.resolved",
 ];
+

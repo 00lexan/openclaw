@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 describe("gateway.remote.transport", () => {
   it("accepts direct transport", async () => {
@@ -31,3 +31,4 @@ describe("gateway.remote.transport", () => {
     }
   });
 });
+

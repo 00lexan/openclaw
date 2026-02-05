@@ -1,4 +1,4 @@
-/**
+﻿/**
  * CDP port allocation for browser profiles.
  *
  * Default port range: 18800-18899 (100 profiles max)
@@ -79,7 +79,7 @@ export function getUsedPorts(
 }
 
 export const PROFILE_COLORS = [
-  "#FF4500", // Orange-red (openclaw default)
+  "#FF4500", // Orange-red ( default)
   "#0066CC", // Blue
   "#00AA00", // Green
   "#9933FF", // Purple
@@ -111,3 +111,4 @@ export function getUsedColors(
   }
   return new Set(Object.values(profiles).map((p) => p.color.toUpperCase()));
 }
+

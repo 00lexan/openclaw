@@ -1,4 +1,4 @@
-import net from "node:net";
+﻿import net from "node:net";
 import { describe, expect, it, vi } from "vitest";
 import {
   buildPortHints,
@@ -36,7 +36,7 @@ describe("ports helpers", () => {
     expect(
       classifyPortListener(
         {
-          commandLine: "node /Users/me/Projects/openclaw/dist/entry.js gateway",
+          commandLine: "node /Users/me/Projects//dist/entry.js gateway",
         },
         18789,
       ),
@@ -55,3 +55,4 @@ describe("ports helpers", () => {
     expect(lines.some((line) => line.includes("SSH tunnel"))).toBe(true);
   });
 });
+

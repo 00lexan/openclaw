@@ -1,4 +1,4 @@
-export type ConfiguredEntry = {
+﻿export type ConfiguredEntry = {
   key: string;
   ref: { provider: string; model: string };
   tags: Set<string>;
@@ -32,3 +32,4 @@ export type ProviderAuthOverview = {
   env?: { value: string; source: string };
   modelsJson?: { value: string; source: string };
 };
+

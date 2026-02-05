@@ -1,4 +1,4 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { EventType } from "./types.js";
 
@@ -96,3 +96,4 @@ describe("normalizeThreadId", () => {
     expect(normalizeThreadId("$thread")).toBe("$thread");
   });
 });
+

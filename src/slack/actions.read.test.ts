@@ -1,4 +1,4 @@
-import type { WebClient } from "@slack/web-api";
+﻿import type { WebClient } from "@slack/web-api";
 import { describe, expect, it, vi } from "vitest";
 import { readSlackMessages } from "./actions.js";
 
@@ -64,3 +64,4 @@ describe("readSlackMessages", () => {
     expect(result.messages.map((message) => message.ts)).toEqual(["1"]);
   });
 });
+

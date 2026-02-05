@@ -1,4 +1,4 @@
-import type { messagingApi } from "@line/bot-sdk";
+﻿import type { messagingApi } from "@line/bot-sdk";
 
 type TemplateMessage = messagingApi.TemplateMessage;
 type ConfirmTemplate = messagingApi.ConfirmTemplate;
@@ -399,3 +399,4 @@ export type {
   ImageCarouselColumn,
   Action,
 };
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   buildPendingHistoryContextFromMap,
   clearHistoryEntriesIfEnabled,
   DEFAULT_GROUP_HISTORY_LIMIT,
@@ -8,7 +8,7 @@ import {
   resolveMentionGating,
   formatAllowlistMatchMeta,
   type HistoryEntry,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { StoredConversationReference } from "../conversation-store.js";
 import type { MSTeamsMessageHandlerDeps } from "../monitor-handler.js";
 import type { MSTeamsTurnContext } from "../sdk-types.js";
@@ -549,7 +549,7 @@ export function createMSTeamsMessageHandler(deps: MSTeamsMessageHandlerDeps) {
       runtime.error?.(`msteams dispatch failed: ${String(err)}`);
       try {
         await context.sendActivity(
-          `⚠️ Agent failed: ${err instanceof Error ? err.message : String(err)}`,
+          `âš ï¸ Agent failed: ${err instanceof Error ? err.message : String(err)}`,
         );
       } catch {
         // Best effort.
@@ -639,3 +639,4 @@ export function createMSTeamsMessageHandler(deps: MSTeamsMessageHandlerDeps) {
     });
   };
 }
+

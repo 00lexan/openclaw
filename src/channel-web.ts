@@ -1,4 +1,4 @@
-// Barrel exports for the web channel pieces. Splitting the original 900+ line
+﻿// Barrel exports for the web channel pieces. Splitting the original 900+ line
 // module keeps responsibilities small and testable.
 export {
   DEFAULT_WEB_MEDIA_BYTES,
@@ -31,3 +31,4 @@ export {
   waitForWaConnection,
   webAuthExists,
 } from "./web/session.js";
+

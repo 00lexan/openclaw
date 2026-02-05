@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Skills config schema and examples"
 read_when:
   - Adding or modifying skills config
@@ -8,7 +8,7 @@ title: "Skills Config"
 
 # Skills Config
 
-All skills-related configuration lives under `skills` in `~/.openclaw/openclaw.json`.
+All skills-related configuration lives under `skills` in `~/./.json`.
 
 ```json5
 {
@@ -53,14 +53,14 @@ All skills-related configuration lives under `skills` in `~/.openclaw/openclaw.j
 
 Per-skill fields:
 
-- `enabled`: set `false` to disable a skill even if it’s bundled/installed.
+- `enabled`: set `false` to disable a skill even if itâ€™s bundled/installed.
 - `env`: environment variables injected for the agent run (only if not already set).
 - `apiKey`: optional convenience for skills that declare a primary env var.
 
 ## Notes
 
 - Keys under `entries` map to the skill name by default. If a skill defines
-  `metadata.openclaw.skillKey`, use that key instead.
+  `metadata..skillKey`, use that key instead.
 - Changes to skills are picked up on the next agent turn when the watcher is enabled.
 
 ### Sandboxed skills + env vars
@@ -74,3 +74,4 @@ Use one of:
 - bake the env into your custom sandbox image
 
 Global `env` and `skills.entries.<skill>.env/apiKey` apply to **host** runs only.
+

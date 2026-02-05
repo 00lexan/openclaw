@@ -1,4 +1,4 @@
-import type { ConfigUiHints } from "../types.ts";
+﻿import type { ConfigUiHints } from "../types.ts";
 
 export type JsonSchema = {
   type?: string | string[];
@@ -103,3 +103,4 @@ export function isSensitivePath(path: Array<string | number>): boolean {
     key.endsWith("key")
   );
 }
+

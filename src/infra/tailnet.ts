@@ -1,4 +1,4 @@
-import os from "node:os";
+﻿import os from "node:os";
 
 export type TailnetAddresses = {
   ipv4: string[];
@@ -64,3 +64,4 @@ export function pickPrimaryTailnetIPv4(): string | undefined {
 export function pickPrimaryTailnetIPv6(): string | undefined {
   return listTailnetAddresses().ipv6[0];
 }
+

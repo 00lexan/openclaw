@@ -1,4 +1,4 @@
-# actionlint configuration
+﻿# actionlint configuration
 # https://github.com/rhysd/actionlint/blob/main/docs/config.md
 
 self-hosted-runner:
@@ -15,3 +15,4 @@ paths:
       - "shellcheck reported issue.+"
       # Ignore intentional if: false for disabled jobs
       - 'constant expression "false" in condition'
+

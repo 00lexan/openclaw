@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { getAccountConfig } from "./config.js";
 
 describe("getAccountConfig", () => {
@@ -85,3 +85,4 @@ describe("getAccountConfig", () => {
     expect(result).toBeNull();
   });
 });
+

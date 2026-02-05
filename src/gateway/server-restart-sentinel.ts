@@ -1,4 +1,4 @@
-import type { CliDeps } from "../cli/deps.js";
+﻿import type { CliDeps } from "../cli/deps.js";
 import { resolveAnnounceTargetFromKey } from "../agents/tools/sessions-send-helpers.js";
 import { normalizeChannelId } from "../channels/plugins/index.js";
 import { agentCommand } from "../commands/agent.js";
@@ -108,3 +108,4 @@ export async function scheduleRestartSentinelWake(params: { deps: CliDeps }) {
 export function shouldWakeFromRestartSentinel() {
   return !process.env.VITEST && process.env.NODE_ENV !== "test";
 }
+

@@ -1,4 +1,4 @@
-import { buildBlueBubblesApiUrl, blueBubblesFetchWithTimeout } from "./types.js";
+﻿import { buildBlueBubblesApiUrl, blueBubblesFetchWithTimeout } from "./types.js";
 
 export type BlueBubblesProbe = {
   ok: boolean;
@@ -133,3 +133,4 @@ export async function probeBlueBubbles(params: {
     };
   }
 }
+

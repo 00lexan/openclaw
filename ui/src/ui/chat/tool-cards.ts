@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { ToolCard } from "../types/chat-types.ts";
 import { icons } from "../icons.ts";
 import { formatToolDetail, resolveToolDisplay } from "../tool-display.ts";
@@ -62,7 +62,7 @@ export function renderToolCardSidebar(card: ToolCard, onOpenSidebar?: (content: 
         }
         const info = `## ${display.label}\n\n${
           detail ? `**Command:** \`${detail}\`\n\n` : ""
-        }*No output — tool completed successfully.*`;
+        }*No output â€” tool completed successfully.*`;
         onOpenSidebar!(info);
       }
     : undefined;
@@ -154,3 +154,4 @@ function extractToolText(item: Record<string, unknown>): string | undefined {
   }
   return undefined;
 }
+

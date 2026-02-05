@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Telegram inline button utilities for model selection.
  *
  * Callback data patterns (max 64 bytes for Telegram):
@@ -141,7 +141,7 @@ export function buildModelsKeyboard(params: ModelsKeyboardParams): ButtonRow[] {
 
     const isCurrentModel = model === currentModelId;
     const displayText = truncateModelId(model, 38);
-    const text = isCurrentModel ? `${displayText} ✓` : displayText;
+    const text = isCurrentModel ? `${displayText} âœ“` : displayText;
 
     rows.push([
       {
@@ -157,7 +157,7 @@ export function buildModelsKeyboard(params: ModelsKeyboardParams): ButtonRow[] {
 
     if (currentPage > 1) {
       paginationRow.push({
-        text: "◀ Prev",
+        text: "â—€ Prev",
         callback_data: `mdl_list_${provider}_${currentPage - 1}`,
       });
     }
@@ -169,7 +169,7 @@ export function buildModelsKeyboard(params: ModelsKeyboardParams): ButtonRow[] {
 
     if (currentPage < totalPages) {
       paginationRow.push({
-        text: "Next ▶",
+        text: "Next â–¶",
         callback_data: `mdl_list_${provider}_${currentPage + 1}`,
       });
     }
@@ -198,7 +198,7 @@ function truncateModelId(modelId: string, maxLen: number): string {
     return modelId;
   }
   // Show last part with ellipsis prefix
-  return `…${modelId.slice(-(maxLen - 1))}`;
+  return `â€¦${modelId.slice(-(maxLen - 1))}`;
 }
 
 /**
@@ -215,3 +215,4 @@ export function calculateTotalPages(totalModels: number, pageSize?: number): num
   const size = pageSize ?? MODELS_PAGE_SIZE;
   return size > 0 ? Math.ceil(totalModels / size) : 1;
 }
+

@@ -1,5 +1,5 @@
----
-title: 创建 Skills
+﻿---
+title: åˆ›å»º Skills
 x-i18n:
   generated_at: "2026-02-03T10:10:19Z"
   model: claude-opus-4-5
@@ -9,27 +9,27 @@ x-i18n:
   workflow: 15
 ---
 
-# 创建自定义 Skills 🛠
+# åˆ›å»ºè‡ªå®šä¹‰ Skills ðŸ› 
 
-OpenClaw 被设计为易于扩展。"Skills"是为你的助手添加新功能的主要方式。
+ è¢«è®¾è®¡ä¸ºæ˜“äºŽæ‰©å±•ã€‚"Skills"æ˜¯ä¸ºä½ çš„åŠ©æ‰‹æ·»åŠ æ–°åŠŸèƒ½çš„ä¸»è¦æ–¹å¼ã€‚
 
-## 什么是 Skill？
+## ä»€ä¹ˆæ˜¯ Skillï¼Ÿ
 
-Skill 是一个包含 `SKILL.md` 文件（为 LLM 提供指令和工具定义）的目录，可选包含一些脚本或资源。
+Skill æ˜¯ä¸€ä¸ªåŒ…å« `SKILL.md` æ–‡ä»¶ï¼ˆä¸º LLM æä¾›æŒ‡ä»¤å’Œå·¥å…·å®šä¹‰ï¼‰çš„ç›®å½•ï¼Œå¯é€‰åŒ…å«ä¸€äº›è„šæœ¬æˆ–èµ„æºã€‚
 
-## 分步指南：你的第一个 Skill
+## åˆ†æ­¥æŒ‡å—ï¼šä½ çš„ç¬¬ä¸€ä¸ª Skill
 
-### 1. 创建目录
+### 1. åˆ›å»ºç›®å½•
 
-Skills 位于你的工作区中，通常是 `~/.openclaw/workspace/skills/`。为你的 Skill 创建一个新文件夹：
+Skills ä½äºŽä½ çš„å·¥ä½œåŒºä¸­ï¼Œé€šå¸¸æ˜¯ `~/./workspace/skills/`ã€‚ä¸ºä½ çš„ Skill åˆ›å»ºä¸€ä¸ªæ–°æ–‡ä»¶å¤¹ï¼š
 
 ```bash
-mkdir -p ~/.openclaw/workspace/skills/hello-world
+mkdir -p ~/./workspace/skills/hello-world
 ```
 
-### 2. 定义 `SKILL.md`
+### 2. å®šä¹‰ `SKILL.md`
 
-在该目录中创建一个 `SKILL.md` 文件。此文件使用 YAML frontmatter 作为元数据，使用 Markdown 作为指令。
+åœ¨è¯¥ç›®å½•ä¸­åˆ›å»ºä¸€ä¸ª `SKILL.md` æ–‡ä»¶ã€‚æ­¤æ–‡ä»¶ä½¿ç”¨ YAML frontmatter ä½œä¸ºå…ƒæ•°æ®ï¼Œä½¿ç”¨ Markdown ä½œä¸ºæŒ‡ä»¤ã€‚
 
 ```markdown
 ---
@@ -42,20 +42,21 @@ description: A simple skill that says hello.
 When the user asks for a greeting, use the `echo` tool to say "Hello from your custom skill!".
 ```
 
-### 3. 添加工具（可选）
+### 3. æ·»åŠ å·¥å…·ï¼ˆå¯é€‰ï¼‰
 
-你可以在 frontmatter 中定义自定义工具，或指示智能体使用现有的系统工具（如 `bash` 或 `browser`）。
+ä½ å¯ä»¥åœ¨ frontmatter ä¸­å®šä¹‰è‡ªå®šä¹‰å·¥å…·ï¼Œæˆ–æŒ‡ç¤ºæ™ºèƒ½ä½“ä½¿ç”¨çŽ°æœ‰çš„ç³»ç»Ÿå·¥å…·ï¼ˆå¦‚ `bash` æˆ– `browser`ï¼‰ã€‚
 
-### 4. 刷新 OpenClaw
+### 4. åˆ·æ–° 
 
-让你的智能体"刷新 skills"或重启 Gateway 网关。OpenClaw 将发现新目录并索引 `SKILL.md`。
+è®©ä½ çš„æ™ºèƒ½ä½“"åˆ·æ–° skills"æˆ–é‡å¯ Gateway ç½‘å…³ã€‚ å°†å‘çŽ°æ–°ç›®å½•å¹¶ç´¢å¼• `SKILL.md`ã€‚
 
-## 最佳实践
+## æœ€ä½³å®žè·µ
 
-- **简洁明了**：指示模型*做什么*，而不是如何成为一个 AI。
-- **安全第一**：如果你的 Skill 使用 `bash`，确保提示词不允许来自不受信任用户输入的任意命令注入。
-- **本地测试**：使用 `openclaw agent --message "use my new skill"` 进行测试。
+- **ç®€æ´æ˜Žäº†**ï¼šæŒ‡ç¤ºæ¨¡åž‹*åšä»€ä¹ˆ*ï¼Œè€Œä¸æ˜¯å¦‚ä½•æˆä¸ºä¸€ä¸ª AIã€‚
+- **å®‰å…¨ç¬¬ä¸€**ï¼šå¦‚æžœä½ çš„ Skill ä½¿ç”¨ `bash`ï¼Œç¡®ä¿æç¤ºè¯ä¸å…è®¸æ¥è‡ªä¸å—ä¿¡ä»»ç”¨æˆ·è¾“å…¥çš„ä»»æ„å‘½ä»¤æ³¨å…¥ã€‚
+- **æœ¬åœ°æµ‹è¯•**ï¼šä½¿ç”¨ ` agent --message "use my new skill"` è¿›è¡Œæµ‹è¯•ã€‚
 
-## 共享 Skills
+## å…±äº« Skills
 
-你也可以在 [ClawHub](https://clawhub.com) 上浏览和贡献 Skills。
+ä½ ä¹Ÿå¯ä»¥åœ¨ [ClawHub](https://clawhub.com) ä¸Šæµè§ˆå’Œè´¡çŒ® Skillsã€‚
+

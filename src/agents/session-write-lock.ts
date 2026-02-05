@@ -1,4 +1,4 @@
-import fsSync from "node:fs";
+﻿import fsSync from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -206,3 +206,4 @@ export const __testing = {
   handleTerminationSignal,
   releaseAllLocksSync,
 };
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   ensureRecord,
   getRecord,
   isRecord,
@@ -40,7 +40,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
 
       if (touched) {
         raw.bindings = bindings;
-        changes.push("Moved bindings[].match.provider → bindings[].match.channel.");
+        changes.push("Moved bindings[].match.provider â†’ bindings[].match.channel.");
       }
     },
   },
@@ -78,7 +78,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
 
       if (touched) {
         raw.bindings = bindings;
-        changes.push("Moved bindings[].match.accountID → bindings[].match.accountId.");
+        changes.push("Moved bindings[].match.accountID â†’ bindings[].match.accountId.");
       }
     },
   },
@@ -125,7 +125,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
         sendPolicy.rules = rules;
         session.sendPolicy = sendPolicy;
         raw.session = session;
-        changes.push("Moved session.sendPolicy.rules[].match.provider → match.channel.");
+        changes.push("Moved session.sendPolicy.rules[].match.provider â†’ match.channel.");
       }
     },
   },
@@ -146,7 +146,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
       }
       if (queue.byChannel === undefined) {
         queue.byChannel = queue.byProvider;
-        changes.push("Moved messages.queue.byProvider → messages.queue.byChannel.");
+        changes.push("Moved messages.queue.byProvider â†’ messages.queue.byChannel.");
       } else {
         changes.push("Removed messages.queue.byProvider (messages.queue.byChannel already set).");
       }
@@ -185,7 +185,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
         channels[key] = channelEntry;
         delete raw[key];
         changes.push(
-          hadEntries ? `Merged ${key} → channels.${key}.` : `Moved ${key} → channels.${key}.`,
+          hadEntries ? `Merged ${key} â†’ channels.${key}.` : `Moved ${key} â†’ channels.${key}.`,
         );
       }
       raw.channels = channels;
@@ -217,7 +217,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
 
       if (whatsapp.allowFrom === undefined) {
         whatsapp.allowFrom = allowFrom;
-        changes.push("Moved routing.allowFrom → channels.whatsapp.allowFrom.");
+        changes.push("Moved routing.allowFrom â†’ channels.whatsapp.allowFrom.");
       } else {
         changes.push("Removed routing.allowFrom (channels.whatsapp.allowFrom already set).");
       }
@@ -278,7 +278,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
           section.groups = groups;
           channels[key] = section;
           changes.push(
-            `Moved routing.groupChat.requireMention → channels.${key}.groups."*".requireMention.`,
+            `Moved routing.groupChat.requireMention â†’ channels.${key}.groups."*".requireMention.`,
           );
         } else {
           changes.push(
@@ -324,7 +324,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
         if (!auth.mode) {
           auth.mode = "token";
         }
-        changes.push("Moved gateway.token → gateway.auth.token.");
+        changes.push("Moved gateway.token â†’ gateway.auth.token.");
       } else {
         changes.push("Removed gateway.token (gateway.auth.token already set).");
       }
@@ -365,7 +365,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
         groups[defaultKey] = entry;
         (telegram as Record<string, unknown>).groups = groups;
         changes.push(
-          'Moved telegram.requireMention → channels.telegram.groups."*".requireMention.',
+          'Moved telegram.requireMention â†’ channels.telegram.groups."*".requireMention.',
         );
       } else {
         changes.push('Removed telegram.requireMention (channels.telegram.groups."*" already set).');
@@ -377,3 +377,4 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_1: LegacyConfigMigration[] = [
     },
   },
 ];
+

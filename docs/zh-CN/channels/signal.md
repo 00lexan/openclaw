@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 设置 Signal 支持
-  - 调试 Signal 发送/接收
-summary: 通过 signal-cli（JSON-RPC + SSE）支持 Signal，设置和号码模型
+  - è®¾ç½® Signal æ”¯æŒ
+  - è°ƒè¯• Signal å‘é€/æŽ¥æ”¶
+summary: é€šè¿‡ signal-cliï¼ˆJSON-RPC + SSEï¼‰æ”¯æŒ Signalï¼Œè®¾ç½®å’Œå·ç æ¨¡åž‹
 title: Signal
 x-i18n:
   generated_at: "2026-02-03T07:44:15Z"
@@ -15,17 +15,17 @@ x-i18n:
 
 # Signal (signal-cli)
 
-状态：外部 CLI 集成。Gateway 网关通过 HTTP JSON-RPC + SSE 与 `signal-cli` 通信。
+çŠ¶æ€ï¼šå¤–éƒ¨ CLI é›†æˆã€‚Gateway ç½‘å…³é€šè¿‡ HTTP JSON-RPC + SSE ä¸Ž `signal-cli` é€šä¿¡ã€‚
 
-## 快速设置（初学者）
+## å¿«é€Ÿè®¾ç½®ï¼ˆåˆå­¦è€…ï¼‰
 
-1. 为 bot 使用**单独的 Signal 号码**（推荐）。
-2. 安装 `signal-cli`（需要 Java）。
-3. 链接 bot 设备并启动守护进程：
-   - `signal-cli link -n "OpenClaw"`
-4. 配置 OpenClaw 并启动 Gateway 网关。
+1. ä¸º bot ä½¿ç”¨**å•ç‹¬çš„ Signal å·ç **ï¼ˆæŽ¨èï¼‰ã€‚
+2. å®‰è£… `signal-cli`ï¼ˆéœ€è¦ Javaï¼‰ã€‚
+3. é“¾æŽ¥ bot è®¾å¤‡å¹¶å¯åŠ¨å®ˆæŠ¤è¿›ç¨‹ï¼š
+   - `signal-cli link -n ""`
+4. é…ç½®  å¹¶å¯åŠ¨ Gateway ç½‘å…³ã€‚
 
-最小配置：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -41,17 +41,17 @@ x-i18n:
 }
 ```
 
-## 它是什么
+## å®ƒæ˜¯ä»€ä¹ˆ
 
-- 通过 `signal-cli` 的 Signal 渠道（非嵌入式 libsignal）。
-- 确定性路由：回复始终返回到 Signal。
-- 私信共享智能体的主会话；群组是隔离的（`agent:<agentId>:signal:group:<groupId>`）。
+- é€šè¿‡ `signal-cli` çš„ Signal æ¸ é“ï¼ˆéžåµŒå…¥å¼ libsignalï¼‰ã€‚
+- ç¡®å®šæ€§è·¯ç”±ï¼šå›žå¤å§‹ç»ˆè¿”å›žåˆ° Signalã€‚
+- ç§ä¿¡å…±äº«æ™ºèƒ½ä½“çš„ä¸»ä¼šè¯ï¼›ç¾¤ç»„æ˜¯éš”ç¦»çš„ï¼ˆ`agent:<agentId>:signal:group:<groupId>`ï¼‰ã€‚
 
-## 配置写入
+## é…ç½®å†™å…¥
 
-默认情况下，Signal 允许写入由 `/config set|unset` 触发的配置更新（需要 `commands.config: true`）。
+é»˜è®¤æƒ…å†µä¸‹ï¼ŒSignal å…è®¸å†™å…¥ç”± `/config set|unset` è§¦å‘çš„é…ç½®æ›´æ–°ï¼ˆéœ€è¦ `commands.config: true`ï¼‰ã€‚
 
-禁用方式：
+ç¦ç”¨æ–¹å¼ï¼š
 
 ```json5
 {
@@ -59,20 +59,20 @@ x-i18n:
 }
 ```
 
-## 号码模型（重要）
+## å·ç æ¨¡åž‹ï¼ˆé‡è¦ï¼‰
 
-- Gateway 网关连接到一个 **Signal 设备**（`signal-cli` 账户）。
-- 如果你在**个人 Signal 账户**上运行 bot，它会忽略你自己的消息（循环保护）。
-- 要实现"我发消息给 bot 然后它回复"，请使用**单独的 bot 号码**。
+- Gateway ç½‘å…³è¿žæŽ¥åˆ°ä¸€ä¸ª **Signal è®¾å¤‡**ï¼ˆ`signal-cli` è´¦æˆ·ï¼‰ã€‚
+- å¦‚æžœä½ åœ¨**ä¸ªäºº Signal è´¦æˆ·**ä¸Šè¿è¡Œ botï¼Œå®ƒä¼šå¿½ç•¥ä½ è‡ªå·±çš„æ¶ˆæ¯ï¼ˆå¾ªçŽ¯ä¿æŠ¤ï¼‰ã€‚
+- è¦å®žçŽ°"æˆ‘å‘æ¶ˆæ¯ç»™ bot ç„¶åŽå®ƒå›žå¤"ï¼Œè¯·ä½¿ç”¨**å•ç‹¬çš„ bot å·ç **ã€‚
 
-## 设置（快速路径）
+## è®¾ç½®ï¼ˆå¿«é€Ÿè·¯å¾„ï¼‰
 
-1. 安装 `signal-cli`（需要 Java）。
-2. 链接 bot 账户：
-   - `signal-cli link -n "OpenClaw"` 然后在 Signal 中扫描二维码。
-3. 配置 Signal 并启动 Gateway 网关。
+1. å®‰è£… `signal-cli`ï¼ˆéœ€è¦ Javaï¼‰ã€‚
+2. é“¾æŽ¥ bot è´¦æˆ·ï¼š
+   - `signal-cli link -n ""` ç„¶åŽåœ¨ Signal ä¸­æ‰«æäºŒç»´ç ã€‚
+3. é…ç½® Signal å¹¶å¯åŠ¨ Gateway ç½‘å…³ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -88,11 +88,11 @@ x-i18n:
 }
 ```
 
-多账户支持：使用 `channels.signal.accounts` 配置每个账户及可选的 `name`。共享模式请参见 [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts)。
+å¤šè´¦æˆ·æ”¯æŒï¼šä½¿ç”¨ `channels.signal.accounts` é…ç½®æ¯ä¸ªè´¦æˆ·åŠå¯é€‰çš„ `name`ã€‚å…±äº«æ¨¡å¼è¯·å‚è§ [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts)ã€‚
 
-## 外部守护进程模式（httpUrl）
+## å¤–éƒ¨å®ˆæŠ¤è¿›ç¨‹æ¨¡å¼ï¼ˆhttpUrlï¼‰
 
-如果你想自己管理 `signal-cli`（JVM 冷启动慢、容器初始化或共享 CPU），请单独运行守护进程并将 OpenClaw 指向它：
+å¦‚æžœä½ æƒ³è‡ªå·±ç®¡ç† `signal-cli`ï¼ˆJVM å†·å¯åŠ¨æ…¢ã€å®¹å™¨åˆå§‹åŒ–æˆ–å…±äº« CPUï¼‰ï¼Œè¯·å•ç‹¬è¿è¡Œå®ˆæŠ¤è¿›ç¨‹å¹¶å°†  æŒ‡å‘å®ƒï¼š
 
 ```json5
 {
@@ -105,105 +105,106 @@ x-i18n:
 }
 ```
 
-这会跳过自动启动和 OpenClaw 内部的启动等待。对于自动启动时的慢启动，请设置 `channels.signal.startupTimeoutMs`。
+è¿™ä¼šè·³è¿‡è‡ªåŠ¨å¯åŠ¨å’Œ  å†…éƒ¨çš„å¯åŠ¨ç­‰å¾…ã€‚å¯¹äºŽè‡ªåŠ¨å¯åŠ¨æ—¶çš„æ…¢å¯åŠ¨ï¼Œè¯·è®¾ç½® `channels.signal.startupTimeoutMs`ã€‚
 
-## 访问控制（私信 + 群组）
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ + ç¾¤ç»„ï¼‰
 
-私信：
+ç§ä¿¡ï¼š
 
-- 默认：`channels.signal.dmPolicy = "pairing"`。
-- 未知发送者会收到配对码；消息在批准前会被忽略（配对码 1 小时后过期）。
-- 通过以下方式批准：
-  - `openclaw pairing list signal`
-  - `openclaw pairing approve signal <CODE>`
-- 配对是 Signal 私信的默认令牌交换方式。详情：[配对](/start/pairing)
-- 仅有 UUID 的发送者（来自 `sourceUuid`）在 `channels.signal.allowFrom` 中存储为 `uuid:<id>`。
+- é»˜è®¤ï¼š`channels.signal.dmPolicy = "pairing"`ã€‚
+- æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼›æ¶ˆæ¯åœ¨æ‰¹å‡†å‰ä¼šè¢«å¿½ç•¥ï¼ˆé…å¯¹ç  1 å°æ—¶åŽè¿‡æœŸï¼‰ã€‚
+- é€šè¿‡ä»¥ä¸‹æ–¹å¼æ‰¹å‡†ï¼š
+  - ` pairing list signal`
+  - ` pairing approve signal <CODE>`
+- é…å¯¹æ˜¯ Signal ç§ä¿¡çš„é»˜è®¤ä»¤ç‰Œäº¤æ¢æ–¹å¼ã€‚è¯¦æƒ…ï¼š[é…å¯¹](/start/pairing)
+- ä»…æœ‰ UUID çš„å‘é€è€…ï¼ˆæ¥è‡ª `sourceUuid`ï¼‰åœ¨ `channels.signal.allowFrom` ä¸­å­˜å‚¨ä¸º `uuid:<id>`ã€‚
 
-群组：
+ç¾¤ç»„ï¼š
 
-- `channels.signal.groupPolicy = open | allowlist | disabled`。
-- 当设置为 `allowlist` 时，`channels.signal.groupAllowFrom` 控制谁可以在群组中触发。
+- `channels.signal.groupPolicy = open | allowlist | disabled`ã€‚
+- å½“è®¾ç½®ä¸º `allowlist` æ—¶ï¼Œ`channels.signal.groupAllowFrom` æŽ§åˆ¶è°å¯ä»¥åœ¨ç¾¤ç»„ä¸­è§¦å‘ã€‚
 
-## 工作原理（行为）
+## å·¥ä½œåŽŸç†ï¼ˆè¡Œä¸ºï¼‰
 
-- `signal-cli` 作为守护进程运行；Gateway 网关通过 SSE 读取事件。
-- 入站消息被规范化为共享渠道信封。
-- 回复始终路由回同一号码或群组。
+- `signal-cli` ä½œä¸ºå®ˆæŠ¤è¿›ç¨‹è¿è¡Œï¼›Gateway ç½‘å…³é€šè¿‡ SSE è¯»å–äº‹ä»¶ã€‚
+- å…¥ç«™æ¶ˆæ¯è¢«è§„èŒƒåŒ–ä¸ºå…±äº«æ¸ é“ä¿¡å°ã€‚
+- å›žå¤å§‹ç»ˆè·¯ç”±å›žåŒä¸€å·ç æˆ–ç¾¤ç»„ã€‚
 
-## 媒体 + 限制
+## åª’ä½“ + é™åˆ¶
 
-- 出站文本按 `channels.signal.textChunkLimit` 分块（默认 4000）。
-- 可选换行分块：设置 `channels.signal.chunkMode="newline"` 在长度分块前按空行（段落边界）分割。
-- 支持附件（从 `signal-cli` 获取 base64）。
-- 默认媒体上限：`channels.signal.mediaMaxMb`（默认 8）。
-- 使用 `channels.signal.ignoreAttachments` 跳过下载媒体。
-- 群组历史上下文使用 `channels.signal.historyLimit`（或 `channels.signal.accounts.*.historyLimit`），回退到 `messages.groupChat.historyLimit`。设置 `0` 禁用（默认 50）。
+- å‡ºç«™æ–‡æœ¬æŒ‰ `channels.signal.textChunkLimit` åˆ†å—ï¼ˆé»˜è®¤ 4000ï¼‰ã€‚
+- å¯é€‰æ¢è¡Œåˆ†å—ï¼šè®¾ç½® `channels.signal.chunkMode="newline"` åœ¨é•¿åº¦åˆ†å—å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- æ”¯æŒé™„ä»¶ï¼ˆä»Ž `signal-cli` èŽ·å– base64ï¼‰ã€‚
+- é»˜è®¤åª’ä½“ä¸Šé™ï¼š`channels.signal.mediaMaxMb`ï¼ˆé»˜è®¤ 8ï¼‰ã€‚
+- ä½¿ç”¨ `channels.signal.ignoreAttachments` è·³è¿‡ä¸‹è½½åª’ä½“ã€‚
+- ç¾¤ç»„åŽ†å²ä¸Šä¸‹æ–‡ä½¿ç”¨ `channels.signal.historyLimit`ï¼ˆæˆ– `channels.signal.accounts.*.historyLimit`ï¼‰ï¼Œå›žé€€åˆ° `messages.groupChat.historyLimit`ã€‚è®¾ç½® `0` ç¦ç”¨ï¼ˆé»˜è®¤ 50ï¼‰ã€‚
 
-## 输入指示器 + 已读回执
+## è¾“å…¥æŒ‡ç¤ºå™¨ + å·²è¯»å›žæ‰§
 
-- **输入指示器**：OpenClaw 通过 `signal-cli sendTyping` 发送输入信号，并在回复运行时刷新它们。
-- **已读回执**：当 `channels.signal.sendReadReceipts` 为 true 时，OpenClaw 为允许的私信转发已读回执。
-- Signal-cli 不暴露群组的已读回执。
+- **è¾“å…¥æŒ‡ç¤ºå™¨**ï¼š é€šè¿‡ `signal-cli sendTyping` å‘é€è¾“å…¥ä¿¡å·ï¼Œå¹¶åœ¨å›žå¤è¿è¡Œæ—¶åˆ·æ–°å®ƒä»¬ã€‚
+- **å·²è¯»å›žæ‰§**ï¼šå½“ `channels.signal.sendReadReceipts` ä¸º true æ—¶ï¼Œ ä¸ºå…è®¸çš„ç§ä¿¡è½¬å‘å·²è¯»å›žæ‰§ã€‚
+- Signal-cli ä¸æš´éœ²ç¾¤ç»„çš„å·²è¯»å›žæ‰§ã€‚
 
-## 表情回应（message 工具）
+## è¡¨æƒ…å›žåº”ï¼ˆmessage å·¥å…·ï¼‰
 
-- 使用 `message action=react` 配合 `channel=signal`。
-- 目标：发送者 E.164 或 UUID（使用配对输出中的 `uuid:<id>`；裸 UUID 也可以）。
-- `messageId` 是你要回应的消息的 Signal 时间戳。
-- 群组表情回应需要 `targetAuthor` 或 `targetAuthorUuid`。
+- ä½¿ç”¨ `message action=react` é…åˆ `channel=signal`ã€‚
+- ç›®æ ‡ï¼šå‘é€è€… E.164 æˆ– UUIDï¼ˆä½¿ç”¨é…å¯¹è¾“å‡ºä¸­çš„ `uuid:<id>`ï¼›è£¸ UUID ä¹Ÿå¯ä»¥ï¼‰ã€‚
+- `messageId` æ˜¯ä½ è¦å›žåº”çš„æ¶ˆæ¯çš„ Signal æ—¶é—´æˆ³ã€‚
+- ç¾¤ç»„è¡¨æƒ…å›žåº”éœ€è¦ `targetAuthor` æˆ– `targetAuthorUuid`ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```
-message action=react channel=signal target=uuid:123e4567-e89b-12d3-a456-426614174000 messageId=1737630212345 emoji=🔥
-message action=react channel=signal target=+15551234567 messageId=1737630212345 emoji=🔥 remove=true
-message action=react channel=signal target=signal:group:<groupId> targetAuthor=uuid:<sender-uuid> messageId=1737630212345 emoji=✅
+message action=react channel=signal target=uuid:123e4567-e89b-12d3-a456-426614174000 messageId=1737630212345 emoji=ðŸ”¥
+message action=react channel=signal target=+15551234567 messageId=1737630212345 emoji=ðŸ”¥ remove=true
+message action=react channel=signal target=signal:group:<groupId> targetAuthor=uuid:<sender-uuid> messageId=1737630212345 emoji=âœ…
 ```
 
-配置：
+é…ç½®ï¼š
 
-- `channels.signal.actions.reactions`：启用/禁用表情回应操作（默认 true）。
-- `channels.signal.reactionLevel`：`off | ack | minimal | extensive`。
-  - `off`/`ack` 禁用智能体表情回应（message 工具 `react` 会报错）。
-  - `minimal`/`extensive` 启用智能体表情回应并设置指导级别。
-- 每账户覆盖：`channels.signal.accounts.<id>.actions.reactions`、`channels.signal.accounts.<id>.reactionLevel`。
+- `channels.signal.actions.reactions`ï¼šå¯ç”¨/ç¦ç”¨è¡¨æƒ…å›žåº”æ“ä½œï¼ˆé»˜è®¤ trueï¼‰ã€‚
+- `channels.signal.reactionLevel`ï¼š`off | ack | minimal | extensive`ã€‚
+  - `off`/`ack` ç¦ç”¨æ™ºèƒ½ä½“è¡¨æƒ…å›žåº”ï¼ˆmessage å·¥å…· `react` ä¼šæŠ¥é”™ï¼‰ã€‚
+  - `minimal`/`extensive` å¯ç”¨æ™ºèƒ½ä½“è¡¨æƒ…å›žåº”å¹¶è®¾ç½®æŒ‡å¯¼çº§åˆ«ã€‚
+- æ¯è´¦æˆ·è¦†ç›–ï¼š`channels.signal.accounts.<id>.actions.reactions`ã€`channels.signal.accounts.<id>.reactionLevel`ã€‚
 
-## 投递目标（CLI/cron）
+## æŠ•é€’ç›®æ ‡ï¼ˆCLI/cronï¼‰
 
-- 私信：`signal:+15551234567`（或纯 E.164）。
-- UUID 私信：`uuid:<id>`（或裸 UUID）。
-- 群组：`signal:group:<groupId>`。
-- 用户名：`username:<name>`（如果你的 Signal 账户支持）。
+- ç§ä¿¡ï¼š`signal:+15551234567`ï¼ˆæˆ–çº¯ E.164ï¼‰ã€‚
+- UUID ç§ä¿¡ï¼š`uuid:<id>`ï¼ˆæˆ–è£¸ UUIDï¼‰ã€‚
+- ç¾¤ç»„ï¼š`signal:group:<groupId>`ã€‚
+- ç”¨æˆ·åï¼š`username:<name>`ï¼ˆå¦‚æžœä½ çš„ Signal è´¦æˆ·æ”¯æŒï¼‰ã€‚
 
-## 配置参考（Signal）
+## é…ç½®å‚è€ƒï¼ˆSignalï¼‰
 
-完整配置：[配置](/gateway/configuration)
+å®Œæ•´é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-提供商选项：
+æä¾›å•†é€‰é¡¹ï¼š
 
-- `channels.signal.enabled`：启用/禁用渠道启动。
-- `channels.signal.account`：bot 账户的 E.164。
-- `channels.signal.cliPath`：`signal-cli` 的路径。
-- `channels.signal.httpUrl`：完整守护进程 URL（覆盖 host/port）。
-- `channels.signal.httpHost`、`channels.signal.httpPort`：守护进程绑定（默认 127.0.0.1:8080）。
-- `channels.signal.autoStart`：自动启动守护进程（如果未设置 `httpUrl` 则默认 true）。
-- `channels.signal.startupTimeoutMs`：启动等待超时（毫秒）（上限 120000）。
-- `channels.signal.receiveMode`：`on-start | manual`。
-- `channels.signal.ignoreAttachments`：跳过附件下载。
-- `channels.signal.ignoreStories`：忽略来自守护进程的动态。
-- `channels.signal.sendReadReceipts`：转发已读回执。
-- `channels.signal.dmPolicy`：`pairing | allowlist | open | disabled`（默认：pairing）。
-- `channels.signal.allowFrom`：私信允许列表（E.164 或 `uuid:<id>`）。`open` 需要 `"*"`。Signal 没有用户名；使用电话/UUID id。
-- `channels.signal.groupPolicy`：`open | allowlist | disabled`（默认：allowlist）。
-- `channels.signal.groupAllowFrom`：群组发送者允许列表。
-- `channels.signal.historyLimit`：作为上下文包含的最大群组消息数（0 禁用）。
-- `channels.signal.dmHistoryLimit`：私信历史限制（用户轮次）。每用户覆盖：`channels.signal.dms["<phone_or_uuid>"].historyLimit`。
-- `channels.signal.textChunkLimit`：出站分块大小（字符）。
-- `channels.signal.chunkMode`：`length`（默认）或 `newline` 在长度分块前按空行（段落边界）分割。
-- `channels.signal.mediaMaxMb`：入站/出站媒体上限（MB）。
+- `channels.signal.enabled`ï¼šå¯ç”¨/ç¦ç”¨æ¸ é“å¯åŠ¨ã€‚
+- `channels.signal.account`ï¼šbot è´¦æˆ·çš„ E.164ã€‚
+- `channels.signal.cliPath`ï¼š`signal-cli` çš„è·¯å¾„ã€‚
+- `channels.signal.httpUrl`ï¼šå®Œæ•´å®ˆæŠ¤è¿›ç¨‹ URLï¼ˆè¦†ç›– host/portï¼‰ã€‚
+- `channels.signal.httpHost`ã€`channels.signal.httpPort`ï¼šå®ˆæŠ¤è¿›ç¨‹ç»‘å®šï¼ˆé»˜è®¤ 127.0.0.1:8080ï¼‰ã€‚
+- `channels.signal.autoStart`ï¼šè‡ªåŠ¨å¯åŠ¨å®ˆæŠ¤è¿›ç¨‹ï¼ˆå¦‚æžœæœªè®¾ç½® `httpUrl` åˆ™é»˜è®¤ trueï¼‰ã€‚
+- `channels.signal.startupTimeoutMs`ï¼šå¯åŠ¨ç­‰å¾…è¶…æ—¶ï¼ˆæ¯«ç§’ï¼‰ï¼ˆä¸Šé™ 120000ï¼‰ã€‚
+- `channels.signal.receiveMode`ï¼š`on-start | manual`ã€‚
+- `channels.signal.ignoreAttachments`ï¼šè·³è¿‡é™„ä»¶ä¸‹è½½ã€‚
+- `channels.signal.ignoreStories`ï¼šå¿½ç•¥æ¥è‡ªå®ˆæŠ¤è¿›ç¨‹çš„åŠ¨æ€ã€‚
+- `channels.signal.sendReadReceipts`ï¼šè½¬å‘å·²è¯»å›žæ‰§ã€‚
+- `channels.signal.dmPolicy`ï¼š`pairing | allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼špairingï¼‰ã€‚
+- `channels.signal.allowFrom`ï¼šç§ä¿¡å…è®¸åˆ—è¡¨ï¼ˆE.164 æˆ– `uuid:<id>`ï¼‰ã€‚`open` éœ€è¦ `"*"`ã€‚Signal æ²¡æœ‰ç”¨æˆ·åï¼›ä½¿ç”¨ç”µè¯/UUID idã€‚
+- `channels.signal.groupPolicy`ï¼š`open | allowlist | disabled`ï¼ˆé»˜è®¤ï¼šallowlistï¼‰ã€‚
+- `channels.signal.groupAllowFrom`ï¼šç¾¤ç»„å‘é€è€…å…è®¸åˆ—è¡¨ã€‚
+- `channels.signal.historyLimit`ï¼šä½œä¸ºä¸Šä¸‹æ–‡åŒ…å«çš„æœ€å¤§ç¾¤ç»„æ¶ˆæ¯æ•°ï¼ˆ0 ç¦ç”¨ï¼‰ã€‚
+- `channels.signal.dmHistoryLimit`ï¼šç§ä¿¡åŽ†å²é™åˆ¶ï¼ˆç”¨æˆ·è½®æ¬¡ï¼‰ã€‚æ¯ç”¨æˆ·è¦†ç›–ï¼š`channels.signal.dms["<phone_or_uuid>"].historyLimit`ã€‚
+- `channels.signal.textChunkLimit`ï¼šå‡ºç«™åˆ†å—å¤§å°ï¼ˆå­—ç¬¦ï¼‰ã€‚
+- `channels.signal.chunkMode`ï¼š`length`ï¼ˆé»˜è®¤ï¼‰æˆ– `newline` åœ¨é•¿åº¦åˆ†å—å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- `channels.signal.mediaMaxMb`ï¼šå…¥ç«™/å‡ºç«™åª’ä½“ä¸Šé™ï¼ˆMBï¼‰ã€‚
 
-相关全局选项：
+ç›¸å…³å…¨å±€é€‰é¡¹ï¼š
 
-- `agents.list[].groupChat.mentionPatterns`（Signal 不支持原生提及）。
-- `messages.groupChat.mentionPatterns`（全局回退）。
-- `messages.responsePrefix`。
+- `agents.list[].groupChat.mentionPatterns`ï¼ˆSignal ä¸æ”¯æŒåŽŸç”ŸæåŠï¼‰ã€‚
+- `messages.groupChat.mentionPatterns`ï¼ˆå…¨å±€å›žé€€ï¼‰ã€‚
+- `messages.responsePrefix`ã€‚
+

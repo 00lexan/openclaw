@@ -1,4 +1,4 @@
-import type { ChannelResolveKind, ChannelResolveResult } from "../../channels/plugins/types.js";
+﻿import type { ChannelResolveKind, ChannelResolveResult } from "../../channels/plugins/types.js";
 import type { RuntimeEnv } from "../../runtime.js";
 import { getChannelPlugin } from "../../channels/plugins/index.js";
 import { loadConfig } from "../../config/config.js";
@@ -147,3 +147,4 @@ export async function channelsResolveCommand(opts: ChannelsResolveOptions, runti
     }
   }
 }
+

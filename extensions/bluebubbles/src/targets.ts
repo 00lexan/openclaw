@@ -1,4 +1,4 @@
-export type BlueBubblesService = "imessage" | "sms" | "auto";
+﻿export type BlueBubblesService = "imessage" | "sms" | "auto";
 
 export type BlueBubblesTarget =
   | { kind: "chat_id"; chatId: number }
@@ -420,3 +420,4 @@ export function formatBlueBubblesChatTarget(params: {
   }
   return "";
 }
+

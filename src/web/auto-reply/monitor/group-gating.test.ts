@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { applyGroupGating } from "./group-gating.js";
 
 const baseConfig = {
@@ -8,7 +8,7 @@ const baseConfig = {
       groups: { "*": { requireMention: true } },
     },
   },
-  session: { store: "/tmp/openclaw-sessions.json" },
+  session: { store: "/tmp/-sessions.json" },
 } as const;
 
 describe("applyGroupGating", () => {
@@ -54,3 +54,4 @@ describe("applyGroupGating", () => {
     expect(result.shouldProcess).toBe(true);
   });
 });
+

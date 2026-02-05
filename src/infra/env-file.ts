@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { resolveConfigDir } from "../utils.js";
 
@@ -56,3 +56,4 @@ export function upsertSharedEnvVar(params: {
 
   return { path: filepath, updated, created: !raw };
 }
+

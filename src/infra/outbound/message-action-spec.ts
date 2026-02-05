@@ -1,4 +1,4 @@
-import type { ChannelMessageActionName } from "../../channels/plugins/types.js";
+﻿import type { ChannelMessageActionName } from "../../channels/plugins/types.js";
 
 export type MessageActionTargetMode = "to" | "channelId" | "none";
 
@@ -98,3 +98,4 @@ export function actionHasTarget(
     return false;
   });
 }
+

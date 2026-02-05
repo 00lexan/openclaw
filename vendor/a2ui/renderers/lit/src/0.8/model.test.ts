@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -938,7 +938,7 @@ describe("A2uiMessageProcessor", () => {
                       },
                       {
                         key: "rating",
-                        valueString: "★★★★☆",
+                        valueString: "â˜…â˜…â˜…â˜…â˜†",
                       },
                       {
                         key: "detail",
@@ -968,7 +968,7 @@ describe("A2uiMessageProcessor", () => {
                       },
                       {
                         key: "rating",
-                        valueString: "★★★★☆",
+                        valueString: "â˜…â˜…â˜…â˜…â˜†",
                       },
                       {
                         key: "detail",
@@ -998,7 +998,7 @@ describe("A2uiMessageProcessor", () => {
                       },
                       {
                         key: "rating",
-                        valueString: "★★★★☆",
+                        valueString: "â˜…â˜…â˜…â˜…â˜†",
                       },
                       {
                         key: "detail",
@@ -1029,7 +1029,7 @@ describe("A2uiMessageProcessor", () => {
                       },
                       {
                         key: "rating",
-                        valueString: "★★★★★",
+                        valueString: "â˜…â˜…â˜…â˜…â˜…",
                       },
                       {
                         key: "detail",
@@ -1059,7 +1059,7 @@ describe("A2uiMessageProcessor", () => {
                       },
                       {
                         key: "rating",
-                        valueString: "★★★★☆",
+                        valueString: "â˜…â˜…â˜…â˜…â˜†",
                       },
                       {
                         key: "detail",
@@ -1374,3 +1374,4 @@ describe("A2uiMessageProcessor", () => {
 function assertIsDataMap(obj: DataValue): asserts obj is DataMap {
   assert.ok(obj instanceof Map, `Data should be a DataMap`);
 }
+

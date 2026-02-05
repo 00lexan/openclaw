@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Global Plugin Hook Runner
  *
  * Singleton hook runner that's initialized when plugins are loaded
@@ -65,3 +65,4 @@ export function resetGlobalHookRunner(): void {
   globalHookRunner = null;
   globalRegistry = null;
 }
+

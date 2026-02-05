@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { HISTORY_CONTEXT_MARKER } from "../auto-reply/reply/history.js";
 import { resetInboundDedupe } from "../auto-reply/reply/inbound-dedupe.js";
 import { CURRENT_MESSAGE_MARKER } from "../auto-reply/reply/mentions.js";
@@ -109,11 +109,11 @@ describe("monitorSlackProvider tool results", () => {
           {
             id: "main",
             default: true,
-            identity: { name: "Mainbot", theme: "space lobster", emoji: "🦞" },
+            identity: { name: "Mainbot", theme: "space lobster", emoji: "ðŸ¦ž" },
           },
           {
             id: "rich",
-            identity: { name: "Richbot", theme: "lion bot", emoji: "🦁" },
+            identity: { name: "Richbot", theme: "lion bot", emoji: "ðŸ¦" },
           },
         ],
       },
@@ -124,7 +124,7 @@ describe("monitorSlackProvider tool results", () => {
         },
       ],
       messages: {
-        ackReaction: "👀",
+        ackReaction: "ðŸ‘€",
         ackReactionScope: "group-mentions",
       },
       channels: {
@@ -365,7 +365,7 @@ describe("monitorSlackProvider tool results", () => {
     slackTestState.config = {
       messages: {
         responsePrefix: "PFX",
-        groupChat: { mentionPatterns: ["\\bopenclaw\\b"] },
+        groupChat: { mentionPatterns: ["\\b\\b"] },
       },
       channels: {
         slack: {
@@ -393,7 +393,7 @@ describe("monitorSlackProvider tool results", () => {
       event: {
         type: "message",
         user: "U1",
-        text: "openclaw: hello",
+        text: ": hello",
         ts: "123",
         channel: "C1",
         channel_type: "channel",
@@ -412,7 +412,7 @@ describe("monitorSlackProvider tool results", () => {
     slackTestState.config = {
       messages: {
         responsePrefix: "PFX",
-        groupChat: { mentionPatterns: ["\\bopenclaw\\b"] },
+        groupChat: { mentionPatterns: ["\\b\\b"] },
       },
       channels: {
         slack: {
@@ -440,7 +440,7 @@ describe("monitorSlackProvider tool results", () => {
       event: {
         type: "message",
         user: "U1",
-        text: "openclaw: hello <@U2>",
+        text: ": hello <@U2>",
         ts: "123",
         channel: "C1",
         channel_type: "channel",
@@ -585,7 +585,7 @@ describe("monitorSlackProvider tool results", () => {
     slackTestState.config = {
       messages: {
         responsePrefix: "PFX",
-        ackReaction: "👀",
+        ackReaction: "ðŸ‘€",
         ackReactionScope: "group-mentions",
       },
       channels: {
@@ -629,3 +629,4 @@ describe("monitorSlackProvider tool results", () => {
     expect(sendMock.mock.calls[0][2]).toMatchObject({ threadTs: "456" });
   });
 });
+

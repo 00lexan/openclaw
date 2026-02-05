@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   resolveCommandAuthorizedFromAuthorizers,
   resolveControlCommandGate,
@@ -95,3 +95,4 @@ describe("resolveControlCommandGate", () => {
     expect(result.shouldBlock).toBe(false);
   });
 });
+

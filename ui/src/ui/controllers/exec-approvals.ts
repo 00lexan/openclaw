@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import { cloneConfigObject, removePathValue, setPathValue } from "./config/form-utils.ts";
 
 export type ExecApprovalsDefaults = {
@@ -168,3 +168,4 @@ export function removeExecApprovalsFormValue(
   state.execApprovalsForm = base;
   state.execApprovalsDirty = true;
 }
+

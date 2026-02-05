@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -14,16 +14,16 @@ describe("normalizeLegacyConfigValues", () => {
   };
 
   beforeEach(() => {
-    previousOauthDir = process.env.OPENCLAW_OAUTH_DIR;
-    tempOauthDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-oauth-"));
-    process.env.OPENCLAW_OAUTH_DIR = tempOauthDir;
+    previousOauthDir = process.env._OAUTH_DIR;
+    tempOauthDir = fs.mkdtempSync(path.join(os.tmpdir(), "-oauth-"));
+    process.env._OAUTH_DIR = tempOauthDir;
   });
 
   afterEach(() => {
     if (previousOauthDir === undefined) {
-      delete process.env.OPENCLAW_OAUTH_DIR;
+      delete process.env._OAUTH_DIR;
     } else {
-      process.env.OPENCLAW_OAUTH_DIR = previousOauthDir;
+      process.env._OAUTH_DIR = previousOauthDir;
     }
     if (tempOauthDir) {
       fs.rmSync(tempOauthDir, { recursive: true, force: true });
@@ -33,7 +33,7 @@ describe("normalizeLegacyConfigValues", () => {
 
   it("does not add whatsapp config when missing and no auth exists", () => {
     const res = normalizeLegacyConfigValues({
-      messages: { ackReaction: "👀" },
+      messages: { ackReaction: "ðŸ‘€" },
     });
 
     expect(res.config.channels?.whatsapp).toBeUndefined();
@@ -42,17 +42,17 @@ describe("normalizeLegacyConfigValues", () => {
 
   it("copies legacy ack reaction when whatsapp config exists", () => {
     const res = normalizeLegacyConfigValues({
-      messages: { ackReaction: "👀", ackReactionScope: "group-mentions" },
+      messages: { ackReaction: "ðŸ‘€", ackReactionScope: "group-mentions" },
       channels: { whatsapp: {} },
     });
 
     expect(res.config.channels?.whatsapp?.ackReaction).toEqual({
-      emoji: "👀",
+      emoji: "ðŸ‘€",
       direct: false,
       group: "mentions",
     });
     expect(res.changes).toEqual([
-      "Copied messages.ackReaction → channels.whatsapp.ackReaction (scope: group-mentions).",
+      "Copied messages.ackReaction â†’ channels.whatsapp.ackReaction (scope: group-mentions).",
     ]);
   });
 
@@ -61,7 +61,7 @@ describe("normalizeLegacyConfigValues", () => {
     writeCreds(credsDir);
 
     const res = normalizeLegacyConfigValues({
-      messages: { ackReaction: "👀", ackReactionScope: "group-mentions" },
+      messages: { ackReaction: "ðŸ‘€", ackReactionScope: "group-mentions" },
     });
 
     expect(res.config.channels?.whatsapp).toBeUndefined();
@@ -73,7 +73,7 @@ describe("normalizeLegacyConfigValues", () => {
     fs.writeFileSync(credsPath, JSON.stringify({ me: {} }));
 
     const res = normalizeLegacyConfigValues({
-      messages: { ackReaction: "👀", ackReactionScope: "group-mentions" },
+      messages: { ackReaction: "ðŸ‘€", ackReactionScope: "group-mentions" },
     });
 
     expect(res.config.channels?.whatsapp).toBeUndefined();
@@ -85,7 +85,7 @@ describe("normalizeLegacyConfigValues", () => {
     writeCreds(credsDir);
 
     const res = normalizeLegacyConfigValues({
-      messages: { ackReaction: "👀", ackReactionScope: "group-mentions" },
+      messages: { ackReaction: "ðŸ‘€", ackReactionScope: "group-mentions" },
     });
 
     expect(res.config.channels?.whatsapp).toBeUndefined();
@@ -93,17 +93,17 @@ describe("normalizeLegacyConfigValues", () => {
   });
 
   it("copies legacy ack reaction when authDir override exists", () => {
-    const customDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-wa-auth-"));
+    const customDir = fs.mkdtempSync(path.join(os.tmpdir(), "-wa-auth-"));
     try {
       writeCreds(customDir);
 
       const res = normalizeLegacyConfigValues({
-        messages: { ackReaction: "👀", ackReactionScope: "group-mentions" },
+        messages: { ackReaction: "ðŸ‘€", ackReactionScope: "group-mentions" },
         channels: { whatsapp: { accounts: { work: { authDir: customDir } } } },
       });
 
       expect(res.config.channels?.whatsapp?.ackReaction).toEqual({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         direct: false,
         group: "mentions",
       });
@@ -112,3 +112,4 @@ describe("normalizeLegacyConfigValues", () => {
     }
   });
 });
+

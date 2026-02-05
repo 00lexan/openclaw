@@ -1,4 +1,4 @@
-import type { ExecAsk, ExecHost, ExecSecurity } from "../../../infra/exec-approvals.js";
+﻿import type { ExecAsk, ExecHost, ExecSecurity } from "../../../infra/exec-approvals.js";
 
 type ExecDirectiveParse = {
   cleaned: string;
@@ -228,3 +228,4 @@ export function extractExecDirective(body?: string): ExecDirectiveParse {
     invalidNode: parsed.invalidNode,
   };
 }
+

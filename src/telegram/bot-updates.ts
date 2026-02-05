@@ -1,4 +1,4 @@
-import type { Message } from "@grammyjs/types";
+﻿import type { Message } from "@grammyjs/types";
 import type { TelegramContext } from "./bot/types.js";
 import { createDedupeCache } from "../infra/dedupe.js";
 
@@ -54,3 +54,4 @@ export const createTelegramUpdateDedupe = () =>
   });
 
 export { MEDIA_GROUP_TIMEOUT_MS };
+

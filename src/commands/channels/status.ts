@@ -1,9 +1,9 @@
-import type { ChannelAccountSnapshot } from "../../channels/plugins/types.js";
+﻿import type { ChannelAccountSnapshot } from "../../channels/plugins/types.js";
 import { listChannelPlugins } from "../../channels/plugins/index.js";
 import { buildChannelAccountSnapshot } from "../../channels/plugins/status.js";
 import { formatCliCommand } from "../../cli/command-format.js";
 import { withProgress } from "../../cli/progress.js";
-import { type OpenClawConfig, readConfigFileSnapshot } from "../../config/config.js";
+import { type Config, readConfigFileSnapshot } from "../../config/config.js";
 import { callGateway } from "../../gateway/call.js";
 import { formatAge } from "../../infra/channel-summary.js";
 import { collectChannelStatusIssues } from "../../infra/channels-status-issues.js";
@@ -151,7 +151,7 @@ export function formatGatewayChannelsStatusLines(payload: Record<string, unknown
         `- ${issue.channel} ${issue.accountId}: ${issue.message}${issue.fix ? ` (${issue.fix})` : ""}`,
       );
     }
-    lines.push(`- Run: ${formatCliCommand("openclaw doctor")}`);
+    lines.push(`- Run: ${formatCliCommand(" doctor")}`);
     lines.push("");
   }
   lines.push(
@@ -161,7 +161,7 @@ export function formatGatewayChannelsStatusLines(payload: Record<string, unknown
 }
 
 async function formatConfigChannelsStatusLines(
-  cfg: OpenClawConfig,
+  cfg: Config,
   meta: { path?: string; mode?: "local" | "remote" },
 ): Promise<string[]> {
   const lines: string[] = [];
@@ -245,7 +245,7 @@ export async function channelsStatusCommand(
   runtime: RuntimeEnv = defaultRuntime,
 ) {
   const timeoutMs = Number(opts.timeout ?? 10_000);
-  const statusLabel = opts.probe ? "Checking channel status (probe)…" : "Checking channel status…";
+  const statusLabel = opts.probe ? "Checking channel status (probe)â€¦" : "Checking channel statusâ€¦";
   const shouldLogStatus = opts.json !== true && !process.stderr.isTTY;
   if (shouldLogStatus) {
     runtime.log(statusLabel);
@@ -287,3 +287,4 @@ export async function channelsStatusCommand(
     );
   }
 }
+

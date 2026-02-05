@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const callGatewayMock = vi.fn();
 vi.mock("../gateway/call.js", () => ({
@@ -24,10 +24,10 @@ vi.mock("../config/config.js", async (importOriginal) => {
 import { emitAgentEvent } from "../infra/agent-events.js";
 import "./test-helpers/fast-core-tools.js";
 import { sleep } from "../utils.js";
-import { createOpenClawTools } from "./openclaw-tools.js";
+import { createTools } from "./-tools.js";
 import { resetSubagentRegistryForTests } from "./subagent-registry.js";
 
-describe("openclaw-tools: subagents", () => {
+describe("-tools: subagents", () => {
   beforeEach(() => {
     configOverride = {
       session: {
@@ -71,7 +71,7 @@ describe("openclaw-tools: subagents", () => {
       return {};
     });
 
-    const tool = createOpenClawTools({
+    const tool = createTools({
       agentSessionKey: "main",
       agentChannel: "whatsapp",
     }).find((candidate) => candidate.name === "sessions_spawn");
@@ -110,7 +110,7 @@ describe("openclaw-tools: subagents", () => {
       },
     };
 
-    const tool = createOpenClawTools({
+    const tool = createTools({
       agentSessionKey: "main",
       agentChannel: "whatsapp",
     }).find((candidate) => candidate.name === "sessions_spawn");
@@ -181,7 +181,7 @@ describe("openclaw-tools: subagents", () => {
       return {};
     });
 
-    const tool = createOpenClawTools({
+    const tool = createTools({
       agentSessionKey: "discord:group:req",
       agentChannel: "discord",
     }).find((candidate) => candidate.name === "sessions_spawn");
@@ -291,7 +291,7 @@ describe("openclaw-tools: subagents", () => {
       return {};
     });
 
-    const tool = createOpenClawTools({
+    const tool = createTools({
       agentSessionKey: "main",
       agentChannel: "whatsapp",
       agentAccountId: "kev",
@@ -337,3 +337,4 @@ describe("openclaw-tools: subagents", () => {
     expect(announceParams?.accountId).toBe("kev");
   });
 });
+

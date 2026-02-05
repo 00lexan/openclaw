@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 添加或修改投票支持
-  - 调试从 CLI 或 Gateway 网关发送的投票
-summary: 通过 Gateway 网关 + CLI 发送投票
-title: 投票
+  - æ·»åŠ æˆ–ä¿®æ”¹æŠ•ç¥¨æ”¯æŒ
+  - è°ƒè¯•ä»Ž CLI æˆ– Gateway ç½‘å…³å‘é€çš„æŠ•ç¥¨
+summary: é€šè¿‡ Gateway ç½‘å…³ + CLI å‘é€æŠ•ç¥¨
+title: æŠ•ç¥¨
 x-i18n:
   generated_at: "2026-02-03T07:43:12Z"
   model: claude-opus-4-5
@@ -13,64 +13,65 @@ x-i18n:
   workflow: 15
 ---
 
-# 投票
+# æŠ•ç¥¨
 
-## 支持的渠道
+## æ”¯æŒçš„æ¸ é“
 
-- WhatsApp（Web 渠道）
+- WhatsAppï¼ˆWeb æ¸ é“ï¼‰
 - Discord
-- MS Teams（Adaptive Cards）
+- MS Teamsï¼ˆAdaptive Cardsï¼‰
 
 ## CLI
 
 ```bash
 # WhatsApp
-openclaw message poll --target +15555550123 \
+ message poll --target +15555550123 \
   --poll-question "Lunch today?" --poll-option "Yes" --poll-option "No" --poll-option "Maybe"
-openclaw message poll --target 123456789@g.us \
+ message poll --target 123456789@g.us \
   --poll-question "Meeting time?" --poll-option "10am" --poll-option "2pm" --poll-option "4pm" --poll-multi
 
 # Discord
-openclaw message poll --channel discord --target channel:123456789 \
+ message poll --channel discord --target channel:123456789 \
   --poll-question "Snack?" --poll-option "Pizza" --poll-option "Sushi"
-openclaw message poll --channel discord --target channel:123456789 \
+ message poll --channel discord --target channel:123456789 \
   --poll-question "Plan?" --poll-option "A" --poll-option "B" --poll-duration-hours 48
 
 # MS Teams
-openclaw message poll --channel msteams --target conversation:19:abc@thread.tacv2 \
+ message poll --channel msteams --target conversation:19:abc@thread.tacv2 \
   --poll-question "Lunch?" --poll-option "Pizza" --poll-option "Sushi"
 ```
 
-选项：
+é€‰é¡¹ï¼š
 
-- `--channel`：`whatsapp`（默认）、`discord` 或 `msteams`
-- `--poll-multi`：允许选择多个选项
-- `--poll-duration-hours`：仅限 Discord（省略时默认为 24）
+- `--channel`ï¼š`whatsapp`ï¼ˆé»˜è®¤ï¼‰ã€`discord` æˆ– `msteams`
+- `--poll-multi`ï¼šå…è®¸é€‰æ‹©å¤šä¸ªé€‰é¡¹
+- `--poll-duration-hours`ï¼šä»…é™ Discordï¼ˆçœç•¥æ—¶é»˜è®¤ä¸º 24ï¼‰
 
-## Gateway 网关 RPC
+## Gateway ç½‘å…³ RPC
 
-方法：`poll`
+æ–¹æ³•ï¼š`poll`
 
-参数：
+å‚æ•°ï¼š
 
-- `to`（字符串，必需）
-- `question`（字符串，必需）
-- `options`（字符串数组，必需）
-- `maxSelections`（数字，可选）
-- `durationHours`（数字，可选）
-- `channel`（字符串，可选，默认：`whatsapp`）
-- `idempotencyKey`（字符串，必需）
+- `to`ï¼ˆå­—ç¬¦ä¸²ï¼Œå¿…éœ€ï¼‰
+- `question`ï¼ˆå­—ç¬¦ä¸²ï¼Œå¿…éœ€ï¼‰
+- `options`ï¼ˆå­—ç¬¦ä¸²æ•°ç»„ï¼Œå¿…éœ€ï¼‰
+- `maxSelections`ï¼ˆæ•°å­—ï¼Œå¯é€‰ï¼‰
+- `durationHours`ï¼ˆæ•°å­—ï¼Œå¯é€‰ï¼‰
+- `channel`ï¼ˆå­—ç¬¦ä¸²ï¼Œå¯é€‰ï¼Œé»˜è®¤ï¼š`whatsapp`ï¼‰
+- `idempotencyKey`ï¼ˆå­—ç¬¦ä¸²ï¼Œå¿…éœ€ï¼‰
 
-## 渠道差异
+## æ¸ é“å·®å¼‚
 
-- WhatsApp：2-12 个选项，`maxSelections` 必须在选项数量范围内，忽略 `durationHours`。
-- Discord：2-10 个选项，`durationHours` 限制在 1-768 小时之间（默认 24）。`maxSelections > 1` 启用多选；Discord 不支持严格的选择数量限制。
-- MS Teams：Adaptive Card 投票（由 OpenClaw 管理）。无原生投票 API；`durationHours` 被忽略。
+- WhatsAppï¼š2-12 ä¸ªé€‰é¡¹ï¼Œ`maxSelections` å¿…é¡»åœ¨é€‰é¡¹æ•°é‡èŒƒå›´å†…ï¼Œå¿½ç•¥ `durationHours`ã€‚
+- Discordï¼š2-10 ä¸ªé€‰é¡¹ï¼Œ`durationHours` é™åˆ¶åœ¨ 1-768 å°æ—¶ä¹‹é—´ï¼ˆé»˜è®¤ 24ï¼‰ã€‚`maxSelections > 1` å¯ç”¨å¤šé€‰ï¼›Discord ä¸æ”¯æŒä¸¥æ ¼çš„é€‰æ‹©æ•°é‡é™åˆ¶ã€‚
+- MS Teamsï¼šAdaptive Card æŠ•ç¥¨ï¼ˆç”±  ç®¡ç†ï¼‰ã€‚æ— åŽŸç”ŸæŠ•ç¥¨ APIï¼›`durationHours` è¢«å¿½ç•¥ã€‚
 
-## 智能体工具（Message）
+## æ™ºèƒ½ä½“å·¥å…·ï¼ˆMessageï¼‰
 
-使用 `message` 工具的 `poll` 操作（`to`、`pollQuestion`、`pollOption`，可选 `pollMulti`、`pollDurationHours`、`channel`）。
+ä½¿ç”¨ `message` å·¥å…·çš„ `poll` æ“ä½œï¼ˆ`to`ã€`pollQuestion`ã€`pollOption`ï¼Œå¯é€‰ `pollMulti`ã€`pollDurationHours`ã€`channel`ï¼‰ã€‚
 
-注意：Discord 没有"恰好选择 N 个"模式；`pollMulti` 映射为多选。
-Teams 投票以 Adaptive Cards 形式渲染，需要 Gateway 网关保持在线
-以将投票记录到 `~/.openclaw/msteams-polls.json`。
+æ³¨æ„ï¼šDiscord æ²¡æœ‰"æ°å¥½é€‰æ‹© N ä¸ª"æ¨¡å¼ï¼›`pollMulti` æ˜ å°„ä¸ºå¤šé€‰ã€‚
+Teams æŠ•ç¥¨ä»¥ Adaptive Cards å½¢å¼æ¸²æŸ“ï¼Œéœ€è¦ Gateway ç½‘å…³ä¿æŒåœ¨çº¿
+ä»¥å°†æŠ•ç¥¨è®°å½•åˆ° `~/./msteams-polls.json`ã€‚
+

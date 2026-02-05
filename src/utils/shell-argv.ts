@@ -1,4 +1,4 @@
-export function splitShellArgs(raw: string): string[] | null {
+﻿export function splitShellArgs(raw: string): string[] | null {
   const tokens: string[] = [];
   let buf = "";
   let inSingle = false;
@@ -60,3 +60,4 @@ export function splitShellArgs(raw: string): string[] | null {
   pushToken();
   return tokens;
 }
+

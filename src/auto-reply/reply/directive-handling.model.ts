@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import type { ReplyPayload } from "../types.js";
 import type { InlineDirectives } from "./directive-handling.parse.js";
 import { resolveAuthStorePathForDisplay } from "../../agents/auth-profiles.js";
@@ -25,7 +25,7 @@ import {
 import { type ModelDirectiveSelection, resolveModelDirectiveSelection } from "./model-selection.js";
 
 function buildModelPickerCatalog(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   defaultProvider: string;
   defaultModel: string;
   aliasIndex: ModelAliasIndex;
@@ -168,7 +168,7 @@ function buildModelPickerCatalog(params: {
 
 export async function maybeHandleModelDirectiveInfo(params: {
   directives: InlineDirectives;
-  cfg: OpenClawConfig;
+  cfg: Config;
   agentDir: string;
   activeAgentId: string;
   provider: string;
@@ -305,7 +305,7 @@ export async function maybeHandleModelDirectiveInfo(params: {
       const label = `${provider}/${entry.id}`;
       const aliases = params.aliasIndex.byKey.get(label);
       const aliasSuffix = aliases && aliases.length > 0 ? ` (${aliases.join(", ")})` : "";
-      lines.push(`  • ${label}${aliasSuffix}`);
+      lines.push(`  â€¢ ${label}${aliasSuffix}`);
     }
   }
   return { text: lines.join("\n") };
@@ -313,7 +313,7 @@ export async function maybeHandleModelDirectiveInfo(params: {
 
 export function resolveModelSelectionFromDirective(params: {
   directives: InlineDirectives;
-  cfg: OpenClawConfig;
+  cfg: Config;
   agentDir: string;
   defaultProvider: string;
   defaultModel: string;
@@ -400,3 +400,4 @@ export function resolveModelSelectionFromDirective(params: {
 
   return { modelSelection, profileOverride };
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { checkBrowserOrigin } from "./origin-check.js";
 
 describe("checkBrowserOrigin", () => {
@@ -43,3 +43,4 @@ describe("checkBrowserOrigin", () => {
     expect(result.ok).toBe(false);
   });
 });
+

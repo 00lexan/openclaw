@@ -1,4 +1,4 @@
-import type { RequestClient } from "@buape/carbon";
+﻿import type { RequestClient } from "@buape/carbon";
 import type { RetryConfig } from "../infra/retry.js";
 
 export class DiscordSendError extends Error {
@@ -155,3 +155,4 @@ export type DiscordChannelPermissionSet = {
   allow?: string;
   deny?: string;
 };
+

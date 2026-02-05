@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import { resolveLaunchAgentPlistPath } from "./launchd.js";
 import {
@@ -357,3 +357,4 @@ export async function auditGatewayServiceConfig(params: {
 
   return { ok: issues.length === 0, issues };
 }
+

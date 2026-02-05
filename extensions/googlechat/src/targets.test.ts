@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   isGoogleChatSpaceTarget,
   isGoogleChatUserTarget,
@@ -30,3 +30,4 @@ describe("target helpers", () => {
     expect(isGoogleChatUserTarget("spaces/abc")).toBe(false);
   });
 });
+

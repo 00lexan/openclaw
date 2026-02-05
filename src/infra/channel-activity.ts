@@ -1,4 +1,4 @@
-import type { ChannelId } from "../channels/plugins/types.js";
+﻿import type { ChannelId } from "../channels/plugins/types.js";
 export type ChannelDirection = "inbound" | "outbound";
 
 type ActivityEntry = {
@@ -56,3 +56,4 @@ export function getChannelActivity(params: {
 export function resetChannelActivityForTest() {
   activity.clear();
 }
+

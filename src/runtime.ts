@@ -1,4 +1,4 @@
-import { clearActiveProgressLine } from "./terminal/progress-line.js";
+﻿import { clearActiveProgressLine } from "./terminal/progress-line.js";
 import { restoreTerminalState } from "./terminal/restore.js";
 
 export type RuntimeEnv = {
@@ -22,3 +22,4 @@ export const defaultRuntime: RuntimeEnv = {
     throw new Error("unreachable"); // satisfies tests when mocked
   },
 };
+

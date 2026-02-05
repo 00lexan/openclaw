@@ -1,4 +1,4 @@
-import type { PluginRuntime } from "openclaw/plugin-sdk";
+﻿import type { PluginRuntime } from "/plugin-sdk";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { setMSTeamsRuntime } from "./runtime.js";
 
@@ -457,3 +457,4 @@ describe("msteams attachments", () => {
     });
   });
 });
+

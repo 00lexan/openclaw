@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+﻿import { execFileSync } from "node:child_process";
 import { resolveLsofCommandSync } from "../infra/ports-lsof.js";
 import { sleep } from "../utils.js";
 
@@ -134,3 +134,4 @@ export async function forceFreePortAndWait(
     `port ${port} still has listeners after --force: ${still.map((p) => p.pid).join(", ")}`,
   );
 }
+

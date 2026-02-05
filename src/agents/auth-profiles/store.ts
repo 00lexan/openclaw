@@ -1,4 +1,4 @@
-import type { OAuthCredentials } from "@mariozechner/pi-ai";
+﻿import type { OAuthCredentials } from "@mariozechner/pi-ai";
 import fs from "node:fs";
 import lockfile from "proper-lockfile";
 import type { AuthProfileCredential, AuthProfileStore, ProfileUsageStats } from "./types.js";
@@ -376,3 +376,4 @@ export function saveAuthProfileStore(store: AuthProfileStore, agentDir?: string)
   } satisfies AuthProfileStore;
   saveJsonFile(authPath, payload);
 }
+

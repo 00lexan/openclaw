@@ -1,4 +1,4 @@
-import type { ProgressReporter } from "../../cli/progress.js";
+﻿import type { ProgressReporter } from "../../cli/progress.js";
 import { renderTable } from "../../terminal/table.js";
 import { isRich, theme } from "../../terminal/theme.js";
 import { appendStatusAllDiagnosis } from "./diagnosis.js";
@@ -100,7 +100,7 @@ export async function buildStatusAllReportLines(params: {
       return row;
     }
     const issue = issues[0];
-    const suffix = ` · ${warn(`gateway: ${String(issue.message).slice(0, 90)}`)}`;
+    const suffix = ` Â· ${warn(`gateway: ${String(issue.message).slice(0, 90)}`)}`;
     return {
       ...row,
       State: warn("WARN"),
@@ -145,7 +145,7 @@ export async function buildStatusAllReportLines(params: {
   });
 
   const lines: string[] = [];
-  lines.push(heading("OpenClaw status --all"));
+  lines.push(heading(" status --all"));
   lines.push("");
   lines.push(heading("Overview"));
   lines.push(overview.trimEnd());
@@ -194,3 +194,4 @@ export async function buildStatusAllReportLines(params: {
 
   return lines;
 }
+

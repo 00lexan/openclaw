@@ -1,4 +1,4 @@
-import type { Server as HttpServer } from "node:http";
+﻿import type { Server as HttpServer } from "node:http";
 import { WebSocketServer } from "ws";
 import type { CliDeps } from "../cli/deps.js";
 import type { createSubsystemLogger } from "../logging/subsystem.js";
@@ -27,7 +27,7 @@ import { listenGatewayHttpServer } from "./server/http-listen.js";
 import { createGatewayPluginRequestHandler } from "./server/plugins-http.js";
 
 export async function createGatewayRuntimeState(params: {
-  cfg: import("../config/config.js").OpenClawConfig;
+  cfg: import("../config/config.js").Config;
   bindHost: string;
   port: number;
   controlUiEnabled: boolean;
@@ -200,3 +200,4 @@ export async function createGatewayRuntimeState(params: {
     toolEventRecipients,
   };
 }
+

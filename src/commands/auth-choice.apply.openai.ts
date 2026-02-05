@@ -1,4 +1,4 @@
-import { loginOpenAICodex } from "@mariozechner/pi-ai";
+﻿import { loginOpenAICodex } from "@mariozechner/pi-ai";
 import type { ApplyAuthChoiceParams, ApplyAuthChoiceResult } from "./auth-choice.apply.js";
 import { resolveEnvApiKey } from "../agents/model-auth.js";
 import { upsertSharedEnvVar } from "../infra/env-file.js";
@@ -98,7 +98,7 @@ export async function applyAuthChoiceOpenAI(
           ].join("\n"),
       "OpenAI Codex OAuth",
     );
-    const spin = params.prompter.progress("Starting OAuth flow…");
+    const spin = params.prompter.progress("Starting OAuth flowâ€¦");
     try {
       const { onAuth, onPrompt } = createVpsAwareOAuthHandlers({
         isRemote,
@@ -106,7 +106,7 @@ export async function applyAuthChoiceOpenAI(
         runtime: params.runtime,
         spin,
         openUrl,
-        localBrowserMessage: "Complete sign-in in browser…",
+        localBrowserMessage: "Complete sign-in in browserâ€¦",
       });
 
       const creds = await loginOpenAICodex({
@@ -140,7 +140,7 @@ export async function applyAuthChoiceOpenAI(
       spin.stop("OpenAI OAuth failed");
       params.runtime.error(String(err));
       await params.prompter.note(
-        "Trouble with OAuth? See https://docs.openclaw.ai/start/faq",
+        "Trouble with OAuth? See https://docs..ai/start/faq",
         "OAuth help",
       );
     }
@@ -149,3 +149,4 @@ export async function applyAuthChoiceOpenAI(
 
   return null;
 }
+

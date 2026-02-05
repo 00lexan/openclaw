@@ -1,4 +1,4 @@
-export type RoleRef = {
+﻿export type RoleRef = {
   role: string;
   name?: string;
   /** Index used only when role+name duplicates exist. */
@@ -425,3 +425,4 @@ export function buildRoleSnapshotFromAiSnapshot(
     refs,
   };
 }
+

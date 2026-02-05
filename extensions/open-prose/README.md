@@ -1,4 +1,4 @@
-# OpenProse (plugin)
+﻿# OpenProse (plugin)
 
 Adds the OpenProse skill pack and `/prose` slash command.
 
@@ -23,3 +23,4 @@ Restart the Gateway after enabling.
 - `/prose` slash command (user-invocable skill)
 - OpenProse VM semantics (`.prose` programs + multi-agent orchestration)
 - Telemetry support (best-effort, per OpenProse spec)
+

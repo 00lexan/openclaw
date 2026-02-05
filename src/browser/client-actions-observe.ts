@@ -1,4 +1,4 @@
-import type { BrowserActionPathResult, BrowserActionTargetOk } from "./client-actions-types.js";
+﻿import type { BrowserActionPathResult, BrowserActionTargetOk } from "./client-actions-types.js";
 import type {
   BrowserConsoleMessage,
   BrowserNetworkRequest,
@@ -198,3 +198,4 @@ export async function browserResponseBody(
     timeoutMs: 20000,
   });
 }
+

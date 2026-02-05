@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type {
   OpenAIRealtimeSTTProvider,
   RealtimeSTTSession,
@@ -94,3 +94,4 @@ describe("MediaStreamHandler TTS queue", () => {
     expect(queuedRan).toBe(false);
   });
 });
+

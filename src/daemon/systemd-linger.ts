@@ -1,4 +1,4 @@
-import os from "node:os";
+﻿import os from "node:os";
 import { runCommandWithTimeout, runExec } from "../process/exec.js";
 
 function resolveLoginctlUser(env: Record<string, string | undefined>): string | null {
@@ -71,3 +71,4 @@ export async function enableSystemdUserLinger(params: {
     return { ok: false, stdout: "", stderr: message, code: 1 };
   }
 }
+

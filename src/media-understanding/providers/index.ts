@@ -1,4 +1,4 @@
-import type { MediaUnderstandingProvider } from "../types.js";
+﻿import type { MediaUnderstandingProvider } from "../types.js";
 import { normalizeProviderId } from "../../agents/model-selection.js";
 import { anthropicProvider } from "./anthropic/index.js";
 import { deepgramProvider } from "./deepgram/index.js";
@@ -54,3 +54,4 @@ export function getMediaUnderstandingProvider(
 ): MediaUnderstandingProvider | undefined {
   return registry.get(normalizeMediaProviderId(id));
 }
+

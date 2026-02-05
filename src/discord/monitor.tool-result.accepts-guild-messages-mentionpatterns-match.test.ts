@@ -1,4 +1,4 @@
-import type { Client } from "@buape/carbon";
+﻿import type { Client } from "@buape/carbon";
 import { ChannelType, MessageType } from "@buape/carbon";
 import { Routes } from "discord-api-types/v10";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -34,7 +34,7 @@ vi.mock("../config/sessions.js", async (importOriginal) => {
   const actual = await importOriginal<typeof import("../config/sessions.js")>();
   return {
     ...actual,
-    resolveStorePath: vi.fn(() => "/tmp/openclaw-sessions.json"),
+    resolveStorePath: vi.fn(() => "/tmp/-sessions.json"),
     updateLastRoute: (...args: unknown[]) => updateLastRouteMock(...args),
     resolveSessionKey: vi.fn(),
   };
@@ -64,10 +64,10 @@ describe("discord tool result dispatch", () => {
         agents: {
           defaults: {
             model: "anthropic/claude-opus-4-5",
-            workspace: "/tmp/openclaw",
+            workspace: "/tmp/",
           },
         },
-        session: { store: "/tmp/openclaw-sessions.json" },
+        session: { store: "/tmp/-sessions.json" },
         channels: {
           discord: {
             dm: { enabled: true, policy: "open" },
@@ -77,7 +77,7 @@ describe("discord tool result dispatch", () => {
         },
         messages: {
           responsePrefix: "PFX",
-          groupChat: { mentionPatterns: ["\\bopenclaw\\b"] },
+          groupChat: { mentionPatterns: ["\\b\\b"] },
         },
       } as ReturnType<typeof import("../config/config.js").loadConfig>;
 
@@ -115,7 +115,7 @@ describe("discord tool result dispatch", () => {
         {
           message: {
             id: "m2",
-            content: "openclaw: hello",
+            content: ": hello",
             channelId: "c1",
             timestamp: new Date().toISOString(),
             type: MessageType.Default,
@@ -148,10 +148,10 @@ describe("discord tool result dispatch", () => {
         agents: {
           defaults: {
             model: "anthropic/claude-opus-4-5",
-            workspace: "/tmp/openclaw",
+            workspace: "/tmp/",
           },
         },
-        session: { store: "/tmp/openclaw-sessions.json" },
+        session: { store: "/tmp/-sessions.json" },
         channels: {
           discord: {
             dm: { enabled: true, policy: "open" },
@@ -161,7 +161,7 @@ describe("discord tool result dispatch", () => {
         },
         messages: {
           responsePrefix: "PFX",
-          groupChat: { mentionPatterns: ["\\bopenclaw\\b"] },
+          groupChat: { mentionPatterns: ["\\b\\b"] },
         },
       } as ReturnType<typeof import("../config/config.js").loadConfig>;
 
@@ -199,7 +199,7 @@ describe("discord tool result dispatch", () => {
         {
           message: {
             id: "m2",
-            content: "openclaw: hello",
+            content: ": hello",
             channelId: "c1",
             timestamp: new Date().toISOString(),
             type: MessageType.Default,
@@ -230,10 +230,10 @@ describe("discord tool result dispatch", () => {
       agents: {
         defaults: {
           model: "anthropic/claude-opus-4-5",
-          workspace: "/tmp/openclaw",
+          workspace: "/tmp/",
         },
       },
-      session: { store: "/tmp/openclaw-sessions.json" },
+      session: { store: "/tmp/-sessions.json" },
       channels: {
         discord: {
           dm: { enabled: true, policy: "open" },
@@ -298,7 +298,7 @@ describe("discord tool result dispatch", () => {
             mentionedEveryone: false,
             mentionedUsers: [],
             mentionedRoles: [],
-            author: { id: "bot-id", bot: true, username: "OpenClaw" },
+            author: { id: "bot-id", bot: true, username: "" },
           },
         },
         author: { id: "u1", bot: false, username: "Ada" },
@@ -344,10 +344,10 @@ describe("discord tool result dispatch", () => {
       agents: {
         defaults: {
           model: "anthropic/claude-opus-4-5",
-          workspace: "/tmp/openclaw",
+          workspace: "/tmp/",
         },
       },
-      session: { store: "/tmp/openclaw-sessions.json" },
+      session: { store: "/tmp/-sessions.json" },
       messages: { responsePrefix: "PFX" },
       channels: {
         discord: {
@@ -455,10 +455,10 @@ describe("discord tool result dispatch", () => {
       agents: {
         defaults: {
           model: "anthropic/claude-opus-4-5",
-          workspace: "/tmp/openclaw",
+          workspace: "/tmp/",
         },
       },
-      session: { store: "/tmp/openclaw-sessions.json" },
+      session: { store: "/tmp/-sessions.json" },
       channels: {
         discord: {
           dm: { enabled: true, policy: "open" },
@@ -564,8 +564,8 @@ describe("discord tool result dispatch", () => {
     });
 
     const cfg = {
-      agent: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/openclaw" },
-      session: { store: "/tmp/openclaw-sessions.json" },
+      agent: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/" },
+      session: { store: "/tmp/-sessions.json" },
       channels: {
         discord: {
           dm: { enabled: true, policy: "open" },
@@ -671,10 +671,10 @@ describe("discord tool result dispatch", () => {
       agents: {
         defaults: {
           model: "anthropic/claude-opus-4-5",
-          workspace: "/tmp/openclaw",
+          workspace: "/tmp/",
         },
       },
-      session: { store: "/tmp/openclaw-sessions.json" },
+      session: { store: "/tmp/-sessions.json" },
       messages: { responsePrefix: "PFX" },
       channels: {
         discord: {
@@ -759,3 +759,4 @@ describe("discord tool result dispatch", () => {
     expect(capturedCtx?.ParentSessionKey).toBe("agent:support:discord:channel:p1");
   });
 });
+

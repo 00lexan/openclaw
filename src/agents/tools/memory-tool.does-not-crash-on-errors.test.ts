@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 vi.mock("../../memory/index.js", () => {
   return {
@@ -63,3 +63,4 @@ describe("memory tools", () => {
     });
   });
 });
+

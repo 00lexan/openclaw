@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type {
   ChannelAccountSnapshot,
   ChannelUiMetaEntry,
@@ -323,3 +323,4 @@ function renderGenericAccount(account: ChannelAccountSnapshot) {
     </div>
   `;
 }
+

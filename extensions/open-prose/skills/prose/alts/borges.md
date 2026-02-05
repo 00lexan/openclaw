@@ -1,7 +1,7 @@
----
+﻿---
 role: experimental
 summary: |
-  Borges register for OpenProse—a scholarly/metaphysical alternative keyword set.
+  Borges register for OpenProseâ€”a scholarly/metaphysical alternative keyword set.
   Labyrinths, dreamers, forking paths, and infinite libraries. For benchmarking
   against the functional register.
 status: draft
@@ -12,16 +12,16 @@ requires: prose.md
 
 > **This is a skin layer.** It requires `prose.md` to be loaded first. All execution semantics, state management, and VM behavior are defined there. This file only provides keyword translations.
 
-An alternative register for OpenProse that draws from the works of Jorge Luis Borges. Where the functional register is utilitarian and the folk register is whimsical, the Borges register is scholarly and metaphysical—everything feels like a citation from a fictional encyclopedia.
+An alternative register for OpenProse that draws from the works of Jorge Luis Borges. Where the functional register is utilitarian and the folk register is whimsical, the Borges register is scholarly and metaphysicalâ€”everything feels like a citation from a fictional encyclopedia.
 
 ## How to Use
 
 1. Load `prose.md` first (execution semantics)
 2. Load this file (keyword translations)
 3. When parsing `.prose` files, accept Borges keywords as aliases for functional keywords
-4. All execution behavior remains identical—only surface syntax changes
+4. All execution behavior remains identicalâ€”only surface syntax changes
 
-> **Design constraint:** Still aims to be "structured but self-evident" per the language tenets—just self-evident through a Borgesian lens.
+> **Design constraint:** Still aims to be "structured but self-evident" per the language tenetsâ€”just self-evident through a Borgesian lens.
 
 ---
 
@@ -31,21 +31,21 @@ An alternative register for OpenProse that draws from the works of Jorge Luis Bo
 
 | Functional | Borges    | Reference                                                       |
 | ---------- | --------- | --------------------------------------------------------------- |
-| `agent`    | `dreamer` | "The Circular Ruins" — dreamers who dream worlds into existence |
+| `agent`    | `dreamer` | "The Circular Ruins" â€” dreamers who dream worlds into existence |
 | `session`  | `dream`   | Each execution is a dream within the dreamer                    |
-| `parallel` | `forking` | "The Garden of Forking Paths" — branching timelines             |
+| `parallel` | `forking` | "The Garden of Forking Paths" â€” branching timelines             |
 | `block`    | `chapter` | Books within books, self-referential structure                  |
 
 ### Composition & Binding
 
 | Functional | Borges     | Reference                                                |
 | ---------- | ---------- | -------------------------------------------------------- |
-| `use`      | `retrieve` | "The Library of Babel" — retrieving from infinite stacks |
+| `use`      | `retrieve` | "The Library of Babel" â€” retrieving from infinite stacks |
 | `input`    | `axiom`    | The given premise (Borges' scholarly/mathematical tone)  |
 | `output`   | `theorem`  | What is derived from the axioms                          |
 | `let`      | `inscribe` | Writing something into being                             |
-| `const`    | `zahir`    | "The Zahir" — unforgettable, unchangeable, fixed in mind |
-| `context`  | `memory`   | "Funes the Memorious" — perfect, total recall            |
+| `const`    | `zahir`    | "The Zahir" â€” unforgettable, unchangeable, fixed in mind |
+| `context`  | `memory`   | "Funes the Memorious" â€” perfect, total recall            |
 
 ### Control Flow
 
@@ -83,12 +83,12 @@ An alternative register for OpenProse that draws from the works of Jorge Luis Bo
 
 These keywords already work or are too functional to replace sensibly:
 
-- `**...**` discretion markers — already "breaking the fourth wall"
-- `until`, `while` — already work
-- `map`, `filter`, `reduce`, `pmap` — pipeline operators
-- `max` — constraint modifier
-- `as` — aliasing
-- Model names: `sonnet`, `opus`, `haiku` — already literary
+- `**...**` discretion markers â€” already "breaking the fourth wall"
+- `until`, `while` â€” already work
+- `map`, `filter`, `reduce`, `pmap` â€” pipeline operators
+- `max` â€” constraint modifier
+- `as` â€” aliasing
+- Model names: `sonnet`, `opus`, `haiku` â€” already literary
 
 ---
 
@@ -283,14 +283,14 @@ zahir config = { author: "opus", recur: 3 }
 1. **Metaphysical resonance.** AI sessions dreaming subagents into existence mirrors "The Circular Ruins."
 2. **Scholarly tone.** `axiom`/`theorem` frame programs as logical derivations.
 3. **Memorable metaphors.** The zahir you cannot change. The labyrinth you cannot escape. The library you retrieve from.
-4. **Thematic coherence.** Borges wrote about infinity, recursion, and branching time—all core to computation.
+4. **Thematic coherence.** Borges wrote about infinity, recursion, and branching timeâ€”all core to computation.
 5. **Literary prestige.** Borges is widely read; references land for many users.
 
 ## The Case Against Borges
 
 1. **Requires familiarity.** "Zahir" and "Funes" are obscure to those who haven't read Borges.
 2. **Potentially pretentious.** May feel like showing off rather than communicating.
-3. **Translation overhead.** Users must map `labyrinth` → `loop` mentally.
+3. **Translation overhead.** Users must map `labyrinth` â†’ `loop` mentally.
 4. **Cultural specificity.** Less universal than folk/fairy tale tropes.
 
 ---
@@ -307,7 +307,7 @@ For those unfamiliar with the source material:
 | "Funes the Memorious"         | `memory`                           | A man with perfect memory who cannot forget anything                                  |
 | "The Zahir"                   | `zahir`                            | An object that, once seen, cannot be forgotten or ignored                             |
 | "The Aleph"                   | (not used)                         | A point in space containing all other points                                          |
-| "Tlön, Uqbar, Orbis Tertius"  | (not used)                         | A fictional world that gradually becomes real                                         |
+| "TlÃ¶n, Uqbar, Orbis Tertius"  | (not used)                         | A fictional world that gradually becomes real                                         |
 
 ---
 
@@ -353,8 +353,9 @@ Preserved for benchmarking against the functional and folk registers. The Borges
 
 Potential benchmarking questions:
 
-1. **Learnability** — Is `labyrinth` intuitive for loops?
-2. **Memorability** — Does `zahir` stick better than `const`?
-3. **Comprehension** — Do users understand `dreamer`/`dream` immediately?
-4. **Preference** — Which register do users find most pleasant?
-5. **Error rates** — Does the metaphorical mapping cause mistakes?
+1. **Learnability** â€” Is `labyrinth` intuitive for loops?
+2. **Memorability** â€” Does `zahir` stick better than `const`?
+3. **Comprehension** â€” Do users understand `dreamer`/`dream` immediately?
+4. **Preference** â€” Which register do users find most pleasant?
+5. **Error rates** â€” Does the metaphorical mapping cause mistakes?
+

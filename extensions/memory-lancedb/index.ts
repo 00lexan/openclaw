@@ -1,17 +1,17 @@
-/**
- * OpenClaw Memory (LanceDB) Plugin
+﻿/**
+ *  Memory (LanceDB) Plugin
  *
  * Long-term memory with vector search for AI conversations.
  * Uses LanceDB for storage and OpenAI for embeddings.
  * Provides seamless auto-recall and auto-capture via lifecycle hooks.
  */
 
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
+import type { PluginApi } from "/plugin-sdk";
 import * as lancedb from "@lancedb/lancedb";
 import { Type } from "@sinclair/typebox";
 import { randomUUID } from "node:crypto";
 import OpenAI from "openai";
-import { stringEnum } from "openclaw/plugin-sdk";
+import { stringEnum } from "/plugin-sdk";
 import {
   MEMORY_CATEGORIES,
   type MemoryCategory,
@@ -171,11 +171,11 @@ class Embeddings {
 
 const MEMORY_TRIGGERS = [
   /zapamatuj si|pamatuj|remember/i,
-  /preferuji|radši|nechci|prefer/i,
-  /rozhodli jsme|budeme používat/i,
+  /preferuji|radÅ¡i|nechci|prefer/i,
+  /rozhodli jsme|budeme pouÅ¾Ã­vat/i,
   /\+\d{10,}/,
   /[\w.-]+@[\w.-]+\.\w+/,
-  /můj\s+\w+\s+je|je\s+můj/i,
+  /mÅ¯j\s+\w+\s+je|je\s+mÅ¯j/i,
   /my\s+\w+\s+is|is\s+my/i,
   /i (like|prefer|hate|love|want|need)/i,
   /always|never|important/i,
@@ -207,7 +207,7 @@ function shouldCapture(text: string): boolean {
 
 function detectCategory(text: string): MemoryCategory {
   const lower = text.toLowerCase();
-  if (/prefer|radši|like|love|hate|want/i.test(lower)) {
+  if (/prefer|radÅ¡i|like|love|hate|want/i.test(lower)) {
     return "preference";
   }
   if (/rozhodli|decided|will use|budeme/i.test(lower)) {
@@ -216,7 +216,7 @@ function detectCategory(text: string): MemoryCategory {
   if (/\+\d{10,}|@[\w.-]+\.\w+|is called|jmenuje se/i.test(lower)) {
     return "entity";
   }
-  if (/is|are|has|have|je|má|jsou/i.test(lower)) {
+  if (/is|are|has|have|je|mÃ¡|jsou/i.test(lower)) {
     return "fact";
   }
   return "other";
@@ -233,7 +233,7 @@ const memoryPlugin = {
   kind: "memory" as const,
   configSchema: memoryConfigSchema,
 
-  register(api: OpenClawPluginApi) {
+  register(api: PluginApi) {
     const cfg = memoryConfigSchema.parse(api.pluginConfig);
     const resolvedDbPath = api.resolvePath(cfg.dbPath!);
     const vectorDim = vectorDimsForModel(cfg.embedding.model ?? "text-embedding-3-small");
@@ -606,3 +606,4 @@ const memoryPlugin = {
 };
 
 export default memoryPlugin;
+

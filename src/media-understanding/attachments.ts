@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -357,7 +357,7 @@ export class MediaAttachmentCache {
       timeoutMs: params.timeoutMs,
     });
     const extension = path.extname(bufferResult.fileName || "") || "";
-    const tmpPath = path.join(os.tmpdir(), `openclaw-media-${crypto.randomUUID()}${extension}`);
+    const tmpPath = path.join(os.tmpdir(), `-media-${crypto.randomUUID()}${extension}`);
     await fs.writeFile(tmpPath, bufferResult.buffer);
     entry.tempPath = tmpPath;
     entry.tempCleanup = async () => {
@@ -428,3 +428,4 @@ export class MediaAttachmentCache {
     }
   }
 }
+

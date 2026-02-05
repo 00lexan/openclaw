@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { markdownToTelegramHtml } from "./format.js";
 
 describe("markdownToTelegramHtml", () => {
@@ -29,7 +29,7 @@ describe("markdownToTelegramHtml", () => {
 
   it("renders lists without block HTML", () => {
     const res = markdownToTelegramHtml("- one\n- two");
-    expect(res).toBe("• one\n• two");
+    expect(res).toBe("â€¢ one\nâ€¢ two");
   });
 
   it("renders ordered lists with numbering", () => {
@@ -69,3 +69,4 @@ describe("markdownToTelegramHtml", () => {
     expect(res).toBe('<a href="https://example.com"><b>bold</b></a>');
   });
 });
+

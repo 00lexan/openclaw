@@ -1,4 +1,4 @@
-const KEY = "openclaw.control.settings.v1";
+﻿const KEY = ".control.settings.v1";
 
 import type { ThemeMode } from "./theme.ts";
 
@@ -86,3 +86,4 @@ export function loadSettings(): UiSettings {
 export function saveSettings(next: UiSettings) {
   localStorage.setItem(KEY, JSON.stringify(next));
 }
+

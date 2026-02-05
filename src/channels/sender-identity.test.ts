@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { MsgContext } from "../auto-reply/templating.js";
 import { validateSenderIdentity } from "./sender-identity.js";
 
@@ -28,3 +28,4 @@ describe("validateSenderIdentity", () => {
     ]);
   });
 });
+

@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你正在使用配对模式私信并需要批准发送者
-summary: "`openclaw pairing` 的 CLI 参考（批准/列出配对请求）"
+  - ä½ æ­£åœ¨ä½¿ç”¨é…å¯¹æ¨¡å¼ç§ä¿¡å¹¶éœ€è¦æ‰¹å‡†å‘é€è€…
+summary: "` pairing` çš„ CLI å‚è€ƒï¼ˆæ‰¹å‡†/åˆ—å‡ºé…å¯¹è¯·æ±‚ï¼‰"
 title: pairing
 x-i18n:
   generated_at: "2026-02-03T07:45:02Z"
@@ -12,17 +12,18 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw pairing`
+# ` pairing`
 
-批准或检查私信配对请求（适用于支持配对的渠道）。
+æ‰¹å‡†æˆ–æ£€æŸ¥ç§ä¿¡é…å¯¹è¯·æ±‚ï¼ˆé€‚ç”¨äºŽæ”¯æŒé…å¯¹çš„æ¸ é“ï¼‰ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 配对流程：[配对](/start/pairing)
+- é…å¯¹æµç¨‹ï¼š[é…å¯¹](/start/pairing)
 
-## 命令
+## å‘½ä»¤
 
 ```bash
-openclaw pairing list whatsapp
-openclaw pairing approve whatsapp <code> --notify
+ pairing list whatsapp
+ pairing approve whatsapp <code> --notify
 ```
+

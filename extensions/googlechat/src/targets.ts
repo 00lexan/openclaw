@@ -1,4 +1,4 @@
-import type { ResolvedGoogleChatAccount } from "./accounts.js";
+﻿import type { ResolvedGoogleChatAccount } from "./accounts.js";
 import { findGoogleChatDirectMessage } from "./api.js";
 
 export function normalizeGoogleChatTarget(raw?: string | null): string | undefined {
@@ -63,3 +63,4 @@ export async function resolveGoogleChatOutboundSpace(params: {
   }
   return base;
 }
+

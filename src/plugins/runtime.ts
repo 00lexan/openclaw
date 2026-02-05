@@ -1,4 +1,4 @@
-import type { PluginRegistry } from "./registry.js";
+﻿import type { PluginRegistry } from "./registry.js";
 
 const createEmptyRegistry = (): PluginRegistry => ({
   plugins: [],
@@ -16,7 +16,7 @@ const createEmptyRegistry = (): PluginRegistry => ({
   diagnostics: [],
 });
 
-const REGISTRY_STATE = Symbol.for("openclaw.pluginRegistryState");
+const REGISTRY_STATE = Symbol.for(".pluginRegistryState");
 
 type RegistryState = {
   registry: PluginRegistry | null;
@@ -55,3 +55,4 @@ export function requireActivePluginRegistry(): PluginRegistry {
 export function getActivePluginRegistryKey(): string | null {
   return state.key;
 }
+

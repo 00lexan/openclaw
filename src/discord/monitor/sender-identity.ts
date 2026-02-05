@@ -1,4 +1,4 @@
-import type { User } from "@buape/carbon";
+﻿import type { User } from "@buape/carbon";
 import type { PluralKitMessageInfo } from "../pluralkit.js";
 import { formatDiscordUserTag } from "./format.js";
 
@@ -80,3 +80,4 @@ export function resolveDiscordSenderLabel(params: {
 }): string {
   return resolveDiscordSenderIdentity(params).label;
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { DiscordChannelConfigResolved } from "./allow-list.js";
 import { resolveDiscordOwnerAllowFrom } from "./allow-list.js";
 
@@ -39,3 +39,4 @@ describe("resolveDiscordOwnerAllowFrom", () => {
     expect(result).toEqual(["some-user"]);
   });
 });
+

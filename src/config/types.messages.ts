@@ -1,4 +1,4 @@
-import type { QueueDropPolicy, QueueMode, QueueModeByProvider } from "./types.queue.js";
+﻿import type { QueueDropPolicy, QueueMode, QueueModeByProvider } from "./types.queue.js";
 import type { TtsConfig } from "./types.tts.js";
 
 export type GroupChatConfig = {
@@ -65,7 +65,7 @@ export type MessagesConfig = {
    * - `{thinkingLevel}` or `{think}` - current thinking level (`high`, `low`, `off`)
    * - `{identity.name}` or `{identityName}` - agent identity name
    *
-   * Example: `"[{model} | think:{thinkingLevel}]"` → `"[claude-opus-4-5 | think:high]"`
+   * Example: `"[{model} | think:{thinkingLevel}]"` â†’ `"[claude-opus-4-5 | think:high]"`
    *
    * Unresolved variables remain as literal text (e.g., `{model}` if context unavailable).
    *
@@ -117,3 +117,4 @@ export type ProviderCommandsConfig = {
   /** Override native skill command registration for this provider (bool or "auto"). */
   nativeSkills?: NativeCommandsSetting;
 };
+

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { resetInboundDedupe } from "../auto-reply/reply/inbound-dedupe.js";
 
 const useSpy = vi.fn();
@@ -123,7 +123,7 @@ describe("telegram inbound media", () => {
             horizontal_accuracy: 12,
           },
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "unused" }),
       });
 
@@ -166,7 +166,7 @@ describe("telegram inbound media", () => {
             location: { latitude: 48.858844, longitude: 2.294351 },
           },
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "unused" }),
       });
 
@@ -180,3 +180,4 @@ describe("telegram inbound media", () => {
     _INBOUND_MEDIA_TEST_TIMEOUT_MS,
   );
 });
+

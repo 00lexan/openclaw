@@ -1,4 +1,4 @@
-import type { ChannelGroupContext, GroupToolPolicyConfig } from "openclaw/plugin-sdk";
+﻿import type { ChannelGroupContext, GroupToolPolicyConfig } from "/plugin-sdk";
 import type { CoreConfig } from "./types.js";
 import { resolveMatrixRoomConfig } from "./matrix/monitor/rooms.js";
 
@@ -64,3 +64,4 @@ export function resolveMatrixGroupToolPolicy(
   }).config;
   return resolved?.tools;
 }
+

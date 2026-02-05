@@ -1,4 +1,4 @@
-import { Cron } from "croner";
+﻿import { Cron } from "croner";
 import type { CronSchedule } from "./types.js";
 import { parseAbsoluteTimeMs } from "./parse.js";
 
@@ -33,3 +33,4 @@ export function computeNextRunAtMs(schedule: CronSchedule, nowMs: number): numbe
   const next = cron.nextRun(new Date(nowMs));
   return next ? next.getTime() : undefined;
 }
+

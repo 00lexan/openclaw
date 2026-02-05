@@ -1,4 +1,4 @@
-import type { ChannelOutboundAdapter } from "../types.js";
+﻿import type { ChannelOutboundAdapter } from "../types.js";
 import { chunkText } from "../../../auto-reply/chunk.js";
 import { shouldLogVerbose } from "../../../globals.js";
 import { missingTargetError } from "../../../infra/outbound/target-errors.js";
@@ -84,3 +84,4 @@ export const whatsappOutbound: ChannelOutboundAdapter = {
       accountId: accountId ?? undefined,
     }),
 };
+

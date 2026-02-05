@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Broadcast a WhatsApp message to multiple agents"
 read_when:
   - Configuring broadcast groups
@@ -14,11 +14,11 @@ title: "Broadcast Groups"
 
 ## Overview
 
-Broadcast Groups enable multiple agents to process and respond to the same message simultaneously. This allows you to create specialized agent teams that work together in a single WhatsApp group or DM — all using one phone number.
+Broadcast Groups enable multiple agents to process and respond to the same message simultaneously. This allows you to create specialized agent teams that work together in a single WhatsApp group or DM â€” all using one phone number.
 
 Current scope: **WhatsApp only** (web channel).
 
-Broadcast groups are evaluated after channel allowlists and group activation rules. In WhatsApp groups, this means broadcasts happen when OpenClaw would normally reply (for example: on mention, depending on your group settings).
+Broadcast groups are evaluated after channel allowlists and group activation rules. In WhatsApp groups, this means broadcasts happen when  would normally reply (for example: on mention, depending on your group settings).
 
 ## Use Cases
 
@@ -83,7 +83,7 @@ Add a top-level `broadcast` section (next to `bindings`). Keys are WhatsApp peer
 }
 ```
 
-**Result:** When OpenClaw would reply in this chat, it will run all three agents.
+**Result:** When  would reply in this chat, it will run all three agents.
 
 ### Processing Strategy
 
@@ -192,16 +192,16 @@ In group `120363403215116621@g.us` with agents `["alfred", "baerbel"]`:
 ```
 Session: agent:alfred:whatsapp:group:120363403215116621@g.us
 History: [user message, alfred's previous responses]
-Workspace: /Users/pascal/openclaw-alfred/
+Workspace: /Users/pascal/-alfred/
 Tools: read, write, exec
 ```
 
-**Bärbel's context:**
+**BÃ¤rbel's context:**
 
 ```
 Session: agent:baerbel:whatsapp:group:120363403215116621@g.us
 History: [user message, baerbel's previous responses]
-Workspace: /Users/pascal/openclaw-baerbel/
+Workspace: /Users/pascal/-baerbel/
 Tools: read only
 ```
 
@@ -219,8 +219,8 @@ Design each agent with a single, clear responsibility:
 }
 ```
 
-✅ **Good:** Each agent has one job  
-❌ **Bad:** One generic "dev-helper" agent
+âœ… **Good:** Each agent has one job  
+âŒ **Bad:** One generic "dev-helper" agent
 
 ### 2. Use Descriptive Names
 
@@ -266,7 +266,7 @@ With many agents, consider:
 Agents fail independently. One agent's error doesn't block others:
 
 ```
-Message → [Agent A ✓, Agent B ✗ error, Agent C ✓]
+Message â†’ [Agent A âœ“, Agent B âœ— error, Agent C âœ“]
 Result: Agent A and C respond, Agent B logs error
 ```
 
@@ -276,10 +276,10 @@ Result: Agent A and C respond, Agent B logs error
 
 Broadcast groups currently work with:
 
-- ✅ WhatsApp (implemented)
-- 🚧 Telegram (planned)
-- 🚧 Discord (planned)
-- 🚧 Slack (planned)
+- âœ… WhatsApp (implemented)
+- ðŸš§ Telegram (planned)
+- ðŸš§ Discord (planned)
+- ðŸš§ Slack (planned)
 
 ### Routing
 
@@ -317,7 +317,7 @@ Broadcast groups work alongside existing routing:
 **Debug:**
 
 ```bash
-tail -f ~/.openclaw/logs/gateway.log | grep broadcast
+tail -f ~/./logs/gateway.log | grep broadcast
 ```
 
 ### Only One Agent Responding
@@ -376,7 +376,7 @@ tail -f ~/.openclaw/logs/gateway.log | grep broadcast
 **Responses:**
 
 - code-formatter: "Fixed indentation and added type hints"
-- security-scanner: "⚠️ SQL injection vulnerability in line 12"
+- security-scanner: "âš ï¸ SQL injection vulnerability in line 12"
 - test-coverage: "Coverage is 45%, missing tests for error cases"
 - docs-checker: "Missing docstring for function `process_data`"
 
@@ -403,7 +403,7 @@ tail -f ~/.openclaw/logs/gateway.log | grep broadcast
 ### Config Schema
 
 ```typescript
-interface OpenClawConfig {
+interface Config {
   broadcast?: {
     strategy?: "parallel" | "sequential";
     [peerId: string]: string[];
@@ -440,3 +440,4 @@ Planned features:
 - [Multi-Agent Configuration](/multi-agent-sandbox-tools)
 - [Routing Configuration](/concepts/channel-routing)
 - [Session Management](/concepts/sessions)
+

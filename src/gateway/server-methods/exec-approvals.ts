@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers, RespondFn } from "./types.js";
+﻿import type { GatewayRequestHandlers, RespondFn } from "./types.js";
 import {
   ensureExecApprovals,
   normalizeExecApprovals,
@@ -240,3 +240,4 @@ export const execApprovalsHandlers: GatewayRequestHandlers = {
     });
   },
 };
+

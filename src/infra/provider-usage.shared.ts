@@ -1,4 +1,4 @@
-import type { UsageProviderId } from "./provider-usage.types.js";
+﻿import type { UsageProviderId } from "./provider-usage.types.js";
 import { normalizeProviderId } from "../agents/model-selection.js";
 
 export const DEFAULT_TIMEOUT_MS = 5000;
@@ -61,3 +61,4 @@ export const withTimeout = async <T>(work: Promise<T>, ms: number, fallback: T):
     }
   }
 };
+

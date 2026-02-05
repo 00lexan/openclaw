@@ -1,12 +1,12 @@
----
-summary: "CLI reference for `openclaw nodes` (list/status/approve/invoke, camera/canvas/screen)"
+﻿---
+summary: "CLI reference for ` nodes` (list/status/approve/invoke, camera/canvas/screen)"
 read_when:
-  - You’re managing paired nodes (cameras, screen, canvas)
+  - Youâ€™re managing paired nodes (cameras, screen, canvas)
   - You need to approve requests or invoke node commands
 title: "nodes"
 ---
 
-# `openclaw nodes`
+# ` nodes`
 
 Manage paired nodes (devices) and invoke node capabilities.
 
@@ -23,14 +23,14 @@ Common options:
 ## Common commands
 
 ```bash
-openclaw nodes list
-openclaw nodes list --connected
-openclaw nodes list --last-connected 24h
-openclaw nodes pending
-openclaw nodes approve <requestId>
-openclaw nodes status
-openclaw nodes status --connected
-openclaw nodes status --last-connected 24h
+ nodes list
+ nodes list --connected
+ nodes list --last-connected 24h
+ nodes pending
+ nodes approve <requestId>
+ nodes status
+ nodes status --connected
+ nodes status --last-connected 24h
 ```
 
 `nodes list` prints pending/paired tables. Paired rows include the most recent connect age (Last Connect).
@@ -40,10 +40,10 @@ filter to nodes that connected within a duration (e.g. `24h`, `7d`).
 ## Invoke / run
 
 ```bash
-openclaw nodes invoke --node <id|name|ip> --command <command> --params <json>
-openclaw nodes run --node <id|name|ip> <command...>
-openclaw nodes run --raw "git status"
-openclaw nodes run --agent main --node <id|name|ip> --raw "git status"
+ nodes invoke --node <id|name|ip> --command <command> --params <json>
+ nodes run --node <id|name|ip> <command...>
+ nodes run --raw "git status"
+ nodes run --agent main --node <id|name|ip> --raw "git status"
 ```
 
 Invoke flags:
@@ -54,7 +54,7 @@ Invoke flags:
 
 ### Exec-style defaults
 
-`nodes run` mirrors the model’s exec behavior (defaults + approvals):
+`nodes run` mirrors the modelâ€™s exec behavior (defaults + approvals):
 
 - Reads `tools.exec.*` (plus `agents.list[].tools.exec.*` overrides).
 - Uses exec approvals (`exec.approval.request`) before invoking `system.run`.
@@ -71,3 +71,4 @@ Flags:
 - `--raw <command>`: run a shell string (`/bin/sh -lc` or `cmd.exe /c`).
 - `--agent <id>`: agent-scoped approvals/allowlists (defaults to configured agent).
 - `--ask <off|on-miss|always>`, `--security <deny|allowlist|full>`: overrides.
+

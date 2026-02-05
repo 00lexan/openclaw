@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 
 type RepairReport = {
@@ -107,3 +107,4 @@ export async function repairSessionFileIfNeeded(params: {
   );
   return { repaired: true, droppedLines, backupPath };
 }
+

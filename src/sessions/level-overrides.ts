@@ -1,4 +1,4 @@
-import type { SessionEntry } from "../config/sessions.js";
+﻿import type { SessionEntry } from "../config/sessions.js";
 import { normalizeVerboseLevel, type VerboseLevel } from "../auto-reply/thinking.js";
 
 export function parseVerboseOverride(
@@ -30,3 +30,4 @@ export function applyVerboseOverride(entry: SessionEntry, level: VerboseLevel | 
   }
   entry.verboseLevel = level;
 }
+

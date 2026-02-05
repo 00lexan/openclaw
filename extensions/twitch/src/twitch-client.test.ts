@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Tests for TwitchClientManager class
  *
  * Tests cover:
@@ -587,3 +587,4 @@ describe("TwitchClientManager", () => {
     });
   });
 });
+

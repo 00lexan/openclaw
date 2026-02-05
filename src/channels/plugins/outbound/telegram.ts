@@ -1,4 +1,4 @@
-import type { ChannelOutboundAdapter } from "../types.js";
+﻿import type { ChannelOutboundAdapter } from "../types.js";
 import { markdownToTelegramHtmlChunks } from "../../../telegram/format.js";
 import { sendMessageTelegram } from "../../../telegram/send.js";
 
@@ -103,3 +103,4 @@ export const telegramOutbound: ChannelOutboundAdapter = {
     return { channel: "telegram", ...(finalResult ?? { messageId: "unknown", chatId: to }) };
   },
 };
+

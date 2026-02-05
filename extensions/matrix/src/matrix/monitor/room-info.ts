@@ -1,4 +1,4 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
 
 export type MatrixRoomInfo = {
   name?: string;
@@ -53,3 +53,4 @@ export function createMatrixRoomInfoResolver(client: MatrixClient) {
     getMemberDisplayName,
   };
 }
+

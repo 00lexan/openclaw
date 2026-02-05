@@ -1,4 +1,4 @@
-import "./test-helpers.js";
+﻿import "./test-helpers.js";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -46,7 +46,7 @@ const rmDirWithRetries = async (dir: string): Promise<void> => {
 beforeEach(async () => {
   resetInboundDedupe();
   previousHome = process.env.HOME;
-  tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-web-home-"));
+  tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "-web-home-"));
   process.env.HOME = tempHome;
 });
 
@@ -61,7 +61,7 @@ afterEach(async () => {
 const _makeSessionStore = async (
   entries: Record<string, unknown> = {},
 ): Promise<{ storePath: string; cleanup: () => Promise<void> }> => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-session-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "-session-"));
   const storePath = path.join(dir, "sessions.json");
   await fs.writeFile(storePath, JSON.stringify(entries));
   const cleanup = async () => {
@@ -366,7 +366,7 @@ describe("web auto-reply", () => {
       return { close: vi.fn() };
     };
 
-    const authDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-wa-auth-"));
+    const authDir = await fs.mkdtemp(path.join(os.tmpdir(), "-wa-auth-"));
 
     try {
       await fs.writeFile(
@@ -444,7 +444,7 @@ describe("web auto-reply", () => {
       return { close: vi.fn() };
     };
 
-    const authDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-wa-auth-"));
+    const authDir = await fs.mkdtemp(path.join(os.tmpdir(), "-wa-auth-"));
 
     try {
       await fs.writeFile(
@@ -526,3 +526,4 @@ describe("web auto-reply", () => {
     expect(payload.OriginatingTo).not.toBe(payload.To);
   });
 });
+

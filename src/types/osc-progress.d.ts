@@ -1,4 +1,4 @@
-declare module "osc-progress" {
+﻿declare module "osc-progress" {
   export type OscProgressController = {
     setIndeterminate: (label: string) => void;
     setPercent: (label: string, percent: number) => void;
@@ -14,3 +14,4 @@ declare module "osc-progress" {
 
   export function supportsOscProgress(env: NodeJS.ProcessEnv, isTty: boolean): boolean;
 }
+

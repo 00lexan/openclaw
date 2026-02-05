@@ -1,4 +1,4 @@
-import * as net from "node:net";
+﻿import * as net from "node:net";
 import type { TelegramNetworkConfig } from "../config/types.telegram.js";
 import { resolveFetch } from "../infra/fetch.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
@@ -42,3 +42,4 @@ export function resolveTelegramFetch(
   }
   return fetchImpl;
 }
+

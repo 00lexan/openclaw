@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想在 OpenClaw 中使用 Anthropic 模型
-  - 你想使用 setup-token 而不是 API 密钥
-summary: 在 OpenClaw 中通过 API 密钥或 setup-token 使用 Anthropic Claude
+  - ä½ æƒ³åœ¨  ä¸­ä½¿ç”¨ Anthropic æ¨¡åž‹
+  - ä½ æƒ³ä½¿ç”¨ setup-token è€Œä¸æ˜¯ API å¯†é’¥
+summary: åœ¨  ä¸­é€šè¿‡ API å¯†é’¥æˆ– setup-token ä½¿ç”¨ Anthropic Claude
 title: Anthropic
 x-i18n:
   generated_at: "2026-02-03T10:08:33Z"
@@ -13,27 +13,27 @@ x-i18n:
   workflow: 15
 ---
 
-# Anthropic（Claude）
+# Anthropicï¼ˆClaudeï¼‰
 
-Anthropic 构建了 **Claude** 模型系列，并通过 API 提供访问。
-在 OpenClaw 中，你可以使用 API 密钥或 **setup-token** 进行认证。
+Anthropic æž„å»ºäº† **Claude** æ¨¡åž‹ç³»åˆ—ï¼Œå¹¶é€šè¿‡ API æä¾›è®¿é—®ã€‚
+åœ¨  ä¸­ï¼Œä½ å¯ä»¥ä½¿ç”¨ API å¯†é’¥æˆ– **setup-token** è¿›è¡Œè®¤è¯ã€‚
 
-## 选项 A：Anthropic API 密钥
+## é€‰é¡¹ Aï¼šAnthropic API å¯†é’¥
 
-**适用于：** 标准 API 访问和按用量计费。
-在 Anthropic Console 中创建你的 API 密钥。
+**é€‚ç”¨äºŽï¼š** æ ‡å‡† API è®¿é—®å’ŒæŒ‰ç”¨é‡è®¡è´¹ã€‚
+åœ¨ Anthropic Console ä¸­åˆ›å»ºä½ çš„ API å¯†é’¥ã€‚
 
-### CLI 设置
+### CLI è®¾ç½®
 
 ```bash
-openclaw onboard
-# 选择：Anthropic API key
+ onboard
+# é€‰æ‹©ï¼šAnthropic API key
 
-# 或非交互式
-openclaw onboard --anthropic-api-key "$ANTHROPIC_API_KEY"
+# æˆ–éžäº¤äº’å¼
+ onboard --anthropic-api-key "$ANTHROPIC_API_KEY"
 ```
 
-### 配置片段
+### é…ç½®ç‰‡æ®µ
 
 ```json5
 {
@@ -42,19 +42,19 @@ openclaw onboard --anthropic-api-key "$ANTHROPIC_API_KEY"
 }
 ```
 
-## 提示缓存（Anthropic API）
+## æç¤ºç¼“å­˜ï¼ˆAnthropic APIï¼‰
 
-OpenClaw 支持 Anthropic 的提示缓存功能。这是**仅限 API**；订阅认证不支持缓存设置。
+ æ”¯æŒ Anthropic çš„æç¤ºç¼“å­˜åŠŸèƒ½ã€‚è¿™æ˜¯**ä»…é™ API**ï¼›è®¢é˜…è®¤è¯ä¸æ”¯æŒç¼“å­˜è®¾ç½®ã€‚
 
-### 配置
+### é…ç½®
 
-在模型配置中使用 `cacheRetention` 参数：
+åœ¨æ¨¡åž‹é…ç½®ä¸­ä½¿ç”¨ `cacheRetention` å‚æ•°ï¼š
 
-| 值      | 缓存时长 | 描述                       |
+| å€¼      | ç¼“å­˜æ—¶é•¿ | æè¿°                       |
 | ------- | -------- | -------------------------- |
-| `none`  | 无缓存   | 禁用提示缓存               |
-| `short` | 5 分钟   | API 密钥认证的默认值       |
-| `long`  | 1 小时   | 扩展缓存（需要 beta 标志） |
+| `none`  | æ— ç¼“å­˜   | ç¦ç”¨æç¤ºç¼“å­˜               |
+| `short` | 5 åˆ†é’Ÿ   | API å¯†é’¥è®¤è¯çš„é»˜è®¤å€¼       |
+| `long`  | 1 å°æ—¶   | æ‰©å±•ç¼“å­˜ï¼ˆéœ€è¦ beta æ ‡å¿—ï¼‰ |
 
 ```json5
 {
@@ -70,54 +70,54 @@ OpenClaw 支持 Anthropic 的提示缓存功能。这是**仅限 API**；订阅�
 }
 ```
 
-### 默认值
+### é»˜è®¤å€¼
 
-使用 Anthropic API 密钥认证时，OpenClaw 会自动为所有 Anthropic 模型应用 `cacheRetention: "short"`（5 分钟缓存）。你可以通过在配置中显式设置 `cacheRetention` 来覆盖此设置。
+ä½¿ç”¨ Anthropic API å¯†é’¥è®¤è¯æ—¶ï¼Œ ä¼šè‡ªåŠ¨ä¸ºæ‰€æœ‰ Anthropic æ¨¡åž‹åº”ç”¨ `cacheRetention: "short"`ï¼ˆ5 åˆ†é’Ÿç¼“å­˜ï¼‰ã€‚ä½ å¯ä»¥é€šè¿‡åœ¨é…ç½®ä¸­æ˜¾å¼è®¾ç½® `cacheRetention` æ¥è¦†ç›–æ­¤è®¾ç½®ã€‚
 
-### 旧版参数
+### æ—§ç‰ˆå‚æ•°
 
-为了向后兼容，仍支持旧版 `cacheControlTtl` 参数：
+ä¸ºäº†å‘åŽå…¼å®¹ï¼Œä»æ”¯æŒæ—§ç‰ˆ `cacheControlTtl` å‚æ•°ï¼š
 
-- `"5m"` 映射到 `short`
-- `"1h"` 映射到 `long`
+- `"5m"` æ˜ å°„åˆ° `short`
+- `"1h"` æ˜ å°„åˆ° `long`
 
-我们建议迁移到新的 `cacheRetention` 参数。
+æˆ‘ä»¬å»ºè®®è¿ç§»åˆ°æ–°çš„ `cacheRetention` å‚æ•°ã€‚
 
-OpenClaw 在 Anthropic API 请求中包含 `extended-cache-ttl-2025-04-11` beta 标志；
-如果你覆盖提供商头信息，请保留它（参见 [/gateway/configuration](/gateway/configuration)）。
+ åœ¨ Anthropic API è¯·æ±‚ä¸­åŒ…å« `extended-cache-ttl-2025-04-11` beta æ ‡å¿—ï¼›
+å¦‚æžœä½ è¦†ç›–æä¾›å•†å¤´ä¿¡æ¯ï¼Œè¯·ä¿ç•™å®ƒï¼ˆå‚è§ [/gateway/configuration](/gateway/configuration)ï¼‰ã€‚
 
-## 选项 B：Claude setup-token
+## é€‰é¡¹ Bï¼šClaude setup-token
 
-**适用于：** 使用你的 Claude 订阅。
+**é€‚ç”¨äºŽï¼š** ä½¿ç”¨ä½ çš„ Claude è®¢é˜…ã€‚
 
-### 在哪里获取 setup-token
+### åœ¨å“ªé‡ŒèŽ·å– setup-token
 
-setup-token 由 **Claude Code CLI** 创建，而不是 Anthropic Console。你可以在**任何机器**上运行：
+setup-token ç”± **Claude Code CLI** åˆ›å»ºï¼Œè€Œä¸æ˜¯ Anthropic Consoleã€‚ä½ å¯ä»¥åœ¨**ä»»ä½•æœºå™¨**ä¸Šè¿è¡Œï¼š
 
 ```bash
 claude setup-token
 ```
 
-将令牌粘贴到 OpenClaw（向导：**Anthropic token (paste setup-token)**），或在 Gateway 网关主机上运行：
+å°†ä»¤ç‰Œç²˜è´´åˆ° ï¼ˆå‘å¯¼ï¼š**Anthropic token (paste setup-token)**ï¼‰ï¼Œæˆ–åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œï¼š
 
 ```bash
-openclaw models auth setup-token --provider anthropic
+ models auth setup-token --provider anthropic
 ```
 
-如果你在不同的机器上生成了令牌，请粘贴它：
+å¦‚æžœä½ åœ¨ä¸åŒçš„æœºå™¨ä¸Šç”Ÿæˆäº†ä»¤ç‰Œï¼Œè¯·ç²˜è´´å®ƒï¼š
 
 ```bash
-openclaw models auth paste-token --provider anthropic
+ models auth paste-token --provider anthropic
 ```
 
-### CLI 设置
+### CLI è®¾ç½®
 
 ```bash
-# 在新手引导期间粘贴 setup-token
-openclaw onboard --auth-choice setup-token
+# åœ¨æ–°æ‰‹å¼•å¯¼æœŸé—´ç²˜è´´ setup-token
+ onboard --auth-choice setup-token
 ```
 
-### 配置片段
+### é…ç½®ç‰‡æ®µ
 
 ```json5
 {
@@ -125,35 +125,36 @@ openclaw onboard --auth-choice setup-token
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 使用 `claude setup-token` 生成 setup-token 并粘贴，或在 Gateway 网关主机上运行 `openclaw models auth setup-token`。
-- 如果你在 Claude 订阅上看到"OAuth token refresh failed …"，请使用 setup-token 重新认证。参见 [/gateway/troubleshooting#oauth-token-refresh-failed-anthropic-claude-subscription](/gateway/troubleshooting#oauth-token-refresh-failed-anthropic-claude-subscription)。
-- 认证详情 + 重用规则在 [/concepts/oauth](/concepts/oauth)。
+- ä½¿ç”¨ `claude setup-token` ç”Ÿæˆ setup-token å¹¶ç²˜è´´ï¼Œæˆ–åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œ ` models auth setup-token`ã€‚
+- å¦‚æžœä½ åœ¨ Claude è®¢é˜…ä¸Šçœ‹åˆ°"OAuth token refresh failed â€¦"ï¼Œè¯·ä½¿ç”¨ setup-token é‡æ–°è®¤è¯ã€‚å‚è§ [/gateway/troubleshooting#oauth-token-refresh-failed-anthropic-claude-subscription](/gateway/troubleshooting#oauth-token-refresh-failed-anthropic-claude-subscription)ã€‚
+- è®¤è¯è¯¦æƒ… + é‡ç”¨è§„åˆ™åœ¨ [/concepts/oauth](/concepts/oauth)ã€‚
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-**401 错误/令牌突然失效**
+**401 é”™è¯¯/ä»¤ç‰Œçªç„¶å¤±æ•ˆ**
 
-- Claude 订阅认证可能过期或被撤销。重新运行 `claude setup-token`
-  并将其粘贴到 **Gateway 网关主机**。
-- 如果 Claude CLI 登录在不同的机器上，在 Gateway 网关主机上使用
-  `openclaw models auth paste-token --provider anthropic`。
+- Claude è®¢é˜…è®¤è¯å¯èƒ½è¿‡æœŸæˆ–è¢«æ’¤é”€ã€‚é‡æ–°è¿è¡Œ `claude setup-token`
+  å¹¶å°†å…¶ç²˜è´´åˆ° **Gateway ç½‘å…³ä¸»æœº**ã€‚
+- å¦‚æžœ Claude CLI ç™»å½•åœ¨ä¸åŒçš„æœºå™¨ä¸Šï¼Œåœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šä½¿ç”¨
+  ` models auth paste-token --provider anthropic`ã€‚
 
 **No API key found for provider "anthropic"**
 
-- 认证是**按智能体**的。新智能体不会继承主智能体的密钥。
-- 为该智能体重新运行新手引导，或在 Gateway 网关主机上粘贴 setup-token / API 密钥，
-  然后使用 `openclaw models status` 验证。
+- è®¤è¯æ˜¯**æŒ‰æ™ºèƒ½ä½“**çš„ã€‚æ–°æ™ºèƒ½ä½“ä¸ä¼šç»§æ‰¿ä¸»æ™ºèƒ½ä½“çš„å¯†é’¥ã€‚
+- ä¸ºè¯¥æ™ºèƒ½ä½“é‡æ–°è¿è¡Œæ–°æ‰‹å¼•å¯¼ï¼Œæˆ–åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šç²˜è´´ setup-token / API å¯†é’¥ï¼Œ
+  ç„¶åŽä½¿ç”¨ ` models status` éªŒè¯ã€‚
 
 **No credentials found for profile `anthropic:default`**
 
-- 运行 `openclaw models status` 查看哪个认证配置文件处于活动状态。
-- 重新运行新手引导，或为该配置文件粘贴 setup-token / API 密钥。
+- è¿è¡Œ ` models status` æŸ¥çœ‹å“ªä¸ªè®¤è¯é…ç½®æ–‡ä»¶å¤„äºŽæ´»åŠ¨çŠ¶æ€ã€‚
+- é‡æ–°è¿è¡Œæ–°æ‰‹å¼•å¯¼ï¼Œæˆ–ä¸ºè¯¥é…ç½®æ–‡ä»¶ç²˜è´´ setup-token / API å¯†é’¥ã€‚
 
 **No available auth profile (all in cooldown/unavailable)**
 
-- 检查 `openclaw models status --json` 中的 `auth.unusableProfiles`。
-- 添加另一个 Anthropic 配置文件或等待冷却期结束。
+- æ£€æŸ¥ ` models status --json` ä¸­çš„ `auth.unusableProfiles`ã€‚
+- æ·»åŠ å¦ä¸€ä¸ª Anthropic é…ç½®æ–‡ä»¶æˆ–ç­‰å¾…å†·å´æœŸç»“æŸã€‚
 
-更多信息：[/gateway/troubleshooting](/gateway/troubleshooting) 和 [/help/faq](/help/faq)。
+æ›´å¤šä¿¡æ¯ï¼š[/gateway/troubleshooting](/gateway/troubleshooting) å’Œ [/help/faq](/help/faq)ã€‚
+

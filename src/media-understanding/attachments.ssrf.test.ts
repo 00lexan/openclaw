@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 import { MediaAttachmentCache } from "./attachments.js";
 
 const originalFetch = globalThis.fetch;
@@ -22,3 +22,4 @@ describe("media understanding attachments SSRF", () => {
     expect(fetchSpy).not.toHaveBeenCalled();
   });
 });
+

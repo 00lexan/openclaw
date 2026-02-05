@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { ChannelsStatusSnapshot } from "../types.ts";
 
 export type ChannelsState = {
@@ -13,3 +13,4 @@ export type ChannelsState = {
   whatsappLoginConnected: boolean | null;
   whatsappBusy: boolean;
 };
+

@@ -1,4 +1,4 @@
-import type { SessionConfig, SessionResetConfig } from "../types.base.js";
+﻿import type { SessionConfig, SessionResetConfig } from "../types.base.js";
 import { normalizeMessageChannel } from "../../utils/message-channel.js";
 import { DEFAULT_IDLE_MINUTES } from "./types.js";
 
@@ -168,3 +168,4 @@ function normalizeResetAtHour(value: number | undefined): number {
   }
   return normalized;
 }
+

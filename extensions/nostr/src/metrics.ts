@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Comprehensive metrics system for Nostr bus observability.
  * Provides clear insight into what's happening with events, relays, and operations.
  */
@@ -476,3 +476,4 @@ export function createNoopMetrics(): NostrMetrics {
     reset: () => {},
   };
 }
+

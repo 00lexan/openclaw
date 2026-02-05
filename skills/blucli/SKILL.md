@@ -1,12 +1,12 @@
----
+﻿---
 name: blucli
 description: BluOS CLI (blu) for discovery, playback, grouping, and volume.
 homepage: https://blucli.sh
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🫐",
+        "emoji": "ðŸ«",
         "requires": { "bins": ["blu"] },
         "install":
           [
@@ -45,3 +45,4 @@ Common tasks
 - TuneIn search/play: `blu tunein search "query"`, `blu tunein play "query"`
 
 Prefer `--json` for scripts. Confirm the target device before changing playback.
+

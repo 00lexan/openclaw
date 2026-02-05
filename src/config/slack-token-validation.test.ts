@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { validateConfigObject } from "./config.js";
 
 describe("Slack token config fields", () => {
@@ -34,3 +34,4 @@ describe("Slack token config fields", () => {
     expect(res.ok).toBe(true);
   });
 });
+

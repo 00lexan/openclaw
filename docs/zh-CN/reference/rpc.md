@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 添加或更改外部 CLI 集成
-  - 调试 RPC 适配器（signal-cli、imsg）
-summary: 外部 CLI（signal-cli、imsg）的 RPC 适配器和 Gateway 网关模式
-title: RPC 适配器
+  - æ·»åŠ æˆ–æ›´æ”¹å¤–éƒ¨ CLI é›†æˆ
+  - è°ƒè¯• RPC é€‚é…å™¨ï¼ˆsignal-cliã€imsgï¼‰
+summary: å¤–éƒ¨ CLIï¼ˆsignal-cliã€imsgï¼‰çš„ RPC é€‚é…å™¨å’Œ Gateway ç½‘å…³æ¨¡å¼
+title: RPC é€‚é…å™¨
 x-i18n:
   generated_at: "2026-02-03T07:53:44Z"
   model: claude-opus-4-5
@@ -13,36 +13,37 @@ x-i18n:
   workflow: 15
 ---
 
-# RPC 适配器
+# RPC é€‚é…å™¨
 
-OpenClaw 通过 JSON-RPC 集成外部 CLI。目前使用两种模式。
+ é€šè¿‡ JSON-RPC é›†æˆå¤–éƒ¨ CLIã€‚ç›®å‰ä½¿ç”¨ä¸¤ç§æ¨¡å¼ã€‚
 
-## 模式 A：HTTP 守护进程（signal-cli）
+## æ¨¡å¼ Aï¼šHTTP å®ˆæŠ¤è¿›ç¨‹ï¼ˆsignal-cliï¼‰
 
-- `signal-cli` 作为守护进程运行，通过 HTTP 使用 JSON-RPC。
-- 事件流是 SSE（`/api/v1/events`）。
-- 健康探测：`/api/v1/check`。
-- 当 `channels.signal.autoStart=true` 时，OpenClaw 负责生命周期管理。
+- `signal-cli` ä½œä¸ºå®ˆæŠ¤è¿›ç¨‹è¿è¡Œï¼Œé€šè¿‡ HTTP ä½¿ç”¨ JSON-RPCã€‚
+- äº‹ä»¶æµæ˜¯ SSEï¼ˆ`/api/v1/events`ï¼‰ã€‚
+- å¥åº·æŽ¢æµ‹ï¼š`/api/v1/check`ã€‚
+- å½“ `channels.signal.autoStart=true` æ—¶ï¼Œ è´Ÿè´£ç”Ÿå‘½å‘¨æœŸç®¡ç†ã€‚
 
-设置和端点参见 [Signal](/channels/signal)。
+è®¾ç½®å’Œç«¯ç‚¹å‚è§ [Signal](/channels/signal)ã€‚
 
-## 模式 B：stdio 子进程（imsg）
+## æ¨¡å¼ Bï¼šstdio å­è¿›ç¨‹ï¼ˆimsgï¼‰
 
-- OpenClaw 将 `imsg rpc` 作为子进程生成。
-- JSON-RPC 是通过 stdin/stdout 的行分隔格式（每行一个 JSON 对象）。
-- 无需 TCP 端口，无需守护进程。
+-  å°† `imsg rpc` ä½œä¸ºå­è¿›ç¨‹ç”Ÿæˆã€‚
+- JSON-RPC æ˜¯é€šè¿‡ stdin/stdout çš„è¡Œåˆ†éš”æ ¼å¼ï¼ˆæ¯è¡Œä¸€ä¸ª JSON å¯¹è±¡ï¼‰ã€‚
+- æ— éœ€ TCP ç«¯å£ï¼Œæ— éœ€å®ˆæŠ¤è¿›ç¨‹ã€‚
 
-使用的核心方法：
+ä½¿ç”¨çš„æ ¸å¿ƒæ–¹æ³•ï¼š
 
-- `watch.subscribe` → 通知（`method: "message"`）
+- `watch.subscribe` â†’ é€šçŸ¥ï¼ˆ`method: "message"`ï¼‰
 - `watch.unsubscribe`
 - `send`
-- `chats.list`（探测/诊断）
+- `chats.list`ï¼ˆæŽ¢æµ‹/è¯Šæ–­ï¼‰
 
-设置和寻址（首选 `chat_id`）参见 [iMessage](/channels/imessage)。
+è®¾ç½®å’Œå¯»å€ï¼ˆé¦–é€‰ `chat_id`ï¼‰å‚è§ [iMessage](/channels/imessage)ã€‚
 
-## 适配器指南
+## é€‚é…å™¨æŒ‡å—
 
-- Gateway 网关负责进程（启动/停止与提供商生命周期绑定）。
-- 保持 RPC 客户端弹性：超时、退出时重启。
-- 优先使用稳定 ID（例如 `chat_id`）而非显示字符串。
+- Gateway ç½‘å…³è´Ÿè´£è¿›ç¨‹ï¼ˆå¯åŠ¨/åœæ­¢ä¸Žæä¾›å•†ç”Ÿå‘½å‘¨æœŸç»‘å®šï¼‰ã€‚
+- ä¿æŒ RPC å®¢æˆ·ç«¯å¼¹æ€§ï¼šè¶…æ—¶ã€é€€å‡ºæ—¶é‡å¯ã€‚
+- ä¼˜å…ˆä½¿ç”¨ç¨³å®š IDï¼ˆä¾‹å¦‚ `chat_id`ï¼‰è€Œéžæ˜¾ç¤ºå­—ç¬¦ä¸²ã€‚
+

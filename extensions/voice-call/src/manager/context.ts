@@ -1,4 +1,4 @@
-import type { VoiceCallConfig } from "../config.js";
+﻿import type { VoiceCallConfig } from "../config.js";
 import type { VoiceCallProvider } from "../providers/base.js";
 import type { CallId, CallRecord } from "../types.js";
 
@@ -19,3 +19,4 @@ export type CallManagerContext = {
   transcriptWaiters: Map<CallId, TranscriptWaiter>;
   maxDurationTimers: Map<CallId, NodeJS.Timeout>;
 };
+

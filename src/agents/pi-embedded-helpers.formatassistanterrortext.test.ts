@@ -1,4 +1,4 @@
-import type { AssistantMessage } from "@mariozechner/pi-ai";
+﻿import type { AssistantMessage } from "@mariozechner/pi-ai";
 import { describe, expect, it } from "vitest";
 import { formatAssistantErrorText } from "./pi-embedded-helpers.js";
 
@@ -54,3 +54,4 @@ describe("formatAssistantErrorText", () => {
     expect(formatAssistantErrorText(msg)).toBe("LLM error server_error: Something exploded");
   });
 });
+

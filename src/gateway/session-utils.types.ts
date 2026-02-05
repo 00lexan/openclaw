@@ -1,4 +1,4 @@
-import type { NormalizedChatType } from "../channels/chat-type.js";
+﻿import type { NormalizedChatType } from "../channels/chat-type.js";
 import type { SessionEntry } from "../config/sessions.js";
 import type { DeliveryContext } from "../utils/delivery-context.js";
 
@@ -89,3 +89,4 @@ export type SessionsPatchResult = {
     model?: string;
   };
 };
+

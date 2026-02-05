@@ -1,4 +1,4 @@
-import type { Context, Model } from "@mariozechner/pi-ai/dist/types.js";
+﻿import type { Context, Model } from "@mariozechner/pi-ai/dist/types.js";
 import { convertMessages } from "@mariozechner/pi-ai/dist/providers/google-shared.js";
 import { describe, expect, it } from "vitest";
 
@@ -180,3 +180,4 @@ describe("google-shared convertTools", () => {
     expect(asRecord(toolResponse.functionResponse).id).toBeUndefined();
   });
 });
+

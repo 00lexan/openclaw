@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { withTempHome as withTempHomeBase } from "../../test/helpers/temp-home.js";
 import { loadModelCatalog } from "../agents/model-catalog.js";
@@ -27,10 +27,10 @@ async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
     },
     {
       env: {
-        OPENCLAW_AGENT_DIR: (home) => path.join(home, ".openclaw", "agent"),
-        PI_CODING_AGENT_DIR: (home) => path.join(home, ".openclaw", "agent"),
+        _AGENT_DIR: (home) => path.join(home, ".", "agent"),
+        PI_CODING_AGENT_DIR: (home) => path.join(home, ".", "agent"),
       },
-      prefix: "openclaw-reply-",
+      prefix: "-reply-",
     },
   );
 }
@@ -79,7 +79,7 @@ describe("directive behavior", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: path.join(home, "openclaw"),
+              workspace: path.join(home, ""),
             },
           },
           tools: {
@@ -95,7 +95,7 @@ describe("directive behavior", () => {
       const text = Array.isArray(res) ? res[0]?.text : res?.text;
       expect(text).toContain("Elevated mode disabled.");
       expect(text).toContain("Session: agent:main:main");
-      const optionsLine = text?.split("\n").find((line) => line.trim().startsWith("⚙️"));
+      const optionsLine = text?.split("\n").find((line) => line.trim().startsWith("âš™ï¸"));
       expect(optionsLine).toBeTruthy();
       expect(optionsLine).not.toContain("elevated");
 
@@ -123,7 +123,7 @@ describe("directive behavior", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: path.join(home, "openclaw"),
+              workspace: path.join(home, ""),
             },
             list: [
               {
@@ -161,7 +161,7 @@ describe("directive behavior", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: path.join(home, "openclaw"),
+              workspace: path.join(home, ""),
             },
           },
           channels: { whatsapp: { allowFrom: ["*"] } },
@@ -170,7 +170,7 @@ describe("directive behavior", () => {
       );
 
       const text = Array.isArray(res) ? res[0]?.text : res?.text;
-      expect(text).toMatch(/^⚙️ Queue mode set to interrupt\./);
+      expect(text).toMatch(/^âš™ï¸ Queue mode set to interrupt\./);
       const store = loadSessionStore(storePath);
       const entry = Object.values(store)[0];
       expect(entry?.queueMode).toBe("interrupt");
@@ -194,7 +194,7 @@ describe("directive behavior", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: path.join(home, "openclaw"),
+              workspace: path.join(home, ""),
             },
           },
           channels: { whatsapp: { allowFrom: ["*"] } },
@@ -203,7 +203,7 @@ describe("directive behavior", () => {
       );
 
       const text = Array.isArray(res) ? res[0]?.text : res?.text;
-      expect(text).toMatch(/^⚙️ Queue mode set to collect\./);
+      expect(text).toMatch(/^âš™ï¸ Queue mode set to collect\./);
       expect(text).toMatch(/Queue debounce set to 2000ms/);
       expect(text).toMatch(/Queue cap set to 5/);
       expect(text).toMatch(/Queue drop set to old/);
@@ -228,7 +228,7 @@ describe("directive behavior", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: path.join(home, "openclaw"),
+              workspace: path.join(home, ""),
             },
           },
           channels: { whatsapp: { allowFrom: ["*"] } },
@@ -243,7 +243,7 @@ describe("directive behavior", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: path.join(home, "openclaw"),
+              workspace: path.join(home, ""),
             },
           },
           channels: { whatsapp: { allowFrom: ["*"] } },
@@ -252,7 +252,7 @@ describe("directive behavior", () => {
       );
 
       const text = Array.isArray(res) ? res[0]?.text : res?.text;
-      expect(text).toMatch(/^⚙️ Queue mode reset to default\./);
+      expect(text).toMatch(/^âš™ï¸ Queue mode reset to default\./);
       const store = loadSessionStore(storePath);
       const entry = Object.values(store)[0];
       expect(entry?.queueMode).toBeUndefined();
@@ -263,3 +263,4 @@ describe("directive behavior", () => {
     });
   });
 });
+

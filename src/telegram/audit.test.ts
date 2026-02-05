@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 describe("telegram audit", () => {
   beforeEach(() => {
@@ -63,3 +63,4 @@ describe("telegram audit", () => {
     expect(res.groups[0]?.status).toBe("left");
   });
 });
+

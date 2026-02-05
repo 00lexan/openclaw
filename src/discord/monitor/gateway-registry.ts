@@ -1,4 +1,4 @@
-import type { GatewayPlugin } from "@buape/carbon/gateway";
+﻿import type { GatewayPlugin } from "@buape/carbon/gateway";
 
 /**
  * Module-level registry of active Discord GatewayPlugin instances.
@@ -35,3 +35,4 @@ export function getGateway(accountId?: string): GatewayPlugin | undefined {
 export function clearGateways(): void {
   gatewayRegistry.clear();
 }
+

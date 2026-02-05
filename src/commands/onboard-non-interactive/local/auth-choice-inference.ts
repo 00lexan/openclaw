@@ -1,4 +1,4 @@
-import type { AuthChoice, OnboardOptions } from "../../onboard-types.js";
+﻿import type { AuthChoice, OnboardOptions } from "../../onboard-types.js";
 
 type AuthChoiceFlag = {
   flag: keyof AuthChoiceFlagOptions;
@@ -65,3 +65,4 @@ export function inferAuthChoiceFromFlags(opts: OnboardOptions): AuthChoiceInfere
     matches,
   };
 }
+

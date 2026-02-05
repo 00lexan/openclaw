@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const dispatchMock = vi.fn();
 const readAllowFromMock = vi.fn();
@@ -39,7 +39,7 @@ describe("signal event handler sender prefix", () => {
         },
       },
       cfg: {
-        agents: { defaults: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/openclaw" } },
+        agents: { defaults: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/" } },
         channels: { signal: {} },
       } as never,
       baseUrl: "http://localhost",
@@ -85,3 +85,4 @@ describe("signal event handler sender prefix", () => {
     expect(capturedBody).toContain("Alice (+15550002222): hello");
   });
 });
+

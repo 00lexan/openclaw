@@ -1,4 +1,4 @@
-import { getImageMetadata, resizeToJpeg } from "../media/image-ops.js";
+﻿import { getImageMetadata, resizeToJpeg } from "../media/image-ops.js";
 
 export const DEFAULT_BROWSER_SCREENSHOT_MAX_SIDE = 2000;
 export const DEFAULT_BROWSER_SCREENSHOT_MAX_BYTES = 5 * 1024 * 1024;
@@ -55,3 +55,4 @@ export async function normalizeBrowserScreenshot(
     `Browser screenshot could not be reduced below ${(maxBytes / (1024 * 1024)).toFixed(0)}MB (got ${(best.byteLength / (1024 * 1024)).toFixed(2)}MB)`,
   );
 }
+

@@ -1,4 +1,4 @@
-import { Urbit } from "@urbit/http-api";
+﻿import { Urbit } from "@urbit/http-api";
 
 let patched = false;
 
@@ -36,3 +36,4 @@ export function ensureUrbitConnectPatched() {
 }
 
 export { Urbit };
+

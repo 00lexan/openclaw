@@ -1,4 +1,4 @@
-const SKILLS_SYNC_QUEUE = new Map<string, Promise<unknown>>();
+﻿const SKILLS_SYNC_QUEUE = new Map<string, Promise<unknown>>();
 
 export async function serializeByKey<T>(key: string, task: () => Promise<T>) {
   const prev = SKILLS_SYNC_QUEUE.get(key) ?? Promise.resolve();
@@ -12,3 +12,4 @@ export async function serializeByKey<T>(key: string, task: () => Promise<T>) {
     }
   }
 }
+

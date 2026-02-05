@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -17,7 +17,7 @@ type StoredIdentity = {
   createdAtMs: number;
 };
 
-const DEFAULT_DIR = path.join(os.homedir(), ".openclaw", "identity");
+const DEFAULT_DIR = path.join(os.homedir(), ".", "identity");
 const DEFAULT_FILE = path.join(DEFAULT_DIR, "device.json");
 
 function ensureDir(filePath: string) {
@@ -177,3 +177,4 @@ export function verifyDeviceSignature(
     return false;
   }
 }
+

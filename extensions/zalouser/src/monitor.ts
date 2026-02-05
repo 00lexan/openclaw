@@ -1,6 +1,6 @@
-import type { ChildProcess } from "node:child_process";
-import type { OpenClawConfig, MarkdownTableMode, RuntimeEnv } from "openclaw/plugin-sdk";
-import { createReplyPrefixOptions, mergeAllowlist, summarizeMapping } from "openclaw/plugin-sdk";
+﻿import type { ChildProcess } from "node:child_process";
+import type { Config, MarkdownTableMode, RuntimeEnv } from "/plugin-sdk";
+import { createReplyPrefixOptions, mergeAllowlist, summarizeMapping } from "/plugin-sdk";
 import type { ResolvedZalouserAccount, ZcaFriend, ZcaGroup, ZcaMessage } from "./types.js";
 import { getZalouserRuntime } from "./runtime.js";
 import { sendMessageZalouser } from "./send.js";
@@ -8,7 +8,7 @@ import { parseJsonOutput, runZca, runZcaStreaming } from "./zca.js";
 
 export type ZalouserMonitorOptions = {
   account: ResolvedZalouserAccount;
-  config: OpenClawConfig;
+  config: Config;
   runtime: RuntimeEnv;
   abortSignal: AbortSignal;
   statusSink?: (patch: { lastInboundAt?: number; lastOutboundAt?: number }) => void;
@@ -156,7 +156,7 @@ function startZcaListener(
 async function processMessage(
   message: ZcaMessage,
   account: ResolvedZalouserAccount,
-  config: OpenClawConfig,
+  config: Config,
   core: ZalouserCoreRuntime,
   runtime: RuntimeEnv,
   statusSink?: (patch: { lastInboundAt?: number; lastOutboundAt?: number }) => void,
@@ -381,7 +381,7 @@ async function deliverZalouserReply(params: {
   isGroup: boolean;
   runtime: RuntimeEnv;
   core: ZalouserCoreRuntime;
-  config: OpenClawConfig;
+  config: Config;
   accountId?: string;
   statusSink?: (patch: { lastInboundAt?: number; lastOutboundAt?: number }) => void;
   tableMode?: MarkdownTableMode;
@@ -472,7 +472,7 @@ export async function monitorZalouserProvider(
           const id = match?.userId ? String(match.userId) : undefined;
           if (id) {
             additions.push(id);
-            mapping.push(`${entry}→${id}`);
+            mapping.push(`${entry}â†’${id}`);
           } else {
             unresolved.push(entry);
           }
@@ -507,7 +507,7 @@ export async function monitorZalouserProvider(
             if (!nextGroups[cleaned]) {
               nextGroups[cleaned] = groupsConfig[entry];
             }
-            mapping.push(`${entry}→${cleaned}`);
+            mapping.push(`${entry}â†’${cleaned}`);
             continue;
           }
           const matches = byName.get(cleaned.toLowerCase()) ?? [];
@@ -517,7 +517,7 @@ export async function monitorZalouserProvider(
             if (!nextGroups[id]) {
               nextGroups[id] = groupsConfig[entry];
             }
-            mapping.push(`${entry}→${id}`);
+            mapping.push(`${entry}â†’${id}`);
           } else {
             unresolved.push(entry);
           }
@@ -599,3 +599,4 @@ export async function monitorZalouserProvider(
 
   return { stop };
 }
+

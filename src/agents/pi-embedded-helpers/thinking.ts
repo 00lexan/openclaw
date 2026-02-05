@@ -1,4 +1,4 @@
-import { normalizeThinkLevel, type ThinkLevel } from "../../auto-reply/thinking.js";
+﻿import { normalizeThinkLevel, type ThinkLevel } from "../../auto-reply/thinking.js";
 
 function extractSupportedValues(raw: string): string[] {
   const match =
@@ -43,3 +43,4 @@ export function pickFallbackThinkingLevel(params: {
   }
   return undefined;
 }
+

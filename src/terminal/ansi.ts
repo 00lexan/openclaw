@@ -1,4 +1,4 @@
-const ANSI_SGR_PATTERN = "\\x1b\\[[0-9;]*m";
+﻿const ANSI_SGR_PATTERN = "\\x1b\\[[0-9;]*m";
 // OSC-8 hyperlinks: ESC ] 8 ; ; url ST ... ESC ] 8 ; ; ST
 const OSC8_PATTERN = "\\x1b\\]8;;.*?\\x1b\\\\|\\x1b\\]8;;\\x1b\\\\";
 
@@ -12,3 +12,4 @@ export function stripAnsi(input: string): string {
 export function visibleWidth(input: string): number {
   return Array.from(stripAnsi(input)).length;
 }
+

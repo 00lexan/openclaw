@@ -1,4 +1,4 @@
-import type { ContextPruningToolMatch } from "./settings.js";
+﻿import type { ContextPruningToolMatch } from "./settings.js";
 
 function normalizePatterns(patterns?: string[]): string[] {
   if (!Array.isArray(patterns)) {
@@ -67,3 +67,4 @@ export function makeToolPrunablePredicate(
     return matchesAny(normalized, allow);
   };
 }
+

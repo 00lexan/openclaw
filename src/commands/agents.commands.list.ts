@@ -1,4 +1,4 @@
-import type { AgentBinding } from "../config/types.js";
+﻿import type { AgentBinding } from "../config/types.js";
 import type { RuntimeEnv } from "../runtime.js";
 import type { AgentSummary } from "./agents.config.js";
 import { formatCliCommand } from "../cli/command-format.js";
@@ -128,7 +128,8 @@ export async function agentsListCommand(
   const lines = ["Agents:", ...summaries.map(formatSummary)];
   lines.push("Routing rules map channel/account/peer to an agent. Use --bindings for full rules.");
   lines.push(
-    `Channel status reflects local config/creds. For live health: ${formatCliCommand("openclaw channels status --probe")}.`,
+    `Channel status reflects local config/creds. For live health: ${formatCliCommand(" channels status --probe")}.`,
   );
   runtime.log(lines.join("\n"));
 }
+

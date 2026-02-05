@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,3 +26,4 @@ export interface A2UIAction extends BaseEventDetail<`${Namespace}.action`> {
   readonly sourceComponentId: string;
   readonly sourceComponent: AnyComponentNode | null;
 }
+

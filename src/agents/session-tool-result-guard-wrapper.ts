@@ -1,4 +1,4 @@
-import type { SessionManager } from "@mariozechner/pi-coding-agent";
+﻿import type { SessionManager } from "@mariozechner/pi-coding-agent";
 import { getGlobalHookRunner } from "../plugins/hook-runner-global.js";
 import { installSessionToolResultGuard } from "./session-tool-result-guard.js";
 
@@ -52,3 +52,4 @@ export function guardSessionManager(
   (sessionManager as GuardedSessionManager).flushPendingToolResults = guard.flushPendingToolResults;
   return sessionManager as GuardedSessionManager;
 }
+

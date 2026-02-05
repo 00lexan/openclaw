@@ -1,4 +1,4 @@
-import { lookup as dnsLookupCb, type LookupAddress } from "node:dns";
+﻿import { lookup as dnsLookupCb, type LookupAddress } from "node:dns";
 import { lookup as dnsLookup } from "node:dns/promises";
 import { Agent, type Dispatcher } from "undici";
 
@@ -306,3 +306,4 @@ export async function assertPublicHostname(
 ): Promise<void> {
   await resolvePinnedHostname(hostname, lookupFn);
 }
+

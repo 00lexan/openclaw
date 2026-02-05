@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import type { RuntimeEnv } from "../runtime.js";
 import type { WizardPrompter } from "../wizard/prompts.js";
 import { installSkill } from "../agents/skills-install.js";
@@ -12,7 +12,7 @@ function summarizeInstallFailure(message: string): string | undefined {
     return undefined;
   }
   const maxLen = 140;
-  return cleaned.length > maxLen ? `${cleaned.slice(0, maxLen - 1)}…` : cleaned;
+  return cleaned.length > maxLen ? `${cleaned.slice(0, maxLen - 1)}â€¦` : cleaned;
 }
 
 function formatSkillHint(skill: {
@@ -21,19 +21,19 @@ function formatSkillHint(skill: {
 }): string {
   const desc = skill.description?.trim();
   const installLabel = skill.install[0]?.label?.trim();
-  const combined = desc && installLabel ? `${desc} — ${installLabel}` : desc || installLabel;
+  const combined = desc && installLabel ? `${desc} â€” ${installLabel}` : desc || installLabel;
   if (!combined) {
     return "install";
   }
   const maxLen = 90;
-  return combined.length > maxLen ? `${combined.slice(0, maxLen - 1)}…` : combined;
+  return combined.length > maxLen ? `${combined.slice(0, maxLen - 1)}â€¦` : combined;
 }
 
 function upsertSkillEntry(
-  cfg: OpenClawConfig,
+  cfg: Config,
   skillKey: string,
   patch: { apiKey?: string },
-): OpenClawConfig {
+): Config {
   const entries = { ...cfg.skills?.entries };
   const existing = (entries[skillKey] as { apiKey?: string } | undefined) ?? {};
   entries[skillKey] = { ...existing, ...patch };
@@ -47,11 +47,11 @@ function upsertSkillEntry(
 }
 
 export async function setupSkills(
-  cfg: OpenClawConfig,
+  cfg: Config,
   workspaceDir: string,
   runtime: RuntimeEnv,
   prompter: WizardPrompter,
-): Promise<OpenClawConfig> {
+): Promise<Config> {
   const report = buildWorkspaceSkillStatus(workspaceDir, { config: cfg });
   const eligible = report.skills.filter((s) => s.eligible);
   const missing = report.skills.filter((s) => !s.eligible && !s.disabled && !s.blockedByAllowlist);
@@ -107,7 +107,7 @@ export async function setupSkills(
     options: resolveNodeManagerOptions(),
   })) as "npm" | "pnpm" | "bun";
 
-  let next: OpenClawConfig = {
+  let next: Config = {
     ...cfg,
     skills: {
       ...cfg.skills,
@@ -132,7 +132,7 @@ export async function setupSkills(
         },
         ...installable.map((skill) => ({
           value: skill.name,
-          label: `${skill.emoji ?? "🧩"} ${skill.name}`,
+          label: `${skill.emoji ?? "ðŸ§©"} ${skill.name}`,
           hint: formatSkillHint(skill),
         })),
       ],
@@ -148,7 +148,7 @@ export async function setupSkills(
       if (!installId) {
         continue;
       }
-      const spin = prompter.progress(`Installing ${name}…`);
+      const spin = prompter.progress(`Installing ${name}â€¦`);
       const result = await installSkill({
         workspaceDir,
         skillName: target.name,
@@ -160,16 +160,16 @@ export async function setupSkills(
       } else {
         const code = result.code == null ? "" : ` (exit ${result.code})`;
         const detail = summarizeInstallFailure(result.message);
-        spin.stop(`Install failed: ${name}${code}${detail ? ` — ${detail}` : ""}`);
+        spin.stop(`Install failed: ${name}${code}${detail ? ` â€” ${detail}` : ""}`);
         if (result.stderr) {
           runtime.log(result.stderr.trim());
         } else if (result.stdout) {
           runtime.log(result.stdout.trim());
         }
         runtime.log(
-          `Tip: run \`${formatCliCommand("openclaw doctor")}\` to review skills + requirements.`,
+          `Tip: run \`${formatCliCommand(" doctor")}\` to review skills + requirements.`,
         );
-        runtime.log("Docs: https://docs.openclaw.ai/skills");
+        runtime.log("Docs: https://docs..ai/skills");
       }
     }
   }
@@ -196,3 +196,4 @@ export async function setupSkills(
 
   return next;
 }
+

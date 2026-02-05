@@ -1,4 +1,4 @@
-import type { MediaUnderstandingProvider } from "../../types.js";
+﻿import type { MediaUnderstandingProvider } from "../../types.js";
 import { describeImageWithModel } from "../image.js";
 
 export const minimaxProvider: MediaUnderstandingProvider = {
@@ -6,3 +6,4 @@ export const minimaxProvider: MediaUnderstandingProvider = {
   capabilities: ["image"],
   describeImage: describeImageWithModel,
 };
+

@@ -1,4 +1,4 @@
-import { normalizeE164 } from "../utils.js";
+﻿import { normalizeE164 } from "../utils.js";
 
 const WHATSAPP_USER_JID_RE = /^(\d+)(?::\d+)?@s\.whatsapp\.net$/i;
 const WHATSAPP_LID_RE = /^(\d+)@lid$/i;
@@ -78,3 +78,4 @@ export function normalizeWhatsAppTarget(value: string): string | null {
   const normalized = normalizeE164(candidate);
   return normalized.length > 1 ? normalized : null;
 }
+

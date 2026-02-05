@@ -1,4 +1,4 @@
----
+﻿---
 description: Update Clawdbot from upstream when branch has diverged (ahead/behind)
 ---
 
@@ -35,8 +35,8 @@ This shows:
 
 **Decision point:**
 
-- Few local commits, many upstream → **Rebase** (cleaner history)
-- Many local commits or shared branch → **Merge** (preserves history)
+- Few local commits, many upstream â†’ **Rebase** (cleaner history)
+- Many local commits or shared branch â†’ **Merge** (preserves history)
 
 ---
 
@@ -366,10 +366,10 @@ pnpm clawdbot health
 
 echo "==> Checking for Swift 6.2 compatibility issues..."
 if grep -r "FileManager\.default\|Thread\.isMainThread" src/ apps/ --include="*.swift" --quiet; then
-    echo "⚠️  Found potential Swift 6.2 deprecated API usage"
+    echo "âš ï¸  Found potential Swift 6.2 deprecated API usage"
     echo "   Run manual fixes or use analyze-mode investigation"
 else
-    echo "✅ No obvious Swift deprecation issues found"
+    echo "âœ… No obvious Swift deprecation issues found"
 fi
 
 echo "==> Testing agent functionality..."
@@ -378,3 +378,4 @@ pnpm clawdbot agent --message "Verification: Upstream sync and macOS rebuild com
 
 echo "==> Done! Check Telegram for verification message, then run 'git push --force-with-lease' when ready."
 ```
+

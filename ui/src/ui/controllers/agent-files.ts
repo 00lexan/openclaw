@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type {
   AgentFileEntry,
   AgentsFilesGetResult,
@@ -124,3 +124,4 @@ export async function saveAgentFile(
     state.agentFileSaving = false;
   }
 }
+

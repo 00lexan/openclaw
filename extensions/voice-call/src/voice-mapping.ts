@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Voice mapping and XML utilities for voice call providers.
  */
 
@@ -65,3 +65,4 @@ export function isOpenAiVoice(voice: string): boolean {
 export function getOpenAiVoiceNames(): string[] {
   return Object.keys(OPENAI_TO_POLLY_MAP);
 }
+

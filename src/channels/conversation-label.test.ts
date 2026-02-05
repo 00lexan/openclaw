@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { MsgContext } from "../auto-reply/templating.js";
 import { resolveConversationLabel } from "./conversation-label.js";
 
@@ -36,3 +36,4 @@ describe("resolveConversationLabel", () => {
     expect(resolveConversationLabel(ctx)).toBe("Family id:123@g.us");
   });
 });
+

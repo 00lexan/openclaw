@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import { writeBase64ToFile } from "../../cli/nodes-camera.js";
@@ -178,3 +178,4 @@ export function createCanvasTool(): AnyAgentTool {
     },
   };
 }
+

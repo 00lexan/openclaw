@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   MSTeamsConversationStore,
   MSTeamsConversationStoreEntry,
   StoredConversationReference,
@@ -163,3 +163,4 @@ export function createMSTeamsConversationStoreFs(params?: {
 
   return { upsert, get, list, remove, findByUserId };
 }
+

@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Expose an OpenResponses-compatible /v1/responses HTTP endpoint from the Gateway"
 read_when:
   - Integrating clients that speak the OpenResponses API
@@ -8,7 +8,7 @@ title: "OpenResponses API"
 
 # OpenResponses API (HTTP)
 
-OpenClaw’s Gateway can serve an OpenResponses-compatible `POST /v1/responses` endpoint.
+â€™s Gateway can serve an OpenResponses-compatible `POST /v1/responses` endpoint.
 
 This endpoint is **disabled by default**. Enable it in config first.
 
@@ -16,7 +16,7 @@ This endpoint is **disabled by default**. Enable it in config first.
 - Same port as the Gateway (WS + HTTP multiplex): `http://<gateway-host>:<port>/v1/responses`
 
 Under the hood, requests are executed as a normal Gateway agent run (same codepath as
-`openclaw agent`), so routing/permissions/config match your Gateway.
+` agent`), so routing/permissions/config match your Gateway.
 
 ## Authentication
 
@@ -26,23 +26,23 @@ Uses the Gateway auth configuration. Send a bearer token:
 
 Notes:
 
-- When `gateway.auth.mode="token"`, use `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`).
-- When `gateway.auth.mode="password"`, use `gateway.auth.password` (or `OPENCLAW_GATEWAY_PASSWORD`).
+- When `gateway.auth.mode="token"`, use `gateway.auth.token` (or `_GATEWAY_TOKEN`).
+- When `gateway.auth.mode="password"`, use `gateway.auth.password` (or `_GATEWAY_PASSWORD`).
 
 ## Choosing an agent
 
 No custom headers required: encode the agent id in the OpenResponses `model` field:
 
-- `model: "openclaw:<agentId>"` (example: `"openclaw:main"`, `"openclaw:beta"`)
+- `model: ":<agentId>"` (example: `":main"`, `":beta"`)
 - `model: "agent:<agentId>"` (alias)
 
-Or target a specific OpenClaw agent by header:
+Or target a specific  agent by header:
 
-- `x-openclaw-agent-id: <agentId>` (default: `main`)
+- `x--agent-id: <agentId>` (default: `main`)
 
 Advanced:
 
-- `x-openclaw-session-key: <sessionKey>` to fully control session routing.
+- `x--session-key: <sessionKey>` to fully control session routing.
 
 ## Enabling the endpoint
 
@@ -111,7 +111,7 @@ Accepted but **currently ignored**:
 Roles: `system`, `developer`, `user`, `assistant`.
 
 - `system` and `developer` are appended to the system prompt.
-- The most recent `user` or `function_call_output` item becomes the “current message.”
+- The most recent `user` or `function_call_output` item becomes the â€œcurrent message.â€
 - Earlier user/assistant messages are included as history for context.
 
 ### `function_call_output` (turn-based tools)
@@ -295,9 +295,9 @@ Non-streaming:
 curl -sS http://127.0.0.1:18789/v1/responses \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -H 'Content-Type: application/json' \
-  -H 'x-openclaw-agent-id: main' \
+  -H 'x--agent-id: main' \
   -d '{
-    "model": "openclaw",
+    "model": "",
     "input": "hi"
   }'
 ```
@@ -308,10 +308,11 @@ Streaming:
 curl -N http://127.0.0.1:18789/v1/responses \
   -H 'Authorization: Bearer YOUR_TOKEN' \
   -H 'Content-Type: application/json' \
-  -H 'x-openclaw-agent-id: main' \
+  -H 'x--agent-id: main' \
   -d '{
-    "model": "openclaw",
+    "model": "",
     "stream": true,
     "input": "hi"
   }'
 ```
+

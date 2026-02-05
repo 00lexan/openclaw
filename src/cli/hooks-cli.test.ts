@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { HookStatusReport } from "../hooks/hooks-status.js";
 import { formatHooksCheck, formatHooksList } from "./hooks-cli.js";
 
@@ -9,14 +9,14 @@ const report: HookStatusReport = {
     {
       name: "session-memory",
       description: "Save session context to memory",
-      source: "openclaw-bundled",
+      source: "-bundled",
       pluginId: undefined,
       filePath: "/tmp/hooks/session-memory/HOOK.md",
       baseDir: "/tmp/hooks/session-memory",
       handlerPath: "/tmp/hooks/session-memory/handler.js",
       hookKey: "session-memory",
-      emoji: "💾",
-      homepage: "https://docs.openclaw.ai/hooks#session-memory",
+      emoji: "ðŸ’¾",
+      homepage: "https://docs..ai/hooks#session-memory",
       events: ["command:new"],
       always: false,
       disabled: false,
@@ -62,13 +62,13 @@ describe("hooks cli formatting", () => {
         {
           name: "plugin-hook",
           description: "Hook from plugin",
-          source: "openclaw-plugin",
+          source: "-plugin",
           pluginId: "voice-call",
           filePath: "/tmp/hooks/plugin-hook/HOOK.md",
           baseDir: "/tmp/hooks/plugin-hook",
           handlerPath: "/tmp/hooks/plugin-hook/handler.js",
           hookKey: "plugin-hook",
-          emoji: "🔗",
+          emoji: "ðŸ”—",
           homepage: undefined,
           events: ["command:new"],
           always: false,
@@ -99,3 +99,4 @@ describe("hooks cli formatting", () => {
     expect(output).toContain("plugin:voice-call");
   });
 });
+

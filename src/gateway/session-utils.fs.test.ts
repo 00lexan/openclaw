@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
@@ -13,7 +13,7 @@ describe("readFirstUserMessageFromTranscript", () => {
   let storePath: string;
 
   beforeEach(() => {
-    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-session-fs-test-"));
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "-session-fs-test-"));
     storePath = path.join(tmpDir, "sessions.json");
   });
 
@@ -159,7 +159,7 @@ describe("readLastMessagePreviewFromTranscript", () => {
   let storePath: string;
 
   beforeEach(() => {
-    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-session-fs-test-"));
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "-session-fs-test-"));
     storePath = path.join(tmpDir, "sessions.json");
   });
 
@@ -334,12 +334,12 @@ describe("readLastMessagePreviewFromTranscript", () => {
     const sessionId = "test-last-utf8";
     const transcriptPath = path.join(tmpDir, `${sessionId}.jsonl`);
     const validLine = JSON.stringify({
-      message: { role: "user", content: "Valid UTF-8: 你好世界 🌍" },
+      message: { role: "user", content: "Valid UTF-8: ä½ å¥½ä¸–ç•Œ ðŸŒ" },
     });
     fs.writeFileSync(transcriptPath, validLine, "utf-8");
 
     const result = readLastMessagePreviewFromTranscript(sessionId, storePath);
-    expect(result).toBe("Valid UTF-8: 你好世界 🌍");
+    expect(result).toBe("Valid UTF-8: ä½ å¥½ä¸–ç•Œ ðŸŒ");
   });
 });
 
@@ -348,7 +348,7 @@ describe("readSessionPreviewItemsFromTranscript", () => {
   let storePath: string;
 
   beforeEach(() => {
-    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-session-preview-test-"));
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "-session-preview-test-"));
     storePath = path.join(tmpDir, "sessions.json");
   });
 
@@ -404,3 +404,4 @@ describe("readSessionPreviewItemsFromTranscript", () => {
     expect(result[0]?.text.endsWith("...")).toBe(true);
   });
 });
+

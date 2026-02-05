@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import { loadConfig, resolveGatewayPort } from "../config/config.js";
 import { ensureExplicitGatewayAuth, resolveExplicitGatewayAuth } from "../gateway/call.js";
 import { GatewayClient } from "../gateway/client.js";
@@ -116,7 +116,7 @@ export class GatewayChatClient {
       token: resolved.token,
       password: resolved.password,
       clientName: GATEWAY_CLIENT_NAMES.GATEWAY_CLIENT,
-      clientDisplayName: "openclaw-tui",
+      clientDisplayName: "-tui",
       clientVersion: VERSION,
       platform: process.platform,
       mode: GATEWAY_CLIENT_MODES.UI,
@@ -247,7 +247,7 @@ export function resolveGatewayConnection(opts: GatewayConnectionOptions) {
         ? typeof remote?.token === "string" && remote.token.trim().length > 0
           ? remote.token.trim()
           : undefined
-        : process.env.OPENCLAW_GATEWAY_TOKEN?.trim() ||
+        : process.env._GATEWAY_TOKEN?.trim() ||
           (typeof authToken === "string" && authToken.trim().length > 0
             ? authToken.trim()
             : undefined)
@@ -256,7 +256,7 @@ export function resolveGatewayConnection(opts: GatewayConnectionOptions) {
   const password =
     explicitAuth.password ||
     (!urlOverride
-      ? process.env.OPENCLAW_GATEWAY_PASSWORD?.trim() ||
+      ? process.env._GATEWAY_PASSWORD?.trim() ||
         (typeof remote?.password === "string" && remote.password.trim().length > 0
           ? remote.password.trim()
           : undefined)
@@ -264,3 +264,4 @@ export function resolveGatewayConnection(opts: GatewayConnectionOptions) {
 
   return { url, token, password };
 }
+

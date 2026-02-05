@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Streaming + chunking behavior (block replies, draft streaming, limits)"
 read_when:
   - Explaining how streaming or chunking works on channels
@@ -9,7 +9,7 @@ title: "Streaming and Chunking"
 
 # Streaming + chunking
 
-OpenClaw has two separate “streaming” layers:
+ has two separate â€œstreamingâ€ layers:
 
 - **Block streaming (channels):** emit completed **blocks** as the assistant writes. These are normal channel messages (not token deltas).
 - **Token-ish streaming (Telegram only):** update a **draft bubble** with partial text while generating; final message is sent at the end.
@@ -22,12 +22,12 @@ Block streaming sends assistant output in coarse chunks as it becomes available.
 
 ```
 Model output
-  └─ text_delta/events
-       ├─ (blockStreamingBreak=text_end)
-       │    └─ chunker emits blocks as buffer grows
-       └─ (blockStreamingBreak=message_end)
-            └─ chunker flushes at message_end
-                   └─ channel send (block replies)
+  â””â”€ text_delta/events
+       â”œâ”€ (blockStreamingBreak=text_end)
+       â”‚    â””â”€ chunker emits blocks as buffer grows
+       â””â”€ (blockStreamingBreak=message_end)
+            â””â”€ chunker flushes at message_end
+                   â””â”€ channel send (block replies)
 ```
 
 Legend:
@@ -58,17 +58,17 @@ Legend:
 
 Block chunking is implemented by `EmbeddedBlockChunker`:
 
-- **Low bound:** don’t emit until buffer >= `minChars` (unless forced).
+- **Low bound:** donâ€™t emit until buffer >= `minChars` (unless forced).
 - **High bound:** prefer splits before `maxChars`; if forced, split at `maxChars`.
-- **Break preference:** `paragraph` → `newline` → `sentence` → `whitespace` → hard break.
+- **Break preference:** `paragraph` â†’ `newline` â†’ `sentence` â†’ `whitespace` â†’ hard break.
 - **Code fences:** never split inside fences; when forced at `maxChars`, close + reopen the fence to keep Markdown valid.
 
-`maxChars` is clamped to the channel `textChunkLimit`, so you can’t exceed per-channel caps.
+`maxChars` is clamped to the channel `textChunkLimit`, so you canâ€™t exceed per-channel caps.
 
 ## Coalescing (merge streamed blocks)
 
-When block streaming is enabled, OpenClaw can **merge consecutive block chunks**
-before sending them out. This reduces “single-line spam” while still providing
+When block streaming is enabled,  can **merge consecutive block chunks**
+before sending them out. This reduces â€œsingle-line spamâ€ while still providing
 progressive output.
 
 - Coalescing waits for **idle gaps** (`idleMs`) before flushing.
@@ -76,7 +76,7 @@ progressive output.
 - `minChars` prevents tiny fragments from sending until enough text accumulates
   (final flush always sends remaining text).
 - Joiner is derived from `blockStreamingChunk.breakPreference`
-  (`paragraph` → `\n\n`, `newline` → `\n`, `sentence` → space).
+  (`paragraph` â†’ `\n\n`, `newline` â†’ `\n`, `sentence` â†’ space).
 - Channel overrides are available via `*.blockStreamingCoalesce` (including per-account configs).
 - Default coalesce `minChars` is bumped to 1500 for Signal/Slack/Discord unless overridden.
 
@@ -87,10 +87,10 @@ block replies (after the first block). This makes multi-bubble responses feel
 more natural.
 
 - Config: `agents.defaults.humanDelay` (override per agent via `agents.list[].humanDelay`).
-- Modes: `off` (default), `natural` (800–2500ms), `custom` (`minMs`/`maxMs`).
+- Modes: `off` (default), `natural` (800â€“2500ms), `custom` (`minMs`/`maxMs`).
 - Applies only to **block replies**, not final replies or tool summaries.
 
-## “Stream chunks or everything”
+## â€œStream chunks or everythingâ€
 
 This maps to:
 
@@ -119,17 +119,18 @@ Telegram is the only channel with draft streaming:
 - Final reply is still a normal message.
 - `/reasoning stream` writes reasoning into the draft bubble (Telegram only).
 
-When draft streaming is active, OpenClaw disables block streaming for that reply to avoid double-streaming.
+When draft streaming is active,  disables block streaming for that reply to avoid double-streaming.
 
 ```
 Telegram (private + topics)
-  └─ sendMessageDraft (draft bubble)
-       ├─ streamMode=partial → update latest text
-       └─ streamMode=block   → chunker updates draft
-  └─ final reply → normal message
+  â””â”€ sendMessageDraft (draft bubble)
+       â”œâ”€ streamMode=partial â†’ update latest text
+       â””â”€ streamMode=block   â†’ chunker updates draft
+  â””â”€ final reply â†’ normal message
 ```
 
 Legend:
 
 - `sendMessageDraft`: Telegram draft bubble (not a real message).
 - `final reply`: normal Telegram message send.
+

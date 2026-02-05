@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import { describe, expect, it } from "vitest";
 import {
   estimateMessagesTokens,
@@ -146,3 +146,4 @@ describe("pruneHistoryForContextShare", () => {
     expect(pruned.messages.length).toBe(1);
   });
 });
+

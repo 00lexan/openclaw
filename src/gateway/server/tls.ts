@@ -1,4 +1,4 @@
-import type { GatewayTlsConfig } from "../../config/types.gateway.js";
+﻿import type { GatewayTlsConfig } from "../../config/types.gateway.js";
 import {
   type GatewayTlsRuntime,
   loadGatewayTlsRuntime as loadGatewayTlsRuntimeConfig,
@@ -12,3 +12,4 @@ export async function loadGatewayTlsRuntime(
 ): Promise<GatewayTlsRuntime> {
   return await loadGatewayTlsRuntimeConfig(cfg, log);
 }
+

@@ -1,4 +1,4 @@
-import type { EmbeddingProvider, EmbeddingProviderOptions } from "./embeddings.js";
+﻿import type { EmbeddingProvider, EmbeddingProviderOptions } from "./embeddings.js";
 import { requireApiKey, resolveApiKeyForProvider } from "../agents/model-auth.js";
 
 export type OpenAiEmbeddingClient = {
@@ -90,3 +90,4 @@ export async function resolveOpenAiEmbeddingClient(
   const model = normalizeOpenAiModel(options.model);
   return { baseUrl, headers, model };
 }
+

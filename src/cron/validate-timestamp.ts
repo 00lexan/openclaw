@@ -1,4 +1,4 @@
-import type { CronSchedule } from "./types.js";
+﻿import type { CronSchedule } from "./types.js";
 import { parseAbsoluteTimeMs } from "./parse.js";
 
 const ONE_MINUTE_MS = 60 * 1000;
@@ -64,3 +64,4 @@ export function validateScheduleTimestamp(
 
   return { ok: true };
 }
+

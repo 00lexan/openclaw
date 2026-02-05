@@ -1,12 +1,12 @@
----
+﻿---
 name: imsg
 description: iMessage/SMS CLI for listing chats, history, watch, and sending.
 homepage: https://imsg.to
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "📨",
+        "emoji": "ðŸ“¨",
         "os": ["darwin"],
         "requires": { "bins": ["imsg"] },
         "install":
@@ -72,3 +72,4 @@ imsg send --to "+14155551212" --text "hi" --file /path/pic.jpg
 
 - Use `imsg chats --limit 10 --json` to discover chat ids.
 - Watch a high-signal chat to stream incoming messages.
+

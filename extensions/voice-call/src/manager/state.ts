@@ -1,4 +1,4 @@
-import { TerminalStates, type CallRecord, type CallState, type TranscriptEntry } from "../types.js";
+﻿import { TerminalStates, type CallRecord, type CallState, type TranscriptEntry } from "../types.js";
 
 const ConversationStates = new Set<CallState>(["speaking", "listening"]);
 
@@ -46,3 +46,4 @@ export function addTranscriptEntry(call: CallRecord, speaker: "bot" | "user", te
   };
   call.transcript.push(entry);
 }
+

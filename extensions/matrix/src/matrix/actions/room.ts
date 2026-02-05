@@ -1,4 +1,4 @@
-import { resolveMatrixRoomId } from "../send.js";
+﻿import { resolveMatrixRoomId } from "../send.js";
 import { resolveActionClient } from "./client.js";
 import { EventType, type MatrixActionClientOpts } from "./types.js";
 
@@ -83,3 +83,4 @@ export async function getMatrixRoomInfo(roomId: string, opts: MatrixActionClient
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { buildInboundMediaNote } from "./media-note.js";
 
 describe("buildInboundMediaNote", () => {
@@ -107,3 +107,4 @@ describe("buildInboundMediaNote", () => {
     expect(note).toBe("[media attached: /tmp/b.png | https://example.com/b.png]");
   });
 });
+

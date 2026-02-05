@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { registerAgentRunContext, resetAgentRunContextForTest } from "../infra/agent-events.js";
 import {
   createAgentEventHandler,
@@ -203,3 +203,4 @@ describe("agent event handler", () => {
     resetAgentRunContextForTest();
   });
 });
+

@@ -1,12 +1,12 @@
----
+﻿---
 name: gemini
 description: Gemini CLI for one-shot Q&A, summaries, and generation.
 homepage: https://ai.google.dev/
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "♊️",
+        "emoji": "â™Šï¸",
         "requires": { "bins": ["gemini"] },
         "install":
           [
@@ -41,3 +41,4 @@ Notes
 
 - If auth is required, run `gemini` once interactively and follow the login flow.
 - Avoid `--yolo` for safety.
+

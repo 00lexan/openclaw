@@ -1,4 +1,4 @@
-import type { ErrorObject } from "ajv";
+﻿import type { ErrorObject } from "ajv";
 import type { RespondFn } from "./types.js";
 import { ErrorCodes, errorShape, formatValidationErrors } from "../protocol/index.js";
 import { formatForLog } from "../ws-log.js";
@@ -51,3 +51,4 @@ export function safeParseJson(value: string | null | undefined): unknown {
     return { payloadJSON: value };
   }
 }
+

@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "bluebubbles",
   "channels": ["bluebubbles"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

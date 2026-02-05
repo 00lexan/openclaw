@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import type { SandboxDockerConfig, SandboxWorkspaceAccess } from "./types.js";
 
 type SandboxHashInput = {
@@ -62,3 +62,4 @@ export function computeSandboxConfigHash(input: SandboxHashInput): string {
   const raw = JSON.stringify(payload);
   return crypto.createHash("sha1").update(raw).digest("hex");
 }
+

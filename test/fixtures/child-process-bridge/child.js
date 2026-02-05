@@ -1,4 +1,4 @@
-import http from "node:http";
+﻿import http from "node:http";
 
 const server = http.createServer((_, res) => {
   res.writeHead(200, { "content-type": "text/plain" });
@@ -19,3 +19,4 @@ const shutdown = () => {
 
 process.on("SIGTERM", shutdown);
 process.on("SIGINT", shutdown);
+

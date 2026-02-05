@@ -1,4 +1,4 @@
-import type { RESTAPIPoll } from "discord-api-types/rest/v10";
+﻿import type { RESTAPIPoll } from "discord-api-types/rest/v10";
 import { RequestClient } from "@buape/carbon";
 import { PollLayoutType } from "discord-api-types/payloads/v10";
 import { Routes } from "discord-api-types/v10";
@@ -421,3 +421,4 @@ export {
   sendDiscordMedia,
   sendDiscordText,
 };
+

@@ -1,4 +1,4 @@
-import type { Bot } from "grammy";
+﻿import type { Bot } from "grammy";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const createTelegramDraftStream = vi.hoisted(() => vi.fn());
@@ -110,3 +110,4 @@ describe("dispatchTelegramMessage draft streaming", () => {
     );
   });
 });
+

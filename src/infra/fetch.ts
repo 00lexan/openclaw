@@ -1,4 +1,4 @@
-type FetchWithPreconnect = typeof fetch & {
+﻿type FetchWithPreconnect = typeof fetch & {
   preconnect: (url: string, init?: { credentials?: RequestCredentials }) => void;
 };
 
@@ -73,3 +73,4 @@ export function resolveFetch(fetchImpl?: typeof fetch): typeof fetch | undefined
   }
   return wrapFetchWithAbortSignal(resolved);
 }
+

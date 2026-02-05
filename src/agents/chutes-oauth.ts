@@ -1,4 +1,4 @@
-import type { OAuthCredentials } from "@mariozechner/pi-ai";
+﻿import type { OAuthCredentials } from "@mariozechner/pi-ai";
 import { createHash, randomBytes } from "node:crypto";
 
 export const CHUTES_OAUTH_ISSUER = "https://api.chutes.ai";
@@ -204,3 +204,4 @@ export async function refreshChutesTokens(params: {
     clientId,
   } as unknown as ChutesStoredOAuth;
 }
+

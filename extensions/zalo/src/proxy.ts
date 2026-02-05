@@ -1,4 +1,4 @@
-import type { Dispatcher } from "undici";
+﻿import type { Dispatcher } from "undici";
 import { ProxyAgent, fetch as undiciFetch } from "undici";
 import type { ZaloFetch } from "./api.js";
 
@@ -19,3 +19,4 @@ export function resolveZaloProxyFetch(proxyUrl?: string | null): ZaloFetch | und
   proxyCache.set(trimmed, fetcher);
   return fetcher;
 }
+

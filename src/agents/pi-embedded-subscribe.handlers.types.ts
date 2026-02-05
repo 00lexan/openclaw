@@ -1,4 +1,4 @@
-import type { AgentEvent, AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentEvent, AgentMessage } from "@mariozechner/pi-agent-core";
 import type { ReplyDirectiveParseResult } from "../auto-reply/reply/reply-directives.js";
 import type { ReasoningLevel } from "../auto-reply/thinking.js";
 import type { InlineCodeState } from "../markdown/code-spans.js";
@@ -106,3 +106,4 @@ export type EmbeddedPiSubscribeEvent =
   | AgentEvent
   | { type: string; [k: string]: unknown }
   | { type: "message_start"; message: AgentMessage };
+

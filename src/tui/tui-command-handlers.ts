@@ -1,4 +1,4 @@
-import type { Component, TUI } from "@mariozechner/pi-tui";
+﻿import type { Component, TUI } from "@mariozechner/pi-tui";
 import { randomUUID } from "node:crypto";
 import type { SessionsPatchResult } from "../gateway/protocol/index.js";
 import type { ChatLog } from "./components/chat-log.js";
@@ -161,7 +161,7 @@ export function createCommandHandlers(context: CommandHandlerContext) {
         const timePart = session.updatedAt ? formatRelativeTime(session.updatedAt) : "";
         const preview = session.lastMessagePreview?.replace(/\s+/g, " ").trim();
         const description =
-          timePart && preview ? `${timePart} · ${preview}` : (preview ?? timePart);
+          timePart && preview ? `${timePart} Â· ${preview}` : (preview ?? timePart);
         return {
           value: session.key,
           label,
@@ -498,3 +498,4 @@ export function createCommandHandlers(context: CommandHandlerContext) {
     setAgent,
   };
 }
+

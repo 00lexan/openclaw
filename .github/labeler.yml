@@ -1,4 +1,4 @@
-"channel: bluebubbles":
+﻿"channel: bluebubbles":
   - changed-files:
       - any-glob-to-any-file:
           - "extensions/bluebubbles/**"
@@ -226,3 +226,4 @@
   - changed-files:
       - any-glob-to-any-file:
           - "extensions/qwen-portal-auth/**"
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { classifySignalCliLogLine } from "./daemon.js";
 
 describe("classifySignalCliLogLine", () => {
@@ -23,3 +23,4 @@ describe("classifySignalCliLogLine", () => {
     expect(classifySignalCliLogLine("   ")).toBe(null);
   });
 });
+

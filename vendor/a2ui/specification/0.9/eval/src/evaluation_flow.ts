@@ -1,4 +1,4 @@
-
+﻿
 /*
  Copyright 2025 Google LLC
 
@@ -191,3 +191,4 @@ Return a JSON object with the following schema:
     }
   }
 );
+

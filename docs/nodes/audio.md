@@ -1,15 +1,15 @@
----
+﻿---
 summary: "How inbound audio/voice notes are downloaded, transcribed, and injected into replies"
 read_when:
   - Changing audio transcription or media handling
 title: "Audio and Voice Notes"
 ---
 
-# Audio / Voice Notes — 2026-01-17
+# Audio / Voice Notes â€” 2026-01-17
 
 ## What works
 
-- **Media understanding (audio)**: If audio understanding is enabled (or auto‑detected), OpenClaw:
+- **Media understanding (audio)**: If audio understanding is enabled (or autoâ€‘detected), :
   1. Locates the first audio attachment (local path or URL) and downloads it if needed.
   2. Enforces `maxBytes` before sending to each model entry.
   3. Runs the first eligible model entry in order (provider or CLI).
@@ -20,15 +20,15 @@ title: "Audio and Voice Notes"
 
 ## Auto-detection (default)
 
-If you **don’t configure models** and `tools.media.audio.enabled` is **not** set to `false`,
-OpenClaw auto-detects in this order and stops at the first working option:
+If you **donâ€™t configure models** and `tools.media.audio.enabled` is **not** set to `false`,
+ auto-detects in this order and stops at the first working option:
 
 1. **Local CLIs** (if installed)
    - `sherpa-onnx-offline` (requires `SHERPA_ONNX_MODEL_DIR` with encoder/decoder/joiner/tokens)
    - `whisper-cli` (from `whisper-cpp`; uses `WHISPER_CPP_MODEL` or the bundled tiny model)
    - `whisper` (Python CLI; downloads models automatically)
 2. **Gemini CLI** (`gemini`) using `read_many_files`
-3. **Provider keys** (OpenAI → Groq → Deepgram → Google)
+3. **Provider keys** (OpenAI â†’ Groq â†’ Deepgram â†’ Google)
 
 To disable auto-detection, set `tools.media.audio.enabled: false`.
 To customize, set `tools.media.audio.models`.
@@ -112,3 +112,4 @@ Note: Binary detection is best-effort across macOS/Linux/Windows; ensure the CLI
 - Scope rules use first-match wins. `chatType` is normalized to `direct`, `group`, or `room`.
 - Ensure your CLI exits 0 and prints plain text; JSON needs to be massaged via `jq -r .text`.
 - Keep timeouts reasonable (`timeoutSeconds`, default 60s) to avoid blocking the reply queue.
+

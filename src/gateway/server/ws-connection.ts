@@ -1,4 +1,4 @@
-import type { WebSocket, WebSocketServer } from "ws";
+﻿import type { WebSocket, WebSocketServer } from "ws";
 import { randomUUID } from "node:crypto";
 import type { createSubsystemLogger } from "../../logging/subsystem.js";
 import type { ResolvedGatewayAuth } from "../auth.js";
@@ -264,3 +264,4 @@ export function attachGatewayWsConnectionHandler(params: {
     });
   });
 }
+

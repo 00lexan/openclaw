@@ -1,6 +1,6 @@
-import type { ProviderPlugin } from "./types.js";
+﻿import type { ProviderPlugin } from "./types.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
-import { loadOpenClawPlugins, type PluginLoadOptions } from "./loader.js";
+import { loadPlugins, type PluginLoadOptions } from "./loader.js";
 
 const log = createSubsystemLogger("plugins");
 
@@ -8,7 +8,7 @@ export function resolvePluginProviders(params: {
   config?: PluginLoadOptions["config"];
   workspaceDir?: string;
 }): ProviderPlugin[] {
-  const registry = loadOpenClawPlugins({
+  const registry = loadPlugins({
     config: params.config,
     workspaceDir: params.workspaceDir,
     logger: {
@@ -21,3 +21,4 @@ export function resolvePluginProviders(params: {
 
   return registry.providers.map((entry) => entry.provider);
 }
+

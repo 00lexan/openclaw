@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import { resolveSessionTranscriptsDirForAgent } from "../config/sessions/paths.js";
 import { redactSensitiveText } from "../logging/redact.js";
@@ -123,3 +123,4 @@ export async function buildSessionEntry(absPath: string): Promise<SessionFileEnt
     return null;
   }
 }
+

@@ -1,12 +1,12 @@
----
+﻿---
 name: spotify-player
 description: Terminal Spotify playback/search via spogo (preferred) or spotify_player.
 homepage: https://www.spotify.com
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🎵",
+        "emoji": "ðŸŽµ",
         "requires": { "anyBins": ["spogo", "spotify_player"] },
         "install":
           [
@@ -62,3 +62,4 @@ Notes
 - Config folder: `~/.config/spotify-player` (e.g., `app.toml`).
 - For Spotify Connect integration, set a user `client_id` in config.
 - TUI shortcuts are available via `?` in the app.
+

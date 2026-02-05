@@ -1,6 +1,6 @@
----
+﻿---
 read_when: Setting up Slack or debugging Slack socket/HTTP mode
-summary: Slack 的 socket 或 HTTP webhook 模式设置
+summary: Slack çš„ socket æˆ– HTTP webhook æ¨¡å¼è®¾ç½®
 title: Slack
 x-i18n:
   generated_at: "2026-02-03T07:45:49Z"
@@ -13,15 +13,15 @@ x-i18n:
 
 # Slack
 
-## Socket 模式（默认）
+## Socket æ¨¡å¼ï¼ˆé»˜è®¤ï¼‰
 
-### 快速设置（新手）
+### å¿«é€Ÿè®¾ç½®ï¼ˆæ–°æ‰‹ï¼‰
 
-1. 创建一个 Slack 应用并启用 **Socket Mode**。
-2. 创建一个 **App Token**（`xapp-...`）和 **Bot Token**（`xoxb-...`）。
-3. 为 OpenClaw 设置令牌并启动 Gateway 网关。
+1. åˆ›å»ºä¸€ä¸ª Slack åº”ç”¨å¹¶å¯ç”¨ **Socket Mode**ã€‚
+2. åˆ›å»ºä¸€ä¸ª **App Token**ï¼ˆ`xapp-...`ï¼‰å’Œ **Bot Token**ï¼ˆ`xoxb-...`ï¼‰ã€‚
+3. ä¸º  è®¾ç½®ä»¤ç‰Œå¹¶å¯åŠ¨ Gateway ç½‘å…³ã€‚
 
-最小配置：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -35,35 +35,35 @@ x-i18n:
 }
 ```
 
-### 设置
+### è®¾ç½®
 
-1. 在 https://api.slack.com/apps 创建一个 Slack 应用（从头开始）。
-2. **Socket Mode** → 开启。然后前往 **Basic Information** → **App-Level Tokens** → **Generate Token and Scopes**，添加 `connections:write` 权限范围。复制 **App Token**（`xapp-...`）。
-3. **OAuth & Permissions** → 添加 bot token 权限范围（使用下面的 manifest）。点击 **Install to Workspace**。复制 **Bot User OAuth Token**（`xoxb-...`）。
-4. 可选：**OAuth & Permissions** → 添加 **User Token Scopes**（参见下面的只读列表）。重新安装应用并复制 **User OAuth Token**（`xoxp-...`）。
-5. **Event Subscriptions** → 启用事件并订阅：
-   - `message.*`（包括编辑/删除/线程广播）
+1. åœ¨ https://api.slack.com/apps åˆ›å»ºä¸€ä¸ª Slack åº”ç”¨ï¼ˆä»Žå¤´å¼€å§‹ï¼‰ã€‚
+2. **Socket Mode** â†’ å¼€å¯ã€‚ç„¶åŽå‰å¾€ **Basic Information** â†’ **App-Level Tokens** â†’ **Generate Token and Scopes**ï¼Œæ·»åŠ  `connections:write` æƒé™èŒƒå›´ã€‚å¤åˆ¶ **App Token**ï¼ˆ`xapp-...`ï¼‰ã€‚
+3. **OAuth & Permissions** â†’ æ·»åŠ  bot token æƒé™èŒƒå›´ï¼ˆä½¿ç”¨ä¸‹é¢çš„ manifestï¼‰ã€‚ç‚¹å‡» **Install to Workspace**ã€‚å¤åˆ¶ **Bot User OAuth Token**ï¼ˆ`xoxb-...`ï¼‰ã€‚
+4. å¯é€‰ï¼š**OAuth & Permissions** â†’ æ·»åŠ  **User Token Scopes**ï¼ˆå‚è§ä¸‹é¢çš„åªè¯»åˆ—è¡¨ï¼‰ã€‚é‡æ–°å®‰è£…åº”ç”¨å¹¶å¤åˆ¶ **User OAuth Token**ï¼ˆ`xoxp-...`ï¼‰ã€‚
+5. **Event Subscriptions** â†’ å¯ç”¨äº‹ä»¶å¹¶è®¢é˜…ï¼š
+   - `message.*`ï¼ˆåŒ…æ‹¬ç¼–è¾‘/åˆ é™¤/çº¿ç¨‹å¹¿æ’­ï¼‰
    - `app_mention`
-   - `reaction_added`、`reaction_removed`
-   - `member_joined_channel`、`member_left_channel`
+   - `reaction_added`ã€`reaction_removed`
+   - `member_joined_channel`ã€`member_left_channel`
    - `channel_rename`
-   - `pin_added`、`pin_removed`
-6. 邀请机器人加入你希望它读取的频道。
-7. Slash Commands → 如果你使用 `channels.slack.slashCommand`，创建 `/openclaw`。如果启用原生命令，为每个内置命令添加一个斜杠命令（名称与 `/help` 相同）。除非你设置 `channels.slack.commands.native: true`，否则 Slack 默认关闭原生命令（全局 `commands.native` 是 `"auto"`，对 Slack 保持关闭）。
-8. App Home → 启用 **Messages Tab** 以便用户可以私信机器人。
+   - `pin_added`ã€`pin_removed`
+6. é‚€è¯·æœºå™¨äººåŠ å…¥ä½ å¸Œæœ›å®ƒè¯»å–çš„é¢‘é“ã€‚
+7. Slash Commands â†’ å¦‚æžœä½ ä½¿ç”¨ `channels.slack.slashCommand`ï¼Œåˆ›å»º `/`ã€‚å¦‚æžœå¯ç”¨åŽŸç”Ÿå‘½ä»¤ï¼Œä¸ºæ¯ä¸ªå†…ç½®å‘½ä»¤æ·»åŠ ä¸€ä¸ªæ–œæ å‘½ä»¤ï¼ˆåç§°ä¸Ž `/help` ç›¸åŒï¼‰ã€‚é™¤éžä½ è®¾ç½® `channels.slack.commands.native: true`ï¼Œå¦åˆ™ Slack é»˜è®¤å…³é—­åŽŸç”Ÿå‘½ä»¤ï¼ˆå…¨å±€ `commands.native` æ˜¯ `"auto"`ï¼Œå¯¹ Slack ä¿æŒå…³é—­ï¼‰ã€‚
+8. App Home â†’ å¯ç”¨ **Messages Tab** ä»¥ä¾¿ç”¨æˆ·å¯ä»¥ç§ä¿¡æœºå™¨äººã€‚
 
-使用下面的 manifest 以保持权限范围和事件同步。
+ä½¿ç”¨ä¸‹é¢çš„ manifest ä»¥ä¿æŒæƒé™èŒƒå›´å’Œäº‹ä»¶åŒæ­¥ã€‚
 
-多账户支持：使用 `channels.slack.accounts` 配置每个账户的令牌和可选的 `name`。参见 [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) 了解共享模式。
+å¤šè´¦æˆ·æ”¯æŒï¼šä½¿ç”¨ `channels.slack.accounts` é…ç½®æ¯ä¸ªè´¦æˆ·çš„ä»¤ç‰Œå’Œå¯é€‰çš„ `name`ã€‚å‚è§ [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) äº†è§£å…±äº«æ¨¡å¼ã€‚
 
-### OpenClaw 配置（最小）
+###  é…ç½®ï¼ˆæœ€å°ï¼‰
 
-通过环境变量设置令牌（推荐）：
+é€šè¿‡çŽ¯å¢ƒå˜é‡è®¾ç½®ä»¤ç‰Œï¼ˆæŽ¨èï¼‰ï¼š
 
 - `SLACK_APP_TOKEN=xapp-...`
 - `SLACK_BOT_TOKEN=xoxb-...`
 
-或通过配置：
+æˆ–é€šè¿‡é…ç½®ï¼š
 
 ```json5
 {
@@ -77,13 +77,13 @@ x-i18n:
 }
 ```
 
-### 用户令牌（可选）
+### ç”¨æˆ·ä»¤ç‰Œï¼ˆå¯é€‰ï¼‰
 
-OpenClaw 可以使用 Slack 用户令牌（`xoxp-...`）进行读取操作（历史记录、置顶、表情回应、表情符号、成员信息）。默认情况下保持只读：当存在用户令牌时，读取优先使用用户令牌，而写入仍然使用 bot 令牌，除非你明确选择加入。即使设置了 `userTokenReadOnly: false`，当 bot 令牌可用时，写入仍然优先使用 bot 令牌。
+ å¯ä»¥ä½¿ç”¨ Slack ç”¨æˆ·ä»¤ç‰Œï¼ˆ`xoxp-...`ï¼‰è¿›è¡Œè¯»å–æ“ä½œï¼ˆåŽ†å²è®°å½•ã€ç½®é¡¶ã€è¡¨æƒ…å›žåº”ã€è¡¨æƒ…ç¬¦å·ã€æˆå‘˜ä¿¡æ¯ï¼‰ã€‚é»˜è®¤æƒ…å†µä¸‹ä¿æŒåªè¯»ï¼šå½“å­˜åœ¨ç”¨æˆ·ä»¤ç‰Œæ—¶ï¼Œè¯»å–ä¼˜å…ˆä½¿ç”¨ç”¨æˆ·ä»¤ç‰Œï¼Œè€Œå†™å…¥ä»ç„¶ä½¿ç”¨ bot ä»¤ç‰Œï¼Œé™¤éžä½ æ˜Žç¡®é€‰æ‹©åŠ å…¥ã€‚å³ä½¿è®¾ç½®äº† `userTokenReadOnly: false`ï¼Œå½“ bot ä»¤ç‰Œå¯ç”¨æ—¶ï¼Œå†™å…¥ä»ç„¶ä¼˜å…ˆä½¿ç”¨ bot ä»¤ç‰Œã€‚
 
-用户令牌在配置文件中配置（不支持环境变量）。对于多账户，设置 `channels.slack.accounts.<id>.userToken`。
+ç”¨æˆ·ä»¤ç‰Œåœ¨é…ç½®æ–‡ä»¶ä¸­é…ç½®ï¼ˆä¸æ”¯æŒçŽ¯å¢ƒå˜é‡ï¼‰ã€‚å¯¹äºŽå¤šè´¦æˆ·ï¼Œè®¾ç½® `channels.slack.accounts.<id>.userToken`ã€‚
 
-包含 bot + app + 用户令牌的示例：
+åŒ…å« bot + app + ç”¨æˆ·ä»¤ç‰Œçš„ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -98,7 +98,7 @@ OpenClaw 可以使用 Slack 用户令牌（`xoxp-...`）进行读取操作（历
 }
 ```
 
-明确设置 userTokenReadOnly 的示例（允许用户令牌写入）：
+æ˜Žç¡®è®¾ç½® userTokenReadOnly çš„ç¤ºä¾‹ï¼ˆå…è®¸ç”¨æˆ·ä»¤ç‰Œå†™å…¥ï¼‰ï¼š
 
 ```json5
 {
@@ -114,34 +114,34 @@ OpenClaw 可以使用 Slack 用户令牌（`xoxp-...`）进行读取操作（历
 }
 ```
 
-#### 令牌使用
+#### ä»¤ç‰Œä½¿ç”¨
 
-- 读取操作（历史记录、表情回应列表、置顶列表、表情符号列表、成员信息、搜索）在配置了用户令牌时优先使用用户令牌，否则使用 bot 令牌。
-- 写入操作（发送/编辑/删除消息、添加/移除表情回应、置顶/取消置顶、文件上传）默认使用 bot 令牌。如果 `userTokenReadOnly: false` 且没有可用的 bot 令牌，OpenClaw 会回退到用户令牌。
+- è¯»å–æ“ä½œï¼ˆåŽ†å²è®°å½•ã€è¡¨æƒ…å›žåº”åˆ—è¡¨ã€ç½®é¡¶åˆ—è¡¨ã€è¡¨æƒ…ç¬¦å·åˆ—è¡¨ã€æˆå‘˜ä¿¡æ¯ã€æœç´¢ï¼‰åœ¨é…ç½®äº†ç”¨æˆ·ä»¤ç‰Œæ—¶ä¼˜å…ˆä½¿ç”¨ç”¨æˆ·ä»¤ç‰Œï¼Œå¦åˆ™ä½¿ç”¨ bot ä»¤ç‰Œã€‚
+- å†™å…¥æ“ä½œï¼ˆå‘é€/ç¼–è¾‘/åˆ é™¤æ¶ˆæ¯ã€æ·»åŠ /ç§»é™¤è¡¨æƒ…å›žåº”ã€ç½®é¡¶/å–æ¶ˆç½®é¡¶ã€æ–‡ä»¶ä¸Šä¼ ï¼‰é»˜è®¤ä½¿ç”¨ bot ä»¤ç‰Œã€‚å¦‚æžœ `userTokenReadOnly: false` ä¸”æ²¡æœ‰å¯ç”¨çš„ bot ä»¤ç‰Œï¼Œ ä¼šå›žé€€åˆ°ç”¨æˆ·ä»¤ç‰Œã€‚
 
-### 历史上下文
+### åŽ†å²ä¸Šä¸‹æ–‡
 
-- `channels.slack.historyLimit`（或 `channels.slack.accounts.*.historyLimit`）控制将多少条最近的频道/群组消息包含到提示中。
-- 回退到 `messages.groupChat.historyLimit`。设置为 `0` 以禁用（默认 50）。
+- `channels.slack.historyLimit`ï¼ˆæˆ– `channels.slack.accounts.*.historyLimit`ï¼‰æŽ§åˆ¶å°†å¤šå°‘æ¡æœ€è¿‘çš„é¢‘é“/ç¾¤ç»„æ¶ˆæ¯åŒ…å«åˆ°æç¤ºä¸­ã€‚
+- å›žé€€åˆ° `messages.groupChat.historyLimit`ã€‚è®¾ç½®ä¸º `0` ä»¥ç¦ç”¨ï¼ˆé»˜è®¤ 50ï¼‰ã€‚
 
-## HTTP 模式（Events API）
+## HTTP æ¨¡å¼ï¼ˆEvents APIï¼‰
 
-当你的 Gateway 网关可以通过 HTTPS 被 Slack 访问时（服务器部署的典型情况），使用 HTTP webhook 模式。
-HTTP 模式使用 Events API + Interactivity + Slash Commands，共享一个请求 URL。
+å½“ä½ çš„ Gateway ç½‘å…³å¯ä»¥é€šè¿‡ HTTPS è¢« Slack è®¿é—®æ—¶ï¼ˆæœåŠ¡å™¨éƒ¨ç½²çš„å…¸åž‹æƒ…å†µï¼‰ï¼Œä½¿ç”¨ HTTP webhook æ¨¡å¼ã€‚
+HTTP æ¨¡å¼ä½¿ç”¨ Events API + Interactivity + Slash Commandsï¼Œå…±äº«ä¸€ä¸ªè¯·æ±‚ URLã€‚
 
-### 设置
+### è®¾ç½®
 
-1. 创建一个 Slack 应用并**禁用 Socket Mode**（如果你只使用 HTTP 则可选）。
-2. **Basic Information** → 复制 **Signing Secret**。
-3. **OAuth & Permissions** → 安装应用并复制 **Bot User OAuth Token**（`xoxb-...`）。
-4. **Event Subscriptions** → 启用事件并将 **Request URL** 设置为你的 Gateway 网关 webhook 路径（默认 `/slack/events`）。
-5. **Interactivity & Shortcuts** → 启用并设置相同的 **Request URL**。
-6. **Slash Commands** → 为你的命令设置相同的 **Request URL**。
+1. åˆ›å»ºä¸€ä¸ª Slack åº”ç”¨å¹¶**ç¦ç”¨ Socket Mode**ï¼ˆå¦‚æžœä½ åªä½¿ç”¨ HTTP åˆ™å¯é€‰ï¼‰ã€‚
+2. **Basic Information** â†’ å¤åˆ¶ **Signing Secret**ã€‚
+3. **OAuth & Permissions** â†’ å®‰è£…åº”ç”¨å¹¶å¤åˆ¶ **Bot User OAuth Token**ï¼ˆ`xoxb-...`ï¼‰ã€‚
+4. **Event Subscriptions** â†’ å¯ç”¨äº‹ä»¶å¹¶å°† **Request URL** è®¾ç½®ä¸ºä½ çš„ Gateway ç½‘å…³ webhook è·¯å¾„ï¼ˆé»˜è®¤ `/slack/events`ï¼‰ã€‚
+5. **Interactivity & Shortcuts** â†’ å¯ç”¨å¹¶è®¾ç½®ç›¸åŒçš„ **Request URL**ã€‚
+6. **Slash Commands** â†’ ä¸ºä½ çš„å‘½ä»¤è®¾ç½®ç›¸åŒçš„ **Request URL**ã€‚
 
-示例请求 URL：
+ç¤ºä¾‹è¯·æ±‚ URLï¼š
 `https://gateway-host/slack/events`
 
-### OpenClaw 配置（最小）
+###  é…ç½®ï¼ˆæœ€å°ï¼‰
 
 ```json5
 {
@@ -157,21 +157,21 @@ HTTP 模式使用 Events API + Interactivity + Slash Commands，共享一个请�
 }
 ```
 
-多账户 HTTP 模式：设置 `channels.slack.accounts.<id>.mode = "http"` 并为每个账户提供唯一的 `webhookPath`，以便每个 Slack 应用可以指向自己的 URL。
+å¤šè´¦æˆ· HTTP æ¨¡å¼ï¼šè®¾ç½® `channels.slack.accounts.<id>.mode = "http"` å¹¶ä¸ºæ¯ä¸ªè´¦æˆ·æä¾›å”¯ä¸€çš„ `webhookPath`ï¼Œä»¥ä¾¿æ¯ä¸ª Slack åº”ç”¨å¯ä»¥æŒ‡å‘è‡ªå·±çš„ URLã€‚
 
-### Manifest（可选）
+### Manifestï¼ˆå¯é€‰ï¼‰
 
-使用此 Slack 应用 manifest 快速创建应用（如果需要可以调整名称/命令）。如果你计划配置用户令牌，请包含用户权限范围。
+ä½¿ç”¨æ­¤ Slack åº”ç”¨ manifest å¿«é€Ÿåˆ›å»ºåº”ç”¨ï¼ˆå¦‚æžœéœ€è¦å¯ä»¥è°ƒæ•´åç§°/å‘½ä»¤ï¼‰ã€‚å¦‚æžœä½ è®¡åˆ’é…ç½®ç”¨æˆ·ä»¤ç‰Œï¼Œè¯·åŒ…å«ç”¨æˆ·æƒé™èŒƒå›´ã€‚
 
 ```json
 {
   "display_information": {
-    "name": "OpenClaw",
-    "description": "Slack connector for OpenClaw"
+    "name": "",
+    "description": "Slack connector for "
   },
   "features": {
     "bot_user": {
-      "display_name": "OpenClaw",
+      "display_name": "",
       "always_online": false
     },
     "app_home": {
@@ -180,8 +180,8 @@ HTTP 模式使用 Events API + Interactivity + Slash Commands，共享一个请�
     },
     "slash_commands": [
       {
-        "command": "/openclaw",
-        "description": "Send a message to OpenClaw",
+        "command": "/",
+        "description": "Send a message to ",
         "should_escape": false
       }
     ]
@@ -251,60 +251,60 @@ HTTP 模式使用 Events API + Interactivity + Slash Commands，共享一个请�
 }
 ```
 
-如果启用原生命令，为每个要公开的命令添加一个 `slash_commands` 条目（与 `/help` 列表匹配）。使用 `channels.slack.commands.native` 覆盖。
+å¦‚æžœå¯ç”¨åŽŸç”Ÿå‘½ä»¤ï¼Œä¸ºæ¯ä¸ªè¦å…¬å¼€çš„å‘½ä»¤æ·»åŠ ä¸€ä¸ª `slash_commands` æ¡ç›®ï¼ˆä¸Ž `/help` åˆ—è¡¨åŒ¹é…ï¼‰ã€‚ä½¿ç”¨ `channels.slack.commands.native` è¦†ç›–ã€‚
 
-## 权限范围（当前 vs 可选）
+## æƒé™èŒƒå›´ï¼ˆå½“å‰ vs å¯é€‰ï¼‰
 
-Slack 的 Conversations API 是按类型区分的：你只需要你实际接触的会话类型（channels、groups、im、mpim）的权限范围。概述参见 https://docs.slack.dev/apis/web-api/using-the-conversations-api/。
+Slack çš„ Conversations API æ˜¯æŒ‰ç±»åž‹åŒºåˆ†çš„ï¼šä½ åªéœ€è¦ä½ å®žé™…æŽ¥è§¦çš„ä¼šè¯ç±»åž‹ï¼ˆchannelsã€groupsã€imã€mpimï¼‰çš„æƒé™èŒƒå›´ã€‚æ¦‚è¿°å‚è§ https://docs.slack.dev/apis/web-api/using-the-conversations-api/ã€‚
 
-### Bot 令牌权限范围（必需）
+### Bot ä»¤ç‰Œæƒé™èŒƒå›´ï¼ˆå¿…éœ€ï¼‰
 
-- `chat:write`（通过 `chat.postMessage` 发送/更新/删除消息）
+- `chat:write`ï¼ˆé€šè¿‡ `chat.postMessage` å‘é€/æ›´æ–°/åˆ é™¤æ¶ˆæ¯ï¼‰
   https://docs.slack.dev/reference/methods/chat.postMessage
-- `im:write`（通过 `conversations.open` 打开私信用于用户私信）
+- `im:write`ï¼ˆé€šè¿‡ `conversations.open` æ‰“å¼€ç§ä¿¡ç”¨äºŽç”¨æˆ·ç§ä¿¡ï¼‰
   https://docs.slack.dev/reference/methods/conversations.open
-- `channels:history`、`groups:history`、`im:history`、`mpim:history`
+- `channels:history`ã€`groups:history`ã€`im:history`ã€`mpim:history`
   https://docs.slack.dev/reference/methods/conversations.history
-- `channels:read`、`groups:read`、`im:read`、`mpim:read`
+- `channels:read`ã€`groups:read`ã€`im:read`ã€`mpim:read`
   https://docs.slack.dev/reference/methods/conversations.info
-- `users:read`（用户查询）
+- `users:read`ï¼ˆç”¨æˆ·æŸ¥è¯¢ï¼‰
   https://docs.slack.dev/reference/methods/users.info
-- `reactions:read`、`reactions:write`（`reactions.get` / `reactions.add`）
+- `reactions:read`ã€`reactions:write`ï¼ˆ`reactions.get` / `reactions.add`ï¼‰
   https://docs.slack.dev/reference/methods/reactions.get
   https://docs.slack.dev/reference/methods/reactions.add
-- `pins:read`、`pins:write`（`pins.list` / `pins.add` / `pins.remove`）
+- `pins:read`ã€`pins:write`ï¼ˆ`pins.list` / `pins.add` / `pins.remove`ï¼‰
   https://docs.slack.dev/reference/scopes/pins.read
   https://docs.slack.dev/reference/scopes/pins.write
-- `emoji:read`（`emoji.list`）
+- `emoji:read`ï¼ˆ`emoji.list`ï¼‰
   https://docs.slack.dev/reference/scopes/emoji.read
-- `files:write`（通过 `files.uploadV2` 上传）
+- `files:write`ï¼ˆé€šè¿‡ `files.uploadV2` ä¸Šä¼ ï¼‰
   https://docs.slack.dev/messaging/working-with-files/#upload
 
-### 用户令牌权限范围（可选，默认只读）
+### ç”¨æˆ·ä»¤ç‰Œæƒé™èŒƒå›´ï¼ˆå¯é€‰ï¼Œé»˜è®¤åªè¯»ï¼‰
 
-如果你配置了 `channels.slack.userToken`，在 **User Token Scopes** 下添加这些。
+å¦‚æžœä½ é…ç½®äº† `channels.slack.userToken`ï¼Œåœ¨ **User Token Scopes** ä¸‹æ·»åŠ è¿™äº›ã€‚
 
-- `channels:history`、`groups:history`、`im:history`、`mpim:history`
-- `channels:read`、`groups:read`、`im:read`、`mpim:read`
+- `channels:history`ã€`groups:history`ã€`im:history`ã€`mpim:history`
+- `channels:read`ã€`groups:read`ã€`im:read`ã€`mpim:read`
 - `users:read`
 - `reactions:read`
 - `pins:read`
 - `emoji:read`
 - `search:read`
 
-### 目前不需要（但未来可能需要）
+### ç›®å‰ä¸éœ€è¦ï¼ˆä½†æœªæ¥å¯èƒ½éœ€è¦ï¼‰
 
-- `mpim:write`（仅当我们添加群组私信打开/私信启动时通过 `conversations.open`）
-- `groups:write`（仅当我们添加私有频道管理时：创建/重命名/邀请/归档）
-- `chat:write.public`（仅当我们想发布到机器人未加入的频道时）
+- `mpim:write`ï¼ˆä»…å½“æˆ‘ä»¬æ·»åŠ ç¾¤ç»„ç§ä¿¡æ‰“å¼€/ç§ä¿¡å¯åŠ¨æ—¶é€šè¿‡ `conversations.open`ï¼‰
+- `groups:write`ï¼ˆä»…å½“æˆ‘ä»¬æ·»åŠ ç§æœ‰é¢‘é“ç®¡ç†æ—¶ï¼šåˆ›å»º/é‡å‘½å/é‚€è¯·/å½’æ¡£ï¼‰
+- `chat:write.public`ï¼ˆä»…å½“æˆ‘ä»¬æƒ³å‘å¸ƒåˆ°æœºå™¨äººæœªåŠ å…¥çš„é¢‘é“æ—¶ï¼‰
   https://docs.slack.dev/reference/scopes/chat.write.public
-- `users:read.email`（仅当我们需要从 `users.info` 获取邮箱字段时）
+- `users:read.email`ï¼ˆä»…å½“æˆ‘ä»¬éœ€è¦ä»Ž `users.info` èŽ·å–é‚®ç®±å­—æ®µæ—¶ï¼‰
   https://docs.slack.dev/changelog/2017-04-narrowing-email-access
-- `files:read`（仅当我们开始列出/读取文件元数据时）
+- `files:read`ï¼ˆä»…å½“æˆ‘ä»¬å¼€å§‹åˆ—å‡º/è¯»å–æ–‡ä»¶å…ƒæ•°æ®æ—¶ï¼‰
 
-## 配置
+## é…ç½®
 
-Slack 仅使用 Socket Mode（无 HTTP webhook 服务器）。提供两个令牌：
+Slack ä»…ä½¿ç”¨ Socket Modeï¼ˆæ—  HTTP webhook æœåŠ¡å™¨ï¼‰ã€‚æä¾›ä¸¤ä¸ªä»¤ç‰Œï¼š
 
 ```json
 {
@@ -343,7 +343,7 @@ Slack 仅使用 Socket Mode（无 HTTP webhook 服务器）。提供两个令牌
     },
     "slashCommand": {
       "enabled": true,
-      "name": "openclaw",
+      "name": "",
       "sessionPrefix": "slack:slash",
       "ephemeral": true
     },
@@ -353,66 +353,66 @@ Slack 仅使用 Socket Mode（无 HTTP webhook 服务器）。提供两个令牌
 }
 ```
 
-令牌也可以通过环境变量提供：
+ä»¤ç‰Œä¹Ÿå¯ä»¥é€šè¿‡çŽ¯å¢ƒå˜é‡æä¾›ï¼š
 
 - `SLACK_BOT_TOKEN`
 - `SLACK_APP_TOKEN`
 
-确认表情回应通过 `messages.ackReaction` + `messages.ackReactionScope` 全局控制。使用 `messages.removeAckAfterReply` 在机器人回复后清除确认表情回应。
+ç¡®è®¤è¡¨æƒ…å›žåº”é€šè¿‡ `messages.ackReaction` + `messages.ackReactionScope` å…¨å±€æŽ§åˆ¶ã€‚ä½¿ç”¨ `messages.removeAckAfterReply` åœ¨æœºå™¨äººå›žå¤åŽæ¸…é™¤ç¡®è®¤è¡¨æƒ…å›žåº”ã€‚
 
-## 限制
+## é™åˆ¶
 
-- 出站文本按 `channels.slack.textChunkLimit` 分块（默认 4000）。
-- 可选的换行分块：设置 `channels.slack.chunkMode="newline"` 以在长度分块之前按空行（段落边界）分割。
-- 媒体上传受 `channels.slack.mediaMaxMb` 限制（默认 20）。
+- å‡ºç«™æ–‡æœ¬æŒ‰ `channels.slack.textChunkLimit` åˆ†å—ï¼ˆé»˜è®¤ 4000ï¼‰ã€‚
+- å¯é€‰çš„æ¢è¡Œåˆ†å—ï¼šè®¾ç½® `channels.slack.chunkMode="newline"` ä»¥åœ¨é•¿åº¦åˆ†å—ä¹‹å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- åª’ä½“ä¸Šä¼ å— `channels.slack.mediaMaxMb` é™åˆ¶ï¼ˆé»˜è®¤ 20ï¼‰ã€‚
 
-## 回复线程
+## å›žå¤çº¿ç¨‹
 
-默认情况下，OpenClaw 在主频道回复。使用 `channels.slack.replyToMode` 控制自动线程：
+é»˜è®¤æƒ…å†µä¸‹ï¼Œ åœ¨ä¸»é¢‘é“å›žå¤ã€‚ä½¿ç”¨ `channels.slack.replyToMode` æŽ§åˆ¶è‡ªåŠ¨çº¿ç¨‹ï¼š
 
-| 模式    | 行为                                                                                         |
+| æ¨¡å¼    | è¡Œä¸º                                                                                         |
 | ------- | -------------------------------------------------------------------------------------------- |
-| `off`   | **默认。** 在主频道回复。仅当触发消息已在线程中时才使用线程。                                |
-| `first` | 第一条回复进入线程（在触发消息下），后续回复进入主频道。适合保持上下文可见同时避免线程混乱。 |
-| `all`   | 所有回复都进入线程。保持对话集中但可能降低可见性。                                           |
+| `off`   | **é»˜è®¤ã€‚** åœ¨ä¸»é¢‘é“å›žå¤ã€‚ä»…å½“è§¦å‘æ¶ˆæ¯å·²åœ¨çº¿ç¨‹ä¸­æ—¶æ‰ä½¿ç”¨çº¿ç¨‹ã€‚                                |
+| `first` | ç¬¬ä¸€æ¡å›žå¤è¿›å…¥çº¿ç¨‹ï¼ˆåœ¨è§¦å‘æ¶ˆæ¯ä¸‹ï¼‰ï¼ŒåŽç»­å›žå¤è¿›å…¥ä¸»é¢‘é“ã€‚é€‚åˆä¿æŒä¸Šä¸‹æ–‡å¯è§åŒæ—¶é¿å…çº¿ç¨‹æ··ä¹±ã€‚ |
+| `all`   | æ‰€æœ‰å›žå¤éƒ½è¿›å…¥çº¿ç¨‹ã€‚ä¿æŒå¯¹è¯é›†ä¸­ä½†å¯èƒ½é™ä½Žå¯è§æ€§ã€‚                                           |
 
-该模式适用于自动回复和智能体工具调用（`slack sendMessage`）。
+è¯¥æ¨¡å¼é€‚ç”¨äºŽè‡ªåŠ¨å›žå¤å’Œæ™ºèƒ½ä½“å·¥å…·è°ƒç”¨ï¼ˆ`slack sendMessage`ï¼‰ã€‚
 
-### 按聊天类型的线程
+### æŒ‰èŠå¤©ç±»åž‹çš„çº¿ç¨‹
 
-你可以通过设置 `channels.slack.replyToModeByChatType` 为每种聊天类型配置不同的线程行为：
+ä½ å¯ä»¥é€šè¿‡è®¾ç½® `channels.slack.replyToModeByChatType` ä¸ºæ¯ç§èŠå¤©ç±»åž‹é…ç½®ä¸åŒçš„çº¿ç¨‹è¡Œä¸ºï¼š
 
 ```json5
 {
   channels: {
     slack: {
-      replyToMode: "off", // 频道的默认值
+      replyToMode: "off", // é¢‘é“çš„é»˜è®¤å€¼
       replyToModeByChatType: {
-        direct: "all", // 私信始终使用线程
-        group: "first", // 群组私信/MPIM 第一条回复使用线程
+        direct: "all", // ç§ä¿¡å§‹ç»ˆä½¿ç”¨çº¿ç¨‹
+        group: "first", // ç¾¤ç»„ç§ä¿¡/MPIM ç¬¬ä¸€æ¡å›žå¤ä½¿ç”¨çº¿ç¨‹
       },
     },
   },
 }
 ```
 
-支持的聊天类型：
+æ”¯æŒçš„èŠå¤©ç±»åž‹ï¼š
 
-- `direct`：一对一私信（Slack `im`）
-- `group`：群组私信 / MPIM（Slack `mpim`）
-- `channel`：标准频道（公开/私有）
+- `direct`ï¼šä¸€å¯¹ä¸€ç§ä¿¡ï¼ˆSlack `im`ï¼‰
+- `group`ï¼šç¾¤ç»„ç§ä¿¡ / MPIMï¼ˆSlack `mpim`ï¼‰
+- `channel`ï¼šæ ‡å‡†é¢‘é“ï¼ˆå…¬å¼€/ç§æœ‰ï¼‰
 
-优先级：
+ä¼˜å…ˆçº§ï¼š
 
 1. `replyToModeByChatType.<chatType>`
 2. `replyToMode`
-3. 提供商默认值（`off`）
+3. æä¾›å•†é»˜è®¤å€¼ï¼ˆ`off`ï¼‰
 
-当未设置聊天类型覆盖时，旧版 `channels.slack.dm.replyToMode` 仍可作为 `direct` 的回退。
+å½“æœªè®¾ç½®èŠå¤©ç±»åž‹è¦†ç›–æ—¶ï¼Œæ—§ç‰ˆ `channels.slack.dm.replyToMode` ä»å¯ä½œä¸º `direct` çš„å›žé€€ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
-仅对私信使用线程：
+ä»…å¯¹ç§ä¿¡ä½¿ç”¨çº¿ç¨‹ï¼š
 
 ```json5
 {
@@ -425,7 +425,7 @@ Slack 仅使用 Socket Mode（无 HTTP webhook 服务器）。提供两个令牌
 }
 ```
 
-对群组私信使用线程但保持频道在根级别：
+å¯¹ç¾¤ç»„ç§ä¿¡ä½¿ç”¨çº¿ç¨‹ä½†ä¿æŒé¢‘é“åœ¨æ ¹çº§åˆ«ï¼š
 
 ```json5
 {
@@ -438,7 +438,7 @@ Slack 仅使用 Socket Mode（无 HTTP webhook 服务器）。提供两个令牌
 }
 ```
 
-让频道使用线程，保持私信在根级别：
+è®©é¢‘é“ä½¿ç”¨çº¿ç¨‹ï¼Œä¿æŒç§ä¿¡åœ¨æ ¹çº§åˆ«ï¼š
 
 ```json5
 {
@@ -451,81 +451,82 @@ Slack 仅使用 Socket Mode（无 HTTP webhook 服务器）。提供两个令牌
 }
 ```
 
-### 手动线程标签
+### æ‰‹åŠ¨çº¿ç¨‹æ ‡ç­¾
 
-对于细粒度控制，在智能体响应中使用这些标签：
+å¯¹äºŽç»†ç²’åº¦æŽ§åˆ¶ï¼Œåœ¨æ™ºèƒ½ä½“å“åº”ä¸­ä½¿ç”¨è¿™äº›æ ‡ç­¾ï¼š
 
-- `[[reply_to_current]]` — 回复触发消息（开始/继续线程）。
-- `[[reply_to:<id>]]` — 回复特定的消息 id。
+- `[[reply_to_current]]` â€” å›žå¤è§¦å‘æ¶ˆæ¯ï¼ˆå¼€å§‹/ç»§ç»­çº¿ç¨‹ï¼‰ã€‚
+- `[[reply_to:<id>]]` â€” å›žå¤ç‰¹å®šçš„æ¶ˆæ¯ idã€‚
 
-## 会话 + 路由
+## ä¼šè¯ + è·¯ç”±
 
-- 私信共享 `main` 会话（与 WhatsApp/Telegram 相同）。
-- 频道映射到 `agent:<agentId>:slack:channel:<channelId>` 会话。
-- 斜杠命令使用 `agent:<agentId>:slack:slash:<userId>` 会话（前缀可通过 `channels.slack.slashCommand.sessionPrefix` 配置）。
-- 如果 Slack 未提供 `channel_type`，OpenClaw 会从频道 ID 前缀（`D`、`C`、`G`）推断并默认为 `channel` 以保持会话键稳定。
-- 原生命令注册使用 `commands.native`（全局默认 `"auto"` → Slack 关闭），可以使用 `channels.slack.commands.native` 按工作空间覆盖。文本命令需要独立的 `/...` 消息，可以使用 `commands.text: false` 禁用。Slack 斜杠命令在 Slack 应用中管理，不会自动移除。使用 `commands.useAccessGroups: false` 绕过命令的访问组检查。
-- 完整命令列表 + 配置：[斜杠命令](/tools/slash-commands)
+- ç§ä¿¡å…±äº« `main` ä¼šè¯ï¼ˆä¸Ž WhatsApp/Telegram ç›¸åŒï¼‰ã€‚
+- é¢‘é“æ˜ å°„åˆ° `agent:<agentId>:slack:channel:<channelId>` ä¼šè¯ã€‚
+- æ–œæ å‘½ä»¤ä½¿ç”¨ `agent:<agentId>:slack:slash:<userId>` ä¼šè¯ï¼ˆå‰ç¼€å¯é€šè¿‡ `channels.slack.slashCommand.sessionPrefix` é…ç½®ï¼‰ã€‚
+- å¦‚æžœ Slack æœªæä¾› `channel_type`ï¼Œ ä¼šä»Žé¢‘é“ ID å‰ç¼€ï¼ˆ`D`ã€`C`ã€`G`ï¼‰æŽ¨æ–­å¹¶é»˜è®¤ä¸º `channel` ä»¥ä¿æŒä¼šè¯é”®ç¨³å®šã€‚
+- åŽŸç”Ÿå‘½ä»¤æ³¨å†Œä½¿ç”¨ `commands.native`ï¼ˆå…¨å±€é»˜è®¤ `"auto"` â†’ Slack å…³é—­ï¼‰ï¼Œå¯ä»¥ä½¿ç”¨ `channels.slack.commands.native` æŒ‰å·¥ä½œç©ºé—´è¦†ç›–ã€‚æ–‡æœ¬å‘½ä»¤éœ€è¦ç‹¬ç«‹çš„ `/...` æ¶ˆæ¯ï¼Œå¯ä»¥ä½¿ç”¨ `commands.text: false` ç¦ç”¨ã€‚Slack æ–œæ å‘½ä»¤åœ¨ Slack åº”ç”¨ä¸­ç®¡ç†ï¼Œä¸ä¼šè‡ªåŠ¨ç§»é™¤ã€‚ä½¿ç”¨ `commands.useAccessGroups: false` ç»•è¿‡å‘½ä»¤çš„è®¿é—®ç»„æ£€æŸ¥ã€‚
+- å®Œæ•´å‘½ä»¤åˆ—è¡¨ + é…ç½®ï¼š[æ–œæ å‘½ä»¤](/tools/slash-commands)
 
-## 私信安全（配对）
+## ç§ä¿¡å®‰å…¨ï¼ˆé…å¯¹ï¼‰
 
-- 默认：`channels.slack.dm.policy="pairing"` — 未知的私信发送者会收到配对码（1 小时后过期）。
-- 通过以下方式批准：`openclaw pairing approve slack <code>`。
-- 要允许任何人：设置 `channels.slack.dm.policy="open"` 和 `channels.slack.dm.allowFrom=["*"]`。
-- `channels.slack.dm.allowFrom` 接受用户 ID、@用户名或邮箱（在令牌允许时启动时解析）。向导在设置期间接受用户名，并在令牌允许时将其解析为 ID。
+- é»˜è®¤ï¼š`channels.slack.dm.policy="pairing"` â€” æœªçŸ¥çš„ç§ä¿¡å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼ˆ1 å°æ—¶åŽè¿‡æœŸï¼‰ã€‚
+- é€šè¿‡ä»¥ä¸‹æ–¹å¼æ‰¹å‡†ï¼š` pairing approve slack <code>`ã€‚
+- è¦å…è®¸ä»»ä½•äººï¼šè®¾ç½® `channels.slack.dm.policy="open"` å’Œ `channels.slack.dm.allowFrom=["*"]`ã€‚
+- `channels.slack.dm.allowFrom` æŽ¥å—ç”¨æˆ· IDã€@ç”¨æˆ·åæˆ–é‚®ç®±ï¼ˆåœ¨ä»¤ç‰Œå…è®¸æ—¶å¯åŠ¨æ—¶è§£æžï¼‰ã€‚å‘å¯¼åœ¨è®¾ç½®æœŸé—´æŽ¥å—ç”¨æˆ·åï¼Œå¹¶åœ¨ä»¤ç‰Œå…è®¸æ—¶å°†å…¶è§£æžä¸º IDã€‚
 
-## 群组策略
+## ç¾¤ç»„ç­–ç•¥
 
-- `channels.slack.groupPolicy` 控制频道处理（`open|disabled|allowlist`）。
-- `allowlist` 要求频道列在 `channels.slack.channels` 中。
-- 如果你只设置了 `SLACK_BOT_TOKEN`/`SLACK_APP_TOKEN` 而从未创建 `channels.slack` 部分，运行时默认将 `groupPolicy` 设为 `open`。添加 `channels.slack.groupPolicy`、`channels.defaults.groupPolicy` 或频道白名单来锁定它。
-- 配置向导接受 `#channel` 名称，并在可能时（公开 + 私有）将其解析为 ID；如果存在多个匹配，它优先选择活跃的频道。
-- 启动时，OpenClaw 将白名单中的频道/用户名解析为 ID（在令牌允许时）并记录映射；未解析的条目按原样保留。
-- 要**不允许任何频道**，设置 `channels.slack.groupPolicy: "disabled"`（或保留空白名单）。
+- `channels.slack.groupPolicy` æŽ§åˆ¶é¢‘é“å¤„ç†ï¼ˆ`open|disabled|allowlist`ï¼‰ã€‚
+- `allowlist` è¦æ±‚é¢‘é“åˆ—åœ¨ `channels.slack.channels` ä¸­ã€‚
+- å¦‚æžœä½ åªè®¾ç½®äº† `SLACK_BOT_TOKEN`/`SLACK_APP_TOKEN` è€Œä»Žæœªåˆ›å»º `channels.slack` éƒ¨åˆ†ï¼Œè¿è¡Œæ—¶é»˜è®¤å°† `groupPolicy` è®¾ä¸º `open`ã€‚æ·»åŠ  `channels.slack.groupPolicy`ã€`channels.defaults.groupPolicy` æˆ–é¢‘é“ç™½åå•æ¥é”å®šå®ƒã€‚
+- é…ç½®å‘å¯¼æŽ¥å— `#channel` åç§°ï¼Œå¹¶åœ¨å¯èƒ½æ—¶ï¼ˆå…¬å¼€ + ç§æœ‰ï¼‰å°†å…¶è§£æžä¸º IDï¼›å¦‚æžœå­˜åœ¨å¤šä¸ªåŒ¹é…ï¼Œå®ƒä¼˜å…ˆé€‰æ‹©æ´»è·ƒçš„é¢‘é“ã€‚
+- å¯åŠ¨æ—¶ï¼Œ å°†ç™½åå•ä¸­çš„é¢‘é“/ç”¨æˆ·åè§£æžä¸º IDï¼ˆåœ¨ä»¤ç‰Œå…è®¸æ—¶ï¼‰å¹¶è®°å½•æ˜ å°„ï¼›æœªè§£æžçš„æ¡ç›®æŒ‰åŽŸæ ·ä¿ç•™ã€‚
+- è¦**ä¸å…è®¸ä»»ä½•é¢‘é“**ï¼Œè®¾ç½® `channels.slack.groupPolicy: "disabled"`ï¼ˆæˆ–ä¿ç•™ç©ºç™½åå•ï¼‰ã€‚
 
-频道选项（`channels.slack.channels.<id>` 或 `channels.slack.channels.<name>`）：
+é¢‘é“é€‰é¡¹ï¼ˆ`channels.slack.channels.<id>` æˆ– `channels.slack.channels.<name>`ï¼‰ï¼š
 
-- `allow`：当 `groupPolicy="allowlist"` 时允许/拒绝频道。
-- `requireMention`：频道的提及门控。
-- `tools`：可选的每频道工具策略覆盖（`allow`/`deny`/`alsoAllow`）。
-- `toolsBySender`：频道内可选的每发送者工具策略覆盖（键为发送者 id/@用户名/邮箱；支持 `"*"` 通配符）。
-- `allowBots`：允许此频道中机器人发送的消息（默认：false）。
-- `users`：可选的每频道用户白名单。
-- `skills`：Skills 过滤器（省略 = 所有 Skills，空 = 无）。
-- `systemPrompt`：频道的额外系统提示（与主题/目的组合）。
-- `enabled`：设置为 `false` 以禁用频道。
+- `allow`ï¼šå½“ `groupPolicy="allowlist"` æ—¶å…è®¸/æ‹’ç»é¢‘é“ã€‚
+- `requireMention`ï¼šé¢‘é“çš„æåŠé—¨æŽ§ã€‚
+- `tools`ï¼šå¯é€‰çš„æ¯é¢‘é“å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆ`allow`/`deny`/`alsoAllow`ï¼‰ã€‚
+- `toolsBySender`ï¼šé¢‘é“å†…å¯é€‰çš„æ¯å‘é€è€…å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆé”®ä¸ºå‘é€è€… id/@ç”¨æˆ·å/é‚®ç®±ï¼›æ”¯æŒ `"*"` é€šé…ç¬¦ï¼‰ã€‚
+- `allowBots`ï¼šå…è®¸æ­¤é¢‘é“ä¸­æœºå™¨äººå‘é€çš„æ¶ˆæ¯ï¼ˆé»˜è®¤ï¼šfalseï¼‰ã€‚
+- `users`ï¼šå¯é€‰çš„æ¯é¢‘é“ç”¨æˆ·ç™½åå•ã€‚
+- `skills`ï¼šSkills è¿‡æ»¤å™¨ï¼ˆçœç•¥ = æ‰€æœ‰ Skillsï¼Œç©º = æ— ï¼‰ã€‚
+- `systemPrompt`ï¼šé¢‘é“çš„é¢å¤–ç³»ç»Ÿæç¤ºï¼ˆä¸Žä¸»é¢˜/ç›®çš„ç»„åˆï¼‰ã€‚
+- `enabled`ï¼šè®¾ç½®ä¸º `false` ä»¥ç¦ç”¨é¢‘é“ã€‚
 
-## 投递目标
+## æŠ•é€’ç›®æ ‡
 
-与 cron/CLI 发送一起使用：
+ä¸Ž cron/CLI å‘é€ä¸€èµ·ä½¿ç”¨ï¼š
 
-- `user:<id>` 用于私信
-- `channel:<id>` 用于频道
+- `user:<id>` ç”¨äºŽç§ä¿¡
+- `channel:<id>` ç”¨äºŽé¢‘é“
 
-## 工具操作
+## å·¥å…·æ“ä½œ
 
-Slack 工具操作可以通过 `channels.slack.actions.*` 进行门控：
+Slack å·¥å…·æ“ä½œå¯ä»¥é€šè¿‡ `channels.slack.actions.*` è¿›è¡Œé—¨æŽ§ï¼š
 
-| 操作组     | 默认   | 说明                    |
+| æ“ä½œç»„     | é»˜è®¤   | è¯´æ˜Ž                    |
 | ---------- | ------ | ----------------------- |
-| reactions  | 已启用 | 表情回应 + 列出表情回应 |
-| messages   | 已启用 | 读取/发送/编辑/删除     |
-| pins       | 已启用 | 置顶/取消置顶/列表      |
-| memberInfo | 已启用 | 成员信息                |
-| emojiList  | 已启用 | 自定义表情符号列表      |
+| reactions  | å·²å¯ç”¨ | è¡¨æƒ…å›žåº” + åˆ—å‡ºè¡¨æƒ…å›žåº” |
+| messages   | å·²å¯ç”¨ | è¯»å–/å‘é€/ç¼–è¾‘/åˆ é™¤     |
+| pins       | å·²å¯ç”¨ | ç½®é¡¶/å–æ¶ˆç½®é¡¶/åˆ—è¡¨      |
+| memberInfo | å·²å¯ç”¨ | æˆå‘˜ä¿¡æ¯                |
+| emojiList  | å·²å¯ç”¨ | è‡ªå®šä¹‰è¡¨æƒ…ç¬¦å·åˆ—è¡¨      |
 
-## 安全说明
+## å®‰å…¨è¯´æ˜Ž
 
-- 写入默认使用 bot 令牌，因此状态更改操作保持在应用的机器人权限和身份范围内。
-- 设置 `userTokenReadOnly: false` 允许在 bot 令牌不可用时使用用户令牌进行写入操作，这意味着操作以安装用户的访问权限运行。将用户令牌视为高权限，并保持操作门控和白名单严格。
-- 如果你启用用户令牌写入，请确保用户令牌包含你期望的写入权限范围（`chat:write`、`reactions:write`、`pins:write`、`files:write`），否则这些操作将失败。
+- å†™å…¥é»˜è®¤ä½¿ç”¨ bot ä»¤ç‰Œï¼Œå› æ­¤çŠ¶æ€æ›´æ”¹æ“ä½œä¿æŒåœ¨åº”ç”¨çš„æœºå™¨äººæƒé™å’Œèº«ä»½èŒƒå›´å†…ã€‚
+- è®¾ç½® `userTokenReadOnly: false` å…è®¸åœ¨ bot ä»¤ç‰Œä¸å¯ç”¨æ—¶ä½¿ç”¨ç”¨æˆ·ä»¤ç‰Œè¿›è¡Œå†™å…¥æ“ä½œï¼Œè¿™æ„å‘³ç€æ“ä½œä»¥å®‰è£…ç”¨æˆ·çš„è®¿é—®æƒé™è¿è¡Œã€‚å°†ç”¨æˆ·ä»¤ç‰Œè§†ä¸ºé«˜æƒé™ï¼Œå¹¶ä¿æŒæ“ä½œé—¨æŽ§å’Œç™½åå•ä¸¥æ ¼ã€‚
+- å¦‚æžœä½ å¯ç”¨ç”¨æˆ·ä»¤ç‰Œå†™å…¥ï¼Œè¯·ç¡®ä¿ç”¨æˆ·ä»¤ç‰ŒåŒ…å«ä½ æœŸæœ›çš„å†™å…¥æƒé™èŒƒå›´ï¼ˆ`chat:write`ã€`reactions:write`ã€`pins:write`ã€`files:write`ï¼‰ï¼Œå¦åˆ™è¿™äº›æ“ä½œå°†å¤±è´¥ã€‚
 
-## 说明
+## è¯´æ˜Ž
 
-- 提及门控通过 `channels.slack.channels` 控制（将 `requireMention` 设置为 `true`）；`agents.list[].groupChat.mentionPatterns`（或 `messages.groupChat.mentionPatterns`）也算作提及。
-- 多智能体覆盖：在 `agents.list[].groupChat.mentionPatterns` 上设置每智能体的模式。
-- 表情回应通知遵循 `channels.slack.reactionNotifications`（在 `allowlist` 模式下使用 `reactionAllowlist`）。
-- 默认忽略机器人发送的消息；通过 `channels.slack.allowBots` 或 `channels.slack.channels.<id>.allowBots` 启用。
-- 警告：如果你允许回复其他机器人（`channels.slack.allowBots=true` 或 `channels.slack.channels.<id>.allowBots=true`），请使用 `requireMention`、`channels.slack.channels.<id>.users` 白名单和/或在 `AGENTS.md` 和 `SOUL.md` 中设置明确的防护措施来防止机器人之间的回复循环。
-- 对于 Slack 工具，表情回应移除语义见 [/tools/reactions](/tools/reactions)。
-- 附件在允许且在大小限制内时会下载到媒体存储。
+- æåŠé—¨æŽ§é€šè¿‡ `channels.slack.channels` æŽ§åˆ¶ï¼ˆå°† `requireMention` è®¾ç½®ä¸º `true`ï¼‰ï¼›`agents.list[].groupChat.mentionPatterns`ï¼ˆæˆ– `messages.groupChat.mentionPatterns`ï¼‰ä¹Ÿç®—ä½œæåŠã€‚
+- å¤šæ™ºèƒ½ä½“è¦†ç›–ï¼šåœ¨ `agents.list[].groupChat.mentionPatterns` ä¸Šè®¾ç½®æ¯æ™ºèƒ½ä½“çš„æ¨¡å¼ã€‚
+- è¡¨æƒ…å›žåº”é€šçŸ¥éµå¾ª `channels.slack.reactionNotifications`ï¼ˆåœ¨ `allowlist` æ¨¡å¼ä¸‹ä½¿ç”¨ `reactionAllowlist`ï¼‰ã€‚
+- é»˜è®¤å¿½ç•¥æœºå™¨äººå‘é€çš„æ¶ˆæ¯ï¼›é€šè¿‡ `channels.slack.allowBots` æˆ– `channels.slack.channels.<id>.allowBots` å¯ç”¨ã€‚
+- è­¦å‘Šï¼šå¦‚æžœä½ å…è®¸å›žå¤å…¶ä»–æœºå™¨äººï¼ˆ`channels.slack.allowBots=true` æˆ– `channels.slack.channels.<id>.allowBots=true`ï¼‰ï¼Œè¯·ä½¿ç”¨ `requireMention`ã€`channels.slack.channels.<id>.users` ç™½åå•å’Œ/æˆ–åœ¨ `AGENTS.md` å’Œ `SOUL.md` ä¸­è®¾ç½®æ˜Žç¡®çš„é˜²æŠ¤æŽªæ–½æ¥é˜²æ­¢æœºå™¨äººä¹‹é—´çš„å›žå¤å¾ªçŽ¯ã€‚
+- å¯¹äºŽ Slack å·¥å…·ï¼Œè¡¨æƒ…å›žåº”ç§»é™¤è¯­ä¹‰è§ [/tools/reactions](/tools/reactions)ã€‚
+- é™„ä»¶åœ¨å…è®¸ä¸”åœ¨å¤§å°é™åˆ¶å†…æ—¶ä¼šä¸‹è½½åˆ°åª’ä½“å­˜å‚¨ã€‚
+

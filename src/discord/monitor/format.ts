@@ -1,4 +1,4 @@
-import type { Guild, User } from "@buape/carbon";
+﻿import type { Guild, User } from "@buape/carbon";
 
 export function resolveDiscordSystemLocation(params: {
   isDirectMessage: boolean;
@@ -38,3 +38,4 @@ export function resolveTimestampMs(timestamp?: string | null) {
   const parsed = Date.parse(timestamp);
   return Number.isNaN(parsed) ? undefined : parsed;
 }
+

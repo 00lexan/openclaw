@@ -1,9 +1,9 @@
-import type { OpenClawConfig } from "./types.js";
+﻿import type { Config } from "./types.js";
 import { applyLegacyMigrations } from "./legacy.js";
 import { validateConfigObjectWithPlugins } from "./validation.js";
 
 export function migrateLegacyConfig(raw: unknown): {
-  config: OpenClawConfig | null;
+  config: Config | null;
   changes: string[];
 } {
   const { next, changes } = applyLegacyMigrations(raw);
@@ -17,3 +17,4 @@ export function migrateLegacyConfig(raw: unknown): {
   }
   return { config: validated.config, changes };
 }
+

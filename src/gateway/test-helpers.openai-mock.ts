@@ -1,4 +1,4 @@
-type OpenAIResponsesParams = {
+﻿type OpenAIResponsesParams = {
   input?: unknown[];
 };
 
@@ -210,3 +210,4 @@ export function installOpenAiResponsesMock(params?: { baseUrl?: string }) {
     },
   };
 }
+

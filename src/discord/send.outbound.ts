@@ -1,4 +1,4 @@
-import type { RequestClient } from "@buape/carbon";
+﻿import type { RequestClient } from "@buape/carbon";
 import { Routes } from "discord-api-types/v10";
 import type { RetryConfig } from "../infra/retry.js";
 import type { PollInput } from "../polls.js";
@@ -150,3 +150,4 @@ export async function sendPollDiscord(
     channelId: String(res.channel_id ?? channelId),
   };
 }
+

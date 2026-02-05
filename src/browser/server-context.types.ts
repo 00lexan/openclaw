@@ -1,4 +1,4 @@
-import type { Server } from "node:http";
+﻿import type { Server } from "node:http";
 import type { RunningChrome } from "./chrome.js";
 import type { BrowserTab } from "./client.js";
 import type { ResolvedBrowserConfig, ResolvedBrowserProfile } from "./config.js";
@@ -73,3 +73,4 @@ export type ContextOptions = {
   getState: () => BrowserServerState | null;
   onEnsureAttachTarget?: (profile: ResolvedBrowserProfile) => Promise<void>;
 };
+

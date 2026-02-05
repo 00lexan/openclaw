@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { Tab } from "./navigation.ts";
 import { setTabFromRoute } from "./app-settings.ts";
 
@@ -68,3 +68,4 @@ describe("setTabFromRoute", () => {
     expect(host.debugPollInterval).toBeNull();
   });
 });
+

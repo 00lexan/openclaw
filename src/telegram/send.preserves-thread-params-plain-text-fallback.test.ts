@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 const { botApi, botCtorSpy } = vi.hoisted(() => ({
   botApi: {
@@ -108,12 +108,12 @@ describe("reactMessageTelegram", () => {
       setMessageReaction: typeof setMessageReaction;
     };
 
-    await reactMessageTelegram("telegram:123", "456", "✅", {
+    await reactMessageTelegram("telegram:123", "456", "âœ…", {
       token: "tok",
       api,
     });
 
-    expect(setMessageReaction).toHaveBeenCalledWith("123", 456, [{ type: "emoji", emoji: "✅" }]);
+    expect(setMessageReaction).toHaveBeenCalledWith("123", 456, [{ type: "emoji", emoji: "âœ…" }]);
   });
 
   it("removes reactions when emoji is empty", async () => {
@@ -136,7 +136,7 @@ describe("reactMessageTelegram", () => {
       setMessageReaction: typeof setMessageReaction;
     };
 
-    await reactMessageTelegram("123", 456, "✅", {
+    await reactMessageTelegram("123", 456, "âœ…", {
       token: "tok",
       api,
       remove: true,
@@ -145,3 +145,4 @@ describe("reactMessageTelegram", () => {
     expect(setMessageReaction).toHaveBeenCalledWith("123", 456, []);
   });
 });
+

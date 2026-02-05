@@ -1,4 +1,4 @@
-// zca-cli wrapper types
+﻿// zca-cli wrapper types
 export type ZcaRunOptions = {
   profile?: string;
   cwd?: string;
@@ -108,3 +108,4 @@ export type ResolvedZalouserAccount = {
   authenticated: boolean;
   config: ZalouserAccountConfig;
 };
+

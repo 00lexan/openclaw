@@ -1,4 +1,4 @@
-import { html } from "lit";
+﻿import { html } from "lit";
 import type { ConfigUiHints } from "../types.ts";
 import type { ChannelsProps } from "./channels.types.ts";
 import { analyzeConfigSchema, renderNode, schemaType, type JsonSchema } from "./config-form.ts";
@@ -144,7 +144,7 @@ export function renderChannelConfigSection(params: { channelId: string; props: C
       ${
         props.configSchemaLoading
           ? html`
-              <div class="muted">Loading config schema…</div>
+              <div class="muted">Loading config schemaâ€¦</div>
             `
           : renderChannelConfigForm({
               channelId,
@@ -161,7 +161,7 @@ export function renderChannelConfigSection(params: { channelId: string; props: C
           ?disabled=${disabled || !props.configFormDirty}
           @click=${() => props.onConfigSave()}
         >
-          ${props.configSaving ? "Saving…" : "Save"}
+          ${props.configSaving ? "Savingâ€¦" : "Save"}
         </button>
         <button
           class="btn"
@@ -174,3 +174,4 @@ export function renderChannelConfigSection(params: { channelId: string; props: C
     </div>
   `;
 }
+

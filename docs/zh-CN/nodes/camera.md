@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 在 iOS 节点或 macOS 上添加或修改相机捕获
-  - 扩展智能体可访问的 MEDIA 临时文件工作流
-summary: 用于智能体的相机捕获（iOS 节点 + macOS 应用）：照片（jpg）和短视频片段（mp4）
-title: 相机捕获
+  - åœ¨ iOS èŠ‚ç‚¹æˆ– macOS ä¸Šæ·»åŠ æˆ–ä¿®æ”¹ç›¸æœºæ•èŽ·
+  - æ‰©å±•æ™ºèƒ½ä½“å¯è®¿é—®çš„ MEDIA ä¸´æ—¶æ–‡ä»¶å·¥ä½œæµ
+summary: ç”¨äºŽæ™ºèƒ½ä½“çš„ç›¸æœºæ•èŽ·ï¼ˆiOS èŠ‚ç‚¹ + macOS åº”ç”¨ï¼‰ï¼šç…§ç‰‡ï¼ˆjpgï¼‰å’ŒçŸ­è§†é¢‘ç‰‡æ®µï¼ˆmp4ï¼‰
+title: ç›¸æœºæ•èŽ·
 x-i18n:
   generated_at: "2026-02-03T07:50:55Z"
   model: claude-opus-4-5
@@ -13,150 +13,151 @@ x-i18n:
   workflow: 15
 ---
 
-# 相机捕获（智能体）
+# ç›¸æœºæ•èŽ·ï¼ˆæ™ºèƒ½ä½“ï¼‰
 
-OpenClaw 支持用于智能体工作流的**相机捕获**：
+ æ”¯æŒç”¨äºŽæ™ºèƒ½ä½“å·¥ä½œæµçš„**ç›¸æœºæ•èŽ·**ï¼š
 
-- **iOS 节点**（通过 Gateway 网关配对）：通过 `node.invoke` 捕获**照片**（`jpg`）或**短视频片段**（`mp4`，可选音频）。
-- **Android 节点**（通过 Gateway 网关配对）：通过 `node.invoke` 捕获**照片**（`jpg`）或**短视频片段**（`mp4`，可选音频）。
-- **macOS 应用**（通过 Gateway 网关的节点）：通过 `node.invoke` 捕获**照片**（`jpg`）或**短视频片段**（`mp4`，可选音频）。
+- **iOS èŠ‚ç‚¹**ï¼ˆé€šè¿‡ Gateway ç½‘å…³é…å¯¹ï¼‰ï¼šé€šè¿‡ `node.invoke` æ•èŽ·**ç…§ç‰‡**ï¼ˆ`jpg`ï¼‰æˆ–**çŸ­è§†é¢‘ç‰‡æ®µ**ï¼ˆ`mp4`ï¼Œå¯é€‰éŸ³é¢‘ï¼‰ã€‚
+- **Android èŠ‚ç‚¹**ï¼ˆé€šè¿‡ Gateway ç½‘å…³é…å¯¹ï¼‰ï¼šé€šè¿‡ `node.invoke` æ•èŽ·**ç…§ç‰‡**ï¼ˆ`jpg`ï¼‰æˆ–**çŸ­è§†é¢‘ç‰‡æ®µ**ï¼ˆ`mp4`ï¼Œå¯é€‰éŸ³é¢‘ï¼‰ã€‚
+- **macOS åº”ç”¨**ï¼ˆé€šè¿‡ Gateway ç½‘å…³çš„èŠ‚ç‚¹ï¼‰ï¼šé€šè¿‡ `node.invoke` æ•èŽ·**ç…§ç‰‡**ï¼ˆ`jpg`ï¼‰æˆ–**çŸ­è§†é¢‘ç‰‡æ®µ**ï¼ˆ`mp4`ï¼Œå¯é€‰éŸ³é¢‘ï¼‰ã€‚
 
-所有相机访问都受**用户控制的设置**限制。
+æ‰€æœ‰ç›¸æœºè®¿é—®éƒ½å—**ç”¨æˆ·æŽ§åˆ¶çš„è®¾ç½®**é™åˆ¶ã€‚
 
-## iOS 节点
+## iOS èŠ‚ç‚¹
 
-### 用户设置（默认开启）
+### ç”¨æˆ·è®¾ç½®ï¼ˆé»˜è®¤å¼€å¯ï¼‰
 
-- iOS 设置标签页 → **相机** → **允许相机**（`camera.enabled`）
-  - 默认：**开启**（缺少键时视为启用）。
-  - 关闭时：`camera.*` 命令返回 `CAMERA_DISABLED`。
+- iOS è®¾ç½®æ ‡ç­¾é¡µ â†’ **ç›¸æœº** â†’ **å…è®¸ç›¸æœº**ï¼ˆ`camera.enabled`ï¼‰
+  - é»˜è®¤ï¼š**å¼€å¯**ï¼ˆç¼ºå°‘é”®æ—¶è§†ä¸ºå¯ç”¨ï¼‰ã€‚
+  - å…³é—­æ—¶ï¼š`camera.*` å‘½ä»¤è¿”å›ž `CAMERA_DISABLED`ã€‚
 
-### 命令（通过 Gateway 网关 `node.invoke`）
+### å‘½ä»¤ï¼ˆé€šè¿‡ Gateway ç½‘å…³ `node.invoke`ï¼‰
 
 - `camera.list`
-  - 响应载荷：
-    - `devices`：`{ id, name, position, deviceType }` 数组
+  - å“åº”è½½è·ï¼š
+    - `devices`ï¼š`{ id, name, position, deviceType }` æ•°ç»„
 
 - `camera.snap`
-  - 参数：
-    - `facing`：`front|back`（默认：`front`）
-    - `maxWidth`：数字（可选；iOS 节点默认 `1600`）
-    - `quality`：`0..1`（可选；默认 `0.9`）
-    - `format`：当前为 `jpg`
-    - `delayMs`：数字（可选；默认 `0`）
-    - `deviceId`：字符串（可选；来自 `camera.list`）
-  - 响应载荷：
+  - å‚æ•°ï¼š
+    - `facing`ï¼š`front|back`ï¼ˆé»˜è®¤ï¼š`front`ï¼‰
+    - `maxWidth`ï¼šæ•°å­—ï¼ˆå¯é€‰ï¼›iOS èŠ‚ç‚¹é»˜è®¤ `1600`ï¼‰
+    - `quality`ï¼š`0..1`ï¼ˆå¯é€‰ï¼›é»˜è®¤ `0.9`ï¼‰
+    - `format`ï¼šå½“å‰ä¸º `jpg`
+    - `delayMs`ï¼šæ•°å­—ï¼ˆå¯é€‰ï¼›é»˜è®¤ `0`ï¼‰
+    - `deviceId`ï¼šå­—ç¬¦ä¸²ï¼ˆå¯é€‰ï¼›æ¥è‡ª `camera.list`ï¼‰
+  - å“åº”è½½è·ï¼š
     - `format: "jpg"`
     - `base64: "<...>"`
-    - `width`、`height`
-  - 载荷保护：照片会重新压缩以保持 base64 载荷小于 5 MB。
+    - `width`ã€`height`
+  - è½½è·ä¿æŠ¤ï¼šç…§ç‰‡ä¼šé‡æ–°åŽ‹ç¼©ä»¥ä¿æŒ base64 è½½è·å°äºŽ 5 MBã€‚
 
 - `camera.clip`
-  - 参数：
-    - `facing`：`front|back`（默认：`front`）
-    - `durationMs`：数字（默认 `3000`，上限 `60000`）
-    - `includeAudio`：布尔值（默认 `true`）
-    - `format`：当前为 `mp4`
-    - `deviceId`：字符串（可选；来自 `camera.list`）
-  - 响应载荷：
+  - å‚æ•°ï¼š
+    - `facing`ï¼š`front|back`ï¼ˆé»˜è®¤ï¼š`front`ï¼‰
+    - `durationMs`ï¼šæ•°å­—ï¼ˆé»˜è®¤ `3000`ï¼Œä¸Šé™ `60000`ï¼‰
+    - `includeAudio`ï¼šå¸ƒå°”å€¼ï¼ˆé»˜è®¤ `true`ï¼‰
+    - `format`ï¼šå½“å‰ä¸º `mp4`
+    - `deviceId`ï¼šå­—ç¬¦ä¸²ï¼ˆå¯é€‰ï¼›æ¥è‡ª `camera.list`ï¼‰
+  - å“åº”è½½è·ï¼š
     - `format: "mp4"`
     - `base64: "<...>"`
     - `durationMs`
     - `hasAudio`
 
-### 前台要求
+### å‰å°è¦æ±‚
 
-与 `canvas.*` 类似，iOS 节点仅允许在**前台**执行 `camera.*` 命令。后台调用返回 `NODE_BACKGROUND_UNAVAILABLE`。
+ä¸Ž `canvas.*` ç±»ä¼¼ï¼ŒiOS èŠ‚ç‚¹ä»…å…è®¸åœ¨**å‰å°**æ‰§è¡Œ `camera.*` å‘½ä»¤ã€‚åŽå°è°ƒç”¨è¿”å›ž `NODE_BACKGROUND_UNAVAILABLE`ã€‚
 
-### CLI 辅助工具（临时文件 + MEDIA）
+### CLI è¾…åŠ©å·¥å…·ï¼ˆä¸´æ—¶æ–‡ä»¶ + MEDIAï¼‰
 
-获取附件最简单的方法是通过 CLI 辅助工具，它将解码的媒体写入临时文件并打印 `MEDIA:<path>`。
+èŽ·å–é™„ä»¶æœ€ç®€å•çš„æ–¹æ³•æ˜¯é€šè¿‡ CLI è¾…åŠ©å·¥å…·ï¼Œå®ƒå°†è§£ç çš„åª’ä½“å†™å…¥ä¸´æ—¶æ–‡ä»¶å¹¶æ‰“å° `MEDIA:<path>`ã€‚
 
-示例：
-
-```bash
-openclaw nodes camera snap --node <id>               # default: both front + back (2 MEDIA lines)
-openclaw nodes camera snap --node <id> --facing front
-openclaw nodes camera clip --node <id> --duration 3000
-openclaw nodes camera clip --node <id> --no-audio
-```
-
-注意事项：
-
-- `nodes camera snap` 默认拍摄**两个**方向以给智能体提供两个视角。
-- 输出文件是临时的（在操作系统临时目录中），除非你构建自己的包装器。
-
-## Android 节点
-
-### 用户设置（默认开启）
-
-- Android 设置页 → **相机** → **允许相机**（`camera.enabled`）
-  - 默认：**开启**（缺少键时视为启用）。
-  - 关闭时：`camera.*` 命令返回 `CAMERA_DISABLED`。
-
-### 权限
-
-- Android 需要运行时权限：
-  - `CAMERA` 用于 `camera.snap` 和 `camera.clip`。
-  - `RECORD_AUDIO` 用于 `includeAudio=true` 时的 `camera.clip`。
-
-如果缺少权限，应用会在可能时提示；如果被拒绝，`camera.*` 请求会失败并返回 `*_PERMISSION_REQUIRED` 错误。
-
-### 前台要求
-
-与 `canvas.*` 类似，Android 节点仅允许在**前台**执行 `camera.*` 命令。后台调用返回 `NODE_BACKGROUND_UNAVAILABLE`。
-
-### 载荷保护
-
-照片会重新压缩以保持 base64 载荷小于 5 MB。
-
-## macOS 应用
-
-### 用户设置（默认关闭）
-
-macOS 配套应用暴露一个复选框：
-
-- **设置 → 通用 → 允许相机**（`openclaw.cameraEnabled`）
-  - 默认：**关闭**
-  - 关闭时：相机请求返回"用户已禁用相机"。
-
-### CLI 辅助工具（节点调用）
-
-使用主 `openclaw` CLI 在 macOS 节点上调用相机命令。
-
-示例：
+ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw nodes camera list --node <id>            # list camera ids
-openclaw nodes camera snap --node <id>            # prints MEDIA:<path>
-openclaw nodes camera snap --node <id> --max-width 1280
-openclaw nodes camera snap --node <id> --delay-ms 2000
-openclaw nodes camera snap --node <id> --device-id <id>
-openclaw nodes camera clip --node <id> --duration 10s          # prints MEDIA:<path>
-openclaw nodes camera clip --node <id> --duration-ms 3000      # prints MEDIA:<path> (legacy flag)
-openclaw nodes camera clip --node <id> --device-id <id>
-openclaw nodes camera clip --node <id> --no-audio
+ nodes camera snap --node <id>               # default: both front + back (2 MEDIA lines)
+ nodes camera snap --node <id> --facing front
+ nodes camera clip --node <id> --duration 3000
+ nodes camera clip --node <id> --no-audio
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- `openclaw nodes camera snap` 默认 `maxWidth=1600`，除非被覆盖。
-- 在 macOS 上，`camera.snap` 在预热/曝光稳定后等待 `delayMs`（默认 2000ms）再捕获。
-- 照片载荷会重新压缩以保持 base64 小于 5 MB。
+- `nodes camera snap` é»˜è®¤æ‹æ‘„**ä¸¤ä¸ª**æ–¹å‘ä»¥ç»™æ™ºèƒ½ä½“æä¾›ä¸¤ä¸ªè§†è§’ã€‚
+- è¾“å‡ºæ–‡ä»¶æ˜¯ä¸´æ—¶çš„ï¼ˆåœ¨æ“ä½œç³»ç»Ÿä¸´æ—¶ç›®å½•ä¸­ï¼‰ï¼Œé™¤éžä½ æž„å»ºè‡ªå·±çš„åŒ…è£…å™¨ã€‚
 
-## 安全性 + 实际限制
+## Android èŠ‚ç‚¹
 
-- 相机和麦克风访问会触发通常的操作系统权限提示（并需要 Info.plist 中的使用说明字符串）。
-- 视频片段有上限（当前 `<= 60s`）以避免过大的节点载荷（base64 开销 + 消息限制）。
+### ç”¨æˆ·è®¾ç½®ï¼ˆé»˜è®¤å¼€å¯ï¼‰
 
-## macOS 屏幕视频（操作系统级别）
+- Android è®¾ç½®é¡µ â†’ **ç›¸æœº** â†’ **å…è®¸ç›¸æœº**ï¼ˆ`camera.enabled`ï¼‰
+  - é»˜è®¤ï¼š**å¼€å¯**ï¼ˆç¼ºå°‘é”®æ—¶è§†ä¸ºå¯ç”¨ï¼‰ã€‚
+  - å…³é—­æ—¶ï¼š`camera.*` å‘½ä»¤è¿”å›ž `CAMERA_DISABLED`ã€‚
 
-对于*屏幕*视频（非相机），使用 macOS 配套应用：
+### æƒé™
+
+- Android éœ€è¦è¿è¡Œæ—¶æƒé™ï¼š
+  - `CAMERA` ç”¨äºŽ `camera.snap` å’Œ `camera.clip`ã€‚
+  - `RECORD_AUDIO` ç”¨äºŽ `includeAudio=true` æ—¶çš„ `camera.clip`ã€‚
+
+å¦‚æžœç¼ºå°‘æƒé™ï¼Œåº”ç”¨ä¼šåœ¨å¯èƒ½æ—¶æç¤ºï¼›å¦‚æžœè¢«æ‹’ç»ï¼Œ`camera.*` è¯·æ±‚ä¼šå¤±è´¥å¹¶è¿”å›ž `*_PERMISSION_REQUIRED` é”™è¯¯ã€‚
+
+### å‰å°è¦æ±‚
+
+ä¸Ž `canvas.*` ç±»ä¼¼ï¼ŒAndroid èŠ‚ç‚¹ä»…å…è®¸åœ¨**å‰å°**æ‰§è¡Œ `camera.*` å‘½ä»¤ã€‚åŽå°è°ƒç”¨è¿”å›ž `NODE_BACKGROUND_UNAVAILABLE`ã€‚
+
+### è½½è·ä¿æŠ¤
+
+ç…§ç‰‡ä¼šé‡æ–°åŽ‹ç¼©ä»¥ä¿æŒ base64 è½½è·å°äºŽ 5 MBã€‚
+
+## macOS åº”ç”¨
+
+### ç”¨æˆ·è®¾ç½®ï¼ˆé»˜è®¤å…³é—­ï¼‰
+
+macOS é…å¥—åº”ç”¨æš´éœ²ä¸€ä¸ªå¤é€‰æ¡†ï¼š
+
+- **è®¾ç½® â†’ é€šç”¨ â†’ å…è®¸ç›¸æœº**ï¼ˆ`.cameraEnabled`ï¼‰
+  - é»˜è®¤ï¼š**å…³é—­**
+  - å…³é—­æ—¶ï¼šç›¸æœºè¯·æ±‚è¿”å›ž"ç”¨æˆ·å·²ç¦ç”¨ç›¸æœº"ã€‚
+
+### CLI è¾…åŠ©å·¥å…·ï¼ˆèŠ‚ç‚¹è°ƒç”¨ï¼‰
+
+ä½¿ç”¨ä¸» `` CLI åœ¨ macOS èŠ‚ç‚¹ä¸Šè°ƒç”¨ç›¸æœºå‘½ä»¤ã€‚
+
+ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw nodes screen record --node <id> --duration 10s --fps 15   # prints MEDIA:<path>
+ nodes camera list --node <id>            # list camera ids
+ nodes camera snap --node <id>            # prints MEDIA:<path>
+ nodes camera snap --node <id> --max-width 1280
+ nodes camera snap --node <id> --delay-ms 2000
+ nodes camera snap --node <id> --device-id <id>
+ nodes camera clip --node <id> --duration 10s          # prints MEDIA:<path>
+ nodes camera clip --node <id> --duration-ms 3000      # prints MEDIA:<path> (legacy flag)
+ nodes camera clip --node <id> --device-id <id>
+ nodes camera clip --node <id> --no-audio
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 需要 macOS **屏幕录制**权限（TCC）。
+- ` nodes camera snap` é»˜è®¤ `maxWidth=1600`ï¼Œé™¤éžè¢«è¦†ç›–ã€‚
+- åœ¨ macOS ä¸Šï¼Œ`camera.snap` åœ¨é¢„çƒ­/æ›å…‰ç¨³å®šåŽç­‰å¾… `delayMs`ï¼ˆé»˜è®¤ 2000msï¼‰å†æ•èŽ·ã€‚
+- ç…§ç‰‡è½½è·ä¼šé‡æ–°åŽ‹ç¼©ä»¥ä¿æŒ base64 å°äºŽ 5 MBã€‚
+
+## å®‰å…¨æ€§ + å®žé™…é™åˆ¶
+
+- ç›¸æœºå’Œéº¦å…‹é£Žè®¿é—®ä¼šè§¦å‘é€šå¸¸çš„æ“ä½œç³»ç»Ÿæƒé™æç¤ºï¼ˆå¹¶éœ€è¦ Info.plist ä¸­çš„ä½¿ç”¨è¯´æ˜Žå­—ç¬¦ä¸²ï¼‰ã€‚
+- è§†é¢‘ç‰‡æ®µæœ‰ä¸Šé™ï¼ˆå½“å‰ `<= 60s`ï¼‰ä»¥é¿å…è¿‡å¤§çš„èŠ‚ç‚¹è½½è·ï¼ˆbase64 å¼€é”€ + æ¶ˆæ¯é™åˆ¶ï¼‰ã€‚
+
+## macOS å±å¹•è§†é¢‘ï¼ˆæ“ä½œç³»ç»Ÿçº§åˆ«ï¼‰
+
+å¯¹äºŽ*å±å¹•*è§†é¢‘ï¼ˆéžç›¸æœºï¼‰ï¼Œä½¿ç”¨ macOS é…å¥—åº”ç”¨ï¼š
+
+```bash
+ nodes screen record --node <id> --duration 10s --fps 15   # prints MEDIA:<path>
+```
+
+æ³¨æ„äº‹é¡¹ï¼š
+
+- éœ€è¦ macOS **å±å¹•å½•åˆ¶**æƒé™ï¼ˆTCCï¼‰ã€‚
+

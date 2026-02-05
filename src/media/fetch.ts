@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import type { LookupFn, SsrFPolicy } from "../infra/net/ssrf.js";
 import { fetchWithSsrFGuard } from "../infra/net/fetch-guard.js";
 import { detectMime, extensionForMime } from "./mime.js";
@@ -71,7 +71,7 @@ async function readErrorBodySnippet(res: Response, maxChars = 200): Promise<stri
     if (collapsed.length <= maxChars) {
       return collapsed;
     }
-    return `${collapsed.slice(0, maxChars)}…`;
+    return `${collapsed.slice(0, maxChars)}â€¦`;
   } catch {
     return undefined;
   }
@@ -217,3 +217,4 @@ async function readResponseWithLimit(res: Response, maxBytes: number): Promise<B
     total,
   );
 }
+

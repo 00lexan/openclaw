@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+﻿import { beforeEach, describe, expect, it } from "vitest";
 import { resetInboundDedupe } from "../auto-reply/reply/inbound-dedupe.js";
 import {
   defaultSlackTestConfig,
@@ -26,7 +26,7 @@ describe("monitorSlackProvider tool results", () => {
     slackTestState.config = {
       messages: {
         responsePrefix: "PFX",
-        ackReaction: "👀",
+        ackReaction: "ðŸ‘€",
         ackReactionScope: "group-mentions",
       },
       channels: {
@@ -299,7 +299,7 @@ describe("monitorSlackProvider tool results", () => {
     slackTestState.config = {
       messages: {
         responsePrefix: "PFX",
-        ackReaction: "👀",
+        ackReaction: "ðŸ‘€",
         ackReactionScope: "group-mentions",
       },
       channels: {
@@ -347,7 +347,7 @@ describe("monitorSlackProvider tool results", () => {
     slackTestState.config = {
       messages: {
         responsePrefix: "PFX",
-        ackReaction: "👀",
+        ackReaction: "ðŸ‘€",
         ackReactionScope: "group-mentions",
       },
       channels: {
@@ -391,3 +391,4 @@ describe("monitorSlackProvider tool results", () => {
     expect(sendMock.mock.calls[0][2]).toMatchObject({ threadTs: "789" });
   });
 });
+

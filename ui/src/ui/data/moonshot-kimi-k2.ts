@@ -1,4 +1,4 @@
-export const MOONSHOT_KIMI_K2_DEFAULT_ID = "kimi-k2-0905-preview";
+﻿export const MOONSHOT_KIMI_K2_DEFAULT_ID = "kimi-k2-0905-preview";
 export const MOONSHOT_KIMI_K2_CONTEXT_WINDOW = 256000;
 export const MOONSHOT_KIMI_K2_MAX_TOKENS = 8192;
 export const MOONSHOT_KIMI_K2_INPUT = ["text"] as const;
@@ -37,3 +37,4 @@ export const MOONSHOT_KIMI_K2_MODELS = [
 ] as const;
 
 export type MoonshotKimiK2Model = (typeof MOONSHOT_KIMI_K2_MODELS)[number];
+

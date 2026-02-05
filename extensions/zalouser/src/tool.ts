@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { runZca, parseJsonOutput } from "./zca.js";
 
 const ACTIONS = ["send", "image", "link", "friends", "groups", "me", "status"] as const;
@@ -162,3 +162,4 @@ export async function executeZalouserTool(
     });
   }
 }
+

@@ -1,4 +1,4 @@
-import type { DirectoryConfigParams } from "../channels/plugins/directory-config.js";
+﻿import type { DirectoryConfigParams } from "../channels/plugins/directory-config.js";
 import type { ChannelDirectoryEntry } from "../channels/plugins/types.js";
 import { resolveSlackAccount } from "./accounts.js";
 import { createSlackWebClient } from "./client.js";
@@ -182,3 +182,4 @@ export async function listSlackDirectoryGroupsLive(
   }
   return rows;
 }
+

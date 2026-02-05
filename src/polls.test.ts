@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizePollDurationHours, normalizePollInput } from "./polls.js";
 
 describe("polls", () => {
@@ -29,3 +29,4 @@ describe("polls", () => {
     expect(normalizePollDurationHours(1, { defaultHours: 24, maxHours: 48 })).toBe(1);
   });
 });
+

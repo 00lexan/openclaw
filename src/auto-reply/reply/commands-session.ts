@@ -1,10 +1,10 @@
-import type { SessionEntry } from "../../config/sessions.js";
+﻿import type { SessionEntry } from "../../config/sessions.js";
 import type { CommandHandler } from "./commands-types.js";
 import { abortEmbeddedPiRun } from "../../agents/pi-embedded.js";
 import { updateSessionStore } from "../../config/sessions.js";
 import { logVerbose } from "../../globals.js";
 import { createInternalHookEvent, triggerInternalHook } from "../../hooks/internal-hooks.js";
-import { scheduleGatewaySigusr1Restart, triggerOpenClawRestart } from "../../infra/restart.js";
+import { scheduleGatewaySigusr1Restart, triggerRestart } from "../../infra/restart.js";
 import { loadCostUsageSummary, loadSessionCostSummary } from "../../infra/session-cost-usage.js";
 import { formatTokenCount, formatUsd } from "../../utils/usage-format.js";
 import { parseActivationCommand } from "../group-activation.js";
@@ -64,7 +64,7 @@ export const handleActivationCommand: CommandHandler = async (params, allowTextC
   if (!params.isGroup) {
     return {
       shouldContinue: false,
-      reply: { text: "⚙️ Group activation only applies to group chats." },
+      reply: { text: "âš™ï¸ Group activation only applies to group chats." },
     };
   }
   if (!params.command.isAuthorizedSender) {
@@ -76,7 +76,7 @@ export const handleActivationCommand: CommandHandler = async (params, allowTextC
   if (!activationCommand.mode) {
     return {
       shouldContinue: false,
-      reply: { text: "⚙️ Usage: /activation mention|always" },
+      reply: { text: "âš™ï¸ Usage: /activation mention|always" },
     };
   }
   if (params.sessionEntry && params.sessionStore && params.sessionKey) {
@@ -93,7 +93,7 @@ export const handleActivationCommand: CommandHandler = async (params, allowTextC
   return {
     shouldContinue: false,
     reply: {
-      text: `⚙️ Group activation set to ${activationCommand.mode}.`,
+      text: `âš™ï¸ Group activation set to ${activationCommand.mode}.`,
     },
   };
 };
@@ -115,7 +115,7 @@ export const handleSendPolicyCommand: CommandHandler = async (params, allowTextC
   if (!sendPolicyCommand.mode) {
     return {
       shouldContinue: false,
-      reply: { text: "⚙️ Usage: /send on|off|inherit" },
+      reply: { text: "âš™ï¸ Usage: /send on|off|inherit" },
     };
   }
   if (params.sessionEntry && params.sessionStore && params.sessionKey) {
@@ -140,7 +140,7 @@ export const handleSendPolicyCommand: CommandHandler = async (params, allowTextC
         : "off";
   return {
     shouldContinue: false,
-    reply: { text: `⚙️ Send policy set to ${label}.` },
+    reply: { text: `âš™ï¸ Send policy set to ${label}.` },
   };
 };
 
@@ -178,7 +178,7 @@ export const handleUsageCommand: CommandHandler = async (params, allowTextComman
     const sessionSuffix = sessionMissing > 0 ? " (partial)" : "";
     const sessionLine =
       sessionCost || sessionTokens
-        ? `Session ${sessionCost ?? "n/a"}${sessionSuffix}${sessionTokens ? ` · ${sessionTokens} tokens` : ""}`
+        ? `Session ${sessionCost ?? "n/a"}${sessionSuffix}${sessionTokens ? ` Â· ${sessionTokens} tokens` : ""}`
         : "Session n/a";
 
     const todayKey = new Date().toLocaleDateString("en-CA");
@@ -195,14 +195,14 @@ export const handleUsageCommand: CommandHandler = async (params, allowTextComman
 
     return {
       shouldContinue: false,
-      reply: { text: `💸 Usage cost\n${sessionLine}\n${todayLine}\n${last30Line}` },
+      reply: { text: `ðŸ’¸ Usage cost\n${sessionLine}\n${todayLine}\n${last30Line}` },
     };
   }
 
   if (rawArgs && !requested) {
     return {
       shouldContinue: false,
-      reply: { text: "⚙️ Usage: /usage off|tokens|full|cost" },
+      reply: { text: "âš™ï¸ Usage: /usage off|tokens|full|cost" },
     };
   }
 
@@ -230,7 +230,7 @@ export const handleUsageCommand: CommandHandler = async (params, allowTextComman
   return {
     shouldContinue: false,
     reply: {
-      text: `⚙️ Usage footer: ${next}.`,
+      text: `âš™ï¸ Usage footer: ${next}.`,
     },
   };
 };
@@ -252,7 +252,7 @@ export const handleRestartCommand: CommandHandler = async (params, allowTextComm
     return {
       shouldContinue: false,
       reply: {
-        text: "⚠️ /restart is disabled. Set commands.restart=true to enable.",
+        text: "âš ï¸ /restart is disabled. Set commands.restart=true to enable.",
       },
     };
   }
@@ -262,24 +262,24 @@ export const handleRestartCommand: CommandHandler = async (params, allowTextComm
     return {
       shouldContinue: false,
       reply: {
-        text: "⚙️ Restarting OpenClaw in-process (SIGUSR1); back in a few seconds.",
+        text: "âš™ï¸ Restarting  in-process (SIGUSR1); back in a few seconds.",
       },
     };
   }
-  const restartMethod = triggerOpenClawRestart();
+  const restartMethod = triggerRestart();
   if (!restartMethod.ok) {
     const detail = restartMethod.detail ? ` Details: ${restartMethod.detail}` : "";
     return {
       shouldContinue: false,
       reply: {
-        text: `⚠️ Restart failed (${restartMethod.method}).${detail}`,
+        text: `âš ï¸ Restart failed (${restartMethod.method}).${detail}`,
       },
     };
   }
   return {
     shouldContinue: false,
     reply: {
-      text: `⚙️ Restarting OpenClaw via ${restartMethod.method}; give me a few seconds to come back online.`,
+      text: `âš™ï¸ Restarting  via ${restartMethod.method}; give me a few seconds to come back online.`,
     },
   };
 };
@@ -375,5 +375,6 @@ export const handleAbortTrigger: CommandHandler = async (params, allowTextComman
   } else if (params.command.abortKey) {
     setAbortMemory(params.command.abortKey, true);
   }
-  return { shouldContinue: false, reply: { text: "⚙️ Agent was aborted." } };
+  return { shouldContinue: false, reply: { text: "âš™ï¸ Agent was aborted." } };
 };
+

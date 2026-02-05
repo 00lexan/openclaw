@@ -1,6 +1,6 @@
-import type { OpenClawConfig } from "./types.js";
+﻿import type { Config } from "./types.js";
 
-export function collectConfigEnvVars(cfg?: OpenClawConfig): Record<string, string> {
+export function collectConfigEnvVars(cfg?: Config): Record<string, string> {
   const envConfig = cfg?.env;
   if (!envConfig) {
     return {};
@@ -29,3 +29,4 @@ export function collectConfigEnvVars(cfg?: OpenClawConfig): Record<string, strin
 
   return entries;
 }
+

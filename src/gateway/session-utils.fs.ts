@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import type { SessionPreviewItem } from "./session-utils.types.js";
@@ -53,7 +53,7 @@ export function resolveSessionTranscriptCandidates(
     candidates.push(resolveSessionTranscriptPath(sessionId, agentId));
   }
   const home = os.homedir();
-  candidates.push(path.join(home, ".openclaw", "sessions", `${sessionId}.jsonl`));
+  candidates.push(path.join(home, ".", "sessions", `${sessionId}.jsonl`));
   return candidates;
 }
 
@@ -456,3 +456,4 @@ export function readSessionPreviewItemsFromTranscript(
 
   return [];
 }
+

@@ -1,4 +1,4 @@
-export {
+﻿export {
   downloadMSTeamsAttachments,
   /** @deprecated Use `downloadMSTeamsAttachments` instead. */
   downloadMSTeamsImageAttachments,
@@ -16,3 +16,4 @@ export type {
   MSTeamsHtmlAttachmentSummary,
   MSTeamsInboundMedia,
 } from "./attachments/types.js";
+

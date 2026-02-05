@@ -1,17 +1,17 @@
----
+﻿---
 summary: "Agent loop lifecycle, streams, and wait semantics"
 read_when:
   - You need an exact walkthrough of the agent loop or lifecycle events
 title: "Agent Loop"
 ---
 
-# Agent Loop (OpenClaw)
+# Agent Loop ()
 
-An agentic loop is the full “real” run of an agent: intake → context assembly → model inference →
-tool execution → streaming replies → persistence. It’s the authoritative path that turns a message
+An agentic loop is the full â€œrealâ€ run of an agent: intake â†’ context assembly â†’ model inference â†’
+tool execution â†’ streaming replies â†’ persistence. Itâ€™s the authoritative path that turns a message
 into actions and a final reply, while keeping session state consistent.
 
-In OpenClaw, a loop is a single, serialized run per session that emits lifecycle and stream events
+In , a loop is a single, serialized run per session that emits lifecycle and stream events
 as the model thinks, calls tools, and streams output. This doc explains how that authentic loop is
 wired end-to-end.
 
@@ -34,7 +34,7 @@ wired end-to-end.
    - subscribes to pi events and streams assistant/tool deltas
    - enforces timeout -> aborts run if exceeded
    - returns payloads + usage metadata
-4. `subscribeEmbeddedPiSession` bridges pi-agent-core events to OpenClaw `agent` stream:
+4. `subscribeEmbeddedPiSession` bridges pi-agent-core events to  `agent` stream:
    - tool events => `stream: "tool"`
    - assistant deltas => `stream: "assistant"`
    - lifecycle events => `stream: "lifecycle"` (`phase: "start" | "end" | "error"`)
@@ -58,13 +58,13 @@ wired end-to-end.
 
 ## Prompt assembly + system prompt
 
-- System prompt is built from OpenClaw’s base prompt, skills prompt, bootstrap context, and per-run overrides.
+- System prompt is built from â€™s base prompt, skills prompt, bootstrap context, and per-run overrides.
 - Model-specific limits and compaction reserve tokens are enforced.
 - See [System prompt](/concepts/system-prompt) for what the model sees.
 
 ## Hook points (where you can intercept)
 
-OpenClaw has two hook systems:
+ has two hook systems:
 
 - **Internal hooks** (Gateway hooks): event-driven scripts for commands and lifecycle events.
 - **Plugin hooks**: extension points inside the agent/tool lifecycle and gateway pipeline.
@@ -144,3 +144,4 @@ See [Plugins](/plugin#plugin-hooks) for the hook API and registration details.
 - AbortSignal (cancel)
 - Gateway disconnect or RPC timeout
 - `agent.wait` timeout (wait-only, does not stop agent)
+

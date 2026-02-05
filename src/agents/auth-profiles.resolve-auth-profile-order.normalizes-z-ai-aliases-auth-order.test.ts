@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveAuthProfileOrder } from "./auth-profiles.js";
 
 describe("resolveAuthProfileOrder", () => {
@@ -140,3 +140,4 @@ describe("resolveAuthProfileOrder", () => {
     expect(order).toEqual(["anthropic:oauth", "anthropic:default"]);
   });
 });
+

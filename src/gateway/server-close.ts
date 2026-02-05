@@ -1,4 +1,4 @@
-import type { Server as HttpServer } from "node:http";
+﻿import type { Server as HttpServer } from "node:http";
 import type { WebSocketServer } from "ws";
 import type { CanvasHostHandler, CanvasHostServer } from "../canvas-host/server.js";
 import type { HeartbeatRunner } from "../infra/heartbeat-runner.js";
@@ -126,3 +126,4 @@ export function createGatewayCloseHandler(params: {
     }
   };
 }
+

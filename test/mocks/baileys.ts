@@ -1,4 +1,4 @@
-import { EventEmitter } from "node:events";
+﻿import { EventEmitter } from "node:events";
 import { vi } from "vitest";
 
 export type MockBaileysSocket = {
@@ -65,3 +65,4 @@ export function createMockBaileys(): {
     },
   };
 }
+

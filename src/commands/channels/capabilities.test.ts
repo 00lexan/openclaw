@@ -1,4 +1,4 @@
-process.env.NO_COLOR = "1";
+﻿process.env.NO_COLOR = "1";
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ChannelPlugin } from "../../channels/plugins/types.js";
@@ -88,7 +88,7 @@ describe("channelsCapabilitiesCommand", () => {
         botToken: "xoxb-bot",
         config: { userToken: "xoxp-user" },
       },
-      probe: { ok: true, bot: { name: "openclaw" }, team: { name: "team" } },
+      probe: { ok: true, bot: { name: "" }, team: { name: "team" } },
     });
     vi.mocked(listChannelPlugins).mockReturnValue([plugin]);
     vi.mocked(getChannelPlugin).mockReturnValue(plugin);
@@ -132,3 +132,4 @@ describe("channelsCapabilitiesCommand", () => {
     expect(output).toContain("Files.Read.All (files (OneDrive))");
   });
 });
+

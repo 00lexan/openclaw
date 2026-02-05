@@ -1,4 +1,4 @@
-import type { InlineCodeState } from "../markdown/code-spans.js";
+﻿import type { InlineCodeState } from "../markdown/code-spans.js";
 import type {
   EmbeddedPiSubscribeContext,
   EmbeddedPiSubscribeState,
@@ -171,7 +171,7 @@ export function subscribeEmbeddedPiSession(params: SubscribeEmbeddedPiSessionPar
     state.assistantTextBaseline = assistantTexts.length;
   };
 
-  // ── Messaging tool duplicate detection ──────────────────────────────────────
+  // â”€â”€ Messaging tool duplicate detection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // Track texts sent via messaging tools to suppress duplicate block replies.
   // Only committed (successful) texts are checked - pending texts are tracked
   // to support commit logic but not used for suppression (avoiding lost messages on tool failure).
@@ -564,3 +564,4 @@ export function subscribeEmbeddedPiSession(params: SubscribeEmbeddedPiSessionPar
     },
   };
 }
+

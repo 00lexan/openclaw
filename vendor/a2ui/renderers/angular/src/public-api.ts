@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,3 +19,4 @@ export * from './lib/data/index';
 export * from './lib/config';
 export * from './lib/catalog/default';
 export { Surface } from './lib/catalog/surface';
+

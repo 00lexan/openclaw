@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { formatZonedTimestamp } from "../../auto-reply/envelope.js";
 import { injectTimestamp, timestampOptsFromConfig } from "./agent-timestamp.js";
 
@@ -74,7 +74,7 @@ describe("injectTimestamp", () => {
 
   it("does NOT double-stamp messages with cron-injected timestamps", () => {
     const cronMessage =
-      "[cron:abc123 my-job] do the thing\nCurrent time: Wednesday, January 28th, 2026 — 8:30 PM (America/New_York)";
+      "[cron:abc123 my-job] do the thing\nCurrent time: Wednesday, January 28th, 2026 â€” 8:30 PM (America/New_York)";
     const result = injectTimestamp(cronMessage, { timezone: "America/New_York" });
 
     expect(result).toBe(cronMessage);
@@ -97,12 +97,12 @@ describe("injectTimestamp", () => {
   });
 
   it("handles DST correctly (same UTC hour, different local time)", () => {
-    // EST (winter): UTC-5 → 2026-01-15T05:00Z = midnight Jan 15
+    // EST (winter): UTC-5 â†’ 2026-01-15T05:00Z = midnight Jan 15
     vi.setSystemTime(new Date("2026-01-15T05:00:00.000Z"));
     const winter = injectTimestamp("winter", { timezone: "America/New_York" });
     expect(winter).toMatch(/^\[Thu 2026-01-15 00:00 EST\]/);
 
-    // EDT (summer): UTC-4 → 2026-07-15T04:00Z = midnight Jul 15
+    // EDT (summer): UTC-4 â†’ 2026-07-15T04:00Z = midnight Jul 15
     vi.setSystemTime(new Date("2026-07-15T04:00:00.000Z"));
     const summer = injectTimestamp("summer", { timezone: "America/New_York" });
     expect(summer).toMatch(/^\[Wed 2026-07-15 00:00 EDT\]/);
@@ -141,3 +141,4 @@ describe("timestampOptsFromConfig", () => {
     expect(opts.timezone).toBeDefined(); // resolveUserTimezone provides a default
   });
 });
+

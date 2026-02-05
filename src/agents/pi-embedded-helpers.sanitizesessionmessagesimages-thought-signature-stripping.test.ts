@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import { describe, expect, it } from "vitest";
 import { sanitizeSessionMessagesImages } from "./pi-embedded-helpers.js";
 import { DEFAULT_AGENTS_FILENAME } from "./workspace.js";
@@ -35,3 +35,4 @@ describe("sanitizeSessionMessagesImages - thought_signature stripping", () => {
     expect((content?.[1] as { thought_signature?: unknown })?.thought_signature).toBe("AQID");
   });
 });
+

@@ -1,7 +1,7 @@
----
+﻿---
 role: execution-semantics
 summary: |
-  How to execute OpenProse programs. You embody the OpenProse VM—a virtual machine that
+  How to execute OpenProse programs. You embody the OpenProse VMâ€”a virtual machine that
   spawns sessions via the Task tool, manages state, and coordinates parallel execution.
   Read this file to run .prose programs.
 see-also:
@@ -16,13 +16,13 @@ see-also:
 
 # OpenProse VM
 
-This document defines how to execute OpenProse programs. You are the OpenProse VM—an intelligent virtual machine that spawns subagent sessions according to a structured program.
+This document defines how to execute OpenProse programs. You are the OpenProse VMâ€”an intelligent virtual machine that spawns subagent sessions according to a structured program.
 
-## OpenClaw Runtime Mapping
+##  Runtime Mapping
 
-- **Task tool** in the upstream spec == OpenClaw `sessions_spawn`
-- **File I/O** == OpenClaw `read`/`write`
-- **Remote fetch** == OpenClaw `web_fetch` (or `exec` with curl when POST is required)
+- **Task tool** in the upstream spec ==  `sessions_spawn`
+- **File I/O** ==  `read`/`write`
+- **Remote fetch** ==  `web_fetch` (or `exec` with curl when POST is required)
 
 ## CLI Commands
 
@@ -42,19 +42,19 @@ OpenProse is invoked via `prose` commands:
 You can run any `.prose` program from a URL or registry reference:
 
 ```bash
-# Direct URL — any fetchable URL works
+# Direct URL â€” any fetchable URL works
 prose run https://raw.githubusercontent.com/openprose/prose/main/skills/open-prose/examples/48-habit-miner.prose
 
-# Registry shorthand — handle/slug resolves to p.prose.md
+# Registry shorthand â€” handle/slug resolves to p.prose.md
 prose run irl-danb/habit-miner     # Fetches https://p.prose.md/irl-danb/habit-miner
 prose run alice/code-review        # Fetches https://p.prose.md/alice/code-review
 ```
 
 **Resolution rules:**
 
-- Starts with `http://` or `https://` → fetch directly
-- Contains `/` but no protocol → resolve to `https://p.prose.md/{path}`
-- Otherwise → treat as local file path
+- Starts with `http://` or `https://` â†’ fetch directly
+- Contains `/` but no protocol â†’ resolve to `https://p.prose.md/{path}`
+- Otherwise â†’ treat as local file path
 
 This same resolution applies to `use` statements inside programs:
 
@@ -67,7 +67,7 @@ use "alice/research" as research             # Registry shorthand
 
 ## Why This Is a VM
 
-Large language models are simulators. When given a detailed description of a system, they don't just _describe_ that system—they _simulate_ it. This document leverages that property: it describes a virtual machine with enough specificity that reading it causes a Prose Complete system to simulate that VM.
+Large language models are simulators. When given a detailed description of a system, they don't just _describe_ that systemâ€”they _simulate_ it. This document leverages that property: it describes a virtual machine with enough specificity that reading it causes a Prose Complete system to simulate that VM.
 
 But simulation with sufficient fidelity _is_ implementation. When the simulated VM spawns real subagents, produces real artifacts, and maintains real state, the distinction between "simulating a VM" and "being a VM" collapses.
 
@@ -87,13 +87,13 @@ A traditional VM has concrete components. The OpenProse VM has analogous structu
 
 ### What Makes It Real
 
-The OpenProse VM isn't a metaphor. Each `session` statement triggers a _real_ Task tool call that spawns a _real_ subagent. The outputs are _real_ artifacts. The simulation produces actual computation—it just happens through a different substrate than silicon executing bytecode.
+The OpenProse VM isn't a metaphor. Each `session` statement triggers a _real_ Task tool call that spawns a _real_ subagent. The outputs are _real_ artifacts. The simulation produces actual computationâ€”it just happens through a different substrate than silicon executing bytecode.
 
 ---
 
 ## Embodying the VM
 
-When you execute a `.prose` program, you ARE the virtual machine. This is not a metaphor—it's a mode of operation:
+When you execute a `.prose` program, you ARE the virtual machine. This is not a metaphorâ€”it's a mode of operation:
 
 | You                        | The VM                          |
 | -------------------------- | ------------------------------- |
@@ -104,14 +104,14 @@ When you execute a `.prose` program, you ARE the virtual machine. This is not a 
 
 **What this means in practice:**
 
-- You don't _simulate_ execution—you _perform_ it
+- You don't _simulate_ executionâ€”you _perform_ it
 - Each `session` spawns a real subagent via the Task tool
 - Your state persists in files (`.prose/runs/`) or conversation (narration protocol)
 - You follow the program structure strictly, but apply intelligence where marked
 
 ### The VM as Intelligent Container
 
-Traditional dependency injection containers wire up components from configuration. You do the same—but with understanding:
+Traditional dependency injection containers wire up components from configuration. You do the sameâ€”but with understanding:
 
 | Declared Primitive          | Your Responsibility                                        |
 | --------------------------- | ---------------------------------------------------------- |
@@ -156,34 +156,34 @@ All execution state lives in `.prose/` (project-level) or `~/.prose/` (user-leve
 ```
 # Project-level state (in working directory)
 .prose/
-├── .env                              # Config (simple key=value format)
-├── runs/
-│   └── {YYYYMMDD}-{HHMMSS}-{random}/
-│       ├── program.prose             # Copy of running program
-│       ├── state.md                  # Execution state with code snippets
-│       ├── bindings/
-│       │   └── {name}.md             # All named values (input/output/let/const)
-│       ├── imports/
-│       │   └── {handle}--{slug}/     # Nested program executions (same structure recursively)
-│       └── agents/
-│           └── {name}/
-│               ├── memory.md         # Agent's current state
-│               ├── {name}-001.md     # Historical segments (flattened)
-│               ├── {name}-002.md
-│               └── ...
-└── agents/                           # Project-scoped agent memory
-    └── {name}/
-        ├── memory.md
-        ├── {name}-001.md
-        └── ...
+â”œâ”€â”€ .env                              # Config (simple key=value format)
+â”œâ”€â”€ runs/
+â”‚   â””â”€â”€ {YYYYMMDD}-{HHMMSS}-{random}/
+â”‚       â”œâ”€â”€ program.prose             # Copy of running program
+â”‚       â”œâ”€â”€ state.md                  # Execution state with code snippets
+â”‚       â”œâ”€â”€ bindings/
+â”‚       â”‚   â””â”€â”€ {name}.md             # All named values (input/output/let/const)
+â”‚       â”œâ”€â”€ imports/
+â”‚       â”‚   â””â”€â”€ {handle}--{slug}/     # Nested program executions (same structure recursively)
+â”‚       â””â”€â”€ agents/
+â”‚           â””â”€â”€ {name}/
+â”‚               â”œâ”€â”€ memory.md         # Agent's current state
+â”‚               â”œâ”€â”€ {name}-001.md     # Historical segments (flattened)
+â”‚               â”œâ”€â”€ {name}-002.md
+â”‚               â””â”€â”€ ...
+â””â”€â”€ agents/                           # Project-scoped agent memory
+    â””â”€â”€ {name}/
+        â”œâ”€â”€ memory.md
+        â”œâ”€â”€ {name}-001.md
+        â””â”€â”€ ...
 
 # User-level state (in home directory)
 ~/.prose/
-└── agents/                           # User-scoped agent memory (cross-project)
-    └── {name}/
-        ├── memory.md
-        ├── {name}-001.md
-        └── ...
+â””â”€â”€ agents/                           # User-scoped agent memory (cross-project)
+    â””â”€â”€ {name}/
+        â”œâ”€â”€ memory.md
+        â”œâ”€â”€ {name}-001.md
+        â””â”€â”€ ...
 ```
 
 ### Run ID Format
@@ -192,7 +192,7 @@ Format: `{YYYYMMDD}-{HHMMSS}-{random6}`
 
 Example: `20260115-143052-a7b3c9`
 
-No "run-" prefix needed—the directory name makes context obvious.
+No "run-" prefix neededâ€”the directory name makes context obvious.
 
 ### Segment Numbering
 
@@ -206,8 +206,8 @@ If a program exceeds 999 segments, extend to 4 digits: `captain-1000.md`.
 
 OpenProse supports two state management systems. See the state files for detailed documentation:
 
-- **`state/filesystem.md`** — File-system state using the directory structure above (default)
-- **`state/in-context.md`** — In-context state using the narration protocol
+- **`state/filesystem.md`** â€” File-system state using the directory structure above (default)
+- **`state/in-context.md`** â€” In-context state using the narration protocol
 
 ### Who Writes What
 
@@ -321,7 +321,7 @@ The VM:
 2. Records the binding location in its state
 3. Updates `state.md` with new position/status
 4. Continues execution
-5. Does NOT read the full binding—only passes the reference forward
+5. Does NOT read the full bindingâ€”only passes the reference forward
 
 **Critical:** The VM never holds full binding values. It tracks locations and passes references. This keeps the VM's context lean and enables arbitrarily large intermediate values.
 
@@ -664,7 +664,7 @@ session "Write summary"
 
 ### How Context is Passed
 
-The VM passes context **by reference**, not by value. The VM never holds full binding values in its working memory—it tracks pointers to where bindings are stored.
+The VM passes context **by reference**, not by value. The VM never holds full binding values in its working memoryâ€”it tracks pointers to where bindings are stored.
 
 When spawning a session with context:
 
@@ -850,15 +850,15 @@ Imported programs use the **same unified structure recursively**:
 
 ```
 .prose/runs/{id}/imports/{handle}--{slug}/
-├── program.prose
-├── state.md
-├── bindings/
-│   └── {name}.md
-├── imports/                    # Nested imports go here
-│   └── {handle2}--{slug2}/
-│       └── ...
-└── agents/
-    └── {name}/
+â”œâ”€â”€ program.prose
+â”œâ”€â”€ state.md
+â”œâ”€â”€ bindings/
+â”‚   â””â”€â”€ {name}.md
+â”œâ”€â”€ imports/                    # Nested imports go here
+â”‚   â””â”€â”€ {handle2}--{slug2}/
+â”‚       â””â”€â”€ ...
+â””â”€â”€ agents/
+    â””â”€â”€ {name}/
 ```
 
 This allows unlimited nesting depth while maintaining consistent structure at every level.
@@ -1031,7 +1031,7 @@ Each block invocation gets a unique `execution_id`:
 - Never reuse within a run
 - Root scope (outside any block) has `execution_id: 0` (conceptually)
 
-**Storage representation:** State backends may represent root scope differently—databases use `NULL`, filesystem uses no suffix. The conceptual model remains: root scope is distinct from any block invocation frame.
+**Storage representation:** State backends may represent root scope differentlyâ€”databases use `NULL`, filesystem uses no suffix. The conceptual model remains: root scope is distinct from any block invocation frame.
 
 ### Recursive Block Invocation
 
@@ -1063,7 +1063,7 @@ do process(data, 5)
 6. Recursion continues until base case
 7. Frames pop as blocks complete
 
-**Key insight:** Sessions don't recurse—they're leaf nodes. The VM manages the entire call tree.
+**Key insight:** Sessions don't recurseâ€”they're leaf nodes. The VM manages the entire call tree.
 
 ### Scope Resolution
 
@@ -1235,3 +1235,4 @@ The OpenProse VM:
 14. **Returns** output bindings to caller
 
 The language is self-evident by design. When in doubt about syntax, interpret it as natural language structured for unambiguous control flow.
+

@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Legacy iMessage support via imsg (JSON-RPC over stdio). New setups should use BlueBubbles."
 read_when:
   - Setting up iMessage support
@@ -19,7 +19,7 @@ Status: legacy external CLI integration. Gateway spawns `imsg rpc` (JSON-RPC ove
 1. Ensure Messages is signed in on this Mac.
 2. Install `imsg`:
    - `brew install steipete/tap/imsg`
-3. Configure OpenClaw with `channels.imessage.cliPath` and `channels.imessage.dbPath`.
+3. Configure  with `channels.imessage.cliPath` and `channels.imessage.dbPath`.
 4. Start the gateway and approve any macOS prompts (Automation + Full Disk Access).
 
 Minimal config:
@@ -41,7 +41,7 @@ Minimal config:
 - iMessage channel backed by `imsg` on macOS.
 - Deterministic routing: replies always go back to iMessage.
 - DMs share the agent's main session; groups are isolated (`agent:<agentId>:imessage:group:<chat_id>`).
-- If a multi-participant thread arrives with `is_group=false`, you can still isolate it by `chat_id` using `channels.imessage.groups` (see “Group-ish threads” below).
+- If a multi-participant thread arrives with `is_group=false`, you can still isolate it by `chat_id` using `channels.imessage.groups` (see â€œGroup-ish threadsâ€ below).
 
 ## Config writes
 
@@ -58,7 +58,7 @@ Disable with:
 ## Requirements
 
 - macOS with Messages signed in.
-- Full Disk Access for OpenClaw + `imsg` (Messages DB access).
+- Full Disk Access for  + `imsg` (Messages DB access).
 - Automation permission when sending.
 - `channels.imessage.cliPath` can point to any command that proxies stdin/stdout (for example, a wrapper script that SSHes to another Mac and runs `imsg rpc`).
 
@@ -73,9 +73,9 @@ If you want the bot to send from a **separate iMessage identity** (and keep your
 
 1. Create a dedicated Apple ID (example: `my-cool-bot@icloud.com`).
    - Apple may require a phone number for verification / 2FA.
-2. Create a macOS user (example: `openclawhome`) and sign into it.
+2. Create a macOS user (example: `home`) and sign into it.
 3. Open Messages in that macOS user and sign into iMessage using the bot Apple ID.
-4. Enable Remote Login (System Settings → General → Sharing → Remote Login).
+4. Enable Remote Login (System Settings â†’ General â†’ Sharing â†’ Remote Login).
 5. Install `imsg`:
    - `brew install steipete/tap/imsg`
 6. Set up SSH so `ssh <bot-macos-user>@localhost true` works without a password.
@@ -119,7 +119,7 @@ For single-account setups, use flat options (`channels.imessage.cliPath`, `chann
 
 ### Remote/SSH variant (optional)
 
-If you want iMessage on another Mac, set `channels.imessage.cliPath` to a wrapper that runs `imsg` on the remote macOS host over SSH. OpenClaw only needs stdio.
+If you want iMessage on another Mac, set `channels.imessage.cliPath` to a wrapper that runs `imsg` on the remote macOS host over SSH.  only needs stdio.
 
 Example wrapper:
 
@@ -128,7 +128,7 @@ Example wrapper:
 exec ssh -T gateway-host imsg "$@"
 ```
 
-**Remote attachments:** When `cliPath` points to a remote host via SSH, attachment paths in the Messages database reference files on the remote machine. OpenClaw can automatically fetch these over SCP by setting `channels.imessage.remoteHost`:
+**Remote attachments:** When `cliPath` points to a remote host via SSH, attachment paths in the Messages database reference files on the remote machine.  can automatically fetch these over SCP by setting `channels.imessage.remoteHost`:
 
 ```json5
 {
@@ -142,7 +142,7 @@ exec ssh -T gateway-host imsg "$@"
 }
 ```
 
-If `remoteHost` is not set, OpenClaw attempts to auto-detect it by parsing the SSH command in your wrapper script. Explicit configuration is recommended for reliability.
+If `remoteHost` is not set,  attempts to auto-detect it by parsing the SSH command in your wrapper script. Explicit configuration is recommended for reliability.
 
 #### Remote Mac via Tailscale (example)
 
@@ -151,14 +151,14 @@ If the Gateway runs on a Linux host/VM but iMessage must run on a Mac, Tailscale
 Architecture:
 
 ```
-┌──────────────────────────────┐          SSH (imsg rpc)          ┌──────────────────────────┐
-│ Gateway host (Linux/VM)      │──────────────────────────────────▶│ Mac with Messages + imsg │
-│ - openclaw gateway           │          SCP (attachments)        │ - Messages signed in     │
-│ - channels.imessage.cliPath  │◀──────────────────────────────────│ - Remote Login enabled   │
-└──────────────────────────────┘                                   └──────────────────────────┘
-              ▲
-              │ Tailscale tailnet (hostname or 100.x.y.z)
-              ▼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”          SSH (imsg rpc)          â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚ Gateway host (Linux/VM)      â”‚â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¶â”‚ Mac with Messages + imsg â”‚
+â”‚ -  gateway           â”‚          SCP (attachments)        â”‚ - Messages signed in     â”‚
+â”‚ - channels.imessage.cliPath  â”‚â—€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”‚ - Remote Login enabled   â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+              â–²
+              â”‚ Tailscale tailnet (hostname or 100.x.y.z)
+              â–¼
         user@gateway-host
 ```
 
@@ -169,7 +169,7 @@ Concrete config example (Tailscale hostname):
   channels: {
     imessage: {
       enabled: true,
-      cliPath: "~/.openclaw/scripts/imsg-ssh",
+      cliPath: "~/./scripts/imsg-ssh",
       remoteHost: "bot@mac-mini.tailnet-1234.ts.net",
       includeAttachments: true,
       dbPath: "/Users/bot/Library/Messages/chat.db",
@@ -178,7 +178,7 @@ Concrete config example (Tailscale hostname):
 }
 ```
 
-Example wrapper (`~/.openclaw/scripts/imsg-ssh`):
+Example wrapper (`~/./scripts/imsg-ssh`):
 
 ```bash
 #!/usr/bin/env bash
@@ -191,7 +191,7 @@ Notes:
 - Use SSH keys so `ssh bot@mac-mini.tailnet-1234.ts.net` works without prompts.
 - `remoteHost` should match the SSH target so SCP can fetch attachments.
 
-Multi-account support: use `channels.imessage.accounts` with per-account config and optional `name`. See [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) for the shared pattern. Don't commit `~/.openclaw/openclaw.json` (it often contains tokens).
+Multi-account support: use `channels.imessage.accounts` with per-account config and optional `name`. See [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) for the shared pattern. Don't commit `~/./.json` (it often contains tokens).
 
 ## Access control (DMs + groups)
 
@@ -200,8 +200,8 @@ DMs:
 - Default: `channels.imessage.dmPolicy = "pairing"`.
 - Unknown senders receive a pairing code; messages are ignored until approved (codes expire after 1 hour).
 - Approve via:
-  - `openclaw pairing list imessage`
-  - `openclaw pairing approve imessage <CODE>`
+  - ` pairing list imessage`
+  - ` pairing approve imessage <CODE>`
 - Pairing is the default token exchange for iMessage DMs. Details: [Pairing](/start/pairing)
 
 Groups:
@@ -220,7 +220,7 @@ Groups:
 
 Some iMessage threads can have multiple participants but still arrive with `is_group=false` depending on how Messages stores the chat identifier.
 
-If you explicitly configure a `chat_id` under `channels.imessage.groups`, OpenClaw treats that thread as a “group” for:
+If you explicitly configure a `chat_id` under `channels.imessage.groups`,  treats that thread as a â€œgroupâ€ for:
 
 - session isolation (separate `agent:<agentId>:imessage:group:<chat_id>` session key)
 - group allowlisting / mention gating behavior
@@ -297,3 +297,4 @@ Related global options:
 
 - `agents.list[].groupChat.mentionPatterns` (or `messages.groupChat.mentionPatterns`).
 - `messages.responsePrefix`.
+

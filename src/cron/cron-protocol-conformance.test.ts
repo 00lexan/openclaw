@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { MACOS_APP_SOURCES_DIR } from "../compat/legacy-names.js";
@@ -77,3 +77,4 @@ describe("cron protocol conformance", () => {
     expect(swift.includes("let jobs:")).toBe(true);
   });
 });
+

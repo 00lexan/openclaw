@@ -1,4 +1,4 @@
-import type { MarkdownTableMode } from "../config/types.base.js";
+﻿import type { MarkdownTableMode } from "../config/types.base.js";
 import { markdownToIRWithMeta } from "./ir.js";
 import { renderMarkdownWithMarkers } from "./render.js";
 
@@ -40,3 +40,4 @@ export function convertMarkdownTables(markdown: string, mode: MarkdownTableMode)
     },
   });
 }
+

@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { validateLineSignature } from "./signature.js";
 
@@ -25,3 +25,4 @@ describe("validateLineSignature", () => {
     expect(validateLineSignature(rawBody, "short", "secret")).toBe(false);
   });
 });
+

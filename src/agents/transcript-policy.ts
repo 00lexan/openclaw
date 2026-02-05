@@ -1,4 +1,4 @@
-import type { ToolCallIdMode } from "./tool-call-id.js";
+﻿import type { ToolCallIdMode } from "./tool-call-id.js";
 import { normalizeProviderId } from "./model-selection.js";
 import { isAntigravityClaude, isGoogleModelApi } from "./pi-embedded-helpers/google.js";
 
@@ -121,3 +121,4 @@ export function resolveTranscriptPolicy(params: {
     allowSyntheticToolResults: !isOpenAi && (isGoogle || isAnthropic),
   };
 }
+

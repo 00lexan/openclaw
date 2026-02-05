@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   DimensionalFileInfo,
   EncryptedFile,
   FileWithThumbnailInfo,
@@ -107,3 +107,4 @@ export type MatrixFormattedContent = MessageEventContent & {
   format?: string;
   formatted_body?: string;
 };
+

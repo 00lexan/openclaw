@@ -1,4 +1,4 @@
-import { normalizeE164 } from "../utils.js";
+﻿import { normalizeE164 } from "../utils.js";
 
 export type IMessageService = "imessage" | "sms" | "auto";
 
@@ -232,3 +232,4 @@ export function formatIMessageChatTarget(chatId?: number | null): string {
   }
   return `chat_id:${chatId}`;
 }
+

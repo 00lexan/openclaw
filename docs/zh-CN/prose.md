@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想运行或编写 .prose 工作流
-  - 你想启用 OpenProse 插件
-  - 你需要了解状态存储
-summary: OpenProse：OpenClaw 中的 .prose 工作流、斜杠命令和状态
+  - ä½ æƒ³è¿è¡Œæˆ–ç¼–å†™ .prose å·¥ä½œæµ
+  - ä½ æƒ³å¯ç”¨ OpenProse æ’ä»¶
+  - ä½ éœ€è¦äº†è§£çŠ¶æ€å­˜å‚¨
+summary: OpenProseï¼š ä¸­çš„ .prose å·¥ä½œæµã€æ–œæ å‘½ä»¤å’ŒçŠ¶æ€
 title: OpenProse
 x-i18n:
   generated_at: "2026-02-03T07:53:38Z"
@@ -16,35 +16,35 @@ x-i18n:
 
 # OpenProse
 
-OpenProse 是一种可移植的、以 Markdown 为中心的工作流格式，用于编排 AI 会话。在 OpenClaw 中，它作为插件发布，安装一个 OpenProse Skills 包以及一个 `/prose` 斜杠命令。程序存放在 `.prose` 文件中，可以生成多个具有显式控制流的子智能体。
+OpenProse æ˜¯ä¸€ç§å¯ç§»æ¤çš„ã€ä»¥ Markdown ä¸ºä¸­å¿ƒçš„å·¥ä½œæµæ ¼å¼ï¼Œç”¨äºŽç¼–æŽ’ AI ä¼šè¯ã€‚åœ¨  ä¸­ï¼Œå®ƒä½œä¸ºæ’ä»¶å‘å¸ƒï¼Œå®‰è£…ä¸€ä¸ª OpenProse Skills åŒ…ä»¥åŠä¸€ä¸ª `/prose` æ–œæ å‘½ä»¤ã€‚ç¨‹åºå­˜æ”¾åœ¨ `.prose` æ–‡ä»¶ä¸­ï¼Œå¯ä»¥ç”Ÿæˆå¤šä¸ªå…·æœ‰æ˜¾å¼æŽ§åˆ¶æµçš„å­æ™ºèƒ½ä½“ã€‚
 
-官方网站：https://www.prose.md
+å®˜æ–¹ç½‘ç«™ï¼šhttps://www.prose.md
 
-## 它能做什么
+## å®ƒèƒ½åšä»€ä¹ˆ
 
-- 具有显式并行性的多智能体研究 + 综合。
-- 可重复的批准安全工作流（代码审查、事件分类、内容管道）。
-- 可在支持的智能体运行时之间运行的可重用 `.prose` 程序。
+- å…·æœ‰æ˜¾å¼å¹¶è¡Œæ€§çš„å¤šæ™ºèƒ½ä½“ç ”ç©¶ + ç»¼åˆã€‚
+- å¯é‡å¤çš„æ‰¹å‡†å®‰å…¨å·¥ä½œæµï¼ˆä»£ç å®¡æŸ¥ã€äº‹ä»¶åˆ†ç±»ã€å†…å®¹ç®¡é“ï¼‰ã€‚
+- å¯åœ¨æ”¯æŒçš„æ™ºèƒ½ä½“è¿è¡Œæ—¶ä¹‹é—´è¿è¡Œçš„å¯é‡ç”¨ `.prose` ç¨‹åºã€‚
 
-## 安装 + 启用
+## å®‰è£… + å¯ç”¨
 
-捆绑的插件默认是禁用的。启用 OpenProse：
+æ†ç»‘çš„æ’ä»¶é»˜è®¤æ˜¯ç¦ç”¨çš„ã€‚å¯ç”¨ OpenProseï¼š
 
 ```bash
-openclaw plugins enable open-prose
+ plugins enable open-prose
 ```
 
-启用插件后重启 Gateway 网关。
+å¯ç”¨æ’ä»¶åŽé‡å¯ Gateway ç½‘å…³ã€‚
 
-开发/本地检出：`openclaw plugins install ./extensions/open-prose`
+å¼€å‘/æœ¬åœ°æ£€å‡ºï¼š` plugins install ./extensions/open-prose`
 
-相关文档：[插件](/plugin)、[插件清单](/plugins/manifest)、[Skills](/tools/skills)。
+ç›¸å…³æ–‡æ¡£ï¼š[æ’ä»¶](/plugin)ã€[æ’ä»¶æ¸…å•](/plugins/manifest)ã€[Skills](/tools/skills)ã€‚
 
-## 斜杠命令
+## æ–œæ å‘½ä»¤
 
-OpenProse 将 `/prose` 注册为用户可调用的 Skills 命令。它路由到 OpenProse VM 指令，并在底层使用 OpenClaw 工具。
+OpenProse å°† `/prose` æ³¨å†Œä¸ºç”¨æˆ·å¯è°ƒç”¨çš„ Skills å‘½ä»¤ã€‚å®ƒè·¯ç”±åˆ° OpenProse VM æŒ‡ä»¤ï¼Œå¹¶åœ¨åº•å±‚ä½¿ç”¨  å·¥å…·ã€‚
 
-常用命令：
+å¸¸ç”¨å‘½ä»¤ï¼š
 
 ```
 /prose help
@@ -56,7 +56,7 @@ OpenProse 将 `/prose` 注册为用户可调用的 Skills 命令。它路由到 
 /prose update
 ```
 
-## 示例：一个简单的 `.prose` 文件
+## ç¤ºä¾‹ï¼šä¸€ä¸ªç®€å•çš„ `.prose` æ–‡ä»¶
 
 ```prose
 # Research + synthesis with two agents running in parallel.
@@ -81,61 +81,62 @@ session "Merge the findings + draft into a final answer."
 context: { findings, draft }
 ```
 
-## 文件位置
+## æ–‡ä»¶ä½ç½®
 
-OpenProse 将状态保存在工作空间的 `.prose/` 下：
+OpenProse å°†çŠ¶æ€ä¿å­˜åœ¨å·¥ä½œç©ºé—´çš„ `.prose/` ä¸‹ï¼š
 
 ```
 .prose/
-├── .env
-├── runs/
-│   └── {YYYYMMDD}-{HHMMSS}-{random}/
-│       ├── program.prose
-│       ├── state.md
-│       ├── bindings/
-│       └── agents/
-└── agents/
+â”œâ”€â”€ .env
+â”œâ”€â”€ runs/
+â”‚   â””â”€â”€ {YYYYMMDD}-{HHMMSS}-{random}/
+â”‚       â”œâ”€â”€ program.prose
+â”‚       â”œâ”€â”€ state.md
+â”‚       â”œâ”€â”€ bindings/
+â”‚       â””â”€â”€ agents/
+â””â”€â”€ agents/
 ```
 
-用户级持久智能体位于：
+ç”¨æˆ·çº§æŒä¹…æ™ºèƒ½ä½“ä½äºŽï¼š
 
 ```
 ~/.prose/agents/
 ```
 
-## 状态模式
+## çŠ¶æ€æ¨¡å¼
 
-OpenProse 支持多种状态后端：
+OpenProse æ”¯æŒå¤šç§çŠ¶æ€åŽç«¯ï¼š
 
-- **filesystem**（默认）：`.prose/runs/...`
-- **in-context**：瞬态，用于小程序
-- **sqlite**（实验性）：需要 `sqlite3` 二进制文件
-- **postgres**（实验性）：需要 `psql` 和连接字符串
+- **filesystem**ï¼ˆé»˜è®¤ï¼‰ï¼š`.prose/runs/...`
+- **in-context**ï¼šçž¬æ€ï¼Œç”¨äºŽå°ç¨‹åº
+- **sqlite**ï¼ˆå®žéªŒæ€§ï¼‰ï¼šéœ€è¦ `sqlite3` äºŒè¿›åˆ¶æ–‡ä»¶
+- **postgres**ï¼ˆå®žéªŒæ€§ï¼‰ï¼šéœ€è¦ `psql` å’Œè¿žæŽ¥å­—ç¬¦ä¸²
 
-说明：
+è¯´æ˜Žï¼š
 
-- sqlite/postgres 是选择加入的，且处于实验阶段。
-- postgres 凭证会流入子智能体日志；请使用专用的、最小权限的数据库。
+- sqlite/postgres æ˜¯é€‰æ‹©åŠ å…¥çš„ï¼Œä¸”å¤„äºŽå®žéªŒé˜¶æ®µã€‚
+- postgres å‡­è¯ä¼šæµå…¥å­æ™ºèƒ½ä½“æ—¥å¿—ï¼›è¯·ä½¿ç”¨ä¸“ç”¨çš„ã€æœ€å°æƒé™çš„æ•°æ®åº“ã€‚
 
-## 远程程序
+## è¿œç¨‹ç¨‹åº
 
-`/prose run <handle/slug>` 解析为 `https://p.prose.md/<handle>/<slug>`。
-直接 URL 按原样获取。这使用 `web_fetch` 工具（或用于 POST 的 `exec`）。
+`/prose run <handle/slug>` è§£æžä¸º `https://p.prose.md/<handle>/<slug>`ã€‚
+ç›´æŽ¥ URL æŒ‰åŽŸæ ·èŽ·å–ã€‚è¿™ä½¿ç”¨ `web_fetch` å·¥å…·ï¼ˆæˆ–ç”¨äºŽ POST çš„ `exec`ï¼‰ã€‚
 
-## OpenClaw 运行时映射
+##  è¿è¡Œæ—¶æ˜ å°„
 
-OpenProse 程序映射到 OpenClaw 原语：
+OpenProse ç¨‹åºæ˜ å°„åˆ°  åŽŸè¯­ï¼š
 
-| OpenProse 概念       | OpenClaw 工具    |
+| OpenProse æ¦‚å¿µ       |  å·¥å…·    |
 | -------------------- | ---------------- |
-| 生成会话 / Task 工具 | `sessions_spawn` |
-| 文件读/写            | `read` / `write` |
-| Web 获取             | `web_fetch`      |
+| ç”Ÿæˆä¼šè¯ / Task å·¥å…· | `sessions_spawn` |
+| æ–‡ä»¶è¯»/å†™            | `read` / `write` |
+| Web èŽ·å–             | `web_fetch`      |
 
-如果你的工具白名单阻止这些工具，OpenProse 程序将失败。参见 [Skills 配置](/tools/skills-config)。
+å¦‚æžœä½ çš„å·¥å…·ç™½åå•é˜»æ­¢è¿™äº›å·¥å…·ï¼ŒOpenProse ç¨‹åºå°†å¤±è´¥ã€‚å‚è§ [Skills é…ç½®](/tools/skills-config)ã€‚
 
-## 安全 + 批准
+## å®‰å…¨ + æ‰¹å‡†
 
-将 `.prose` 文件视为代码。运行前请审查。使用 OpenClaw 工具白名单和批准门控来控制副作用。
+å°† `.prose` æ–‡ä»¶è§†ä¸ºä»£ç ã€‚è¿è¡Œå‰è¯·å®¡æŸ¥ã€‚ä½¿ç”¨  å·¥å…·ç™½åå•å’Œæ‰¹å‡†é—¨æŽ§æ¥æŽ§åˆ¶å‰¯ä½œç”¨ã€‚
 
-对于确定性的、批准门控的工作流，可与 [Lobster](/tools/lobster) 比较。
+å¯¹äºŽç¡®å®šæ€§çš„ã€æ‰¹å‡†é—¨æŽ§çš„å·¥ä½œæµï¼Œå¯ä¸Ž [Lobster](/tools/lobster) æ¯”è¾ƒã€‚
+

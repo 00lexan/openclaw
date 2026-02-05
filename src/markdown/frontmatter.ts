@@ -1,4 +1,4 @@
-import YAML from "yaml";
+﻿import YAML from "yaml";
 
 export type ParsedFrontmatter = Record<string, string>;
 
@@ -155,3 +155,4 @@ export function parseFrontmatterBlock(content: string): ParsedFrontmatter {
   }
   return merged;
 }
+

@@ -1,14 +1,14 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import { withTempHome as withTempHomeBase } from "../../test/helpers/temp-home.js";
 
 async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
-  return withTempHomeBase(fn, { prefix: "openclaw-models-" });
+  return withTempHomeBase(fn, { prefix: "-models-" });
 }
 
-const _MODELS_CONFIG: OpenClawConfig = {
+const _MODELS_CONFIG: Config = {
   models: {
     providers: {
       "custom-proxy": {
@@ -92,9 +92,9 @@ describe("models-config", () => {
           resolveCopilotApiToken,
         }));
 
-        const { ensureOpenClawModelsJson } = await import("./models-config.js");
+        const { ensureModelsJson } = await import("./models-config.js");
 
-        await ensureOpenClawModelsJson({ models: { providers: {} } }, agentDir);
+        await ensureModelsJson({ models: { providers: {} } }, agentDir);
 
         expect(resolveCopilotApiToken).toHaveBeenCalledWith(
           expect.objectContaining({ githubToken: "alpha-token" }),
@@ -136,10 +136,10 @@ describe("models-config", () => {
           }),
         }));
 
-        const { ensureOpenClawModelsJson } = await import("./models-config.js");
-        const { resolveOpenClawAgentDir } = await import("./agent-paths.js");
+        const { ensureModelsJson } = await import("./models-config.js");
+        const { resolveAgentDir } = await import("./agent-paths.js");
 
-        await ensureOpenClawModelsJson({
+        await ensureModelsJson({
           models: {
             providers: {
               "github-copilot": {
@@ -151,7 +151,7 @@ describe("models-config", () => {
           },
         });
 
-        const agentDir = resolveOpenClawAgentDir();
+        const agentDir = resolveAgentDir();
         const raw = await fs.readFile(path.join(agentDir, "models.json"), "utf8");
         const parsed = JSON.parse(raw) as {
           providers: Record<string, { baseUrl?: string }>;
@@ -164,3 +164,4 @@ describe("models-config", () => {
     });
   });
 });
+

@@ -1,17 +1,17 @@
-# @openclaw/feishu
+﻿# @/feishu
 
-Feishu/Lark channel plugin for OpenClaw (WebSocket bot events).
+Feishu/Lark channel plugin for  (WebSocket bot events).
 
 ## Install (local checkout)
 
 ```bash
-openclaw plugins install ./extensions/feishu
+ plugins install ./extensions/feishu
 ```
 
 ## Install (npm)
 
 ```bash
-openclaw plugins install @openclaw/feishu
+ plugins install @/feishu
 ```
 
 Onboarding: select Feishu/Lark and confirm the install prompt to fetch the plugin automatically.
@@ -44,4 +44,5 @@ Restart the gateway after config changes.
 
 ## Docs
 
-https://docs.openclaw.ai/channels/feishu
+https://docs..ai/channels/feishu
+

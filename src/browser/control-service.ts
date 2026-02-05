@@ -1,4 +1,4 @@
-import { loadConfig } from "../config/config.js";
+﻿import { loadConfig } from "../config/config.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import { resolveBrowserConfig, resolveProfile } from "./config.js";
 import { ensureChromeExtensionRelayServer } from "./extension-relay.js";
@@ -73,7 +73,7 @@ export async function stopBrowserControlService(): Promise<void> {
       }
     }
   } catch (err) {
-    logService.warn(`openclaw browser stop failed: ${String(err)}`);
+    logService.warn(` browser stop failed: ${String(err)}`);
   }
 
   state = null;
@@ -86,3 +86,4 @@ export async function stopBrowserControlService(): Promise<void> {
     // ignore
   }
 }
+

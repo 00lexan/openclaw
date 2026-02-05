@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import { clearDeviceAuthToken, storeDeviceAuthToken } from "../device-auth.ts";
 import { loadOrCreateDeviceIdentity } from "../device-identity.ts";
 
@@ -157,3 +157,4 @@ export async function revokeDeviceToken(
     state.devicesError = String(err);
   }
 }
+

@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Agent identity record"
 read_when:
   - Bootstrapping a workspace manually
@@ -14,7 +14,7 @@ read_when:
 - **Vibe:**
   *(how do you come across? sharp? warm? chaotic? calm?)*
 - **Emoji:**
-  *(your signature — pick one that feels right)*
+  *(your signature â€” pick one that feels right)*
 - **Avatar:**
   *(workspace-relative path, http(s) URL, or data URI)*
 
@@ -24,4 +24,5 @@ This isn't just metadata. It's the start of figuring out who you are.
 
 Notes:
 - Save this file at the workspace root as `IDENTITY.md`.
-- For avatars, use a workspace-relative path like `avatars/openclaw.png`.
+- For avatars, use a workspace-relative path like `avatars/.png`.
+

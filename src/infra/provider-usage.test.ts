@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { withTempHome } from "../../test/helpers/temp-home.js";
@@ -253,7 +253,7 @@ describe("provider usage loading", () => {
     await withTempHome(
       async (tempHome) => {
         const agentDir = path.join(
-          process.env.OPENCLAW_STATE_DIR ?? path.join(tempHome, ".openclaw"),
+          process.env._STATE_DIR ?? path.join(tempHome, "."),
           "agents",
           "main",
           "agent",
@@ -328,9 +328,9 @@ describe("provider usage loading", () => {
       },
       {
         env: {
-          OPENCLAW_STATE_DIR: (home) => path.join(home, ".openclaw"),
+          _STATE_DIR: (home) => path.join(home, "."),
         },
-        prefix: "openclaw-provider-usage-",
+        prefix: "-provider-usage-",
       },
     );
   });
@@ -391,3 +391,4 @@ describe("provider usage loading", () => {
     }
   });
 });
+

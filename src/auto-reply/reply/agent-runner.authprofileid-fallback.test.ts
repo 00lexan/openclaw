@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { TemplateContext } from "../templating.js";
 import type { FollowupRun, QueueSettings } from "./queue.js";
 import { createMockTypingController } from "./test-helpers.js";
@@ -62,7 +62,7 @@ function createBaseRun(params: { runOverrides?: Partial<FollowupRun["run"]> }) {
       skillsSnapshot: {},
       provider: "anthropic",
       model: "claude-opus",
-      authProfileId: "anthropic:openclaw",
+      authProfileId: "anthropic:",
       authProfileIdSource: "manual",
       thinkLevel: "low",
       verboseLevel: "off",
@@ -105,7 +105,7 @@ describe("authProfileId fallback scoping", () => {
       runOverrides: {
         provider: "anthropic",
         model: "claude-opus",
-        authProfileId: "anthropic:openclaw",
+        authProfileId: "anthropic:",
         authProfileIdSource: "manual",
       },
     });
@@ -147,3 +147,4 @@ describe("authProfileId fallback scoping", () => {
     expect(call.authProfileIdSource).toBeUndefined();
   });
 });
+

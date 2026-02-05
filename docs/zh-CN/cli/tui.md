@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想要一个连接 Gateway 网关的终端 UI（支持远程）
-  - 你想从脚本传递 url/token/session
-summary: "`openclaw tui` 的 CLI 参考（连接到 Gateway 网关的终端 UI）"
+  - ä½ æƒ³è¦ä¸€ä¸ªè¿žæŽ¥ Gateway ç½‘å…³çš„ç»ˆç«¯ UIï¼ˆæ”¯æŒè¿œç¨‹ï¼‰
+  - ä½ æƒ³ä»Žè„šæœ¬ä¼ é€’ url/token/session
+summary: "` tui` çš„ CLI å‚è€ƒï¼ˆè¿žæŽ¥åˆ° Gateway ç½‘å…³çš„ç»ˆç«¯ UIï¼‰"
 title: tui
 x-i18n:
   generated_at: "2026-02-03T07:45:20Z"
@@ -13,18 +13,19 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw tui`
+# ` tui`
 
-打开连接到 Gateway 网关的终端 UI。
+æ‰“å¼€è¿žæŽ¥åˆ° Gateway ç½‘å…³çš„ç»ˆç«¯ UIã€‚
 
-相关：
+ç›¸å…³ï¼š
 
-- TUI 指南：[TUI](/tui)
+- TUI æŒ‡å—ï¼š[TUI](/tui)
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
-openclaw tui
-openclaw tui --url ws://127.0.0.1:18789 --token <token>
-openclaw tui --session main --deliver
+ tui
+ tui --url ws://127.0.0.1:18789 --token <token>
+ tui --session main --deliver
 ```
+

@@ -1,4 +1,4 @@
-type ParsedVcard = {
+﻿type ParsedVcard = {
   name?: string;
   phones: string[];
 };
@@ -80,3 +80,4 @@ function normalizeVcardPhone(value: string): string {
   }
   return trimmed;
 }
+

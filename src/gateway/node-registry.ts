@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import type { GatewayWsClient } from "./server/ws-types.js";
 
 export type NodeSession = {
@@ -207,3 +207,4 @@ export class NodeRegistry {
     return this.sendEventInternal(node, event, payload);
   }
 }
+

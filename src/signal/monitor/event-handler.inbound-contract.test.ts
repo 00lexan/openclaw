@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { MsgContext } from "../../auto-reply/templating.js";
 import { expectInboundContextContract } from "../../../test/helpers/inbound-contract.js";
 
@@ -77,3 +77,4 @@ describe("signal createSignalEventHandler inbound contract", () => {
     expect(String(capturedCtx?.Body ?? "")).not.toContain("[from:");
   });
 });
+

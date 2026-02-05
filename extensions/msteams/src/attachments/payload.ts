@@ -1,4 +1,4 @@
-export function buildMSTeamsMediaPayload(
+﻿export function buildMSTeamsMediaPayload(
   mediaList: Array<{ path: string; contentType?: string }>,
 ): {
   MediaPath?: string;
@@ -20,3 +20,4 @@ export function buildMSTeamsMediaPayload(
     MediaTypes: mediaPaths.length > 0 ? mediaTypes : undefined,
   };
 }
+

@@ -1,4 +1,4 @@
-import { resolveFetch } from "../infra/fetch.js";
+﻿import { resolveFetch } from "../infra/fetch.js";
 import { normalizeDiscordToken } from "./token.js";
 
 const DISCORD_API_BASE = "https://discord.com/api/v10";
@@ -191,3 +191,4 @@ export async function fetchDiscordApplicationId(
     return undefined;
   }
 }
+

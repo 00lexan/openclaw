@@ -1,12 +1,12 @@
----
+﻿---
 name: openai-whisper
 description: Local speech-to-text with the Whisper CLI (no API key).
 homepage: https://openai.com/research/whisper
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🎙️",
+        "emoji": "ðŸŽ™ï¸",
         "requires": { "bins": ["whisper"] },
         "install":
           [
@@ -36,3 +36,4 @@ Notes
 - Models download to `~/.cache/whisper` on first run.
 - `--model` defaults to `turbo` on this install.
 - Use smaller models for speed, larger for accuracy.
+

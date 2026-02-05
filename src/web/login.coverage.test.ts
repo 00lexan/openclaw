@@ -1,4 +1,4 @@
-import { DisconnectReason } from "@whiskeysockets/baileys";
+﻿import { DisconnectReason } from "@whiskeysockets/baileys";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -92,3 +92,4 @@ describe("loginWeb coverage", () => {
     expect(formatError).toHaveBeenCalled();
   });
 });
+

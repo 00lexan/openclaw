@@ -1,7 +1,7 @@
-{
-  "name": "@openclaw/diagnostics-otel",
+﻿{
+  "name": "@/diagnostics-otel",
   "version": "2026.2.4",
-  "description": "OpenClaw diagnostics OpenTelemetry exporter",
+  "description": " diagnostics OpenTelemetry exporter",
   "type": "module",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
@@ -17,11 +17,12 @@
     "@opentelemetry/semantic-conventions": "^1.39.0"
   },
   "devDependencies": {
-    "openclaw": "workspace:*"
+    "": "workspace:*"
   },
-  "openclaw": {
+  "": {
     "extensions": [
       "./index.ts"
     ]
   }
 }
+

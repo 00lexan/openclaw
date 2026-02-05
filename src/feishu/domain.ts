@@ -1,4 +1,4 @@
-export const FEISHU_DOMAIN = "https://open.feishu.cn";
+﻿export const FEISHU_DOMAIN = "https://open.feishu.cn";
 export const LARK_DOMAIN = "https://open.larksuite.com";
 
 export type FeishuDomainInput = string | null | undefined;
@@ -29,3 +29,4 @@ export function resolveFeishuApiBase(value?: FeishuDomainInput): string {
   const base = resolveFeishuDomain(value);
   return `${base.replace(/\/+$/, "")}/open-apis`;
 }
+

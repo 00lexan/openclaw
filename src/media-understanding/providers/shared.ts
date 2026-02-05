@@ -1,4 +1,4 @@
-import type { GuardedFetchResult } from "../../infra/net/fetch-guard.js";
+﻿import type { GuardedFetchResult } from "../../infra/net/fetch-guard.js";
 import type { LookupFn, SsrFPolicy } from "../../infra/net/ssrf.js";
 import { fetchWithSsrFGuard } from "../../infra/net/fetch-guard.js";
 
@@ -56,8 +56,9 @@ export async function readErrorResponse(res: Response): Promise<string | undefin
     if (collapsed.length <= MAX_ERROR_CHARS) {
       return collapsed;
     }
-    return `${collapsed.slice(0, MAX_ERROR_CHARS)}…`;
+    return `${collapsed.slice(0, MAX_ERROR_CHARS)}â€¦`;
   } catch {
     return undefined;
   }
 }
+

@@ -1,4 +1,4 @@
-import type { Api, Model } from "@mariozechner/pi-ai";
+﻿import type { Api, Model } from "@mariozechner/pi-ai";
 import type { RuntimeEnv } from "../../runtime.js";
 import type { ModelRow } from "./list.types.js";
 import { ensureAuthProfileStore } from "../../agents/auth-profiles.js";
@@ -127,3 +127,4 @@ export async function modelsListCommand(
 
   printModelTable(rows, runtime, opts);
 }
+

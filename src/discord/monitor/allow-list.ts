@@ -1,4 +1,4 @@
-import type { Guild, User } from "@buape/carbon";
+﻿import type { Guild, User } from "@buape/carbon";
 import type { AllowlistMatch } from "../../channels/allowlist-match.js";
 import {
   buildChannelKeyCandidates,
@@ -451,3 +451,4 @@ export function shouldEmitDiscordReactionNotification(params: {
   }
   return false;
 }
+

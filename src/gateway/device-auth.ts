@@ -1,4 +1,4 @@
-export type DeviceAuthPayloadParams = {
+﻿export type DeviceAuthPayloadParams = {
   deviceId: string;
   clientId: string;
   clientMode: string;
@@ -29,3 +29,4 @@ export function buildDeviceAuthPayload(params: DeviceAuthPayloadParams): string 
   }
   return base.join("|");
 }
+

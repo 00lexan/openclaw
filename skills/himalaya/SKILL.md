@@ -1,12 +1,12 @@
----
+﻿---
 name: himalaya
 description: "CLI to manage emails via IMAP/SMTP. Use `himalaya` to list, read, write, reply, forward, search, and organize emails from the terminal. Supports multiple accounts and message composition with MML (MIME Meta Language)."
 homepage: https://github.com/pimalaya/himalaya
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "📧",
+        "emoji": "ðŸ“§",
         "requires": { "bins": ["himalaya"] },
         "install":
           [
@@ -255,3 +255,4 @@ RUST_LOG=trace RUST_BACKTRACE=1 himalaya envelope list
 - Message IDs are relative to the current folder; re-list after folder changes.
 - For composing rich emails with attachments, use MML syntax (see `references/message-composition.md`).
 - Store passwords securely using `pass`, system keyring, or a command that outputs the password.
+

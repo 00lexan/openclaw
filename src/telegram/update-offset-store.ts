@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -80,3 +80,4 @@ export async function writeTelegramUpdateOffset(params: {
   await fs.chmod(tmp, 0o600);
   await fs.rename(tmp, filePath);
 }
+

@@ -1,4 +1,4 @@
-import type { SandboxDockerConfig } from "./types.docker.js";
+﻿import type { SandboxDockerConfig } from "./types.docker.js";
 
 export type { SandboxDockerConfig } from "./types.docker.js";
 
@@ -11,7 +11,7 @@ export type SandboxToolPolicySource = {
   source: "agent" | "global" | "default";
   /**
    * Config key path hint for humans.
-   * (Arrays use `agents.list[].…` form.)
+   * (Arrays use `agents.list[].â€¦` form.)
    */
   key: string;
 };
@@ -83,3 +83,4 @@ export type SandboxWorkspaceInfo = {
   workspaceDir: string;
   containerWorkdir: string;
 };
+

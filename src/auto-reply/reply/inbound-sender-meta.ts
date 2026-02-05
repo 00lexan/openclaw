@@ -1,4 +1,4 @@
-import type { MsgContext } from "../templating.js";
+﻿import type { MsgContext } from "../templating.js";
 import { normalizeChatType } from "../../channels/chat-type.js";
 import { listSenderLabelCandidates, resolveSenderLabel } from "../../channels/sender-label.js";
 
@@ -55,3 +55,4 @@ function hasSenderMetaLine(body: string, ctx: MsgContext): boolean {
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+

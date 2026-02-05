@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test, vi } from "vitest";
+﻿import { afterAll, beforeAll, describe, expect, test, vi } from "vitest";
 import type { ChannelPlugin } from "../channels/plugins/types.js";
 import type { PluginRegistry } from "../plugins/registry.js";
 import { setActivePluginRegistry } from "../plugins/runtime.js";
@@ -222,3 +222,4 @@ describe("gateway server channels", () => {
     expect(snap.config?.channels?.telegram?.groups?.["*"]?.requireMention).toBe(false);
   });
 });
+

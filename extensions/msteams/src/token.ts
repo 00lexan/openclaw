@@ -1,4 +1,4 @@
-import type { MSTeamsConfig } from "openclaw/plugin-sdk";
+﻿import type { MSTeamsConfig } from "/plugin-sdk";
 
 export type MSTeamsCredentials = {
   appId: string;
@@ -17,3 +17,4 @@ export function resolveMSTeamsCredentials(cfg?: MSTeamsConfig): MSTeamsCredentia
 
   return { appId, appPassword, tenantId };
 }
+

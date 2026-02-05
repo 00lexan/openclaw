@@ -1,4 +1,4 @@
-import type { LogLevel } from "../../logging/levels.js";
+﻿import type { LogLevel } from "../../logging/levels.js";
 
 type ShouldLogVerbose = typeof import("../../globals.js").shouldLogVerbose;
 type DispatchReplyWithBufferedBlockDispatcher =
@@ -359,3 +359,4 @@ export type PluginRuntime = {
     resolveStateDir: ResolveStateDir;
   };
 };
+

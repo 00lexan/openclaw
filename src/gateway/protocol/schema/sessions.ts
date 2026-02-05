@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString, SessionLabelString } from "./primitives.js";
 
 export const SessionsListParamsSchema = Type.Object(
@@ -101,3 +101,4 @@ export const SessionsCompactParamsSchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

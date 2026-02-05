@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { validateConfigObject } from "./validation.js";
 
 // NOTE: These tests ensure allow + alsoAllow cannot be set in the same scope.
@@ -50,3 +50,4 @@ describe("config: tools.alsoAllow", () => {
     expect(res.ok).toBe(true);
   });
 });
+

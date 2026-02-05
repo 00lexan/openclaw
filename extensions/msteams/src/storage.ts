@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import { getMSTeamsRuntime } from "./runtime.js";
 
 export type MSTeamsStorePathOptions = {
@@ -23,3 +23,4 @@ export function resolveMSTeamsStorePath(params: MSTeamsStorePathOptions): string
     : getMSTeamsRuntime().state.resolveStateDir(env);
   return path.join(stateDir, params.filename);
 }
+

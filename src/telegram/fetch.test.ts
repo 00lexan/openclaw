@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 
 describe("resolveTelegramFetch", () => {
   const originalFetch = globalThis.fetch;
@@ -39,7 +39,7 @@ describe("resolveTelegramFetch", () => {
   });
 
   it("honors env enable override", async () => {
-    vi.stubEnv("OPENCLAW_TELEGRAM_ENABLE_AUTO_SELECT_FAMILY", "1");
+    vi.stubEnv("_TELEGRAM_ENABLE_AUTO_SELECT_FAMILY", "1");
     globalThis.fetch = vi.fn(async () => ({})) as unknown as typeof fetch;
     const { resolveTelegramFetch, setDefaultAutoSelectFamily } = await loadModule();
     resolveTelegramFetch();
@@ -54,10 +54,11 @@ describe("resolveTelegramFetch", () => {
   });
 
   it("env disable override wins over config", async () => {
-    vi.stubEnv("OPENCLAW_TELEGRAM_DISABLE_AUTO_SELECT_FAMILY", "1");
+    vi.stubEnv("_TELEGRAM_DISABLE_AUTO_SELECT_FAMILY", "1");
     globalThis.fetch = vi.fn(async () => ({})) as unknown as typeof fetch;
     const { resolveTelegramFetch, setDefaultAutoSelectFamily } = await loadModule();
     resolveTelegramFetch(undefined, { network: { autoSelectFamily: true } });
     expect(setDefaultAutoSelectFamily).toHaveBeenCalledWith(false);
   });
 });
+

@@ -1,4 +1,4 @@
-import type { ReplyToMode } from "../../config/types.js";
+﻿import type { ReplyToMode } from "../../config/types.js";
 import type { OriginatingChannelType } from "../templating.js";
 import type { ReplyPayload } from "../types.js";
 import { logVerbose } from "../../globals.js";
@@ -119,3 +119,4 @@ export function buildReplyPayloads(params: {
     didLogHeartbeatStrip,
   };
 }
+

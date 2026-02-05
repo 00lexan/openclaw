@@ -1,19 +1,19 @@
----
+﻿---
 name: local-places
 description: Search for places (restaurants, cafes, etc.) via Google Places API proxy on localhost.
 homepage: https://github.com/Hyaxia/local_places
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "📍",
+        "emoji": "ðŸ“",
         "requires": { "bins": ["uv"], "env": ["GOOGLE_PLACES_API_KEY"] },
         "primaryEnv": "GOOGLE_PLACES_API_KEY",
       },
   }
 ---
 
-# 📍 Local Places
+# ðŸ“ Local Places
 
 _Find places, Go fast_
 
@@ -63,8 +63,8 @@ curl http://127.0.0.1:8000/places/{place_id}
 
 ## Conversation Flow
 
-1. If user says "near me" or gives vague location → resolve it first
-2. If multiple results → show numbered list, ask user to pick
+1. If user says "near me" or gives vague location â†’ resolve it first
+2. If multiple results â†’ show numbered list, ask user to pick
 3. Ask for preferences: type, open now, rating, price level
 4. Search with `location_bias` from chosen location
 5. Present results with name, rating, address, open status
@@ -100,3 +100,4 @@ curl http://127.0.0.1:8000/places/{place_id}
 ```
 
 Use `next_page_token` as `page_token` in next request for more results.
+

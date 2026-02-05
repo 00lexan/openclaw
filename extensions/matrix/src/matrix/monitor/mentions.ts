@@ -1,4 +1,4 @@
-import { getMatrixRuntime } from "../../runtime.js";
+﻿import { getMatrixRuntime } from "../../runtime.js";
 
 // Type for room message content with mentions
 type MessageContentWithMentions = {
@@ -29,3 +29,4 @@ export function resolveMentions(params: {
     );
   return { wasMentioned, hasExplicitMention: Boolean(mentions) };
 }
+

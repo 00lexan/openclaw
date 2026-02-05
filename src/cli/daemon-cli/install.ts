@@ -1,4 +1,4 @@
-import type { DaemonInstallOptions } from "./types.js";
+﻿import type { DaemonInstallOptions } from "./types.js";
 import { buildGatewayInstallPlan } from "../../commands/daemon-install-helpers.js";
 import {
   DEFAULT_GATEWAY_DAEMON_RUNTIME,
@@ -86,7 +86,7 @@ export async function runDaemonInstall(opts: DaemonInstallOptions) {
       if (!json) {
         defaultRuntime.log(`Gateway service already ${service.loadedText}.`);
         defaultRuntime.log(
-          `Reinstall with: ${formatCliCommand("openclaw gateway install --force")}`,
+          `Reinstall with: ${formatCliCommand(" gateway install --force")}`,
         );
       }
       return;
@@ -96,7 +96,7 @@ export async function runDaemonInstall(opts: DaemonInstallOptions) {
   const { programArguments, workingDirectory, environment } = await buildGatewayInstallPlan({
     env: process.env,
     port,
-    token: opts.token || cfg.gateway?.auth?.token || process.env.OPENCLAW_GATEWAY_TOKEN,
+    token: opts.token || cfg.gateway?.auth?.token || process.env._GATEWAY_TOKEN,
     runtime: runtimeRaw,
     warn: (message) => {
       if (json) {
@@ -134,3 +134,4 @@ export async function runDaemonInstall(opts: DaemonInstallOptions) {
     warnings: warnings.length ? warnings : undefined,
   });
 }
+

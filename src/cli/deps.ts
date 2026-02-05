@@ -1,4 +1,4 @@
-import type { OutboundSendDeps } from "../infra/outbound/deliver.js";
+﻿import type { OutboundSendDeps } from "../infra/outbound/deliver.js";
 import { logWebSelfId, sendMessageWhatsApp } from "../channels/web/index.js";
 import { sendMessageDiscord } from "../discord/send.js";
 import { sendMessageIMessage } from "../imessage/send.js";
@@ -39,3 +39,4 @@ export function createOutboundSendDeps(deps: CliDeps): OutboundSendDeps {
 }
 
 export { logWebSelfId };
+

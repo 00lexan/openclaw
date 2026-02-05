@@ -1,4 +1,4 @@
-import type { SessionStatus } from "./status.types.js";
+﻿import type { SessionStatus } from "./status.types.js";
 
 export const formatKTokens = (value: number) =>
   `${(value / 1000).toFixed(value >= 10_000 ? 0 : 1)}k`;
@@ -37,7 +37,7 @@ export const shortenText = (value: string, maxLen: number) => {
   if (chars.length <= maxLen) {
     return value;
   }
-  return `${chars.slice(0, Math.max(0, maxLen - 1)).join("")}…`;
+  return `${chars.slice(0, Math.max(0, maxLen - 1)).join("")}â€¦`;
 };
 
 export const formatTokensCompact = (
@@ -78,3 +78,4 @@ export const formatDaemonRuntimeShort = (runtime?: {
   }
   return details.length > 0 ? `${status} (${details.join(", ")})` : status;
 };
+

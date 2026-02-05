@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resolveNpmChannelTag } from "./update-check.js";
 
 describe("resolveNpmChannelTag", () => {
@@ -44,3 +44,4 @@ describe("resolveNpmChannelTag", () => {
     expect(resolved).toEqual({ tag: "beta", version: "1.0.2-beta.1" });
   });
 });
+

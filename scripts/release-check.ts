@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --import tsx
+﻿#!/usr/bin/env -S node --import tsx
 
 import { execSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
@@ -14,7 +14,7 @@ const requiredPaths = [
   "dist/plugin-sdk/index.d.ts",
   "dist/build-info.json",
 ];
-const forbiddenPrefixes = ["dist/OpenClaw.app/"];
+const forbiddenPrefixes = ["dist/.app/"];
 
 type PackageJson = {
   name?: string;
@@ -107,3 +107,4 @@ function main() {
 }
 
 main();
+

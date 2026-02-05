@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 import { collectOption } from "../helpers.js";
 
@@ -55,3 +55,4 @@ export function registerMessageStickerCommands(message: Command, helpers: Messag
       await helpers.runMessageAction("sticker-upload", opts);
     });
 }
+

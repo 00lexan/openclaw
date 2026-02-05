@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../runtime.js";
+﻿import type { RuntimeEnv } from "../runtime.js";
 import { withProgress } from "../cli/progress.js";
 import { loadConfig, resolveGatewayPort } from "../config/config.js";
 import { probeGateway } from "../gateway/probe.js";
@@ -75,7 +75,7 @@ export async function gatewayStatusCommand(
 
   const { discovery, probed } = await withProgress(
     {
-      label: "Inspecting gateways…",
+      label: "Inspecting gatewaysâ€¦",
       indeterminate: true,
       enabled: opts.json !== true,
     },
@@ -303,7 +303,7 @@ export async function gatewayStatusCommand(
       colorize(
         rich,
         theme.muted,
-        "Tip: if the gateway is remote, mDNS won’t cross networks; use Wide-Area Bonjour (split DNS) or SSH tunnels.",
+        "Tip: if the gateway is remote, mDNS wonâ€™t cross networks; use Wide-Area Bonjour (split DNS) or SSH tunnels.",
       ),
     );
   }
@@ -321,8 +321,8 @@ export async function gatewayStatusCommand(
     if (p.probe.ok && p.self) {
       const host = p.self.host ?? "unknown";
       const ip = p.self.ip ? ` (${p.self.ip})` : "";
-      const platform = p.self.platform ? ` · ${p.self.platform}` : "";
-      const version = p.self.version ? ` · app ${p.self.version}` : "";
+      const platform = p.self.platform ? ` Â· ${p.self.platform}` : "";
+      const version = p.self.version ? ` Â· app ${p.self.version}` : "";
       runtime.log(`  ${colorize(rich, theme.info, "Gateway")}: ${host}${ip}${platform}${version}`);
     }
     if (p.configSummary) {
@@ -406,3 +406,4 @@ async function resolveSshTarget(
     identity ?? config.identityFiles.find((entry) => entry.trim().length > 0)?.trim() ?? undefined;
   return { target, identity: identityFile };
 }
+

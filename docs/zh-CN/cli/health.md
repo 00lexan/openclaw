@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你想快速检查运行中的 Gateway 网关健康状态
-summary: "`openclaw health` 的 CLI 参考（通过 RPC 获取 Gateway 网关健康端点）"
+  - ä½ æƒ³å¿«é€Ÿæ£€æŸ¥è¿è¡Œä¸­çš„ Gateway ç½‘å…³å¥åº·çŠ¶æ€
+summary: "` health` çš„ CLI å‚è€ƒï¼ˆé€šè¿‡ RPC èŽ·å– Gateway ç½‘å…³å¥åº·ç«¯ç‚¹ï¼‰"
 title: health
 x-i18n:
   generated_at: "2026-02-03T07:44:55Z"
@@ -12,17 +12,18 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw health`
+# ` health`
 
-从运行中的 Gateway 网关获取健康状态。
+ä»Žè¿è¡Œä¸­çš„ Gateway ç½‘å…³èŽ·å–å¥åº·çŠ¶æ€ã€‚
 
 ```bash
-openclaw health
-openclaw health --json
-openclaw health --verbose
+ health
+ health --json
+ health --verbose
 ```
 
-注意：
+æ³¨æ„ï¼š
 
-- `--verbose` 运行实时探测，并在配置了多个账户时打印每个账户的耗时。
-- 当配置了多个智能体时，输出包括每个智能体的会话存储。
+- `--verbose` è¿è¡Œå®žæ—¶æŽ¢æµ‹ï¼Œå¹¶åœ¨é…ç½®äº†å¤šä¸ªè´¦æˆ·æ—¶æ‰“å°æ¯ä¸ªè´¦æˆ·çš„è€—æ—¶ã€‚
+- å½“é…ç½®äº†å¤šä¸ªæ™ºèƒ½ä½“æ—¶ï¼Œè¾“å‡ºåŒ…æ‹¬æ¯ä¸ªæ™ºèƒ½ä½“çš„ä¼šè¯å­˜å‚¨ã€‚
+

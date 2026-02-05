@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Native Teams file card attachments for Bot Framework.
  *
  * The Bot Framework SDK supports `application/vnd.microsoft.teams.card.file.info`
@@ -51,3 +51,4 @@ export function buildTeamsFileInfoCard(file: DriveItemProperties): {
     },
   };
 }
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 
 export type ManagerLookupResult<T> = {
   manager: T | null;
@@ -63,3 +63,4 @@ export function resolveOptionFromCommand<T>(
   }
   return undefined;
 }
+

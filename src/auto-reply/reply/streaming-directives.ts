@@ -1,4 +1,4 @@
-import type { ReplyDirectiveParseResult } from "./reply-directives.js";
+﻿import type { ReplyDirectiveParseResult } from "./reply-directives.js";
 import { splitMediaFromOutput } from "../../media/parse.js";
 import { parseInlineDirectives } from "../../utils/directive-tags.js";
 import { isSilentReplyText, SILENT_REPLY_TOKEN } from "../tokens.js";
@@ -126,3 +126,4 @@ export function createStreamingDirectiveAccumulator() {
     reset,
   };
 }
+

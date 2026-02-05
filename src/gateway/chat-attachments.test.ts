@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   buildMessageWithAttachments,
   type ChatAttachment,
@@ -211,3 +211,4 @@ describe("parseMessageWithAttachments", () => {
     expect(logs.some((l) => /non-image/i.test(l))).toBe(true);
   });
 });
+

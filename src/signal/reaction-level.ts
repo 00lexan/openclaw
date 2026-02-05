@@ -1,11 +1,11 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import { resolveSignalAccount } from "./accounts.js";
 
 export type SignalReactionLevel = "off" | "ack" | "minimal" | "extensive";
 
 export type ResolvedSignalReactionLevel = {
   level: SignalReactionLevel;
-  /** Whether ACK reactions (e.g., 👀 when processing) are enabled. */
+  /** Whether ACK reactions (e.g., ðŸ‘€ when processing) are enabled. */
   ackEnabled: boolean;
   /** Whether agent-controlled reactions are enabled. */
   agentReactionsEnabled: boolean;
@@ -18,12 +18,12 @@ export type ResolvedSignalReactionLevel = {
  *
  * Levels:
  * - "off": No reactions at all
- * - "ack": Only automatic ack reactions (👀 when processing), no agent reactions
+ * - "ack": Only automatic ack reactions (ðŸ‘€ when processing), no agent reactions
  * - "minimal": Agent can react, but sparingly (default)
  * - "extensive": Agent can react liberally
  */
 export function resolveSignalReactionLevel(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   accountId?: string;
 }): ResolvedSignalReactionLevel {
   const account = resolveSignalAccount({
@@ -69,3 +69,4 @@ export function resolveSignalReactionLevel(params: {
       };
   }
 }
+

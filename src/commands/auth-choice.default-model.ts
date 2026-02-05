@@ -1,16 +1,16 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import type { WizardPrompter } from "../wizard/prompts.js";
 
 export async function applyDefaultModelChoice(params: {
-  config: OpenClawConfig;
+  config: Config;
   setDefaultModel: boolean;
   defaultModel: string;
-  applyDefaultConfig: (config: OpenClawConfig) => OpenClawConfig;
-  applyProviderConfig: (config: OpenClawConfig) => OpenClawConfig;
+  applyDefaultConfig: (config: Config) => Config;
+  applyProviderConfig: (config: Config) => Config;
   noteDefault?: string;
   noteAgentModel: (model: string) => Promise<void>;
   prompter: WizardPrompter;
-}): Promise<{ config: OpenClawConfig; agentModelOverride?: string }> {
+}): Promise<{ config: Config; agentModelOverride?: string }> {
   if (params.setDefaultModel) {
     const next = params.applyDefaultConfig(params.config);
     if (params.noteDefault) {
@@ -23,3 +23,4 @@ export async function applyDefaultModelChoice(params: {
   await params.noteAgentModel(params.defaultModel);
   return { config: next, agentModelOverride: params.defaultModel };
 }
+

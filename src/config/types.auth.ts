@@ -1,4 +1,4 @@
-export type AuthProfileConfig = {
+﻿export type AuthProfileConfig = {
   provider: string;
   /**
    * Credential type expected in auth-profiles.json for this profile id.
@@ -27,3 +27,4 @@ export type AuthConfig = {
     failureWindowHours?: number;
   };
 };
+

@@ -1,10 +1,10 @@
----
+﻿---
 read_when:
-  - 你已安装 OpenClaw 但 `openclaw` 提示"command not found"
-  - 你正在新机器上配置 Node.js/npm
-  - npm install -g ... 因权限或 PATH 问题失败
-summary: Node.js + npm 安装完整性检查：版本、PATH 及全局安装
-title: Node.js + npm（PATH 安装完整性检查）
+  - ä½ å·²å®‰è£…  ä½† `` æç¤º"command not found"
+  - ä½ æ­£åœ¨æ–°æœºå™¨ä¸Šé…ç½® Node.js/npm
+  - npm install -g ... å› æƒé™æˆ– PATH é—®é¢˜å¤±è´¥
+summary: Node.js + npm å®‰è£…å®Œæ•´æ€§æ£€æŸ¥ï¼šç‰ˆæœ¬ã€PATH åŠå…¨å±€å®‰è£…
+title: Node.js + npmï¼ˆPATH å®‰è£…å®Œæ•´æ€§æ£€æŸ¥ï¼‰
 x-i18n:
   generated_at: "2026-02-01T21:16:20Z"
   model: claude-opus-4-5
@@ -14,15 +14,15 @@ x-i18n:
   workflow: 15
 ---
 
-# Node.js + npm（PATH 安装完整性检查）
+# Node.js + npmï¼ˆPATH å®‰è£…å®Œæ•´æ€§æ£€æŸ¥ï¼‰
 
-OpenClaw 的运行时基线要求为 **Node 22+**。
+ çš„è¿è¡Œæ—¶åŸºçº¿è¦æ±‚ä¸º **Node 22+**ã€‚
 
-如果你能运行 `npm install -g openclaw@latest`，但之后看到 `openclaw: command not found`，这几乎总是 **PATH** 问题：npm 存放全局二进制文件的目录不在你 shell 的 PATH 中。
+å¦‚æžœä½ èƒ½è¿è¡Œ `npm install -g @latest`ï¼Œä½†ä¹‹åŽçœ‹åˆ° `: command not found`ï¼Œè¿™å‡ ä¹Žæ€»æ˜¯ **PATH** é—®é¢˜ï¼šnpm å­˜æ”¾å…¨å±€äºŒè¿›åˆ¶æ–‡ä»¶çš„ç›®å½•ä¸åœ¨ä½  shell çš„ PATH ä¸­ã€‚
 
-## 快速诊断
+## å¿«é€Ÿè¯Šæ–­
 
-运行：
+è¿è¡Œï¼š
 
 ```bash
 node -v
@@ -31,35 +31,35 @@ npm prefix -g
 echo "$PATH"
 ```
 
-如果 `$(npm prefix -g)/bin`（macOS/Linux）或 `$(npm prefix -g)`（Windows）**未出现**在 `echo "$PATH"` 的输出中，你的 shell 就无法找到全局 npm 二进制文件（包括 `openclaw`）。
+å¦‚æžœ `$(npm prefix -g)/bin`ï¼ˆmacOS/Linuxï¼‰æˆ– `$(npm prefix -g)`ï¼ˆWindowsï¼‰**æœªå‡ºçŽ°**åœ¨ `echo "$PATH"` çš„è¾“å‡ºä¸­ï¼Œä½ çš„ shell å°±æ— æ³•æ‰¾åˆ°å…¨å±€ npm äºŒè¿›åˆ¶æ–‡ä»¶ï¼ˆåŒ…æ‹¬ ``ï¼‰ã€‚
 
-## 修复：将 npm 的全局 bin 目录添加到 PATH
+## ä¿®å¤ï¼šå°† npm çš„å…¨å±€ bin ç›®å½•æ·»åŠ åˆ° PATH
 
-1. 查找你的全局 npm 前缀：
+1. æŸ¥æ‰¾ä½ çš„å…¨å±€ npm å‰ç¼€ï¼š
 
 ```bash
 npm prefix -g
 ```
 
-2. 将全局 npm bin 目录添加到你的 shell 启动文件中：
+2. å°†å…¨å±€ npm bin ç›®å½•æ·»åŠ åˆ°ä½ çš„ shell å¯åŠ¨æ–‡ä»¶ä¸­ï¼š
 
-- zsh：`~/.zshrc`
-- bash：`~/.bashrc`
+- zshï¼š`~/.zshrc`
+- bashï¼š`~/.bashrc`
 
-示例（将路径替换为你的 `npm prefix -g` 输出）：
+ç¤ºä¾‹ï¼ˆå°†è·¯å¾„æ›¿æ¢ä¸ºä½ çš„ `npm prefix -g` è¾“å‡ºï¼‰ï¼š
 
 ```bash
 # macOS / Linux
 export PATH="/path/from/npm/prefix/bin:$PATH"
 ```
 
-然后打开一个**新终端**（或在 zsh 中运行 `rehash` / 在 bash 中运行 `hash -r`）。
+ç„¶åŽæ‰“å¼€ä¸€ä¸ª**æ–°ç»ˆç«¯**ï¼ˆæˆ–åœ¨ zsh ä¸­è¿è¡Œ `rehash` / åœ¨ bash ä¸­è¿è¡Œ `hash -r`ï¼‰ã€‚
 
-在 Windows 上，将 `npm prefix -g` 的输出添加到你的 PATH 中。
+åœ¨ Windows ä¸Šï¼Œå°† `npm prefix -g` çš„è¾“å‡ºæ·»åŠ åˆ°ä½ çš„ PATH ä¸­ã€‚
 
-## 修复：避免 `sudo npm install -g` / 权限错误（Linux）
+## ä¿®å¤ï¼šé¿å… `sudo npm install -g` / æƒé™é”™è¯¯ï¼ˆLinuxï¼‰
 
-如果 `npm install -g ...` 因 `EACCES` 失败，请将 npm 的全局前缀切换到用户可写的目录：
+å¦‚æžœ `npm install -g ...` å›  `EACCES` å¤±è´¥ï¼Œè¯·å°† npm çš„å…¨å±€å‰ç¼€åˆ‡æ¢åˆ°ç”¨æˆ·å¯å†™çš„ç›®å½•ï¼š
 
 ```bash
 mkdir -p "$HOME/.npm-global"
@@ -67,19 +67,20 @@ npm config set prefix "$HOME/.npm-global"
 export PATH="$HOME/.npm-global/bin:$PATH"
 ```
 
-将 `export PATH=...` 这一行持久化到你的 shell 启动文件中。
+å°† `export PATH=...` è¿™ä¸€è¡ŒæŒä¹…åŒ–åˆ°ä½ çš„ shell å¯åŠ¨æ–‡ä»¶ä¸­ã€‚
 
-## 推荐的 Node 安装方式
+## æŽ¨èçš„ Node å®‰è£…æ–¹å¼
 
-如果 Node/npm 的安装方式满足以下条件，你将遇到最少的问题：
+å¦‚æžœ Node/npm çš„å®‰è£…æ–¹å¼æ»¡è¶³ä»¥ä¸‹æ¡ä»¶ï¼Œä½ å°†é‡åˆ°æœ€å°‘çš„é—®é¢˜ï¼š
 
-- 保持 Node 更新（22+）
-- 使全局 npm bin 目录稳定且在新 shell 中位于 PATH 中
+- ä¿æŒ Node æ›´æ–°ï¼ˆ22+ï¼‰
+- ä½¿å…¨å±€ npm bin ç›®å½•ç¨³å®šä¸”åœ¨æ–° shell ä¸­ä½äºŽ PATH ä¸­
 
-常见选择：
+å¸¸è§é€‰æ‹©ï¼š
 
-- macOS：Homebrew（`brew install node`）或版本管理器
-- Linux：你偏好的版本管理器，或提供 Node 22+ 的发行版支持的安装方式
-- Windows：官方 Node 安装程序、`winget` 或 Windows Node 版本管理器
+- macOSï¼šHomebrewï¼ˆ`brew install node`ï¼‰æˆ–ç‰ˆæœ¬ç®¡ç†å™¨
+- Linuxï¼šä½ åå¥½çš„ç‰ˆæœ¬ç®¡ç†å™¨ï¼Œæˆ–æä¾› Node 22+ çš„å‘è¡Œç‰ˆæ”¯æŒçš„å®‰è£…æ–¹å¼
+- Windowsï¼šå®˜æ–¹ Node å®‰è£…ç¨‹åºã€`winget` æˆ– Windows Node ç‰ˆæœ¬ç®¡ç†å™¨
 
-如果你使用版本管理器（nvm/fnm/asdf 等），请确保它在你日常使用的 shell（zsh 或 bash）中已初始化，这样它设置的 PATH 在你运行安装程序时才会生效。
+å¦‚æžœä½ ä½¿ç”¨ç‰ˆæœ¬ç®¡ç†å™¨ï¼ˆnvm/fnm/asdf ç­‰ï¼‰ï¼Œè¯·ç¡®ä¿å®ƒåœ¨ä½ æ—¥å¸¸ä½¿ç”¨çš„ shellï¼ˆzsh æˆ– bashï¼‰ä¸­å·²åˆå§‹åŒ–ï¼Œè¿™æ ·å®ƒè®¾ç½®çš„ PATH åœ¨ä½ è¿è¡Œå®‰è£…ç¨‹åºæ—¶æ‰ä¼šç”Ÿæ•ˆã€‚
+

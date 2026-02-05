@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Talk mode: continuous speech conversations with ElevenLabs TTS"
 read_when:
   - Implementing Talk mode on macOS/iOS/Android
@@ -18,7 +18,7 @@ Talk mode is a continuous voice conversation loop:
 ## Behavior (macOS)
 
 - **Always-on overlay** while Talk mode is enabled.
-- **Listening → Thinking → Speaking** phase transitions.
+- **Listening â†’ Thinking â†’ Speaking** phase transitions.
 - On a **short pause** (silence window), the current transcript is sent.
 - Replies are **written to WebChat** (same as typing).
 - **Interrupt on speech** (default on): if the user starts talking while the assistant is speaking, we stop playback and note the interruption timestamp for the next prompt.
@@ -47,7 +47,7 @@ Supported keys:
 - `seed`, `normalize`, `lang`, `output_format`, `latency_tier`
 - `once`
 
-## Config (`~/.openclaw/openclaw.json`)
+## Config (`~/./.json`)
 
 ```json5
 {
@@ -88,3 +88,4 @@ Defaults:
 - `stability` for `eleven_v3` is validated to `0.0`, `0.5`, or `1.0`; other models accept `0..1`.
 - `latency_tier` is validated to `0..4` when set.
 - Android supports `pcm_16000`, `pcm_22050`, `pcm_24000`, and `pcm_44100` output formats for low-latency AudioTrack streaming.
+

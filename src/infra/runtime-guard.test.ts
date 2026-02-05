@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import {
   assertSupportedRuntime,
   detectRuntime,
@@ -80,3 +80,4 @@ describe("runtime-guard", () => {
     expect(runtime.exit).not.toHaveBeenCalled();
   });
 });
+

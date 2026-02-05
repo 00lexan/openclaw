@@ -1,4 +1,4 @@
-import type { ChannelAccountSnapshot, ChannelStatusIssue } from "../types.js";
+﻿import type { ChannelAccountSnapshot, ChannelStatusIssue } from "../types.js";
 import { asString, isRecord } from "./shared.js";
 
 type BlueBubblesAccountStatus = {
@@ -72,7 +72,7 @@ export function collectBlueBubblesStatusIssues(
         accountId,
         kind: "config",
         message: "Not configured (missing serverUrl or password).",
-        fix: "Run: openclaw channels add bluebubbles --http-url <server-url> --password <password>",
+        fix: "Run:  channels add bluebubbles --http-url <server-url> --password <password>",
       });
       continue;
     }
@@ -106,3 +106,4 @@ export function collectBlueBubblesStatusIssues(
   }
   return issues;
 }
+

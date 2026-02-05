@@ -1,17 +1,17 @@
-# @openclaw/zalo
+﻿# @/zalo
 
-Zalo channel plugin for OpenClaw (Bot API).
+Zalo channel plugin for  (Bot API).
 
 ## Install (local checkout)
 
 ```bash
-openclaw plugins install ./extensions/zalo
+ plugins install ./extensions/zalo
 ```
 
 ## Install (npm)
 
 ```bash
-openclaw plugins install @openclaw/zalo
+ plugins install @/zalo
 ```
 
 Onboarding: select Zalo and confirm the install prompt to fetch the plugin automatically.
@@ -48,3 +48,4 @@ Onboarding: select Zalo and confirm the install prompt to fetch the plugin autom
 If `webhookPath` is omitted, the plugin uses the webhook URL path.
 
 Restart the gateway after config changes.
+

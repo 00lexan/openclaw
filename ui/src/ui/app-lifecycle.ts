@@ -1,4 +1,4 @@
-import type { Tab } from "./navigation.ts";
+﻿import type { Tab } from "./navigation.ts";
 import { connectGateway } from "./app-gateway.ts";
 import {
   startLogsPolling,
@@ -93,3 +93,4 @@ export function handleUpdated(host: LifecycleHost, changed: Map<PropertyKey, unk
     }
   }
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * OpenAI Realtime STT Provider
  *
  * Uses the OpenAI Realtime API for streaming transcription with:
@@ -309,3 +309,4 @@ class OpenAIRealtimeSTTSession implements RealtimeSTTSession {
     return this.connected;
   }
 }
+

@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "node:fs/promises";
+﻿import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -123,3 +123,4 @@ syncMoonshotDocs().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
+

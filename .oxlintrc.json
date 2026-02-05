@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["unicorn", "typescript", "oxc"],
   "categories": {
@@ -33,3 +33,4 @@
     "vendor/"
   ]
 }
+

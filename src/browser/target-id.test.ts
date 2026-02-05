@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveTargetIdFromTabs } from "./target-id.js";
 
 describe("browser target id resolution", () => {
@@ -34,3 +34,4 @@ describe("browser target id resolution", () => {
     expect(res).toEqual({ ok: false, reason: "not_found" });
   });
 });
+

@@ -1,4 +1,4 @@
-import type { AgentCommandOpts } from "./agent/types.js";
+﻿import type { AgentCommandOpts } from "./agent/types.js";
 import {
   listAgentIds,
   resolveAgentDir,
@@ -81,7 +81,7 @@ export async function agentCommand(
     const knownAgents = listAgentIds(cfg);
     if (!knownAgents.includes(agentIdOverride)) {
       throw new Error(
-        `Unknown agent id "${agentIdOverrideRaw}". Use "${formatCliCommand("openclaw agents list")}" to see configured agents.`,
+        `Unknown agent id "${agentIdOverrideRaw}". Use "${formatCliCommand(" agents list")}" to see configured agents.`,
       );
     }
   }
@@ -528,3 +528,4 @@ export async function agentCommand(
     clearAgentRunContext(runId);
   }
 }
+

@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../runtime.js";
+﻿import type { RuntimeEnv } from "../runtime.js";
 import { resolveAgentDir, resolveAgentWorkspaceDir } from "../agents/agent-scope.js";
 import { writeConfigFile } from "../config/config.js";
 import { logConfigUpdated } from "../config/logging.js";
@@ -99,3 +99,4 @@ export async function agentsDeleteCommand(
     runtime.log(`Deleted agent: ${agentId}`);
   }
 }
+

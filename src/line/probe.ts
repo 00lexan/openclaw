@@ -1,4 +1,4 @@
-import { messagingApi } from "@line/bot-sdk";
+﻿import { messagingApi } from "@line/bot-sdk";
 import type { LineProbeResult } from "./types.js";
 
 export async function probeLineBot(
@@ -45,3 +45,4 @@ function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
     }
   });
 }
+

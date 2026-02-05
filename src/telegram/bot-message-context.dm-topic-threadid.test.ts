@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
+﻿import { describe, expect, it, vi, beforeEach } from "vitest";
 import { buildTelegramMessageContext } from "./bot-message-context.js";
 
 // Mock recordInboundSession to capture updateLastRoute parameter
@@ -9,7 +9,7 @@ vi.mock("../channels/session.js", () => ({
 
 describe("buildTelegramMessageContext DM topic threadId in deliveryContext (#8891)", () => {
   const baseConfig = {
-    agents: { defaults: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/openclaw" } },
+    agents: { defaults: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/" } },
     channels: { telegram: {} },
     messages: { groupChat: { mentionPatterns: [] } },
   } as never;
@@ -167,3 +167,4 @@ describe("buildTelegramMessageContext DM topic threadId in deliveryContext (#889
     expect(callArgs?.updateLastRoute).toBeUndefined();
   });
 });
+

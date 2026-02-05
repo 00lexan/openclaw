@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import { callGateway } from "../../gateway/call.js";
 import { INTERNAL_MESSAGE_CHANNEL } from "../../utils/message-channel.js";
 import { AGENT_LANE_NESTED } from "../lanes.js";
@@ -56,3 +56,4 @@ export async function runAgentStep(params: {
   }
   return await readLatestAssistantReply({ sessionKey: params.sessionKey });
 }
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,14 +37,14 @@ A vertical list with:
 - Dog breed information
 - Dog generator
 
-The dog breed information is a card, which contains a title “Famous Dog breeds”, a header image, and a horizontal list of images of different dog breeds. The list information should be in the data model at /breeds.
+The dog breed information is a card, which contains a title â€œFamous Dog breedsâ€, a header image, and a horizontal list of images of different dog breeds. The list information should be in the data model at /breeds.
 
 The dog generator is another card which is a form that generates a fictional dog breed with a description
 - Title
 - Description text explaining what it is
 - Dog breed name (text input)
 - Number of legs (number input)
-- Button called “Generate” which takes the data above and generates a new dog description
+- Button called â€œGenerateâ€ which takes the data above and generates a new dog description
 - Skills (ChoicePicker component, usageHint 'multipleSelection')
 - A divider
 - A section which shows the generated content
@@ -136,7 +136,7 @@ IMPORTANT: Do not skip any of the classes, orders, or species above. Include eve
   {
     name: "weatherForecast",
     description: "A UI to display the weather forecast.",
-    promptText: `Generate a 'createSurface' message and a 'updateComponents' message with surfaceId 'main' for a weather forecast UI. It should have a 'Text' (usageHint 'h1') with the city name, "New York". Below it, a 'Row' with the current temperature as a 'Text' component ("68°F") and an 'Image' for the weather icon (e.g., a sun). Below that, a 'Divider'. Then, a 'List' component to display the 5-day forecast. Each item in the list should be a 'Row' with the day, an icon, and high/low temperatures.`,
+    promptText: `Generate a 'createSurface' message and a 'updateComponents' message with surfaceId 'main' for a weather forecast UI. It should have a 'Text' (usageHint 'h1') with the city name, "New York". Below it, a 'Row' with the current temperature as a 'Text' component ("68Â°F") and an 'Image' for the weather icon (e.g., a sun). Below that, a 'Divider'. Then, a 'List' component to display the 5-day forecast. Each item in the list should be a 'Row' with the day, an icon, and high/low temperatures.`,
   },
   {
     name: "surveyForm",
@@ -210,7 +210,7 @@ It should have a main 'Text' component with usageHint 'h1' and text "Paris Adven
 Below, use a 'List' to display three days. Each item in the list should be a 'Card'.
 - The first 'Card' (Day 1) should contain a 'Text' (usageHint 'h2') "Day 1: Arrival & Eiffel Tower", and a 'List' of activities for that day: "Check into hotel", "Lunch at a cafe", "Visit the Eiffel Tower".
 - The second 'Card' (Day 2) should contain a 'Text' (usageHint 'h2') "Day 2: Museums & Culture", and a 'List' of activities: "Visit the Louvre Museum", "Walk through Tuileries Garden", "See the Arc de Triomphe".
-- The third 'Card' (Day 3) should contain a 'Text' (usageHint 'h2') "Day 3: Art & Departure", and a 'List' of activities: "Visit Musée d'Orsay", "Explore Montmartre", "Depart from CDG".
+- The third 'Card' (Day 3) should contain a 'Text' (usageHint 'h2') "Day 3: Art & Departure", and a 'List' of activities: "Visit MusÃ©e d'Orsay", "Explore Montmartre", "Depart from CDG".
 Each activity in the inner lists should be a 'Row' containing a 'CheckBox' (to mark as complete) and a 'Text' component with the activity description.`,
   },
   {
@@ -371,3 +371,4 @@ Each activity in the inner lists should be a 'Row' containing a 'CheckBox' (to m
     promptText: `Generate a 'createSurface' message and a 'updateComponents' message with surfaceId 'main' for a flashcard app. 'Text' (h1) "Spanish Vocabulary". 'Card' (the flashcard). Inside the card, a 'Column' with 'Text' (h2) "Hola" (Front). 'Divider'. 'Text' "Hello" (Back - conceptually hidden, but rendered here). 'Row' of buttons: "Hard", "Good", "Easy".`,
   },
 ];
+

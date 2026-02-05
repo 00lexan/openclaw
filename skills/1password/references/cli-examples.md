@@ -1,4 +1,4 @@
-# op CLI examples (from op help)
+﻿# op CLI examples (from op help)
 
 ## Sign in
 
@@ -27,3 +27,4 @@
 
 - `op whoami`
 - `op account list`
+

@@ -1,4 +1,4 @@
-import { setCliSessionId } from "../../agents/cli-session.js";
+﻿import { setCliSessionId } from "../../agents/cli-session.js";
 import { hasNonzeroUsage, type NormalizedUsage } from "../../agents/usage.js";
 import {
   type SessionSystemPromptReport,
@@ -94,3 +94,4 @@ export async function persistSessionUsageUpdate(params: {
     }
   }
 }
+

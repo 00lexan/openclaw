@@ -1,4 +1,4 @@
-// Lightweight in-memory queue for human-readable system events that should be
+﻿// Lightweight in-memory queue for human-readable system events that should be
 // prefixed to the next prompt. We intentionally avoid persistence to keep
 // events ephemeral. Events are session-scoped and require an explicit key.
 
@@ -107,3 +107,4 @@ export function hasSystemEvents(sessionKey: string) {
 export function resetSystemEventsForTest() {
   queues.clear();
 }
+

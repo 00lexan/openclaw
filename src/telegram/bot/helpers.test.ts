@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   buildTelegramThreadParams,
   buildTypingThreadParams,
@@ -251,3 +251,4 @@ describe("expandTextLinks", () => {
     expect(expandTextLinks(text, entities)).toBe(" [Hello](https://example.com) world");
   });
 });
+

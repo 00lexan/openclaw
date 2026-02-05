@@ -1,4 +1,4 @@
-import * as Lark from "@larksuiteoapi/node-sdk";
+﻿import * as Lark from "@larksuiteoapi/node-sdk";
 import fs from "node:fs";
 import { loadConfig } from "../config/config.js";
 import { getChildLogger } from "../logging.js";
@@ -132,3 +132,4 @@ export function getFeishuClient(accountIdOrAppId?: string, explicitAppSecret?: s
 
   return client;
 }
+

@@ -1,4 +1,4 @@
-import net from "node:net";
+﻿import net from "node:net";
 import type { PortListener, PortUsage, PortUsageStatus } from "./ports-types.js";
 import { runCommandWithTimeout } from "../process/exec.js";
 import { buildPortHints } from "./ports-format.js";
@@ -294,3 +294,4 @@ export async function inspectPortUsage(port: number): Promise<PortUsage> {
     errors: errors.length > 0 ? errors : undefined,
   };
 }
+

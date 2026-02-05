@@ -1,4 +1,4 @@
-export async function fetchJson(
+﻿export async function fetchJson(
   url: string,
   init: RequestInit,
   timeoutMs: number,
@@ -12,3 +12,4 @@ export async function fetchJson(
     clearTimeout(timer);
   }
 }
+

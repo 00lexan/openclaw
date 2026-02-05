@@ -1,4 +1,4 @@
-const PROFILE_NAME_RE = /^[a-z0-9][a-z0-9_-]{0,63}$/i;
+﻿const PROFILE_NAME_RE = /^[a-z0-9][a-z0-9_-]{0,63}$/i;
 
 export function isValidProfileName(value: string): boolean {
   if (!value) {
@@ -21,3 +21,4 @@ export function normalizeProfileName(raw?: string | null): string | null {
   }
   return profile;
 }
+

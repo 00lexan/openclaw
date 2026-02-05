@@ -1,4 +1,4 @@
-import type { ChannelType, Client, User } from "@buape/carbon";
+﻿import type { ChannelType, Client, User } from "@buape/carbon";
 import type { HistoryEntry } from "../../auto-reply/reply/history.js";
 import type { ReplyToMode } from "../../config/config.js";
 import type { resolveAgentRoute } from "../../routing/resolve-route.js";
@@ -17,7 +17,7 @@ export type DiscordMessageEvent = import("./listeners.js").DiscordMessageEvent;
 export type DiscordMessagePreflightContext = {
   cfg: LoadedConfig;
   discordConfig: NonNullable<
-    import("../../config/config.js").OpenClawConfig["channels"]
+    import("../../config/config.js").Config["channels"]
   >["discord"];
   accountId: string;
   token: string;
@@ -102,3 +102,4 @@ export type DiscordMessagePreflightParams = {
   data: DiscordMessageEvent;
   client: Client;
 };
+

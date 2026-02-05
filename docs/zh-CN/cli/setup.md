@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你在不使用完整新手引导向导的情况下进行首次设置
-  - 你想设置默认工作区路径
-summary: "`openclaw setup` 的 CLI 参考（初始化配置 + 工作区）"
+  - ä½ åœ¨ä¸ä½¿ç”¨å®Œæ•´æ–°æ‰‹å¼•å¯¼å‘å¯¼çš„æƒ…å†µä¸‹è¿›è¡Œé¦–æ¬¡è®¾ç½®
+  - ä½ æƒ³è®¾ç½®é»˜è®¤å·¥ä½œåŒºè·¯å¾„
+summary: "` setup` çš„ CLI å‚è€ƒï¼ˆåˆå§‹åŒ–é…ç½® + å·¥ä½œåŒºï¼‰"
 title: setup
 x-i18n:
   generated_at: "2026-02-01T20:21:26Z"
@@ -13,24 +13,25 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw setup`
+# ` setup`
 
-初始化 `~/.openclaw/openclaw.json` 和智能体工作区。
+åˆå§‹åŒ– `~/./.json` å’Œæ™ºèƒ½ä½“å·¥ä½œåŒºã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 快速开始：[快速开始](/start/getting-started)
-- 向导：[新手引导](/start/onboarding)
+- å¿«é€Ÿå¼€å§‹ï¼š[å¿«é€Ÿå¼€å§‹](/start/getting-started)
+- å‘å¯¼ï¼š[æ–°æ‰‹å¼•å¯¼](/start/onboarding)
 
-## 示例
-
-```bash
-openclaw setup
-openclaw setup --workspace ~/.openclaw/workspace
-```
-
-通过 setup 运行向导：
+## ç¤ºä¾‹
 
 ```bash
-openclaw setup --wizard
+ setup
+ setup --workspace ~/./workspace
 ```
+
+é€šè¿‡ setup è¿è¡Œå‘å¯¼ï¼š
+
+```bash
+ setup --wizard
+```
+

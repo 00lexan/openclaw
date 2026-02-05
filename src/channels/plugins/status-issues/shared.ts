@@ -1,4 +1,4 @@
-export function asString(value: unknown): string | undefined {
+﻿export function asString(value: unknown): string | undefined {
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
 }
 
@@ -31,3 +31,4 @@ export function appendMatchMetadata(
   const meta = formatMatchMetadata(params);
   return meta ? `${message} (${meta})` : message;
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { buildGatewayAuthConfig } from "./configure.js";
 
 describe("buildGatewayAuthConfig", () => {
@@ -44,3 +44,4 @@ describe("buildGatewayAuthConfig", () => {
     expect(result).toEqual({ mode: "password", password: "secret" });
   });
 });
+

@@ -1,6 +1,6 @@
----
+﻿---
 description: Track outbound session mirroring refactor notes, decisions, tests, and open items.
-title: 出站会话镜像重构（Issue
+title: å‡ºç«™ä¼šè¯é•œåƒé‡æž„ï¼ˆIssue
 x-i18n:
   generated_at: "2026-02-03T07:53:51Z"
   model: claude-opus-4-5
@@ -10,83 +10,84 @@ x-i18n:
   workflow: 15
 ---
 
-# 出站会话镜像重构（Issue #1520）
+# å‡ºç«™ä¼šè¯é•œåƒé‡æž„ï¼ˆIssue #1520ï¼‰
 
-## 状态
+## çŠ¶æ€
 
-- 进行中。
-- 核心 + 插件渠道路由已更新以支持出站镜像。
-- Gateway 网关发送现在在省略 sessionKey 时派生目标会话。
+- è¿›è¡Œä¸­ã€‚
+- æ ¸å¿ƒ + æ’ä»¶æ¸ é“è·¯ç”±å·²æ›´æ–°ä»¥æ”¯æŒå‡ºç«™é•œåƒã€‚
+- Gateway ç½‘å…³å‘é€çŽ°åœ¨åœ¨çœç•¥ sessionKey æ—¶æ´¾ç”Ÿç›®æ ‡ä¼šè¯ã€‚
 
-## 背景
+## èƒŒæ™¯
 
-出站发送被镜像到*当前*智能体会话（工具会话键）而不是目标渠道会话。入站路由使用渠道/对等方会话键，因此出站响应落在错误的会话中，首次联系的目标通常缺少会话条目。
+å‡ºç«™å‘é€è¢«é•œåƒåˆ°*å½“å‰*æ™ºèƒ½ä½“ä¼šè¯ï¼ˆå·¥å…·ä¼šè¯é”®ï¼‰è€Œä¸æ˜¯ç›®æ ‡æ¸ é“ä¼šè¯ã€‚å…¥ç«™è·¯ç”±ä½¿ç”¨æ¸ é“/å¯¹ç­‰æ–¹ä¼šè¯é”®ï¼Œå› æ­¤å‡ºç«™å“åº”è½åœ¨é”™è¯¯çš„ä¼šè¯ä¸­ï¼Œé¦–æ¬¡è”ç³»çš„ç›®æ ‡é€šå¸¸ç¼ºå°‘ä¼šè¯æ¡ç›®ã€‚
 
-## 目标
+## ç›®æ ‡
 
-- 将出站消息镜像到目标渠道会话键。
-- 在缺失时为出站创建会话条目。
-- 保持线程/话题作用域与入站会话键对齐。
-- 涵盖核心渠道加内置扩展。
+- å°†å‡ºç«™æ¶ˆæ¯é•œåƒåˆ°ç›®æ ‡æ¸ é“ä¼šè¯é”®ã€‚
+- åœ¨ç¼ºå¤±æ—¶ä¸ºå‡ºç«™åˆ›å»ºä¼šè¯æ¡ç›®ã€‚
+- ä¿æŒçº¿ç¨‹/è¯é¢˜ä½œç”¨åŸŸä¸Žå…¥ç«™ä¼šè¯é”®å¯¹é½ã€‚
+- æ¶µç›–æ ¸å¿ƒæ¸ é“åŠ å†…ç½®æ‰©å±•ã€‚
 
-## 实现摘要
+## å®žçŽ°æ‘˜è¦
 
-- 新的出站会话路由辅助器：
+- æ–°çš„å‡ºç«™ä¼šè¯è·¯ç”±è¾…åŠ©å™¨ï¼š
   - `src/infra/outbound/outbound-session.ts`
-  - `resolveOutboundSessionRoute` 使用 `buildAgentSessionKey`（dmScope + identityLinks）构建目标 sessionKey。
-  - `ensureOutboundSessionEntry` 通过 `recordSessionMetaFromInbound` 写入最小的 `MsgContext`。
-- `runMessageAction`（发送）派生目标 sessionKey 并将其传递给 `executeSendAction` 进行镜像。
-- `message-tool` 不再直接镜像；它只从当前会话键解析 agentId。
-- 插件发送路径使用派生的 sessionKey 通过 `appendAssistantMessageToSessionTranscript` 进行镜像。
-- Gateway 网关发送在未提供时派生目标会话键（默认智能体），并确保会话条目。
+  - `resolveOutboundSessionRoute` ä½¿ç”¨ `buildAgentSessionKey`ï¼ˆdmScope + identityLinksï¼‰æž„å»ºç›®æ ‡ sessionKeyã€‚
+  - `ensureOutboundSessionEntry` é€šè¿‡ `recordSessionMetaFromInbound` å†™å…¥æœ€å°çš„ `MsgContext`ã€‚
+- `runMessageAction`ï¼ˆå‘é€ï¼‰æ´¾ç”Ÿç›®æ ‡ sessionKey å¹¶å°†å…¶ä¼ é€’ç»™ `executeSendAction` è¿›è¡Œé•œåƒã€‚
+- `message-tool` ä¸å†ç›´æŽ¥é•œåƒï¼›å®ƒåªä»Žå½“å‰ä¼šè¯é”®è§£æž agentIdã€‚
+- æ’ä»¶å‘é€è·¯å¾„ä½¿ç”¨æ´¾ç”Ÿçš„ sessionKey é€šè¿‡ `appendAssistantMessageToSessionTranscript` è¿›è¡Œé•œåƒã€‚
+- Gateway ç½‘å…³å‘é€åœ¨æœªæä¾›æ—¶æ´¾ç”Ÿç›®æ ‡ä¼šè¯é”®ï¼ˆé»˜è®¤æ™ºèƒ½ä½“ï¼‰ï¼Œå¹¶ç¡®ä¿ä¼šè¯æ¡ç›®ã€‚
 
-## 线程/话题处理
+## çº¿ç¨‹/è¯é¢˜å¤„ç†
 
-- Slack：replyTo/threadId -> `resolveThreadSessionKeys`（后缀）。
-- Discord：threadId/replyTo -> `resolveThreadSessionKeys`，`useSuffix=false` 以匹配入站（线程频道 id 已经作用域会话）。
-- Telegram：话题 ID 通过 `buildTelegramGroupPeerId` 映射到 `chatId:topic:<id>`。
+- Slackï¼šreplyTo/threadId -> `resolveThreadSessionKeys`ï¼ˆåŽç¼€ï¼‰ã€‚
+- Discordï¼šthreadId/replyTo -> `resolveThreadSessionKeys`ï¼Œ`useSuffix=false` ä»¥åŒ¹é…å…¥ç«™ï¼ˆçº¿ç¨‹é¢‘é“ id å·²ç»ä½œç”¨åŸŸä¼šè¯ï¼‰ã€‚
+- Telegramï¼šè¯é¢˜ ID é€šè¿‡ `buildTelegramGroupPeerId` æ˜ å°„åˆ° `chatId:topic:<id>`ã€‚
 
-## 涵盖的扩展
+## æ¶µç›–çš„æ‰©å±•
 
-- Matrix、MS Teams、Mattermost、BlueBubbles、Nextcloud Talk、Zalo、Zalo Personal、Nostr、Tlon。
-- 注意：
-  - Mattermost 目标现在为私信会话键路由去除 `@`。
-  - Zalo Personal 对 1:1 目标使用私信对等方类型（仅当存在 `group:` 时才使用群组）。
-  - BlueBubbles 群组目标去除 `chat_*` 前缀以匹配入站会话键。
-  - Slack 自动线程镜像不区分大小写地匹配频道 id。
-  - Gateway 网关发送在镜像前将提供的会话键转换为小写。
+- Matrixã€MS Teamsã€Mattermostã€BlueBubblesã€Nextcloud Talkã€Zaloã€Zalo Personalã€Nostrã€Tlonã€‚
+- æ³¨æ„ï¼š
+  - Mattermost ç›®æ ‡çŽ°åœ¨ä¸ºç§ä¿¡ä¼šè¯é”®è·¯ç”±åŽ»é™¤ `@`ã€‚
+  - Zalo Personal å¯¹ 1:1 ç›®æ ‡ä½¿ç”¨ç§ä¿¡å¯¹ç­‰æ–¹ç±»åž‹ï¼ˆä»…å½“å­˜åœ¨ `group:` æ—¶æ‰ä½¿ç”¨ç¾¤ç»„ï¼‰ã€‚
+  - BlueBubbles ç¾¤ç»„ç›®æ ‡åŽ»é™¤ `chat_*` å‰ç¼€ä»¥åŒ¹é…å…¥ç«™ä¼šè¯é”®ã€‚
+  - Slack è‡ªåŠ¨çº¿ç¨‹é•œåƒä¸åŒºåˆ†å¤§å°å†™åœ°åŒ¹é…é¢‘é“ idã€‚
+  - Gateway ç½‘å…³å‘é€åœ¨é•œåƒå‰å°†æä¾›çš„ä¼šè¯é”®è½¬æ¢ä¸ºå°å†™ã€‚
 
-## 决策
+## å†³ç­–
 
-- **Gateway 网关发送会话派生**：如果提供了 `sessionKey`，则使用它。如果省略，从目标 + 默认智能体派生 sessionKey 并镜像到那里。
-- **会话条目创建**：始终使用 `recordSessionMetaFromInbound`，`Provider/From/To/ChatType/AccountId/Originating*` 与入站格式对齐。
-- **目标规范化**：出站路由在可用时使用解析后的目标（`resolveChannelTarget` 之后）。
-- **会话键大小写**：在写入和迁移期间将会话键规范化为小写。
+- **Gateway ç½‘å…³å‘é€ä¼šè¯æ´¾ç”Ÿ**ï¼šå¦‚æžœæä¾›äº† `sessionKey`ï¼Œåˆ™ä½¿ç”¨å®ƒã€‚å¦‚æžœçœç•¥ï¼Œä»Žç›®æ ‡ + é»˜è®¤æ™ºèƒ½ä½“æ´¾ç”Ÿ sessionKey å¹¶é•œåƒåˆ°é‚£é‡Œã€‚
+- **ä¼šè¯æ¡ç›®åˆ›å»º**ï¼šå§‹ç»ˆä½¿ç”¨ `recordSessionMetaFromInbound`ï¼Œ`Provider/From/To/ChatType/AccountId/Originating*` ä¸Žå…¥ç«™æ ¼å¼å¯¹é½ã€‚
+- **ç›®æ ‡è§„èŒƒåŒ–**ï¼šå‡ºç«™è·¯ç”±åœ¨å¯ç”¨æ—¶ä½¿ç”¨è§£æžåŽçš„ç›®æ ‡ï¼ˆ`resolveChannelTarget` ä¹‹åŽï¼‰ã€‚
+- **ä¼šè¯é”®å¤§å°å†™**ï¼šåœ¨å†™å…¥å’Œè¿ç§»æœŸé—´å°†ä¼šè¯é”®è§„èŒƒåŒ–ä¸ºå°å†™ã€‚
 
-## 添加/更新的测试
+## æ·»åŠ /æ›´æ–°çš„æµ‹è¯•
 
 - `src/infra/outbound/outbound-session.test.ts`
-  - Slack 线程会话键。
-  - Telegram 话题会话键。
-  - dmScope identityLinks 与 Discord。
+  - Slack çº¿ç¨‹ä¼šè¯é”®ã€‚
+  - Telegram è¯é¢˜ä¼šè¯é”®ã€‚
+  - dmScope identityLinks ä¸Ž Discordã€‚
 - `src/agents/tools/message-tool.test.ts`
-  - 从会话键派生 agentId（不传递 sessionKey）。
+  - ä»Žä¼šè¯é”®æ´¾ç”Ÿ agentIdï¼ˆä¸ä¼ é€’ sessionKeyï¼‰ã€‚
 - `src/gateway/server-methods/send.test.ts`
-  - 在省略时派生会话键并创建会话条目。
+  - åœ¨çœç•¥æ—¶æ´¾ç”Ÿä¼šè¯é”®å¹¶åˆ›å»ºä¼šè¯æ¡ç›®ã€‚
 
-## 待处理项目 / 后续跟进
+## å¾…å¤„ç†é¡¹ç›® / åŽç»­è·Ÿè¿›
 
-- 语音通话插件使用自定义的 `voice:<phone>` 会话键。出站映射在这里没有标准化；如果 message-tool 应该支持语音通话发送，请添加显式映射。
-- 确认是否有任何外部插件使用内置集之外的非标准 `From/To` 格式。
+- è¯­éŸ³é€šè¯æ’ä»¶ä½¿ç”¨è‡ªå®šä¹‰çš„ `voice:<phone>` ä¼šè¯é”®ã€‚å‡ºç«™æ˜ å°„åœ¨è¿™é‡Œæ²¡æœ‰æ ‡å‡†åŒ–ï¼›å¦‚æžœ message-tool åº”è¯¥æ”¯æŒè¯­éŸ³é€šè¯å‘é€ï¼Œè¯·æ·»åŠ æ˜¾å¼æ˜ å°„ã€‚
+- ç¡®è®¤æ˜¯å¦æœ‰ä»»ä½•å¤–éƒ¨æ’ä»¶ä½¿ç”¨å†…ç½®é›†ä¹‹å¤–çš„éžæ ‡å‡† `From/To` æ ¼å¼ã€‚
 
-## 涉及的文件
+## æ¶‰åŠçš„æ–‡ä»¶
 
 - `src/infra/outbound/outbound-session.ts`
 - `src/infra/outbound/outbound-send-service.ts`
 - `src/infra/outbound/message-action-runner.ts`
 - `src/agents/tools/message-tool.ts`
 - `src/gateway/server-methods/send.ts`
-- 测试：
+- æµ‹è¯•ï¼š
   - `src/infra/outbound/outbound-session.test.ts`
   - `src/agents/tools/message-tool.test.ts`
   - `src/gateway/server-methods/send.test.ts`
+

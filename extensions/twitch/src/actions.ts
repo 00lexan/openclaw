@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Twitch message actions adapter.
  *
  * Handles tool-based actions for Twitch, such as sending messages.
@@ -116,7 +116,7 @@ export const twitchMessageActions: ChannelMessageActionAdapter = {
    * const result = await twitchMessageActions.handleAction!({
    *   action: "send",
    *   params: { message: "Hello Twitch!", to: "#mychannel" },
-   *   cfg: openclawConfig,
+   *   cfg: Config,
    *   accountId: "default",
    * });
    */
@@ -171,3 +171,4 @@ export const twitchMessageActions: ChannelMessageActionAdapter = {
     }
   },
 };
+

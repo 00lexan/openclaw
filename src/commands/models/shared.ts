@@ -1,4 +1,4 @@
-import { listAgentIds } from "../../agents/agent-scope.js";
+﻿import { listAgentIds } from "../../agents/agent-scope.js";
 import { DEFAULT_MODEL, DEFAULT_PROVIDER } from "../../agents/defaults.js";
 import {
   buildModelAliasIndex,
@@ -8,7 +8,7 @@ import {
 } from "../../agents/model-selection.js";
 import { formatCliCommand } from "../../cli/command-format.js";
 import {
-  type OpenClawConfig,
+  type Config,
   readConfigFileSnapshot,
   writeConfigFile,
 } from "../../config/config.js";
@@ -44,8 +44,8 @@ export const formatMs = (value?: number | null) => {
 };
 
 export async function updateConfig(
-  mutator: (cfg: OpenClawConfig) => OpenClawConfig,
-): Promise<OpenClawConfig> {
+  mutator: (cfg: Config) => Config,
+): Promise<Config> {
   const snapshot = await readConfigFileSnapshot();
   if (!snapshot.valid) {
     const issues = snapshot.issues.map((issue) => `- ${issue.path}: ${issue.message}`).join("\n");
@@ -56,7 +56,7 @@ export async function updateConfig(
   return next;
 }
 
-export function resolveModelTarget(params: { raw: string; cfg: OpenClawConfig }): {
+export function resolveModelTarget(params: { raw: string; cfg: Config }): {
   provider: string;
   model: string;
 } {
@@ -75,7 +75,7 @@ export function resolveModelTarget(params: { raw: string; cfg: OpenClawConfig })
   return resolved.ref;
 }
 
-export function buildAllowlistSet(cfg: OpenClawConfig): Set<string> {
+export function buildAllowlistSet(cfg: Config): Set<string> {
   const allowed = new Set<string>();
   const models = cfg.agents?.defaults?.models ?? {};
   for (const raw of Object.keys(models)) {
@@ -100,7 +100,7 @@ export function normalizeAlias(alias: string): string {
 }
 
 export function resolveKnownAgentId(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   rawAgentId?: string | null;
 }): string | undefined {
   const raw = params.rawAgentId?.trim();
@@ -111,7 +111,7 @@ export function resolveKnownAgentId(params: {
   const knownAgents = listAgentIds(params.cfg);
   if (!knownAgents.includes(agentId)) {
     throw new Error(
-      `Unknown agent id "${raw}". Use "${formatCliCommand("openclaw agents list")}" to see configured agents.`,
+      `Unknown agent id "${raw}". Use "${formatCliCommand(" agents list")}" to see configured agents.`,
     );
   }
   return agentId;
@@ -129,3 +129,4 @@ export { DEFAULT_MODEL, DEFAULT_PROVIDER };
  * For providers with hierarchical model IDs (e.g., OpenRouter), the model ID may include
  * sub-providers (e.g., "moonshotai/kimi-k2"), resulting in a key like "openrouter/moonshotai/kimi-k2".
  */
+

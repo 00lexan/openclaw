@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
+﻿import { describe, expect, it, vi, beforeEach } from "vitest";
 
 vi.mock("node:child_process", () => ({
   execFileSync: vi.fn(),
@@ -82,3 +82,4 @@ describe("browser default executable detection", () => {
     expect(exe?.path).toContain("Google Chrome.app/Contents/MacOS/Google Chrome");
   });
 });
+

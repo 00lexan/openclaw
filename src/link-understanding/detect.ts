@@ -1,4 +1,4 @@
-import { DEFAULT_MAX_LINKS } from "./defaults.js";
+﻿import { DEFAULT_MAX_LINKS } from "./defaults.js";
 
 // Remove markdown link syntax so only bare URLs are considered.
 const MARKDOWN_LINK_RE = /\[[^\]]*]\((https?:\/\/\S+?)\)/gi;
@@ -61,3 +61,4 @@ export function extractLinksFromMessage(message: string, opts?: { maxLinks?: num
 
   return results;
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { markdownToSlackMrkdwn } from "./format.js";
 
 describe("markdownToSlackMrkdwn", () => {
@@ -64,7 +64,7 @@ describe("markdownToSlackMrkdwn", () => {
 
   it("renders bullet lists", () => {
     const res = markdownToSlackMrkdwn("- one\n- two");
-    expect(res).toBe("• one\n• two");
+    expect(res).toBe("â€¢ one\nâ€¢ two");
   });
 
   it("renders ordered lists with numbering", () => {
@@ -85,7 +85,7 @@ describe("markdownToSlackMrkdwn", () => {
   it("handles adjacent list items", () => {
     const res = markdownToSlackMrkdwn("- item\n  - nested");
     // markdown-it treats indented items as continuation, not nesting
-    expect(res).toBe("• item  • nested");
+    expect(res).toBe("â€¢ item  â€¢ nested");
   });
 
   it("handles complex message with multiple elements", () => {
@@ -93,7 +93,8 @@ describe("markdownToSlackMrkdwn", () => {
       "**Important:** Check the _docs_ at [link](https://example.com)\n\n- first\n- second",
     );
     expect(res).toBe(
-      "*Important:* Check the _docs_ at <https://example.com|link>\n\n• first\n• second",
+      "*Important:* Check the _docs_ at <https://example.com|link>\n\nâ€¢ first\nâ€¢ second",
     );
   });
 });
+

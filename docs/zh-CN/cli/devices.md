@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你正在批准设备配对请求
-  - 你需要轮换或撤销设备 token
-summary: "`openclaw devices` 的 CLI 参考（设备配对 + token 轮换/撤销）"
+  - ä½ æ­£åœ¨æ‰¹å‡†è®¾å¤‡é…å¯¹è¯·æ±‚
+  - ä½ éœ€è¦è½®æ¢æˆ–æ’¤é”€è®¾å¤‡ token
+summary: "` devices` çš„ CLI å‚è€ƒï¼ˆè®¾å¤‡é…å¯¹ + token è½®æ¢/æ’¤é”€ï¼‰"
 title: devices
 x-i18n:
   generated_at: "2026-02-03T07:44:52Z"
@@ -13,62 +13,63 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw devices`
+# ` devices`
 
-管理设备配对请求和设备范围的 token。
+ç®¡ç†è®¾å¤‡é…å¯¹è¯·æ±‚å’Œè®¾å¤‡èŒƒå›´çš„ tokenã€‚
 
-## 命令
+## å‘½ä»¤
 
-### `openclaw devices list`
+### ` devices list`
 
-列出待处理的配对请求和已配对的设备。
-
-```
-openclaw devices list
-openclaw devices list --json
-```
-
-### `openclaw devices approve <requestId>`
-
-批准待处理的设备配对请求。
+åˆ—å‡ºå¾…å¤„ç†çš„é…å¯¹è¯·æ±‚å’Œå·²é…å¯¹çš„è®¾å¤‡ã€‚
 
 ```
-openclaw devices approve <requestId>
+ devices list
+ devices list --json
 ```
 
-### `openclaw devices reject <requestId>`
+### ` devices approve <requestId>`
 
-拒绝待处理的设备配对请求。
-
-```
-openclaw devices reject <requestId>
-```
-
-### `openclaw devices rotate --device <id> --role <role> [--scope <scope...>]`
-
-为特定角色轮换设备 token（可选更新 scope）。
+æ‰¹å‡†å¾…å¤„ç†çš„è®¾å¤‡é…å¯¹è¯·æ±‚ã€‚
 
 ```
-openclaw devices rotate --device <deviceId> --role operator --scope operator.read --scope operator.write
+ devices approve <requestId>
 ```
 
-### `openclaw devices revoke --device <id> --role <role>`
+### ` devices reject <requestId>`
 
-为特定角色撤销设备 token。
+æ‹’ç»å¾…å¤„ç†çš„è®¾å¤‡é…å¯¹è¯·æ±‚ã€‚
 
 ```
-openclaw devices revoke --device <deviceId> --role node
+ devices reject <requestId>
 ```
 
-## 通用选项
+### ` devices rotate --device <id> --role <role> [--scope <scope...>]`
 
-- `--url <url>`：Gateway 网关 WebSocket URL（配置后默认使用 `gateway.remote.url`）。
-- `--token <token>`：Gateway 网关 token（如需要）。
-- `--password <password>`：Gateway 网关密码（密码认证）。
-- `--timeout <ms>`：RPC 超时。
-- `--json`：JSON 输出（推荐用于脚本）。
+ä¸ºç‰¹å®šè§’è‰²è½®æ¢è®¾å¤‡ tokenï¼ˆå¯é€‰æ›´æ–° scopeï¼‰ã€‚
 
-## 注意事项
+```
+ devices rotate --device <deviceId> --role operator --scope operator.read --scope operator.write
+```
 
-- Token 轮换会返回新 token（敏感信息）。请像对待密钥一样对待它。
-- 这些命令需要 `operator.pairing`（或 `operator.admin`）scope。
+### ` devices revoke --device <id> --role <role>`
+
+ä¸ºç‰¹å®šè§’è‰²æ’¤é”€è®¾å¤‡ tokenã€‚
+
+```
+ devices revoke --device <deviceId> --role node
+```
+
+## é€šç”¨é€‰é¡¹
+
+- `--url <url>`ï¼šGateway ç½‘å…³ WebSocket URLï¼ˆé…ç½®åŽé»˜è®¤ä½¿ç”¨ `gateway.remote.url`ï¼‰ã€‚
+- `--token <token>`ï¼šGateway ç½‘å…³ tokenï¼ˆå¦‚éœ€è¦ï¼‰ã€‚
+- `--password <password>`ï¼šGateway ç½‘å…³å¯†ç ï¼ˆå¯†ç è®¤è¯ï¼‰ã€‚
+- `--timeout <ms>`ï¼šRPC è¶…æ—¶ã€‚
+- `--json`ï¼šJSON è¾“å‡ºï¼ˆæŽ¨èç”¨äºŽè„šæœ¬ï¼‰ã€‚
+
+## æ³¨æ„äº‹é¡¹
+
+- Token è½®æ¢ä¼šè¿”å›žæ–° tokenï¼ˆæ•æ„Ÿä¿¡æ¯ï¼‰ã€‚è¯·åƒå¯¹å¾…å¯†é’¥ä¸€æ ·å¯¹å¾…å®ƒã€‚
+- è¿™äº›å‘½ä»¤éœ€è¦ `operator.pairing`ï¼ˆæˆ– `operator.admin`ï¼‰scopeã€‚
+

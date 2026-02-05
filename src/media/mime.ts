@@ -1,4 +1,4 @@
-import { fileTypeFromBuffer } from "file-type";
+﻿import { fileTypeFromBuffer } from "file-type";
 import path from "node:path";
 import { type MediaKind, mediaKindFromMime } from "./constants.js";
 
@@ -187,3 +187,4 @@ export function imageMimeFromFormat(format?: string | null): string | undefined 
 export function kindFromMime(mime?: string | null): MediaKind {
   return mediaKindFromMime(mime);
 }
+

@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 处理 WhatsApp/网页渠道行为或收件箱路由时
-summary: WhatsApp（网页渠道）集成：登录、收件箱、回复、媒体和运维
+  - å¤„ç† WhatsApp/ç½‘é¡µæ¸ é“è¡Œä¸ºæˆ–æ”¶ä»¶ç®±è·¯ç”±æ—¶
+summary: WhatsAppï¼ˆç½‘é¡µæ¸ é“ï¼‰é›†æˆï¼šç™»å½•ã€æ”¶ä»¶ç®±ã€å›žå¤ã€åª’ä½“å’Œè¿ç»´
 title: WhatsApp
 x-i18n:
   generated_at: "2026-02-03T07:46:24Z"
@@ -12,18 +12,18 @@ x-i18n:
   workflow: 15
 ---
 
-# WhatsApp（网页渠道）
+# WhatsAppï¼ˆç½‘é¡µæ¸ é“ï¼‰
 
-状态：仅支持通过 Baileys 的 WhatsApp Web。Gateway 网关拥有会话。
+çŠ¶æ€ï¼šä»…æ”¯æŒé€šè¿‡ Baileys çš„ WhatsApp Webã€‚Gateway ç½‘å…³æ‹¥æœ‰ä¼šè¯ã€‚
 
-## 快速设置（新手）
+## å¿«é€Ÿè®¾ç½®ï¼ˆæ–°æ‰‹ï¼‰
 
-1. 如果可能，使用**单独的手机号码**（推荐）。
-2. 在 `~/.openclaw/openclaw.json` 中配置 WhatsApp。
-3. 运行 `openclaw channels login` 扫描二维码（关联设备）。
-4. 启动 Gateway 网关。
+1. å¦‚æžœå¯èƒ½ï¼Œä½¿ç”¨**å•ç‹¬çš„æ‰‹æœºå·ç **ï¼ˆæŽ¨èï¼‰ã€‚
+2. åœ¨ `~/./.json` ä¸­é…ç½® WhatsAppã€‚
+3. è¿è¡Œ ` channels login` æ‰«æäºŒç»´ç ï¼ˆå…³è”è®¾å¤‡ï¼‰ã€‚
+4. å¯åŠ¨ Gateway ç½‘å…³ã€‚
 
-最小配置：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -36,17 +36,17 @@ x-i18n:
 }
 ```
 
-## 目标
+## ç›®æ ‡
 
-- 在一个 Gateway 网关进程中支持多个 WhatsApp 账户（多账户）。
-- 确定性路由：回复返回到 WhatsApp，无模型路由。
-- 模型能看到足够的上下文来理解引用回复。
+- åœ¨ä¸€ä¸ª Gateway ç½‘å…³è¿›ç¨‹ä¸­æ”¯æŒå¤šä¸ª WhatsApp è´¦æˆ·ï¼ˆå¤šè´¦æˆ·ï¼‰ã€‚
+- ç¡®å®šæ€§è·¯ç”±ï¼šå›žå¤è¿”å›žåˆ° WhatsAppï¼Œæ— æ¨¡åž‹è·¯ç”±ã€‚
+- æ¨¡åž‹èƒ½çœ‹åˆ°è¶³å¤Ÿçš„ä¸Šä¸‹æ–‡æ¥ç†è§£å¼•ç”¨å›žå¤ã€‚
 
-## 配置写入
+## é…ç½®å†™å…¥
 
-默认情况下，WhatsApp 允许写入由 `/config set|unset` 触发的配置更新（需要 `commands.config: true`）。
+é»˜è®¤æƒ…å†µä¸‹ï¼ŒWhatsApp å…è®¸å†™å…¥ç”± `/config set|unset` è§¦å‘çš„é…ç½®æ›´æ–°ï¼ˆéœ€è¦ `commands.config: true`ï¼‰ã€‚
 
-禁用方式：
+ç¦ç”¨æ–¹å¼ï¼š
 
 ```json5
 {
@@ -54,23 +54,23 @@ x-i18n:
 }
 ```
 
-## 架构（谁拥有什么）
+## æž¶æž„ï¼ˆè°æ‹¥æœ‰ä»€ä¹ˆï¼‰
 
-- **Gateway 网关**拥有 Baileys socket 和收件箱循环。
-- **CLI / macOS 应用**与 Gateway 网关通信；不直接使用 Baileys。
-- 发送出站消息需要**活跃的监听器**；否则发送会快速失败。
+- **Gateway ç½‘å…³**æ‹¥æœ‰ Baileys socket å’Œæ”¶ä»¶ç®±å¾ªçŽ¯ã€‚
+- **CLI / macOS åº”ç”¨**ä¸Ž Gateway ç½‘å…³é€šä¿¡ï¼›ä¸ç›´æŽ¥ä½¿ç”¨ Baileysã€‚
+- å‘é€å‡ºç«™æ¶ˆæ¯éœ€è¦**æ´»è·ƒçš„ç›‘å¬å™¨**ï¼›å¦åˆ™å‘é€ä¼šå¿«é€Ÿå¤±è´¥ã€‚
 
-## 获取手机号码（两种模式）
+## èŽ·å–æ‰‹æœºå·ç ï¼ˆä¸¤ç§æ¨¡å¼ï¼‰
 
-WhatsApp 需要真实手机号码进行验证。VoIP 和虚拟号码通常会被封锁。在 WhatsApp 上运行 OpenClaw 有两种支持的方式：
+WhatsApp éœ€è¦çœŸå®žæ‰‹æœºå·ç è¿›è¡ŒéªŒè¯ã€‚VoIP å’Œè™šæ‹Ÿå·ç é€šå¸¸ä¼šè¢«å°é”ã€‚åœ¨ WhatsApp ä¸Šè¿è¡Œ  æœ‰ä¸¤ç§æ”¯æŒçš„æ–¹å¼ï¼š
 
-### 专用号码（推荐）
+### ä¸“ç”¨å·ç ï¼ˆæŽ¨èï¼‰
 
-为 OpenClaw 使用**单独的手机号码**。最佳用户体验，清晰的路由，无自聊天怪异问题。理想设置：**备用/旧 Android 手机 + eSIM**。保持 Wi-Fi 和电源连接，通过二维码关联。
+ä¸º  ä½¿ç”¨**å•ç‹¬çš„æ‰‹æœºå·ç **ã€‚æœ€ä½³ç”¨æˆ·ä½“éªŒï¼Œæ¸…æ™°çš„è·¯ç”±ï¼Œæ— è‡ªèŠå¤©æ€ªå¼‚é—®é¢˜ã€‚ç†æƒ³è®¾ç½®ï¼š**å¤‡ç”¨/æ—§ Android æ‰‹æœº + eSIM**ã€‚ä¿æŒ Wi-Fi å’Œç”µæºè¿žæŽ¥ï¼Œé€šè¿‡äºŒç»´ç å…³è”ã€‚
 
-**WhatsApp Business：** 你可以在同一设备上使用不同号码的 WhatsApp Business。非常适合将个人 WhatsApp 分开——安装 WhatsApp Business 并在那里注册 OpenClaw 号码。
+**WhatsApp Businessï¼š** ä½ å¯ä»¥åœ¨åŒä¸€è®¾å¤‡ä¸Šä½¿ç”¨ä¸åŒå·ç çš„ WhatsApp Businessã€‚éžå¸¸é€‚åˆå°†ä¸ªäºº WhatsApp åˆ†å¼€â€”â€”å®‰è£… WhatsApp Business å¹¶åœ¨é‚£é‡Œæ³¨å†Œ  å·ç ã€‚
 
-**示例配置（专用号码，单用户允许列表）：**
+**ç¤ºä¾‹é…ç½®ï¼ˆä¸“ç”¨å·ç ï¼Œå•ç”¨æˆ·å…è®¸åˆ—è¡¨ï¼‰ï¼š**
 
 ```json5
 {
@@ -83,16 +83,16 @@ WhatsApp 需要真实手机号码进行验证。VoIP 和虚拟号码通常会被
 }
 ```
 
-**配对模式（可选）：**
-如果你想使用配对而不是允许列表，请将 `channels.whatsapp.dmPolicy` 设置为 `pairing`。未知发送者会收到配对码；使用以下命令批准：
-`openclaw pairing approve whatsapp <code>`
+**é…å¯¹æ¨¡å¼ï¼ˆå¯é€‰ï¼‰ï¼š**
+å¦‚æžœä½ æƒ³ä½¿ç”¨é…å¯¹è€Œä¸æ˜¯å…è®¸åˆ—è¡¨ï¼Œè¯·å°† `channels.whatsapp.dmPolicy` è®¾ç½®ä¸º `pairing`ã€‚æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼›ä½¿ç”¨ä»¥ä¸‹å‘½ä»¤æ‰¹å‡†ï¼š
+` pairing approve whatsapp <code>`
 
-### 个人号码（备选方案）
+### ä¸ªäººå·ç ï¼ˆå¤‡é€‰æ–¹æ¡ˆï¼‰
 
-快速备选方案：在**你自己的号码**上运行 OpenClaw。给自己发消息（WhatsApp"给自己发消息"）进行测试，这样就不会打扰联系人。在设置和实验期间需要在主手机上阅读验证码。**必须启用自聊天模式。**
-当向导询问你的个人 WhatsApp 号码时，输入你将用于发送消息的手机（所有者/发送者），而不是助手号码。
+å¿«é€Ÿå¤‡é€‰æ–¹æ¡ˆï¼šåœ¨**ä½ è‡ªå·±çš„å·ç **ä¸Šè¿è¡Œ ã€‚ç»™è‡ªå·±å‘æ¶ˆæ¯ï¼ˆWhatsApp"ç»™è‡ªå·±å‘æ¶ˆæ¯"ï¼‰è¿›è¡Œæµ‹è¯•ï¼Œè¿™æ ·å°±ä¸ä¼šæ‰“æ‰°è”ç³»äººã€‚åœ¨è®¾ç½®å’Œå®žéªŒæœŸé—´éœ€è¦åœ¨ä¸»æ‰‹æœºä¸Šé˜…è¯»éªŒè¯ç ã€‚**å¿…é¡»å¯ç”¨è‡ªèŠå¤©æ¨¡å¼ã€‚**
+å½“å‘å¯¼è¯¢é—®ä½ çš„ä¸ªäºº WhatsApp å·ç æ—¶ï¼Œè¾“å…¥ä½ å°†ç”¨äºŽå‘é€æ¶ˆæ¯çš„æ‰‹æœºï¼ˆæ‰€æœ‰è€…/å‘é€è€…ï¼‰ï¼Œè€Œä¸æ˜¯åŠ©æ‰‹å·ç ã€‚
 
-**示例配置（个人号码，自聊天）：**
+**ç¤ºä¾‹é…ç½®ï¼ˆä¸ªäººå·ç ï¼Œè‡ªèŠå¤©ï¼‰ï¼š**
 
 ```json
 {
@@ -104,67 +104,67 @@ WhatsApp 需要真实手机号码进行验证。VoIP 和虚拟号码通常会被
 }
 ```
 
-当设置了 `identity.name` 时，自聊天回复默认为 `[{identity.name}]`（否则为 `[openclaw]`），
-前提是 `messages.responsePrefix` 未设置。明确设置它可以自定义或禁用
-前缀（使用 `""` 来移除）。
+å½“è®¾ç½®äº† `identity.name` æ—¶ï¼Œè‡ªèŠå¤©å›žå¤é»˜è®¤ä¸º `[{identity.name}]`ï¼ˆå¦åˆ™ä¸º `[]`ï¼‰ï¼Œ
+å‰ææ˜¯ `messages.responsePrefix` æœªè®¾ç½®ã€‚æ˜Žç¡®è®¾ç½®å®ƒå¯ä»¥è‡ªå®šä¹‰æˆ–ç¦ç”¨
+å‰ç¼€ï¼ˆä½¿ç”¨ `""` æ¥ç§»é™¤ï¼‰ã€‚
 
-### 号码获取提示
+### å·ç èŽ·å–æç¤º
 
-- **本地 eSIM** 来自你所在国家的移动运营商（最可靠）
-  - 奥地利：[hot.at](https://www.hot.at)
-  - 英国：[giffgaff](https://www.giffgaff.com) — 免费 SIM 卡，无合约
-- **预付费 SIM 卡** — 便宜，只需接收一条验证短信
+- **æœ¬åœ° eSIM** æ¥è‡ªä½ æ‰€åœ¨å›½å®¶çš„ç§»åŠ¨è¿è¥å•†ï¼ˆæœ€å¯é ï¼‰
+  - å¥¥åœ°åˆ©ï¼š[hot.at](https://www.hot.at)
+  - è‹±å›½ï¼š[giffgaff](https://www.giffgaff.com) â€” å…è´¹ SIM å¡ï¼Œæ— åˆçº¦
+- **é¢„ä»˜è´¹ SIM å¡** â€” ä¾¿å®œï¼Œåªéœ€æŽ¥æ”¶ä¸€æ¡éªŒè¯çŸ­ä¿¡
 
-**避免：** TextNow、Google Voice、大多数"免费短信"服务——WhatsApp 会积极封锁这些。
+**é¿å…ï¼š** TextNowã€Google Voiceã€å¤§å¤šæ•°"å…è´¹çŸ­ä¿¡"æœåŠ¡â€”â€”WhatsApp ä¼šç§¯æžå°é”è¿™äº›ã€‚
 
-**提示：** 该号码只需要接收一条验证短信。之后，WhatsApp Web 会话通过 `creds.json` 持久化。
+**æç¤ºï¼š** è¯¥å·ç åªéœ€è¦æŽ¥æ”¶ä¸€æ¡éªŒè¯çŸ­ä¿¡ã€‚ä¹‹åŽï¼ŒWhatsApp Web ä¼šè¯é€šè¿‡ `creds.json` æŒä¹…åŒ–ã€‚
 
-## 为什么不用 Twilio？
+## ä¸ºä»€ä¹ˆä¸ç”¨ Twilioï¼Ÿ
 
-- 早期 OpenClaw 版本支持 Twilio 的 WhatsApp Business 集成。
-- WhatsApp Business 号码不适合个人助手。
-- Meta 强制执行 24 小时回复窗口；如果你在过去 24 小时内没有回复，商业号码无法发起新消息。
-- 高频或"频繁"使用会触发激进的封锁，因为商业账户不适合发送大量个人助手消息。
-- 结果：投递不可靠且频繁被封锁，因此该支持已被移除。
+- æ—©æœŸ  ç‰ˆæœ¬æ”¯æŒ Twilio çš„ WhatsApp Business é›†æˆã€‚
+- WhatsApp Business å·ç ä¸é€‚åˆä¸ªäººåŠ©æ‰‹ã€‚
+- Meta å¼ºåˆ¶æ‰§è¡Œ 24 å°æ—¶å›žå¤çª—å£ï¼›å¦‚æžœä½ åœ¨è¿‡åŽ» 24 å°æ—¶å†…æ²¡æœ‰å›žå¤ï¼Œå•†ä¸šå·ç æ— æ³•å‘èµ·æ–°æ¶ˆæ¯ã€‚
+- é«˜é¢‘æˆ–"é¢‘ç¹"ä½¿ç”¨ä¼šè§¦å‘æ¿€è¿›çš„å°é”ï¼Œå› ä¸ºå•†ä¸šè´¦æˆ·ä¸é€‚åˆå‘é€å¤§é‡ä¸ªäººåŠ©æ‰‹æ¶ˆæ¯ã€‚
+- ç»“æžœï¼šæŠ•é€’ä¸å¯é ä¸”é¢‘ç¹è¢«å°é”ï¼Œå› æ­¤è¯¥æ”¯æŒå·²è¢«ç§»é™¤ã€‚
 
-## 登录 + 凭证
+## ç™»å½• + å‡­è¯
 
-- 登录命令：`openclaw channels login`（通过关联设备扫描二维码）。
-- 多账户登录：`openclaw channels login --account <id>`（`<id>` = `accountId`）。
-- 默认账户（省略 `--account` 时）：如果存在则为 `default`，否则为第一个配置的账户 id（排序后）。
-- 凭证存储在 `~/.openclaw/credentials/whatsapp/<accountId>/creds.json`。
-- 备份副本在 `creds.json.bak`（损坏时恢复）。
-- 旧版兼容性：较旧的安装将 Baileys 文件直接存储在 `~/.openclaw/credentials/` 中。
-- 登出：`openclaw channels logout`（或 `--account <id>`）删除 WhatsApp 认证状态（但保留共享的 `oauth.json`）。
-- 已登出的 socket => 错误提示重新关联。
+- ç™»å½•å‘½ä»¤ï¼š` channels login`ï¼ˆé€šè¿‡å…³è”è®¾å¤‡æ‰«æäºŒç»´ç ï¼‰ã€‚
+- å¤šè´¦æˆ·ç™»å½•ï¼š` channels login --account <id>`ï¼ˆ`<id>` = `accountId`ï¼‰ã€‚
+- é»˜è®¤è´¦æˆ·ï¼ˆçœç•¥ `--account` æ—¶ï¼‰ï¼šå¦‚æžœå­˜åœ¨åˆ™ä¸º `default`ï¼Œå¦åˆ™ä¸ºç¬¬ä¸€ä¸ªé…ç½®çš„è´¦æˆ· idï¼ˆæŽ’åºåŽï¼‰ã€‚
+- å‡­è¯å­˜å‚¨åœ¨ `~/./credentials/whatsapp/<accountId>/creds.json`ã€‚
+- å¤‡ä»½å‰¯æœ¬åœ¨ `creds.json.bak`ï¼ˆæŸåæ—¶æ¢å¤ï¼‰ã€‚
+- æ—§ç‰ˆå…¼å®¹æ€§ï¼šè¾ƒæ—§çš„å®‰è£…å°† Baileys æ–‡ä»¶ç›´æŽ¥å­˜å‚¨åœ¨ `~/./credentials/` ä¸­ã€‚
+- ç™»å‡ºï¼š` channels logout`ï¼ˆæˆ– `--account <id>`ï¼‰åˆ é™¤ WhatsApp è®¤è¯çŠ¶æ€ï¼ˆä½†ä¿ç•™å…±äº«çš„ `oauth.json`ï¼‰ã€‚
+- å·²ç™»å‡ºçš„ socket => é”™è¯¯æç¤ºé‡æ–°å…³è”ã€‚
 
-## 入站流程（私信 + 群组）
+## å…¥ç«™æµç¨‹ï¼ˆç§ä¿¡ + ç¾¤ç»„ï¼‰
 
-- WhatsApp 事件来自 `messages.upsert`（Baileys）。
-- 收件箱监听器在关闭时分离，以避免在测试/重启时累积事件处理器。
-- 状态/广播聊天被忽略。
-- 直接聊天使用 E.164；群组使用群组 JID。
-- **私信策略**：`channels.whatsapp.dmPolicy` 控制直接聊天访问（默认：`pairing`）。
-  - 配对：未知发送者会收到配对码（通过 `openclaw pairing approve whatsapp <code>` 批准；码在 1 小时后过期）。
-  - 开放：需要 `channels.whatsapp.allowFrom` 包含 `"*"`。
-  - 你关联的 WhatsApp 号码是隐式信任的，因此自身消息会跳过 `channels.whatsapp.dmPolicy` 和 `channels.whatsapp.allowFrom` 检查。
+- WhatsApp äº‹ä»¶æ¥è‡ª `messages.upsert`ï¼ˆBaileysï¼‰ã€‚
+- æ”¶ä»¶ç®±ç›‘å¬å™¨åœ¨å…³é—­æ—¶åˆ†ç¦»ï¼Œä»¥é¿å…åœ¨æµ‹è¯•/é‡å¯æ—¶ç´¯ç§¯äº‹ä»¶å¤„ç†å™¨ã€‚
+- çŠ¶æ€/å¹¿æ’­èŠå¤©è¢«å¿½ç•¥ã€‚
+- ç›´æŽ¥èŠå¤©ä½¿ç”¨ E.164ï¼›ç¾¤ç»„ä½¿ç”¨ç¾¤ç»„ JIDã€‚
+- **ç§ä¿¡ç­–ç•¥**ï¼š`channels.whatsapp.dmPolicy` æŽ§åˆ¶ç›´æŽ¥èŠå¤©è®¿é—®ï¼ˆé»˜è®¤ï¼š`pairing`ï¼‰ã€‚
+  - é…å¯¹ï¼šæœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼ˆé€šè¿‡ ` pairing approve whatsapp <code>` æ‰¹å‡†ï¼›ç åœ¨ 1 å°æ—¶åŽè¿‡æœŸï¼‰ã€‚
+  - å¼€æ”¾ï¼šéœ€è¦ `channels.whatsapp.allowFrom` åŒ…å« `"*"`ã€‚
+  - ä½ å…³è”çš„ WhatsApp å·ç æ˜¯éšå¼ä¿¡ä»»çš„ï¼Œå› æ­¤è‡ªèº«æ¶ˆæ¯ä¼šè·³è¿‡ `channels.whatsapp.dmPolicy` å’Œ `channels.whatsapp.allowFrom` æ£€æŸ¥ã€‚
 
-### 个人号码模式（备选方案）
+### ä¸ªäººå·ç æ¨¡å¼ï¼ˆå¤‡é€‰æ–¹æ¡ˆï¼‰
 
-如果你在**个人 WhatsApp 号码**上运行 OpenClaw，请启用 `channels.whatsapp.selfChatMode`（见上面的示例）。
+å¦‚æžœä½ åœ¨**ä¸ªäºº WhatsApp å·ç **ä¸Šè¿è¡Œ ï¼Œè¯·å¯ç”¨ `channels.whatsapp.selfChatMode`ï¼ˆè§ä¸Šé¢çš„ç¤ºä¾‹ï¼‰ã€‚
 
-行为：
+è¡Œä¸ºï¼š
 
-- 出站私信永远不会触发配对回复（防止打扰联系人）。
-- 入站未知发送者仍遵循 `channels.whatsapp.dmPolicy`。
-- 自聊天模式（allowFrom 包含你的号码）避免自动已读回执并忽略提及 JID。
-- 非自聊天私信会发送已读回执。
+- å‡ºç«™ç§ä¿¡æ°¸è¿œä¸ä¼šè§¦å‘é…å¯¹å›žå¤ï¼ˆé˜²æ­¢æ‰“æ‰°è”ç³»äººï¼‰ã€‚
+- å…¥ç«™æœªçŸ¥å‘é€è€…ä»éµå¾ª `channels.whatsapp.dmPolicy`ã€‚
+- è‡ªèŠå¤©æ¨¡å¼ï¼ˆallowFrom åŒ…å«ä½ çš„å·ç ï¼‰é¿å…è‡ªåŠ¨å·²è¯»å›žæ‰§å¹¶å¿½ç•¥æåŠ JIDã€‚
+- éžè‡ªèŠå¤©ç§ä¿¡ä¼šå‘é€å·²è¯»å›žæ‰§ã€‚
 
-## 已读回执
+## å·²è¯»å›žæ‰§
 
-默认情况下，Gateway 网关在接受入站 WhatsApp 消息后将其标记为已读（蓝色勾号）。
+é»˜è®¤æƒ…å†µä¸‹ï¼ŒGateway ç½‘å…³åœ¨æŽ¥å—å…¥ç«™ WhatsApp æ¶ˆæ¯åŽå°†å…¶æ ‡è®°ä¸ºå·²è¯»ï¼ˆè“è‰²å‹¾å·ï¼‰ã€‚
 
-全局禁用：
+å…¨å±€ç¦ç”¨ï¼š
 
 ```json5
 {
@@ -172,7 +172,7 @@ WhatsApp 需要真实手机号码进行验证。VoIP 和虚拟号码通常会被
 }
 ```
 
-按账户禁用：
+æŒ‰è´¦æˆ·ç¦ç”¨ï¼š
 
 ```json5
 {
@@ -186,77 +186,77 @@ WhatsApp 需要真实手机号码进行验证。VoIP 和虚拟号码通常会被
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 自聊天模式始终跳过已读回执。
+- è‡ªèŠå¤©æ¨¡å¼å§‹ç»ˆè·³è¿‡å·²è¯»å›žæ‰§ã€‚
 
-## WhatsApp 常见问题：发送消息 + 配对
+## WhatsApp å¸¸è§é—®é¢˜ï¼šå‘é€æ¶ˆæ¯ + é…å¯¹
 
-**当我关联 WhatsApp 时，OpenClaw 会给随机联系人发消息吗？**
-不会。默认私信策略是**配对**，因此未知发送者只会收到配对码，他们的消息**不会被处理**。OpenClaw 只会回复它收到的聊天，或你明确触发的发送（智能体/CLI）。
+**å½“æˆ‘å…³è” WhatsApp æ—¶ï¼Œ ä¼šç»™éšæœºè”ç³»äººå‘æ¶ˆæ¯å—ï¼Ÿ**
+ä¸ä¼šã€‚é»˜è®¤ç§ä¿¡ç­–ç•¥æ˜¯**é…å¯¹**ï¼Œå› æ­¤æœªçŸ¥å‘é€è€…åªä¼šæ”¶åˆ°é…å¯¹ç ï¼Œä»–ä»¬çš„æ¶ˆæ¯**ä¸ä¼šè¢«å¤„ç†**ã€‚ åªä¼šå›žå¤å®ƒæ”¶åˆ°çš„èŠå¤©ï¼Œæˆ–ä½ æ˜Žç¡®è§¦å‘çš„å‘é€ï¼ˆæ™ºèƒ½ä½“/CLIï¼‰ã€‚
 
-**WhatsApp 上的配对是如何工作的？**
-配对是未知发送者的私信门控：
+**WhatsApp ä¸Šçš„é…å¯¹æ˜¯å¦‚ä½•å·¥ä½œçš„ï¼Ÿ**
+é…å¯¹æ˜¯æœªçŸ¥å‘é€è€…çš„ç§ä¿¡é—¨æŽ§ï¼š
 
-- 来自新发送者的第一条私信返回一个短码（消息不会被处理）。
-- 使用以下命令批准：`openclaw pairing approve whatsapp <code>`（使用 `openclaw pairing list whatsapp` 列出）。
-- 码在 1 小时后过期；每个渠道的待处理请求上限为 3 个。
+- æ¥è‡ªæ–°å‘é€è€…çš„ç¬¬ä¸€æ¡ç§ä¿¡è¿”å›žä¸€ä¸ªçŸ­ç ï¼ˆæ¶ˆæ¯ä¸ä¼šè¢«å¤„ç†ï¼‰ã€‚
+- ä½¿ç”¨ä»¥ä¸‹å‘½ä»¤æ‰¹å‡†ï¼š` pairing approve whatsapp <code>`ï¼ˆä½¿ç”¨ ` pairing list whatsapp` åˆ—å‡ºï¼‰ã€‚
+- ç åœ¨ 1 å°æ—¶åŽè¿‡æœŸï¼›æ¯ä¸ªæ¸ é“çš„å¾…å¤„ç†è¯·æ±‚ä¸Šé™ä¸º 3 ä¸ªã€‚
 
-**多个人可以在一个 WhatsApp 号码上使用不同的 OpenClaw 实例吗？**
-可以，通过 `bindings` 将每个发送者路由到不同的智能体（peer `kind: "dm"`，发送者 E.164 如 `+15551234567`）。回复仍然来自**同一个 WhatsApp 账户**，直接聊天会折叠到每个智能体的主会话，因此**每人使用一个智能体**。私信访问控制（`dmPolicy`/`allowFrom`）是每个 WhatsApp 账户全局的。参见[多智能体路由](/concepts/multi-agent)。
+**å¤šä¸ªäººå¯ä»¥åœ¨ä¸€ä¸ª WhatsApp å·ç ä¸Šä½¿ç”¨ä¸åŒçš„  å®žä¾‹å—ï¼Ÿ**
+å¯ä»¥ï¼Œé€šè¿‡ `bindings` å°†æ¯ä¸ªå‘é€è€…è·¯ç”±åˆ°ä¸åŒçš„æ™ºèƒ½ä½“ï¼ˆpeer `kind: "dm"`ï¼Œå‘é€è€… E.164 å¦‚ `+15551234567`ï¼‰ã€‚å›žå¤ä»ç„¶æ¥è‡ª**åŒä¸€ä¸ª WhatsApp è´¦æˆ·**ï¼Œç›´æŽ¥èŠå¤©ä¼šæŠ˜å åˆ°æ¯ä¸ªæ™ºèƒ½ä½“çš„ä¸»ä¼šè¯ï¼Œå› æ­¤**æ¯äººä½¿ç”¨ä¸€ä¸ªæ™ºèƒ½ä½“**ã€‚ç§ä¿¡è®¿é—®æŽ§åˆ¶ï¼ˆ`dmPolicy`/`allowFrom`ï¼‰æ˜¯æ¯ä¸ª WhatsApp è´¦æˆ·å…¨å±€çš„ã€‚å‚è§[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)ã€‚
 
-**为什么向导会询问我的手机号码？**
-向导使用它来设置你的**允许列表/所有者**，以便允许你自己的私信。它不会用于自动发送。如果你在个人 WhatsApp 号码上运行，请使用相同的号码并启用 `channels.whatsapp.selfChatMode`。
+**ä¸ºä»€ä¹ˆå‘å¯¼ä¼šè¯¢é—®æˆ‘çš„æ‰‹æœºå·ç ï¼Ÿ**
+å‘å¯¼ä½¿ç”¨å®ƒæ¥è®¾ç½®ä½ çš„**å…è®¸åˆ—è¡¨/æ‰€æœ‰è€…**ï¼Œä»¥ä¾¿å…è®¸ä½ è‡ªå·±çš„ç§ä¿¡ã€‚å®ƒä¸ä¼šç”¨äºŽè‡ªåŠ¨å‘é€ã€‚å¦‚æžœä½ åœ¨ä¸ªäºº WhatsApp å·ç ä¸Šè¿è¡Œï¼Œè¯·ä½¿ç”¨ç›¸åŒçš„å·ç å¹¶å¯ç”¨ `channels.whatsapp.selfChatMode`ã€‚
 
-## 消息规范化（模型看到的内容）
+## æ¶ˆæ¯è§„èŒƒåŒ–ï¼ˆæ¨¡åž‹çœ‹åˆ°çš„å†…å®¹ï¼‰
 
-- `Body` 是带有信封的当前消息正文。
-- 引用回复上下文**始终附加**：
+- `Body` æ˜¯å¸¦æœ‰ä¿¡å°çš„å½“å‰æ¶ˆæ¯æ­£æ–‡ã€‚
+- å¼•ç”¨å›žå¤ä¸Šä¸‹æ–‡**å§‹ç»ˆé™„åŠ **ï¼š
   ```
   [Replying to +1555 id:ABC123]
   <quoted text or <media:...>>
   [/Replying]
   ```
-- 回复元数据也会设置：
+- å›žå¤å…ƒæ•°æ®ä¹Ÿä¼šè®¾ç½®ï¼š
   - `ReplyToId` = stanzaId
-  - `ReplyToBody` = 引用正文或媒体占位符
-  - `ReplyToSender` = 已知时为 E.164
-- 纯媒体入站消息使用占位符：
+  - `ReplyToBody` = å¼•ç”¨æ­£æ–‡æˆ–åª’ä½“å ä½ç¬¦
+  - `ReplyToSender` = å·²çŸ¥æ—¶ä¸º E.164
+- çº¯åª’ä½“å…¥ç«™æ¶ˆæ¯ä½¿ç”¨å ä½ç¬¦ï¼š
   - `<media:image|video|audio|document|sticker>`
 
-## 群组
+## ç¾¤ç»„
 
-- 群组映射到 `agent:<agentId>:whatsapp:group:<jid>` 会话。
-- 群组策略：`channels.whatsapp.groupPolicy = open|disabled|allowlist`（默认 `allowlist`）。
-- 激活模式：
-  - `mention`（默认）：需要 @提及或正则匹配。
-  - `always`：始终触发。
-- `/activation mention|always` 仅限所有者，必须作为独立消息发送。
-- 所有者 = `channels.whatsapp.allowFrom`（如果未设置则为自身 E.164）。
-- **历史注入**（仅待处理）：
-  - 最近*未处理*的消息（默认 50 条）插入在：
-    `[Chat messages since your last reply - for context]`（已在会话中的消息不会重新注入）
-  - 当前消息在：
+- ç¾¤ç»„æ˜ å°„åˆ° `agent:<agentId>:whatsapp:group:<jid>` ä¼šè¯ã€‚
+- ç¾¤ç»„ç­–ç•¥ï¼š`channels.whatsapp.groupPolicy = open|disabled|allowlist`ï¼ˆé»˜è®¤ `allowlist`ï¼‰ã€‚
+- æ¿€æ´»æ¨¡å¼ï¼š
+  - `mention`ï¼ˆé»˜è®¤ï¼‰ï¼šéœ€è¦ @æåŠæˆ–æ­£åˆ™åŒ¹é…ã€‚
+  - `always`ï¼šå§‹ç»ˆè§¦å‘ã€‚
+- `/activation mention|always` ä»…é™æ‰€æœ‰è€…ï¼Œå¿…é¡»ä½œä¸ºç‹¬ç«‹æ¶ˆæ¯å‘é€ã€‚
+- æ‰€æœ‰è€… = `channels.whatsapp.allowFrom`ï¼ˆå¦‚æžœæœªè®¾ç½®åˆ™ä¸ºè‡ªèº« E.164ï¼‰ã€‚
+- **åŽ†å²æ³¨å…¥**ï¼ˆä»…å¾…å¤„ç†ï¼‰ï¼š
+  - æœ€è¿‘*æœªå¤„ç†*çš„æ¶ˆæ¯ï¼ˆé»˜è®¤ 50 æ¡ï¼‰æ’å…¥åœ¨ï¼š
+    `[Chat messages since your last reply - for context]`ï¼ˆå·²åœ¨ä¼šè¯ä¸­çš„æ¶ˆæ¯ä¸ä¼šé‡æ–°æ³¨å…¥ï¼‰
+  - å½“å‰æ¶ˆæ¯åœ¨ï¼š
     `[Current message - respond to this]`
-  - 附加发送者后缀：`[from: Name (+E164)]`
-- 群组元数据缓存 5 分钟（主题 + 参与者）。
+  - é™„åŠ å‘é€è€…åŽç¼€ï¼š`[from: Name (+E164)]`
+- ç¾¤ç»„å…ƒæ•°æ®ç¼“å­˜ 5 åˆ†é’Ÿï¼ˆä¸»é¢˜ + å‚ä¸Žè€…ï¼‰ã€‚
 
-## 回复投递（线程）
+## å›žå¤æŠ•é€’ï¼ˆçº¿ç¨‹ï¼‰
 
-- WhatsApp Web 发送标准消息（当前 Gateway 网关无引用回复线程）。
-- 此渠道忽略回复标签。
+- WhatsApp Web å‘é€æ ‡å‡†æ¶ˆæ¯ï¼ˆå½“å‰ Gateway ç½‘å…³æ— å¼•ç”¨å›žå¤çº¿ç¨‹ï¼‰ã€‚
+- æ­¤æ¸ é“å¿½ç•¥å›žå¤æ ‡ç­¾ã€‚
 
-## 确认表情（收到时自动回应）
+## ç¡®è®¤è¡¨æƒ…ï¼ˆæ”¶åˆ°æ—¶è‡ªåŠ¨å›žåº”ï¼‰
 
-WhatsApp 可以在收到传入消息时立即自动发送表情回应，在机器人生成回复之前。这为用户提供即时反馈，表明他们的消息已收到。
+WhatsApp å¯ä»¥åœ¨æ”¶åˆ°ä¼ å…¥æ¶ˆæ¯æ—¶ç«‹å³è‡ªåŠ¨å‘é€è¡¨æƒ…å›žåº”ï¼Œåœ¨æœºå™¨äººç”Ÿæˆå›žå¤ä¹‹å‰ã€‚è¿™ä¸ºç”¨æˆ·æä¾›å³æ—¶åé¦ˆï¼Œè¡¨æ˜Žä»–ä»¬çš„æ¶ˆæ¯å·²æ”¶åˆ°ã€‚
 
-**配置：**
+**é…ç½®ï¼š**
 
 ```json
 {
   "whatsapp": {
     "ackReaction": {
-      "emoji": "👀",
+      "emoji": "ðŸ‘€",
       "direct": true,
       "group": "mentions"
     }
@@ -264,16 +264,16 @@ WhatsApp 可以在收到传入消息时立即自动发送表情回应，在机�
 }
 ```
 
-**选项：**
+**é€‰é¡¹ï¼š**
 
-- `emoji`（字符串）：用于确认的表情（例如"👀"、"✅"、"📨"）。为空或省略 = 功能禁用。
-- `direct`（布尔值，默认：`true`）：在直接/私信聊天中发送表情回应。
-- `group`（字符串，默认：`"mentions"`）：群聊行为：
-  - `"always"`：对所有群消息做出回应（即使没有 @提及）
-  - `"mentions"`：仅在机器人被 @提及时做出回应
-  - `"never"`：从不在群组中做出回应
+- `emoji`ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šç”¨äºŽç¡®è®¤çš„è¡¨æƒ…ï¼ˆä¾‹å¦‚"ðŸ‘€"ã€"âœ…"ã€"ðŸ“¨"ï¼‰ã€‚ä¸ºç©ºæˆ–çœç•¥ = åŠŸèƒ½ç¦ç”¨ã€‚
+- `direct`ï¼ˆå¸ƒå°”å€¼ï¼Œé»˜è®¤ï¼š`true`ï¼‰ï¼šåœ¨ç›´æŽ¥/ç§ä¿¡èŠå¤©ä¸­å‘é€è¡¨æƒ…å›žåº”ã€‚
+- `group`ï¼ˆå­—ç¬¦ä¸²ï¼Œé»˜è®¤ï¼š`"mentions"`ï¼‰ï¼šç¾¤èŠè¡Œä¸ºï¼š
+  - `"always"`ï¼šå¯¹æ‰€æœ‰ç¾¤æ¶ˆæ¯åšå‡ºå›žåº”ï¼ˆå³ä½¿æ²¡æœ‰ @æåŠï¼‰
+  - `"mentions"`ï¼šä»…åœ¨æœºå™¨äººè¢« @æåŠæ—¶åšå‡ºå›žåº”
+  - `"never"`ï¼šä»Žä¸åœ¨ç¾¤ç»„ä¸­åšå‡ºå›žåº”
 
-**按账户覆盖：**
+**æŒ‰è´¦æˆ·è¦†ç›–ï¼š**
 
 ```json
 {
@@ -281,7 +281,7 @@ WhatsApp 可以在收到传入消息时立即自动发送表情回应，在机�
     "accounts": {
       "work": {
         "ackReaction": {
-          "emoji": "✅",
+          "emoji": "âœ…",
           "direct": false,
           "group": "always"
         }
@@ -291,121 +291,122 @@ WhatsApp 可以在收到传入消息时立即自动发送表情回应，在机�
 }
 ```
 
-**行为说明：**
+**è¡Œä¸ºè¯´æ˜Žï¼š**
 
-- 表情回应在消息收到时**立即**发送，在输入指示器或机器人回复之前。
-- 在 `requireMention: false`（激活：always）的群组中，`group: "mentions"` 会对所有消息做出回应（不仅仅是 @提及）。
-- 即发即忘：表情回应失败会被记录但不会阻止机器人回复。
-- 群组表情回应会自动包含参与者 JID。
-- WhatsApp 忽略 `messages.ackReaction`；请改用 `channels.whatsapp.ackReaction`。
+- è¡¨æƒ…å›žåº”åœ¨æ¶ˆæ¯æ”¶åˆ°æ—¶**ç«‹å³**å‘é€ï¼Œåœ¨è¾“å…¥æŒ‡ç¤ºå™¨æˆ–æœºå™¨äººå›žå¤ä¹‹å‰ã€‚
+- åœ¨ `requireMention: false`ï¼ˆæ¿€æ´»ï¼šalwaysï¼‰çš„ç¾¤ç»„ä¸­ï¼Œ`group: "mentions"` ä¼šå¯¹æ‰€æœ‰æ¶ˆæ¯åšå‡ºå›žåº”ï¼ˆä¸ä»…ä»…æ˜¯ @æåŠï¼‰ã€‚
+- å³å‘å³å¿˜ï¼šè¡¨æƒ…å›žåº”å¤±è´¥ä¼šè¢«è®°å½•ä½†ä¸ä¼šé˜»æ­¢æœºå™¨äººå›žå¤ã€‚
+- ç¾¤ç»„è¡¨æƒ…å›žåº”ä¼šè‡ªåŠ¨åŒ…å«å‚ä¸Žè€… JIDã€‚
+- WhatsApp å¿½ç•¥ `messages.ackReaction`ï¼›è¯·æ”¹ç”¨ `channels.whatsapp.ackReaction`ã€‚
 
-## 智能体工具（表情回应）
+## æ™ºèƒ½ä½“å·¥å…·ï¼ˆè¡¨æƒ…å›žåº”ï¼‰
 
-- 工具：`whatsapp`，带有 `react` 动作（`chatJid`、`messageId`、`emoji`，可选 `remove`）。
-- 可选：`participant`（群组发送者）、`fromMe`（对自己的消息做出回应）、`accountId`（多账户）。
-- 表情移除语义：参见 [/tools/reactions](/tools/reactions)。
-- 工具门控：`channels.whatsapp.actions.reactions`（默认：启用）。
+- å·¥å…·ï¼š`whatsapp`ï¼Œå¸¦æœ‰ `react` åŠ¨ä½œï¼ˆ`chatJid`ã€`messageId`ã€`emoji`ï¼Œå¯é€‰ `remove`ï¼‰ã€‚
+- å¯é€‰ï¼š`participant`ï¼ˆç¾¤ç»„å‘é€è€…ï¼‰ã€`fromMe`ï¼ˆå¯¹è‡ªå·±çš„æ¶ˆæ¯åšå‡ºå›žåº”ï¼‰ã€`accountId`ï¼ˆå¤šè´¦æˆ·ï¼‰ã€‚
+- è¡¨æƒ…ç§»é™¤è¯­ä¹‰ï¼šå‚è§ [/tools/reactions](/tools/reactions)ã€‚
+- å·¥å…·é—¨æŽ§ï¼š`channels.whatsapp.actions.reactions`ï¼ˆé»˜è®¤ï¼šå¯ç”¨ï¼‰ã€‚
 
-## 限制
+## é™åˆ¶
 
-- 出站文本按 `channels.whatsapp.textChunkLimit` 分块（默认 4000）。
-- 可选换行分块：设置 `channels.whatsapp.chunkMode="newline"` 在长度分块之前按空行（段落边界）分割。
-- 入站媒体保存受 `channels.whatsapp.mediaMaxMb` 限制（默认 50 MB）。
-- 出站媒体项受 `agents.defaults.mediaMaxMb` 限制（默认 5 MB）。
+- å‡ºç«™æ–‡æœ¬æŒ‰ `channels.whatsapp.textChunkLimit` åˆ†å—ï¼ˆé»˜è®¤ 4000ï¼‰ã€‚
+- å¯é€‰æ¢è¡Œåˆ†å—ï¼šè®¾ç½® `channels.whatsapp.chunkMode="newline"` åœ¨é•¿åº¦åˆ†å—ä¹‹å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- å…¥ç«™åª’ä½“ä¿å­˜å— `channels.whatsapp.mediaMaxMb` é™åˆ¶ï¼ˆé»˜è®¤ 50 MBï¼‰ã€‚
+- å‡ºç«™åª’ä½“é¡¹å— `agents.defaults.mediaMaxMb` é™åˆ¶ï¼ˆé»˜è®¤ 5 MBï¼‰ã€‚
 
-## 出站发送（文本 + 媒体）
+## å‡ºç«™å‘é€ï¼ˆæ–‡æœ¬ + åª’ä½“ï¼‰
 
-- 使用活跃的网页监听器；如果 Gateway 网关未运行则报错。
-- 文本分块：每条消息最大 4k（可通过 `channels.whatsapp.textChunkLimit` 配置，可选 `channels.whatsapp.chunkMode`）。
-- 媒体：
-  - 支持图片/视频/音频/文档。
-  - 音频作为 PTT 发送；`audio/ogg` => `audio/ogg; codecs=opus`。
-  - 仅在第一个媒体项上添加标题。
-  - 媒体获取支持 HTTP(S) 和本地路径。
-  - 动画 GIF：WhatsApp 期望带有 `gifPlayback: true` 的 MP4 以实现内联循环。
-    - CLI：`openclaw message send --media <mp4> --gif-playback`
-    - Gateway 网关：`send` 参数包含 `gifPlayback: true`
+- ä½¿ç”¨æ´»è·ƒçš„ç½‘é¡µç›‘å¬å™¨ï¼›å¦‚æžœ Gateway ç½‘å…³æœªè¿è¡Œåˆ™æŠ¥é”™ã€‚
+- æ–‡æœ¬åˆ†å—ï¼šæ¯æ¡æ¶ˆæ¯æœ€å¤§ 4kï¼ˆå¯é€šè¿‡ `channels.whatsapp.textChunkLimit` é…ç½®ï¼Œå¯é€‰ `channels.whatsapp.chunkMode`ï¼‰ã€‚
+- åª’ä½“ï¼š
+  - æ”¯æŒå›¾ç‰‡/è§†é¢‘/éŸ³é¢‘/æ–‡æ¡£ã€‚
+  - éŸ³é¢‘ä½œä¸º PTT å‘é€ï¼›`audio/ogg` => `audio/ogg; codecs=opus`ã€‚
+  - ä»…åœ¨ç¬¬ä¸€ä¸ªåª’ä½“é¡¹ä¸Šæ·»åŠ æ ‡é¢˜ã€‚
+  - åª’ä½“èŽ·å–æ”¯æŒ HTTP(S) å’Œæœ¬åœ°è·¯å¾„ã€‚
+  - åŠ¨ç”» GIFï¼šWhatsApp æœŸæœ›å¸¦æœ‰ `gifPlayback: true` çš„ MP4 ä»¥å®žçŽ°å†…è”å¾ªçŽ¯ã€‚
+    - CLIï¼š` message send --media <mp4> --gif-playback`
+    - Gateway ç½‘å…³ï¼š`send` å‚æ•°åŒ…å« `gifPlayback: true`
 
-## 语音消息（PTT 音频）
+## è¯­éŸ³æ¶ˆæ¯ï¼ˆPTT éŸ³é¢‘ï¼‰
 
-WhatsApp 将音频作为**语音消息**（PTT 气泡）发送。
+WhatsApp å°†éŸ³é¢‘ä½œä¸º**è¯­éŸ³æ¶ˆæ¯**ï¼ˆPTT æ°”æ³¡ï¼‰å‘é€ã€‚
 
-- 最佳效果：OGG/Opus。OpenClaw 将 `audio/ogg` 重写为 `audio/ogg; codecs=opus`。
-- WhatsApp 忽略 `[[audio_as_voice]]`（音频已作为语音消息发送）。
+- æœ€ä½³æ•ˆæžœï¼šOGG/Opusã€‚ å°† `audio/ogg` é‡å†™ä¸º `audio/ogg; codecs=opus`ã€‚
+- WhatsApp å¿½ç•¥ `[[audio_as_voice]]`ï¼ˆéŸ³é¢‘å·²ä½œä¸ºè¯­éŸ³æ¶ˆæ¯å‘é€ï¼‰ã€‚
 
-## 媒体限制 + 优化
+## åª’ä½“é™åˆ¶ + ä¼˜åŒ–
 
-- 默认出站上限：5 MB（每个媒体项）。
-- 覆盖：`agents.defaults.mediaMaxMb`。
-- 图片自动优化为上限以下的 JPEG（调整大小 + 质量扫描）。
-- 超大媒体 => 错误；媒体回复降级为文本警告。
+- é»˜è®¤å‡ºç«™ä¸Šé™ï¼š5 MBï¼ˆæ¯ä¸ªåª’ä½“é¡¹ï¼‰ã€‚
+- è¦†ç›–ï¼š`agents.defaults.mediaMaxMb`ã€‚
+- å›¾ç‰‡è‡ªåŠ¨ä¼˜åŒ–ä¸ºä¸Šé™ä»¥ä¸‹çš„ JPEGï¼ˆè°ƒæ•´å¤§å° + è´¨é‡æ‰«æï¼‰ã€‚
+- è¶…å¤§åª’ä½“ => é”™è¯¯ï¼›åª’ä½“å›žå¤é™çº§ä¸ºæ–‡æœ¬è­¦å‘Šã€‚
 
-## 心跳
+## å¿ƒè·³
 
-- **Gateway 网关心跳**记录连接健康状态（`web.heartbeatSeconds`，默认 60 秒）。
-- **智能体心跳**可以按智能体配置（`agents.list[].heartbeat`）或通过
-  `agents.defaults.heartbeat` 全局配置（当没有设置按智能体条目时的降级）。
-  - 使用配置的心跳提示词（默认：`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`）+ `HEARTBEAT_OK` 跳过行为。
-  - 投递默认为最后使用的渠道（或配置的目标）。
+- **Gateway ç½‘å…³å¿ƒè·³**è®°å½•è¿žæŽ¥å¥åº·çŠ¶æ€ï¼ˆ`web.heartbeatSeconds`ï¼Œé»˜è®¤ 60 ç§’ï¼‰ã€‚
+- **æ™ºèƒ½ä½“å¿ƒè·³**å¯ä»¥æŒ‰æ™ºèƒ½ä½“é…ç½®ï¼ˆ`agents.list[].heartbeat`ï¼‰æˆ–é€šè¿‡
+  `agents.defaults.heartbeat` å…¨å±€é…ç½®ï¼ˆå½“æ²¡æœ‰è®¾ç½®æŒ‰æ™ºèƒ½ä½“æ¡ç›®æ—¶çš„é™çº§ï¼‰ã€‚
+  - ä½¿ç”¨é…ç½®çš„å¿ƒè·³æç¤ºè¯ï¼ˆé»˜è®¤ï¼š`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`ï¼‰+ `HEARTBEAT_OK` è·³è¿‡è¡Œä¸ºã€‚
+  - æŠ•é€’é»˜è®¤ä¸ºæœ€åŽä½¿ç”¨çš„æ¸ é“ï¼ˆæˆ–é…ç½®çš„ç›®æ ‡ï¼‰ã€‚
 
-## 重连行为
+## é‡è¿žè¡Œä¸º
 
-- 退避策略：`web.reconnect`：
-  - `initialMs`、`maxMs`、`factor`、`jitter`、`maxAttempts`。
-- 如果达到 maxAttempts，网页监控停止（降级）。
-- 已登出 => 停止并要求重新关联。
+- é€€é¿ç­–ç•¥ï¼š`web.reconnect`ï¼š
+  - `initialMs`ã€`maxMs`ã€`factor`ã€`jitter`ã€`maxAttempts`ã€‚
+- å¦‚æžœè¾¾åˆ° maxAttemptsï¼Œç½‘é¡µç›‘æŽ§åœæ­¢ï¼ˆé™çº§ï¼‰ã€‚
+- å·²ç™»å‡º => åœæ­¢å¹¶è¦æ±‚é‡æ–°å…³è”ã€‚
 
-## 配置快速映射
+## é…ç½®å¿«é€Ÿæ˜ å°„
 
-- `channels.whatsapp.dmPolicy`（私信策略：pairing/allowlist/open/disabled）。
-- `channels.whatsapp.selfChatMode`（同手机设置；机器人使用你的个人 WhatsApp 号码）。
-- `channels.whatsapp.allowFrom`（私信允许列表）。WhatsApp 使用 E.164 手机号码（无用户名）。
-- `channels.whatsapp.mediaMaxMb`（入站媒体保存上限）。
-- `channels.whatsapp.ackReaction`（消息收到时的自动回应：`{emoji, direct, group}`）。
-- `channels.whatsapp.accounts.<accountId>.*`（按账户设置 + 可选 `authDir`）。
-- `channels.whatsapp.accounts.<accountId>.mediaMaxMb`（按账户入站媒体上限）。
-- `channels.whatsapp.accounts.<accountId>.ackReaction`（按账户确认回应覆盖）。
-- `channels.whatsapp.groupAllowFrom`（群组发送者允许列表）。
-- `channels.whatsapp.groupPolicy`（群组策略）。
-- `channels.whatsapp.historyLimit` / `channels.whatsapp.accounts.<accountId>.historyLimit`（群组历史上下文；`0` 禁用）。
-- `channels.whatsapp.dmHistoryLimit`（私信历史限制，按用户轮次）。按用户覆盖：`channels.whatsapp.dms["<phone>"].historyLimit`。
-- `channels.whatsapp.groups`（群组允许列表 + 提及门控默认值；使用 `"*"` 允许全部）
-- `channels.whatsapp.actions.reactions`（门控 WhatsApp 工具表情回应）。
-- `agents.list[].groupChat.mentionPatterns`（或 `messages.groupChat.mentionPatterns`）
+- `channels.whatsapp.dmPolicy`ï¼ˆç§ä¿¡ç­–ç•¥ï¼špairing/allowlist/open/disabledï¼‰ã€‚
+- `channels.whatsapp.selfChatMode`ï¼ˆåŒæ‰‹æœºè®¾ç½®ï¼›æœºå™¨äººä½¿ç”¨ä½ çš„ä¸ªäºº WhatsApp å·ç ï¼‰ã€‚
+- `channels.whatsapp.allowFrom`ï¼ˆç§ä¿¡å…è®¸åˆ—è¡¨ï¼‰ã€‚WhatsApp ä½¿ç”¨ E.164 æ‰‹æœºå·ç ï¼ˆæ— ç”¨æˆ·åï¼‰ã€‚
+- `channels.whatsapp.mediaMaxMb`ï¼ˆå…¥ç«™åª’ä½“ä¿å­˜ä¸Šé™ï¼‰ã€‚
+- `channels.whatsapp.ackReaction`ï¼ˆæ¶ˆæ¯æ”¶åˆ°æ—¶çš„è‡ªåŠ¨å›žåº”ï¼š`{emoji, direct, group}`ï¼‰ã€‚
+- `channels.whatsapp.accounts.<accountId>.*`ï¼ˆæŒ‰è´¦æˆ·è®¾ç½® + å¯é€‰ `authDir`ï¼‰ã€‚
+- `channels.whatsapp.accounts.<accountId>.mediaMaxMb`ï¼ˆæŒ‰è´¦æˆ·å…¥ç«™åª’ä½“ä¸Šé™ï¼‰ã€‚
+- `channels.whatsapp.accounts.<accountId>.ackReaction`ï¼ˆæŒ‰è´¦æˆ·ç¡®è®¤å›žåº”è¦†ç›–ï¼‰ã€‚
+- `channels.whatsapp.groupAllowFrom`ï¼ˆç¾¤ç»„å‘é€è€…å…è®¸åˆ—è¡¨ï¼‰ã€‚
+- `channels.whatsapp.groupPolicy`ï¼ˆç¾¤ç»„ç­–ç•¥ï¼‰ã€‚
+- `channels.whatsapp.historyLimit` / `channels.whatsapp.accounts.<accountId>.historyLimit`ï¼ˆç¾¤ç»„åŽ†å²ä¸Šä¸‹æ–‡ï¼›`0` ç¦ç”¨ï¼‰ã€‚
+- `channels.whatsapp.dmHistoryLimit`ï¼ˆç§ä¿¡åŽ†å²é™åˆ¶ï¼ŒæŒ‰ç”¨æˆ·è½®æ¬¡ï¼‰ã€‚æŒ‰ç”¨æˆ·è¦†ç›–ï¼š`channels.whatsapp.dms["<phone>"].historyLimit`ã€‚
+- `channels.whatsapp.groups`ï¼ˆç¾¤ç»„å…è®¸åˆ—è¡¨ + æåŠé—¨æŽ§é»˜è®¤å€¼ï¼›ä½¿ç”¨ `"*"` å…è®¸å…¨éƒ¨ï¼‰
+- `channels.whatsapp.actions.reactions`ï¼ˆé—¨æŽ§ WhatsApp å·¥å…·è¡¨æƒ…å›žåº”ï¼‰ã€‚
+- `agents.list[].groupChat.mentionPatterns`ï¼ˆæˆ– `messages.groupChat.mentionPatterns`ï¼‰
 - `messages.groupChat.historyLimit`
-- `channels.whatsapp.messagePrefix`（入站前缀；按账户：`channels.whatsapp.accounts.<accountId>.messagePrefix`；已弃用：`messages.messagePrefix`）
-- `messages.responsePrefix`（出站前缀）
+- `channels.whatsapp.messagePrefix`ï¼ˆå…¥ç«™å‰ç¼€ï¼›æŒ‰è´¦æˆ·ï¼š`channels.whatsapp.accounts.<accountId>.messagePrefix`ï¼›å·²å¼ƒç”¨ï¼š`messages.messagePrefix`ï¼‰
+- `messages.responsePrefix`ï¼ˆå‡ºç«™å‰ç¼€ï¼‰
 - `agents.defaults.mediaMaxMb`
 - `agents.defaults.heartbeat.every`
-- `agents.defaults.heartbeat.model`（可选覆盖）
+- `agents.defaults.heartbeat.model`ï¼ˆå¯é€‰è¦†ç›–ï¼‰
 - `agents.defaults.heartbeat.target`
 - `agents.defaults.heartbeat.to`
 - `agents.defaults.heartbeat.session`
-- `agents.list[].heartbeat.*`（按智能体覆盖）
-- `session.*`（scope、idle、store、mainKey）
-- `web.enabled`（为 false 时禁用渠道启动）
+- `agents.list[].heartbeat.*`ï¼ˆæŒ‰æ™ºèƒ½ä½“è¦†ç›–ï¼‰
+- `session.*`ï¼ˆscopeã€idleã€storeã€mainKeyï¼‰
+- `web.enabled`ï¼ˆä¸º false æ—¶ç¦ç”¨æ¸ é“å¯åŠ¨ï¼‰
 - `web.heartbeatSeconds`
 - `web.reconnect.*`
 
-## 日志 + 故障排除
+## æ—¥å¿— + æ•…éšœæŽ’é™¤
 
-- 子系统：`whatsapp/inbound`、`whatsapp/outbound`、`web-heartbeat`、`web-reconnect`。
-- 日志文件：`/tmp/openclaw/openclaw-YYYY-MM-DD.log`（可配置）。
-- 故障排除指南：[Gateway 网关故障排除](/gateway/troubleshooting)。
+- å­ç³»ç»Ÿï¼š`whatsapp/inbound`ã€`whatsapp/outbound`ã€`web-heartbeat`ã€`web-reconnect`ã€‚
+- æ—¥å¿—æ–‡ä»¶ï¼š`/tmp//-YYYY-MM-DD.log`ï¼ˆå¯é…ç½®ï¼‰ã€‚
+- æ•…éšœæŽ’é™¤æŒ‡å—ï¼š[Gateway ç½‘å…³æ•…éšœæŽ’é™¤](/gateway/troubleshooting)ã€‚
 
-## 故障排除（快速）
+## æ•…éšœæŽ’é™¤ï¼ˆå¿«é€Ÿï¼‰
 
-**未关联 / 需要二维码登录**
+**æœªå…³è” / éœ€è¦äºŒç»´ç ç™»å½•**
 
-- 症状：`channels status` 显示 `linked: false` 或警告"Not linked"。
-- 修复：在 Gateway 网关主机上运行 `openclaw channels login` 并扫描二维码（WhatsApp → 设置 → 关联设备）。
+- ç—‡çŠ¶ï¼š`channels status` æ˜¾ç¤º `linked: false` æˆ–è­¦å‘Š"Not linked"ã€‚
+- ä¿®å¤ï¼šåœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œ ` channels login` å¹¶æ‰«æäºŒç»´ç ï¼ˆWhatsApp â†’ è®¾ç½® â†’ å…³è”è®¾å¤‡ï¼‰ã€‚
 
-**已关联但断开连接 / 重连循环**
+**å·²å…³è”ä½†æ–­å¼€è¿žæŽ¥ / é‡è¿žå¾ªçŽ¯**
 
-- 症状：`channels status` 显示 `running, disconnected` 或警告"Linked but disconnected"。
-- 修复：`openclaw doctor`（或重启 Gateway 网关）。如果问题持续，通过 `channels login` 重新关联并检查 `openclaw logs --follow`。
+- ç—‡çŠ¶ï¼š`channels status` æ˜¾ç¤º `running, disconnected` æˆ–è­¦å‘Š"Linked but disconnected"ã€‚
+- ä¿®å¤ï¼š` doctor`ï¼ˆæˆ–é‡å¯ Gateway ç½‘å…³ï¼‰ã€‚å¦‚æžœé—®é¢˜æŒç»­ï¼Œé€šè¿‡ `channels login` é‡æ–°å…³è”å¹¶æ£€æŸ¥ ` logs --follow`ã€‚
 
-**Bun 运行时**
+**Bun è¿è¡Œæ—¶**
 
-- **不推荐** Bun。WhatsApp（Baileys）和 Telegram 在 Bun 上不可靠。
-  请使用 **Node** 运行 Gateway 网关。（参见入门指南运行时说明。）
+- **ä¸æŽ¨è** Bunã€‚WhatsAppï¼ˆBaileysï¼‰å’Œ Telegram åœ¨ Bun ä¸Šä¸å¯é ã€‚
+  è¯·ä½¿ç”¨ **Node** è¿è¡Œ Gateway ç½‘å…³ã€‚ï¼ˆå‚è§å…¥é—¨æŒ‡å—è¿è¡Œæ—¶è¯´æ˜Žã€‚ï¼‰
+

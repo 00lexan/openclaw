@@ -1,4 +1,4 @@
----
+﻿---
 role: antipatterns
 summary: |
   Common mistakes and patterns to avoid in OpenProse programs.
@@ -723,7 +723,7 @@ loop until **no significant bugs found in last iteration** (max: 10):
 
 #### assertion-as-action
 
-Using conditions as actions—checking something without acting on the result.
+Using conditions as actionsâ€”checking something without acting on the result.
 
 ```prose
 # Bad: Check but don't use result
@@ -949,3 +949,4 @@ When reviewing OpenProse programs, ask:
 - Would a stranger understand this code?
 
 Fix antipatterns early. They compound over time into unmaintainable systems.
+

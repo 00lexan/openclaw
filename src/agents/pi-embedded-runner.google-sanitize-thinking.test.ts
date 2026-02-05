@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import { SessionManager } from "@mariozechner/pi-coding-agent";
 import { describe, expect, it } from "vitest";
 import { sanitizeSessionHistory } from "./pi-embedded-runner/google.js";
@@ -356,3 +356,4 @@ describe("sanitizeSessionHistory (google thinking)", () => {
     expect(toolResult.toolCallId).toBe(toolCall.id);
   });
 });
+

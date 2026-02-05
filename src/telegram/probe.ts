@@ -1,4 +1,4 @@
-import { makeProxyFetch } from "./proxy.js";
+﻿import { makeProxyFetch } from "./proxy.js";
 
 const TELEGRAM_API_BASE = "https://api.telegram.org";
 
@@ -112,3 +112,4 @@ export async function probeTelegram(
     };
   }
 }
+

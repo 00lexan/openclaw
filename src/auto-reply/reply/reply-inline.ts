@@ -1,4 +1,4 @@
-const INLINE_SIMPLE_COMMAND_ALIASES = new Map<string, string>([
+﻿const INLINE_SIMPLE_COMMAND_ALIASES = new Map<string, string>([
   ["/help", "/help"],
   ["/commands", "/commands"],
   ["/whoami", "/whoami"],
@@ -39,3 +39,4 @@ export function stripInlineStatus(body: string): {
   const cleaned = trimmed.replace(INLINE_STATUS_RE, " ").replace(/\s+/g, " ").trim();
   return { cleaned, didStrip: cleaned !== trimmed };
 }
+

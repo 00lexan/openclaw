@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { NostrProfile } from "./config-schema.js";
 import {
   createProfileEvent,
@@ -69,7 +69,7 @@ describe("profile unicode attacks", () => {
   describe("homoglyph attacks", () => {
     it("handles Cyrillic homoglyphs", () => {
       const profile: NostrProfile = {
-        // Cyrillic 'а' (U+0430) looks like Latin 'a'
+        // Cyrillic 'Ð°' (U+0430) looks like Latin 'a'
         name: "\u0430dmin", // Fake "admin"
       };
       const result = validateProfile(profile);
@@ -79,7 +79,7 @@ describe("profile unicode attacks", () => {
 
     it("handles Greek homoglyphs", () => {
       const profile: NostrProfile = {
-        // Greek 'ο' (U+03BF) looks like Latin 'o'
+        // Greek 'Î¿' (U+03BF) looks like Latin 'o'
         name: "b\u03BFt", // Looks like "bot"
       };
       const result = validateProfile(profile);
@@ -90,7 +90,7 @@ describe("profile unicode attacks", () => {
   describe("combining characters", () => {
     it("handles combining diacritics", () => {
       const profile: NostrProfile = {
-        name: "cafe\u0301", // 'e' + combining acute = 'é'
+        name: "cafe\u0301", // 'e' + combining acute = 'Ã©'
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -98,7 +98,7 @@ describe("profile unicode attacks", () => {
     });
 
     it("handles excessive combining characters (Zalgo text)", () => {
-      const zalgo = "t̷̢̧̨̡̛̛̛͎̩̝̪̲̲̞̠̹̗̩͓̬̱̪̦͙̬̲̤͙̱̫̝̪̱̫̯̬̭̠̖̲̥̖̫̫̤͇̪̣̫̪̖̱̯̣͎̯̲̱̤̪̣̖̲̪̯͓̖̤̫̫̲̱̲̫̲̖̫̪̯̱̱̪̖̯e̶̡̧̨̧̛̛̛̖̪̯̱̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪s̶̨̧̛̛̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯̖̪̯̖̪̱̪̯t";
+      const zalgo = "tÌ·Ì¢Ì§Ì¨Ì¡Ì›Ì›Ì›ÍŽÌ©ÌÌªÌ²Ì²ÌžÌ Ì¹Ì—Ì©Í“Ì¬Ì±ÌªÌ¦Í™Ì¬Ì²Ì¤Í™Ì±Ì«ÌÌªÌ±Ì«Ì¯Ì¬Ì­Ì Ì–Ì²Ì¥Ì–Ì«Ì«Ì¤Í‡ÌªÌ£Ì«ÌªÌ–Ì±Ì¯Ì£ÍŽÌ¯Ì²Ì±Ì¤ÌªÌ£Ì–Ì²ÌªÌ¯Í“Ì–Ì¤Ì«Ì«Ì²Ì±Ì²Ì«Ì²Ì–Ì«ÌªÌ¯Ì±Ì±ÌªÌ–Ì¯eÌ¶Ì¡Ì§Ì¨Ì§Ì›Ì›Ì›Ì–ÌªÌ¯Ì±ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªsÌ¶Ì¨Ì§Ì›Ì›Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯Ì–ÌªÌ¯Ì–ÌªÌ±ÌªÌ¯t";
       const profile: NostrProfile = {
         name: zalgo.slice(0, 256), // Truncate to fit limit
       };
@@ -111,8 +111,8 @@ describe("profile unicode attacks", () => {
   describe("CJK and other scripts", () => {
     it("handles Chinese characters", () => {
       const profile: NostrProfile = {
-        name: "中文用户",
-        about: "我是一个机器人",
+        name: "ä¸­æ–‡ç”¨æˆ·",
+        about: "æˆ‘æ˜¯ä¸€ä¸ªæœºå™¨äºº",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -120,8 +120,8 @@ describe("profile unicode attacks", () => {
 
     it("handles Japanese hiragana and katakana", () => {
       const profile: NostrProfile = {
-        name: "ボット",
-        about: "これはテストです",
+        name: "ãƒœãƒƒãƒˆ",
+        about: "ã“ã‚Œã¯ãƒ†ã‚¹ãƒˆã§ã™",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -129,7 +129,7 @@ describe("profile unicode attacks", () => {
 
     it("handles Korean characters", () => {
       const profile: NostrProfile = {
-        name: "한국어사용자",
+        name: "í•œêµ­ì–´ì‚¬ìš©ìž",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -137,8 +137,8 @@ describe("profile unicode attacks", () => {
 
     it("handles Arabic text", () => {
       const profile: NostrProfile = {
-        name: "مستخدم",
-        about: "مرحبا بالعالم",
+        name: "Ù…Ø³ØªØ®Ø¯Ù…",
+        about: "Ù…Ø±Ø­Ø¨Ø§ Ø¨Ø§Ù„Ø¹Ø§Ù„Ù…",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -146,7 +146,7 @@ describe("profile unicode attacks", () => {
 
     it("handles Hebrew text", () => {
       const profile: NostrProfile = {
-        name: "משתמש",
+        name: "×ž×©×ª×ž×©",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -154,7 +154,7 @@ describe("profile unicode attacks", () => {
 
     it("handles Thai text", () => {
       const profile: NostrProfile = {
-        name: "ผู้ใช้",
+        name: "à¸œà¸¹à¹‰à¹ƒà¸Šà¹‰",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -164,7 +164,7 @@ describe("profile unicode attacks", () => {
   describe("emoji edge cases", () => {
     it("handles emoji sequences (ZWJ)", () => {
       const profile: NostrProfile = {
-        name: "👨‍👩‍👧‍👦", // Family emoji using ZWJ
+        name: "ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦", // Family emoji using ZWJ
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -172,7 +172,7 @@ describe("profile unicode attacks", () => {
 
     it("handles flag emojis", () => {
       const profile: NostrProfile = {
-        name: "🇺🇸🇯🇵🇬🇧",
+        name: "ðŸ‡ºðŸ‡¸ðŸ‡¯ðŸ‡µðŸ‡¬ðŸ‡§",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -180,7 +180,7 @@ describe("profile unicode attacks", () => {
 
     it("handles skin tone modifiers", () => {
       const profile: NostrProfile = {
-        name: "👋🏻👋🏽👋🏿",
+        name: "ðŸ‘‹ðŸ»ðŸ‘‹ðŸ½ðŸ‘‹ðŸ¿",
       };
       const result = validateProfile(profile);
       expect(result.valid).toBe(true);
@@ -475,3 +475,4 @@ describe("event creation edge cases", () => {
     expect(parsed.about).toContain("\\");
   });
 });
+

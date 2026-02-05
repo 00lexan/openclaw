@@ -1,4 +1,4 @@
-export { resolveAgentDir, resolveAgentWorkspaceDir } from "./agents/agent-scope.ts";
+﻿export { resolveAgentDir, resolveAgentWorkspaceDir } from "./agents/agent-scope.ts";
 
 export { DEFAULT_MODEL, DEFAULT_PROVIDER } from "./agents/defaults.ts";
 export { resolveAgentIdentity } from "./agents/identity.ts";
@@ -12,3 +12,4 @@ export {
   saveSessionStore,
   resolveSessionFilePath,
 } from "./config/sessions.ts";
+

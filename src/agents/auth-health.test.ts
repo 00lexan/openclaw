@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 import { buildAuthHealthSummary, DEFAULT_OAUTH_WARN_MS } from "./auth-health.js";
 
 describe("buildAuthHealthSummary", () => {
@@ -87,3 +87,4 @@ describe("buildAuthHealthSummary", () => {
     expect(statuses["google:no-refresh"]).toBe("expired");
   });
 });
+

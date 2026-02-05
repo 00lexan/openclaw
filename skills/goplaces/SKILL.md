@@ -1,12 +1,12 @@
----
+﻿---
 name: goplaces
 description: Query Google Places API (New) via the goplaces CLI for text search, place details, resolve, and reviews. Use for human-friendly place lookup or JSON output for scripts.
 homepage: https://github.com/steipete/goplaces
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "📍",
+        "emoji": "ðŸ“",
         "requires": { "bins": ["goplaces"], "env": ["GOOGLE_PLACES_API_KEY"] },
         "primaryEnv": "GOOGLE_PLACES_API_KEY",
         "install":
@@ -48,5 +48,6 @@ Common commands
 Notes
 
 - `--no-color` or `NO_COLOR` disables ANSI color.
-- Price levels: 0..4 (free → very expensive).
+- Price levels: 0..4 (free â†’ very expensive).
 - Type filter sends only the first `--type` value (API accepts one).
+

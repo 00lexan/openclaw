@@ -1,8 +1,8 @@
-import {
+﻿import {
   resolveChannelMediaMaxBytes,
-  type OpenClawConfig,
+  type Config,
   type PluginRuntime,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { MSTeamsAccessTokenProvider } from "./attachments/types.js";
 import type {
   MSTeamsConversationStore,
@@ -35,9 +35,9 @@ export type MSTeamsProactiveContext = {
 /**
  * Parse the target value into a conversation reference lookup key.
  * Supported formats:
- * - conversation:19:abc@thread.tacv2 → lookup by conversation ID
- * - user:aad-object-id → lookup by user AAD object ID
- * - 19:abc@thread.tacv2 → direct conversation ID
+ * - conversation:19:abc@thread.tacv2 â†’ lookup by conversation ID
+ * - user:aad-object-id â†’ lookup by user AAD object ID
+ * - 19:abc@thread.tacv2 â†’ direct conversation ID
  */
 function parseRecipient(to: string): {
   type: "conversation" | "user";
@@ -92,7 +92,7 @@ async function findConversationReference(recipient: {
 }
 
 export async function resolveMSTeamsSendContext(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   to: string;
 }): Promise<MSTeamsProactiveContext> {
   const msteamsCfg = params.cfg.channels?.msteams;
@@ -162,3 +162,4 @@ export async function resolveMSTeamsSendContext(params: {
     mediaMaxBytes,
   };
 }
+

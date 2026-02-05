@@ -1,4 +1,4 @@
-export function missingTargetMessage(provider: string, hint?: string): string {
+﻿export function missingTargetMessage(provider: string, hint?: string): string {
   return `Delivering to ${provider} requires target${formatTargetHint(hint)}`;
 }
 
@@ -28,3 +28,4 @@ function formatTargetHint(hint?: string, withLabel = false): string {
   }
   return withLabel ? ` Hint: ${hint}` : ` ${hint}`;
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { fetchRemoteMedia } from "./fetch.js";
 
 function makeStream(chunks: Uint8Array[]) {
@@ -60,3 +60,4 @@ describe("fetchRemoteMedia", () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
 });
+

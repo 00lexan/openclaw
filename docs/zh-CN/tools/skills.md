@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 添加或修改 Skills
-  - 更改 Skills 门控或加载规则
-summary: Skills：托管与工作区、门控规则以及配置/环境变量连接
+  - æ·»åŠ æˆ–ä¿®æ”¹ Skills
+  - æ›´æ”¹ Skills é—¨æŽ§æˆ–åŠ è½½è§„åˆ™
+summary: Skillsï¼šæ‰˜ç®¡ä¸Žå·¥ä½œåŒºã€é—¨æŽ§è§„åˆ™ä»¥åŠé…ç½®/çŽ¯å¢ƒå˜é‡è¿žæŽ¥
 title: Skills
 x-i18n:
   generated_at: "2026-02-03T10:12:27Z"
@@ -13,63 +13,63 @@ x-i18n:
   workflow: 15
 ---
 
-# Skills（OpenClaw）
+# Skillsï¼ˆï¼‰
 
-OpenClaw 使用**兼容 [AgentSkills](https://agentskills.io)** 的 Skills 文件夹来教智能体如何使用工具。每个 Skills 是一个包含带有 YAML frontmatter 和说明的 `SKILL.md` 的目录。OpenClaw 加载**内置 Skills** 以及可选的本地覆盖，并在加载时根据环境、配置和二进制文件存在情况进行过滤。
+ ä½¿ç”¨**å…¼å®¹ [AgentSkills](https://agentskills.io)** çš„ Skills æ–‡ä»¶å¤¹æ¥æ•™æ™ºèƒ½ä½“å¦‚ä½•ä½¿ç”¨å·¥å…·ã€‚æ¯ä¸ª Skills æ˜¯ä¸€ä¸ªåŒ…å«å¸¦æœ‰ YAML frontmatter å’Œè¯´æ˜Žçš„ `SKILL.md` çš„ç›®å½•ã€‚ åŠ è½½**å†…ç½® Skills** ä»¥åŠå¯é€‰çš„æœ¬åœ°è¦†ç›–ï¼Œå¹¶åœ¨åŠ è½½æ—¶æ ¹æ®çŽ¯å¢ƒã€é…ç½®å’ŒäºŒè¿›åˆ¶æ–‡ä»¶å­˜åœ¨æƒ…å†µè¿›è¡Œè¿‡æ»¤ã€‚
 
-## 位置和优先级
+## ä½ç½®å’Œä¼˜å…ˆçº§
 
-Skills 从**三个**位置加载：
+Skills ä»Ž**ä¸‰ä¸ª**ä½ç½®åŠ è½½ï¼š
 
-1. **内置 Skills**：随安装包一起发布（npm 包或 OpenClaw.app）
-2. **托管/本地 Skills**：`~/.openclaw/skills`
-3. **工作区 Skills**：`<workspace>/skills`
+1. **å†…ç½® Skills**ï¼šéšå®‰è£…åŒ…ä¸€èµ·å‘å¸ƒï¼ˆnpm åŒ…æˆ– .appï¼‰
+2. **æ‰˜ç®¡/æœ¬åœ° Skills**ï¼š`~/./skills`
+3. **å·¥ä½œåŒº Skills**ï¼š`<workspace>/skills`
 
-如果 Skills 名称冲突，优先级为：
+å¦‚æžœ Skills åç§°å†²çªï¼Œä¼˜å…ˆçº§ä¸ºï¼š
 
-`<workspace>/skills`（最高）→ `~/.openclaw/skills` → 内置 Skills（最低）
+`<workspace>/skills`ï¼ˆæœ€é«˜ï¼‰â†’ `~/./skills` â†’ å†…ç½® Skillsï¼ˆæœ€ä½Žï¼‰
 
-此外，你可以通过 `~/.openclaw/openclaw.json` 中的 `skills.load.extraDirs` 配置额外的 Skills 文件夹（最低优先级）。
+æ­¤å¤–ï¼Œä½ å¯ä»¥é€šè¿‡ `~/./.json` ä¸­çš„ `skills.load.extraDirs` é…ç½®é¢å¤–çš„ Skills æ–‡ä»¶å¤¹ï¼ˆæœ€ä½Žä¼˜å…ˆçº§ï¼‰ã€‚
 
-## 单智能体 vs 共享 Skills
+## å•æ™ºèƒ½ä½“ vs å…±äº« Skills
 
-在**多智能体**设置中，每个智能体有自己的工作区。这意味着：
+åœ¨**å¤šæ™ºèƒ½ä½“**è®¾ç½®ä¸­ï¼Œæ¯ä¸ªæ™ºèƒ½ä½“æœ‰è‡ªå·±çš„å·¥ä½œåŒºã€‚è¿™æ„å‘³ç€ï¼š
 
-- **单智能体 Skills** 位于 `<workspace>/skills` 中，仅供该智能体使用。
-- **共享 Skills** 位于 `~/.openclaw/skills`（托管/本地），对同一机器上的**所有智能体**可见。
-- 如果你想要多个智能体使用一个通用的 Skills 包，也可以通过 `skills.load.extraDirs`（最低优先级）添加**共享文件夹**。
+- **å•æ™ºèƒ½ä½“ Skills** ä½äºŽ `<workspace>/skills` ä¸­ï¼Œä»…ä¾›è¯¥æ™ºèƒ½ä½“ä½¿ç”¨ã€‚
+- **å…±äº« Skills** ä½äºŽ `~/./skills`ï¼ˆæ‰˜ç®¡/æœ¬åœ°ï¼‰ï¼Œå¯¹åŒä¸€æœºå™¨ä¸Šçš„**æ‰€æœ‰æ™ºèƒ½ä½“**å¯è§ã€‚
+- å¦‚æžœä½ æƒ³è¦å¤šä¸ªæ™ºèƒ½ä½“ä½¿ç”¨ä¸€ä¸ªé€šç”¨çš„ Skills åŒ…ï¼Œä¹Ÿå¯ä»¥é€šè¿‡ `skills.load.extraDirs`ï¼ˆæœ€ä½Žä¼˜å…ˆçº§ï¼‰æ·»åŠ **å…±äº«æ–‡ä»¶å¤¹**ã€‚
 
-如果同一个 Skills 名称存在于多个位置，将应用通常的优先级规则：工作区优先，然后是托管/本地，最后是内置。
+å¦‚æžœåŒä¸€ä¸ª Skills åç§°å­˜åœ¨äºŽå¤šä¸ªä½ç½®ï¼Œå°†åº”ç”¨é€šå¸¸çš„ä¼˜å…ˆçº§è§„åˆ™ï¼šå·¥ä½œåŒºä¼˜å…ˆï¼Œç„¶åŽæ˜¯æ‰˜ç®¡/æœ¬åœ°ï¼Œæœ€åŽæ˜¯å†…ç½®ã€‚
 
-## 插件 + Skills
+## æ’ä»¶ + Skills
 
-插件可以通过在 `openclaw.plugin.json` 中列出 `skills` 目录（相对于插件根目录的路径）来发布自己的 Skills。插件 Skills 在插件启用时加载，并参与正常的 Skills 优先级规则。你可以通过插件配置条目上的 `metadata.openclaw.requires.config` 对它们进行门控。参见[插件](/plugin)了解发现/配置，以及[工具](/tools)了解这些 Skills 所教授的工具接口。
+æ’ä»¶å¯ä»¥é€šè¿‡åœ¨ `.plugin.json` ä¸­åˆ—å‡º `skills` ç›®å½•ï¼ˆç›¸å¯¹äºŽæ’ä»¶æ ¹ç›®å½•çš„è·¯å¾„ï¼‰æ¥å‘å¸ƒè‡ªå·±çš„ Skillsã€‚æ’ä»¶ Skills åœ¨æ’ä»¶å¯ç”¨æ—¶åŠ è½½ï¼Œå¹¶å‚ä¸Žæ­£å¸¸çš„ Skills ä¼˜å…ˆçº§è§„åˆ™ã€‚ä½ å¯ä»¥é€šè¿‡æ’ä»¶é…ç½®æ¡ç›®ä¸Šçš„ `metadata..requires.config` å¯¹å®ƒä»¬è¿›è¡Œé—¨æŽ§ã€‚å‚è§[æ’ä»¶](/plugin)äº†è§£å‘çŽ°/é…ç½®ï¼Œä»¥åŠ[å·¥å…·](/tools)äº†è§£è¿™äº› Skills æ‰€æ•™æŽˆçš„å·¥å…·æŽ¥å£ã€‚
 
-## ClawHub（安装 + 同步）
+## ClawHubï¼ˆå®‰è£… + åŒæ­¥ï¼‰
 
-ClawHub 是 OpenClaw 的公共 Skills 注册表。浏览 https://clawhub.com。使用它来发现、安装、更新和备份 Skills。完整指南：[ClawHub](/tools/clawhub)。
+ClawHub æ˜¯  çš„å…¬å…± Skills æ³¨å†Œè¡¨ã€‚æµè§ˆ https://clawhub.comã€‚ä½¿ç”¨å®ƒæ¥å‘çŽ°ã€å®‰è£…ã€æ›´æ–°å’Œå¤‡ä»½ Skillsã€‚å®Œæ•´æŒ‡å—ï¼š[ClawHub](/tools/clawhub)ã€‚
 
-常见流程：
+å¸¸è§æµç¨‹ï¼š
 
-- 将 Skills 安装到你的工作区：
+- å°† Skills å®‰è£…åˆ°ä½ çš„å·¥ä½œåŒºï¼š
   - `clawhub install <skill-slug>`
-- 更新所有已安装的 Skills：
+- æ›´æ–°æ‰€æœ‰å·²å®‰è£…çš„ Skillsï¼š
   - `clawhub update --all`
-- 同步（扫描 + 发布更新）：
+- åŒæ­¥ï¼ˆæ‰«æ + å‘å¸ƒæ›´æ–°ï¼‰ï¼š
   - `clawhub sync --all`
 
-默认情况下，`clawhub` 安装到当前工作目录下的 `./skills`（或回退到配置的 OpenClaw 工作区）。OpenClaw 在下一个会话中将其识别为 `<workspace>/skills`。
+é»˜è®¤æƒ…å†µä¸‹ï¼Œ`clawhub` å®‰è£…åˆ°å½“å‰å·¥ä½œç›®å½•ä¸‹çš„ `./skills`ï¼ˆæˆ–å›žé€€åˆ°é…ç½®çš„  å·¥ä½œåŒºï¼‰ã€‚ åœ¨ä¸‹ä¸€ä¸ªä¼šè¯ä¸­å°†å…¶è¯†åˆ«ä¸º `<workspace>/skills`ã€‚
 
-## 安全注意事项
+## å®‰å…¨æ³¨æ„äº‹é¡¹
 
-- 将第三方 Skills 视为**不受信任的代码**。启用前请阅读它们。
-- 对于不受信任的输入和高风险工具，优先使用沙箱隔离运行。参见[沙箱隔离](/gateway/sandboxing)。
-- `skills.entries.*.env` 和 `skills.entries.*.apiKey` 为该智能体轮次将秘密注入到**宿主机**进程中（而非沙箱）。将秘密保持在提示词和日志之外。
-- 有关更广泛的威胁模型和检查清单，参见[安全性](/gateway/security)。
+- å°†ç¬¬ä¸‰æ–¹ Skills è§†ä¸º**ä¸å—ä¿¡ä»»çš„ä»£ç **ã€‚å¯ç”¨å‰è¯·é˜…è¯»å®ƒä»¬ã€‚
+- å¯¹äºŽä¸å—ä¿¡ä»»çš„è¾“å…¥å’Œé«˜é£Žé™©å·¥å…·ï¼Œä¼˜å…ˆä½¿ç”¨æ²™ç®±éš”ç¦»è¿è¡Œã€‚å‚è§[æ²™ç®±éš”ç¦»](/gateway/sandboxing)ã€‚
+- `skills.entries.*.env` å’Œ `skills.entries.*.apiKey` ä¸ºè¯¥æ™ºèƒ½ä½“è½®æ¬¡å°†ç§˜å¯†æ³¨å…¥åˆ°**å®¿ä¸»æœº**è¿›ç¨‹ä¸­ï¼ˆè€Œéžæ²™ç®±ï¼‰ã€‚å°†ç§˜å¯†ä¿æŒåœ¨æç¤ºè¯å’Œæ—¥å¿—ä¹‹å¤–ã€‚
+- æœ‰å…³æ›´å¹¿æ³›çš„å¨èƒæ¨¡åž‹å’Œæ£€æŸ¥æ¸…å•ï¼Œå‚è§[å®‰å…¨æ€§](/gateway/security)ã€‚
 
-## 格式（AgentSkills + Pi 兼容）
+## æ ¼å¼ï¼ˆAgentSkills + Pi å…¼å®¹ï¼‰
 
-`SKILL.md` 必须至少包含：
+`SKILL.md` å¿…é¡»è‡³å°‘åŒ…å«ï¼š
 
 ```markdown
 ---
@@ -78,26 +78,26 @@ description: Generate or edit images via Gemini 3 Pro Image
 ---
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 我们遵循 AgentSkills 规范的布局/意图。
-- 内嵌智能体使用的解析器仅支持**单行** frontmatter 键。
-- `metadata` 应该是**单行 JSON 对象**。
-- 在说明中使用 `{baseDir}` 来引用 Skills 文件夹路径。
-- 可选的 frontmatter 键：
-  - `homepage` — 在 macOS Skills UI 中显示为"Website"的 URL（也支持通过 `metadata.openclaw.homepage`）。
-  - `user-invocable` — `true|false`（默认：`true`）。当为 `true` 时，Skills 作为用户斜杠命令暴露。
-  - `disable-model-invocation` — `true|false`（默认：`false`）。当为 `true` 时，Skills 从模型提示词中排除（仍可通过用户调用使用）。
-  - `command-dispatch` — `tool`（可选）。当设置为 `tool` 时，斜杠命令绕过模型直接调度到工具。
-  - `command-tool` — 当设置 `command-dispatch: tool` 时要调用的工具名称。
-  - `command-arg-mode` — `raw`（默认）。对于工具调度，将原始参数字符串转发到工具（无核心解析）。
+- æˆ‘ä»¬éµå¾ª AgentSkills è§„èŒƒçš„å¸ƒå±€/æ„å›¾ã€‚
+- å†…åµŒæ™ºèƒ½ä½“ä½¿ç”¨çš„è§£æžå™¨ä»…æ”¯æŒ**å•è¡Œ** frontmatter é”®ã€‚
+- `metadata` åº”è¯¥æ˜¯**å•è¡Œ JSON å¯¹è±¡**ã€‚
+- åœ¨è¯´æ˜Žä¸­ä½¿ç”¨ `{baseDir}` æ¥å¼•ç”¨ Skills æ–‡ä»¶å¤¹è·¯å¾„ã€‚
+- å¯é€‰çš„ frontmatter é”®ï¼š
+  - `homepage` â€” åœ¨ macOS Skills UI ä¸­æ˜¾ç¤ºä¸º"Website"çš„ URLï¼ˆä¹Ÿæ”¯æŒé€šè¿‡ `metadata..homepage`ï¼‰ã€‚
+  - `user-invocable` â€” `true|false`ï¼ˆé»˜è®¤ï¼š`true`ï¼‰ã€‚å½“ä¸º `true` æ—¶ï¼ŒSkills ä½œä¸ºç”¨æˆ·æ–œæ å‘½ä»¤æš´éœ²ã€‚
+  - `disable-model-invocation` â€” `true|false`ï¼ˆé»˜è®¤ï¼š`false`ï¼‰ã€‚å½“ä¸º `true` æ—¶ï¼ŒSkills ä»Žæ¨¡åž‹æç¤ºè¯ä¸­æŽ’é™¤ï¼ˆä»å¯é€šè¿‡ç”¨æˆ·è°ƒç”¨ä½¿ç”¨ï¼‰ã€‚
+  - `command-dispatch` â€” `tool`ï¼ˆå¯é€‰ï¼‰ã€‚å½“è®¾ç½®ä¸º `tool` æ—¶ï¼Œæ–œæ å‘½ä»¤ç»•è¿‡æ¨¡åž‹ç›´æŽ¥è°ƒåº¦åˆ°å·¥å…·ã€‚
+  - `command-tool` â€” å½“è®¾ç½® `command-dispatch: tool` æ—¶è¦è°ƒç”¨çš„å·¥å…·åç§°ã€‚
+  - `command-arg-mode` â€” `raw`ï¼ˆé»˜è®¤ï¼‰ã€‚å¯¹äºŽå·¥å…·è°ƒåº¦ï¼Œå°†åŽŸå§‹å‚æ•°å­—ç¬¦ä¸²è½¬å‘åˆ°å·¥å…·ï¼ˆæ— æ ¸å¿ƒè§£æžï¼‰ã€‚
 
-    工具使用以下参数调用：
-    `{ command: "<raw args>", commandName: "<slash command>", skillName: "<skill name>" }`。
+    å·¥å…·ä½¿ç”¨ä»¥ä¸‹å‚æ•°è°ƒç”¨ï¼š
+    `{ command: "<raw args>", commandName: "<slash command>", skillName: "<skill name>" }`ã€‚
 
-## 门控（加载时过滤）
+## é—¨æŽ§ï¼ˆåŠ è½½æ—¶è¿‡æ»¤ï¼‰
 
-OpenClaw 使用 `metadata`（单行 JSON）**在加载时过滤 Skills**：
+ ä½¿ç”¨ `metadata`ï¼ˆå•è¡Œ JSONï¼‰**åœ¨åŠ è½½æ—¶è¿‡æ»¤ Skills**ï¼š
 
 ```markdown
 ---
@@ -105,7 +105,7 @@ name: nano-banana-pro
 description: Generate or edit images via Gemini 3 Pro Image
 metadata:
   {
-    "openclaw":
+    "":
       {
         "requires": { "bins": ["uv"], "env": ["GEMINI_API_KEY"], "config": ["browser.enabled"] },
         "primaryEnv": "GEMINI_API_KEY",
@@ -114,25 +114,25 @@ metadata:
 ---
 ```
 
-`metadata.openclaw` 下的字段：
+`metadata.` ä¸‹çš„å­—æ®µï¼š
 
-- `always: true` — 始终包含该 Skills（跳过其他门控）。
-- `emoji` — macOS Skills UI 使用的可选表情符号。
-- `homepage` — 在 macOS Skills UI 中显示为"Website"的可选 URL。
-- `os` — 可选的平台列表（`darwin`、`linux`、`win32`）。如果设置，该 Skills 仅在这些操作系统上有资格。
-- `requires.bins` — 列表；每个都必须存在于 `PATH` 中。
-- `requires.anyBins` — 列表；至少一个必须存在于 `PATH` 中。
-- `requires.env` — 列表；环境变量必须存在**或**在配置中提供。
-- `requires.config` — `openclaw.json` 路径列表，必须为真值。
-- `primaryEnv` — 与 `skills.entries.<name>.apiKey` 关联的环境变量名称。
-- `install` — macOS Skills UI 使用的可选安装器规格数组（brew/node/go/uv/download）。
+- `always: true` â€” å§‹ç»ˆåŒ…å«è¯¥ Skillsï¼ˆè·³è¿‡å…¶ä»–é—¨æŽ§ï¼‰ã€‚
+- `emoji` â€” macOS Skills UI ä½¿ç”¨çš„å¯é€‰è¡¨æƒ…ç¬¦å·ã€‚
+- `homepage` â€” åœ¨ macOS Skills UI ä¸­æ˜¾ç¤ºä¸º"Website"çš„å¯é€‰ URLã€‚
+- `os` â€” å¯é€‰çš„å¹³å°åˆ—è¡¨ï¼ˆ`darwin`ã€`linux`ã€`win32`ï¼‰ã€‚å¦‚æžœè®¾ç½®ï¼Œè¯¥ Skills ä»…åœ¨è¿™äº›æ“ä½œç³»ç»Ÿä¸Šæœ‰èµ„æ ¼ã€‚
+- `requires.bins` â€” åˆ—è¡¨ï¼›æ¯ä¸ªéƒ½å¿…é¡»å­˜åœ¨äºŽ `PATH` ä¸­ã€‚
+- `requires.anyBins` â€” åˆ—è¡¨ï¼›è‡³å°‘ä¸€ä¸ªå¿…é¡»å­˜åœ¨äºŽ `PATH` ä¸­ã€‚
+- `requires.env` â€” åˆ—è¡¨ï¼›çŽ¯å¢ƒå˜é‡å¿…é¡»å­˜åœ¨**æˆ–**åœ¨é…ç½®ä¸­æä¾›ã€‚
+- `requires.config` â€” `.json` è·¯å¾„åˆ—è¡¨ï¼Œå¿…é¡»ä¸ºçœŸå€¼ã€‚
+- `primaryEnv` â€” ä¸Ž `skills.entries.<name>.apiKey` å…³è”çš„çŽ¯å¢ƒå˜é‡åç§°ã€‚
+- `install` â€” macOS Skills UI ä½¿ç”¨çš„å¯é€‰å®‰è£…å™¨è§„æ ¼æ•°ç»„ï¼ˆbrew/node/go/uv/downloadï¼‰ã€‚
 
-沙箱隔离注意事项：
+æ²™ç®±éš”ç¦»æ³¨æ„äº‹é¡¹ï¼š
 
-- `requires.bins` 在 Skills 加载时在**宿主机**上检查。
-- 如果智能体处于沙箱隔离状态，二进制文件也必须存在于**容器内部**。通过 `agents.defaults.sandbox.docker.setupCommand`（或自定义镜像）安装它。`setupCommand` 在容器创建后运行一次。包安装还需要网络出口、可写的根文件系统和沙箱中的 root 用户。示例：`summarize` Skills（`skills/summarize/SKILL.md`）需要 `summarize` CLI 在沙箱容器中才能运行。
+- `requires.bins` åœ¨ Skills åŠ è½½æ—¶åœ¨**å®¿ä¸»æœº**ä¸Šæ£€æŸ¥ã€‚
+- å¦‚æžœæ™ºèƒ½ä½“å¤„äºŽæ²™ç®±éš”ç¦»çŠ¶æ€ï¼ŒäºŒè¿›åˆ¶æ–‡ä»¶ä¹Ÿå¿…é¡»å­˜åœ¨äºŽ**å®¹å™¨å†…éƒ¨**ã€‚é€šè¿‡ `agents.defaults.sandbox.docker.setupCommand`ï¼ˆæˆ–è‡ªå®šä¹‰é•œåƒï¼‰å®‰è£…å®ƒã€‚`setupCommand` åœ¨å®¹å™¨åˆ›å»ºåŽè¿è¡Œä¸€æ¬¡ã€‚åŒ…å®‰è£…è¿˜éœ€è¦ç½‘ç»œå‡ºå£ã€å¯å†™çš„æ ¹æ–‡ä»¶ç³»ç»Ÿå’Œæ²™ç®±ä¸­çš„ root ç”¨æˆ·ã€‚ç¤ºä¾‹ï¼š`summarize` Skillsï¼ˆ`skills/summarize/SKILL.md`ï¼‰éœ€è¦ `summarize` CLI åœ¨æ²™ç®±å®¹å™¨ä¸­æ‰èƒ½è¿è¡Œã€‚
 
-安装器示例：
+å®‰è£…å™¨ç¤ºä¾‹ï¼š
 
 ```markdown
 ---
@@ -140,9 +140,9 @@ name: gemini
 description: Use Gemini CLI for coding assistance and Google search lookups.
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "♊️",
+        "emoji": "â™Šï¸",
         "requires": { "bins": ["gemini"] },
         "install":
           [
@@ -159,20 +159,20 @@ metadata:
 ---
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 如果列出了多个安装器，Gateway 网关会选择**单个**首选选项（可用时选择 brew，否则选择 node）。
-- 如果所有安装器都是 `download`，OpenClaw 会列出每个条目，以便你查看可用的构件。
-- 安装器规格可以包含 `os: ["darwin"|"linux"|"win32"]` 按平台过滤选项。
-- Node 安装遵循 `openclaw.json` 中的 `skills.install.nodeManager`（默认：npm；选项：npm/pnpm/yarn/bun）。这仅影响 **Skills 安装**；Gateway 网关运行时应仍为 Node（不推荐 Bun 用于 WhatsApp/Telegram）。
-- Go 安装：如果缺少 `go` 且 `brew` 可用，Gateway 网关会首先通过 Homebrew 安装 Go，并在可能时将 `GOBIN` 设置为 Homebrew 的 `bin`。
-- Download 安装：`url`（必填）、`archive`（`tar.gz` | `tar.bz2` | `zip`）、`extract`（默认：检测到归档时自动）、`stripComponents`、`targetDir`（默认：`~/.openclaw/tools/<skillKey>`）。
+- å¦‚æžœåˆ—å‡ºäº†å¤šä¸ªå®‰è£…å™¨ï¼ŒGateway ç½‘å…³ä¼šé€‰æ‹©**å•ä¸ª**é¦–é€‰é€‰é¡¹ï¼ˆå¯ç”¨æ—¶é€‰æ‹© brewï¼Œå¦åˆ™é€‰æ‹© nodeï¼‰ã€‚
+- å¦‚æžœæ‰€æœ‰å®‰è£…å™¨éƒ½æ˜¯ `download`ï¼Œ ä¼šåˆ—å‡ºæ¯ä¸ªæ¡ç›®ï¼Œä»¥ä¾¿ä½ æŸ¥çœ‹å¯ç”¨çš„æž„ä»¶ã€‚
+- å®‰è£…å™¨è§„æ ¼å¯ä»¥åŒ…å« `os: ["darwin"|"linux"|"win32"]` æŒ‰å¹³å°è¿‡æ»¤é€‰é¡¹ã€‚
+- Node å®‰è£…éµå¾ª `.json` ä¸­çš„ `skills.install.nodeManager`ï¼ˆé»˜è®¤ï¼šnpmï¼›é€‰é¡¹ï¼šnpm/pnpm/yarn/bunï¼‰ã€‚è¿™ä»…å½±å“ **Skills å®‰è£…**ï¼›Gateway ç½‘å…³è¿è¡Œæ—¶åº”ä»ä¸º Nodeï¼ˆä¸æŽ¨è Bun ç”¨äºŽ WhatsApp/Telegramï¼‰ã€‚
+- Go å®‰è£…ï¼šå¦‚æžœç¼ºå°‘ `go` ä¸” `brew` å¯ç”¨ï¼ŒGateway ç½‘å…³ä¼šé¦–å…ˆé€šè¿‡ Homebrew å®‰è£… Goï¼Œå¹¶åœ¨å¯èƒ½æ—¶å°† `GOBIN` è®¾ç½®ä¸º Homebrew çš„ `bin`ã€‚
+- Download å®‰è£…ï¼š`url`ï¼ˆå¿…å¡«ï¼‰ã€`archive`ï¼ˆ`tar.gz` | `tar.bz2` | `zip`ï¼‰ã€`extract`ï¼ˆé»˜è®¤ï¼šæ£€æµ‹åˆ°å½’æ¡£æ—¶è‡ªåŠ¨ï¼‰ã€`stripComponents`ã€`targetDir`ï¼ˆé»˜è®¤ï¼š`~/./tools/<skillKey>`ï¼‰ã€‚
 
-如果没有 `metadata.openclaw`，该 Skills 始终有资格（除非在配置中禁用或被 `skills.allowBundled` 阻止用于内置 Skills）。
+å¦‚æžœæ²¡æœ‰ `metadata.`ï¼Œè¯¥ Skills å§‹ç»ˆæœ‰èµ„æ ¼ï¼ˆé™¤éžåœ¨é…ç½®ä¸­ç¦ç”¨æˆ–è¢« `skills.allowBundled` é˜»æ­¢ç”¨äºŽå†…ç½® Skillsï¼‰ã€‚
 
-## 配置覆盖（`~/.openclaw/openclaw.json`）
+## é…ç½®è¦†ç›–ï¼ˆ`~/./.json`ï¼‰
 
-内置/托管 Skills 可以被切换并提供环境变量值：
+å†…ç½®/æ‰˜ç®¡ Skills å¯ä»¥è¢«åˆ‡æ¢å¹¶æä¾›çŽ¯å¢ƒå˜é‡å€¼ï¼š
 
 ```json5
 {
@@ -196,44 +196,44 @@ metadata:
 }
 ```
 
-注意：如果 Skills 名称包含连字符，请用引号括起键名（JSON5 允许带引号的键名）。
+æ³¨æ„ï¼šå¦‚æžœ Skills åç§°åŒ…å«è¿žå­—ç¬¦ï¼Œè¯·ç”¨å¼•å·æ‹¬èµ·é”®åï¼ˆJSON5 å…è®¸å¸¦å¼•å·çš„é”®åï¼‰ã€‚
 
-配置键默认匹配 **Skills 名称**。如果 Skills 定义了 `metadata.openclaw.skillKey`，请在 `skills.entries` 下使用该键。
+é…ç½®é”®é»˜è®¤åŒ¹é… **Skills åç§°**ã€‚å¦‚æžœ Skills å®šä¹‰äº† `metadata..skillKey`ï¼Œè¯·åœ¨ `skills.entries` ä¸‹ä½¿ç”¨è¯¥é”®ã€‚
 
-规则：
+è§„åˆ™ï¼š
 
-- `enabled: false` 禁用该 Skills，即使它是内置/已安装的。
-- `env`：**仅在**变量在进程中尚未设置时注入。
-- `apiKey`：为声明 `metadata.openclaw.primaryEnv` 的 Skills 提供的便捷字段。
-- `config`：用于自定义单 Skills 字段的可选容器；自定义键必须放在这里。
-- `allowBundled`：可选的仅用于**内置** Skills 的白名单。如果设置，只有列表中的内置 Skills 才有资格（托管/工作区 Skills 不受影响）。
+- `enabled: false` ç¦ç”¨è¯¥ Skillsï¼Œå³ä½¿å®ƒæ˜¯å†…ç½®/å·²å®‰è£…çš„ã€‚
+- `env`ï¼š**ä»…åœ¨**å˜é‡åœ¨è¿›ç¨‹ä¸­å°šæœªè®¾ç½®æ—¶æ³¨å…¥ã€‚
+- `apiKey`ï¼šä¸ºå£°æ˜Ž `metadata..primaryEnv` çš„ Skills æä¾›çš„ä¾¿æ·å­—æ®µã€‚
+- `config`ï¼šç”¨äºŽè‡ªå®šä¹‰å• Skills å­—æ®µçš„å¯é€‰å®¹å™¨ï¼›è‡ªå®šä¹‰é”®å¿…é¡»æ”¾åœ¨è¿™é‡Œã€‚
+- `allowBundled`ï¼šå¯é€‰çš„ä»…ç”¨äºŽ**å†…ç½®** Skills çš„ç™½åå•ã€‚å¦‚æžœè®¾ç½®ï¼Œåªæœ‰åˆ—è¡¨ä¸­çš„å†…ç½® Skills æ‰æœ‰èµ„æ ¼ï¼ˆæ‰˜ç®¡/å·¥ä½œåŒº Skills ä¸å—å½±å“ï¼‰ã€‚
 
-## 环境变量注入（每次智能体运行）
+## çŽ¯å¢ƒå˜é‡æ³¨å…¥ï¼ˆæ¯æ¬¡æ™ºèƒ½ä½“è¿è¡Œï¼‰
 
-当智能体运行开始时，OpenClaw：
+å½“æ™ºèƒ½ä½“è¿è¡Œå¼€å§‹æ—¶ï¼Œï¼š
 
-1. 读取 Skills 元数据。
-2. 将任何 `skills.entries.<key>.env` 或 `skills.entries.<key>.apiKey` 应用到 `process.env`。
-3. 使用**有资格的** Skills 构建系统提示词。
-4. 在运行结束后恢复原始环境。
+1. è¯»å– Skills å…ƒæ•°æ®ã€‚
+2. å°†ä»»ä½• `skills.entries.<key>.env` æˆ– `skills.entries.<key>.apiKey` åº”ç”¨åˆ° `process.env`ã€‚
+3. ä½¿ç”¨**æœ‰èµ„æ ¼çš„** Skills æž„å»ºç³»ç»Ÿæç¤ºè¯ã€‚
+4. åœ¨è¿è¡Œç»“æŸåŽæ¢å¤åŽŸå§‹çŽ¯å¢ƒã€‚
 
-这是**限定于智能体运行范围内的**，不是全局 shell 环境。
+è¿™æ˜¯**é™å®šäºŽæ™ºèƒ½ä½“è¿è¡ŒèŒƒå›´å†…çš„**ï¼Œä¸æ˜¯å…¨å±€ shell çŽ¯å¢ƒã€‚
 
-## 会话快照（性能）
+## ä¼šè¯å¿«ç…§ï¼ˆæ€§èƒ½ï¼‰
 
-OpenClaw 在**会话开始时**对有资格的 Skills 进行快照，并在同一会话的后续轮次中重用该列表。对 Skills 或配置的更改在下一个新会话中生效。
+ åœ¨**ä¼šè¯å¼€å§‹æ—¶**å¯¹æœ‰èµ„æ ¼çš„ Skills è¿›è¡Œå¿«ç…§ï¼Œå¹¶åœ¨åŒä¸€ä¼šè¯çš„åŽç»­è½®æ¬¡ä¸­é‡ç”¨è¯¥åˆ—è¡¨ã€‚å¯¹ Skills æˆ–é…ç½®çš„æ›´æ”¹åœ¨ä¸‹ä¸€ä¸ªæ–°ä¼šè¯ä¸­ç”Ÿæ•ˆã€‚
 
-当 Skills 监视器启用或出现新的有资格的远程节点时，Skills 也可以在会话中刷新（见下文）。将此视为**热重载**：刷新后的列表会在下一个智能体轮次被获取。
+å½“ Skills ç›‘è§†å™¨å¯ç”¨æˆ–å‡ºçŽ°æ–°çš„æœ‰èµ„æ ¼çš„è¿œç¨‹èŠ‚ç‚¹æ—¶ï¼ŒSkills ä¹Ÿå¯ä»¥åœ¨ä¼šè¯ä¸­åˆ·æ–°ï¼ˆè§ä¸‹æ–‡ï¼‰ã€‚å°†æ­¤è§†ä¸º**çƒ­é‡è½½**ï¼šåˆ·æ–°åŽçš„åˆ—è¡¨ä¼šåœ¨ä¸‹ä¸€ä¸ªæ™ºèƒ½ä½“è½®æ¬¡è¢«èŽ·å–ã€‚
 
-## 远程 macOS 节点（Linux Gateway 网关）
+## è¿œç¨‹ macOS èŠ‚ç‚¹ï¼ˆLinux Gateway ç½‘å…³ï¼‰
 
-如果 Gateway 网关运行在 Linux 上但连接了一个**允许 `system.run` 的 macOS 节点**（Exec 批准安全设置未设为 `deny`），当所需的二进制文件存在于该节点上时，OpenClaw 可以将仅限 macOS 的 Skills 视为有资格。智能体应通过 `nodes` 工具（通常是 `nodes.run`）执行这些 Skills。
+å¦‚æžœ Gateway ç½‘å…³è¿è¡Œåœ¨ Linux ä¸Šä½†è¿žæŽ¥äº†ä¸€ä¸ª**å…è®¸ `system.run` çš„ macOS èŠ‚ç‚¹**ï¼ˆExec æ‰¹å‡†å®‰å…¨è®¾ç½®æœªè®¾ä¸º `deny`ï¼‰ï¼Œå½“æ‰€éœ€çš„äºŒè¿›åˆ¶æ–‡ä»¶å­˜åœ¨äºŽè¯¥èŠ‚ç‚¹ä¸Šæ—¶ï¼Œ å¯ä»¥å°†ä»…é™ macOS çš„ Skills è§†ä¸ºæœ‰èµ„æ ¼ã€‚æ™ºèƒ½ä½“åº”é€šè¿‡ `nodes` å·¥å…·ï¼ˆé€šå¸¸æ˜¯ `nodes.run`ï¼‰æ‰§è¡Œè¿™äº› Skillsã€‚
 
-这依赖于节点报告其命令支持以及通过 `system.run` 进行的二进制文件探测。如果 macOS 节点稍后离线，Skills 仍然可见；调用可能会失败，直到节点重新连接。
+è¿™ä¾èµ–äºŽèŠ‚ç‚¹æŠ¥å‘Šå…¶å‘½ä»¤æ”¯æŒä»¥åŠé€šè¿‡ `system.run` è¿›è¡Œçš„äºŒè¿›åˆ¶æ–‡ä»¶æŽ¢æµ‹ã€‚å¦‚æžœ macOS èŠ‚ç‚¹ç¨åŽç¦»çº¿ï¼ŒSkills ä»ç„¶å¯è§ï¼›è°ƒç”¨å¯èƒ½ä¼šå¤±è´¥ï¼Œç›´åˆ°èŠ‚ç‚¹é‡æ–°è¿žæŽ¥ã€‚
 
-## Skills 监视器（自动刷新）
+## Skills ç›‘è§†å™¨ï¼ˆè‡ªåŠ¨åˆ·æ–°ï¼‰
 
-默认情况下，OpenClaw 监视 Skills 文件夹，并在 `SKILL.md` 文件更改时更新 Skills 快照。在 `skills.load` 下配置：
+é»˜è®¤æƒ…å†µä¸‹ï¼Œ ç›‘è§† Skills æ–‡ä»¶å¤¹ï¼Œå¹¶åœ¨ `SKILL.md` æ–‡ä»¶æ›´æ”¹æ—¶æ›´æ–° Skills å¿«ç…§ã€‚åœ¨ `skills.load` ä¸‹é…ç½®ï¼š
 
 ```json5
 {
@@ -246,34 +246,35 @@ OpenClaw 在**会话开始时**对有资格的 Skills 进行快照，并在同�
 }
 ```
 
-## Token 影响（Skills 列表）
+## Token å½±å“ï¼ˆSkills åˆ—è¡¨ï¼‰
 
-当 Skills 有资格时，OpenClaw 将可用 Skills 的紧凑 XML 列表注入到系统提示词中（通过 `pi-coding-agent` 中的 `formatSkillsForPrompt`）。成本是确定性的：
+å½“ Skills æœ‰èµ„æ ¼æ—¶ï¼Œ å°†å¯ç”¨ Skills çš„ç´§å‡‘ XML åˆ—è¡¨æ³¨å…¥åˆ°ç³»ç»Ÿæç¤ºè¯ä¸­ï¼ˆé€šè¿‡ `pi-coding-agent` ä¸­çš„ `formatSkillsForPrompt`ï¼‰ã€‚æˆæœ¬æ˜¯ç¡®å®šæ€§çš„ï¼š
 
-- **基础开销（仅当 ≥1 个 Skills 时）：** 195 字符。
-- **每个 Skills：** 97 字符 + XML 转义的 `<name>`、`<description>` 和 `<location>` 值的长度。
+- **åŸºç¡€å¼€é”€ï¼ˆä»…å½“ â‰¥1 ä¸ª Skills æ—¶ï¼‰ï¼š** 195 å­—ç¬¦ã€‚
+- **æ¯ä¸ª Skillsï¼š** 97 å­—ç¬¦ + XML è½¬ä¹‰çš„ `<name>`ã€`<description>` å’Œ `<location>` å€¼çš„é•¿åº¦ã€‚
 
-公式（字符）：
+å…¬å¼ï¼ˆå­—ç¬¦ï¼‰ï¼š
 
 ```
-total = 195 + Σ (97 + len(name_escaped) + len(description_escaped) + len(location_escaped))
+total = 195 + Î£ (97 + len(name_escaped) + len(description_escaped) + len(location_escaped))
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- XML 转义将 `& < > " '` 扩展为实体（`&amp;`、`&lt;` 等），增加长度。
-- Token 数量因模型分词器而异。粗略的 OpenAI 风格估计是 ~4 字符/token，所以**每个 Skills 97 字符 ≈ 24 token** 加上你的实际字段长度。
+- XML è½¬ä¹‰å°† `& < > " '` æ‰©å±•ä¸ºå®žä½“ï¼ˆ`&amp;`ã€`&lt;` ç­‰ï¼‰ï¼Œå¢žåŠ é•¿åº¦ã€‚
+- Token æ•°é‡å› æ¨¡åž‹åˆ†è¯å™¨è€Œå¼‚ã€‚ç²—ç•¥çš„ OpenAI é£Žæ ¼ä¼°è®¡æ˜¯ ~4 å­—ç¬¦/tokenï¼Œæ‰€ä»¥**æ¯ä¸ª Skills 97 å­—ç¬¦ â‰ˆ 24 token** åŠ ä¸Šä½ çš„å®žé™…å­—æ®µé•¿åº¦ã€‚
 
-## 托管 Skills 生命周期
+## æ‰˜ç®¡ Skills ç”Ÿå‘½å‘¨æœŸ
 
-OpenClaw 作为安装的一部分（npm 包或 OpenClaw.app）发布一组基线 Skills 作为**内置 Skills**。`~/.openclaw/skills` 用于本地覆盖（例如，在不更改内置副本的情况下固定/修补 Skills）。工作区 Skills 由用户拥有，在名称冲突时覆盖两者。
+ ä½œä¸ºå®‰è£…çš„ä¸€éƒ¨åˆ†ï¼ˆnpm åŒ…æˆ– .appï¼‰å‘å¸ƒä¸€ç»„åŸºçº¿ Skills ä½œä¸º**å†…ç½® Skills**ã€‚`~/./skills` ç”¨äºŽæœ¬åœ°è¦†ç›–ï¼ˆä¾‹å¦‚ï¼Œåœ¨ä¸æ›´æ”¹å†…ç½®å‰¯æœ¬çš„æƒ…å†µä¸‹å›ºå®š/ä¿®è¡¥ Skillsï¼‰ã€‚å·¥ä½œåŒº Skills ç”±ç”¨æˆ·æ‹¥æœ‰ï¼Œåœ¨åç§°å†²çªæ—¶è¦†ç›–ä¸¤è€…ã€‚
 
-## 配置参考
+## é…ç½®å‚è€ƒ
 
-参见 [Skills 配置](/tools/skills-config)了解完整的配置 schema。
+å‚è§ [Skills é…ç½®](/tools/skills-config)äº†è§£å®Œæ•´çš„é…ç½® schemaã€‚
 
-## 寻找更多 Skills？
+## å¯»æ‰¾æ›´å¤š Skillsï¼Ÿ
 
-浏览 https://clawhub.com。
+æµè§ˆ https://clawhub.comã€‚
 
 ---
+

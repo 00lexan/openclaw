@@ -1,4 +1,4 @@
-export type ZaloAccountConfig = {
+﻿export type ZaloAccountConfig = {
   /** Optional display name for this account (used in CLI/UI lists). */
   name?: string;
   /** If false, do not start this Zalo account. Default: true. */
@@ -42,3 +42,4 @@ export type ResolvedZaloAccount = {
   tokenSource: ZaloTokenSource;
   config: ZaloAccountConfig;
 };
+

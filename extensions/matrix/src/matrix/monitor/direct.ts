@@ -1,4 +1,4 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
 
 type DirectMessageCheck = {
   roomId: string;
@@ -102,3 +102,4 @@ export function createDirectRoomTracker(client: MatrixClient, opts: DirectRoomTr
     },
   };
 }
+

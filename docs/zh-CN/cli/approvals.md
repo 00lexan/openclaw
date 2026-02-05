@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想通过 CLI 编辑执行审批
-  - 你需要管理 Gateway 网关或节点主机上的允许列表
-summary: CLI 参考：`openclaw approvals`（Gateway 网关或节点主机的执行审批）
+  - ä½ æƒ³é€šè¿‡ CLI ç¼–è¾‘æ‰§è¡Œå®¡æ‰¹
+  - ä½ éœ€è¦ç®¡ç† Gateway ç½‘å…³æˆ–èŠ‚ç‚¹ä¸»æœºä¸Šçš„å…è®¸åˆ—è¡¨
+summary: CLI å‚è€ƒï¼š` approvals`ï¼ˆGateway ç½‘å…³æˆ–èŠ‚ç‚¹ä¸»æœºçš„æ‰§è¡Œå®¡æ‰¹ï¼‰
 title: approvals
 x-i18n:
   generated_at: "2026-02-03T10:04:09Z"
@@ -13,45 +13,46 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw approvals`
+# ` approvals`
 
-管理**本地主机**、**Gateway 网关主机**或**节点主机**的执行审批。
-默认情况下，命令针对磁盘上的本地审批文件。使用 `--gateway` 可针对 Gateway 网关，使用 `--node` 可针对特定节点。
+ç®¡ç†**æœ¬åœ°ä¸»æœº**ã€**Gateway ç½‘å…³ä¸»æœº**æˆ–**èŠ‚ç‚¹ä¸»æœº**çš„æ‰§è¡Œå®¡æ‰¹ã€‚
+é»˜è®¤æƒ…å†µä¸‹ï¼Œå‘½ä»¤é’ˆå¯¹ç£ç›˜ä¸Šçš„æœ¬åœ°å®¡æ‰¹æ–‡ä»¶ã€‚ä½¿ç”¨ `--gateway` å¯é’ˆå¯¹ Gateway ç½‘å…³ï¼Œä½¿ç”¨ `--node` å¯é’ˆå¯¹ç‰¹å®šèŠ‚ç‚¹ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 执行审批：[执行审批](/tools/exec-approvals)
-- 节点：[节点](/nodes)
+- æ‰§è¡Œå®¡æ‰¹ï¼š[æ‰§è¡Œå®¡æ‰¹](/tools/exec-approvals)
+- èŠ‚ç‚¹ï¼š[èŠ‚ç‚¹](/nodes)
 
-## 常用命令
-
-```bash
-openclaw approvals get
-openclaw approvals get --node <id|name|ip>
-openclaw approvals get --gateway
-```
-
-## 从文件替换审批
+## å¸¸ç”¨å‘½ä»¤
 
 ```bash
-openclaw approvals set --file ./exec-approvals.json
-openclaw approvals set --node <id|name|ip> --file ./exec-approvals.json
-openclaw approvals set --gateway --file ./exec-approvals.json
+ approvals get
+ approvals get --node <id|name|ip>
+ approvals get --gateway
 ```
 
-## 允许列表辅助命令
+## ä»Žæ–‡ä»¶æ›¿æ¢å®¡æ‰¹
 
 ```bash
-openclaw approvals allowlist add "~/Projects/**/bin/rg"
-openclaw approvals allowlist add --agent main --node <id|name|ip> "/usr/bin/uptime"
-openclaw approvals allowlist add --agent "*" "/usr/bin/uname"
-
-openclaw approvals allowlist remove "~/Projects/**/bin/rg"
+ approvals set --file ./exec-approvals.json
+ approvals set --node <id|name|ip> --file ./exec-approvals.json
+ approvals set --gateway --file ./exec-approvals.json
 ```
 
-## 注意事项
+## å…è®¸åˆ—è¡¨è¾…åŠ©å‘½ä»¤
 
-- `--node` 使用与 `openclaw nodes` 相同的解析器（id、name、ip 或 id 前缀）。
-- `--agent` 默认为 `"*"`，表示适用于所有智能体。
-- 节点主机必须公开 `system.execApprovals.get/set`（macOS 应用或无头节点主机）。
-- 审批文件按主机存储在 `~/.openclaw/exec-approvals.json`。
+```bash
+ approvals allowlist add "~/Projects/**/bin/rg"
+ approvals allowlist add --agent main --node <id|name|ip> "/usr/bin/uptime"
+ approvals allowlist add --agent "*" "/usr/bin/uname"
+
+ approvals allowlist remove "~/Projects/**/bin/rg"
+```
+
+## æ³¨æ„äº‹é¡¹
+
+- `--node` ä½¿ç”¨ä¸Ž ` nodes` ç›¸åŒçš„è§£æžå™¨ï¼ˆidã€nameã€ip æˆ– id å‰ç¼€ï¼‰ã€‚
+- `--agent` é»˜è®¤ä¸º `"*"`ï¼Œè¡¨ç¤ºé€‚ç”¨äºŽæ‰€æœ‰æ™ºèƒ½ä½“ã€‚
+- èŠ‚ç‚¹ä¸»æœºå¿…é¡»å…¬å¼€ `system.execApprovals.get/set`ï¼ˆmacOS åº”ç”¨æˆ–æ— å¤´èŠ‚ç‚¹ä¸»æœºï¼‰ã€‚
+- å®¡æ‰¹æ–‡ä»¶æŒ‰ä¸»æœºå­˜å‚¨åœ¨ `~/./exec-approvals.json`ã€‚
+

@@ -1,4 +1,4 @@
-type SessionTranscriptUpdate = {
+﻿type SessionTranscriptUpdate = {
   sessionFile: string;
 };
 
@@ -23,3 +23,4 @@ export function emitSessionTranscriptUpdate(sessionFile: string): void {
     listener(update);
   }
 }
+

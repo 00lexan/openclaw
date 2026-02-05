@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+﻿import { existsSync } from "node:fs";
 import { formatCliCommand } from "../cli/command-format.js";
 import { promptYesNo } from "../cli/prompt.js";
 import { danger, info, logVerbose, shouldLogVerbose, warn } from "../globals.js";
@@ -190,7 +190,7 @@ export async function ensureGoInstalled(
     runtime.error("Go is required to build tailscaled from source. Aborting.");
     runtime.exit(1);
   }
-  logVerbose("Installing Go via Homebrew…");
+  logVerbose("Installing Go via Homebrewâ€¦");
   await exec("brew", ["install", "go"]);
 }
 
@@ -216,7 +216,7 @@ export async function ensureTailscaledInstalled(
     runtime.error("tailscaled is required for user-space funnel. Aborting.");
     runtime.exit(1);
   }
-  logVerbose("Installing tailscaled via Homebrew…");
+  logVerbose("Installing tailscaled via Homebrewâ€¦");
   await exec("brew", ["install", "tailscale"]);
 }
 
@@ -326,7 +326,7 @@ export async function ensureFunnel(
       await ensureTailscaledInstalled(exec, prompt, runtime);
     }
 
-    logVerbose(`Enabling funnel on port ${port}…`);
+    logVerbose(`Enabling funnel on port ${port}â€¦`);
     // Attempt with fallback
     const { stdout } = await execWithSudoFallback(
       exec,
@@ -367,7 +367,7 @@ export async function ensureFunnel(
     runtime.error("Failed to enable Tailscale Funnel. Is it allowed on your tailnet?");
     runtime.error(
       info(
-        `Tip: Funnel is optional for OpenClaw. You can keep running the web gateway without it: \`${formatCliCommand("openclaw gateway")}\``,
+        `Tip: Funnel is optional for . You can keep running the web gateway without it: \`${formatCliCommand(" gateway")}\``,
       ),
     );
     if (shouldLogVerbose()) {
@@ -493,3 +493,4 @@ export async function readTailscaleWhoisIdentity(
     return null;
   }
 }
+

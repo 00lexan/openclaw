@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,3 +20,4 @@ export function registerCustomComponents() {
   // No default custom components in the core library.
   // Applications should register their own components.
 }
+

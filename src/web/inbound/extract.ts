@@ -1,4 +1,4 @@
-import type { proto } from "@whiskeysockets/baileys";
+﻿import type { proto } from "@whiskeysockets/baileys";
 import {
   extractMessageContent,
   getContentType,
@@ -329,3 +329,4 @@ export function describeReplyContext(rawMessage: proto.IMessage | undefined): {
     senderE164,
   };
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizeCronJobCreate } from "./normalize.js";
 
 describe("normalizeCronJobCreate", () => {
@@ -235,3 +235,4 @@ describe("normalizeCronJobCreate", () => {
     expect((normalized as { isolation?: unknown }).isolation).toBeUndefined();
   });
 });
+

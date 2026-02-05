@@ -1,4 +1,4 @@
-import { Command } from "commander";
+﻿import { Command } from "commander";
 import { describe, expect, it, vi } from "vitest";
 
 const listChannelPairingRequests = vi.fn();
@@ -171,3 +171,4 @@ describe("pairing cli", () => {
     expect(log).toHaveBeenCalledWith(expect.stringContaining("Approved"));
   });
 });
+

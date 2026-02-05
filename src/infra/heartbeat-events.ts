@@ -1,4 +1,4 @@
-export type HeartbeatIndicatorType = "ok" | "alert" | "error";
+﻿export type HeartbeatIndicatorType = "ok" | "alert" | "error";
 
 export type HeartbeatEventPayload = {
   ts: number;
@@ -56,3 +56,4 @@ export function onHeartbeatEvent(listener: (evt: HeartbeatEventPayload) => void)
 export function getLastHeartbeatEvent(): HeartbeatEventPayload | null {
   return lastHeartbeat;
 }
+

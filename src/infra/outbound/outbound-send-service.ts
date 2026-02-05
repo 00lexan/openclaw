@@ -1,6 +1,6 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { ChannelId, ChannelThreadingToolContext } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import type { GatewayClientMode, GatewayClientName } from "../../utils/message-channel.js";
 import type { OutboundSendDeps } from "./deliver.js";
 import type { MessagePollResult, MessageSendResult } from "./message.js";
@@ -18,7 +18,7 @@ export type OutboundGatewayContext = {
 };
 
 export type OutboundSendContext = {
-  cfg: OpenClawConfig;
+  cfg: Config;
   channel: ChannelId;
   params: Record<string, unknown>;
   accountId?: string | null;
@@ -191,3 +191,4 @@ export async function executePollAction(params: {
     pollResult: result,
   };
 }
+

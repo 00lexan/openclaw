@@ -1,4 +1,4 @@
-import { createHash, randomBytes, randomUUID } from "node:crypto";
+﻿import { createHash, randomBytes, randomUUID } from "node:crypto";
 
 export type MiniMaxRegion = "cn" | "global";
 
@@ -212,7 +212,7 @@ export async function loginMiniMaxPortalOAuth(params: {
   const expireTimeMs = oauth.expired_in;
 
   while (Date.now() < expireTimeMs) {
-    params.progress.update("Waiting for MiniMax OAuth approval…");
+    params.progress.update("Waiting for MiniMax OAuth approvalâ€¦");
     const result = await pollOAuthToken({
       userCode: oauth.user_code,
       verifier,
@@ -245,3 +245,4 @@ export async function loginMiniMaxPortalOAuth(params: {
 
   throw new Error("MiniMax OAuth timed out waiting for authorization.");
 }
+

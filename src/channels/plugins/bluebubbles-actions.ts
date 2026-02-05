@@ -1,4 +1,4 @@
-import type { ChannelMessageActionName } from "./types.js";
+﻿import type { ChannelMessageActionName } from "./types.js";
 
 export type BlueBubblesActionSpec = {
   gate: string;
@@ -32,3 +32,4 @@ export const BLUEBUBBLES_ACTION_NAMES = Object.keys(
 export const BLUEBUBBLES_GROUP_ACTIONS = new Set<ChannelMessageActionName>(
   BLUEBUBBLES_ACTION_NAMES.filter((action) => BLUEBUBBLES_ACTION_SPECS[action]?.groupOnly),
 );
+

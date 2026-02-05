@@ -1,10 +1,10 @@
-import { EventEmitter } from "node:events";
+﻿import { EventEmitter } from "node:events";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 
 type SpawnCall = {
   command: string;
@@ -84,24 +84,24 @@ describe("sandbox skill mirroring", () => {
   });
 
   const runContext = async (workspaceAccess: "none" | "ro") => {
-    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-state-"));
+    const stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "-state-"));
     const bundledDir = path.join(stateDir, "bundled-skills");
     await fs.mkdir(bundledDir, { recursive: true });
 
-    process.env.OPENCLAW_STATE_DIR = stateDir;
-    process.env.OPENCLAW_BUNDLED_SKILLS_DIR = bundledDir;
+    process.env._STATE_DIR = stateDir;
+    process.env._BUNDLED_SKILLS_DIR = bundledDir;
     vi.resetModules();
 
     const { resolveSandboxContext } = await import("./sandbox.js");
 
-    const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-workspace-"));
+    const workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "-workspace-"));
     await writeSkill({
       dir: path.join(workspaceDir, "skills", "demo-skill"),
       name: "demo-skill",
       description: "Demo skill",
     });
 
-    const cfg: OpenClawConfig = {
+    const cfg: Config = {
       agents: {
         defaults: {
           sandbox: {
@@ -139,3 +139,4 @@ describe("sandbox skill mirroring", () => {
     await expect(fs.readFile(skillPath, "utf-8")).resolves.toContain("demo-skill");
   }, 20_000);
 });
+

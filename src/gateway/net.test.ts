@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveGatewayListenHosts } from "./net.js";
 
 describe("resolveGatewayListenHosts", () => {
@@ -25,3 +25,4 @@ describe("resolveGatewayListenHosts", () => {
     expect(hosts).toEqual(["127.0.0.1"]);
   });
 });
+

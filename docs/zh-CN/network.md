@@ -1,10 +1,10 @@
----
+﻿---
 read_when:
-  - 你需要了解网络架构和安全概述
-  - 你正在调试本地访问、tailnet 访问或配对问题
-  - 你想要获取网络文档的权威列表
-summary: 网络中心：Gateway 网关接口、配对、设备发现和安全
-title: 网络
+  - ä½ éœ€è¦äº†è§£ç½‘ç»œæž¶æž„å’Œå®‰å…¨æ¦‚è¿°
+  - ä½ æ­£åœ¨è°ƒè¯•æœ¬åœ°è®¿é—®ã€tailnet è®¿é—®æˆ–é…å¯¹é—®é¢˜
+  - ä½ æƒ³è¦èŽ·å–ç½‘ç»œæ–‡æ¡£çš„æƒå¨åˆ—è¡¨
+summary: ç½‘ç»œä¸­å¿ƒï¼šGateway ç½‘å…³æŽ¥å£ã€é…å¯¹ã€è®¾å¤‡å‘çŽ°å’Œå®‰å…¨
+title: ç½‘ç»œ
 x-i18n:
   generated_at: "2026-02-03T10:07:45Z"
   model: claude-opus-4-5
@@ -14,46 +14,47 @@ x-i18n:
   workflow: 15
 ---
 
-# 网络中心
+# ç½‘ç»œä¸­å¿ƒ
 
-本中心汇集了 OpenClaw 如何在 localhost、局域网和 tailnet 之间连接、配对和保护设备的核心文档。
+æœ¬ä¸­å¿ƒæ±‡é›†äº†  å¦‚ä½•åœ¨ localhostã€å±€åŸŸç½‘å’Œ tailnet ä¹‹é—´è¿žæŽ¥ã€é…å¯¹å’Œä¿æŠ¤è®¾å¤‡çš„æ ¸å¿ƒæ–‡æ¡£ã€‚
 
-## 核心模型
+## æ ¸å¿ƒæ¨¡åž‹
 
-- [Gateway 网关架构](/concepts/architecture)
-- [Gateway 网关协议](/gateway/protocol)
-- [Gateway 网关运维手册](/gateway)
-- [Web 接口 + 绑定模式](/web)
+- [Gateway ç½‘å…³æž¶æž„](/concepts/architecture)
+- [Gateway ç½‘å…³åè®®](/gateway/protocol)
+- [Gateway ç½‘å…³è¿ç»´æ‰‹å†Œ](/gateway)
+- [Web æŽ¥å£ + ç»‘å®šæ¨¡å¼](/web)
 
-## 配对 + 身份
+## é…å¯¹ + èº«ä»½
 
-- [配对概述（私信 + 节点）](/start/pairing)
-- [Gateway 网关拥有的节点配对](/gateway/pairing)
-- [Devices CLI（配对 + token 轮换）](/cli/devices)
-- [Pairing CLI（私信审批）](/cli/pairing)
+- [é…å¯¹æ¦‚è¿°ï¼ˆç§ä¿¡ + èŠ‚ç‚¹ï¼‰](/start/pairing)
+- [Gateway ç½‘å…³æ‹¥æœ‰çš„èŠ‚ç‚¹é…å¯¹](/gateway/pairing)
+- [Devices CLIï¼ˆé…å¯¹ + token è½®æ¢ï¼‰](/cli/devices)
+- [Pairing CLIï¼ˆç§ä¿¡å®¡æ‰¹ï¼‰](/cli/pairing)
 
-本地信任：
+æœ¬åœ°ä¿¡ä»»ï¼š
 
-- 本地连接（loopback 或 Gateway 网关主机自身的 tailnet 地址）可以自动批准配对，以保持同主机用户体验的流畅性。
-- 非本地的 tailnet/局域网客户端仍需要显式的配对批准。
+- æœ¬åœ°è¿žæŽ¥ï¼ˆloopback æˆ– Gateway ç½‘å…³ä¸»æœºè‡ªèº«çš„ tailnet åœ°å€ï¼‰å¯ä»¥è‡ªåŠ¨æ‰¹å‡†é…å¯¹ï¼Œä»¥ä¿æŒåŒä¸»æœºç”¨æˆ·ä½“éªŒçš„æµç•…æ€§ã€‚
+- éžæœ¬åœ°çš„ tailnet/å±€åŸŸç½‘å®¢æˆ·ç«¯ä»éœ€è¦æ˜¾å¼çš„é…å¯¹æ‰¹å‡†ã€‚
 
-## 设备发现 + 传输协议
+## è®¾å¤‡å‘çŽ° + ä¼ è¾“åè®®
 
-- [设备发现与传输协议](/gateway/discovery)
+- [è®¾å¤‡å‘çŽ°ä¸Žä¼ è¾“åè®®](/gateway/discovery)
 - [Bonjour / mDNS](/gateway/bonjour)
-- [远程访问（SSH）](/gateway/remote)
+- [è¿œç¨‹è®¿é—®ï¼ˆSSHï¼‰](/gateway/remote)
 - [Tailscale](/gateway/tailscale)
 
-## 节点 + 传输协议
+## èŠ‚ç‚¹ + ä¼ è¾“åè®®
 
-- [节点概述](/nodes)
-- [桥接协议（旧版节点）](/gateway/bridge-protocol)
-- [节点运维手册：iOS](/platforms/ios)
-- [节点运维手册：Android](/platforms/android)
+- [èŠ‚ç‚¹æ¦‚è¿°](/nodes)
+- [æ¡¥æŽ¥åè®®ï¼ˆæ—§ç‰ˆèŠ‚ç‚¹ï¼‰](/gateway/bridge-protocol)
+- [èŠ‚ç‚¹è¿ç»´æ‰‹å†Œï¼šiOS](/platforms/ios)
+- [èŠ‚ç‚¹è¿ç»´æ‰‹å†Œï¼šAndroid](/platforms/android)
 
-## 安全
+## å®‰å…¨
 
-- [安全概述](/gateway/security)
-- [Gateway 网关配置参考](/gateway/configuration)
-- [故障排除](/gateway/troubleshooting)
+- [å®‰å…¨æ¦‚è¿°](/gateway/security)
+- [Gateway ç½‘å…³é…ç½®å‚è€ƒ](/gateway/configuration)
+- [æ•…éšœæŽ’é™¤](/gateway/troubleshooting)
 - [Doctor](/gateway/doctor)
+

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { RuntimeEnv } from "../runtime.js";
 
 const mocks = vi.hoisted(() => ({
@@ -71,3 +71,4 @@ describe("promptGatewayConfig", () => {
     expect(result.token).toBe("generated-token");
   });
 });
+

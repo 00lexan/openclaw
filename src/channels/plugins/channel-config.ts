@@ -1,4 +1,4 @@
-export type { ChannelEntryMatch, ChannelMatchSource } from "../channel-config.js";
+﻿export type { ChannelEntryMatch, ChannelMatchSource } from "../channel-config.js";
 export {
   applyChannelMatchMeta,
   buildChannelKeyCandidates,
@@ -8,3 +8,4 @@ export {
   resolveChannelMatchConfig,
   resolveNestedAllowlistDecision,
 } from "../channel-config.js";
+

@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想在 OpenClaw 中使用 GLM 模型
-  - 你需要了解模型命名规范和设置方法
-summary: GLM 模型系列概述 + 如何在 OpenClaw 中使用
-title: GLM 模型
+  - ä½ æƒ³åœ¨  ä¸­ä½¿ç”¨ GLM æ¨¡åž‹
+  - ä½ éœ€è¦äº†è§£æ¨¡åž‹å‘½åè§„èŒƒå’Œè®¾ç½®æ–¹æ³•
+summary: GLM æ¨¡åž‹ç³»åˆ—æ¦‚è¿° + å¦‚ä½•åœ¨  ä¸­ä½¿ç”¨
+title: GLM æ¨¡åž‹
 x-i18n:
   generated_at: "2026-02-01T21:34:53Z"
   model: claude-opus-4-5
@@ -13,17 +13,17 @@ x-i18n:
   workflow: 15
 ---
 
-# GLM 模型
+# GLM æ¨¡åž‹
 
-GLM 是一个**模型系列**（而非公司），通过 Z.AI 平台提供。在 OpenClaw 中，GLM 模型通过 `zai` 提供商访问，模型 ID 格式如 `zai/glm-4.7`。
+GLM æ˜¯ä¸€ä¸ª**æ¨¡åž‹ç³»åˆ—**ï¼ˆè€Œéžå…¬å¸ï¼‰ï¼Œé€šè¿‡ Z.AI å¹³å°æä¾›ã€‚åœ¨  ä¸­ï¼ŒGLM æ¨¡åž‹é€šè¿‡ `zai` æä¾›å•†è®¿é—®ï¼Œæ¨¡åž‹ ID æ ¼å¼å¦‚ `zai/glm-4.7`ã€‚
 
-## CLI 设置
+## CLI è®¾ç½®
 
 ```bash
-openclaw onboard --auth-choice zai-api-key
+ onboard --auth-choice zai-api-key
 ```
 
-## 配置片段
+## é…ç½®ç‰‡æ®µ
 
 ```json5
 {
@@ -32,8 +32,9 @@ openclaw onboard --auth-choice zai-api-key
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- GLM 版本和可用性可能会变化；请查阅 Z.AI 的文档获取最新信息。
-- 示例模型 ID 包括 `glm-4.7` 和 `glm-4.6`。
-- 有关提供商的详细信息，请参阅 [/providers/zai](/providers/zai)。
+- GLM ç‰ˆæœ¬å’Œå¯ç”¨æ€§å¯èƒ½ä¼šå˜åŒ–ï¼›è¯·æŸ¥é˜… Z.AI çš„æ–‡æ¡£èŽ·å–æœ€æ–°ä¿¡æ¯ã€‚
+- ç¤ºä¾‹æ¨¡åž‹ ID åŒ…æ‹¬ `glm-4.7` å’Œ `glm-4.6`ã€‚
+- æœ‰å…³æä¾›å•†çš„è¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚é˜… [/providers/zai](/providers/zai)ã€‚
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveTelegramTargetChatType } from "./inline-buttons.js";
 
 describe("resolveTelegramTargetChatType", () => {
@@ -35,3 +35,4 @@ describe("resolveTelegramTargetChatType", () => {
     expect(resolveTelegramTargetChatType("   ")).toBe("unknown");
   });
 });
+

@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -11,7 +11,7 @@ const tempDirs: string[] = [];
 const EMPTY_PLUGIN_SCHEMA = { type: "object", additionalProperties: false, properties: {} };
 
 function makeTempDir() {
-  const dir = path.join(os.tmpdir(), `openclaw-plugin-tools-${randomUUID()}`);
+  const dir = path.join(os.tmpdir(), `-plugin-tools-${randomUUID()}`);
   fs.mkdirSync(dir, { recursive: true });
   tempDirs.push(dir);
   return dir;
@@ -22,7 +22,7 @@ function writePlugin(params: { id: string; body: string }): TempPlugin {
   const file = path.join(dir, `${params.id}.js`);
   fs.writeFileSync(file, params.body, "utf-8");
   fs.writeFileSync(
-    path.join(dir, "openclaw.plugin.json"),
+    path.join(dir, ".plugin.json"),
     JSON.stringify(
       {
         id: params.id,
@@ -186,3 +186,4 @@ export default { register(api) {
     expect(tools.map((tool) => tool.name)).toEqual(["other_tool"]);
   });
 });
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Nostr Profile Edit Form
  *
  * Provides UI for editing and publishing Nostr profile (kind:0).
@@ -319,3 +319,4 @@ export function createNostrProfileFormState(
     showAdvanced: Boolean(profile?.banner || profile?.website || profile?.nip05 || profile?.lud16),
   };
 }
+

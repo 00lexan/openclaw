@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Apply multi-file patches with the apply_patch tool"
 read_when:
   - You need structured file edits across multiple files
@@ -48,3 +48,4 @@ The tool accepts a single `input` string that wraps one or more file operations:
   "input": "*** Begin Patch\n*** Update File: src/index.ts\n@@\n-const foo = 1\n+const foo = 2\n*** End Patch"
 }
 ```
+

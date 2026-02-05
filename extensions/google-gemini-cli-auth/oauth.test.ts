@@ -1,4 +1,4 @@
-import { join, parse } from "node:path";
+﻿import { join, parse } from "node:path";
 import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 
 // Mock fs module before importing the module under test
@@ -238,3 +238,4 @@ describe("extractGeminiCliCredentials", () => {
     expect(mockReadFileSync.mock.calls.length).toBe(readCount);
   });
 });
+

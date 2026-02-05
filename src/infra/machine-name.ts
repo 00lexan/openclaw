@@ -1,4 +1,4 @@
-import { execFile } from "node:child_process";
+﻿import { execFile } from "node:child_process";
 import os from "node:os";
 import { promisify } from "node:util";
 
@@ -24,7 +24,7 @@ function fallbackHostName() {
     os
       .hostname()
       .replace(/\.local$/i, "")
-      .trim() || "openclaw"
+      .trim() || ""
   );
 }
 
@@ -50,3 +50,4 @@ export async function getMachineDisplayName(): Promise<string> {
   })();
   return cachedPromise;
 }
+

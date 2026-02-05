@@ -1,4 +1,4 @@
-import MarkdownIt from "markdown-it";
+﻿import MarkdownIt from "markdown-it";
 
 const md = new MarkdownIt({
   html: false,
@@ -20,3 +20,4 @@ export function markdownToMatrixHtml(markdown: string): string {
   const rendered = md.render(markdown ?? "");
   return rendered.trimEnd();
 }
+

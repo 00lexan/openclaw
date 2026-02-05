@@ -1,4 +1,4 @@
-import { stripThinkingTags } from "../format.ts";
+﻿import { stripThinkingTags } from "../format.ts";
 
 const ENVELOPE_PREFIX = /^\[([^\]]+)\]\s*/;
 const ENVELOPE_CHANNELS = [
@@ -167,3 +167,4 @@ export function formatReasoningMarkdown(text: string): string {
     .map((line) => `_${line}_`);
   return lines.length ? ["_Reasoning:_", ...lines].join("\n") : "";
 }
+

@@ -1,4 +1,4 @@
-import type { AssistantMessage } from "@mariozechner/pi-ai";
+﻿import type { AssistantMessage } from "@mariozechner/pi-ai";
 import { describe, expect, it, vi } from "vitest";
 import { subscribeEmbeddedPiSession } from "./pi-embedded-subscribe.js";
 
@@ -155,3 +155,4 @@ describe("subscribeEmbeddedPiSession", () => {
     expect(subscription.isCompacting()).toBe(false);
   });
 });
+

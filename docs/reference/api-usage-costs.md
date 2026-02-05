@@ -1,16 +1,16 @@
----
+﻿---
 summary: "Audit what can spend money, which keys are used, and how to view usage"
 read_when:
   - You want to understand which features may call paid APIs
   - You need to audit keys, costs, and usage visibility
-  - You’re explaining /status or /usage cost reporting
+  - Youâ€™re explaining /status or /usage cost reporting
 title: "API Usage and Costs"
 ---
 
 # API usage & costs
 
 This doc lists **features that can invoke API keys** and where their costs show up. It focuses on
-OpenClaw features that can generate provider usage or paid API calls.
+ features that can generate provider usage or paid API calls.
 
 ## Where costs show up (chat + CLI)
 
@@ -26,14 +26,14 @@ OpenClaw features that can generate provider usage or paid API calls.
 
 **CLI usage windows (provider quotas)**
 
-- `openclaw status --usage` and `openclaw channels list` show provider **usage windows**
+- ` status --usage` and ` channels list` show provider **usage windows**
   (quota snapshots, not per-message costs).
 
 See [Token use & costs](/token-use) for details and examples.
 
 ## How keys are discovered
 
-OpenClaw can pick up credentials from:
+ can pick up credentials from:
 
 - **Auth profiles** (per-agent, stored in `auth-profiles.json`).
 - **Environment variables** (e.g. `OPENAI_API_KEY`, `BRAVE_API_KEY`, `FIRECRAWL_API_KEY`).
@@ -64,8 +64,8 @@ See [Media understanding](/nodes/media-understanding).
 
 Semantic memory search uses **embedding APIs** when configured for remote providers:
 
-- `memorySearch.provider = "openai"` → OpenAI embeddings
-- `memorySearch.provider = "gemini"` → Gemini embeddings
+- `memorySearch.provider = "openai"` â†’ OpenAI embeddings
+- `memorySearch.provider = "gemini"` â†’ Gemini embeddings
 - Optional fallback to OpenAI if local embeddings fail
 
 You can keep it local with `memorySearch.provider = "local"` (no API usage).
@@ -93,7 +93,7 @@ See [Web tools](/tools/web).
 
 - `FIRECRAWL_API_KEY` or `tools.web.fetch.firecrawl.apiKey`
 
-If Firecrawl isn’t configured, the tool falls back to direct fetch + readability (no paid API).
+If Firecrawl isnâ€™t configured, the tool falls back to direct fetch + readability (no paid API).
 
 See [Web tools](/tools/web).
 
@@ -102,8 +102,8 @@ See [Web tools](/tools/web).
 Some status commands call **provider usage endpoints** to display quota windows or auth health.
 These are typically low-volume calls but still hit provider APIs:
 
-- `openclaw status --usage`
-- `openclaw models status --json`
+- ` status --usage`
+- ` models status --json`
 
 See [Models CLI](/cli/models).
 
@@ -116,7 +116,7 @@ See [Session management + compaction](/reference/session-management-compaction).
 
 ### 8) Model scan / probe
 
-`openclaw models scan` can probe OpenRouter models and uses `OPENROUTER_API_KEY` when
+` models scan` can probe OpenRouter models and uses `OPENROUTER_API_KEY` when
 probing is enabled.
 
 See [Models CLI](/cli/models).
@@ -132,6 +132,7 @@ See [Talk mode](/nodes/talk).
 ### 10) Skills (third-party APIs)
 
 Skills can store `apiKey` in `skills.entries.<name>.apiKey`. If a skill uses that key for external
-APIs, it can incur costs according to the skill’s provider.
+APIs, it can incur costs according to the skillâ€™s provider.
 
 See [Skills](/tools/skills).
+

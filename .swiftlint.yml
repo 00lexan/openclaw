@@ -1,4 +1,4 @@
-# SwiftLint configuration adapted from Peekaboo defaults (Swift 6 friendly)
+﻿# SwiftLint configuration adapted from Peekaboo defaults (Swift 6 friendly)
 
 included:
   - apps/macos/Sources
@@ -146,3 +146,4 @@ line_length:
   ignores_urls: true
 
 reporter: "xcode"
+

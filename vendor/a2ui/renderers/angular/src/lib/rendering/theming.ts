@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,3 +20,4 @@ import { InjectionToken } from '@angular/core';
 export const Theme = new InjectionToken<Theme>('Theme');
 
 export type Theme = Types.Theme;
+

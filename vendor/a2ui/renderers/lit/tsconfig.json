@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "https://json.schemastore.org/tsconfig",
 
   "compilerOptions": {
@@ -33,3 +33,4 @@
   },
   "include": ["src/**/*.ts", "src/**/*.json"]
 }
+

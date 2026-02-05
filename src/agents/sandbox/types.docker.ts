@@ -1,4 +1,4 @@
-export type SandboxDockerConfig = {
+﻿export type SandboxDockerConfig = {
   image: string;
   containerPrefix: string;
   workdir: string;
@@ -20,3 +20,4 @@ export type SandboxDockerConfig = {
   extraHosts?: string[];
   binds?: string[];
 };
+

@@ -1,4 +1,4 @@
-import type { ChannelOutboundAdapter } from "../types.js";
+﻿import type { ChannelOutboundAdapter } from "../types.js";
 import { chunkMarkdownText } from "../../../auto-reply/chunk.js";
 import { getFeishuClient } from "../../../feishu/client.js";
 import { sendMessageFeishu } from "../../../feishu/send.js";
@@ -50,3 +50,4 @@ export const feishuOutbound: ChannelOutboundAdapter = {
     };
   },
 };
+

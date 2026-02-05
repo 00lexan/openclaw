@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@a2ui/lit",
   "version": "0.8.1",
   "description": "A2UI Lit Library",
@@ -106,3 +106,4 @@
     "signal-utils": "^0.21.1"
   }
 }
+

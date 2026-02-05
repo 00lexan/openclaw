@@ -1,7 +1,7 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import { normalizeTestText } from "../../test/helpers/normalize-text.js";
 import { withTempHome } from "../../test/helpers/temp-home.js";
 import {
@@ -45,7 +45,7 @@ describe("buildStatusMessage", () => {
             },
           },
         },
-      } as OpenClawConfig,
+      } as Config,
       agent: {
         model: "anthropic/pi:opus",
         contextTokens: 32_000,
@@ -71,7 +71,7 @@ describe("buildStatusMessage", () => {
     });
     const normalized = normalizeTestText(text);
 
-    expect(normalized).toContain("OpenClaw");
+    expect(normalized).toContain("");
     expect(normalized).toContain("Model: anthropic/pi:opus");
     expect(normalized).toContain("api-key");
     expect(normalized).toContain("Tokens: 1.2k in / 800 out");
@@ -96,7 +96,7 @@ describe("buildStatusMessage", () => {
             { id: "discord", sandbox: { mode: "all" } },
           ],
         },
-      } as OpenClawConfig,
+      } as Config,
       agent: {},
       sessionKey: "agent:discord:discord:channel:1456350065223270435",
       sessionScope: "per-sender",
@@ -172,7 +172,7 @@ describe("buildStatusMessage", () => {
     });
 
     const normalized = normalizeTestText(text);
-    expect(normalized).toContain("Media: image ok (openai/gpt-5.2) · audio skipped (maxBytes)");
+    expect(normalized).toContain("Media: image ok (openai/gpt-5.2) Â· audio skipped (maxBytes)");
   });
 
   it("omits media line when all decisions are none", () => {
@@ -202,7 +202,7 @@ describe("buildStatusMessage", () => {
       queue: { mode: "collect", depth: 0 },
     });
 
-    const optionsLine = text.split("\n").find((line) => line.trim().startsWith("⚙️"));
+    const optionsLine = text.split("\n").find((line) => line.trim().startsWith("âš™ï¸"));
     expect(optionsLine).toBeTruthy();
     expect(optionsLine).not.toContain("elevated");
   });
@@ -293,7 +293,7 @@ describe("buildStatusMessage", () => {
       modelAuth: "api-key",
     });
 
-    expect(text).toContain("Queue: collect (depth 3 · debounce 2s · cap 5 · drop old)");
+    expect(text).toContain("Queue: collect (depth 3 Â· debounce 2s Â· cap 5 Â· drop old)");
   });
 
   it("inserts usage summary beneath context line", () => {
@@ -303,7 +303,7 @@ describe("buildStatusMessage", () => {
       sessionKey: "agent:main:main",
       sessionScope: "per-sender",
       queue: { mode: "collect", depth: 0 },
-      usageLine: "📊 Usage: Claude 80% left (5h)",
+      usageLine: "ðŸ“Š Usage: Claude 80% left (5h)",
       modelAuth: "api-key",
     });
 
@@ -333,7 +333,7 @@ describe("buildStatusMessage", () => {
             },
           },
         },
-      } as OpenClawConfig,
+      } as Config,
       agent: { model: "anthropic/claude-opus-4-5" },
       sessionEntry: { sessionId: "c1", updatedAt: 0, inputTokens: 10 },
       sessionKey: "agent:main:main",
@@ -342,7 +342,7 @@ describe("buildStatusMessage", () => {
       modelAuth: "oauth",
     });
 
-    expect(text).not.toContain("💵 Cost:");
+    expect(text).not.toContain("ðŸ’µ Cost:");
   });
 
   it("prefers cached prompt tokens from the session log", async () => {
@@ -354,7 +354,7 @@ describe("buildStatusMessage", () => {
         const sessionId = "sess-1";
         const logPath = path.join(
           dir,
-          ".openclaw",
+          ".",
           "agents",
           "main",
           "sessions",
@@ -403,7 +403,7 @@ describe("buildStatusMessage", () => {
 
         expect(normalizeTestText(text)).toContain("Context: 1.0k/32k");
       },
-      { prefix: "openclaw-status-" },
+      { prefix: "-status-" },
     );
   });
 });
@@ -412,8 +412,8 @@ describe("buildCommandsMessage", () => {
   it("lists commands with aliases and text-only hints", () => {
     const text = buildCommandsMessage({
       commands: { config: false, debug: false },
-    } as OpenClawConfig);
-    expect(text).toContain("ℹ️ Slash commands");
+    } as Config);
+    expect(text).toContain("â„¹ï¸ Slash commands");
     expect(text).toContain("Status");
     expect(text).toContain("/commands - List all slash commands.");
     expect(text).toContain("/skill - Run a skill by name.");
@@ -427,7 +427,7 @@ describe("buildCommandsMessage", () => {
     const text = buildCommandsMessage(
       {
         commands: { config: false, debug: false },
-      } as OpenClawConfig,
+      } as Config,
       [
         {
           name: "demo_skill",
@@ -444,7 +444,7 @@ describe("buildHelpMessage", () => {
   it("hides config/debug when disabled", () => {
     const text = buildHelpMessage({
       commands: { config: false, debug: false },
-    } as OpenClawConfig);
+    } as Config);
     expect(text).toContain("Skills");
     expect(text).toContain("/skill <name> [input]");
     expect(text).not.toContain("/config");
@@ -457,11 +457,11 @@ describe("buildCommandsMessagePaginated", () => {
     const result = buildCommandsMessagePaginated(
       {
         commands: { config: false, debug: false },
-      } as OpenClawConfig,
+      } as Config,
       undefined,
       { surface: "telegram", page: 1 },
     );
-    expect(result.text).toContain("ℹ️ Commands (1/");
+    expect(result.text).toContain("â„¹ï¸ Commands (1/");
     expect(result.text).toContain("Session");
     expect(result.text).toContain("/stop - Stop the current run.");
   });
@@ -473,7 +473,7 @@ describe("buildCommandsMessagePaginated", () => {
     const result = buildCommandsMessagePaginated(
       {
         commands: { config: false, debug: false },
-      } as OpenClawConfig,
+      } as Config,
       undefined,
       { surface: "telegram", page: 99 },
     );
@@ -481,3 +481,4 @@ describe("buildCommandsMessagePaginated", () => {
     expect(result.text).toContain("/plugin_cmd (demo-plugin) - Plugin command");
   });
 });
+

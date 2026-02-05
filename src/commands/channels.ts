@@ -1,4 +1,4 @@
-export type { ChannelsAddOptions } from "./channels/add.js";
+﻿export type { ChannelsAddOptions } from "./channels/add.js";
 export { channelsAddCommand } from "./channels/add.js";
 export type { ChannelsCapabilitiesOptions } from "./channels/capabilities.js";
 export { channelsCapabilitiesCommand } from "./channels/capabilities.js";
@@ -12,3 +12,4 @@ export type { ChannelsResolveOptions } from "./channels/resolve.js";
 export { channelsResolveCommand } from "./channels/resolve.js";
 export type { ChannelsStatusOptions } from "./channels/status.js";
 export { channelsStatusCommand, formatGatewayChannelsStatusLines } from "./channels/status.js";
+

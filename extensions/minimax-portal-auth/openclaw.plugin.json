@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "minimax-portal-auth",
   "providers": ["minimax-portal"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

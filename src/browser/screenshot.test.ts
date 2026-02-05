@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import sharp from "sharp";
 import { describe, expect, it } from "vitest";
 import { normalizeBrowserScreenshot } from "./screenshot.js";
@@ -45,3 +45,4 @@ describe("browser screenshot normalization", () => {
     expect(normalized.buffer.equals(jpeg)).toBe(true);
   });
 });
+

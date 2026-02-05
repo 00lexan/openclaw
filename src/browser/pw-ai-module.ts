@@ -1,4 +1,4 @@
-import { extractErrorCode, formatErrorMessage } from "../infra/errors.js";
+﻿import { extractErrorCode, formatErrorMessage } from "../infra/errors.js";
 
 export type PwAiModule = typeof import("./pw-ai.js");
 
@@ -49,3 +49,4 @@ export async function getPwAiModule(opts?: { mode?: PwAiLoadMode }): Promise<PwA
   }
   return await pwAiModuleStrict;
 }
+

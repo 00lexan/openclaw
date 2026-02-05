@@ -1,4 +1,4 @@
-import type { ChannelType, Client, Message } from "@buape/carbon";
+﻿import type { ChannelType, Client, Message } from "@buape/carbon";
 import type { APIAttachment } from "discord-api-types/v10";
 import { logVerbose } from "../../globals.js";
 import { fetchRemoteMedia } from "../../media/fetch.js";
@@ -284,3 +284,4 @@ export function buildDiscordMediaPayload(
     MediaTypes: mediaTypes.length > 0 ? mediaTypes : undefined,
   };
 }
+

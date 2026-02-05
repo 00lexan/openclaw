@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -13,7 +13,7 @@ describe("resolvePythonExecutablePath", () => {
   itUnix(
     "resolves a working python path and caches the result",
     async () => {
-      const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-python-"));
+      const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "-python-"));
       const originalPath = process.env.PATH;
       try {
         const realPython = path.join(tmp, "python-real");
@@ -124,3 +124,4 @@ describe("ensureTailscaleEndpoint", () => {
     expect(message).toContain("code=0");
   });
 });
+

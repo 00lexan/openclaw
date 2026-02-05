@@ -1,5 +1,5 @@
----
-summary: "OpenClaw logging: rolling diagnostics file log + unified log privacy flags"
+﻿---
+summary: " logging: rolling diagnostics file log + unified log privacy flags"
 read_when:
   - Capturing macOS logs or investigating private data logging
   - Debugging voice wake/session lifecycle issues
@@ -10,23 +10,23 @@ title: "macOS Logging"
 
 ## Rolling diagnostics file log (Debug pane)
 
-OpenClaw routes macOS app logs through swift-log (unified logging by default) and can write a local, rotating file log to disk when you need a durable capture.
+ routes macOS app logs through swift-log (unified logging by default) and can write a local, rotating file log to disk when you need a durable capture.
 
-- Verbosity: **Debug pane → Logs → App logging → Verbosity**
-- Enable: **Debug pane → Logs → App logging → “Write rolling diagnostics log (JSONL)”**
-- Location: `~/Library/Logs/OpenClaw/diagnostics.jsonl` (rotates automatically; old files are suffixed with `.1`, `.2`, …)
-- Clear: **Debug pane → Logs → App logging → “Clear”**
+- Verbosity: **Debug pane â†’ Logs â†’ App logging â†’ Verbosity**
+- Enable: **Debug pane â†’ Logs â†’ App logging â†’ â€œWrite rolling diagnostics log (JSONL)â€**
+- Location: `~/Library/Logs//diagnostics.jsonl` (rotates automatically; old files are suffixed with `.1`, `.2`, â€¦)
+- Clear: **Debug pane â†’ Logs â†’ App logging â†’ â€œClearâ€**
 
 Notes:
 
 - This is **off by default**. Enable only while actively debugging.
-- Treat the file as sensitive; don’t share it without review.
+- Treat the file as sensitive; donâ€™t share it without review.
 
 ## Unified logging private data on macOS
 
 Unified logging redacts most payloads unless a subsystem opts into `privacy -off`. Per Peter's write-up on macOS [logging privacy shenanigans](https://steipete.me/posts/2025/logging-privacy-shenanigans) (2025) this is controlled by a plist in `/Library/Preferences/Logging/Subsystems/` keyed by the subsystem name. Only new log entries pick up the flag, so enable it before reproducing an issue.
 
-## Enable for OpenClaw (`bot.molt`)
+## Enable for  (`bot.molt`)
 
 - Write the plist to a temp file first, then install it atomically as root:
 
@@ -55,3 +55,4 @@ sudo install -m 644 -o root -g wheel /tmp/bot.molt.plist /Library/Preferences/Lo
 - Remove the override: `sudo rm /Library/Preferences/Logging/Subsystems/bot.molt.plist`.
 - Optionally run `sudo log config --reload` to force logd to drop the override immediately.
 - Remember this surface can include phone numbers and message bodies; keep the plist in place only while you actively need the extra detail.
+

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 let backend: "builtin" | "qmd" = "builtin";
 const stubManager = {
@@ -121,3 +121,4 @@ describe("memory search citations", () => {
     expect(details.results[0]?.snippet).not.toMatch(/Source:/);
   });
 });
+

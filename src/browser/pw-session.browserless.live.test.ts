@@ -1,8 +1,8 @@
-import { describe, it } from "vitest";
+﻿import { describe, it } from "vitest";
 import { isTruthyEnvValue } from "../infra/env.js";
 
-const LIVE = isTruthyEnvValue(process.env.LIVE) || isTruthyEnvValue(process.env.OPENCLAW_LIVE_TEST);
-const CDP_URL = process.env.OPENCLAW_LIVE_BROWSER_CDP_URL?.trim() || "";
+const LIVE = isTruthyEnvValue(process.env.LIVE) || isTruthyEnvValue(process.env._LIVE_TEST);
+const CDP_URL = process.env._LIVE_BROWSER_CDP_URL?.trim() || "";
 const describeLive = LIVE && CDP_URL ? describe : describe.skip;
 
 async function waitFor(
@@ -50,3 +50,4 @@ describeLive("browser (live): remote CDP tab persistence", () => {
     }
   });
 });
+

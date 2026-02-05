@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { sleep } from "../utils.js";
 import { runClaudeCliAgent } from "./claude-cli-runner.js";
 
@@ -47,7 +47,7 @@ describe("runClaudeCliAgent", () => {
     });
 
     await runClaudeCliAgent({
-      sessionId: "openclaw-session",
+      sessionId: "-session",
       sessionFile: "/tmp/session.jsonl",
       workspaceDir: "/tmp",
       prompt: "hi",
@@ -73,7 +73,7 @@ describe("runClaudeCliAgent", () => {
     });
 
     await runClaudeCliAgent({
-      sessionId: "openclaw-session",
+      sessionId: "-session",
       sessionFile: "/tmp/session.jsonl",
       workspaceDir: "/tmp",
       prompt: "hi",
@@ -153,3 +153,4 @@ describe("runClaudeCliAgent", () => {
     await Promise.all([firstRun, secondRun]);
   });
 });
+

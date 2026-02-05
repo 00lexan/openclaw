@@ -1,5 +1,5 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
-import type { PluginRuntime } from "openclaw/plugin-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+import type { PluginRuntime } from "/plugin-sdk";
 import type { MatrixAuth } from "../client.js";
 import type { MatrixRawEvent } from "./types.js";
 import { EventType } from "./types.js";
@@ -99,3 +99,4 @@ export function registerMatrixMonitorEvents(params: {
     }
   });
 }
+

@@ -1,18 +1,18 @@
----
+﻿---
 name: prose
 description: OpenProse VM skill pack. Activate on any `prose` command, .prose files, or OpenProse mentions; orchestrates multi-agent workflows.
-metadata: { "openclaw": { "emoji": "🪶", "homepage": "https://www.prose.md" } }
+metadata: { "": { "emoji": "ðŸª¶", "homepage": "https://www.prose.md" } }
 ---
 
 # OpenProse Skill
 
-OpenProse is a programming language for AI sessions. LLMs are simulators—when given a detailed system description, they don't just describe it, they _simulate_ it. The `prose.md` specification describes a virtual machine with enough fidelity that a Prose Complete system reading it _becomes_ that VM. Simulation with sufficient fidelity is implementation. **You are the Prose Complete system.**
+OpenProse is a programming language for AI sessions. LLMs are simulatorsâ€”when given a detailed system description, they don't just describe it, they _simulate_ it. The `prose.md` specification describes a virtual machine with enough fidelity that a Prose Complete system reading it _becomes_ that VM. Simulation with sufficient fidelity is implementation. **You are the Prose Complete system.**
 
-## OpenClaw Runtime Mapping
+##  Runtime Mapping
 
-- **Task tool** in the upstream spec == OpenClaw `sessions_spawn`
-- **File I/O** == OpenClaw `read`/`write`
-- **Remote fetch** == OpenClaw `web_fetch` (or `exec` with curl when POST is required)
+- **Task tool** in the upstream spec ==  `sessions_spawn`
+- **File I/O** ==  `read`/`write`
+- **Remote fetch** ==  `web_fetch` (or `exec` with curl when POST is required)
 
 ## When to Activate
 
@@ -67,10 +67,10 @@ There is only ONE skill: `open-prose`. There are NO separate skills like `prose-
 You can run any `.prose` program from a URL or registry reference:
 
 ```bash
-# Direct URL — any fetchable URL works
+# Direct URL â€” any fetchable URL works
 prose run https://raw.githubusercontent.com/openprose/prose/main/skills/open-prose/examples/48-habit-miner.prose
 
-# Registry shorthand — handle/slug resolves to p.prose.md
+# Registry shorthand â€” handle/slug resolves to p.prose.md
 prose run irl-danb/habit-miner
 prose run alice/code-review
 ```
@@ -151,10 +151,10 @@ When you need to read `prose.md` or `compiler.md`, read them from the same direc
 
 When the user asks you to **write or create** a new `.prose` file, load the guidance files:
 
-- `guidance/patterns.md` — Proven patterns for robust, efficient programs
-- `guidance/antipatterns.md` — Common mistakes to avoid
+- `guidance/patterns.md` â€” Proven patterns for robust, efficient programs
+- `guidance/antipatterns.md` â€” Common mistakes to avoid
 
-Do **not** load these when running or compiling—they're for authoring only.
+Do **not** load these when running or compilingâ€”they're for authoring only.
 
 ### State Modes
 
@@ -175,7 +175,7 @@ OpenProse supports three state management approaches:
 
 **Experimental PostgreSQL mode:** If the user passes `--state=postgres` or says "use postgres state":
 
-**⚠️ Security Note:** Database credentials in `OPENPROSE_POSTGRES_URL` are passed to subagent sessions and visible in logs. Advise users to use a dedicated database with limited-privilege credentials. See `state/postgres.md` for secure setup guidance.
+**âš ï¸ Security Note:** Database credentials in `OPENPROSE_POSTGRES_URL` are passed to subagent sessions and visible in logs. Advise users to use a dedicated database with limited-privilege credentials. See `state/postgres.md` for secure setup guidance.
 
 1. **Check for connection configuration first:**
 
@@ -195,7 +195,7 @@ OpenProse supports three state management approaches:
 3. **If not configured or connection fails, advise the user:**
 
    ```
-   ⚠️  PostgreSQL state requires a connection URL.
+   âš ï¸  PostgreSQL state requires a connection URL.
 
    To configure:
    1. Set up a PostgreSQL database (Docker, local, or cloud)
@@ -214,7 +214,7 @@ OpenProse supports three state management approaches:
 
 This mode requires both `psql` CLI and a running PostgreSQL server. If either is unavailable, warn and offer fallback to filesystem state.
 
-**Context warning:** `compiler.md` is large. Only load it when the user explicitly requests compilation or validation. After compiling, recommend `/compact` or a new session before running—don't keep both docs in context.
+**Context warning:** `compiler.md` is large. Only load it when the user explicitly requests compilation or validation. After compiling, recommend `/compact` or a new session before runningâ€”don't keep both docs in context.
 
 ## Examples
 
@@ -239,19 +239,19 @@ Start with `01-hello-world.prose` or try `37-the-forge.prose` to watch AI build 
 When first invoking the OpenProse VM in a session, display this banner:
 
 ```
-┌─────────────────────────────────────┐
-│         ◇ OpenProse VM ◇            │
-│       A new kind of computer        │
-└─────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚         â—‡ OpenProse VM â—‡            â”‚
+â”‚       A new kind of computer        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 To execute a `.prose` file, you become the OpenProse VM:
 
-1. **Read `prose.md`** — this document defines how you embody the VM
-2. **You ARE the VM** — your conversation is its memory, your tools are its instructions
-3. **Spawn sessions** — each `session` statement triggers a Task tool call
-4. **Narrate state** — use the narration protocol to track execution ([Position], [Binding], [Success], etc.)
-5. **Evaluate intelligently** — `**...**` markers require your judgment
+1. **Read `prose.md`** â€” this document defines how you embody the VM
+2. **You ARE the VM** â€” your conversation is its memory, your tools are its instructions
+3. **Spawn sessions** â€” each `session` statement triggers a Task tool call
+4. **Narrate state** â€” use the narration protocol to track execution ([Position], [Binding], [Success], etc.)
+5. **Evaluate intelligently** â€” `**...**` markers require your judgment
 
 ## Help & FAQs
 
@@ -297,17 +297,17 @@ When a user invokes `prose update`, check for legacy file structures and migrate
 ### Migration Output
 
 ```
-🔄 Migrating OpenProse workspace...
-  ✓ Converted .prose/state.json → .prose/.env
-  ✓ Renamed .prose/execution/ → .prose/runs/
-  ✓ Created .prose/agents/
-✅ Migration complete. Your workspace is up to date.
+ðŸ”„ Migrating OpenProse workspace...
+  âœ“ Converted .prose/state.json â†’ .prose/.env
+  âœ“ Renamed .prose/execution/ â†’ .prose/runs/
+  âœ“ Created .prose/agents/
+âœ… Migration complete. Your workspace is up to date.
 ```
 
 If no legacy files are found:
 
 ```
-✅ Workspace already up to date. No migration needed.
+âœ… Workspace already up to date. No migration needed.
 ```
 
 ### Skill File References (for maintainers)
@@ -321,3 +321,4 @@ These documentation files were renamed in the skill itself (not user workspace):
 | `antipatterns.md` | `guidance/antipatterns.md` |
 
 If you encounter references to the old names in user prompts or external docs, map them to the current paths.
+

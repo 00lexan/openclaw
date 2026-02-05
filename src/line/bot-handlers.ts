@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   WebhookEvent,
   MessageEvent,
   FollowEvent,
@@ -8,7 +8,7 @@ import type {
   PostbackEvent,
   EventSource,
 } from "@line/bot-sdk";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import type { RuntimeEnv } from "../runtime.js";
 import type { LineGroupConfig, ResolvedLineAccount } from "./types.js";
 import { danger, logVerbose } from "../globals.js";
@@ -33,7 +33,7 @@ interface MediaRef {
 }
 
 export interface LineHandlerContext {
-  cfg: OpenClawConfig;
+  cfg: Config;
   account: ResolvedLineAccount;
   runtime: RuntimeEnv;
   mediaMaxBytes: number;
@@ -343,3 +343,4 @@ export async function handleLineWebhookEvents(
     }
   }
 }
+

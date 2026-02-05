@@ -1,4 +1,4 @@
-import type { AuthProfileCredential, AuthProfileStore } from "./types.js";
+﻿import type { AuthProfileCredential, AuthProfileStore } from "./types.js";
 import { normalizeProviderId } from "../model-selection.js";
 import {
   ensureAuthProfileStore,
@@ -90,3 +90,4 @@ export async function markAuthProfileGood(params: {
   store.lastGood = { ...store.lastGood, [provider]: profileId };
   saveAuthProfileStore(store, agentDir);
 }
+

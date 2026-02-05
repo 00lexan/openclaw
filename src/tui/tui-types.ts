@@ -1,4 +1,4 @@
-export type TuiOptions = {
+﻿export type TuiOptions = {
   url?: string;
   token?: string;
   password?: string;
@@ -105,3 +105,4 @@ export type TuiStateAccess = {
   statusTimeout: ReturnType<typeof setTimeout> | null;
   lastCtrlCAt: number;
 };
+

@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { EventLogEntry } from "../app-events.ts";
 import { formatEventPayload } from "../presenter.ts";
 
@@ -41,7 +41,7 @@ export function renderDebug(props: DebugProps) {
             <div class="card-sub">Status, health, and heartbeat data.</div>
           </div>
           <button class="btn" ?disabled=${props.loading} @click=${props.onRefresh}>
-            ${props.loading ? "Refreshing…" : "Refresh"}
+            ${props.loading ? "Refreshingâ€¦" : "Refresh"}
           </button>
         </div>
         <div class="stack" style="margin-top: 12px;">
@@ -50,8 +50,8 @@ export function renderDebug(props: DebugProps) {
             ${
               securitySummary
                 ? html`<div class="callout ${securityTone}" style="margin-top: 8px;">
-                  Security audit: ${securityLabel}${info > 0 ? ` · ${info} info` : ""}. Run
-                  <span class="mono">openclaw security audit --deep</span> for details.
+                  Security audit: ${securityLabel}${info > 0 ? ` Â· ${info} info` : ""}. Run
+                  <span class="mono"> security audit --deep</span> for details.
                 </div>`
                 : nothing
             }
@@ -147,3 +147,4 @@ export function renderDebug(props: DebugProps) {
     </section>
   `;
 }
+

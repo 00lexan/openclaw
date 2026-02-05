@@ -1,4 +1,4 @@
-import type { IconName } from "./icons.ts";
+﻿import type { IconName } from "./icons.ts";
 import rawConfig from "./tool-display.json" with { type: "json" };
 
 type ToolDisplayActionSpec = {
@@ -73,7 +73,7 @@ function coerceDisplayValue(value: unknown): string | undefined {
     if (!firstLine) {
       return undefined;
     }
-    return firstLine.length > 160 ? `${firstLine.slice(0, 157)}…` : firstLine;
+    return firstLine.length > 160 ? `${firstLine.slice(0, 157)}â€¦` : firstLine;
   }
   if (typeof value === "number" || typeof value === "boolean") {
     return String(value);
@@ -86,7 +86,7 @@ function coerceDisplayValue(value: unknown): string | undefined {
       return undefined;
     }
     const preview = values.slice(0, 3).join(", ");
-    return values.length > 3 ? `${preview}…` : preview;
+    return values.length > 3 ? `${preview}â€¦` : preview;
   }
   return undefined;
 }
@@ -217,7 +217,7 @@ export function formatToolDetail(display: ToolDisplay): string | undefined {
   if (parts.length === 0) {
     return undefined;
   }
-  return parts.join(" · ");
+  return parts.join(" Â· ");
 }
 
 export function formatToolSummary(display: ToolDisplay): string {
@@ -231,3 +231,4 @@ function shortenHomeInString(input: string): string {
   }
   return input.replace(/\/Users\/[^/]+/g, "~").replace(/\/home\/[^/]+/g, "~");
 }
+

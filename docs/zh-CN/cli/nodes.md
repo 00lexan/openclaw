@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你正在管理已配对的节点（摄像头、屏幕、画布）
-  - 你需要批准请求或调用节点命令
-summary: "`openclaw nodes` 的 CLI 参考（列表/状态/批准/调用，摄像头/画布/屏幕）"
+  - ä½ æ­£åœ¨ç®¡ç†å·²é…å¯¹çš„èŠ‚ç‚¹ï¼ˆæ‘„åƒå¤´ã€å±å¹•ã€ç”»å¸ƒï¼‰
+  - ä½ éœ€è¦æ‰¹å‡†è¯·æ±‚æˆ–è°ƒç”¨èŠ‚ç‚¹å‘½ä»¤
+summary: "` nodes` çš„ CLI å‚è€ƒï¼ˆåˆ—è¡¨/çŠ¶æ€/æ‰¹å‡†/è°ƒç”¨ï¼Œæ‘„åƒå¤´/ç”»å¸ƒ/å±å¹•ï¼‰"
 title: nodes
 x-i18n:
   generated_at: "2026-02-03T10:04:26Z"
@@ -13,68 +13,69 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw nodes`
+# ` nodes`
 
-管理已配对的节点（设备）并调用节点功能。
+ç®¡ç†å·²é…å¯¹çš„èŠ‚ç‚¹ï¼ˆè®¾å¤‡ï¼‰å¹¶è°ƒç”¨èŠ‚ç‚¹åŠŸèƒ½ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 节点概述：[节点](/nodes)
-- 摄像头：[摄像头节点](/nodes/camera)
-- 图像：[图像节点](/nodes/images)
+- èŠ‚ç‚¹æ¦‚è¿°ï¼š[èŠ‚ç‚¹](/nodes)
+- æ‘„åƒå¤´ï¼š[æ‘„åƒå¤´èŠ‚ç‚¹](/nodes/camera)
+- å›¾åƒï¼š[å›¾åƒèŠ‚ç‚¹](/nodes/images)
 
-通用选项：
+é€šç”¨é€‰é¡¹ï¼š
 
-- `--url`、`--token`、`--timeout`、`--json`
+- `--url`ã€`--token`ã€`--timeout`ã€`--json`
 
-## 常用命令
-
-```bash
-openclaw nodes list
-openclaw nodes list --connected
-openclaw nodes list --last-connected 24h
-openclaw nodes pending
-openclaw nodes approve <requestId>
-openclaw nodes status
-openclaw nodes status --connected
-openclaw nodes status --last-connected 24h
-```
-
-`nodes list` 打印待处理/已配对表格。已配对行包含最近连接时长（Last Connect）。
-使用 `--connected` 仅显示当前已连接的节点。使用 `--last-connected <duration>`
-筛选在指定时间段内连接过的节点（例如 `24h`、`7d`）。
-
-## 调用 / 运行
+## å¸¸ç”¨å‘½ä»¤
 
 ```bash
-openclaw nodes invoke --node <id|name|ip> --command <command> --params <json>
-openclaw nodes run --node <id|name|ip> <command...>
-openclaw nodes run --raw "git status"
-openclaw nodes run --agent main --node <id|name|ip> --raw "git status"
+ nodes list
+ nodes list --connected
+ nodes list --last-connected 24h
+ nodes pending
+ nodes approve <requestId>
+ nodes status
+ nodes status --connected
+ nodes status --last-connected 24h
 ```
 
-调用标志：
+`nodes list` æ‰“å°å¾…å¤„ç†/å·²é…å¯¹è¡¨æ ¼ã€‚å·²é…å¯¹è¡ŒåŒ…å«æœ€è¿‘è¿žæŽ¥æ—¶é•¿ï¼ˆLast Connectï¼‰ã€‚
+ä½¿ç”¨ `--connected` ä»…æ˜¾ç¤ºå½“å‰å·²è¿žæŽ¥çš„èŠ‚ç‚¹ã€‚ä½¿ç”¨ `--last-connected <duration>`
+ç­›é€‰åœ¨æŒ‡å®šæ—¶é—´æ®µå†…è¿žæŽ¥è¿‡çš„èŠ‚ç‚¹ï¼ˆä¾‹å¦‚ `24h`ã€`7d`ï¼‰ã€‚
 
-- `--params <json>`：JSON 对象字符串（默认 `{}`）。
-- `--invoke-timeout <ms>`：节点调用超时（默认 `15000`）。
-- `--idempotency-key <key>`：可选的幂等键。
+## è°ƒç”¨ / è¿è¡Œ
 
-### Exec 风格默认值
+```bash
+ nodes invoke --node <id|name|ip> --command <command> --params <json>
+ nodes run --node <id|name|ip> <command...>
+ nodes run --raw "git status"
+ nodes run --agent main --node <id|name|ip> --raw "git status"
+```
 
-`nodes run` 与模型的 exec 行为一致（默认值 + 审批）：
+è°ƒç”¨æ ‡å¿—ï¼š
 
-- 读取 `tools.exec.*`（以及 `agents.list[].tools.exec.*` 覆盖）。
-- 在调用 `system.run` 前使用 exec 审批（`exec.approval.request`）。
-- 当设置了 `tools.exec.node` 时可省略 `--node`。
-- 需要支持 `system.run` 的节点（macOS 配套应用或无头节点主机）。
+- `--params <json>`ï¼šJSON å¯¹è±¡å­—ç¬¦ä¸²ï¼ˆé»˜è®¤ `{}`ï¼‰ã€‚
+- `--invoke-timeout <ms>`ï¼šèŠ‚ç‚¹è°ƒç”¨è¶…æ—¶ï¼ˆé»˜è®¤ `15000`ï¼‰ã€‚
+- `--idempotency-key <key>`ï¼šå¯é€‰çš„å¹‚ç­‰é”®ã€‚
 
-标志：
+### Exec é£Žæ ¼é»˜è®¤å€¼
 
-- `--cwd <path>`：工作目录。
-- `--env <key=val>`：环境变量覆盖（可重复）。
-- `--command-timeout <ms>`：命令超时。
-- `--invoke-timeout <ms>`：节点调用超时（默认 `30000`）。
-- `--needs-screen-recording`：要求屏幕录制权限。
-- `--raw <command>`：运行 shell 字符串（`/bin/sh -lc` 或 `cmd.exe /c`）。
-- `--agent <id>`：智能体范围的审批/白名单（默认为已配置的智能体）。
-- `--ask <off|on-miss|always>`、`--security <deny|allowlist|full>`：覆盖选项。
+`nodes run` ä¸Žæ¨¡åž‹çš„ exec è¡Œä¸ºä¸€è‡´ï¼ˆé»˜è®¤å€¼ + å®¡æ‰¹ï¼‰ï¼š
+
+- è¯»å– `tools.exec.*`ï¼ˆä»¥åŠ `agents.list[].tools.exec.*` è¦†ç›–ï¼‰ã€‚
+- åœ¨è°ƒç”¨ `system.run` å‰ä½¿ç”¨ exec å®¡æ‰¹ï¼ˆ`exec.approval.request`ï¼‰ã€‚
+- å½“è®¾ç½®äº† `tools.exec.node` æ—¶å¯çœç•¥ `--node`ã€‚
+- éœ€è¦æ”¯æŒ `system.run` çš„èŠ‚ç‚¹ï¼ˆmacOS é…å¥—åº”ç”¨æˆ–æ— å¤´èŠ‚ç‚¹ä¸»æœºï¼‰ã€‚
+
+æ ‡å¿—ï¼š
+
+- `--cwd <path>`ï¼šå·¥ä½œç›®å½•ã€‚
+- `--env <key=val>`ï¼šçŽ¯å¢ƒå˜é‡è¦†ç›–ï¼ˆå¯é‡å¤ï¼‰ã€‚
+- `--command-timeout <ms>`ï¼šå‘½ä»¤è¶…æ—¶ã€‚
+- `--invoke-timeout <ms>`ï¼šèŠ‚ç‚¹è°ƒç”¨è¶…æ—¶ï¼ˆé»˜è®¤ `30000`ï¼‰ã€‚
+- `--needs-screen-recording`ï¼šè¦æ±‚å±å¹•å½•åˆ¶æƒé™ã€‚
+- `--raw <command>`ï¼šè¿è¡Œ shell å­—ç¬¦ä¸²ï¼ˆ`/bin/sh -lc` æˆ– `cmd.exe /c`ï¼‰ã€‚
+- `--agent <id>`ï¼šæ™ºèƒ½ä½“èŒƒå›´çš„å®¡æ‰¹/ç™½åå•ï¼ˆé»˜è®¤ä¸ºå·²é…ç½®çš„æ™ºèƒ½ä½“ï¼‰ã€‚
+- `--ask <off|on-miss|always>`ã€`--security <deny|allowlist|full>`ï¼šè¦†ç›–é€‰é¡¹ã€‚
+

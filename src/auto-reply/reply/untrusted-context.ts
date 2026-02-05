@@ -1,4 +1,4 @@
-import { normalizeInboundTextNewlines } from "./inbound-text.js";
+﻿import { normalizeInboundTextNewlines } from "./inbound-text.js";
 
 export function appendUntrustedContext(base: string, untrusted?: string[]): string {
   if (!Array.isArray(untrusted) || untrusted.length === 0) {
@@ -14,3 +14,4 @@ export function appendUntrustedContext(base: string, untrusted?: string[]): stri
   const block = [header, ...entries].join("\n");
   return [base, block].filter(Boolean).join("\n\n");
 }
+

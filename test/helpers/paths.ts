@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 
 export function isPathWithinBase(base: string, target: string): boolean {
   if (process.platform === "win32") {
@@ -14,3 +14,4 @@ export function isPathWithinBase(base: string, target: string): boolean {
   const rel = path.relative(normalizedBase, normalizedTarget);
   return rel === "" || (!rel.startsWith("..") && !path.isAbsolute(rel));
 }
+

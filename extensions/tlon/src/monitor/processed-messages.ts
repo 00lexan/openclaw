@@ -1,4 +1,4 @@
-export type ProcessedMessageTracker = {
+﻿export type ProcessedMessageTracker = {
   mark: (id?: string | null) => boolean;
   has: (id?: string | null) => boolean;
   size: () => number;
@@ -44,3 +44,4 @@ export function createProcessedMessageTracker(limit = 2000): ProcessedMessageTra
     size: () => seen.size,
   };
 }
+

@@ -1,4 +1,4 @@
-import type { AgentMessage, AgentTool } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage, AgentTool } from "@mariozechner/pi-agent-core";
 import type { SessionManager } from "@mariozechner/pi-coding-agent";
 import type { TSchema } from "@sinclair/typebox";
 import { EventEmitter } from "node:events";
@@ -391,3 +391,4 @@ export async function sanitizeSessionHistory(params: {
     sessionId: params.sessionId,
   }).messages;
 }
+

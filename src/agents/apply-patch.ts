@@ -1,4 +1,4 @@
-import type { AgentTool } from "@mariozechner/pi-agent-core";
+﻿import type { AgentTool } from "@mariozechner/pi-agent-core";
 import { Type } from "@sinclair/typebox";
 import fs from "node:fs/promises";
 import os from "node:os";
@@ -501,3 +501,4 @@ function parseUpdateFileChunk(
 
   return { chunk, consumed: parsedLines + startIndex };
 }
+

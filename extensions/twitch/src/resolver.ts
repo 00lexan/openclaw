@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Twitch resolver adapter for channel/user name resolution.
  *
  * This module implements the ChannelResolverAdapter interface to resolve
@@ -135,3 +135,4 @@ export async function resolveTwitchTargets(
 
   return results;
 }
+

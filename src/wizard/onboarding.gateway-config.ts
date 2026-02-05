@@ -1,5 +1,5 @@
-import type { GatewayAuthChoice } from "../commands/onboard-types.js";
-import type { GatewayBindMode, GatewayTailscaleMode, OpenClawConfig } from "../config/config.js";
+﻿import type { GatewayAuthChoice } from "../commands/onboard-types.js";
+import type { GatewayBindMode, GatewayTailscaleMode, Config } from "../config/config.js";
 import type { RuntimeEnv } from "../runtime.js";
 import type {
   GatewayWizardSettings,
@@ -12,8 +12,8 @@ import { findTailscaleBinary } from "../infra/tailscale.js";
 
 type ConfigureGatewayOptions = {
   flow: WizardFlow;
-  baseConfig: OpenClawConfig;
-  nextConfig: OpenClawConfig;
+  baseConfig: Config;
+  nextConfig: Config;
   localPort: number;
   quickstartGateway: QuickstartGatewayDefaults;
   prompter: WizardPrompter;
@@ -21,7 +21,7 @@ type ConfigureGatewayOptions = {
 };
 
 type ConfigureGatewayResult = {
-  nextConfig: OpenClawConfig;
+  nextConfig: Config;
   settings: GatewayWizardSettings;
 };
 
@@ -54,7 +54,7 @@ export async function configureGatewayForOnboarding(
             { value: "loopback", label: "Loopback (127.0.0.1)" },
             { value: "lan", label: "LAN (0.0.0.0)" },
             { value: "tailnet", label: "Tailnet (Tailscale IP)" },
-            { value: "auto", label: "Auto (Loopback → LAN)" },
+            { value: "auto", label: "Auto (Loopback â†’ LAN)" },
             { value: "custom", label: "Custom IP" },
           ],
         });
@@ -147,7 +147,7 @@ export async function configureGatewayForOnboarding(
   let tailscaleResetOnExit = flow === "quickstart" ? quickstartGateway.tailscaleResetOnExit : false;
   if (tailscaleMode !== "off" && flow !== "quickstart") {
     await prompter.note(
-      ["Docs:", "https://docs.openclaw.ai/gateway/tailscale", "https://docs.openclaw.ai/web"].join(
+      ["Docs:", "https://docs..ai/gateway/tailscale", "https://docs..ai/web"].join(
         "\n",
       ),
       "Tailscale",
@@ -249,3 +249,4 @@ export async function configureGatewayForOnboarding(
     },
   };
 }
+

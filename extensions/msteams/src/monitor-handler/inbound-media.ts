@@ -1,4 +1,4 @@
-import type { MSTeamsTurnContext } from "../sdk-types.js";
+﻿import type { MSTeamsTurnContext } from "../sdk-types.js";
 import {
   buildMSTeamsGraphMessageUrls,
   downloadMSTeamsAttachments,
@@ -126,3 +126,4 @@ export async function resolveMSTeamsInboundMedia(params: {
 
   return mediaList;
 }
+

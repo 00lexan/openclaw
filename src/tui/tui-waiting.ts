@@ -1,4 +1,4 @@
-type MinimalTheme = {
+﻿type MinimalTheme = {
   dim: (s: string) => string;
   bold: (s: string) => string;
   accentSoft: (s: string) => string;
@@ -46,6 +46,7 @@ export function buildWaitingStatusMessage(params: {
   phrases?: string[];
 }) {
   const phrase = pickWaitingPhrase(params.tick, params.phrases);
-  const cute = shimmerText(params.theme, `${phrase}…`, params.tick);
-  return `${cute} • ${params.elapsed} | ${params.connectionStatus}`;
+  const cute = shimmerText(params.theme, `${phrase}â€¦`, params.tick);
+  return `${cute} â€¢ ${params.elapsed} | ${params.connectionStatus}`;
 }
+

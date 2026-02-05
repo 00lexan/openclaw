@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { formatAgo, stripThinkingTags } from "./format.ts";
 
 describe("formatAgo", () => {
@@ -33,12 +33,12 @@ describe("formatAgo", () => {
 });
 
 describe("stripThinkingTags", () => {
-  it("strips <think>…</think> segments", () => {
+  it("strips <think>â€¦</think> segments", () => {
     const input = ["<think>", "secret", "</think>", "", "Hello"].join("\n");
     expect(stripThinkingTags(input)).toBe("Hello");
   });
 
-  it("strips <thinking>…</thinking> segments", () => {
+  it("strips <thinking>â€¦</thinking> segments", () => {
     const input = ["<thinking>", "secret", "</thinking>", "", "Hello"].join("\n");
     expect(stripThinkingTags(input)).toBe("Hello");
   });
@@ -52,7 +52,7 @@ describe("stripThinkingTags", () => {
     expect(stripThinkingTags("Hello")).toBe("Hello");
   });
 
-  it("strips <final>…</final> segments", () => {
+  it("strips <final>â€¦</final> segments", () => {
     const input = "<final>\n\nHello there\n\n</final>";
     expect(stripThinkingTags(input)).toBe("Hello there\n\n");
   });
@@ -69,3 +69,4 @@ describe("stripThinkingTags", () => {
     expect(stripThinkingTags("Hello</final>")).toBe("Hello");
   });
 });
+

@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
@@ -47,3 +47,4 @@ export function resolveTalkApiKey(
   }
   return readTalkApiKeyFromProfile(deps);
 }
+

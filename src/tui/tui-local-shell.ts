@@ -1,4 +1,4 @@
-import type { Component, SelectItem } from "@mariozechner/pi-tui";
+﻿import type { Component, SelectItem } from "@mariozechner/pi-tui";
 import { spawn } from "node:child_process";
 import { createSearchableSelectList } from "./components/selectors.js";
 
@@ -143,3 +143,4 @@ export function createLocalShellRunner(deps: LocalShellDeps) {
 
   return { runLocalShellLine };
 }
+

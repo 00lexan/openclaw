@@ -1,4 +1,4 @@
-import type { GatewayPresenceUpdate } from "discord-api-types/v10";
+﻿import type { GatewayPresenceUpdate } from "discord-api-types/v10";
 
 /**
  * In-memory cache of Discord user presence data.
@@ -50,3 +50,4 @@ export function presenceCacheSize(): number {
   }
   return total;
 }
+

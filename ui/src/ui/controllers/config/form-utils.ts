@@ -1,4 +1,4 @@
-export function cloneConfigObject<T>(value: T): T {
+﻿export function cloneConfigObject<T>(value: T): T {
   if (typeof structuredClone === "function") {
     return structuredClone(value);
   }
@@ -88,3 +88,4 @@ export function removePathValue(
     delete (current as Record<string, unknown>)[lastKey];
   }
 }
+

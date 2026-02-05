@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想将 OpenClaw 连接到 LINE
-  - 你需要配置 LINE webhook + 凭证
-  - 你想了解 LINE 特有的消息选项
-summary: LINE Messaging API 插件的配置、设置和使用方法
+  - ä½ æƒ³å°†  è¿žæŽ¥åˆ° LINE
+  - ä½ éœ€è¦é…ç½® LINE webhook + å‡­è¯
+  - ä½ æƒ³äº†è§£ LINE ç‰¹æœ‰çš„æ¶ˆæ¯é€‰é¡¹
+summary: LINE Messaging API æ’ä»¶çš„é…ç½®ã€è®¾ç½®å’Œä½¿ç”¨æ–¹æ³•
 title: LINE
 x-i18n:
   generated_at: "2026-02-03T07:43:38Z"
@@ -14,44 +14,44 @@ x-i18n:
   workflow: 15
 ---
 
-# LINE（插件）
+# LINEï¼ˆæ’ä»¶ï¼‰
 
-LINE 通过 LINE Messaging API 连接到 OpenClaw。该插件作为 webhook 接收器在 Gateway 网关上运行，使用你的 channel access token + channel secret 进行身份验证。
+LINE é€šè¿‡ LINE Messaging API è¿žæŽ¥åˆ° ã€‚è¯¥æ’ä»¶ä½œä¸º webhook æŽ¥æ”¶å™¨åœ¨ Gateway ç½‘å…³ä¸Šè¿è¡Œï¼Œä½¿ç”¨ä½ çš„ channel access token + channel secret è¿›è¡Œèº«ä»½éªŒè¯ã€‚
 
-状态：通过插件支持。支持私信、群聊、媒体、位置、Flex 消息、模板消息和快捷回复。不支持表情回应和话题回复。
+çŠ¶æ€ï¼šé€šè¿‡æ’ä»¶æ”¯æŒã€‚æ”¯æŒç§ä¿¡ã€ç¾¤èŠã€åª’ä½“ã€ä½ç½®ã€Flex æ¶ˆæ¯ã€æ¨¡æ¿æ¶ˆæ¯å’Œå¿«æ·å›žå¤ã€‚ä¸æ”¯æŒè¡¨æƒ…å›žåº”å’Œè¯é¢˜å›žå¤ã€‚
 
-## 需要安装插件
+## éœ€è¦å®‰è£…æ’ä»¶
 
-安装 LINE 插件：
-
-```bash
-openclaw plugins install @openclaw/line
-```
-
-本地检出（从 git 仓库运行时）：
+å®‰è£… LINE æ’ä»¶ï¼š
 
 ```bash
-openclaw plugins install ./extensions/line
+ plugins install @/line
 ```
 
-## 配置步骤
+æœ¬åœ°æ£€å‡ºï¼ˆä»Ž git ä»“åº“è¿è¡Œæ—¶ï¼‰ï¼š
 
-1. 创建 LINE Developers 账户并打开控制台：
+```bash
+ plugins install ./extensions/line
+```
+
+## é…ç½®æ­¥éª¤
+
+1. åˆ›å»º LINE Developers è´¦æˆ·å¹¶æ‰“å¼€æŽ§åˆ¶å°ï¼š
    https://developers.line.biz/console/
-2. 创建（或选择）一个 Provider 并添加 **Messaging API** 渠道。
-3. 从渠道设置中复制 **Channel access token** 和 **Channel secret**。
-4. 在 Messaging API 设置中启用 **Use webhook**。
-5. 将 webhook URL 设置为你的 Gateway 网关端点（必须使用 HTTPS）：
+2. åˆ›å»ºï¼ˆæˆ–é€‰æ‹©ï¼‰ä¸€ä¸ª Provider å¹¶æ·»åŠ  **Messaging API** æ¸ é“ã€‚
+3. ä»Žæ¸ é“è®¾ç½®ä¸­å¤åˆ¶ **Channel access token** å’Œ **Channel secret**ã€‚
+4. åœ¨ Messaging API è®¾ç½®ä¸­å¯ç”¨ **Use webhook**ã€‚
+5. å°† webhook URL è®¾ç½®ä¸ºä½ çš„ Gateway ç½‘å…³ç«¯ç‚¹ï¼ˆå¿…é¡»ä½¿ç”¨ HTTPSï¼‰ï¼š
 
 ```
 https://gateway-host/line/webhook
 ```
 
-Gateway 网关会响应 LINE 的 webhook 验证（GET）和入站事件（POST）。如果你需要自定义路径，请设置 `channels.line.webhookPath` 或 `channels.line.accounts.<id>.webhookPath` 并相应更新 URL。
+Gateway ç½‘å…³ä¼šå“åº” LINE çš„ webhook éªŒè¯ï¼ˆGETï¼‰å’Œå…¥ç«™äº‹ä»¶ï¼ˆPOSTï¼‰ã€‚å¦‚æžœä½ éœ€è¦è‡ªå®šä¹‰è·¯å¾„ï¼Œè¯·è®¾ç½® `channels.line.webhookPath` æˆ– `channels.line.accounts.<id>.webhookPath` å¹¶ç›¸åº”æ›´æ–° URLã€‚
 
-## 配置
+## é…ç½®
 
-最小配置：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -66,12 +66,12 @@ Gateway 网关会响应 LINE 的 webhook 验证（GET）和入站事件（POST�
 }
 ```
 
-环境变量（仅限默认账户）：
+çŽ¯å¢ƒå˜é‡ï¼ˆä»…é™é»˜è®¤è´¦æˆ·ï¼‰ï¼š
 
 - `LINE_CHANNEL_ACCESS_TOKEN`
 - `LINE_CHANNEL_SECRET`
 
-Token/secret 文件：
+Token/secret æ–‡ä»¶ï¼š
 
 ```json5
 {
@@ -84,7 +84,7 @@ Token/secret 文件：
 }
 ```
 
-多账户配置：
+å¤šè´¦æˆ·é…ç½®ï¼š
 
 ```json5
 {
@@ -102,39 +102,39 @@ Token/secret 文件：
 }
 ```
 
-## 访问控制
+## è®¿é—®æŽ§åˆ¶
 
-私信默认使用配对模式。未知发送者会收到配对码，其消息在获得批准前会被忽略。
+ç§ä¿¡é»˜è®¤ä½¿ç”¨é…å¯¹æ¨¡å¼ã€‚æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼Œå…¶æ¶ˆæ¯åœ¨èŽ·å¾—æ‰¹å‡†å‰ä¼šè¢«å¿½ç•¥ã€‚
 
 ```bash
-openclaw pairing list line
-openclaw pairing approve line <CODE>
+ pairing list line
+ pairing approve line <CODE>
 ```
 
-允许列表和策略：
+å…è®¸åˆ—è¡¨å’Œç­–ç•¥ï¼š
 
-- `channels.line.dmPolicy`：`pairing | allowlist | open | disabled`
-- `channels.line.allowFrom`：私信的允许列表 LINE 用户 ID
-- `channels.line.groupPolicy`：`allowlist | open | disabled`
-- `channels.line.groupAllowFrom`：群组的允许列表 LINE 用户 ID
-- 单群组覆盖：`channels.line.groups.<groupId>.allowFrom`
+- `channels.line.dmPolicy`ï¼š`pairing | allowlist | open | disabled`
+- `channels.line.allowFrom`ï¼šç§ä¿¡çš„å…è®¸åˆ—è¡¨ LINE ç”¨æˆ· ID
+- `channels.line.groupPolicy`ï¼š`allowlist | open | disabled`
+- `channels.line.groupAllowFrom`ï¼šç¾¤ç»„çš„å…è®¸åˆ—è¡¨ LINE ç”¨æˆ· ID
+- å•ç¾¤ç»„è¦†ç›–ï¼š`channels.line.groups.<groupId>.allowFrom`
 
-LINE ID 区分大小写。有效 ID 格式如下：
+LINE ID åŒºåˆ†å¤§å°å†™ã€‚æœ‰æ•ˆ ID æ ¼å¼å¦‚ä¸‹ï¼š
 
-- 用户：`U` + 32 位十六进制字符
-- 群组：`C` + 32 位十六进制字符
-- 房间：`R` + 32 位十六进制字符
+- ç”¨æˆ·ï¼š`U` + 32 ä½åå…­è¿›åˆ¶å­—ç¬¦
+- ç¾¤ç»„ï¼š`C` + 32 ä½åå…­è¿›åˆ¶å­—ç¬¦
+- æˆ¿é—´ï¼š`R` + 32 ä½åå…­è¿›åˆ¶å­—ç¬¦
 
-## 消息行为
+## æ¶ˆæ¯è¡Œä¸º
 
-- 文本按 5000 字符分块。
-- Markdown 格式会被移除；代码块和表格会尽可能转换为 Flex 卡片。
-- 流式响应会被缓冲；智能体处理时，LINE 会收到完整分块并显示加载动画。
-- 媒体下载受 `channels.line.mediaMaxMb` 限制（默认 10）。
+- æ–‡æœ¬æŒ‰ 5000 å­—ç¬¦åˆ†å—ã€‚
+- Markdown æ ¼å¼ä¼šè¢«ç§»é™¤ï¼›ä»£ç å—å’Œè¡¨æ ¼ä¼šå°½å¯èƒ½è½¬æ¢ä¸º Flex å¡ç‰‡ã€‚
+- æµå¼å“åº”ä¼šè¢«ç¼“å†²ï¼›æ™ºèƒ½ä½“å¤„ç†æ—¶ï¼ŒLINE ä¼šæ”¶åˆ°å®Œæ•´åˆ†å—å¹¶æ˜¾ç¤ºåŠ è½½åŠ¨ç”»ã€‚
+- åª’ä½“ä¸‹è½½å— `channels.line.mediaMaxMb` é™åˆ¶ï¼ˆé»˜è®¤ 10ï¼‰ã€‚
 
-## 渠道数据（富消息）
+## æ¸ é“æ•°æ®ï¼ˆå¯Œæ¶ˆæ¯ï¼‰
 
-使用 `channelData.line` 发送快捷回复、位置、Flex 卡片或模板消息。
+ä½¿ç”¨ `channelData.line` å‘é€å¿«æ·å›žå¤ã€ä½ç½®ã€Flex å¡ç‰‡æˆ–æ¨¡æ¿æ¶ˆæ¯ã€‚
 
 ```json5
 {
@@ -167,14 +167,15 @@ LINE ID 区分大小写。有效 ID 格式如下：
 }
 ```
 
-LINE 插件还提供 `/card` 命令用于 Flex 消息预设：
+LINE æ’ä»¶è¿˜æä¾› `/card` å‘½ä»¤ç”¨äºŽ Flex æ¶ˆæ¯é¢„è®¾ï¼š
 
 ```
 /card info "Welcome" "Thanks for joining!"
 ```
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-- **Webhook 验证失败：** 确保 webhook URL 使用 HTTPS 且 `channelSecret` 与 LINE 控制台中的一致。
-- **没有入站事件：** 确认 webhook 路径与 `channels.line.webhookPath` 匹配，且 Gateway 网关可从 LINE 访问。
-- **媒体下载错误：** 如果媒体超过默认限制，请提高 `channels.line.mediaMaxMb`。
+- **Webhook éªŒè¯å¤±è´¥ï¼š** ç¡®ä¿ webhook URL ä½¿ç”¨ HTTPS ä¸” `channelSecret` ä¸Ž LINE æŽ§åˆ¶å°ä¸­çš„ä¸€è‡´ã€‚
+- **æ²¡æœ‰å…¥ç«™äº‹ä»¶ï¼š** ç¡®è®¤ webhook è·¯å¾„ä¸Ž `channels.line.webhookPath` åŒ¹é…ï¼Œä¸” Gateway ç½‘å…³å¯ä»Ž LINE è®¿é—®ã€‚
+- **åª’ä½“ä¸‹è½½é”™è¯¯ï¼š** å¦‚æžœåª’ä½“è¶…è¿‡é»˜è®¤é™åˆ¶ï¼Œè¯·æé«˜ `channels.line.mediaMaxMb`ã€‚
+

@@ -1,4 +1,4 @@
-import type { AgentEvent } from "@mariozechner/pi-agent-core";
+﻿import type { AgentEvent } from "@mariozechner/pi-agent-core";
 import type { EmbeddedPiSubscribeContext } from "./pi-embedded-subscribe.handlers.types.js";
 import { emitAgentEvent } from "../infra/agent-events.js";
 import { normalizeTextForComparison } from "./pi-embedded-helpers.js";
@@ -32,8 +32,8 @@ function extendExecMeta(toolName: string, args: unknown, meta?: string): string 
   if (flags.length === 0) {
     return meta;
   }
-  const suffix = flags.join(" · ");
-  return meta ? `${meta} · ${suffix}` : suffix;
+  const suffix = flags.join(" Â· ");
+  return meta ? `${meta} Â· ${suffix}` : suffix;
 }
 
 export async function handleToolExecutionStart(
@@ -227,3 +227,4 @@ export function handleToolExecutionEnd(
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   addWildcardAllowFrom,
   formatDocsLink,
   promptAccountId,
@@ -7,7 +7,7 @@ import {
   type ChannelOnboardingAdapter,
   type ChannelOnboardingDmPolicy,
   type WizardPrompter,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { CoreConfig, DmPolicy } from "./types.js";
 import {
   listNextcloudTalkAccountIds,
@@ -42,7 +42,7 @@ async function noteNextcloudTalkSecretHelp(prompter: WizardPrompter): Promise<vo
   await prompter.note(
     [
       "1) SSH into your Nextcloud server",
-      '2) Run: ./occ talk:bot:install "OpenClaw" "<shared-secret>" "<webhook-url>" --feature reaction',
+      '2) Run: ./occ talk:bot:install "" "<shared-secret>" "<webhook-url>" --feature reaction',
       "3) Copy the shared secret you used in the command",
       "4) Enable the bot in your Nextcloud Talk room settings",
       "Tip: you can also set NEXTCLOUD_TALK_BOT_SECRET in your env.",
@@ -341,3 +341,4 @@ export const nextcloudTalkOnboardingAdapter: ChannelOnboardingAdapter = {
     },
   }),
 };
+

@@ -1,10 +1,10 @@
-import type { Request, Response } from "express";
+﻿import type { Request, Response } from "express";
 import {
   mergeAllowlist,
   summarizeMapping,
-  type OpenClawConfig,
+  type Config,
   type RuntimeEnv,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { MSTeamsConversationStore } from "./conversation-store.js";
 import type { MSTeamsAdapter } from "./messenger.js";
 import { createMSTeamsConversationStoreFs } from "./conversation-store-fs.js";
@@ -20,7 +20,7 @@ import { createMSTeamsAdapter, loadMSTeamsSdkWithAuth } from "./sdk.js";
 import { resolveMSTeamsCredentials } from "./token.js";
 
 export type MonitorMSTeamsOpts = {
-  cfg: OpenClawConfig;
+  cfg: Config;
   runtime?: RuntimeEnv;
   abortSignal?: AbortSignal;
   conversationStore?: MSTeamsConversationStore;
@@ -85,7 +85,7 @@ export async function monitorMSTeamsProvider(
     }
     const mapping = resolved
       .filter((entry) => entry.resolved && entry.id)
-      .map((entry) => `${entry.input}→${entry.id}`);
+      .map((entry) => `${entry.input}â†’${entry.id}`);
     summarizeMapping(label, mapping, unresolved, runtime);
     return { additions, unresolved };
   };
@@ -152,8 +152,8 @@ export async function monitorMSTeamsProvider(
           }
           mapping.push(
             entry.channelId
-              ? `${entry.input}→${entry.teamId}/${entry.channelId}`
-              : `${entry.input}→${entry.teamId}`,
+              ? `${entry.input}â†’${entry.teamId}/${entry.channelId}`
+              : `${entry.input}â†’${entry.teamId}`,
           );
           const existing = nextTeams[entry.teamId] ?? {};
           const mergedChannels = {
@@ -293,3 +293,4 @@ export async function monitorMSTeamsProvider(
 
   return { app: expressApp, shutdown };
 }
+

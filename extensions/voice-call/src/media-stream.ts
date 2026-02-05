@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Media Stream Handler
  *
  * Handles bidirectional audio streaming between Twilio and the AI services.
@@ -409,3 +409,4 @@ interface TwilioMediaMessage {
     name: string;
   };
 }
+

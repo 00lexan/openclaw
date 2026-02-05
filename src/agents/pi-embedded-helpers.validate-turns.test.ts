@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import { describe, expect, it } from "vitest";
 import {
   mergeConsecutiveUserTurns,
@@ -340,3 +340,4 @@ describe("mergeConsecutiveUserTurns", () => {
     expect(merged.timestamp).toBe(1000);
   });
 });
+

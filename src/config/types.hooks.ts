@@ -1,4 +1,4 @@
-export type HookMappingMatch = {
+﻿export type HookMappingMatch = {
   path?: string;
   source?: string;
 };
@@ -122,3 +122,4 @@ export type HooksConfig = {
   /** Internal agent event hooks */
   internal?: InternalHooksConfig;
 };
+

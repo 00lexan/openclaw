@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Bridge protocol (legacy nodes): TCP JSONL, pairing, scoped RPC"
 read_when:
   - Building or debugging node clients (iOS/Android/macOS node mode)
@@ -15,7 +15,7 @@ should use the unified Gateway WebSocket protocol instead.
 If you are building an operator or node client, use the
 [Gateway protocol](/gateway/protocol).
 
-**Note:** Current OpenClaw builds no longer ship the TCP bridge listener; this document is kept for historical reference.
+**Note:** Current  builds no longer ship the TCP bridge listener; this document is kept for historical reference.
 Legacy `bridge.*` config keys are no longer part of the config schema.
 
 ## Why we have both
@@ -48,12 +48,12 @@ When TLS is enabled, discovery TXT records include `bridgeTls=1` plus
 
 ## Frames
 
-Client → Gateway:
+Client â†’ Gateway:
 
 - `req` / `res`: scoped gateway RPC (chat, sessions, config, health, voicewake, skills.bins)
 - `event`: node signals (voice transcript, agent request, chat subscribe, exec lifecycle)
 
-Gateway → Client:
+Gateway â†’ Client:
 
 - `invoke` / `invoke-res`: node commands (`canvas.*`, `camera.*`, `screen.record`,
   `location.get`, `sms.send`)
@@ -78,12 +78,13 @@ Payload fields (all optional unless noted):
 ## Tailnet usage
 
 - Bind the bridge to a tailnet IP: `bridge.bind: "tailnet"` in
-  `~/.openclaw/openclaw.json`.
+  `~/./.json`.
 - Clients connect via MagicDNS name or tailnet IP.
-- Bonjour does **not** cross networks; use manual host/port or wide-area DNS‑SD
+- Bonjour does **not** cross networks; use manual host/port or wide-area DNSâ€‘SD
   when needed.
 
 ## Versioning
 
-Bridge is currently **implicit v1** (no min/max negotiation). Backward‑compat
+Bridge is currently **implicit v1** (no min/max negotiation). Backwardâ€‘compat
 is expected; add a bridge protocol version field before any breaking changes.
+

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+﻿import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { prepareFileConsentActivity, requiresFileConsent } from "./file-consent-helpers.js";
 import * as pendingUploads from "./pending-uploads.js";
 
@@ -241,3 +241,4 @@ describe("prepareFileConsentActivity", () => {
     expect(result.activity.type).toBe("message");
   });
 });
+

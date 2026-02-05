@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { RuntimeEnv } from "../runtime.js";
 import type { WizardPrompter } from "./prompts.js";
 
@@ -66,3 +66,4 @@ describe("configureGatewayForOnboarding", () => {
     expect(result.settings.gatewayToken).toBe("generated-token");
   });
 });
+

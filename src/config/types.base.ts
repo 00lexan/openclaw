@@ -1,4 +1,4 @@
-import type { NormalizedChatType } from "../channels/chat-type.js";
+﻿import type { NormalizedChatType } from "../channels/chat-type.js";
 
 export type ReplyMode = "text" | "command";
 export type TypingMode = "never" | "instant" | "thinking" | "message";
@@ -94,7 +94,7 @@ export type SessionConfig = {
   mainKey?: string;
   sendPolicy?: SessionSendPolicyConfig;
   agentToAgent?: {
-    /** Max ping-pong turns between requester/target (0–5). Default: 5. */
+    /** Max ping-pong turns between requester/target (0â€“5). Default: 5. */
     maxPingPongTurns?: number;
   };
 };
@@ -166,3 +166,4 @@ export type IdentityConfig = {
   /** Avatar image: workspace-relative path, http(s) URL, or data URI. */
   avatar?: string;
 };
+

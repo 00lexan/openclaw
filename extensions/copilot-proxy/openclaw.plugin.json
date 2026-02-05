@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "copilot-proxy",
   "providers": ["copilot-proxy"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

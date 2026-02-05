@@ -1,4 +1,4 @@
-import type { ModelCatalogEntry } from "../../agents/model-catalog.js";
+﻿import type { ModelCatalogEntry } from "../../agents/model-catalog.js";
 import type { createDefaultDeps } from "../../cli/deps.js";
 import type { HealthSummary } from "../../commands/health.js";
 import type { CronService } from "../../cron/service.js";
@@ -117,3 +117,4 @@ export type GatewayRequestHandlerOptions = {
 export type GatewayRequestHandler = (opts: GatewayRequestHandlerOptions) => Promise<void> | void;
 
 export type GatewayRequestHandlers = Record<string, GatewayRequestHandler>;
+

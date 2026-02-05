@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { defaultVoiceWakeTriggers } from "../infra/voicewake.js";
 import { formatError, normalizeVoiceWakeTriggers } from "./server-utils.js";
 
@@ -25,3 +25,4 @@ describe("formatError", () => {
     expect(formatError({ code: "ENOENT" })).toBe("status=unknown code=ENOENT");
   });
 });
+

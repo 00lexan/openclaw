@@ -1,7 +1,7 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import type { WorkspaceBootstrapFile } from "../workspace.js";
 import type { EmbeddedContextFile } from "./types.js";
 
@@ -92,7 +92,7 @@ type TrimBootstrapResult = {
   originalLength: number;
 };
 
-export function resolveBootstrapMaxChars(cfg?: OpenClawConfig): number {
+export function resolveBootstrapMaxChars(cfg?: Config): number {
   const raw = cfg?.agents?.defaults?.bootstrapMaxChars;
   if (typeof raw === "number" && Number.isFinite(raw) && raw > 0) {
     return Math.floor(raw);
@@ -123,7 +123,7 @@ function trimBootstrapContent(
   const marker = [
     "",
     `[...truncated, read ${fileName} for full content...]`,
-    `…(truncated ${fileName}: kept ${headChars}+${tailChars} chars of ${trimmed.length})…`,
+    `â€¦(truncated ${fileName}: kept ${headChars}+${tailChars} chars of ${trimmed.length})â€¦`,
     "",
   ].join("\n");
   const contentWithMarker = [head, marker, tail].join("\n");
@@ -216,3 +216,4 @@ export function sanitizeGoogleTurnOrdering(messages: AgentMessage[]): AgentMessa
 
   return [bootstrap, ...messages];
 }
+

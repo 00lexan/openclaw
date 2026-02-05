@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { classifyFailoverReason } from "./pi-embedded-helpers.js";
 import { DEFAULT_AGENTS_FILENAME } from "./workspace.js";
 
@@ -39,3 +39,4 @@ describe("classifyFailoverReason", () => {
     );
   });
 });
+

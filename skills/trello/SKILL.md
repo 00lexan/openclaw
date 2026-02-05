@@ -1,17 +1,17 @@
----
+﻿---
 name: trello
 description: Manage Trello boards, lists, and cards via the Trello REST API.
 homepage: https://developer.atlassian.com/cloud/trello/rest/
 metadata:
   {
-    "openclaw":
-      { "emoji": "📋", "requires": { "bins": ["jq"], "env": ["TRELLO_API_KEY", "TRELLO_TOKEN"] } },
+    "":
+      { "emoji": "ðŸ“‹", "requires": { "bins": ["jq"], "env": ["TRELLO_API_KEY", "TRELLO_TOKEN"] } },
   }
 ---
 
 # Trello Skill
 
-Manage Trello boards, lists, and cards directly from OpenClaw.
+Manage Trello boards, lists, and cards directly from .
 
 ## Setup
 
@@ -93,3 +93,4 @@ curl -s "https://api.trello.com/1/members/me/boards?key=$TRELLO_API_KEY&token=$T
 # Get all cards on a board
 curl -s "https://api.trello.com/1/boards/{boardId}/cards?key=$TRELLO_API_KEY&token=$TRELLO_TOKEN" | jq '.[] | {name, list: .idList}'
 ```
+

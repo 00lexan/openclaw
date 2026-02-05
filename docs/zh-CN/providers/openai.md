@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想在 OpenClaw 中使用 OpenAI 模型
-  - 你想使用 Codex 订阅认证而非 API 密钥
-summary: 在 OpenClaw 中通过 API 密钥或 Codex 订阅使用 OpenAI
+  - ä½ æƒ³åœ¨  ä¸­ä½¿ç”¨ OpenAI æ¨¡åž‹
+  - ä½ æƒ³ä½¿ç”¨ Codex è®¢é˜…è®¤è¯è€Œéž API å¯†é’¥
+summary: åœ¨  ä¸­é€šè¿‡ API å¯†é’¥æˆ– Codex è®¢é˜…ä½¿ç”¨ OpenAI
 title: OpenAI
 x-i18n:
   generated_at: "2026-02-01T21:35:10Z"
@@ -15,22 +15,22 @@ x-i18n:
 
 # OpenAI
 
-OpenAI 提供 GPT 模型的开发者 API。Codex 支持**ChatGPT 登录**进行订阅访问，或**API 密钥**登录进行按量计费访问。Codex 云端需要 ChatGPT 登录。
+OpenAI æä¾› GPT æ¨¡åž‹çš„å¼€å‘è€… APIã€‚Codex æ”¯æŒ**ChatGPT ç™»å½•**è¿›è¡Œè®¢é˜…è®¿é—®ï¼Œæˆ–**API å¯†é’¥**ç™»å½•è¿›è¡ŒæŒ‰é‡è®¡è´¹è®¿é—®ã€‚Codex äº‘ç«¯éœ€è¦ ChatGPT ç™»å½•ã€‚
 
-## 方式 A：OpenAI API 密钥（OpenAI Platform）
+## æ–¹å¼ Aï¼šOpenAI API å¯†é’¥ï¼ˆOpenAI Platformï¼‰
 
-**适用于：**直接 API 访问和按量计费。
-从 OpenAI 控制台获取你的 API 密钥。
+**é€‚ç”¨äºŽï¼š**ç›´æŽ¥ API è®¿é—®å’ŒæŒ‰é‡è®¡è´¹ã€‚
+ä»Ž OpenAI æŽ§åˆ¶å°èŽ·å–ä½ çš„ API å¯†é’¥ã€‚
 
-### CLI 设置
+### CLI è®¾ç½®
 
 ```bash
-openclaw onboard --auth-choice openai-api-key
-# 或非交互式
-openclaw onboard --openai-api-key "$OPENAI_API_KEY"
+ onboard --auth-choice openai-api-key
+# æˆ–éžäº¤äº’å¼
+ onboard --openai-api-key "$OPENAI_API_KEY"
 ```
 
-### 配置片段
+### é…ç½®ç‰‡æ®µ
 
 ```json5
 {
@@ -39,22 +39,22 @@ openclaw onboard --openai-api-key "$OPENAI_API_KEY"
 }
 ```
 
-## 方式 B：OpenAI Code（Codex）订阅
+## æ–¹å¼ Bï¼šOpenAI Codeï¼ˆCodexï¼‰è®¢é˜…
 
-**适用于：**使用 ChatGPT/Codex 订阅访问而非 API 密钥。
-Codex 云端需要 ChatGPT 登录，而 Codex CLI 支持 ChatGPT 或 API 密钥登录。
+**é€‚ç”¨äºŽï¼š**ä½¿ç”¨ ChatGPT/Codex è®¢é˜…è®¿é—®è€Œéž API å¯†é’¥ã€‚
+Codex äº‘ç«¯éœ€è¦ ChatGPT ç™»å½•ï¼Œè€Œ Codex CLI æ”¯æŒ ChatGPT æˆ– API å¯†é’¥ç™»å½•ã€‚
 
-### CLI 设置
+### CLI è®¾ç½®
 
 ```bash
-# 在向导中运行 Codex OAuth
-openclaw onboard --auth-choice openai-codex
+# åœ¨å‘å¯¼ä¸­è¿è¡Œ Codex OAuth
+ onboard --auth-choice openai-codex
 
-# 或直接运行 OAuth
-openclaw models auth login --provider openai-codex
+# æˆ–ç›´æŽ¥è¿è¡Œ OAuth
+ models auth login --provider openai-codex
 ```
 
-### 配置片段
+### é…ç½®ç‰‡æ®µ
 
 ```json5
 {
@@ -62,7 +62,8 @@ openclaw models auth login --provider openai-codex
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 模型引用始终使用 `provider/model` 格式（参见 [/concepts/models](/concepts/models)）。
-- 认证详情和复用规则请参阅 [/concepts/oauth](/concepts/oauth)。
+- æ¨¡åž‹å¼•ç”¨å§‹ç»ˆä½¿ç”¨ `provider/model` æ ¼å¼ï¼ˆå‚è§ [/concepts/models](/concepts/models)ï¼‰ã€‚
+- è®¤è¯è¯¦æƒ…å’Œå¤ç”¨è§„åˆ™è¯·å‚é˜… [/concepts/oauth](/concepts/oauth)ã€‚
+

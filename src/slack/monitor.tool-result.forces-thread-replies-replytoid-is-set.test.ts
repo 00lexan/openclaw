@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { resetInboundDedupe } from "../auto-reply/reply/inbound-dedupe.js";
 import {
   defaultSlackTestConfig,
@@ -26,7 +26,7 @@ describe("monitorSlackProvider tool results", () => {
     slackTestState.config = {
       messages: {
         responsePrefix: "PFX",
-        ackReaction: "👀",
+        ackReaction: "ðŸ‘€",
         ackReactionScope: "group-mentions",
       },
       channels: {
@@ -113,7 +113,7 @@ describe("monitorSlackProvider tool results", () => {
     expect(reactMock).toHaveBeenCalledWith({
       channel: "C1",
       timestamp: "456",
-      name: "👀",
+      name: "ðŸ‘€",
     });
   });
 
@@ -211,3 +211,4 @@ describe("monitorSlackProvider tool results", () => {
     expect(sendMock).toHaveBeenCalledTimes(1);
   });
 });
+

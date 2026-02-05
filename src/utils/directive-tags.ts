@@ -1,4 +1,4 @@
-export type InlineDirectiveParseResult = {
+﻿export type InlineDirectiveParseResult = {
   text: string;
   audioAsVoice: boolean;
   replyToId?: string;
@@ -80,3 +80,4 @@ export function parseInlineDirectives(
     hasReplyTag,
   };
 }
+

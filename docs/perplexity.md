@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Perplexity Sonar setup for web_search"
 read_when:
   - You want to use Perplexity Sonar for web search
@@ -8,8 +8,8 @@ title: "Perplexity Sonar"
 
 # Perplexity Sonar
 
-OpenClaw can use Perplexity Sonar for the `web_search` tool. You can connect
-through Perplexity’s direct API or via OpenRouter.
+ can use Perplexity Sonar for the `web_search` tool. You can connect
+through Perplexityâ€™s direct API or via OpenRouter.
 
 ## API options
 
@@ -65,16 +65,17 @@ If both `PERPLEXITY_API_KEY` and `OPENROUTER_API_KEY` are set, set
 `tools.web.search.perplexity.baseUrl` (or `tools.web.search.perplexity.apiKey`)
 to disambiguate.
 
-If no base URL is set, OpenClaw chooses a default based on the API key source:
+If no base URL is set,  chooses a default based on the API key source:
 
-- `PERPLEXITY_API_KEY` or `pplx-...` → direct Perplexity (`https://api.perplexity.ai`)
-- `OPENROUTER_API_KEY` or `sk-or-...` → OpenRouter (`https://openrouter.ai/api/v1`)
-- Unknown key formats → OpenRouter (safe fallback)
+- `PERPLEXITY_API_KEY` or `pplx-...` â†’ direct Perplexity (`https://api.perplexity.ai`)
+- `OPENROUTER_API_KEY` or `sk-or-...` â†’ OpenRouter (`https://openrouter.ai/api/v1`)
+- Unknown key formats â†’ OpenRouter (safe fallback)
 
 ## Models
 
-- `perplexity/sonar` — fast Q&A with web search
-- `perplexity/sonar-pro` (default) — multi-step reasoning + web search
-- `perplexity/sonar-reasoning-pro` — deep research
+- `perplexity/sonar` â€” fast Q&A with web search
+- `perplexity/sonar-pro` (default) â€” multi-step reasoning + web search
+- `perplexity/sonar-reasoning-pro` â€” deep research
 
 See [Web tools](/tools/web) for the full web_search configuration.
+

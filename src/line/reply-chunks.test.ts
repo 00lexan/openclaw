@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { sendLineReplyChunks } from "./reply-chunks.js";
 
 describe("sendLineReplyChunks", () => {
@@ -113,3 +113,4 @@ describe("sendLineReplyChunks", () => {
     expect(createTextMessageWithQuickReplies).not.toHaveBeenCalled();
   });
 });
+

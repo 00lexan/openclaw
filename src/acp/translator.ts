@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   Agent,
   AgentSideConnection,
   AuthenticateRequest,
@@ -452,3 +452,4 @@ export class AcpGatewayAgent implements Agent {
     });
   }
 }
+

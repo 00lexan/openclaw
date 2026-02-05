@@ -1,4 +1,4 @@
-import type { CronServiceState } from "./state.js";
+﻿import type { CronServiceState } from "./state.js";
 
 const storeLocks = new Map<string, Promise<void>>();
 
@@ -20,3 +20,4 @@ export async function locked<T>(state: CronServiceState, fn: () => Promise<T>): 
 
   return (await next) as T;
 }
+

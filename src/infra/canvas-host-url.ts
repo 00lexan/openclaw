@@ -1,4 +1,4 @@
-type HostSource = string | null | undefined;
+﻿type HostSource = string | null | undefined;
 
 type CanvasHostUrlParams = {
   canvasPort?: number;
@@ -79,3 +79,4 @@ export function resolveCanvasHostUrl(params: CanvasHostUrlParams) {
   const formatted = host.includes(":") ? `[${host}]` : host;
   return `${scheme}://${formatted}:${port}`;
 }
+

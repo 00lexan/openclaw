@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import { describe, expect, it, vi } from "vitest";
+import type { Config } from "../config/config.js";
 import type { ChannelGroupPolicy } from "../config/group-policy.js";
 import type { TelegramAccountConfig } from "../config/types.js";
 import type { RuntimeEnv } from "../runtime.js";
@@ -46,7 +46,7 @@ describe("registerTelegramNativeCommands (plugin auth)", () => {
       },
     } as const;
 
-    const cfg = {} as OpenClawConfig;
+    const cfg = {} as Config;
     const telegramCfg = {} as TelegramAccountConfig;
     const resolveGroupPolicy = () =>
       ({
@@ -103,3 +103,4 @@ describe("registerTelegramNativeCommands (plugin auth)", () => {
     expect(bot.api.sendMessage).not.toHaveBeenCalled();
   });
 });
+

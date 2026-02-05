@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createSafeStreamWriter } from "./stream-writer.js";
 
 describe("createSafeStreamWriter", () => {
@@ -39,3 +39,4 @@ describe("createSafeStreamWriter", () => {
     expect(onBrokenPipe).toHaveBeenCalledTimes(1);
   });
 });
+

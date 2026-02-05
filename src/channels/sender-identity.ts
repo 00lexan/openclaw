@@ -1,4 +1,4 @@
-import type { MsgContext } from "../auto-reply/templating.js";
+﻿import type { MsgContext } from "../auto-reply/templating.js";
 import { normalizeChatType } from "./chat-type.js";
 
 export function validateSenderIdentity(ctx: MsgContext): string[] {
@@ -39,3 +39,4 @@ export function validateSenderIdentity(ctx: MsgContext): string[] {
 
   return issues;
 }
+

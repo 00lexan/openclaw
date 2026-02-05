@@ -1,4 +1,4 @@
-import { afterEach, expect, test } from "vitest";
+﻿import { afterEach, expect, test } from "vitest";
 import { sleep } from "../utils";
 import { resetProcessRegistryForTests } from "./bash-process-registry";
 import { createExecTool } from "./bash-tools.exec";
@@ -76,3 +76,4 @@ test("process submit sends Enter for pty sessions", async () => {
 
   throw new Error("PTY session did not exit after submit");
 });
+

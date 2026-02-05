@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../runtime.js";
+﻿import type { RuntimeEnv } from "../runtime.js";
 import { danger } from "../globals.js";
 import { sleepWithAbort } from "./backoff.js";
 
@@ -65,3 +65,4 @@ export async function waitForTransportReady(params: WaitForTransportReadyParams)
   );
   throw new Error(`${params.label} not ready (${lastError ?? "unknown error"})`);
 }
+

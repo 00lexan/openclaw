@@ -1,4 +1,4 @@
-import type { OAuthCredentials } from "@mariozechner/pi-ai";
+﻿import type { OAuthCredentials } from "@mariozechner/pi-ai";
 import { formatCliCommand } from "../cli/command-format.js";
 
 const QWEN_OAUTH_BASE_URL = "https://chat.qwen.ai";
@@ -29,7 +29,7 @@ export async function refreshQwenPortalCredentials(
     const text = await response.text();
     if (response.status === 400) {
       throw new Error(
-        `Qwen OAuth refresh token expired or invalid. Re-authenticate with \`${formatCliCommand("openclaw models auth login --provider qwen-portal")}\`.`,
+        `Qwen OAuth refresh token expired or invalid. Re-authenticate with \`${formatCliCommand(" models auth login --provider qwen-portal")}\`.`,
       );
     }
     throw new Error(`Qwen OAuth refresh failed: ${text || response.statusText}`);
@@ -52,3 +52,4 @@ export async function refreshQwenPortalCredentials(
     expires: Date.now() + payload.expires_in * 1000,
   };
 }
+

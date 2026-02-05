@@ -1,4 +1,4 @@
-import {
+﻿import {
   applyAccountNameToChannelSection,
   buildChannelConfigSchema,
   DEFAULT_ACCOUNT_ID,
@@ -8,7 +8,7 @@ import {
   PAIRING_APPROVED_MESSAGE,
   setAccountEnabledInConfigSection,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { CoreConfig } from "./types.js";
 import { matrixMessageActions } from "./actions.js";
 import { MatrixConfigSchema } from "./config-schema.js";
@@ -437,3 +437,4 @@ export const matrixPlugin: ChannelPlugin<ResolvedMatrixAccount> = {
     },
   },
 };
+

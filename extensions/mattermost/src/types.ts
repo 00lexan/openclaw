@@ -1,4 +1,4 @@
-import type { BlockStreamingCoalesceConfig, DmPolicy, GroupPolicy } from "openclaw/plugin-sdk";
+﻿import type { BlockStreamingCoalesceConfig, DmPolicy, GroupPolicy } from "/plugin-sdk";
 
 export type MattermostChatMode = "oncall" | "onmessage" | "onchar";
 
@@ -50,3 +50,4 @@ export type MattermostConfig = {
   /** Optional per-account Mattermost configuration (multi-account). */
   accounts?: Record<string, MattermostAccountConfig>;
 } & MattermostAccountConfig;
+

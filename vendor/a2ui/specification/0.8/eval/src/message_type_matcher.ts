@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,3 +48,4 @@ export class MessageTypeMatcher extends SchemaMatcher {
     return `Expected top-level message type to be '${this.messageType}'`;
   }
 }
+

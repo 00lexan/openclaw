@@ -1,4 +1,4 @@
-import { buildDeviceAuthPayload } from "../../../src/gateway/device-auth.js";
+﻿import { buildDeviceAuthPayload } from "../../../src/gateway/device-auth.js";
 import {
   GATEWAY_CLIENT_MODES,
   GATEWAY_CLIENT_NAMES,
@@ -310,3 +310,4 @@ export class GatewayBrowserClient {
     }, 750);
   }
 }
+

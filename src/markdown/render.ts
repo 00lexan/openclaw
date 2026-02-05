@@ -1,4 +1,4 @@
-import type { MarkdownIR, MarkdownLinkSpan, MarkdownStyle, MarkdownStyleSpan } from "./ir.js";
+﻿import type { MarkdownIR, MarkdownLinkSpan, MarkdownStyle, MarkdownStyleSpan } from "./ir.js";
 
 export type RenderStyleMarker = {
   open: string;
@@ -193,3 +193,4 @@ export function renderMarkdownWithMarkers(ir: MarkdownIR, options: RenderOptions
 
   return out;
 }
+

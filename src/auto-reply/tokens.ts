@@ -1,4 +1,4 @@
-export const HEARTBEAT_TOKEN = "HEARTBEAT_OK";
+﻿export const HEARTBEAT_TOKEN = "HEARTBEAT_OK";
 export const SILENT_REPLY_TOKEN = "NO_REPLY";
 
 function escapeRegExp(value: string): string {
@@ -20,3 +20,4 @@ export function isSilentReplyText(
   const suffix = new RegExp(`\\b${escaped}\\b\\W*$`);
   return suffix.test(text);
 }
+

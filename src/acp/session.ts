@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import type { AcpSession } from "./types.js";
 
 export type AcpSessionStore = {
@@ -92,3 +92,4 @@ export function createInMemorySessionStore(): AcpSessionStore {
 }
 
 export const defaultAcpSessionStore = createInMemorySessionStore();
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { GatewayRpcOpts } from "./gateway-rpc.js";
 import { danger } from "../globals.js";
 import { defaultRuntime } from "../runtime.js";
@@ -26,7 +26,7 @@ export function registerSystemCli(program: Command) {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/system", "docs.openclaw.ai/cli/system")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/system", "docs..ai/cli/system")}\n`,
     );
 
   addGatewayClientOptions(
@@ -131,3 +131,4 @@ export function registerSystemCli(program: Command) {
     }
   });
 }
+

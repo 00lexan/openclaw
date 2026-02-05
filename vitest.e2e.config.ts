@@ -1,4 +1,4 @@
-import os from "node:os";
+﻿import os from "node:os";
 import { defineConfig } from "vitest/config";
 
 const isCI = process.env.CI === "true" || process.env.GITHUB_ACTIONS === "true";
@@ -16,7 +16,8 @@ export default defineConfig({
       "apps/macos/**",
       "apps/macos/.build/**",
       "**/vendor/**",
-      "dist/OpenClaw.app/**",
+      "dist/.app/**",
     ],
   },
 });
+

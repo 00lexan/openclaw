@@ -1,4 +1,4 @@
-import type { ChannelId } from "../../channels/plugins/types.js";
+﻿import type { ChannelId } from "../../channels/plugins/types.js";
 import { getChannelPlugin, normalizeChannelId } from "../../channels/plugins/index.js";
 
 export function normalizeChannelTargetInput(raw: string): string {
@@ -32,3 +32,4 @@ function hashSignature(value: string): string {
   }
   return (hash >>> 0).toString(36);
 }
+

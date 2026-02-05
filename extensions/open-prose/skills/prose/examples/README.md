@@ -1,4 +1,4 @@
-# OpenProse Examples
+﻿# OpenProse Examples
 
 These examples demonstrate workflows using OpenProse's full feature set.
 
@@ -162,7 +162,7 @@ See example 39 for the full implementation.
 
 ## The Captain's Chair Pattern
 
-The captain's chair is an orchestration paradigm where a coordinating agent (the "captain") dispatches specialized subagents for all execution. The captain never writes code directly—only plans, coordinates, and validates.
+The captain's chair is an orchestration paradigm where a coordinating agent (the "captain") dispatches specialized subagents for all execution. The captain never writes code directlyâ€”only plans, coordinates, and validates.
 
 **Key principles:**
 
@@ -220,7 +220,7 @@ Recursive Language Models (RLMs) are a paradigm for handling inputs far beyond c
 1. **Self-refinement**: Recursive improvement until quality threshold
 2. **Divide-and-conquer**: Chunk, process, aggregate recursively
 3. **Filter-then-recurse**: Cheap filtering before expensive deep dives
-4. **Pairwise aggregation**: Handle O(n²) tasks through batch decomposition
+4. **Pairwise aggregation**: Handle O(nÂ²) tasks through batch decomposition
 
 ```prose
 # The core RLM pattern: recursive block with scope isolation
@@ -389,3 +389,4 @@ Multi-line prompt with {x}
 ## Learn More
 
 See `compiler.md` in the skill directory for the complete language specification.
+

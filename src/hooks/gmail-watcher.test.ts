@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isAddressInUseError } from "./gmail-watcher.js";
 
 describe("gmail watcher", () => {
@@ -10,3 +10,4 @@ describe("gmail watcher", () => {
     expect(isAddressInUseError("some other error")).toBe(false);
   });
 });
+

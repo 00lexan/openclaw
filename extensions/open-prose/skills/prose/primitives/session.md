@@ -1,4 +1,4 @@
----
+﻿---
 role: session-context-management
 summary: |
   Guidelines for subagents on context handling, state management, and memory compaction.
@@ -40,7 +40,7 @@ Current phase: Implementation
 Prior steps completed: [plan, design]
 ```
 
-**How to use it:** This orients you. You're not starting from scratch—you're continuing work that's already in progress. Reference prior steps when relevant.
+**How to use it:** This orients you. You're not starting from scratchâ€”you're continuing work that's already in progress. Reference prior steps when relevant.
 
 ### 1.2 Persistent Agent Memory
 
@@ -56,7 +56,7 @@ Look for:
 
 ### 1.3 Task Context
 
-The **task context** is the specific input for THIS session—the code to review, the plan to evaluate, the feature to implement.
+The **task context** is the specific input for THIS sessionâ€”the code to review, the plan to evaluate, the feature to implement.
 
 Look for:
 
@@ -79,10 +79,10 @@ Context provided:
 
 When context feels overwhelming, process in this order:
 
-1. **Skim outer state** → Where am I in the bigger picture?
-2. **Read your memory** → What do I already know?
-3. **Focus on task context** → What am I doing right now?
-4. **Synthesize** → How does my prior knowledge inform this task?
+1. **Skim outer state** â†’ Where am I in the bigger picture?
+2. **Read your memory** â†’ What do I already know?
+3. **Focus on task context** â†’ What am I doing right now?
+4. **Synthesize** â†’ How does my prior knowledge inform this task?
 
 ### 1.5 Execution Scope (Block Invocations)
 
@@ -111,7 +111,7 @@ Execution scope:
 
 2. **Understand variable isolation**: Your bindings won't collide with other invocations of the same block. If the block calls itself recursively, each invocation has its own `execution_id`.
 
-3. **Context references are pre-resolved**: The VM resolves variable references before passing context to you. You don't need to walk the scope chain—the VM already did.
+3. **Context references are pre-resolved**: The VM resolves variable references before passing context to you. You don't need to walk the scope chainâ€”the VM already did.
 
 **Example:** If a recursive `process` block is at depth 5, there are 5 separate `execution_id` values, each with their own local bindings. Your session only sees the current frame's context.
 
@@ -132,7 +132,7 @@ Persistent agents have **two separate outputs** that must not be confused:
 
 **The binding is task-specific.** If you're asked to "review the plan," the binding contains your review.
 
-**The memory is agent-specific.** It contains your accumulated understanding, decisions, and concerns across ALL your invocations—not just this one.
+**The memory is agent-specific.** It contains your accumulated understanding, decisions, and concerns across ALL your invocationsâ€”not just this one.
 
 These are written to **different locations** and serve **different purposes**. Always write both.
 
@@ -163,7 +163,7 @@ Your decisions should be consistent across segments unless you explicitly change
 
 ## 3. Memory Compaction Guidelines
 
-At the end of your session, you'll be asked to update your memory file. This is **compaction**—preserving what matters for future sessions.
+At the end of your session, you'll be asked to update your memory file. This is **compaction**â€”preserving what matters for future sessions.
 
 ### 3.1 Compaction is NOT Summarization
 
@@ -193,7 +193,7 @@ Drop information that won't help future sessions:
 | Drop             | Why                                                                         |
 | ---------------- | --------------------------------------------------------------------------- |
 | Reasoning chains | The conclusion matters, not how you got there                               |
-| False starts     | You considered X but chose Y—just record Y and a brief note about why not X |
+| False starts     | You considered X but chose Yâ€”just record Y and a brief note about why not X |
 | Obvious context  | Don't repeat the task prompt back                                           |
 | Verbose quotes   | Reference by location, don't copy large blocks                              |
 
@@ -204,21 +204,21 @@ Update your memory file in this structure:
 ```markdown
 ## Current Understanding
 
-[What you know about the overall project/task—update, don't replace entirely]
+[What you know about the overall project/taskâ€”update, don't replace entirely]
 
 ## Decisions Made
 
 [Append new decisions with dates and rationale]
 
-- [date]: [decision] — [why]
+- [date]: [decision] â€” [why]
 
 ## Open Concerns
 
-[Things to watch for in future sessions—add new, remove resolved]
+[Things to watch for in future sessionsâ€”add new, remove resolved]
 
 ## Segment [N] Summary
 
-[What happened THIS session—specific, not general]
+[What happened THIS sessionâ€”specific, not general]
 
 - Reviewed: [what, where]
 - Found: [specific findings]
@@ -286,9 +286,9 @@ Over many segments, your memory file grows. When it becomes unwieldy:
 
 If you receive very large task context (big code blocks, long documents):
 
-1. **Don't try to hold it all** — reference by location
-2. **Note what you examined** — "Reviewed lines 1-200, focused on auth flow"
-3. **Record specific locations** — future sessions can re-examine if needed
+1. **Don't try to hold it all** â€” reference by location
+2. **Note what you examined** â€” "Reviewed lines 1-200, focused on auth flow"
+3. **Record specific locations** â€” future sessions can re-examine if needed
 
 ---
 
@@ -446,8 +446,8 @@ If you are a persistent agent (invoked with `resume:`), you have additional resp
 
 ## Decisions Made
 
-- {date}: {decision} — {rationale}
-- {date}: {decision} — {rationale}
+- {date}: {decision} â€” {rationale}
+- {date}: {decision} â€” {rationale}
 
 ## Open Concerns
 
@@ -485,7 +485,7 @@ Before completing your session:
 
 ## 7. Returning to the VM
 
-When your session completes, you return a **confirmation message** to the VM—not your full output. The VM tracks pointers, not values.
+When your session completes, you return a **confirmation message** to the VMâ€”not your full output. The VM tracks pointers, not values.
 
 ### 7.1 What to Return
 
@@ -581,13 +581,14 @@ Segment: captain-003.md
 
 As a subagent in an OpenProse program:
 
-1. **Understand your context layers** — outer state, memory, task context
-2. **Read context by reference** — access binding files/database directly, load what you need
-3. **Build on your memory** — you have continuity, use it
-4. **Compact, don't summarize** — preserve specifics, drop reasoning chains
-5. **Signal clearly** — help the VM understand your decisions
-6. **Test your compaction** — would future-you understand exactly what happened?
-7. **Write outputs directly** — persist to the binding location you're given
-8. **Return pointers, not values** — the VM tracks locations, not content
+1. **Understand your context layers** â€” outer state, memory, task context
+2. **Read context by reference** â€” access binding files/database directly, load what you need
+3. **Build on your memory** â€” you have continuity, use it
+4. **Compact, don't summarize** â€” preserve specifics, drop reasoning chains
+5. **Signal clearly** â€” help the VM understand your decisions
+6. **Test your compaction** â€” would future-you understand exactly what happened?
+7. **Write outputs directly** â€” persist to the binding location you're given
+8. **Return pointers, not values** â€” the VM tracks locations, not content
 
-Your memory is what makes you persistent. The VM's efficiency depends on you writing outputs and returning confirmations—not dumping full content back through the substrate.
+Your memory is what makes you persistent. The VM's efficiency depends on you writing outputs and returning confirmationsâ€”not dumping full content back through the substrate.
+

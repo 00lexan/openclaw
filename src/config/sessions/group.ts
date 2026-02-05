@@ -1,4 +1,4 @@
-import type { MsgContext } from "../../auto-reply/templating.js";
+﻿import type { MsgContext } from "../../auto-reply/templating.js";
 import type { GroupKeyResolution } from "./types.js";
 import { listDeliverableMessageChannels } from "../../utils/message-channel.js";
 
@@ -110,3 +110,4 @@ export function resolveGroupSessionKey(ctx: MsgContext): GroupKeyResolution | nu
     chatType: kind === "channel" ? "channel" : "group",
   };
 }
+

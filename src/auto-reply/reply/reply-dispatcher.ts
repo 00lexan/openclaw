@@ -1,4 +1,4 @@
-import type { HumanDelayConfig } from "../../config/types.js";
+﻿import type { HumanDelayConfig } from "../../config/types.js";
 import type { GetReplyOptions, ReplyPayload } from "../types.js";
 import type { ResponsePrefixContext } from "./response-prefix-template.js";
 import type { TypingController } from "./typing.js";
@@ -188,3 +188,4 @@ export function createReplyDispatcherWithTyping(
     },
   };
 }
+

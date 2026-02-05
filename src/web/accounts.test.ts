@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { resolveWhatsAppAuthDir } from "./accounts.js";
 
@@ -45,3 +45,4 @@ describe("resolveWhatsAppAuthDir", () => {
     expect(authDir).toMatch(/whatsapp[/\\]my-account-1$/);
   });
 });
+

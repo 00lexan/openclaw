@@ -1,4 +1,4 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { DiscordActionConfig } from "../../config/config.js";
 import {
   createThreadDiscord,
@@ -447,3 +447,4 @@ export async function handleDiscordMessagingAction(
       throw new Error(`Unknown action: ${action}`);
   }
 }
+

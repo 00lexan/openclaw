@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 使用或修改 exec 工具
-  - 调试 stdin 或 TTY 行为
-summary: Exec 工具用法、stdin 模式和 TTY 支持
-title: Exec 工具
+  - ä½¿ç”¨æˆ–ä¿®æ”¹ exec å·¥å…·
+  - è°ƒè¯• stdin æˆ– TTY è¡Œä¸º
+summary: Exec å·¥å…·ç”¨æ³•ã€stdin æ¨¡å¼å’Œ TTY æ”¯æŒ
+title: Exec å·¥å…·
 x-i18n:
   generated_at: "2026-02-03T09:26:51Z"
   model: claude-opus-4-5
@@ -13,50 +13,50 @@ x-i18n:
   workflow: 15
 ---
 
-# Exec 工具
+# Exec å·¥å…·
 
-在工作区中运行 shell 命令。通过 `process` 支持前台和后台执行。
-如果 `process` 被禁用，`exec` 将同步运行并忽略 `yieldMs`/`background`。
-后台会话按智能体隔离；`process` 只能看到同一智能体的会话。
+åœ¨å·¥ä½œåŒºä¸­è¿è¡Œ shell å‘½ä»¤ã€‚é€šè¿‡ `process` æ”¯æŒå‰å°å’ŒåŽå°æ‰§è¡Œã€‚
+å¦‚æžœ `process` è¢«ç¦ç”¨ï¼Œ`exec` å°†åŒæ­¥è¿è¡Œå¹¶å¿½ç•¥ `yieldMs`/`background`ã€‚
+åŽå°ä¼šè¯æŒ‰æ™ºèƒ½ä½“éš”ç¦»ï¼›`process` åªèƒ½çœ‹åˆ°åŒä¸€æ™ºèƒ½ä½“çš„ä¼šè¯ã€‚
 
-## 参数
+## å‚æ•°
 
-- `command`（必填）
-- `workdir`（默认为当前工作目录）
-- `env`（键值对覆盖）
-- `yieldMs`（默认 10000）：延迟后自动转入后台
-- `background`（布尔值）：立即转入后台
-- `timeout`（秒，默认 1800）：超时后终止
-- `pty`（布尔值）：在可用时使用伪终端运行（仅限 TTY 的 CLI、编程智能体、终端 UI）
-- `host`（`sandbox | gateway | node`）：执行位置
-- `security`（`deny | allowlist | full`）：`gateway`/`node` 的执行策略
-- `ask`（`off | on-miss | always`）：`gateway`/`node` 的审批提示
-- `node`（字符串）：`host=node` 时的节点 id/名称
-- `elevated`（布尔值）：请求提升模式（gateway 主机）；仅当 elevated 解析为 `full` 时才强制 `security=full`
+- `command`ï¼ˆå¿…å¡«ï¼‰
+- `workdir`ï¼ˆé»˜è®¤ä¸ºå½“å‰å·¥ä½œç›®å½•ï¼‰
+- `env`ï¼ˆé”®å€¼å¯¹è¦†ç›–ï¼‰
+- `yieldMs`ï¼ˆé»˜è®¤ 10000ï¼‰ï¼šå»¶è¿ŸåŽè‡ªåŠ¨è½¬å…¥åŽå°
+- `background`ï¼ˆå¸ƒå°”å€¼ï¼‰ï¼šç«‹å³è½¬å…¥åŽå°
+- `timeout`ï¼ˆç§’ï¼Œé»˜è®¤ 1800ï¼‰ï¼šè¶…æ—¶åŽç»ˆæ­¢
+- `pty`ï¼ˆå¸ƒå°”å€¼ï¼‰ï¼šåœ¨å¯ç”¨æ—¶ä½¿ç”¨ä¼ªç»ˆç«¯è¿è¡Œï¼ˆä»…é™ TTY çš„ CLIã€ç¼–ç¨‹æ™ºèƒ½ä½“ã€ç»ˆç«¯ UIï¼‰
+- `host`ï¼ˆ`sandbox | gateway | node`ï¼‰ï¼šæ‰§è¡Œä½ç½®
+- `security`ï¼ˆ`deny | allowlist | full`ï¼‰ï¼š`gateway`/`node` çš„æ‰§è¡Œç­–ç•¥
+- `ask`ï¼ˆ`off | on-miss | always`ï¼‰ï¼š`gateway`/`node` çš„å®¡æ‰¹æç¤º
+- `node`ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼š`host=node` æ—¶çš„èŠ‚ç‚¹ id/åç§°
+- `elevated`ï¼ˆå¸ƒå°”å€¼ï¼‰ï¼šè¯·æ±‚æå‡æ¨¡å¼ï¼ˆgateway ä¸»æœºï¼‰ï¼›ä»…å½“ elevated è§£æžä¸º `full` æ—¶æ‰å¼ºåˆ¶ `security=full`
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- `host` 默认为 `sandbox`。
-- 当沙箱隔离关闭时，`elevated` 会被忽略（exec 已在主机上运行）。
-- `gateway`/`node` 审批由 `~/.openclaw/exec-approvals.json` 控制。
-- `node` 需要已配对的节点（配套应用或无头节点主机）。
-- 如果有多个可用节点，设置 `exec.node` 或 `tools.exec.node` 来选择一个。
-- 在非 Windows 主机上，exec 会使用已设置的 `SHELL`；如果 `SHELL` 是 `fish`，它会优先从 `PATH` 中选择 `bash`（或 `sh`）以避免 fish 不兼容的脚本，如果两者都不存在则回退到 `SHELL`。
-- 主机执行（`gateway`/`node`）会拒绝 `env.PATH` 和加载器覆盖（`LD_*`/`DYLD_*`），以防止二进制劫持或代码注入。
-- 重要提示：沙箱隔离**默认关闭**。如果沙箱隔离关闭，`host=sandbox` 将直接在 Gateway 网关主机上运行（无容器）且**不需要审批**。如需审批，请使用 `host=gateway` 运行并配置 exec 审批（或启用沙箱隔离）。
+- `host` é»˜è®¤ä¸º `sandbox`ã€‚
+- å½“æ²™ç®±éš”ç¦»å…³é—­æ—¶ï¼Œ`elevated` ä¼šè¢«å¿½ç•¥ï¼ˆexec å·²åœ¨ä¸»æœºä¸Šè¿è¡Œï¼‰ã€‚
+- `gateway`/`node` å®¡æ‰¹ç”± `~/./exec-approvals.json` æŽ§åˆ¶ã€‚
+- `node` éœ€è¦å·²é…å¯¹çš„èŠ‚ç‚¹ï¼ˆé…å¥—åº”ç”¨æˆ–æ— å¤´èŠ‚ç‚¹ä¸»æœºï¼‰ã€‚
+- å¦‚æžœæœ‰å¤šä¸ªå¯ç”¨èŠ‚ç‚¹ï¼Œè®¾ç½® `exec.node` æˆ– `tools.exec.node` æ¥é€‰æ‹©ä¸€ä¸ªã€‚
+- åœ¨éž Windows ä¸»æœºä¸Šï¼Œexec ä¼šä½¿ç”¨å·²è®¾ç½®çš„ `SHELL`ï¼›å¦‚æžœ `SHELL` æ˜¯ `fish`ï¼Œå®ƒä¼šä¼˜å…ˆä»Ž `PATH` ä¸­é€‰æ‹© `bash`ï¼ˆæˆ– `sh`ï¼‰ä»¥é¿å… fish ä¸å…¼å®¹çš„è„šæœ¬ï¼Œå¦‚æžœä¸¤è€…éƒ½ä¸å­˜åœ¨åˆ™å›žé€€åˆ° `SHELL`ã€‚
+- ä¸»æœºæ‰§è¡Œï¼ˆ`gateway`/`node`ï¼‰ä¼šæ‹’ç» `env.PATH` å’ŒåŠ è½½å™¨è¦†ç›–ï¼ˆ`LD_*`/`DYLD_*`ï¼‰ï¼Œä»¥é˜²æ­¢äºŒè¿›åˆ¶åŠ«æŒæˆ–ä»£ç æ³¨å…¥ã€‚
+- é‡è¦æç¤ºï¼šæ²™ç®±éš”ç¦»**é»˜è®¤å…³é—­**ã€‚å¦‚æžœæ²™ç®±éš”ç¦»å…³é—­ï¼Œ`host=sandbox` å°†ç›´æŽ¥åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œï¼ˆæ— å®¹å™¨ï¼‰ä¸”**ä¸éœ€è¦å®¡æ‰¹**ã€‚å¦‚éœ€å®¡æ‰¹ï¼Œè¯·ä½¿ç”¨ `host=gateway` è¿è¡Œå¹¶é…ç½® exec å®¡æ‰¹ï¼ˆæˆ–å¯ç”¨æ²™ç®±éš”ç¦»ï¼‰ã€‚
 
-## 配置
+## é…ç½®
 
-- `tools.exec.notifyOnExit`（默认：true）：为 true 时，后台 exec 会话在退出时会入队系统事件并请求心跳。
-- `tools.exec.approvalRunningNoticeMs`（默认：10000）：当需要审批的 exec 运行时间超过此值时发出单次"运行中"通知（0 表示禁用）。
-- `tools.exec.host`（默认：`sandbox`）
-- `tools.exec.security`（默认：sandbox 为 `deny`，gateway + node 未设置时为 `allowlist`）
-- `tools.exec.ask`（默认：`on-miss`）
-- `tools.exec.node`（默认：未设置）
-- `tools.exec.pathPrepend`：exec 运行时添加到 `PATH` 前面的目录列表。
-- `tools.exec.safeBins`：仅限 stdin 的安全二进制文件，无需显式白名单条目即可运行。
+- `tools.exec.notifyOnExit`ï¼ˆé»˜è®¤ï¼štrueï¼‰ï¼šä¸º true æ—¶ï¼ŒåŽå° exec ä¼šè¯åœ¨é€€å‡ºæ—¶ä¼šå…¥é˜Ÿç³»ç»Ÿäº‹ä»¶å¹¶è¯·æ±‚å¿ƒè·³ã€‚
+- `tools.exec.approvalRunningNoticeMs`ï¼ˆé»˜è®¤ï¼š10000ï¼‰ï¼šå½“éœ€è¦å®¡æ‰¹çš„ exec è¿è¡Œæ—¶é—´è¶…è¿‡æ­¤å€¼æ—¶å‘å‡ºå•æ¬¡"è¿è¡Œä¸­"é€šçŸ¥ï¼ˆ0 è¡¨ç¤ºç¦ç”¨ï¼‰ã€‚
+- `tools.exec.host`ï¼ˆé»˜è®¤ï¼š`sandbox`ï¼‰
+- `tools.exec.security`ï¼ˆé»˜è®¤ï¼šsandbox ä¸º `deny`ï¼Œgateway + node æœªè®¾ç½®æ—¶ä¸º `allowlist`ï¼‰
+- `tools.exec.ask`ï¼ˆé»˜è®¤ï¼š`on-miss`ï¼‰
+- `tools.exec.node`ï¼ˆé»˜è®¤ï¼šæœªè®¾ç½®ï¼‰
+- `tools.exec.pathPrepend`ï¼šexec è¿è¡Œæ—¶æ·»åŠ åˆ° `PATH` å‰é¢çš„ç›®å½•åˆ—è¡¨ã€‚
+- `tools.exec.safeBins`ï¼šä»…é™ stdin çš„å®‰å…¨äºŒè¿›åˆ¶æ–‡ä»¶ï¼Œæ— éœ€æ˜¾å¼ç™½åå•æ¡ç›®å³å¯è¿è¡Œã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -68,66 +68,66 @@ x-i18n:
 }
 ```
 
-### PATH 处理
+### PATH å¤„ç†
 
-- `host=gateway`：将你的登录 shell `PATH` 合并到 exec 环境中。主机执行时会拒绝 `env.PATH` 覆盖。守护进程本身仍使用最小 `PATH` 运行：
-  - macOS：`/opt/homebrew/bin`、`/usr/local/bin`、`/usr/bin`、`/bin`
-  - Linux：`/usr/local/bin`、`/usr/bin`、`/bin`
-- `host=sandbox`：在容器内运行 `sh -lc`（登录 shell），因此 `/etc/profile` 可能会重置 `PATH`。OpenClaw 在 profile 加载后通过内部环境变量将 `env.PATH` 添加到前面（无 shell 插值）；`tools.exec.pathPrepend` 在此也适用。
-- `host=node`：只有你传递的未被阻止的 env 覆盖会发送到节点。主机执行时会拒绝 `env.PATH` 覆盖。无头节点主机仅在 `PATH` 添加到节点主机 PATH 前面时才接受（不允许替换）。macOS 节点完全丢弃 `PATH` 覆盖。
+- `host=gateway`ï¼šå°†ä½ çš„ç™»å½• shell `PATH` åˆå¹¶åˆ° exec çŽ¯å¢ƒä¸­ã€‚ä¸»æœºæ‰§è¡Œæ—¶ä¼šæ‹’ç» `env.PATH` è¦†ç›–ã€‚å®ˆæŠ¤è¿›ç¨‹æœ¬èº«ä»ä½¿ç”¨æœ€å° `PATH` è¿è¡Œï¼š
+  - macOSï¼š`/opt/homebrew/bin`ã€`/usr/local/bin`ã€`/usr/bin`ã€`/bin`
+  - Linuxï¼š`/usr/local/bin`ã€`/usr/bin`ã€`/bin`
+- `host=sandbox`ï¼šåœ¨å®¹å™¨å†…è¿è¡Œ `sh -lc`ï¼ˆç™»å½• shellï¼‰ï¼Œå› æ­¤ `/etc/profile` å¯èƒ½ä¼šé‡ç½® `PATH`ã€‚ åœ¨ profile åŠ è½½åŽé€šè¿‡å†…éƒ¨çŽ¯å¢ƒå˜é‡å°† `env.PATH` æ·»åŠ åˆ°å‰é¢ï¼ˆæ—  shell æ’å€¼ï¼‰ï¼›`tools.exec.pathPrepend` åœ¨æ­¤ä¹Ÿé€‚ç”¨ã€‚
+- `host=node`ï¼šåªæœ‰ä½ ä¼ é€’çš„æœªè¢«é˜»æ­¢çš„ env è¦†ç›–ä¼šå‘é€åˆ°èŠ‚ç‚¹ã€‚ä¸»æœºæ‰§è¡Œæ—¶ä¼šæ‹’ç» `env.PATH` è¦†ç›–ã€‚æ— å¤´èŠ‚ç‚¹ä¸»æœºä»…åœ¨ `PATH` æ·»åŠ åˆ°èŠ‚ç‚¹ä¸»æœº PATH å‰é¢æ—¶æ‰æŽ¥å—ï¼ˆä¸å…è®¸æ›¿æ¢ï¼‰ã€‚macOS èŠ‚ç‚¹å®Œå…¨ä¸¢å¼ƒ `PATH` è¦†ç›–ã€‚
 
-按智能体绑定节点（在配置中使用智能体列表索引）：
+æŒ‰æ™ºèƒ½ä½“ç»‘å®šèŠ‚ç‚¹ï¼ˆåœ¨é…ç½®ä¸­ä½¿ç”¨æ™ºèƒ½ä½“åˆ—è¡¨ç´¢å¼•ï¼‰ï¼š
 
 ```bash
-openclaw config get agents.list
-openclaw config set agents.list[0].tools.exec.node "node-id-or-name"
+ config get agents.list
+ config set agents.list[0].tools.exec.node "node-id-or-name"
 ```
 
-控制 UI：Nodes 标签页包含一个小的"Exec 节点绑定"面板用于相同的设置。
+æŽ§åˆ¶ UIï¼šNodes æ ‡ç­¾é¡µåŒ…å«ä¸€ä¸ªå°çš„"Exec èŠ‚ç‚¹ç»‘å®š"é¢æ¿ç”¨äºŽç›¸åŒçš„è®¾ç½®ã€‚
 
-## 会话覆盖（`/exec`）
+## ä¼šè¯è¦†ç›–ï¼ˆ`/exec`ï¼‰
 
-使用 `/exec` 为 `host`、`security`、`ask` 和 `node` 设置**每会话**默认值。
-不带参数发送 `/exec` 可显示当前值。
+ä½¿ç”¨ `/exec` ä¸º `host`ã€`security`ã€`ask` å’Œ `node` è®¾ç½®**æ¯ä¼šè¯**é»˜è®¤å€¼ã€‚
+ä¸å¸¦å‚æ•°å‘é€ `/exec` å¯æ˜¾ç¤ºå½“å‰å€¼ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```
 /exec host=gateway security=allowlist ask=on-miss node=mac-1
 ```
 
-## 授权模型
+## æŽˆæƒæ¨¡åž‹
 
-`/exec` 仅对**已授权发送者**（渠道白名单/配对加 `commands.useAccessGroups`）生效。
-它仅更新**会话状态**，不写入配置。要彻底禁用 exec，请通过工具策略拒绝它（`tools.deny: ["exec"]` 或按智能体配置）。除非你显式设置 `security=full` 和 `ask=off`，否则主机审批仍然适用。
+`/exec` ä»…å¯¹**å·²æŽˆæƒå‘é€è€…**ï¼ˆæ¸ é“ç™½åå•/é…å¯¹åŠ  `commands.useAccessGroups`ï¼‰ç”Ÿæ•ˆã€‚
+å®ƒä»…æ›´æ–°**ä¼šè¯çŠ¶æ€**ï¼Œä¸å†™å…¥é…ç½®ã€‚è¦å½»åº•ç¦ç”¨ execï¼Œè¯·é€šè¿‡å·¥å…·ç­–ç•¥æ‹’ç»å®ƒï¼ˆ`tools.deny: ["exec"]` æˆ–æŒ‰æ™ºèƒ½ä½“é…ç½®ï¼‰ã€‚é™¤éžä½ æ˜¾å¼è®¾ç½® `security=full` å’Œ `ask=off`ï¼Œå¦åˆ™ä¸»æœºå®¡æ‰¹ä»ç„¶é€‚ç”¨ã€‚
 
-## Exec 审批（配套应用/节点主机）
+## Exec å®¡æ‰¹ï¼ˆé…å¥—åº”ç”¨/èŠ‚ç‚¹ä¸»æœºï¼‰
 
-沙箱隔离的智能体可以要求在 `exec` 于 Gateway 网关或节点主机上运行前进行逐请求审批。
-参阅 [Exec 审批](/tools/exec-approvals) 了解策略、白名单和 UI 流程。
+æ²™ç®±éš”ç¦»çš„æ™ºèƒ½ä½“å¯ä»¥è¦æ±‚åœ¨ `exec` äºŽ Gateway ç½‘å…³æˆ–èŠ‚ç‚¹ä¸»æœºä¸Šè¿è¡Œå‰è¿›è¡Œé€è¯·æ±‚å®¡æ‰¹ã€‚
+å‚é˜… [Exec å®¡æ‰¹](/tools/exec-approvals) äº†è§£ç­–ç•¥ã€ç™½åå•å’Œ UI æµç¨‹ã€‚
 
-当需要审批时，exec 工具会立即返回 `status: "approval-pending"` 和审批 id。一旦被批准（或拒绝/超时），Gateway 网关会发出系统事件（`Exec finished` / `Exec denied`）。如果命令在 `tools.exec.approvalRunningNoticeMs` 之后仍在运行，会发出单次 `Exec running` 通知。
+å½“éœ€è¦å®¡æ‰¹æ—¶ï¼Œexec å·¥å…·ä¼šç«‹å³è¿”å›ž `status: "approval-pending"` å’Œå®¡æ‰¹ idã€‚ä¸€æ—¦è¢«æ‰¹å‡†ï¼ˆæˆ–æ‹’ç»/è¶…æ—¶ï¼‰ï¼ŒGateway ç½‘å…³ä¼šå‘å‡ºç³»ç»Ÿäº‹ä»¶ï¼ˆ`Exec finished` / `Exec denied`ï¼‰ã€‚å¦‚æžœå‘½ä»¤åœ¨ `tools.exec.approvalRunningNoticeMs` ä¹‹åŽä»åœ¨è¿è¡Œï¼Œä¼šå‘å‡ºå•æ¬¡ `Exec running` é€šçŸ¥ã€‚
 
-## 白名单 + 安全二进制文件
+## ç™½åå• + å®‰å…¨äºŒè¿›åˆ¶æ–‡ä»¶
 
-白名单执行仅匹配**解析后的二进制路径**（不匹配基本名称）。当 `security=allowlist` 时，仅当每个管道段都在白名单中或是安全二进制文件时，shell 命令才会自动允许。在白名单模式下，链式命令（`;`、`&&`、`||`）和重定向会被拒绝。
+ç™½åå•æ‰§è¡Œä»…åŒ¹é…**è§£æžåŽçš„äºŒè¿›åˆ¶è·¯å¾„**ï¼ˆä¸åŒ¹é…åŸºæœ¬åç§°ï¼‰ã€‚å½“ `security=allowlist` æ—¶ï¼Œä»…å½“æ¯ä¸ªç®¡é“æ®µéƒ½åœ¨ç™½åå•ä¸­æˆ–æ˜¯å®‰å…¨äºŒè¿›åˆ¶æ–‡ä»¶æ—¶ï¼Œshell å‘½ä»¤æ‰ä¼šè‡ªåŠ¨å…è®¸ã€‚åœ¨ç™½åå•æ¨¡å¼ä¸‹ï¼Œé“¾å¼å‘½ä»¤ï¼ˆ`;`ã€`&&`ã€`||`ï¼‰å’Œé‡å®šå‘ä¼šè¢«æ‹’ç»ã€‚
 
-## 示例
+## ç¤ºä¾‹
 
-前台：
+å‰å°ï¼š
 
 ```json
 { "tool": "exec", "command": "ls -la" }
 ```
 
-后台 + 轮询：
+åŽå° + è½®è¯¢ï¼š
 
 ```json
 {"tool":"exec","command":"npm run build","yieldMs":1000}
 {"tool":"process","action":"poll","sessionId":"<id>"}
 ```
 
-发送按键（tmux 风格）：
+å‘é€æŒ‰é”®ï¼ˆtmux é£Žæ ¼ï¼‰ï¼š
 
 ```json
 {"tool":"process","action":"send-keys","sessionId":"<id>","keys":["Enter"]}
@@ -135,22 +135,22 @@ openclaw config set agents.list[0].tools.exec.node "node-id-or-name"
 {"tool":"process","action":"send-keys","sessionId":"<id>","keys":["Up","Up","Enter"]}
 ```
 
-提交（仅发送 CR）：
+æäº¤ï¼ˆä»…å‘é€ CRï¼‰ï¼š
 
 ```json
 { "tool": "process", "action": "submit", "sessionId": "<id>" }
 ```
 
-粘贴（默认带括号）：
+ç²˜è´´ï¼ˆé»˜è®¤å¸¦æ‹¬å·ï¼‰ï¼š
 
 ```json
 { "tool": "process", "action": "paste", "sessionId": "<id>", "text": "line1\nline2\n" }
 ```
 
-## apply_patch（实验性）
+## apply_patchï¼ˆå®žéªŒæ€§ï¼‰
 
-`apply_patch` 是 `exec` 的子工具，用于结构化多文件编辑。
-需显式启用：
+`apply_patch` æ˜¯ `exec` çš„å­å·¥å…·ï¼Œç”¨äºŽç»“æž„åŒ–å¤šæ–‡ä»¶ç¼–è¾‘ã€‚
+éœ€æ˜¾å¼å¯ç”¨ï¼š
 
 ```json5
 {
@@ -162,8 +162,9 @@ openclaw config set agents.list[0].tools.exec.node "node-id-or-name"
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 仅适用于 OpenAI/OpenAI Codex 模型。
-- 工具策略仍然适用；`allow: ["exec"]` 隐式允许 `apply_patch`。
-- 配置位于 `tools.exec.applyPatch` 下。
+- ä»…é€‚ç”¨äºŽ OpenAI/OpenAI Codex æ¨¡åž‹ã€‚
+- å·¥å…·ç­–ç•¥ä»ç„¶é€‚ç”¨ï¼›`allow: ["exec"]` éšå¼å…è®¸ `apply_patch`ã€‚
+- é…ç½®ä½äºŽ `tools.exec.applyPatch` ä¸‹ã€‚
+

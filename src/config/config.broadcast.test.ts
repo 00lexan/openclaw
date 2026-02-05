@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 describe("broadcast", () => {
   it("accepts a broadcast peer map with strategy", async () => {
@@ -34,3 +34,4 @@ describe("broadcast", () => {
     expect(res.ok).toBe(false);
   });
 });
+

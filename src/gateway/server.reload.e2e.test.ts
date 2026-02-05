@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   connectOk,
   getFreePort,
@@ -172,22 +172,22 @@ describe("gateway hot reload", () => {
   let prevSkipGmail: string | undefined;
 
   beforeEach(() => {
-    prevSkipChannels = process.env.OPENCLAW_SKIP_CHANNELS;
-    prevSkipGmail = process.env.OPENCLAW_SKIP_GMAIL_WATCHER;
-    process.env.OPENCLAW_SKIP_CHANNELS = "0";
-    delete process.env.OPENCLAW_SKIP_GMAIL_WATCHER;
+    prevSkipChannels = process.env._SKIP_CHANNELS;
+    prevSkipGmail = process.env._SKIP_GMAIL_WATCHER;
+    process.env._SKIP_CHANNELS = "0";
+    delete process.env._SKIP_GMAIL_WATCHER;
   });
 
   afterEach(() => {
     if (prevSkipChannels === undefined) {
-      delete process.env.OPENCLAW_SKIP_CHANNELS;
+      delete process.env._SKIP_CHANNELS;
     } else {
-      process.env.OPENCLAW_SKIP_CHANNELS = prevSkipChannels;
+      process.env._SKIP_CHANNELS = prevSkipChannels;
     }
     if (prevSkipGmail === undefined) {
-      delete process.env.OPENCLAW_SKIP_GMAIL_WATCHER;
+      delete process.env._SKIP_GMAIL_WATCHER;
     } else {
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = prevSkipGmail;
+      process.env._SKIP_GMAIL_WATCHER = prevSkipGmail;
     }
   });
 
@@ -310,3 +310,4 @@ describe("gateway agents", () => {
     await server.close();
   });
 });
+

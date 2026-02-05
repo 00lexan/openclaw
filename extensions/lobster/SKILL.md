@@ -1,4 +1,4 @@
-# Lobster
+﻿# Lobster
 
 Lobster executes multi-step workflows with approval checkpoints. Use it when:
 
@@ -10,11 +10,11 @@ Lobster executes multi-step workflows with approval checkpoints. Use it when:
 
 | User intent                                            | Use Lobster?                                  |
 | ------------------------------------------------------ | --------------------------------------------- |
-| "Triage my email"                                      | Yes — multi-step, may send replies            |
-| "Send a message"                                       | No — single action, use message tool directly |
-| "Check my email every morning and ask before replying" | Yes — scheduled workflow with approval        |
-| "What's the weather?"                                  | No — simple query                             |
-| "Monitor this PR and notify me of changes"             | Yes — stateful, recurring                     |
+| "Triage my email"                                      | Yes â€” multi-step, may send replies            |
+| "Send a message"                                       | No â€” single action, use message tool directly |
+| "Check my email every morning and ask before replying" | Yes â€” scheduled workflow with approval        |
+| "What's the weather?"                                  | No â€” simple query                             |
+| "Monitor this PR and notify me of changes"             | Yes â€” stateful, recurring                     |
 
 ## Basic usage
 
@@ -85,7 +85,7 @@ Same as above, but halts for approval before returning.
 
 ## Key behaviors
 
-- **Deterministic**: Same input → same output (no LLM variance in pipeline execution)
+- **Deterministic**: Same input â†’ same output (no LLM variance in pipeline execution)
 - **Approval gates**: `approve` command halts execution, returns token
 - **Resumable**: Use `resume` action with token to continue
 - **Structured output**: Always returns JSON envelope with `protocolVersion`
@@ -95,3 +95,4 @@ Same as above, but halts for approval before returning.
 - Simple single-action requests (just use the tool directly)
 - Queries that need LLM interpretation mid-flow
 - One-off tasks that won't be repeated
+

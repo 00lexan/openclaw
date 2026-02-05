@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Conversation store for MS Teams proactive messaging.
  *
  * Stores ConversationReference-like objects keyed by conversation ID so we can
@@ -39,3 +39,4 @@ export type MSTeamsConversationStore = {
   remove: (conversationId: string) => Promise<boolean>;
   findByUserId: (id: string) => Promise<MSTeamsConversationStoreEntry | null>;
 };
+

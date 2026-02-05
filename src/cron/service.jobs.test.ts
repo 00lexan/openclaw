@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { CronJob, CronJobPatch } from "./types.js";
 import { applyJobPatch } from "./service/jobs.js";
 
@@ -101,3 +101,4 @@ describe("applyJobPatch", () => {
     });
   });
 });
+

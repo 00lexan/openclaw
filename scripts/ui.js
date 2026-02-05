@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import { createRequire } from "node:module";
@@ -135,3 +135,4 @@ if (action === "install") {
   }
   run(runner.cmd, ["run", script, ...rest]);
 }
+

@@ -1,4 +1,4 @@
-import type { FeishuAccountConfig, FeishuConfig } from "../config/types.feishu.js";
+﻿import type { FeishuAccountConfig, FeishuConfig } from "../config/types.feishu.js";
 
 export type { FeishuConfig, FeishuAccountConfig };
 
@@ -12,3 +12,4 @@ export type FeishuContext = {
   text?: string;
   raw?: unknown;
 };
+

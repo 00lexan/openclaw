@@ -1,4 +1,4 @@
-import type { TSchema } from "@sinclair/typebox";
+﻿import type { TSchema } from "@sinclair/typebox";
 import {
   AgentEventSchema,
   AgentIdentityParamsSchema,
@@ -242,3 +242,4 @@ export const ProtocolSchemas: Record<string, TSchema> = {
 };
 
 export const PROTOCOL_VERSION = 3 as const;
+

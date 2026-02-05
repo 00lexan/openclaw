@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 import { createSessionSlug } from "./session-slug.js";
 
 describe("session slug", () => {
@@ -24,3 +24,4 @@ describe("session slug", () => {
     expect(slug).toBe("amber-atlas-atlas");
   });
 });
+

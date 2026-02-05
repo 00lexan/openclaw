@@ -1,4 +1,4 @@
-import { getChannelPlugin, normalizeChannelId } from "../channels/plugins/index.js";
+﻿import { getChannelPlugin, normalizeChannelId } from "../channels/plugins/index.js";
 import { normalizeTargetForProvider } from "../infra/outbound/target-normalization.js";
 import { truncateUtf16Safe } from "../utils.js";
 import { type MessagingToolSend } from "./pi-embedded-messaging.js";
@@ -10,7 +10,7 @@ function truncateToolText(text: string): string {
   if (text.length <= TOOL_RESULT_MAX_CHARS) {
     return text;
   }
-  return `${truncateUtf16Safe(text, TOOL_RESULT_MAX_CHARS)}\n…(truncated)…`;
+  return `${truncateUtf16Safe(text, TOOL_RESULT_MAX_CHARS)}\nâ€¦(truncated)â€¦`;
 }
 
 function normalizeToolErrorText(text: string): string | undefined {
@@ -23,7 +23,7 @@ function normalizeToolErrorText(text: string): string | undefined {
     return undefined;
   }
   return firstLine.length > TOOL_ERROR_MAX_CHARS
-    ? `${truncateUtf16Safe(firstLine, TOOL_ERROR_MAX_CHARS)}…`
+    ? `${truncateUtf16Safe(firstLine, TOOL_ERROR_MAX_CHARS)}â€¦`
     : firstLine;
 }
 
@@ -207,3 +207,4 @@ export function extractMessagingToolSend(
       }
     : undefined;
 }
+

@@ -1,4 +1,4 @@
-# Genkit Eval Framework for UI generation
+﻿# Genkit Eval Framework for UI generation
 
 This is for evaluating A2UI (v0.8) against various LLMs.
 
@@ -59,3 +59,4 @@ pnpm run evalAll -- --verbose
 ```bash
 pnpm run evalAll -- --keep=output
 ```
+

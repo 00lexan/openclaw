@@ -1,7 +1,7 @@
----
+﻿---
 role: experimental
 summary: |
-  Arabian Nights register for OpenProse—a narrative/nested alternative keyword set.
+  Arabian Nights register for OpenProseâ€”a narrative/nested alternative keyword set.
   Djinns, tales within tales, wishes, and oaths. For benchmarking against the functional register.
 status: draft
 requires: prose.md
@@ -18,9 +18,9 @@ An alternative register for OpenProse that draws from One Thousand and One Night
 1. Load `prose.md` first (execution semantics)
 2. Load this file (keyword translations)
 3. When parsing `.prose` files, accept Arabian Nights keywords as aliases for functional keywords
-4. All execution behavior remains identical—only surface syntax changes
+4. All execution behavior remains identicalâ€”only surface syntax changes
 
-> **Design constraint:** Still aims to be "structured but self-evident" per the language tenets—just self-evident through a storytelling lens.
+> **Design constraint:** Still aims to be "structured but self-evident" per the language tenetsâ€”just self-evident through a storytelling lens.
 
 ---
 
@@ -82,12 +82,12 @@ An alternative register for OpenProse that draws from One Thousand and One Night
 
 These keywords already work or are too functional to replace sensibly:
 
-- `**...**` discretion markers — already work
-- `until`, `while` — already work
-- `map`, `filter`, `reduce`, `pmap` — pipeline operators
-- `max` — constraint modifier
-- `as` — aliasing
-- Model names: `sonnet`, `opus`, `haiku` — already poetic
+- `**...**` discretion markers â€” already work
+- `until`, `while` â€” already work
+- `map`, `filter`, `reduce`, `pmap` â€” pipeline operators
+- `max` â€” constraint modifier
+- `as` â€” aliasing
+- Model names: `sonnet`, `opus`, `haiku` â€” already poetic
 
 ---
 
@@ -282,7 +282,7 @@ oath config = { spirit: "opus", persist: 3 }
 1. **Frame narrative is recursion.** Stories within stories maps perfectly to nested program calls.
 2. **Djinn/wish/gift.** The agent/input/output mapping is extremely clean.
 3. **Rich tradition.** One Thousand and One Nights is globally known.
-4. **Bazaar for parallel.** Many merchants, many stalls, all active at once—vivid metaphor.
+4. **Bazaar for parallel.** Many merchants, many stalls, all active at onceâ€”vivid metaphor.
 5. **Oath for const.** An unbreakable vow is a perfect metaphor for immutability.
 6. **"1001 nights"** as a loop count is delightful.
 
@@ -300,11 +300,11 @@ oath config = { spirit: "opus", persist: 3 }
 | Term         | Meaning                                 | Used for              |
 | ------------ | --------------------------------------- | --------------------- |
 | Scheherazade | The narrator who tells tales to survive | (the program author)  |
-| Djinn        | Supernatural spirit, bound to serve     | `agent` → `djinn`     |
-| Frame story  | A story that contains other stories     | `block` → `frame`     |
-| Wish         | What is asked of the djinn              | `input` → `wish`      |
-| Oath         | Unbreakable promise                     | `const` → `oath`      |
-| Bazaar       | Marketplace, many vendors               | `parallel` → `bazaar` |
+| Djinn        | Supernatural spirit, bound to serve     | `agent` â†’ `djinn`     |
+| Frame story  | A story that contains other stories     | `block` â†’ `frame`     |
+| Wish         | What is asked of the djinn              | `input` â†’ `wish`      |
+| Oath         | Unbreakable promise                     | `const` â†’ `oath`      |
+| Bazaar       | Marketplace, many vendors               | `parallel` â†’ `bazaar` |
 
 ---
 
@@ -355,4 +355,5 @@ Best suited for:
 - Workflows that feel like granting wishes
 - Users who enjoy narrative framing
 
-The `frame` keyword for reusable blocks is especially apt—Scheherazade's frame story containing a thousand tales.
+The `frame` keyword for reusable blocks is especially aptâ€”Scheherazade's frame story containing a thousand tales.
+

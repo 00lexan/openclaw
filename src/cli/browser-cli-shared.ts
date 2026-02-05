@@ -1,4 +1,4 @@
-import type { GatewayRpcOpts } from "./gateway-rpc.js";
+﻿import type { GatewayRpcOpts } from "./gateway-rpc.js";
 import { callGatewayFromCli } from "./gateway-rpc.js";
 
 export type BrowserParentOpts = GatewayRpcOpts & {
@@ -60,3 +60,4 @@ export async function callBrowserRequest<T>(
   }
   return payload as T;
 }
+

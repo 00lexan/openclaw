@@ -1,17 +1,17 @@
----
-summary: "OpenClaw on Raspberry Pi (budget self-hosted setup)"
+﻿---
+summary: " on Raspberry Pi (budget self-hosted setup)"
 read_when:
-  - Setting up OpenClaw on a Raspberry Pi
-  - Running OpenClaw on ARM devices
+  - Setting up  on a Raspberry Pi
+  - Running  on ARM devices
   - Building a cheap always-on personal AI
 title: "Raspberry Pi"
 ---
 
-# OpenClaw on Raspberry Pi
+#  on Raspberry Pi
 
 ## Goal
 
-Run a persistent, always-on OpenClaw Gateway on a Raspberry Pi for **~$35-80** one-time cost (no monthly fees).
+Run a persistent, always-on  Gateway on a Raspberry Pi for **~$35-80** one-time cost (no monthly fees).
 
 Perfect for:
 
@@ -23,12 +23,12 @@ Perfect for:
 
 | Pi Model        | RAM     | Works?   | Notes                              |
 | --------------- | ------- | -------- | ---------------------------------- |
-| **Pi 5**        | 4GB/8GB | ✅ Best  | Fastest, recommended               |
-| **Pi 4**        | 4GB     | ✅ Good  | Sweet spot for most users          |
-| **Pi 4**        | 2GB     | ✅ OK    | Works, add swap                    |
-| **Pi 4**        | 1GB     | ⚠️ Tight | Possible with swap, minimal config |
-| **Pi 3B+**      | 1GB     | ⚠️ Slow  | Works but sluggish                 |
-| **Pi Zero 2 W** | 512MB   | ❌       | Not recommended                    |
+| **Pi 5**        | 4GB/8GB | âœ… Best  | Fastest, recommended               |
+| **Pi 4**        | 4GB     | âœ… Good  | Sweet spot for most users          |
+| **Pi 4**        | 2GB     | âœ… OK    | Works, add swap                    |
+| **Pi 4**        | 1GB     | âš ï¸ Tight | Possible with swap, minimal config |
+| **Pi 3B+**      | 1GB     | âš ï¸ Slow  | Works but sluggish                 |
+| **Pi Zero 2 W** | 512MB   | âŒ       | Not recommended                    |
 
 **Minimum specs:** 1GB RAM, 1 core, 500MB disk  
 **Recommended:** 2GB+ RAM, 64-bit OS, 16GB+ SD card (or USB SSD)
@@ -43,11 +43,11 @@ Perfect for:
 
 ## 1) Flash the OS
 
-Use **Raspberry Pi OS Lite (64-bit)** — no desktop needed for a headless server.
+Use **Raspberry Pi OS Lite (64-bit)** â€” no desktop needed for a headless server.
 
 1. Download [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 2. Choose OS: **Raspberry Pi OS Lite (64-bit)**
-3. Click the gear icon (⚙️) to pre-configure:
+3. Click the gear icon (âš™ï¸) to pre-configure:
    - Set hostname: `gateway-host`
    - Enable SSH
    - Set username/password
@@ -107,30 +107,30 @@ echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 ```
 
-## 6) Install OpenClaw
+## 6) Install 
 
 ### Option A: Standard Install (Recommended)
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash
+curl -fsSL https://.ai/install.sh | bash
 ```
 
 ### Option B: Hackable Install (For tinkering)
 
 ```bash
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw
+git clone https://github.com//.git
+cd 
 npm install
 npm run build
 npm link
 ```
 
-The hackable install gives you direct access to logs and code — useful for debugging ARM-specific issues.
+The hackable install gives you direct access to logs and code â€” useful for debugging ARM-specific issues.
 
 ## 7) Run Onboarding
 
 ```bash
-openclaw onboard --install-daemon
+ onboard --install-daemon
 ```
 
 Follow the wizard:
@@ -144,13 +144,13 @@ Follow the wizard:
 
 ```bash
 # Check status
-openclaw status
+ status
 
 # Check service
-sudo systemctl status openclaw
+sudo systemctl status 
 
 # View logs
-journalctl -u openclaw -f
+journalctl -u  -f
 ```
 
 ## 9) Access the Dashboard
@@ -173,8 +173,8 @@ curl -fsSL https://tailscale.com/install.sh | sh
 sudo tailscale up
 
 # Update config
-openclaw config set gateway.bind tailnet
-sudo systemctl restart openclaw
+ config set gateway.bind tailnet
+sudo systemctl restart 
 ```
 
 ---
@@ -221,15 +221,15 @@ htop
 
 ### Binary Compatibility
 
-Most OpenClaw features work on ARM64, but some external binaries may need ARM builds:
+Most  features work on ARM64, but some external binaries may need ARM builds:
 
 | Tool               | ARM64 Status | Notes                               |
 | ------------------ | ------------ | ----------------------------------- |
-| Node.js            | ✅           | Works great                         |
-| WhatsApp (Baileys) | ✅           | Pure JS, no issues                  |
-| Telegram           | ✅           | Pure JS, no issues                  |
-| gog (Gmail CLI)    | ⚠️           | Check for ARM release               |
-| Chromium (browser) | ✅           | `sudo apt install chromium-browser` |
+| Node.js            | âœ…           | Works great                         |
+| WhatsApp (Baileys) | âœ…           | Pure JS, no issues                  |
+| Telegram           | âœ…           | Pure JS, no issues                  |
+| gog (Gmail CLI)    | âš ï¸           | Check for ARM release               |
+| Chromium (browser) | âœ…           | `sudo apt install chromium-browser` |
 
 If a skill fails, check if its binary has an ARM build. Many Go/Rust tools do; some don't.
 
@@ -261,7 +261,7 @@ Since the Pi is just the Gateway (models run in the cloud), use API-based models
 }
 ```
 
-**Don't try to run local LLMs on a Pi** — even small models are too slow. Let Claude/GPT do the heavy lifting.
+**Don't try to run local LLMs on a Pi** â€” even small models are too slow. Let Claude/GPT do the heavy lifting.
 
 ---
 
@@ -271,13 +271,13 @@ The onboarding wizard sets this up, but to verify:
 
 ```bash
 # Check service is enabled
-sudo systemctl is-enabled openclaw
+sudo systemctl is-enabled 
 
 # Enable if not
-sudo systemctl enable openclaw
+sudo systemctl enable 
 
 # Start on boot
-sudo systemctl start openclaw
+sudo systemctl start 
 ```
 
 ---
@@ -304,12 +304,12 @@ free -h
 
 ```bash
 # Check logs
-journalctl -u openclaw --no-pager -n 100
+journalctl -u  --no-pager -n 100
 
 # Common fix: rebuild
-cd ~/openclaw  # if using hackable install
+cd ~/  # if using hackable install
 npm run build
-sudo systemctl restart openclaw
+sudo systemctl restart 
 ```
 
 ### ARM Binary Issues
@@ -343,7 +343,7 @@ echo 'wireless-power off' | sudo tee -a /etc/network/interfaces
 | **Pi 5 (4GB)** | ~$60          | $0           | Best performance          |
 | **Pi 5 (8GB)** | ~$80          | $0           | Overkill but future-proof |
 | DigitalOcean   | $0            | $6/mo        | $72/year                  |
-| Hetzner        | $0            | €3.79/mo     | ~$50/year                 |
+| Hetzner        | $0            | â‚¬3.79/mo     | ~$50/year                 |
 
 **Break-even:** A Pi pays for itself in ~6-12 months vs cloud VPS.
 
@@ -351,8 +351,9 @@ echo 'wireless-power off' | sudo tee -a /etc/network/interfaces
 
 ## See Also
 
-- [Linux guide](/platforms/linux) — general Linux setup
-- [DigitalOcean guide](/platforms/digitalocean) — cloud alternative
-- [Hetzner guide](/platforms/hetzner) — Docker setup
-- [Tailscale](/gateway/tailscale) — remote access
-- [Nodes](/nodes) — pair your laptop/phone with the Pi gateway
+- [Linux guide](/platforms/linux) â€” general Linux setup
+- [DigitalOcean guide](/platforms/digitalocean) â€” cloud alternative
+- [Hetzner guide](/platforms/hetzner) â€” Docker setup
+- [Tailscale](/gateway/tailscale) â€” remote access
+- [Nodes](/nodes) â€” pair your laptop/phone with the Pi gateway
+

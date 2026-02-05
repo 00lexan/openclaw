@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   extractText,
   extractTextCached,
@@ -43,3 +43,4 @@ describe("extractThinkingCached", () => {
     expect(extractThinkingCached(message)).toBe("Plan A");
   });
 });
+

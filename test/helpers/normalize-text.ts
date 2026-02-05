@@ -1,4 +1,4 @@
-function stripAnsi(input: string): string {
+﻿function stripAnsi(input: string): string {
   let out = "";
   for (let i = 0; i < input.length; i++) {
     const code = input.charCodeAt(i);
@@ -31,7 +31,8 @@ function stripAnsi(input: string): string {
 export function normalizeTestText(input: string): string {
   return stripAnsi(input)
     .replaceAll("\r\n", "\n")
-    .replaceAll("…", "...")
+    .replaceAll("â€¦", "...")
     .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "?")
     .replace(/[\uD800-\uDFFF]/g, "?");
 }
+

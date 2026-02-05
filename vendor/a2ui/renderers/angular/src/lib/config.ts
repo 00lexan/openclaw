@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,3 +23,4 @@ export function provideA2UI(config: { catalog: Catalog; theme: Theme }): Environ
     { provide: Theme, useValue: config.theme },
   ]);
 }
+

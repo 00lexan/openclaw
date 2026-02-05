@@ -1,4 +1,4 @@
-import type { MediaUnderstandingProvider } from "../../types.js";
+﻿import type { MediaUnderstandingProvider } from "../../types.js";
 import { transcribeOpenAiCompatibleAudio } from "../openai/audio.js";
 
 const DEFAULT_GROQ_AUDIO_BASE_URL = "https://api.groq.com/openai/v1";
@@ -12,3 +12,4 @@ export const groqProvider: MediaUnderstandingProvider = {
       baseUrl: req.baseUrl ?? DEFAULT_GROQ_AUDIO_BASE_URL,
     }),
 };
+

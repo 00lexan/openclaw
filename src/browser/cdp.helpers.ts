@@ -1,4 +1,4 @@
-import WebSocket from "ws";
+﻿import WebSocket from "ws";
 import { rawDataToString } from "../infra/ws.js";
 import { getChromeExtensionRelayAuthHeaders } from "./extension-relay.js";
 
@@ -171,3 +171,4 @@ export async function withCdpSocket<T>(
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { WizardSession } from "./session.js";
 
 function noteRunner() {
@@ -72,3 +72,4 @@ describe("WizardSession", () => {
     expect(done.status).toBe("cancelled");
   });
 });
+

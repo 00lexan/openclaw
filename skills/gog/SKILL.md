@@ -1,12 +1,12 @@
----
+﻿---
 name: gog
 description: Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 homepage: https://gogcli.sh
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🎮",
+        "emoji": "ðŸŽ®",
         "requires": { "bins": ["gog"] },
         "install":
           [
@@ -114,3 +114,4 @@ Notes
 - Docs supports export/cat/copy. In-place edits require a Docs API client (not in gog).
 - Confirm before sending mail or creating events.
 - `gog gmail search` returns one row per thread; use `gog gmail messages search` when you need every individual email returned separately.
+

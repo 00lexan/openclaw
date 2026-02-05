@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 开发 Nextcloud Talk 渠道功能时
-summary: Nextcloud Talk 支持状态、功能和配置
+  - å¼€å‘ Nextcloud Talk æ¸ é“åŠŸèƒ½æ—¶
+summary: Nextcloud Talk æ”¯æŒçŠ¶æ€ã€åŠŸèƒ½å’Œé…ç½®
 title: Nextcloud Talk
 x-i18n:
   generated_at: "2026-02-03T10:04:00Z"
@@ -12,45 +12,45 @@ x-i18n:
   workflow: 15
 ---
 
-# Nextcloud Talk（插件）
+# Nextcloud Talkï¼ˆæ’ä»¶ï¼‰
 
-状态：通过插件支持（webhook 机器人）。支持私信、房间、表情回应和 Markdown 消息。
+çŠ¶æ€ï¼šé€šè¿‡æ’ä»¶æ”¯æŒï¼ˆwebhook æœºå™¨äººï¼‰ã€‚æ”¯æŒç§ä¿¡ã€æˆ¿é—´ã€è¡¨æƒ…å›žåº”å’Œ Markdown æ¶ˆæ¯ã€‚
 
-## 需要插件
+## éœ€è¦æ’ä»¶
 
-Nextcloud Talk 以插件形式提供，不包含在核心安装包中。
+Nextcloud Talk ä»¥æ’ä»¶å½¢å¼æä¾›ï¼Œä¸åŒ…å«åœ¨æ ¸å¿ƒå®‰è£…åŒ…ä¸­ã€‚
 
-通过 CLI 安装（npm 仓库）：
-
-```bash
-openclaw plugins install @openclaw/nextcloud-talk
-```
-
-本地检出安装（从 git 仓库运行时）：
+é€šè¿‡ CLI å®‰è£…ï¼ˆnpm ä»“åº“ï¼‰ï¼š
 
 ```bash
-openclaw plugins install ./extensions/nextcloud-talk
+ plugins install @/nextcloud-talk
 ```
 
-如果你在配置/新手引导过程中选择了 Nextcloud Talk，并且检测到 git 检出，
-OpenClaw 将自动提供本地安装路径。
+æœ¬åœ°æ£€å‡ºå®‰è£…ï¼ˆä»Ž git ä»“åº“è¿è¡Œæ—¶ï¼‰ï¼š
 
-详情：[插件](/plugin)
+```bash
+ plugins install ./extensions/nextcloud-talk
+```
 
-## 快速设置（新手）
+å¦‚æžœä½ åœ¨é…ç½®/æ–°æ‰‹å¼•å¯¼è¿‡ç¨‹ä¸­é€‰æ‹©äº† Nextcloud Talkï¼Œå¹¶ä¸”æ£€æµ‹åˆ° git æ£€å‡ºï¼Œ
+ å°†è‡ªåŠ¨æä¾›æœ¬åœ°å®‰è£…è·¯å¾„ã€‚
 
-1. 安装 Nextcloud Talk 插件。
-2. 在你的 Nextcloud 服务器上创建机器人：
+è¯¦æƒ…ï¼š[æ’ä»¶](/plugin)
+
+## å¿«é€Ÿè®¾ç½®ï¼ˆæ–°æ‰‹ï¼‰
+
+1. å®‰è£… Nextcloud Talk æ’ä»¶ã€‚
+2. åœ¨ä½ çš„ Nextcloud æœåŠ¡å™¨ä¸Šåˆ›å»ºæœºå™¨äººï¼š
    ```bash
-   ./occ talk:bot:install "OpenClaw" "<shared-secret>" "<webhook-url>" --feature reaction
+   ./occ talk:bot:install "" "<shared-secret>" "<webhook-url>" --feature reaction
    ```
-3. 在目标房间设置中启用机器人。
-4. 配置 OpenClaw：
-   - 配置项：`channels.nextcloud-talk.baseUrl` + `channels.nextcloud-talk.botSecret`
-   - 或环境变量：`NEXTCLOUD_TALK_BOT_SECRET`（仅默认账户）
-5. 重启 Gateway 网关（或完成新手引导）。
+3. åœ¨ç›®æ ‡æˆ¿é—´è®¾ç½®ä¸­å¯ç”¨æœºå™¨äººã€‚
+4. é…ç½® ï¼š
+   - é…ç½®é¡¹ï¼š`channels.nextcloud-talk.baseUrl` + `channels.nextcloud-talk.botSecret`
+   - æˆ–çŽ¯å¢ƒå˜é‡ï¼š`NEXTCLOUD_TALK_BOT_SECRET`ï¼ˆä»…é»˜è®¤è´¦æˆ·ï¼‰
+5. é‡å¯ Gateway ç½‘å…³ï¼ˆæˆ–å®Œæˆæ–°æ‰‹å¼•å¯¼ï¼‰ã€‚
 
-最小配置：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -65,25 +65,25 @@ OpenClaw 将自动提供本地安装路径。
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 机器人无法主动发起私信。用户必须先向机器人发送消息。
-- Webhook URL 必须可被 Gateway 网关访问；如果在代理后面，请设置 `webhookPublicUrl`。
-- 机器人 API 不支持媒体上传；媒体以 URL 形式发送。
-- Webhook 载荷无法区分私信和房间；设置 `apiUser` + `apiPassword` 以启用房间类型查询（否则私信将被视为房间）。
+- æœºå™¨äººæ— æ³•ä¸»åŠ¨å‘èµ·ç§ä¿¡ã€‚ç”¨æˆ·å¿…é¡»å…ˆå‘æœºå™¨äººå‘é€æ¶ˆæ¯ã€‚
+- Webhook URL å¿…é¡»å¯è¢« Gateway ç½‘å…³è®¿é—®ï¼›å¦‚æžœåœ¨ä»£ç†åŽé¢ï¼Œè¯·è®¾ç½® `webhookPublicUrl`ã€‚
+- æœºå™¨äºº API ä¸æ”¯æŒåª’ä½“ä¸Šä¼ ï¼›åª’ä½“ä»¥ URL å½¢å¼å‘é€ã€‚
+- Webhook è½½è·æ— æ³•åŒºåˆ†ç§ä¿¡å’Œæˆ¿é—´ï¼›è®¾ç½® `apiUser` + `apiPassword` ä»¥å¯ç”¨æˆ¿é—´ç±»åž‹æŸ¥è¯¢ï¼ˆå¦åˆ™ç§ä¿¡å°†è¢«è§†ä¸ºæˆ¿é—´ï¼‰ã€‚
 
-## 访问控制（私信）
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ï¼‰
 
-- 默认：`channels.nextcloud-talk.dmPolicy = "pairing"`。未知发送者将收到配对码。
-- 批准方式：
-  - `openclaw pairing list nextcloud-talk`
-  - `openclaw pairing approve nextcloud-talk <CODE>`
-- 公开私信：`channels.nextcloud-talk.dmPolicy="open"` 加上 `channels.nextcloud-talk.allowFrom=["*"]`。
+- é»˜è®¤ï¼š`channels.nextcloud-talk.dmPolicy = "pairing"`ã€‚æœªçŸ¥å‘é€è€…å°†æ”¶åˆ°é…å¯¹ç ã€‚
+- æ‰¹å‡†æ–¹å¼ï¼š
+  - ` pairing list nextcloud-talk`
+  - ` pairing approve nextcloud-talk <CODE>`
+- å…¬å¼€ç§ä¿¡ï¼š`channels.nextcloud-talk.dmPolicy="open"` åŠ ä¸Š `channels.nextcloud-talk.allowFrom=["*"]`ã€‚
 
-## 房间（群组）
+## æˆ¿é—´ï¼ˆç¾¤ç»„ï¼‰
 
-- 默认：`channels.nextcloud-talk.groupPolicy = "allowlist"`（需要提及触发）。
-- 使用 `channels.nextcloud-talk.rooms` 设置房间白名单：
+- é»˜è®¤ï¼š`channels.nextcloud-talk.groupPolicy = "allowlist"`ï¼ˆéœ€è¦æåŠè§¦å‘ï¼‰ã€‚
+- ä½¿ç”¨ `channels.nextcloud-talk.rooms` è®¾ç½®æˆ¿é—´ç™½åå•ï¼š
 
 ```json5
 {
@@ -97,46 +97,47 @@ OpenClaw 将自动提供本地安装路径。
 }
 ```
 
-- 如需禁止所有房间，保持白名单为空或设置 `channels.nextcloud-talk.groupPolicy="disabled"`。
+- å¦‚éœ€ç¦æ­¢æ‰€æœ‰æˆ¿é—´ï¼Œä¿æŒç™½åå•ä¸ºç©ºæˆ–è®¾ç½® `channels.nextcloud-talk.groupPolicy="disabled"`ã€‚
 
-## 功能支持
+## åŠŸèƒ½æ”¯æŒ
 
-| 功能     | 状态   |
+| åŠŸèƒ½     | çŠ¶æ€   |
 | -------- | ------ |
-| 私信     | 支持   |
-| 房间     | 支持   |
-| 话题     | 不支持 |
-| 媒体     | 仅 URL |
-| 表情回应 | 支持   |
-| 原生命令 | 不支持 |
+| ç§ä¿¡     | æ”¯æŒ   |
+| æˆ¿é—´     | æ”¯æŒ   |
+| è¯é¢˜     | ä¸æ”¯æŒ |
+| åª’ä½“     | ä»… URL |
+| è¡¨æƒ…å›žåº” | æ”¯æŒ   |
+| åŽŸç”Ÿå‘½ä»¤ | ä¸æ”¯æŒ |
 
-## 配置参考（Nextcloud Talk）
+## é…ç½®å‚è€ƒï¼ˆNextcloud Talkï¼‰
 
-完整配置：[配置](/gateway/configuration)
+å®Œæ•´é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-提供商选项：
+æä¾›å•†é€‰é¡¹ï¼š
 
-- `channels.nextcloud-talk.enabled`：启用/禁用渠道启动。
-- `channels.nextcloud-talk.baseUrl`：Nextcloud 实例 URL。
-- `channels.nextcloud-talk.botSecret`：机器人共享密钥。
-- `channels.nextcloud-talk.botSecretFile`：密钥文件路径。
-- `channels.nextcloud-talk.apiUser`：用于房间查询的 API 用户（私信检测）。
-- `channels.nextcloud-talk.apiPassword`：用于房间查询的 API/应用密码。
-- `channels.nextcloud-talk.apiPasswordFile`：API 密码文件路径。
-- `channels.nextcloud-talk.webhookPort`：webhook 监听端口（默认：8788）。
-- `channels.nextcloud-talk.webhookHost`：webhook 主机（默认：0.0.0.0）。
-- `channels.nextcloud-talk.webhookPath`：webhook 路径（默认：/nextcloud-talk-webhook）。
-- `channels.nextcloud-talk.webhookPublicUrl`：外部可达的 webhook URL。
-- `channels.nextcloud-talk.dmPolicy`：`pairing | allowlist | open | disabled`。
-- `channels.nextcloud-talk.allowFrom`：私信白名单（用户 ID）。`open` 需要 `"*"`。
-- `channels.nextcloud-talk.groupPolicy`：`allowlist | open | disabled`。
-- `channels.nextcloud-talk.groupAllowFrom`：群组白名单（用户 ID）。
-- `channels.nextcloud-talk.rooms`：每个房间的设置和白名单。
-- `channels.nextcloud-talk.historyLimit`：群组历史记录限制（0 表示禁用）。
-- `channels.nextcloud-talk.dmHistoryLimit`：私信历史记录限制（0 表示禁用）。
-- `channels.nextcloud-talk.dms`：每个私信的覆盖设置（historyLimit）。
-- `channels.nextcloud-talk.textChunkLimit`：出站文本分块大小（字符数）。
-- `channels.nextcloud-talk.chunkMode`：`length`（默认）或 `newline`，在长度分块前按空行（段落边界）分割。
-- `channels.nextcloud-talk.blockStreaming`：禁用此渠道的分块流式传输。
-- `channels.nextcloud-talk.blockStreamingCoalesce`：分块流式传输合并调优。
-- `channels.nextcloud-talk.mediaMaxMb`：入站媒体大小上限（MB）。
+- `channels.nextcloud-talk.enabled`ï¼šå¯ç”¨/ç¦ç”¨æ¸ é“å¯åŠ¨ã€‚
+- `channels.nextcloud-talk.baseUrl`ï¼šNextcloud å®žä¾‹ URLã€‚
+- `channels.nextcloud-talk.botSecret`ï¼šæœºå™¨äººå…±äº«å¯†é’¥ã€‚
+- `channels.nextcloud-talk.botSecretFile`ï¼šå¯†é’¥æ–‡ä»¶è·¯å¾„ã€‚
+- `channels.nextcloud-talk.apiUser`ï¼šç”¨äºŽæˆ¿é—´æŸ¥è¯¢çš„ API ç”¨æˆ·ï¼ˆç§ä¿¡æ£€æµ‹ï¼‰ã€‚
+- `channels.nextcloud-talk.apiPassword`ï¼šç”¨äºŽæˆ¿é—´æŸ¥è¯¢çš„ API/åº”ç”¨å¯†ç ã€‚
+- `channels.nextcloud-talk.apiPasswordFile`ï¼šAPI å¯†ç æ–‡ä»¶è·¯å¾„ã€‚
+- `channels.nextcloud-talk.webhookPort`ï¼šwebhook ç›‘å¬ç«¯å£ï¼ˆé»˜è®¤ï¼š8788ï¼‰ã€‚
+- `channels.nextcloud-talk.webhookHost`ï¼šwebhook ä¸»æœºï¼ˆé»˜è®¤ï¼š0.0.0.0ï¼‰ã€‚
+- `channels.nextcloud-talk.webhookPath`ï¼šwebhook è·¯å¾„ï¼ˆé»˜è®¤ï¼š/nextcloud-talk-webhookï¼‰ã€‚
+- `channels.nextcloud-talk.webhookPublicUrl`ï¼šå¤–éƒ¨å¯è¾¾çš„ webhook URLã€‚
+- `channels.nextcloud-talk.dmPolicy`ï¼š`pairing | allowlist | open | disabled`ã€‚
+- `channels.nextcloud-talk.allowFrom`ï¼šç§ä¿¡ç™½åå•ï¼ˆç”¨æˆ· IDï¼‰ã€‚`open` éœ€è¦ `"*"`ã€‚
+- `channels.nextcloud-talk.groupPolicy`ï¼š`allowlist | open | disabled`ã€‚
+- `channels.nextcloud-talk.groupAllowFrom`ï¼šç¾¤ç»„ç™½åå•ï¼ˆç”¨æˆ· IDï¼‰ã€‚
+- `channels.nextcloud-talk.rooms`ï¼šæ¯ä¸ªæˆ¿é—´çš„è®¾ç½®å’Œç™½åå•ã€‚
+- `channels.nextcloud-talk.historyLimit`ï¼šç¾¤ç»„åŽ†å²è®°å½•é™åˆ¶ï¼ˆ0 è¡¨ç¤ºç¦ç”¨ï¼‰ã€‚
+- `channels.nextcloud-talk.dmHistoryLimit`ï¼šç§ä¿¡åŽ†å²è®°å½•é™åˆ¶ï¼ˆ0 è¡¨ç¤ºç¦ç”¨ï¼‰ã€‚
+- `channels.nextcloud-talk.dms`ï¼šæ¯ä¸ªç§ä¿¡çš„è¦†ç›–è®¾ç½®ï¼ˆhistoryLimitï¼‰ã€‚
+- `channels.nextcloud-talk.textChunkLimit`ï¼šå‡ºç«™æ–‡æœ¬åˆ†å—å¤§å°ï¼ˆå­—ç¬¦æ•°ï¼‰ã€‚
+- `channels.nextcloud-talk.chunkMode`ï¼š`length`ï¼ˆé»˜è®¤ï¼‰æˆ– `newline`ï¼Œåœ¨é•¿åº¦åˆ†å—å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- `channels.nextcloud-talk.blockStreaming`ï¼šç¦ç”¨æ­¤æ¸ é“çš„åˆ†å—æµå¼ä¼ è¾“ã€‚
+- `channels.nextcloud-talk.blockStreamingCoalesce`ï¼šåˆ†å—æµå¼ä¼ è¾“åˆå¹¶è°ƒä¼˜ã€‚
+- `channels.nextcloud-talk.mediaMaxMb`ï¼šå…¥ç«™åª’ä½“å¤§å°ä¸Šé™ï¼ˆMBï¼‰ã€‚
+

@@ -1,11 +1,11 @@
-import { createHash, randomBytes } from "node:crypto";
+﻿import { createHash, randomBytes } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, realpathSync } from "node:fs";
 import { createServer } from "node:http";
 import { delimiter, dirname, join } from "node:path";
 
-const CLIENT_ID_KEYS = ["OPENCLAW_GEMINI_OAUTH_CLIENT_ID", "GEMINI_CLI_OAUTH_CLIENT_ID"];
+const CLIENT_ID_KEYS = ["_GEMINI_OAUTH_CLIENT_ID", "GEMINI_CLI_OAUTH_CLIENT_ID"];
 const CLIENT_SECRET_KEYS = [
-  "OPENCLAW_GEMINI_OAUTH_CLIENT_SECRET",
+  "_GEMINI_OAUTH_CLIENT_SECRET",
   "GEMINI_CLI_OAUTH_CLIENT_SECRET",
 ];
 const REDIRECT_URI = "http://localhost:8085/oauth2callback";
@@ -309,7 +309,7 @@ async function waitForLocalCallback(params: {
         res.end(
           "<!doctype html><html><head><meta charset='utf-8'/></head>" +
             "<body><h2>Gemini CLI OAuth complete</h2>" +
-            "<p>You can close this window and return to OpenClaw.</p></body></html>",
+            "<p>You can close this window and return to .</p></body></html>",
         );
 
         finish(undefined, { code, state });
@@ -339,7 +339,7 @@ async function waitForLocalCallback(params: {
     });
 
     server.listen(port, hostname, () => {
-      params.onProgress?.(`Waiting for OAuth callback on ${REDIRECT_URI}…`);
+      params.onProgress?.(`Waiting for OAuth callback on ${REDIRECT_URI}â€¦`);
     });
 
     timeout = setTimeout(() => {
@@ -419,7 +419,7 @@ async function discoverProject(accessToken: string): Promise<string> {
     Authorization: `Bearer ${accessToken}`,
     "Content-Type": "application/json",
     "User-Agent": "google-api-nodejs-client/9.15.1",
-    "X-Goog-Api-Client": "gl-node/openclaw",
+    "X-Goog-Api-Client": "gl-node/",
   };
 
   const loadBody = {
@@ -660,3 +660,4 @@ export async function loginGeminiCliOAuth(
     throw err;
   }
 }
+

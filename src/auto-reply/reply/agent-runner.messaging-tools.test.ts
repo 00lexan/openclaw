@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -153,7 +153,7 @@ describe("runReplyAgent messaging tool suppression", () => {
 
   it("persists usage even when replies are suppressed", async () => {
     const storePath = path.join(
-      await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-session-store-")),
+      await fs.mkdtemp(path.join(os.tmpdir(), "-session-store-")),
       "sessions.json",
     );
     const sessionKey = "main";
@@ -181,3 +181,4 @@ describe("runReplyAgent messaging tool suppression", () => {
     expect(store[sessionKey]?.model).toBe("claude-opus-4-5");
   });
 });
+

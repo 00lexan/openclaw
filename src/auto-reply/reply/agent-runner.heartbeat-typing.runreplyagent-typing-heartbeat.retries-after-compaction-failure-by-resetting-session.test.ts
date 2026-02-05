@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -126,9 +126,9 @@ describe("runReplyAgent typing (heartbeat)", () => {
   });
 
   it("retries after compaction failure by resetting the session", async () => {
-    const prevStateDir = process.env.OPENCLAW_STATE_DIR;
-    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "openclaw-session-compaction-reset-"));
-    process.env.OPENCLAW_STATE_DIR = stateDir;
+    const prevStateDir = process.env._STATE_DIR;
+    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "-session-compaction-reset-"));
+    process.env._STATE_DIR = stateDir;
     try {
       const sessionId = "session";
       const storePath = path.join(stateDir, "sessions", "sessions.json");
@@ -167,17 +167,17 @@ describe("runReplyAgent typing (heartbeat)", () => {
       expect(persisted.main.sessionId).toBe(sessionStore.main.sessionId);
     } finally {
       if (prevStateDir) {
-        process.env.OPENCLAW_STATE_DIR = prevStateDir;
+        process.env._STATE_DIR = prevStateDir;
       } else {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env._STATE_DIR;
       }
     }
   });
 
   it("retries after context overflow payload by resetting the session", async () => {
-    const prevStateDir = process.env.OPENCLAW_STATE_DIR;
-    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "openclaw-session-overflow-reset-"));
-    process.env.OPENCLAW_STATE_DIR = stateDir;
+    const prevStateDir = process.env._STATE_DIR;
+    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "-session-overflow-reset-"));
+    process.env._STATE_DIR = stateDir;
     try {
       const sessionId = "session";
       const storePath = path.join(stateDir, "sessions", "sessions.json");
@@ -221,17 +221,17 @@ describe("runReplyAgent typing (heartbeat)", () => {
       expect(persisted.main.sessionId).toBe(sessionStore.main.sessionId);
     } finally {
       if (prevStateDir) {
-        process.env.OPENCLAW_STATE_DIR = prevStateDir;
+        process.env._STATE_DIR = prevStateDir;
       } else {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env._STATE_DIR;
       }
     }
   });
 
   it("resets the session after role ordering payloads", async () => {
-    const prevStateDir = process.env.OPENCLAW_STATE_DIR;
-    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "openclaw-session-role-ordering-"));
-    process.env.OPENCLAW_STATE_DIR = stateDir;
+    const prevStateDir = process.env._STATE_DIR;
+    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "-session-role-ordering-"));
+    process.env._STATE_DIR = stateDir;
     try {
       const sessionId = "session";
       const storePath = path.join(stateDir, "sessions", "sessions.json");
@@ -275,10 +275,11 @@ describe("runReplyAgent typing (heartbeat)", () => {
       expect(persisted.main.sessionId).toBe(sessionStore.main.sessionId);
     } finally {
       if (prevStateDir) {
-        process.env.OPENCLAW_STATE_DIR = prevStateDir;
+        process.env._STATE_DIR = prevStateDir;
       } else {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env._STATE_DIR;
       }
     }
   });
 });
+

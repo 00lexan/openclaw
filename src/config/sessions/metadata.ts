@@ -1,4 +1,4 @@
-import type { MsgContext } from "../../auto-reply/templating.js";
+﻿import type { MsgContext } from "../../auto-reply/templating.js";
 import type { GroupKeyResolution, SessionEntry, SessionOrigin } from "./types.js";
 import { normalizeChatType } from "../../channels/chat-type.js";
 import { resolveConversationLabel } from "../../channels/conversation-label.js";
@@ -170,3 +170,4 @@ export function deriveSessionMetaPatch(params: {
 
   return Object.keys(patch).length > 0 ? patch : null;
 }
+

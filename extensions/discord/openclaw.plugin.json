@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "discord",
   "channels": ["discord"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

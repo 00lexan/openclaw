@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import { resolveGatewayLogPaths } from "./launchd.js";
 
 const GATEWAY_LOG_ERROR_PATTERNS = [
@@ -42,3 +42,4 @@ export async function readLastGatewayErrorLine(env: NodeJS.ProcessEnv): Promise<
   }
   return (await readLastLogLine(stderrPath)) ?? (await readLastLogLine(stdoutPath));
 }
+

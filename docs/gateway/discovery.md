@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Node discovery and transports (Bonjour, Tailscale, SSH) for finding the gateway"
 read_when:
   - Implementing or changing Bonjour discovery/advertising
@@ -9,12 +9,12 @@ title: "Discovery and Transports"
 
 # Discovery & transports
 
-OpenClaw has two distinct problems that look similar on the surface:
+ has two distinct problems that look similar on the surface:
 
 1. **Operator remote control**: the macOS menu bar app controlling a gateway running elsewhere.
 2. **Node pairing**: iOS/Android (and future nodes) finding a gateway and pairing securely.
 
-The design goal is to keep all network discovery/advertising in the **Node Gateway** (`openclaw gateway`) and keep clients (mac app, iOS) as consumers.
+The design goal is to keep all network discovery/advertising in the **Node Gateway** (` gateway`) and keep clients (mac app, iOS) as consumers.
 
 ## Terms
 
@@ -29,7 +29,7 @@ Protocol details:
 - [Gateway protocol](/gateway/protocol)
 - [Bridge protocol (legacy)](/gateway/bridge-protocol)
 
-## Why we keep both “direct” and SSH
+## Why we keep both â€œdirectâ€ and SSH
 
 - **Direct WS** is the best UX on the same network and within a tailnet:
   - auto-discovery on LAN via Bonjour
@@ -44,19 +44,19 @@ Protocol details:
 
 ### 1) Bonjour / mDNS (LAN only)
 
-Bonjour is best-effort and does not cross networks. It is only used for “same LAN” convenience.
+Bonjour is best-effort and does not cross networks. It is only used for â€œsame LANâ€ convenience.
 
 Target direction:
 
 - The **gateway** advertises its WS endpoint via Bonjour.
-- Clients browse and show a “pick a gateway” list, then store the chosen endpoint.
+- Clients browse and show a â€œpick a gatewayâ€ list, then store the chosen endpoint.
 
 Troubleshooting and beacon details: [Bonjour](/gateway/bonjour).
 
 #### Service beacon details
 
 - Service types:
-  - `_openclaw-gw._tcp` (gateway transport beacon)
+  - `_-gw._tcp` (gateway transport beacon)
 - TXT keys (non-secret):
   - `role=gateway`
   - `lanHost=<hostname>.local`
@@ -64,21 +64,21 @@ Troubleshooting and beacon details: [Bonjour](/gateway/bonjour).
   - `gatewayPort=18789` (Gateway WS + HTTP)
   - `gatewayTls=1` (only when TLS is enabled)
   - `gatewayTlsSha256=<sha256>` (only when TLS is enabled and fingerprint is available)
-  - `canvasPort=18793` (default canvas host port; serves `/__openclaw__/canvas/`)
-  - `cliPath=<path>` (optional; absolute path to a runnable `openclaw` entrypoint or binary)
+  - `canvasPort=18793` (default canvas host port; serves `/____/canvas/`)
+  - `cliPath=<path>` (optional; absolute path to a runnable `` entrypoint or binary)
   - `tailnetDns=<magicdns>` (optional hint; auto-detected when Tailscale is available)
 
 Disable/override:
 
-- `OPENCLAW_DISABLE_BONJOUR=1` disables advertising.
-- `gateway.bind` in `~/.openclaw/openclaw.json` controls the Gateway bind mode.
-- `OPENCLAW_SSH_PORT` overrides the SSH port advertised in TXT (defaults to 22).
-- `OPENCLAW_TAILNET_DNS` publishes a `tailnetDns` hint (MagicDNS).
-- `OPENCLAW_CLI_PATH` overrides the advertised CLI path.
+- `_DISABLE_BONJOUR=1` disables advertising.
+- `gateway.bind` in `~/./.json` controls the Gateway bind mode.
+- `_SSH_PORT` overrides the SSH port advertised in TXT (defaults to 22).
+- `_TAILNET_DNS` publishes a `tailnetDns` hint (MagicDNS).
+- `_CLI_PATH` overrides the advertised CLI path.
 
 ### 2) Tailnet (cross-network)
 
-For London/Vienna style setups, Bonjour won’t help. The recommended “direct” target is:
+For London/Vienna style setups, Bonjour wonâ€™t help. The recommended â€œdirectâ€ target is:
 
 - Tailscale MagicDNS name (preferred) or a stable tailnet IP.
 
@@ -95,7 +95,7 @@ See [Remote access](/gateway/remote).
 Recommended client behavior:
 
 1. If a paired direct endpoint is configured and reachable, use it.
-2. Else, if Bonjour finds a gateway on LAN, offer a one-tap “Use this gateway” choice and save it as the direct endpoint.
+2. Else, if Bonjour finds a gateway on LAN, offer a one-tap â€œUse this gatewayâ€ choice and save it as the direct endpoint.
 3. Else, if a tailnet DNS/IP is configured, try direct.
 4. Else, fall back to SSH.
 
@@ -114,3 +114,4 @@ The gateway is the source of truth for node/client admission.
 - **Gateway**: advertises discovery beacons, owns pairing decisions, and hosts the WS endpoint.
 - **macOS app**: helps you pick a gateway, shows pairing prompts, and uses SSH only as a fallback.
 - **iOS/Android nodes**: browse Bonjour as a convenience and connect to the paired Gateway WS.
+

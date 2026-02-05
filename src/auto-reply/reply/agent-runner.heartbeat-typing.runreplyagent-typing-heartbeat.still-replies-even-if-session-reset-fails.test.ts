@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -122,9 +122,9 @@ function createMinimalRun(params?: {
 
 describe("runReplyAgent typing (heartbeat)", () => {
   it("still replies even if session reset fails to persist", async () => {
-    const prevStateDir = process.env.OPENCLAW_STATE_DIR;
-    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "openclaw-session-reset-fail-"));
-    process.env.OPENCLAW_STATE_DIR = stateDir;
+    const prevStateDir = process.env._STATE_DIR;
+    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "-session-reset-fail-"));
+    process.env._STATE_DIR = stateDir;
     const saveSpy = vi.spyOn(sessions, "saveSessionStore").mockRejectedValueOnce(new Error("boom"));
     try {
       const sessionId = "session-corrupt";
@@ -158,9 +158,9 @@ describe("runReplyAgent typing (heartbeat)", () => {
     } finally {
       saveSpy.mockRestore();
       if (prevStateDir) {
-        process.env.OPENCLAW_STATE_DIR = prevStateDir;
+        process.env._STATE_DIR = prevStateDir;
       } else {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env._STATE_DIR;
       }
     }
   });
@@ -184,3 +184,4 @@ describe("runReplyAgent typing (heartbeat)", () => {
     expect(payloads[0]?.text).toContain("```");
   });
 });
+

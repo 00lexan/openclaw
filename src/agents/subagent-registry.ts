@@ -1,4 +1,4 @@
-import { loadConfig } from "../config/config.js";
+﻿import { loadConfig } from "../config/config.js";
 import { callGateway } from "../gateway/call.js";
 import { onAgentEvent } from "../infra/agent-events.js";
 import { type DeliveryContext, normalizeDeliveryContext } from "../utils/delivery-context.js";
@@ -427,3 +427,4 @@ export function listSubagentRunsForRequester(requesterSessionKey: string): Subag
 export function initSubagentRegistry() {
   restoreSubagentRunsOnce();
 }
+

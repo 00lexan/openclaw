@@ -1,4 +1,4 @@
-import { runZca } from "./zca.js";
+﻿import { runZca } from "./zca.js";
 
 export type ZalouserSendOptions = {
   profile?: string;
@@ -158,3 +158,4 @@ function extractMessageId(stdout: string): string | undefined {
   }
   return undefined;
 }
+

@@ -1,4 +1,4 @@
-import { runCommandWithTimeout } from "../process/exec.js";
+﻿import { runCommandWithTimeout } from "../process/exec.js";
 
 export async function copyToClipboard(value: string): Promise<boolean> {
   const attempts: Array<{ argv: string[] }> = [
@@ -23,3 +23,4 @@ export async function copyToClipboard(value: string): Promise<boolean> {
   }
   return false;
 }
+

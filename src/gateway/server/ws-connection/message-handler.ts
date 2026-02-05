@@ -1,4 +1,4 @@
-import type { IncomingMessage } from "node:http";
+﻿import type { IncomingMessage } from "node:http";
 import type { WebSocket } from "ws";
 import os from "node:os";
 import type { createSubsystemLogger } from "../../../logging/subsystem.js";
@@ -853,7 +853,7 @@ export function attachGatewayWsMessageHandler(params: {
           type: "hello-ok",
           protocol: PROTOCOL_VERSION,
           server: {
-            version: process.env.OPENCLAW_VERSION ?? process.env.npm_package_version ?? "dev",
+            version: process.env._VERSION ?? process.env.npm_package_version ?? "dev",
             commit: process.env.GIT_COMMIT,
             host: os.hostname(),
             connId,
@@ -1005,3 +1005,4 @@ export function attachGatewayWsMessageHandler(params: {
     }
   });
 }
+

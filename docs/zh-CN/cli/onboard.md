@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你想要 Gateway 网关、工作区、认证、渠道和 Skills 的引导式设置
-summary: "`openclaw onboard` 的 CLI 参考（交互式新手引导向导）"
+  - ä½ æƒ³è¦ Gateway ç½‘å…³ã€å·¥ä½œåŒºã€è®¤è¯ã€æ¸ é“å’Œ Skills çš„å¼•å¯¼å¼è®¾ç½®
+summary: "` onboard` çš„ CLI å‚è€ƒï¼ˆäº¤äº’å¼æ–°æ‰‹å¼•å¯¼å‘å¯¼ï¼‰"
 title: onboard
 x-i18n:
   generated_at: "2026-02-03T07:45:00Z"
@@ -12,25 +12,26 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw onboard`
+# ` onboard`
 
-交互式新手引导向导（本地或远程 Gateway 网关设置）。
+äº¤äº’å¼æ–°æ‰‹å¼•å¯¼å‘å¯¼ï¼ˆæœ¬åœ°æˆ–è¿œç¨‹ Gateway ç½‘å…³è®¾ç½®ï¼‰ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 向导指南：[新手引导](/start/onboarding)
+- å‘å¯¼æŒ‡å—ï¼š[æ–°æ‰‹å¼•å¯¼](/start/onboarding)
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
-openclaw onboard
-openclaw onboard --flow quickstart
-openclaw onboard --flow manual
-openclaw onboard --mode remote --remote-url ws://gateway-host:18789
+ onboard
+ onboard --flow quickstart
+ onboard --flow manual
+ onboard --mode remote --remote-url ws://gateway-host:18789
 ```
 
-流程说明：
+æµç¨‹è¯´æ˜Žï¼š
 
-- `quickstart`：最少提示，自动生成 Gateway 网关令牌。
-- `manual`：完整的端口/绑定/认证提示（`advanced` 的别名）。
-- 最快开始聊天：`openclaw dashboard`（控制 UI，无需渠道设置）。
+- `quickstart`ï¼šæœ€å°‘æç¤ºï¼Œè‡ªåŠ¨ç”Ÿæˆ Gateway ç½‘å…³ä»¤ç‰Œã€‚
+- `manual`ï¼šå®Œæ•´çš„ç«¯å£/ç»‘å®š/è®¤è¯æç¤ºï¼ˆ`advanced` çš„åˆ«åï¼‰ã€‚
+- æœ€å¿«å¼€å§‹èŠå¤©ï¼š` dashboard`ï¼ˆæŽ§åˆ¶ UIï¼Œæ— éœ€æ¸ é“è®¾ç½®ï¼‰ã€‚
+

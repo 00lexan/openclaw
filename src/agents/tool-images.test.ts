@@ -1,4 +1,4 @@
-import sharp from "sharp";
+﻿import sharp from "sharp";
 import { describe, expect, it } from "vitest";
 import { sanitizeContentBlocksImages, sanitizeImageBlocks } from "./tool-images.js";
 
@@ -110,3 +110,4 @@ describe("tool image sanitizing", () => {
     expect(image.mimeType).toBe("image/jpeg");
   });
 });
+

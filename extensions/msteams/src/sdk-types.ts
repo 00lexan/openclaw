@@ -1,4 +1,4 @@
-import type { TurnContext } from "@microsoft/agents-hosting";
+﻿import type { TurnContext } from "@microsoft/agents-hosting";
 
 /**
  * Minimal public surface we depend on from the Microsoft SDK types.
@@ -17,3 +17,4 @@ export type MSTeamsTurnContext = {
     activities: Array<{ type: string } & Record<string, unknown>>,
   ) => Promise<unknown>;
 };
+

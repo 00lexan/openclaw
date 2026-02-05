@@ -1,4 +1,4 @@
-import type { DatabaseSync } from "node:sqlite";
+﻿import type { DatabaseSync } from "node:sqlite";
 import type { SessionFileEntry } from "./session-files.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import {
@@ -49,7 +49,7 @@ export async function syncSessionFiles(params: {
     params.progress.report({
       completed: params.progress.completed,
       total: params.progress.total,
-      label: params.batchEnabled ? "Indexing session files (batch)..." : "Indexing session files…",
+      label: params.batchEnabled ? "Indexing session files (batch)..." : "Indexing session filesâ€¦",
     });
   }
 
@@ -129,3 +129,4 @@ export async function syncSessionFiles(params: {
     }
   }
 }
+

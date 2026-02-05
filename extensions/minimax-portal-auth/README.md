@@ -1,4 +1,4 @@
-# MiniMax OAuth (OpenClaw plugin)
+﻿# MiniMax OAuth ( plugin)
 
 OAuth provider plugin for **MiniMax** (OAuth).
 
@@ -7,19 +7,19 @@ OAuth provider plugin for **MiniMax** (OAuth).
 Bundled plugins are disabled by default. Enable this one:
 
 ```bash
-openclaw plugins enable minimax-portal-auth
+ plugins enable minimax-portal-auth
 ```
 
 Restart the Gateway after enabling.
 
 ```bash
-openclaw gateway restart
+ gateway restart
 ```
 
 ## Authenticate
 
 ```bash
-openclaw models auth login --provider minimax-portal --set-default
+ models auth login --provider minimax-portal --set-default
 ```
 
 You will be prompted to select an endpoint:
@@ -31,3 +31,4 @@ You will be prompted to select an endpoint:
 
 - MiniMax OAuth uses a user-code login flow.
 - Currently, OAuth login is supported only for the Coding plan
+

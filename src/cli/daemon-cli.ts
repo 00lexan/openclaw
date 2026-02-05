@@ -1,4 +1,4 @@
-export { registerDaemonCli } from "./daemon-cli/register.js";
+﻿export { registerDaemonCli } from "./daemon-cli/register.js";
 export {
   runDaemonInstall,
   runDaemonRestart,
@@ -12,3 +12,4 @@ export type {
   DaemonStatusOptions,
   GatewayRpcOpts,
 } from "./daemon-cli/types.js";
+

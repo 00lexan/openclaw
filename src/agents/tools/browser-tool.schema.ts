@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { optionalStringEnum, stringEnum } from "../schema/typebox.js";
 
 const BROWSER_ACT_KINDS = [
@@ -110,3 +110,4 @@ export const BrowserToolSchema = Type.Object({
   promptText: Type.Optional(Type.String()),
   request: Type.Optional(BrowserActSchema),
 });
+

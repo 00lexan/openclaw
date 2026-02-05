@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { callGateway } = vi.hoisted(() => ({
   callGateway: vi.fn(),
@@ -11,7 +11,7 @@ vi.mock("../media/image-ops.js", () => ({
 }));
 
 import "./test-helpers/fast-core-tools.js";
-import { createOpenClawTools } from "./openclaw-tools.js";
+import { createTools } from "./-tools.js";
 
 describe("nodes camera_snap", () => {
   beforeEach(() => {
@@ -36,7 +36,7 @@ describe("nodes camera_snap", () => {
       throw new Error(`unexpected method: ${String(method)}`);
     });
 
-    const tool = createOpenClawTools().find((candidate) => candidate.name === "nodes");
+    const tool = createTools().find((candidate) => candidate.name === "nodes");
     if (!tool) {
       throw new Error("missing nodes tool");
     }
@@ -74,7 +74,7 @@ describe("nodes camera_snap", () => {
       throw new Error(`unexpected method: ${String(method)}`);
     });
 
-    const tool = createOpenClawTools().find((candidate) => candidate.name === "nodes");
+    const tool = createTools().find((candidate) => candidate.name === "nodes");
     if (!tool) {
       throw new Error("missing nodes tool");
     }
@@ -117,7 +117,7 @@ describe("nodes run", () => {
       throw new Error(`unexpected method: ${String(method)}`);
     });
 
-    const tool = createOpenClawTools().find((candidate) => candidate.name === "nodes");
+    const tool = createTools().find((candidate) => candidate.name === "nodes");
     if (!tool) {
       throw new Error("missing nodes tool");
     }
@@ -133,3 +133,4 @@ describe("nodes run", () => {
     });
   });
 });
+

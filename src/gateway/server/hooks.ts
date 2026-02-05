@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import type { CliDeps } from "../../cli/deps.js";
 import type { CronJob } from "../../cron/types.js";
 import type { createSubsystemLogger } from "../../logging/subsystem.js";
@@ -113,3 +113,4 @@ export function createGatewayHooksRequestHandler(params: {
     dispatchWakeHook,
   });
 }
+

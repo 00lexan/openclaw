@@ -1,4 +1,4 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
 
 export const MsgType = {
   Text: "m.text",
@@ -82,3 +82,4 @@ export type MatrixActionClient = {
   client: MatrixClient;
   stopOnDone: boolean;
 };
+

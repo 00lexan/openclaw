@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { getMatrixRuntime } from "../runtime.js";
@@ -103,3 +103,4 @@ export function credentialsMatchConfig(
   }
   return stored.homeserver === config.homeserver && stored.userId === config.userId;
 }
+

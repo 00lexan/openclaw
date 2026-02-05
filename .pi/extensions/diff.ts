@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Diff Extension
  *
  * /diff command shows modified/deleted/new files from git status and opens
@@ -164,7 +164,7 @@ export default function (pi: ExtensionAPI) {
 
         // Help text
         container.addChild(
-          new Text(theme.fg("dim", " ↑↓ navigate • ←→ page • enter open • esc close"), 0, 0),
+          new Text(theme.fg("dim", " â†‘â†“ navigate â€¢ â†â†’ page â€¢ enter open â€¢ esc close"), 0, 0),
         );
 
         // Bottom border
@@ -193,3 +193,4 @@ export default function (pi: ExtensionAPI) {
     },
   });
 }
+

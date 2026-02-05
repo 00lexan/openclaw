@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import type { UsageProviderId } from "./provider-usage.types.js";
@@ -287,3 +287,4 @@ export async function resolveProviderAuths(params: {
 
   return auths;
 }
+

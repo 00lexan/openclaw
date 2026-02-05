@@ -1,4 +1,4 @@
-import { ChannelType, MessageType, type User } from "@buape/carbon";
+﻿import { ChannelType, MessageType, type User } from "@buape/carbon";
 import type {
   DiscordMessagePreflightContext,
   DiscordMessagePreflightParams,
@@ -573,3 +573,4 @@ export async function preflightDiscordMessage(
     historyEntry,
   };
 }
+

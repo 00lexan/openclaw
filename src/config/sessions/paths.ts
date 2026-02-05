@@ -1,4 +1,4 @@
-import os from "node:os";
+﻿import os from "node:os";
 import path from "node:path";
 import type { SessionEntry } from "./types.js";
 import { DEFAULT_AGENT_ID, normalizeAgentId } from "../../routing/session-key.js";
@@ -75,3 +75,4 @@ export function resolveStorePath(store?: string, opts?: { agentId?: string }) {
   }
   return path.resolve(store);
 }
+

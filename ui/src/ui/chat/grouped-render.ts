@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import type { AssistantIdentity } from "../assistant-identity.ts";
 import type { MessageGroup } from "../types/chat-types.ts";
@@ -163,7 +163,7 @@ function renderAvatar(role: string, assistant?: Pick<AssistantIdentity, "name" |
       : normalized === "assistant"
         ? assistantName.charAt(0).toUpperCase() || "A"
         : normalized === "tool"
-          ? "⚙"
+          ? "âš™"
           : "?";
   const className =
     normalized === "user"
@@ -279,3 +279,4 @@ function renderGroupedMessage(
     </div>
   `;
 }
+

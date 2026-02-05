@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { TOOL_POLICY_CONFORMANCE } from "./tool-policy.conformance.js";
 import { TOOL_GROUPS } from "./tool-policy.js";
 
@@ -11,3 +11,4 @@ describe("TOOL_POLICY_CONFORMANCE", () => {
     expect(() => JSON.stringify(TOOL_POLICY_CONFORMANCE)).not.toThrow();
   });
 });
+

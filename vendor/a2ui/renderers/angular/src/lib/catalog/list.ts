@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,3 +61,4 @@ import { Renderer } from '../rendering/renderer';
 export class List extends DynamicComponent<Types.ListNode> {
   readonly direction = input<'vertical' | 'horizontal'>('vertical');
 }
+

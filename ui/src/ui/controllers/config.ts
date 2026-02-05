@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { ConfigSchemaResponse, ConfigSnapshot, ConfigUiHints } from "../types.ts";
 import {
   cloneConfigObject,
@@ -195,3 +195,4 @@ export function removeConfigFormValue(state: ConfigState, path: Array<string | n
     state.configRaw = serializeConfigForm(base);
   }
 }
+

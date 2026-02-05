@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "../types.js";
+﻿import type { ReplyPayload } from "../types.js";
 import type { BlockStreamingCoalescing } from "./block-streaming.js";
 
 export type BlockReplyCoalescer = {
@@ -145,3 +145,4 @@ export function createBlockReplyCoalescer(params: {
     stop: () => clearIdleTimer(),
   };
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
   isHeartbeatContentEffectivelyEmpty,
@@ -26,12 +26,12 @@ describe("stripHeartbeatToken", () => {
   });
 
   it("drops heartbeats with small junk in heartbeat mode", () => {
-    expect(stripHeartbeatToken("HEARTBEAT_OK 🦞", { mode: "heartbeat" })).toEqual({
+    expect(stripHeartbeatToken("HEARTBEAT_OK ðŸ¦ž", { mode: "heartbeat" })).toEqual({
       shouldSkip: true,
       text: "",
       didStrip: true,
     });
-    expect(stripHeartbeatToken(`🦞 ${HEARTBEAT_TOKEN}`, { mode: "heartbeat" })).toEqual({
+    expect(stripHeartbeatToken(`ðŸ¦ž ${HEARTBEAT_TOKEN}`, { mode: "heartbeat" })).toEqual({
       shouldSkip: true,
       text: "",
       didStrip: true,
@@ -181,3 +181,4 @@ Check the server logs
     expect(isHeartbeatContentEffectivelyEmpty(content)).toBe(true);
   });
 });
+

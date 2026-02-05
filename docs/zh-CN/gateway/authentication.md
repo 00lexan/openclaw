@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 调试模型认证或 OAuth 过期
-  - 记录认证或凭证存储
-summary: 模型认证：OAuth、API 密钥和 setup-token
-title: 认证
+  - è°ƒè¯•æ¨¡åž‹è®¤è¯æˆ– OAuth è¿‡æœŸ
+  - è®°å½•è®¤è¯æˆ–å‡­è¯å­˜å‚¨
+summary: æ¨¡åž‹è®¤è¯ï¼šOAuthã€API å¯†é’¥å’Œ setup-token
+title: è®¤è¯
 x-i18n:
   generated_at: "2026-02-03T07:47:32Z"
   model: claude-opus-4-5
@@ -13,130 +13,131 @@ x-i18n:
   workflow: 15
 ---
 
-# 认证
+# è®¤è¯
 
-OpenClaw 支持模型提供商的 OAuth 和 API 密钥。对于 Anthropic 账户，我们推荐使用 **API 密钥**。对于 Claude 订阅访问，使用 `claude setup-token` 创建的长期令牌。
+ æ”¯æŒæ¨¡åž‹æä¾›å•†çš„ OAuth å’Œ API å¯†é’¥ã€‚å¯¹äºŽ Anthropic è´¦æˆ·ï¼Œæˆ‘ä»¬æŽ¨èä½¿ç”¨ **API å¯†é’¥**ã€‚å¯¹äºŽ Claude è®¢é˜…è®¿é—®ï¼Œä½¿ç”¨ `claude setup-token` åˆ›å»ºçš„é•¿æœŸä»¤ç‰Œã€‚
 
-参阅 [/concepts/oauth](/concepts/oauth) 了解完整的 OAuth 流程和存储布局。
+å‚é˜… [/concepts/oauth](/concepts/oauth) äº†è§£å®Œæ•´çš„ OAuth æµç¨‹å’Œå­˜å‚¨å¸ƒå±€ã€‚
 
-## 推荐的 Anthropic 设置（API 密钥）
+## æŽ¨èçš„ Anthropic è®¾ç½®ï¼ˆAPI å¯†é’¥ï¼‰
 
-如果你直接使用 Anthropic，请使用 API 密钥。
+å¦‚æžœä½ ç›´æŽ¥ä½¿ç”¨ Anthropicï¼Œè¯·ä½¿ç”¨ API å¯†é’¥ã€‚
 
-1. 在 Anthropic 控制台创建 API 密钥。
-2. 将其放在 **Gateway 网关主机**（运行 `openclaw gateway` 的机器）上。
+1. åœ¨ Anthropic æŽ§åˆ¶å°åˆ›å»º API å¯†é’¥ã€‚
+2. å°†å…¶æ”¾åœ¨ **Gateway ç½‘å…³ä¸»æœº**ï¼ˆè¿è¡Œ ` gateway` çš„æœºå™¨ï¼‰ä¸Šã€‚
 
 ```bash
 export ANTHROPIC_API_KEY="..."
-openclaw models status
+ models status
 ```
 
-3. 如果 Gateway 网关在 systemd/launchd 下运行，最好将密钥放在 `~/.openclaw/.env` 中以便守护进程可以读取：
+3. å¦‚æžœ Gateway ç½‘å…³åœ¨ systemd/launchd ä¸‹è¿è¡Œï¼Œæœ€å¥½å°†å¯†é’¥æ”¾åœ¨ `~/./.env` ä¸­ä»¥ä¾¿å®ˆæŠ¤è¿›ç¨‹å¯ä»¥è¯»å–ï¼š
 
 ```bash
-cat >> ~/.openclaw/.env <<'EOF'
+cat >> ~/./.env <<'EOF'
 ANTHROPIC_API_KEY=...
 EOF
 ```
 
-然后重启守护进程（或重启你的 Gateway 网关进程）并重新检查：
+ç„¶åŽé‡å¯å®ˆæŠ¤è¿›ç¨‹ï¼ˆæˆ–é‡å¯ä½ çš„ Gateway ç½‘å…³è¿›ç¨‹ï¼‰å¹¶é‡æ–°æ£€æŸ¥ï¼š
 
 ```bash
-openclaw models status
-openclaw doctor
+ models status
+ doctor
 ```
 
-如果你不想自己管理环境变量，新手引导向导可以为守护进程使用存储 API 密钥：`openclaw onboard`。
+å¦‚æžœä½ ä¸æƒ³è‡ªå·±ç®¡ç†çŽ¯å¢ƒå˜é‡ï¼Œæ–°æ‰‹å¼•å¯¼å‘å¯¼å¯ä»¥ä¸ºå®ˆæŠ¤è¿›ç¨‹ä½¿ç”¨å­˜å‚¨ API å¯†é’¥ï¼š` onboard`ã€‚
 
-参阅[帮助](/help)了解环境变量继承的详情（`env.shellEnv`、`~/.openclaw/.env`、systemd/launchd）。
+å‚é˜…[å¸®åŠ©](/help)äº†è§£çŽ¯å¢ƒå˜é‡ç»§æ‰¿çš„è¯¦æƒ…ï¼ˆ`env.shellEnv`ã€`~/./.env`ã€systemd/launchdï¼‰ã€‚
 
-## Anthropic：setup-token（订阅认证）
+## Anthropicï¼šsetup-tokenï¼ˆè®¢é˜…è®¤è¯ï¼‰
 
-对于 Anthropic，推荐的路径是 **API 密钥**。如果你使用 Claude 订阅，也支持 setup-token 流程。在 **Gateway 网关主机**上运行：
+å¯¹äºŽ Anthropicï¼ŒæŽ¨èçš„è·¯å¾„æ˜¯ **API å¯†é’¥**ã€‚å¦‚æžœä½ ä½¿ç”¨ Claude è®¢é˜…ï¼Œä¹Ÿæ”¯æŒ setup-token æµç¨‹ã€‚åœ¨ **Gateway ç½‘å…³ä¸»æœº**ä¸Šè¿è¡Œï¼š
 
 ```bash
 claude setup-token
 ```
 
-然后将其粘贴到 OpenClaw：
+ç„¶åŽå°†å…¶ç²˜è´´åˆ° ï¼š
 
 ```bash
-openclaw models auth setup-token --provider anthropic
+ models auth setup-token --provider anthropic
 ```
 
-如果令牌是在另一台机器上创建的，手动粘贴：
+å¦‚æžœä»¤ç‰Œæ˜¯åœ¨å¦ä¸€å°æœºå™¨ä¸Šåˆ›å»ºçš„ï¼Œæ‰‹åŠ¨ç²˜è´´ï¼š
 
 ```bash
-openclaw models auth paste-token --provider anthropic
+ models auth paste-token --provider anthropic
 ```
 
-如果你看到类似这样的 Anthropic 错误：
+å¦‚æžœä½ çœ‹åˆ°ç±»ä¼¼è¿™æ ·çš„ Anthropic é”™è¯¯ï¼š
 
 ```
 This credential is only authorized for use with Claude Code and cannot be used for other API requests.
 ```
 
-…请改用 Anthropic API 密钥。
+â€¦è¯·æ”¹ç”¨ Anthropic API å¯†é’¥ã€‚
 
-手动令牌输入（任何提供商；写入 `auth-profiles.json` + 更新配置）：
-
-```bash
-openclaw models auth paste-token --provider anthropic
-openclaw models auth paste-token --provider openrouter
-```
-
-自动化友好检查（过期/缺失时退出 `1`，即将过期时退出 `2`）：
+æ‰‹åŠ¨ä»¤ç‰Œè¾“å…¥ï¼ˆä»»ä½•æä¾›å•†ï¼›å†™å…¥ `auth-profiles.json` + æ›´æ–°é…ç½®ï¼‰ï¼š
 
 ```bash
-openclaw models status --check
+ models auth paste-token --provider anthropic
+ models auth paste-token --provider openrouter
 ```
 
-可选的运维脚本（systemd/Termux）在此处记录：[/automation/auth-monitoring](/automation/auth-monitoring)
-
-> `claude setup-token` 需要交互式 TTY。
-
-## 检查模型认证状态
+è‡ªåŠ¨åŒ–å‹å¥½æ£€æŸ¥ï¼ˆè¿‡æœŸ/ç¼ºå¤±æ—¶é€€å‡º `1`ï¼Œå³å°†è¿‡æœŸæ—¶é€€å‡º `2`ï¼‰ï¼š
 
 ```bash
-openclaw models status
-openclaw doctor
+ models status --check
 ```
 
-## 控制使用哪个凭证
+å¯é€‰çš„è¿ç»´è„šæœ¬ï¼ˆsystemd/Termuxï¼‰åœ¨æ­¤å¤„è®°å½•ï¼š[/automation/auth-monitoring](/automation/auth-monitoring)
 
-### 每会话（聊天命令）
+> `claude setup-token` éœ€è¦äº¤äº’å¼ TTYã€‚
 
-使用 `/model <alias-or-id>@<profileId>` 为当前会话固定特定的提供商凭证（示例配置文件 ID：`anthropic:default`、`anthropic:work`）。
-
-使用 `/model`（或 `/model list`）获取紧凑的选择器；使用 `/model status` 获取完整视图（候选项 + 下一个认证配置文件，以及配置时的提供商端点详情）。
-
-### 每智能体（CLI 覆盖）
-
-为智能体设置显式的认证配置文件顺序覆盖（存储在该智能体的 `auth-profiles.json` 中）：
+## æ£€æŸ¥æ¨¡åž‹è®¤è¯çŠ¶æ€
 
 ```bash
-openclaw models auth order get --provider anthropic
-openclaw models auth order set --provider anthropic anthropic:default
-openclaw models auth order clear --provider anthropic
+ models status
+ doctor
 ```
 
-使用 `--agent <id>` 指定特定智能体；省略它则使用配置的默认智能体。
+## æŽ§åˆ¶ä½¿ç”¨å“ªä¸ªå‡­è¯
 
-## 故障排除
+### æ¯ä¼šè¯ï¼ˆèŠå¤©å‘½ä»¤ï¼‰
+
+ä½¿ç”¨ `/model <alias-or-id>@<profileId>` ä¸ºå½“å‰ä¼šè¯å›ºå®šç‰¹å®šçš„æä¾›å•†å‡­è¯ï¼ˆç¤ºä¾‹é…ç½®æ–‡ä»¶ IDï¼š`anthropic:default`ã€`anthropic:work`ï¼‰ã€‚
+
+ä½¿ç”¨ `/model`ï¼ˆæˆ– `/model list`ï¼‰èŽ·å–ç´§å‡‘çš„é€‰æ‹©å™¨ï¼›ä½¿ç”¨ `/model status` èŽ·å–å®Œæ•´è§†å›¾ï¼ˆå€™é€‰é¡¹ + ä¸‹ä¸€ä¸ªè®¤è¯é…ç½®æ–‡ä»¶ï¼Œä»¥åŠé…ç½®æ—¶çš„æä¾›å•†ç«¯ç‚¹è¯¦æƒ…ï¼‰ã€‚
+
+### æ¯æ™ºèƒ½ä½“ï¼ˆCLI è¦†ç›–ï¼‰
+
+ä¸ºæ™ºèƒ½ä½“è®¾ç½®æ˜¾å¼çš„è®¤è¯é…ç½®æ–‡ä»¶é¡ºåºè¦†ç›–ï¼ˆå­˜å‚¨åœ¨è¯¥æ™ºèƒ½ä½“çš„ `auth-profiles.json` ä¸­ï¼‰ï¼š
+
+```bash
+ models auth order get --provider anthropic
+ models auth order set --provider anthropic anthropic:default
+ models auth order clear --provider anthropic
+```
+
+ä½¿ç”¨ `--agent <id>` æŒ‡å®šç‰¹å®šæ™ºèƒ½ä½“ï¼›çœç•¥å®ƒåˆ™ä½¿ç”¨é…ç½®çš„é»˜è®¤æ™ºèƒ½ä½“ã€‚
+
+## æ•…éšœæŽ’é™¤
 
 ### "No credentials found"
 
-如果 Anthropic 令牌配置文件缺失，在 **Gateway 网关主机**上运行 `claude setup-token`，然后重新检查：
+å¦‚æžœ Anthropic ä»¤ç‰Œé…ç½®æ–‡ä»¶ç¼ºå¤±ï¼Œåœ¨ **Gateway ç½‘å…³ä¸»æœº**ä¸Šè¿è¡Œ `claude setup-token`ï¼Œç„¶åŽé‡æ–°æ£€æŸ¥ï¼š
 
 ```bash
-openclaw models status
+ models status
 ```
 
-### 令牌即将过期/已过期
+### ä»¤ç‰Œå³å°†è¿‡æœŸ/å·²è¿‡æœŸ
 
-运行 `openclaw models status` 确认哪个配置文件即将过期。如果配置文件缺失，重新运行 `claude setup-token` 并再次粘贴令牌。
+è¿è¡Œ ` models status` ç¡®è®¤å“ªä¸ªé…ç½®æ–‡ä»¶å³å°†è¿‡æœŸã€‚å¦‚æžœé…ç½®æ–‡ä»¶ç¼ºå¤±ï¼Œé‡æ–°è¿è¡Œ `claude setup-token` å¹¶å†æ¬¡ç²˜è´´ä»¤ç‰Œã€‚
 
-## 要求
+## è¦æ±‚
 
-- Claude Max 或 Pro 订阅（用于 `claude setup-token`）
-- 已安装 Claude Code CLI（`claude` 命令可用）
+- Claude Max æˆ– Pro è®¢é˜…ï¼ˆç”¨äºŽ `claude setup-token`ï¼‰
+- å·²å®‰è£… Claude Code CLIï¼ˆ`claude` å‘½ä»¤å¯ç”¨ï¼‰
+

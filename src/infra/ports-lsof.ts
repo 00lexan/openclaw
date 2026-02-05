@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import fsPromises from "node:fs/promises";
 
 const LSOF_CANDIDATES =
@@ -35,3 +35,4 @@ export function resolveLsofCommandSync(): string {
   }
   return "lsof";
 }
+

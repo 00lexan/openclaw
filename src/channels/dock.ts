@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import type {
   ChannelCapabilities,
   ChannelCommandAdapter,
@@ -48,11 +48,11 @@ export type ChannelDock = {
   elevated?: ChannelElevatedAdapter;
   config?: {
     resolveAllowFrom?: (params: {
-      cfg: OpenClawConfig;
+      cfg: Config;
       accountId?: string | null;
     }) => Array<string | number> | undefined;
     formatAllowFrom?: (params: {
-      cfg: OpenClawConfig;
+      cfg: Config;
       accountId?: string | null;
       allowFrom: Array<string | number>;
     }) => string[];
@@ -451,3 +451,4 @@ export function getChannelDock(id: ChannelId): ChannelDock | undefined {
   }
   return pluginEntry.dock ?? buildDockFromPlugin(pluginEntry.plugin);
 }
+

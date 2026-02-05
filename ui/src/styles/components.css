@@ -1,4 +1,4 @@
-@import "./chat.css";
+﻿@import "./chat.css";
 
 /* ===========================================
    Cards - Refined with depth
@@ -1855,7 +1855,7 @@
 }
 
 .agent-skills-header::after {
-  content: "▸";
+  content: "â–¸";
   font-size: 12px;
   color: var(--muted);
   transition: transform var(--duration-fast) ease;
@@ -1909,3 +1909,4 @@
     grid-template-columns: 1fr;
   }
 }
+

@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import type { RuntimeEnv } from "../runtime.js";
 
 export type SignalDaemonOpts = {
@@ -100,3 +100,4 @@ export function spawnSignalDaemon(opts: SignalDaemonOpts): SignalDaemonHandle {
     },
   };
 }
+

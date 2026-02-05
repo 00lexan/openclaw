@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { parseDurationMs } from "./parse-duration.js";
 
 describe("parseDurationMs", () => {
@@ -26,3 +26,4 @@ describe("parseDurationMs", () => {
     expect(parseDurationMs("0.5s")).toBe(500);
   });
 });
+

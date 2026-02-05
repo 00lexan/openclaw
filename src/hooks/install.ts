@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { MANIFEST_KEY } from "../compat/legacy-names.js";
@@ -97,14 +97,14 @@ function resolveSafeInstallDir(
   return { ok: true, path: targetDir };
 }
 
-async function ensureOpenClawHooks(manifest: HookPackageManifest) {
+async function ensureHooks(manifest: HookPackageManifest) {
   const hooks = manifest[MANIFEST_KEY]?.hooks;
   if (!Array.isArray(hooks)) {
-    throw new Error("package.json missing openclaw.hooks");
+    throw new Error("package.json missing .hooks");
   }
   const list = hooks.map((e) => (typeof e === "string" ? e.trim() : "")).filter(Boolean);
   if (list.length === 0) {
-    throw new Error("package.json openclaw.hooks is empty");
+    throw new Error("package.json .hooks is empty");
   }
   return list;
 }
@@ -163,7 +163,7 @@ async function installHookPackageFromDir(params: {
 
   let hookEntries: string[];
   try {
-    hookEntries = await ensureOpenClawHooks(manifest);
+    hookEntries = await ensureHooks(manifest);
   } catch (err) {
     return { ok: false, error: String(err) };
   }
@@ -213,7 +213,7 @@ async function installHookPackageFromDir(params: {
     };
   }
 
-  logger.info?.(`Installing to ${targetDir}…`);
+  logger.info?.(`Installing to ${targetDir}â€¦`);
   let backupDir: string | null = null;
   if (mode === "update" && (await fileExists(targetDir))) {
     backupDir = `${targetDir}.backup-${Date.now()}`;
@@ -233,7 +233,7 @@ async function installHookPackageFromDir(params: {
   const deps = manifest.dependencies ?? {};
   const hasDeps = Object.keys(deps).length > 0;
   if (hasDeps) {
-    logger.info?.("Installing hook pack dependencies…");
+    logger.info?.("Installing hook pack dependenciesâ€¦");
     const npmRes = await runCommandWithTimeout(["npm", "install", "--omit=dev", "--silent"], {
       timeoutMs: Math.max(timeoutMs, 300_000),
       cwd: targetDir,
@@ -307,7 +307,7 @@ async function installHookFromDir(params: {
     return { ok: true, hookPackId: hookName, hooks: [hookName], targetDir };
   }
 
-  logger.info?.(`Installing to ${targetDir}…`);
+  logger.info?.(`Installing to ${targetDir}â€¦`);
   let backupDir: string | null = null;
   if (mode === "update" && (await fileExists(targetDir))) {
     backupDir = `${targetDir}.backup-${Date.now()}`;
@@ -352,11 +352,11 @@ export async function installHooksFromArchive(params: {
     return { ok: false, error: `unsupported archive: ${archivePath}` };
   }
 
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-hook-"));
+  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "-hook-"));
   const extractDir = path.join(tmpDir, "extract");
   await fs.mkdir(extractDir, { recursive: true });
 
-  logger.info?.(`Extracting ${archivePath}…`);
+  logger.info?.(`Extracting ${archivePath}â€¦`);
   try {
     await extractArchive({ archivePath, destDir: extractDir, timeoutMs, logger });
   } catch (err) {
@@ -412,8 +412,8 @@ export async function installHooksFromNpmSpec(params: {
     return { ok: false, error: "missing npm spec" };
   }
 
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-hook-pack-"));
-  logger.info?.(`Downloading ${spec}…`);
+  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "-hook-pack-"));
+  logger.info?.(`Downloading ${spec}â€¦`);
   const res = await runCommandWithTimeout(["npm", "pack", spec], {
     timeoutMs: Math.max(timeoutMs, 300_000),
     cwd: tmpDir,
@@ -497,3 +497,4 @@ export async function installHooksFromPath(params: {
     expectedHookPackId: params.expectedHookPackId,
   });
 }
+

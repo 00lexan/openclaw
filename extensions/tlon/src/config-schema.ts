@@ -1,4 +1,4 @@
-import { buildChannelConfigSchema } from "openclaw/plugin-sdk";
+﻿import { buildChannelConfigSchema } from "/plugin-sdk";
 import { z } from "zod";
 
 const ShipSchema = z.string().min(1);
@@ -43,3 +43,4 @@ export const TlonConfigSchema = z.object({
 });
 
 export const tlonChannelConfigSchema = buildChannelConfigSchema(TlonConfigSchema);
+

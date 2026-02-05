@@ -1,4 +1,4 @@
-export type NativeDependencyHintParams = {
+﻿export type NativeDependencyHintParams = {
   packageName: string;
   manager?: "pnpm" | "npm" | "yarn";
   rebuildCommand?: string;
@@ -26,3 +26,4 @@ export function formatNativeDependencyHint(params: NativeDependencyHintParams): 
   }
   return `Install ${params.packageName} and rebuild its native module (${steps.join("; ")}).`;
 }
+

@@ -1,5 +1,5 @@
-import * as Lark from "@larksuiteoapi/node-sdk";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import * as Lark from "@larksuiteoapi/node-sdk";
+import type { Config } from "../config/config.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { loadConfig } from "../config/config.js";
 import { getChildLogger } from "../logging.js";
@@ -14,7 +14,7 @@ export type MonitorFeishuOpts = {
   appId?: string;
   appSecret?: string;
   accountId?: string;
-  config?: OpenClawConfig;
+  config?: Config;
   runtime?: RuntimeEnv;
   abortSignal?: AbortSignal;
 };
@@ -150,3 +150,4 @@ export async function monitorFeishuProvider(opts: MonitorFeishuOpts = {}): Promi
     }
   }
 }
+

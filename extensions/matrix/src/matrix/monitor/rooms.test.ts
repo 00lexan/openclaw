@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveMatrixRoomConfig } from "./rooms.js";
 
 describe("resolveMatrixRoomConfig", () => {
@@ -37,3 +37,4 @@ describe("resolveMatrixRoomConfig", () => {
     expect(byName.config).toBeUndefined();
   });
 });
+

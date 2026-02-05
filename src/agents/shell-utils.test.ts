@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -12,7 +12,7 @@ describe("getShellConfig", () => {
   const tempDirs: string[] = [];
 
   const createTempBin = (files: string[]) => {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-shell-"));
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "-shell-"));
     tempDirs.push(dir);
     for (const name of files) {
       const filePath = path.join(dir, name);
@@ -79,3 +79,4 @@ describe("getShellConfig", () => {
     expect(shell).toBe("sh");
   });
 });
+

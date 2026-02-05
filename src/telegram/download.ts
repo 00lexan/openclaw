@@ -1,4 +1,4 @@
-import { detectMime } from "../media/mime.js";
+﻿import { detectMime } from "../media/mime.js";
 import { type SavedMedia, saveMediaBuffer } from "../media/store.js";
 
 export type TelegramFileInfo = {
@@ -55,3 +55,4 @@ export async function downloadTelegramFile(
   }
   return saved;
 }
+

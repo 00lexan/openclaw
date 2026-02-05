@@ -1,4 +1,4 @@
-import type { OpenAiEmbeddingClient } from "./embeddings-openai.js";
+﻿import type { OpenAiEmbeddingClient } from "./embeddings-openai.js";
 import { retryAsync } from "../infra/retry.js";
 import { hashText } from "./internal.js";
 
@@ -105,7 +105,7 @@ async function submitOpenAiBatch(params: {
           endpoint: OPENAI_BATCH_ENDPOINT,
           completion_window: OPENAI_BATCH_COMPLETION_WINDOW,
           metadata: {
-            source: "openclaw-memory",
+            source: "-memory",
             agent: params.agentId,
           },
         }),
@@ -396,3 +396,4 @@ export async function runOpenAiEmbeddingBatches(params: {
   await runWithConcurrency(tasks, params.concurrency);
   return byCustomId;
 }
+

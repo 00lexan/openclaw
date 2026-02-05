@@ -1,4 +1,4 @@
-import type { AgentDefaultsConfig } from "./types.agent-defaults.js";
+﻿import type { AgentDefaultsConfig } from "./types.agent-defaults.js";
 import type { HumanDelayConfig, IdentityConfig } from "./types.base.js";
 import type { GroupChatConfig } from "./types.messages.js";
 import type {
@@ -79,3 +79,4 @@ export type AgentBinding = {
     teamId?: string;
   };
 };
+

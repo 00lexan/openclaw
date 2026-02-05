@@ -1,4 +1,4 @@
-import type { CronJobCreate, CronJobPatch } from "../../cron/types.js";
+﻿import type { CronJobCreate, CronJobPatch } from "../../cron/types.js";
 import type { GatewayRequestHandlers } from "./types.js";
 import { normalizeCronJobCreate, normalizeCronJobPatch } from "../../cron/normalize.js";
 import { readCronRunLogEntries, resolveCronRunLogPath } from "../../cron/run-log.js";
@@ -225,3 +225,4 @@ export const cronHandlers: GatewayRequestHandlers = {
     respond(true, { entries }, undefined);
   },
 };
+

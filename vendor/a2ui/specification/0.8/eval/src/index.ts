@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -361,3 +361,4 @@ async function main() {
 if (require.main === module) {
   main().catch(console.error);
 }
+

@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -15,16 +15,16 @@ describe("restart sentinel", () => {
   let tempDir: string;
 
   beforeEach(async () => {
-    prevStateDir = process.env.OPENCLAW_STATE_DIR;
-    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-sentinel-"));
-    process.env.OPENCLAW_STATE_DIR = tempDir;
+    prevStateDir = process.env._STATE_DIR;
+    tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "-sentinel-"));
+    process.env._STATE_DIR = tempDir;
   });
 
   afterEach(async () => {
     if (prevStateDir) {
-      process.env.OPENCLAW_STATE_DIR = prevStateDir;
+      process.env._STATE_DIR = prevStateDir;
     } else {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env._STATE_DIR;
     }
     await fs.rm(tempDir, { recursive: true, force: true });
   });
@@ -65,6 +65,7 @@ describe("restart sentinel", () => {
     const text = "a".repeat(9000);
     const trimmed = trimLogTail(text, 8000);
     expect(trimmed?.length).toBeLessThanOrEqual(8001);
-    expect(trimmed?.startsWith("…")).toBe(true);
+    expect(trimmed?.startsWith("â€¦")).toBe(true);
   });
 });
+

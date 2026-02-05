@@ -1,4 +1,4 @@
-import { Container, Markdown, Spacer } from "@mariozechner/pi-tui";
+﻿import { Container, Markdown, Spacer } from "@mariozechner/pi-tui";
 import { markdownTheme, theme } from "../theme/theme.js";
 
 export class UserMessageComponent extends Container {
@@ -18,3 +18,4 @@ export class UserMessageComponent extends Container {
     this.body.setText(text);
   }
 }
+

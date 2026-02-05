@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { SessionsListResult } from "../types.ts";
 import { toNumber } from "../format.ts";
 
@@ -115,3 +115,4 @@ export async function deleteSession(state: SessionsState, key: string) {
     state.sessionsLoading = false;
   }
 }
+

@@ -1,4 +1,4 @@
-import type { loadConfig } from "../../config/config.js";
+﻿import type { loadConfig } from "../../config/config.js";
 import type { WebInboundMsg } from "./types.js";
 import { buildMentionRegexes, normalizeMentionText } from "../../auto-reply/reply/mentions.js";
 import { isSelfChatMode, jidToE164, normalizeE164 } from "../../utils.js";
@@ -115,3 +115,4 @@ export function resolveOwnerList(mentionCfg: MentionConfig, selfE164?: string | 
     .map((entry) => normalizeE164(entry))
     .filter((entry): entry is string => Boolean(entry));
 }
+

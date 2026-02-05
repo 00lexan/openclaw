@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   ProviderUsageSnapshot,
   UsageProviderId,
   UsageWindow,
@@ -87,3 +87,4 @@ export async function fetchGeminiUsage(
 
   return { provider, displayName: PROVIDER_LABELS[provider], windows };
 }
+

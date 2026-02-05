@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { NodesRpcOpts } from "./types.js";
 import { randomIdempotencyKey } from "../../gateway/call.js";
 import { defaultRuntime } from "../../runtime.js";
@@ -248,3 +248,4 @@ export function registerNodesCameraCommands(nodes: Command) {
     { timeoutMs: 90_000 },
   );
 }
+

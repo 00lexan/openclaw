@@ -1,4 +1,4 @@
-import type { APIChannel } from "discord-api-types/v10";
+﻿import type { APIChannel } from "discord-api-types/v10";
 import { Routes } from "discord-api-types/v10";
 import type {
   DiscordChannelCreate,
@@ -112,3 +112,4 @@ export async function removeChannelPermissionDiscord(
   await rest.delete(`/channels/${channelId}/permissions/${targetId}`);
   return { ok: true };
 }
+

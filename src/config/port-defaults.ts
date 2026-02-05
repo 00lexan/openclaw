@@ -1,4 +1,4 @@
-export type PortRange = { start: number; end: number };
+﻿export type PortRange = { start: number; end: number };
 
 function isValidPort(port: number): boolean {
   return Number.isFinite(port) && port > 0 && port <= 65535;
@@ -41,3 +41,4 @@ export function deriveDefaultBrowserCdpPortRange(browserControlPort: number): Po
   }
   return { start, end };
 }
+

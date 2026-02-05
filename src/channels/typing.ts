@@ -1,4 +1,4 @@
-export type TypingCallbacks = {
+﻿export type TypingCallbacks = {
   onReplyStart: () => Promise<void>;
   onIdle?: () => void;
 };
@@ -26,3 +26,4 @@ export function createTypingCallbacks(params: {
 
   return { onReplyStart, onIdle };
 }
+

@@ -1,4 +1,4 @@
-export const ALLOWED_LOG_LEVELS = [
+﻿export const ALLOWED_LOG_LEVELS = [
   "silent",
   "fatal",
   "error",
@@ -28,3 +28,4 @@ export function levelToMinLevel(level: LogLevel): number {
   };
   return map[level];
 }
+

@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -13,7 +13,7 @@ const noopLogger = {
 };
 
 async function makeStorePath() {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-cron-migrate-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "-cron-migrate-"));
   return {
     dir,
     storePath: path.join(dir, "cron", "jobs.json"),
@@ -99,3 +99,4 @@ describe("cron store migration", () => {
     await store.cleanup();
   });
 });
+

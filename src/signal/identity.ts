@@ -1,4 +1,4 @@
-import { normalizeE164 } from "../utils.js";
+﻿import { normalizeE164 } from "../utils.js";
 
 export type SignalSender =
   | { kind: "phone"; raw: string; e164: string }
@@ -133,3 +133,4 @@ export function isSignalGroupAllowed(params: {
   }
   return isSignalSenderAllowed(sender, allowFrom);
 }
+

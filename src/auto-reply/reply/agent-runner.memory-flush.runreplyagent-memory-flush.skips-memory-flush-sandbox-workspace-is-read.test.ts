@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -123,7 +123,7 @@ function createBaseRun(params: {
 describe("runReplyAgent memory flush", () => {
   it("skips memory flush when the sandbox workspace is read-only", async () => {
     runEmbeddedPiAgentMock.mockReset();
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-flush-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "-flush-"));
     const storePath = path.join(tmp, "sessions.json");
     const sessionKey = "main";
     const sessionEntry = {
@@ -188,7 +188,7 @@ describe("runReplyAgent memory flush", () => {
   });
   it("skips memory flush when the sandbox workspace is none", async () => {
     runEmbeddedPiAgentMock.mockReset();
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-flush-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "-flush-"));
     const storePath = path.join(tmp, "sessions.json");
     const sessionKey = "main";
     const sessionEntry = {
@@ -249,3 +249,4 @@ describe("runReplyAgent memory flush", () => {
     expect(calls.map((call) => call.prompt)).toEqual(["hello"]);
   });
 });
+

@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想通过 Tailscale + CoreDNS 实现广域设备发现（DNS-SD）
-  - You’re setting up split DNS for a custom discovery domain (example: openclaw.internal)
-summary: "`openclaw dns` 的 CLI 参考（广域设备发现辅助工具）"
+  - ä½ æƒ³é€šè¿‡ Tailscale + CoreDNS å®žçŽ°å¹¿åŸŸè®¾å¤‡å‘çŽ°ï¼ˆDNS-SDï¼‰
+  - Youâ€™re setting up split DNS for a custom discovery domain (example: .internal)
+summary: "` dns` çš„ CLI å‚è€ƒï¼ˆå¹¿åŸŸè®¾å¤‡å‘çŽ°è¾…åŠ©å·¥å…·ï¼‰"
 title: dns
 x-i18n:
   generated_at: "2026-02-03T07:44:52Z"
@@ -13,18 +13,19 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw dns`
+# ` dns`
 
-用于广域设备发现（Tailscale + CoreDNS）的 DNS 辅助工具。目前专注于 macOS + Homebrew CoreDNS。
+ç”¨äºŽå¹¿åŸŸè®¾å¤‡å‘çŽ°ï¼ˆTailscale + CoreDNSï¼‰çš„ DNS è¾…åŠ©å·¥å…·ã€‚ç›®å‰ä¸“æ³¨äºŽ macOS + Homebrew CoreDNSã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- Gateway 网关设备发现：[设备发现](/gateway/discovery)
-- 广域设备发现配置：[配置](/gateway/configuration)
+- Gateway ç½‘å…³è®¾å¤‡å‘çŽ°ï¼š[è®¾å¤‡å‘çŽ°](/gateway/discovery)
+- å¹¿åŸŸè®¾å¤‡å‘çŽ°é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-## 设置
+## è®¾ç½®
 
 ```bash
-openclaw dns setup
-openclaw dns setup --apply
+ dns setup
+ dns setup --apply
 ```
+

@@ -1,4 +1,4 @@
-import { GRAPH_ROOT } from "./attachments/shared.js";
+﻿import { GRAPH_ROOT } from "./attachments/shared.js";
 import { loadMSTeamsSdkWithAuth } from "./sdk.js";
 import { resolveMSTeamsCredentials } from "./token.js";
 
@@ -295,3 +295,4 @@ export async function resolveMSTeamsUserAllowlist(params: {
 
   return results;
 }
+

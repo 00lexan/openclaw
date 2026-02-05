@@ -1,8 +1,8 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const loadJsonFile = vi.fn();
 const saveJsonFile = vi.fn();
-const resolveStateDir = vi.fn().mockReturnValue("/tmp/openclaw-state");
+const resolveStateDir = vi.fn().mockReturnValue("/tmp/-state");
 
 vi.mock("../infra/json-file.js", () => ({
   loadJsonFile,
@@ -19,7 +19,7 @@ describe("github-copilot token", () => {
     loadJsonFile.mockReset();
     saveJsonFile.mockReset();
     resolveStateDir.mockReset();
-    resolveStateDir.mockReturnValue("/tmp/openclaw-state");
+    resolveStateDir.mockReturnValue("/tmp/-state");
   });
 
   it("derives baseUrl from token", async () => {
@@ -79,3 +79,4 @@ describe("github-copilot token", () => {
     expect(saveJsonFile).toHaveBeenCalledTimes(1);
   });
 });
+

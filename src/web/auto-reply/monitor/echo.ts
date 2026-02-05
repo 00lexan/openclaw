@@ -1,4 +1,4 @@
-export type EchoTracker = {
+﻿export type EchoTracker = {
   rememberText: (
     text: string | undefined,
     opts: {
@@ -62,3 +62,4 @@ export function createEchoTracker(params: {
     buildCombinedKey,
   };
 }
+

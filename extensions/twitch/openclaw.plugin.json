@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "twitch",
   "channels": ["twitch"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

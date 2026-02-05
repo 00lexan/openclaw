@@ -1,4 +1,4 @@
-/**
+﻿/**
  * LRU-based seen event tracker with TTL support.
  * Prevents unbounded memory growth under high load or abuse.
  */
@@ -301,3 +301,4 @@ export function createSeenTracker(options?: SeenTrackerOptions): SeenTracker {
     seed,
   };
 }
+

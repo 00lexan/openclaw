@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "memory-core",
   "kind": "memory",
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

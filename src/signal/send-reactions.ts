@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Signal reactions via signal-cli JSON-RPC API
  */
 
@@ -213,3 +213,4 @@ export async function removeReactionSignal(
     timestamp: result?.timestamp,
   };
 }
+

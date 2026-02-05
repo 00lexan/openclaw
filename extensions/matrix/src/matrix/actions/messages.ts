@@ -1,4 +1,4 @@
-import { resolveMatrixRoomId, sendMessageMatrix } from "../send.js";
+﻿import { resolveMatrixRoomId, sendMessageMatrix } from "../send.js";
 import { resolveActionClient } from "./client.js";
 import { summarizeMatrixRawEvent } from "./summary.js";
 import {
@@ -126,3 +126,4 @@ export async function readMatrixMessages(
     }
   }
 }
+

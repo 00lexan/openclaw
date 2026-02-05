@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { createNodeSubscriptionManager } from "./server-node-subscriptions.js";
 
 describe("node subscription manager", () => {
@@ -36,3 +36,4 @@ describe("node subscription manager", () => {
     expect(sent).toEqual([]);
   });
 });
+

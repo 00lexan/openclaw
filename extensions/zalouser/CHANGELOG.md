@@ -1,58 +1,58 @@
-# Changelog
+﻿# Changelog
 
 ## 2026.2.4
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.2.2
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.31
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.30
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.29
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.23
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.22
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.21
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.20
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.17-1
 
@@ -65,3 +65,4 @@
 - Zod-based config schema validation
 - Setup adapter for programmatic configuration
 - Dedicated probe and status issues modules
+

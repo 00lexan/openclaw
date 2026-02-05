@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { collectZalouserStatusIssues } from "./status-issues.js";
 
 describe("collectZalouserStatusIssues", () => {
@@ -55,3 +55,4 @@ describe("collectZalouserStatusIssues", () => {
     expect(issues).toHaveLength(0);
   });
 });
+

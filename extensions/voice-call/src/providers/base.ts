@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   HangupCallInput,
   InitiateCallInput,
   InitiateCallResult,
@@ -65,3 +65,4 @@ export interface VoiceCallProvider {
    */
   stopListening(input: StopListeningInput): Promise<void>;
 }
+

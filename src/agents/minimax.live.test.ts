@@ -1,4 +1,4 @@
-import { completeSimple, type Model } from "@mariozechner/pi-ai";
+﻿import { completeSimple, type Model } from "@mariozechner/pi-ai";
 import { describe, expect, it } from "vitest";
 import { isTruthyEnvValue } from "../infra/env.js";
 
@@ -44,3 +44,4 @@ describeLive("minimax live", () => {
     expect(text.length).toBeGreaterThan(0);
   }, 20000);
 });
+

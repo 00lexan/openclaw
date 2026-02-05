@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { danger } from "../../globals.js";
 import { defaultRuntime } from "../../runtime.js";
 import { callBrowserRequest, type BrowserParentOpts } from "../browser-cli-shared.js";
@@ -83,3 +83,4 @@ export function registerBrowserNavigationCommands(
   // Keep `requireRef` reachable; shared utilities are intended for other modules too.
   void requireRef;
 }
+

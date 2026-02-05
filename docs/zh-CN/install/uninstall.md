@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想从机器上移除 OpenClaw
-  - 卸载后 Gateway 网关服务仍在运行
-summary: 完全卸载 OpenClaw（CLI、服务、状态、工作区）
-title: 卸载
+  - ä½ æƒ³ä»Žæœºå™¨ä¸Šç§»é™¤ 
+  - å¸è½½åŽ Gateway ç½‘å…³æœåŠ¡ä»åœ¨è¿è¡Œ
+summary: å®Œå…¨å¸è½½ ï¼ˆCLIã€æœåŠ¡ã€çŠ¶æ€ã€å·¥ä½œåŒºï¼‰
+title: å¸è½½
 x-i18n:
   generated_at: "2026-02-03T07:50:10Z"
   model: claude-opus-4-5
@@ -13,123 +13,124 @@ x-i18n:
   workflow: 15
 ---
 
-# 卸载
+# å¸è½½
 
-两种方式：
+ä¸¤ç§æ–¹å¼ï¼š
 
-- 如果 `openclaw` 仍已安装，使用**简单方式**。
-- 如果 CLI 已删除但服务仍在运行，使用**手动服务移除**。
+- å¦‚æžœ `` ä»å·²å®‰è£…ï¼Œä½¿ç”¨**ç®€å•æ–¹å¼**ã€‚
+- å¦‚æžœ CLI å·²åˆ é™¤ä½†æœåŠ¡ä»åœ¨è¿è¡Œï¼Œä½¿ç”¨**æ‰‹åŠ¨æœåŠ¡ç§»é™¤**ã€‚
 
-## 简单方式（CLI 仍已安装）
+## ç®€å•æ–¹å¼ï¼ˆCLI ä»å·²å®‰è£…ï¼‰
 
-推荐：使用内置卸载程序：
-
-```bash
-openclaw uninstall
-```
-
-非交互式（自动化 / npx）：
+æŽ¨èï¼šä½¿ç”¨å†…ç½®å¸è½½ç¨‹åºï¼š
 
 ```bash
-openclaw uninstall --all --yes --non-interactive
-npx -y openclaw uninstall --all --yes --non-interactive
+ uninstall
 ```
 
-手动步骤（效果相同）：
-
-1. 停止 Gateway 网关服务：
+éžäº¤äº’å¼ï¼ˆè‡ªåŠ¨åŒ– / npxï¼‰ï¼š
 
 ```bash
-openclaw gateway stop
+ uninstall --all --yes --non-interactive
+npx -y  uninstall --all --yes --non-interactive
 ```
 
-2. 卸载 Gateway 网关服务（launchd/systemd/schtasks）：
+æ‰‹åŠ¨æ­¥éª¤ï¼ˆæ•ˆæžœç›¸åŒï¼‰ï¼š
+
+1. åœæ­¢ Gateway ç½‘å…³æœåŠ¡ï¼š
 
 ```bash
-openclaw gateway uninstall
+ gateway stop
 ```
 
-3. 删除状态 + 配置：
+2. å¸è½½ Gateway ç½‘å…³æœåŠ¡ï¼ˆlaunchd/systemd/schtasksï¼‰ï¼š
 
 ```bash
-rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
+ gateway uninstall
 ```
 
-如果你将 `OPENCLAW_CONFIG_PATH` 设置为状态目录外的自定义位置，也请删除该文件。
-
-4. 删除你的工作区（可选，移除智能体文件）：
+3. åˆ é™¤çŠ¶æ€ + é…ç½®ï¼š
 
 ```bash
-rm -rf ~/.openclaw/workspace
+rm -rf "${_STATE_DIR:-$HOME/.}"
 ```
 
-5. 移除 CLI 安装（选择你使用的那个）：
+å¦‚æžœä½ å°† `_CONFIG_PATH` è®¾ç½®ä¸ºçŠ¶æ€ç›®å½•å¤–çš„è‡ªå®šä¹‰ä½ç½®ï¼Œä¹Ÿè¯·åˆ é™¤è¯¥æ–‡ä»¶ã€‚
+
+4. åˆ é™¤ä½ çš„å·¥ä½œåŒºï¼ˆå¯é€‰ï¼Œç§»é™¤æ™ºèƒ½ä½“æ–‡ä»¶ï¼‰ï¼š
 
 ```bash
-npm rm -g openclaw
-pnpm remove -g openclaw
-bun remove -g openclaw
+rm -rf ~/./workspace
 ```
 
-6. 如果你安装了 macOS 应用：
+5. ç§»é™¤ CLI å®‰è£…ï¼ˆé€‰æ‹©ä½ ä½¿ç”¨çš„é‚£ä¸ªï¼‰ï¼š
 
 ```bash
-rm -rf /Applications/OpenClaw.app
+npm rm -g 
+pnpm remove -g 
+bun remove -g 
 ```
 
-注意事项：
+6. å¦‚æžœä½ å®‰è£…äº† macOS åº”ç”¨ï¼š
 
-- 如果你使用了配置文件（`--profile` / `OPENCLAW_PROFILE`），对每个状态目录重复步骤 3（默认为 `~/.openclaw-<profile>`）。
-- 在远程模式下，状态目录位于 **Gateway 网关主机**上，因此也需要在那里运行步骤 1-4。
+```bash
+rm -rf /Applications/.app
+```
 
-## 手动服务移除（CLI 未安装）
+æ³¨æ„äº‹é¡¹ï¼š
 
-如果 Gateway 网关服务持续运行但 `openclaw` 缺失，请使用此方法。
+- å¦‚æžœä½ ä½¿ç”¨äº†é…ç½®æ–‡ä»¶ï¼ˆ`--profile` / `_PROFILE`ï¼‰ï¼Œå¯¹æ¯ä¸ªçŠ¶æ€ç›®å½•é‡å¤æ­¥éª¤ 3ï¼ˆé»˜è®¤ä¸º `~/.-<profile>`ï¼‰ã€‚
+- åœ¨è¿œç¨‹æ¨¡å¼ä¸‹ï¼ŒçŠ¶æ€ç›®å½•ä½äºŽ **Gateway ç½‘å…³ä¸»æœº**ä¸Šï¼Œå› æ­¤ä¹Ÿéœ€è¦åœ¨é‚£é‡Œè¿è¡Œæ­¥éª¤ 1-4ã€‚
 
-### macOS（launchd）
+## æ‰‹åŠ¨æœåŠ¡ç§»é™¤ï¼ˆCLI æœªå®‰è£…ï¼‰
 
-默认标签是 `bot.molt.gateway`（或 `bot.molt.<profile>`；旧版 `com.openclaw.*` 可能仍然存在）：
+å¦‚æžœ Gateway ç½‘å…³æœåŠ¡æŒç»­è¿è¡Œä½† `` ç¼ºå¤±ï¼Œè¯·ä½¿ç”¨æ­¤æ–¹æ³•ã€‚
+
+### macOSï¼ˆlaunchdï¼‰
+
+é»˜è®¤æ ‡ç­¾æ˜¯ `bot.molt.gateway`ï¼ˆæˆ– `bot.molt.<profile>`ï¼›æ—§ç‰ˆ `com..*` å¯èƒ½ä»ç„¶å­˜åœ¨ï¼‰ï¼š
 
 ```bash
 launchctl bootout gui/$UID/bot.molt.gateway
 rm -f ~/Library/LaunchAgents/bot.molt.gateway.plist
 ```
 
-如果你使用了配置文件，请将标签和 plist 名称替换为 `bot.molt.<profile>`。如果存在任何旧版 `com.openclaw.*` plist，请将其移除。
+å¦‚æžœä½ ä½¿ç”¨äº†é…ç½®æ–‡ä»¶ï¼Œè¯·å°†æ ‡ç­¾å’Œ plist åç§°æ›¿æ¢ä¸º `bot.molt.<profile>`ã€‚å¦‚æžœå­˜åœ¨ä»»ä½•æ—§ç‰ˆ `com..*` plistï¼Œè¯·å°†å…¶ç§»é™¤ã€‚
 
-### Linux（systemd 用户单元）
+### Linuxï¼ˆsystemd ç”¨æˆ·å•å…ƒï¼‰
 
-默认单元名称是 `openclaw-gateway.service`（或 `openclaw-gateway-<profile>.service`）：
+é»˜è®¤å•å…ƒåç§°æ˜¯ `-gateway.service`ï¼ˆæˆ– `-gateway-<profile>.service`ï¼‰ï¼š
 
 ```bash
-systemctl --user disable --now openclaw-gateway.service
-rm -f ~/.config/systemd/user/openclaw-gateway.service
+systemctl --user disable --now -gateway.service
+rm -f ~/.config/systemd/user/-gateway.service
 systemctl --user daemon-reload
 ```
 
-### Windows（计划任务）
+### Windowsï¼ˆè®¡åˆ’ä»»åŠ¡ï¼‰
 
-默认任务名称是 `OpenClaw Gateway`（或 `OpenClaw Gateway (<profile>)`）。
-任务脚本位于你的状态目录下。
+é»˜è®¤ä»»åŠ¡åç§°æ˜¯ ` Gateway`ï¼ˆæˆ– ` Gateway (<profile>)`ï¼‰ã€‚
+ä»»åŠ¡è„šæœ¬ä½äºŽä½ çš„çŠ¶æ€ç›®å½•ä¸‹ã€‚
 
 ```powershell
-schtasks /Delete /F /TN "OpenClaw Gateway"
-Remove-Item -Force "$env:USERPROFILE\.openclaw\gateway.cmd"
+schtasks /Delete /F /TN " Gateway"
+Remove-Item -Force "$env:USERPROFILE\.\gateway.cmd"
 ```
 
-如果你使用了配置文件，请删除匹配的任务名称和 `~\.openclaw-<profile>\gateway.cmd`。
+å¦‚æžœä½ ä½¿ç”¨äº†é…ç½®æ–‡ä»¶ï¼Œè¯·åˆ é™¤åŒ¹é…çš„ä»»åŠ¡åç§°å’Œ `~\.-<profile>\gateway.cmd`ã€‚
 
-## 普通安装 vs 源码检出
+## æ™®é€šå®‰è£… vs æºç æ£€å‡º
 
-### 普通安装（install.sh / npm / pnpm / bun）
+### æ™®é€šå®‰è£…ï¼ˆinstall.sh / npm / pnpm / bunï¼‰
 
-如果你使用了 `https://openclaw.ai/install.sh` 或 `install.ps1`，CLI 是通过 `npm install -g openclaw@latest` 安装的。
-使用 `npm rm -g openclaw` 移除（或 `pnpm remove -g` / `bun remove -g`，如果你是用那种方式安装的）。
+å¦‚æžœä½ ä½¿ç”¨äº† `https://.ai/install.sh` æˆ– `install.ps1`ï¼ŒCLI æ˜¯é€šè¿‡ `npm install -g @latest` å®‰è£…çš„ã€‚
+ä½¿ç”¨ `npm rm -g ` ç§»é™¤ï¼ˆæˆ– `pnpm remove -g` / `bun remove -g`ï¼Œå¦‚æžœä½ æ˜¯ç”¨é‚£ç§æ–¹å¼å®‰è£…çš„ï¼‰ã€‚
 
-### 源码检出（git clone）
+### æºç æ£€å‡ºï¼ˆgit cloneï¼‰
 
-如果你从仓库检出运行（`git clone` + `openclaw ...` / `bun run openclaw ...`）：
+å¦‚æžœä½ ä»Žä»“åº“æ£€å‡ºè¿è¡Œï¼ˆ`git clone` + ` ...` / `bun run  ...`ï¼‰ï¼š
 
-1. 在删除仓库**之前**卸载 Gateway 网关服务（使用上面的简单方式或手动服务移除）。
-2. 删除仓库目录。
-3. 按上述方式移除状态 + 工作区。
+1. åœ¨åˆ é™¤ä»“åº“**ä¹‹å‰**å¸è½½ Gateway ç½‘å…³æœåŠ¡ï¼ˆä½¿ç”¨ä¸Šé¢çš„ç®€å•æ–¹å¼æˆ–æ‰‹åŠ¨æœåŠ¡ç§»é™¤ï¼‰ã€‚
+2. åˆ é™¤ä»“åº“ç›®å½•ã€‚
+3. æŒ‰ä¸Šè¿°æ–¹å¼ç§»é™¤çŠ¶æ€ + å·¥ä½œåŒºã€‚
+

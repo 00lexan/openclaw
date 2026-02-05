@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { assertWebChannel, normalizeE164, toWhatsappJid } from "./index.js";
 
 describe("normalizeE164", () => {
@@ -30,3 +30,4 @@ describe("assertWebChannel", () => {
     expect(() => assertWebChannel("invalid" as string)).toThrow();
   });
 });
+

@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { RuntimeEnv } from "../runtime.js";
 import { signalPlugin } from "../../extensions/signal/src/channel.js";
 import { setActivePluginRegistry } from "../plugins/runtime.js";
@@ -39,7 +39,7 @@ const runtime: RuntimeEnv = {
 };
 
 const _baseSnapshot = {
-  path: "/tmp/openclaw.json",
+  path: "/tmp/.json",
   exists: true,
   raw: "{}",
   parsed: {},
@@ -117,3 +117,4 @@ describe("channels command", () => {
     expect(lines.join("\n")).toMatch(/Channel error/i);
   });
 });
+

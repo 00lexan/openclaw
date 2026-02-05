@@ -1,7 +1,7 @@
----
+﻿---
 role: experimental
 summary: |
-  Kafka register for OpenProse—a bureaucratic/absurdist alternative keyword set.
+  Kafka register for OpenProseâ€”a bureaucratic/absurdist alternative keyword set.
   Clerks, proceedings, petitions, and statutes. For benchmarking against the functional register.
 status: draft
 requires: prose.md
@@ -11,16 +11,16 @@ requires: prose.md
 
 > **This is a skin layer.** It requires `prose.md` to be loaded first. All execution semantics, state management, and VM behavior are defined there. This file only provides keyword translations.
 
-An alternative register for OpenProse that draws from the works of Franz Kafka—The Trial, The Castle, "In the Penal Colony." Programs become proceedings. Agents become clerks. Everything is a process, and nobody quite knows the rules.
+An alternative register for OpenProse that draws from the works of Franz Kafkaâ€”The Trial, The Castle, "In the Penal Colony." Programs become proceedings. Agents become clerks. Everything is a process, and nobody quite knows the rules.
 
 ## How to Use
 
 1. Load `prose.md` first (execution semantics)
 2. Load this file (keyword translations)
 3. When parsing `.prose` files, accept Kafka keywords as aliases for functional keywords
-4. All execution behavior remains identical—only surface syntax changes
+4. All execution behavior remains identicalâ€”only surface syntax changes
 
-> **Design constraint:** Still aims to be "structured but self-evident" per the language tenets—just self-evident through a bureaucratic lens. (The irony is intentional.)
+> **Design constraint:** Still aims to be "structured but self-evident" per the language tenetsâ€”just self-evident through a bureaucratic lens. (The irony is intentional.)
 
 ---
 
@@ -82,12 +82,12 @@ An alternative register for OpenProse that draws from the works of Franz Kafka�
 
 These keywords already work or are too functional to replace sensibly:
 
-- `**...**` discretion markers — the inscrutable judgment of the apparatus
-- `until`, `while` — already work
-- `map`, `filter`, `reduce`, `pmap` — pipeline operators
-- `max` — constraint modifier
-- `as` — aliasing
-- Model names: `sonnet`, `opus`, `haiku` — retained (or see "authority" above)
+- `**...**` discretion markers â€” the inscrutable judgment of the apparatus
+- `until`, `while` â€” already work
+- `map`, `filter`, `reduce`, `pmap` â€” pipeline operators
+- `max` â€” constraint modifier
+- `as` â€” aliasing
+- Model names: `sonnet`, `opus`, `haiku` â€” retained (or see "authority" above)
 
 ---
 
@@ -303,9 +303,9 @@ statute config = { authority: "opus", resubmit: 3 }
 | K.            | The protagonist, never fully named | The user                 |
 | The Trial     | Process without clear rules        | Program execution        |
 | The Castle    | Unreachable authority              | Higher-level systems     |
-| Clerk         | Functionary who processes          | `agent` → `clerk`        |
-| Proceeding    | Official action                    | `session` → `proceeding` |
-| Dossier       | Accumulated file                   | `context` → `dossier`    |
+| Clerk         | Functionary who processes          | `agent` â†’ `clerk`        |
+| Proceeding    | Official action                    | `session` â†’ `proceeding` |
+| Dossier       | Accumulated file                   | `context` â†’ `dossier`    |
 
 ---
 
@@ -368,6 +368,7 @@ Not recommended for:
 ## Closing Note
 
 > "Someone must have slandered Josef K., for one morning, without having done anything wrong, he was arrested."
-> — _The Trial_
+> â€” _The Trial_
 
 In the Kafka register, your program is Josef K. The apparatus will process it. Whether it succeeds or fails, no one can say for certain. But the proceedings will continue.
+

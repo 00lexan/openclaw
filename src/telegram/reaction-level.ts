@@ -1,11 +1,11 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import { resolveTelegramAccount } from "./accounts.js";
 
 export type TelegramReactionLevel = "off" | "ack" | "minimal" | "extensive";
 
 export type ResolvedReactionLevel = {
   level: TelegramReactionLevel;
-  /** Whether ACK reactions (e.g., 👀 when processing) are enabled. */
+  /** Whether ACK reactions (e.g., ðŸ‘€ when processing) are enabled. */
   ackEnabled: boolean;
   /** Whether agent-controlled reactions are enabled. */
   agentReactionsEnabled: boolean;
@@ -17,7 +17,7 @@ export type ResolvedReactionLevel = {
  * Resolve the effective reaction level and its implications.
  */
 export function resolveTelegramReactionLevel(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   accountId?: string;
 }): ResolvedReactionLevel {
   const account = resolveTelegramAccount({
@@ -62,3 +62,4 @@ export function resolveTelegramReactionLevel(params: {
       };
   }
 }
+

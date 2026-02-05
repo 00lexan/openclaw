@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 诊断 WhatsApp 渠道健康状况
-summary: 渠道连接的健康检查步骤
-title: 健康检查
+  - è¯Šæ–­ WhatsApp æ¸ é“å¥åº·çŠ¶å†µ
+summary: æ¸ é“è¿žæŽ¥çš„å¥åº·æ£€æŸ¥æ­¥éª¤
+title: å¥åº·æ£€æŸ¥
 x-i18n:
   generated_at: "2026-02-03T07:47:59Z"
   model: claude-opus-4-5
@@ -12,31 +12,32 @@ x-i18n:
   workflow: 15
 ---
 
-# 健康检查（CLI）
+# å¥åº·æ£€æŸ¥ï¼ˆCLIï¼‰
 
-验证渠道连接的简短指南，无需猜测。
+éªŒè¯æ¸ é“è¿žæŽ¥çš„ç®€çŸ­æŒ‡å—ï¼Œæ— éœ€çŒœæµ‹ã€‚
 
-## 快速检查
+## å¿«é€Ÿæ£€æŸ¥
 
-- `openclaw status` — 本地摘要：Gateway 网关可达性/模式、更新提示、已链接渠道认证时长、会话 + 最近活动。
-- `openclaw status --all` — 完整本地诊断（只读、彩色、可安全粘贴用于调试）。
-- `openclaw status --deep` — 还会探测运行中的 Gateway 网关（支持时进行每渠道探测）。
-- `openclaw health --json` — 向运行中的 Gateway 网关请求完整健康快照（仅 WS；不直接访问 Baileys 套接字）。
-- 在 WhatsApp/WebChat 中单独发送 `/status` 消息可获取状态回复，而不调用智能体。
-- 日志：跟踪 `/tmp/openclaw/openclaw-*.log` 并过滤 `web-heartbeat`、`web-reconnect`、`web-auto-reply`、`web-inbound`。
+- ` status` â€” æœ¬åœ°æ‘˜è¦ï¼šGateway ç½‘å…³å¯è¾¾æ€§/æ¨¡å¼ã€æ›´æ–°æç¤ºã€å·²é“¾æŽ¥æ¸ é“è®¤è¯æ—¶é•¿ã€ä¼šè¯ + æœ€è¿‘æ´»åŠ¨ã€‚
+- ` status --all` â€” å®Œæ•´æœ¬åœ°è¯Šæ–­ï¼ˆåªè¯»ã€å½©è‰²ã€å¯å®‰å…¨ç²˜è´´ç”¨äºŽè°ƒè¯•ï¼‰ã€‚
+- ` status --deep` â€” è¿˜ä¼šæŽ¢æµ‹è¿è¡Œä¸­çš„ Gateway ç½‘å…³ï¼ˆæ”¯æŒæ—¶è¿›è¡Œæ¯æ¸ é“æŽ¢æµ‹ï¼‰ã€‚
+- ` health --json` â€” å‘è¿è¡Œä¸­çš„ Gateway ç½‘å…³è¯·æ±‚å®Œæ•´å¥åº·å¿«ç…§ï¼ˆä»… WSï¼›ä¸ç›´æŽ¥è®¿é—® Baileys å¥—æŽ¥å­—ï¼‰ã€‚
+- åœ¨ WhatsApp/WebChat ä¸­å•ç‹¬å‘é€ `/status` æ¶ˆæ¯å¯èŽ·å–çŠ¶æ€å›žå¤ï¼Œè€Œä¸è°ƒç”¨æ™ºèƒ½ä½“ã€‚
+- æ—¥å¿—ï¼šè·Ÿè¸ª `/tmp//-*.log` å¹¶è¿‡æ»¤ `web-heartbeat`ã€`web-reconnect`ã€`web-auto-reply`ã€`web-inbound`ã€‚
 
-## 深度诊断
+## æ·±åº¦è¯Šæ–­
 
-- 磁盘上的凭证：`ls -l ~/.openclaw/credentials/whatsapp/<accountId>/creds.json`（mtime 应该是最近的）。
-- 会话存储：`ls -l ~/.openclaw/agents/<agentId>/sessions/sessions.json`（路径可在配置中覆盖）。计数和最近收件人通过 `status` 显示。
-- 重新链接流程：当日志中出现状态码 409–515 或 `loggedOut` 时，执行 `openclaw channels logout && openclaw channels login --verbose`。（注意：配对后状态 515 时 QR 登录流程会自动重启一次。）
+- ç£ç›˜ä¸Šçš„å‡­è¯ï¼š`ls -l ~/./credentials/whatsapp/<accountId>/creds.json`ï¼ˆmtime åº”è¯¥æ˜¯æœ€è¿‘çš„ï¼‰ã€‚
+- ä¼šè¯å­˜å‚¨ï¼š`ls -l ~/./agents/<agentId>/sessions/sessions.json`ï¼ˆè·¯å¾„å¯åœ¨é…ç½®ä¸­è¦†ç›–ï¼‰ã€‚è®¡æ•°å’Œæœ€è¿‘æ”¶ä»¶äººé€šè¿‡ `status` æ˜¾ç¤ºã€‚
+- é‡æ–°é“¾æŽ¥æµç¨‹ï¼šå½“æ—¥å¿—ä¸­å‡ºçŽ°çŠ¶æ€ç  409â€“515 æˆ– `loggedOut` æ—¶ï¼Œæ‰§è¡Œ ` channels logout &&  channels login --verbose`ã€‚ï¼ˆæ³¨æ„ï¼šé…å¯¹åŽçŠ¶æ€ 515 æ—¶ QR ç™»å½•æµç¨‹ä¼šè‡ªåŠ¨é‡å¯ä¸€æ¬¡ã€‚ï¼‰
 
-## 当出现故障时
+## å½“å‡ºçŽ°æ•…éšœæ—¶
 
-- `logged out` 或状态 409–515 → 使用 `openclaw channels logout` 然后 `openclaw channels login` 重新链接。
-- Gateway 网关不可达 → 启动它：`openclaw gateway --port 18789`（如果端口被占用则使用 `--force`）。
-- 没有入站消息 → 确认已链接的手机在线且发送者被允许（`channels.whatsapp.allowFrom`）；对于群聊，确保允许列表 + 提及规则匹配（`channels.whatsapp.groups`、`agents.list[].groupChat.mentionPatterns`）。
+- `logged out` æˆ–çŠ¶æ€ 409â€“515 â†’ ä½¿ç”¨ ` channels logout` ç„¶åŽ ` channels login` é‡æ–°é“¾æŽ¥ã€‚
+- Gateway ç½‘å…³ä¸å¯è¾¾ â†’ å¯åŠ¨å®ƒï¼š` gateway --port 18789`ï¼ˆå¦‚æžœç«¯å£è¢«å ç”¨åˆ™ä½¿ç”¨ `--force`ï¼‰ã€‚
+- æ²¡æœ‰å…¥ç«™æ¶ˆæ¯ â†’ ç¡®è®¤å·²é“¾æŽ¥çš„æ‰‹æœºåœ¨çº¿ä¸”å‘é€è€…è¢«å…è®¸ï¼ˆ`channels.whatsapp.allowFrom`ï¼‰ï¼›å¯¹äºŽç¾¤èŠï¼Œç¡®ä¿å…è®¸åˆ—è¡¨ + æåŠè§„åˆ™åŒ¹é…ï¼ˆ`channels.whatsapp.groups`ã€`agents.list[].groupChat.mentionPatterns`ï¼‰ã€‚
 
-## 专用"health"命令
+## ä¸“ç”¨"health"å‘½ä»¤
 
-`openclaw health --json` 向运行中的 Gateway 网关请求其健康快照（CLI 不直接访问渠道套接字）。它报告已链接凭证/认证时长（如可用）、每渠道探测摘要、会话存储摘要和探测持续时间。如果 Gateway 网关不可达或探测失败/超时，它以非零退出。使用 `--timeout <ms>` 覆盖默认的 10 秒。
+` health --json` å‘è¿è¡Œä¸­çš„ Gateway ç½‘å…³è¯·æ±‚å…¶å¥åº·å¿«ç…§ï¼ˆCLI ä¸ç›´æŽ¥è®¿é—®æ¸ é“å¥—æŽ¥å­—ï¼‰ã€‚å®ƒæŠ¥å‘Šå·²é“¾æŽ¥å‡­è¯/è®¤è¯æ—¶é•¿ï¼ˆå¦‚å¯ç”¨ï¼‰ã€æ¯æ¸ é“æŽ¢æµ‹æ‘˜è¦ã€ä¼šè¯å­˜å‚¨æ‘˜è¦å’ŒæŽ¢æµ‹æŒç»­æ—¶é—´ã€‚å¦‚æžœ Gateway ç½‘å…³ä¸å¯è¾¾æˆ–æŽ¢æµ‹å¤±è´¥/è¶…æ—¶ï¼Œå®ƒä»¥éžé›¶é€€å‡ºã€‚ä½¿ç”¨ `--timeout <ms>` è¦†ç›–é»˜è®¤çš„ 10 ç§’ã€‚
+

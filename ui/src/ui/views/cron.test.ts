@@ -1,4 +1,4 @@
-import { render } from "lit";
+﻿import { render } from "lit";
 import { describe, expect, it, vi } from "vitest";
 import type { CronJob } from "../types.ts";
 import { DEFAULT_CRON_FORM } from "../app-defaults.ts";
@@ -98,3 +98,4 @@ describe("cron view", () => {
     expect(onLoadRuns).toHaveBeenCalledWith("job-1");
   });
 });
+

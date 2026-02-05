@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+﻿import type { IncomingMessage, ServerResponse } from "node:http";
 
 export type SlackHttpRequestHandler = (
   req: IncomingMessage,
@@ -47,3 +47,4 @@ export async function handleSlackHttpRequest(
   await handler(req, res);
   return true;
 }
+

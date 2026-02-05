@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 为 OpenClaw 设置 Zalo Personal
-  - 调试 Zalo Personal 登录或消息流程
-summary: 通过 zca-cli（QR 登录）支持 Zalo 个人账户、功能和配置
+  - ä¸º  è®¾ç½® Zalo Personal
+  - è°ƒè¯• Zalo Personal ç™»å½•æˆ–æ¶ˆæ¯æµç¨‹
+summary: é€šè¿‡ zca-cliï¼ˆQR ç™»å½•ï¼‰æ”¯æŒ Zalo ä¸ªäººè´¦æˆ·ã€åŠŸèƒ½å’Œé…ç½®
 title: Zalo Personal
 x-i18n:
   generated_at: "2026-02-03T07:44:34Z"
@@ -13,34 +13,34 @@ x-i18n:
   workflow: 15
 ---
 
-# Zalo Personal（非官方）
+# Zalo Personalï¼ˆéžå®˜æ–¹ï¼‰
 
-状态：实验性。此集成通过 `zca-cli` 自动化**个人 Zalo 账户**。
+çŠ¶æ€ï¼šå®žéªŒæ€§ã€‚æ­¤é›†æˆé€šè¿‡ `zca-cli` è‡ªåŠ¨åŒ–**ä¸ªäºº Zalo è´¦æˆ·**ã€‚
 
-> **警告：**这是一个非官方集成，可能导致账户被暂停/封禁。使用风险自负。
+> **è­¦å‘Šï¼š**è¿™æ˜¯ä¸€ä¸ªéžå®˜æ–¹é›†æˆï¼Œå¯èƒ½å¯¼è‡´è´¦æˆ·è¢«æš‚åœ/å°ç¦ã€‚ä½¿ç”¨é£Žé™©è‡ªè´Ÿã€‚
 
-## 需要插件
+## éœ€è¦æ’ä»¶
 
-Zalo Personal 作为插件提供，不包含在核心安装中。
+Zalo Personal ä½œä¸ºæ’ä»¶æä¾›ï¼Œä¸åŒ…å«åœ¨æ ¸å¿ƒå®‰è£…ä¸­ã€‚
 
-- 通过 CLI 安装：`openclaw plugins install @openclaw/zalouser`
-- 或从源码检出安装：`openclaw plugins install ./extensions/zalouser`
-- 详情：[插件](/plugin)
+- é€šè¿‡ CLI å®‰è£…ï¼š` plugins install @/zalouser`
+- æˆ–ä»Žæºç æ£€å‡ºå®‰è£…ï¼š` plugins install ./extensions/zalouser`
+- è¯¦æƒ…ï¼š[æ’ä»¶](/plugin)
 
-## 前置条件：zca-cli
+## å‰ç½®æ¡ä»¶ï¼šzca-cli
 
-Gateway 网关机器必须在 `PATH` 中有可用的 `zca` 二进制文件。
+Gateway ç½‘å…³æœºå™¨å¿…é¡»åœ¨ `PATH` ä¸­æœ‰å¯ç”¨çš„ `zca` äºŒè¿›åˆ¶æ–‡ä»¶ã€‚
 
-- 验证：`zca --version`
-- 如果缺失，请安装 zca-cli（参见 `extensions/zalouser/README.md` 或上游 zca-cli 文档）。
+- éªŒè¯ï¼š`zca --version`
+- å¦‚æžœç¼ºå¤±ï¼Œè¯·å®‰è£… zca-cliï¼ˆå‚è§ `extensions/zalouser/README.md` æˆ–ä¸Šæ¸¸ zca-cli æ–‡æ¡£ï¼‰ã€‚
 
-## 快速设置（新手）
+## å¿«é€Ÿè®¾ç½®ï¼ˆæ–°æ‰‹ï¼‰
 
-1. 安装插件（见上文）。
-2. 登录（QR，在 Gateway 网关机器上）：
-   - `openclaw channels login --channel zalouser`
-   - 用 Zalo 手机应用扫描终端中的二维码。
-3. 启用渠道：
+1. å®‰è£…æ’ä»¶ï¼ˆè§ä¸Šæ–‡ï¼‰ã€‚
+2. ç™»å½•ï¼ˆQRï¼Œåœ¨ Gateway ç½‘å…³æœºå™¨ä¸Šï¼‰ï¼š
+   - ` channels login --channel zalouser`
+   - ç”¨ Zalo æ‰‹æœºåº”ç”¨æ‰«æç»ˆç«¯ä¸­çš„äºŒç»´ç ã€‚
+3. å¯ç”¨æ¸ é“ï¼š
 
 ```json5
 {
@@ -53,55 +53,55 @@ Gateway 网关机器必须在 `PATH` 中有可用的 `zca` 二进制文件。
 }
 ```
 
-4. 重启 Gateway 网关（或完成新手引导）。
-5. 私信访问默认为配对模式；首次联系时批准配对码。
+4. é‡å¯ Gateway ç½‘å…³ï¼ˆæˆ–å®Œæˆæ–°æ‰‹å¼•å¯¼ï¼‰ã€‚
+5. ç§ä¿¡è®¿é—®é»˜è®¤ä¸ºé…å¯¹æ¨¡å¼ï¼›é¦–æ¬¡è”ç³»æ—¶æ‰¹å‡†é…å¯¹ç ã€‚
 
-## 这是什么
+## è¿™æ˜¯ä»€ä¹ˆ
 
-- 使用 `zca listen` 接收入站消息。
-- 使用 `zca msg ...` 发送回复（文本/媒体/链接）。
-- 专为"个人账户"使用场景设计，适用于 Zalo Bot API 不可用的情况。
+- ä½¿ç”¨ `zca listen` æŽ¥æ”¶å…¥ç«™æ¶ˆæ¯ã€‚
+- ä½¿ç”¨ `zca msg ...` å‘é€å›žå¤ï¼ˆæ–‡æœ¬/åª’ä½“/é“¾æŽ¥ï¼‰ã€‚
+- ä¸“ä¸º"ä¸ªäººè´¦æˆ·"ä½¿ç”¨åœºæ™¯è®¾è®¡ï¼Œé€‚ç”¨äºŽ Zalo Bot API ä¸å¯ç”¨çš„æƒ…å†µã€‚
 
-## 命名
+## å‘½å
 
-渠道 ID 为 `zalouser`，以明确表示这是自动化**个人 Zalo 用户账户**（非官方）。我们保留 `zalo` 用于未来可能的官方 Zalo API 集成。
+æ¸ é“ ID ä¸º `zalouser`ï¼Œä»¥æ˜Žç¡®è¡¨ç¤ºè¿™æ˜¯è‡ªåŠ¨åŒ–**ä¸ªäºº Zalo ç”¨æˆ·è´¦æˆ·**ï¼ˆéžå®˜æ–¹ï¼‰ã€‚æˆ‘ä»¬ä¿ç•™ `zalo` ç”¨äºŽæœªæ¥å¯èƒ½çš„å®˜æ–¹ Zalo API é›†æˆã€‚
 
-## 查找 ID（目录）
+## æŸ¥æ‰¾ IDï¼ˆç›®å½•ï¼‰
 
-使用目录 CLI 发现联系人/群组及其 ID：
+ä½¿ç”¨ç›®å½• CLI å‘çŽ°è”ç³»äºº/ç¾¤ç»„åŠå…¶ IDï¼š
 
 ```bash
-openclaw directory self --channel zalouser
-openclaw directory peers list --channel zalouser --query "name"
-openclaw directory groups list --channel zalouser --query "work"
+ directory self --channel zalouser
+ directory peers list --channel zalouser --query "name"
+ directory groups list --channel zalouser --query "work"
 ```
 
-## 限制
+## é™åˆ¶
 
-- 出站文本分块为约 2000 字符（Zalo 客户端限制）。
-- 默认阻止流式传输。
+- å‡ºç«™æ–‡æœ¬åˆ†å—ä¸ºçº¦ 2000 å­—ç¬¦ï¼ˆZalo å®¢æˆ·ç«¯é™åˆ¶ï¼‰ã€‚
+- é»˜è®¤é˜»æ­¢æµå¼ä¼ è¾“ã€‚
 
-## 访问控制（私信）
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ï¼‰
 
-`channels.zalouser.dmPolicy` 支持：`pairing | allowlist | open | disabled`（默认：`pairing`）。
-`channels.zalouser.allowFrom` 接受用户 ID 或名称。向导会在可用时通过 `zca friend find` 将名称解析为 ID。
+`channels.zalouser.dmPolicy` æ”¯æŒï¼š`pairing | allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼š`pairing`ï¼‰ã€‚
+`channels.zalouser.allowFrom` æŽ¥å—ç”¨æˆ· ID æˆ–åç§°ã€‚å‘å¯¼ä¼šåœ¨å¯ç”¨æ—¶é€šè¿‡ `zca friend find` å°†åç§°è§£æžä¸º IDã€‚
 
-通过以下方式批准：
+é€šè¿‡ä»¥ä¸‹æ–¹å¼æ‰¹å‡†ï¼š
 
-- `openclaw pairing list zalouser`
-- `openclaw pairing approve zalouser <code>`
+- ` pairing list zalouser`
+- ` pairing approve zalouser <code>`
 
-## 群组访问（可选）
+## ç¾¤ç»„è®¿é—®ï¼ˆå¯é€‰ï¼‰
 
-- 默认：`channels.zalouser.groupPolicy = "open"`（允许群组）。使用 `channels.defaults.groupPolicy` 在未设置时覆盖默认值。
-- 通过以下方式限制为允许列表：
+- é»˜è®¤ï¼š`channels.zalouser.groupPolicy = "open"`ï¼ˆå…è®¸ç¾¤ç»„ï¼‰ã€‚ä½¿ç”¨ `channels.defaults.groupPolicy` åœ¨æœªè®¾ç½®æ—¶è¦†ç›–é»˜è®¤å€¼ã€‚
+- é€šè¿‡ä»¥ä¸‹æ–¹å¼é™åˆ¶ä¸ºå…è®¸åˆ—è¡¨ï¼š
   - `channels.zalouser.groupPolicy = "allowlist"`
-  - `channels.zalouser.groups`（键为群组 ID 或名称）
-- 阻止所有群组：`channels.zalouser.groupPolicy = "disabled"`。
-- 配置向导可以提示输入群组允许列表。
-- 启动时，OpenClaw 将允许列表中的群组/用户名称解析为 ID 并记录映射；未解析的条目保持原样。
+  - `channels.zalouser.groups`ï¼ˆé”®ä¸ºç¾¤ç»„ ID æˆ–åç§°ï¼‰
+- é˜»æ­¢æ‰€æœ‰ç¾¤ç»„ï¼š`channels.zalouser.groupPolicy = "disabled"`ã€‚
+- é…ç½®å‘å¯¼å¯ä»¥æç¤ºè¾“å…¥ç¾¤ç»„å…è®¸åˆ—è¡¨ã€‚
+- å¯åŠ¨æ—¶ï¼Œ å°†å…è®¸åˆ—è¡¨ä¸­çš„ç¾¤ç»„/ç”¨æˆ·åç§°è§£æžä¸º ID å¹¶è®°å½•æ˜ å°„ï¼›æœªè§£æžçš„æ¡ç›®ä¿æŒåŽŸæ ·ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -117,9 +117,9 @@ openclaw directory groups list --channel zalouser --query "work"
 }
 ```
 
-## 多账户
+## å¤šè´¦æˆ·
 
-账户映射到 zca 配置文件。示例：
+è´¦æˆ·æ˜ å°„åˆ° zca é…ç½®æ–‡ä»¶ã€‚ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -135,13 +135,14 @@ openclaw directory groups list --channel zalouser --query "work"
 }
 ```
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-**找不到 `zca`：**
+**æ‰¾ä¸åˆ° `zca`ï¼š**
 
-- 安装 zca-cli 并确保它在 Gateway 网关进程的 `PATH` 中。
+- å®‰è£… zca-cli å¹¶ç¡®ä¿å®ƒåœ¨ Gateway ç½‘å…³è¿›ç¨‹çš„ `PATH` ä¸­ã€‚
 
-**登录不保持：**
+**ç™»å½•ä¸ä¿æŒï¼š**
 
-- `openclaw channels status --probe`
-- 重新登录：`openclaw channels logout --channel zalouser && openclaw channels login --channel zalouser`
+- ` channels status --probe`
+- é‡æ–°ç™»å½•ï¼š` channels logout --channel zalouser &&  channels login --channel zalouser`
+

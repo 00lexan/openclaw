@@ -1,4 +1,4 @@
-name: Workflow Sanity
+﻿name: Workflow Sanity
 
 on:
   pull_request:
@@ -35,3 +35,4 @@ jobs:
               print(f"- {path}")
             sys.exit(1)
           PY
+

@@ -1,4 +1,4 @@
-import type { AddressInfo } from "node:net";
+﻿import type { AddressInfo } from "node:net";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
@@ -112,3 +112,4 @@ describe("media server", () => {
     await new Promise((r) => server.close(r));
   });
 });
+

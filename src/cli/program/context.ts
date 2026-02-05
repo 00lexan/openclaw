@@ -1,4 +1,4 @@
-import { VERSION } from "../../version.js";
+﻿import { VERSION } from "../../version.js";
 import { resolveCliChannelOptions } from "../channel-options.js";
 
 export type ProgramContext = {
@@ -17,3 +17,4 @@ export function createProgramContext(): ProgramContext {
     agentChannelOptions: ["last", ...channelOptions].join("|"),
   };
 }
+

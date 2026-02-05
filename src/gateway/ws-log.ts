@@ -1,4 +1,4 @@
-import chalk from "chalk";
+﻿import chalk from "chalk";
 import { isVerbose } from "../globals.js";
 import { shouldLogSubsystemToConsole } from "../logging/console.js";
 import { getDefaultRedactPatterns, redactSensitiveText } from "../logging/redact.js";
@@ -28,12 +28,12 @@ const wsLog = createSubsystemLogger("gateway/ws");
 export function shortId(value: string): string {
   const s = value.trim();
   if (UUID_RE.test(s)) {
-    return `${s.slice(0, 8)}…${s.slice(-4)}`;
+    return `${s.slice(0, 8)}â€¦${s.slice(-4)}`;
   }
   if (s.length <= 24) {
     return s;
   }
-  return `${s.slice(0, 12)}…${s.slice(-4)}`;
+  return `${s.slice(0, 12)}â€¦${s.slice(-4)}`;
 }
 
 export function formatForLog(value: unknown): string {
@@ -97,7 +97,7 @@ function compactPreview(input: string, maxLen = 160): string {
   if (oneLine.length <= maxLen) {
     return oneLine;
   }
-  return `${oneLine.slice(0, Math.max(0, maxLen - 1))}…`;
+  return `${oneLine.slice(0, Math.max(0, maxLen - 1))}â€¦`;
 }
 
 export function summarizeAgentEventForWsLog(payload: unknown): Record<string, unknown> {
@@ -228,7 +228,7 @@ export function logWs(direction: "in" | "out", kind: string, meta?: Record<strin
         })()
       : undefined;
 
-  const dirArrow = direction === "in" ? "←" : "→";
+  const dirArrow = direction === "in" ? "â†" : "â†’";
   const dirColor = direction === "in" ? chalk.greenBright : chalk.cyanBright;
   const prefix = `${dirColor(dirArrow)} ${chalk.bold(kind)}`;
 
@@ -242,8 +242,8 @@ export function logWs(direction: "in" | "out", kind: string, meta?: Record<strin
   const statusToken =
     kind === "res" && ok !== undefined
       ? ok
-        ? chalk.greenBright("✓")
-        : chalk.redBright("✗")
+        ? chalk.greenBright("âœ“")
+        : chalk.redBright("âœ—")
       : undefined;
 
   const durationToken = typeof durationMs === "number" ? chalk.dim(`${durationMs}ms`) : undefined;
@@ -302,7 +302,7 @@ function logWsOptimized(direction: "in" | "out", kind: string, meta?: Record<str
     const errorMsg = typeof meta?.error === "string" ? formatForLog(meta.error) : undefined;
     wsLog.warn(
       [
-        `${chalk.redBright("✗")} ${chalk.bold("parse-error")}`,
+        `${chalk.redBright("âœ—")} ${chalk.bold("parse-error")}`,
         errorMsg ? `${chalk.dim("error")}=${errorMsg}` : undefined,
         `${chalk.dim("conn")}=${chalk.gray(shortId(connId ?? "?"))}`,
       ]
@@ -329,7 +329,7 @@ function logWsOptimized(direction: "in" | "out", kind: string, meta?: Record<str
   }
 
   const statusToken =
-    ok === undefined ? undefined : ok ? chalk.greenBright("✓") : chalk.redBright("✗");
+    ok === undefined ? undefined : ok ? chalk.greenBright("âœ“") : chalk.redBright("âœ—");
   const durationToken = typeof durationMs === "number" ? chalk.dim(`${durationMs}ms`) : undefined;
 
   const restMeta: string[] = [];
@@ -349,7 +349,7 @@ function logWsOptimized(direction: "in" | "out", kind: string, meta?: Record<str
   }
 
   const tokens = [
-    `${chalk.yellowBright("⇄")} ${chalk.bold("res")}`,
+    `${chalk.yellowBright("â‡„")} ${chalk.bold("res")}`,
     statusToken,
     method ? chalk.bold(method) : undefined,
     durationToken,
@@ -376,9 +376,9 @@ function logWsCompact(direction: "in" | "out", kind: string, meta?: Record<strin
 
   const compactArrow = (() => {
     if (kind === "req" || kind === "res") {
-      return "⇄";
+      return "â‡„";
     }
-    return direction === "in" ? "←" : "→";
+    return direction === "in" ? "â†" : "â†’";
   })();
   const arrowColor =
     kind === "req" || kind === "res"
@@ -392,8 +392,8 @@ function logWsCompact(direction: "in" | "out", kind: string, meta?: Record<strin
   const statusToken =
     kind === "res" && ok !== undefined
       ? ok
-        ? chalk.greenBright("✓")
-        : chalk.redBright("✗")
+        ? chalk.greenBright("âœ“")
+        : chalk.redBright("âœ—")
       : undefined;
 
   const startedAt =
@@ -447,3 +447,4 @@ function logWsCompact(direction: "in" | "out", kind: string, meta?: Record<strin
 
   wsLog.info(tokens.join(" "));
 }
+

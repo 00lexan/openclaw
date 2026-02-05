@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -7,27 +7,27 @@ describe("onboard (non-interactive): token auth", () => {
   it("writes token profile config and stores the token", async () => {
     const prev = {
       home: process.env.HOME,
-      stateDir: process.env.OPENCLAW_STATE_DIR,
-      configPath: process.env.OPENCLAW_CONFIG_PATH,
-      skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
-      skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
-      skipCron: process.env.OPENCLAW_SKIP_CRON,
-      skipCanvas: process.env.OPENCLAW_SKIP_CANVAS_HOST,
-      token: process.env.OPENCLAW_GATEWAY_TOKEN,
-      password: process.env.OPENCLAW_GATEWAY_PASSWORD,
+      stateDir: process.env._STATE_DIR,
+      configPath: process.env._CONFIG_PATH,
+      skipChannels: process.env._SKIP_CHANNELS,
+      skipGmail: process.env._SKIP_GMAIL_WATCHER,
+      skipCron: process.env._SKIP_CRON,
+      skipCanvas: process.env._SKIP_CANVAS_HOST,
+      token: process.env._GATEWAY_TOKEN,
+      password: process.env._GATEWAY_PASSWORD,
     };
 
-    process.env.OPENCLAW_SKIP_CHANNELS = "1";
-    process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-    process.env.OPENCLAW_SKIP_CRON = "1";
-    process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-    delete process.env.OPENCLAW_GATEWAY_TOKEN;
-    delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+    process.env._SKIP_CHANNELS = "1";
+    process.env._SKIP_GMAIL_WATCHER = "1";
+    process.env._SKIP_CRON = "1";
+    process.env._SKIP_CANVAS_HOST = "1";
+    delete process.env._GATEWAY_TOKEN;
+    delete process.env._GATEWAY_PASSWORD;
 
-    const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-onboard-token-"));
+    const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "-onboard-token-"));
     process.env.HOME = tempHome;
-    process.env.OPENCLAW_STATE_DIR = tempHome;
-    process.env.OPENCLAW_CONFIG_PATH = path.join(tempHome, "openclaw.json");
+    process.env._STATE_DIR = tempHome;
+    process.env._CONFIG_PATH = path.join(tempHome, ".json");
     vi.resetModules();
 
     const token = `sk-ant-oat01-${"a".repeat(80)}`;
@@ -79,14 +79,15 @@ describe("onboard (non-interactive): token auth", () => {
     } finally {
       await fs.rm(tempHome, { recursive: true, force: true });
       process.env.HOME = prev.home;
-      process.env.OPENCLAW_STATE_DIR = prev.stateDir;
-      process.env.OPENCLAW_CONFIG_PATH = prev.configPath;
-      process.env.OPENCLAW_SKIP_CHANNELS = prev.skipChannels;
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = prev.skipGmail;
-      process.env.OPENCLAW_SKIP_CRON = prev.skipCron;
-      process.env.OPENCLAW_SKIP_CANVAS_HOST = prev.skipCanvas;
-      process.env.OPENCLAW_GATEWAY_TOKEN = prev.token;
-      process.env.OPENCLAW_GATEWAY_PASSWORD = prev.password;
+      process.env._STATE_DIR = prev.stateDir;
+      process.env._CONFIG_PATH = prev.configPath;
+      process.env._SKIP_CHANNELS = prev.skipChannels;
+      process.env._SKIP_GMAIL_WATCHER = prev.skipGmail;
+      process.env._SKIP_CRON = prev.skipCron;
+      process.env._SKIP_CANVAS_HOST = prev.skipCanvas;
+      process.env._GATEWAY_TOKEN = prev.token;
+      process.env._GATEWAY_PASSWORD = prev.password;
     }
   }, 60_000);
 });
+

@@ -1,4 +1,4 @@
-import type { InlineDirectives } from "./directive-handling.js";
+﻿import type { InlineDirectives } from "./directive-handling.js";
 
 export function clearInlineDirectives(cleaned: string): InlineDirectives {
   return {
@@ -45,3 +45,4 @@ export function clearInlineDirectives(cleaned: string): InlineDirectives {
     hasQueueOptions: false,
   };
 }
+

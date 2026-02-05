@@ -1,4 +1,4 @@
-import {
+﻿import {
   ChannelType,
   type Client,
   MessageCreateListener,
@@ -320,3 +320,4 @@ export class DiscordPresenceListener extends PresenceUpdateListener {
     }
   }
 }
+

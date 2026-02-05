@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 定义或重构插件架构
-  - 将渠道连接器迁移到插件 SDK/运行时
-summary: 计划：为所有消息连接器提供一套统一的插件 SDK + 运行时
-title: 插件 SDK 重构
+  - å®šä¹‰æˆ–é‡æž„æ’ä»¶æž¶æž„
+  - å°†æ¸ é“è¿žæŽ¥å™¨è¿ç§»åˆ°æ’ä»¶ SDK/è¿è¡Œæ—¶
+summary: è®¡åˆ’ï¼šä¸ºæ‰€æœ‰æ¶ˆæ¯è¿žæŽ¥å™¨æä¾›ä¸€å¥—ç»Ÿä¸€çš„æ’ä»¶ SDK + è¿è¡Œæ—¶
+title: æ’ä»¶ SDK é‡æž„
 x-i18n:
   generated_at: "2026-02-01T21:36:45Z"
   model: claude-opus-4-5
@@ -13,51 +13,51 @@ x-i18n:
   workflow: 15
 ---
 
-# 插件 SDK + 运行时重构计划
+# æ’ä»¶ SDK + è¿è¡Œæ—¶é‡æž„è®¡åˆ’
 
-目标：每个消息连接器都是一个插件（内置或外部），使用统一稳定的 API。
-插件不直接从 `src/**` 导入任何内容。所有依赖项均通过 SDK 或运行时获取。
+ç›®æ ‡ï¼šæ¯ä¸ªæ¶ˆæ¯è¿žæŽ¥å™¨éƒ½æ˜¯ä¸€ä¸ªæ’ä»¶ï¼ˆå†…ç½®æˆ–å¤–éƒ¨ï¼‰ï¼Œä½¿ç”¨ç»Ÿä¸€ç¨³å®šçš„ APIã€‚
+æ’ä»¶ä¸ç›´æŽ¥ä»Ž `src/**` å¯¼å…¥ä»»ä½•å†…å®¹ã€‚æ‰€æœ‰ä¾èµ–é¡¹å‡é€šè¿‡ SDK æˆ–è¿è¡Œæ—¶èŽ·å–ã€‚
 
-## 为什么现在做
+## ä¸ºä»€ä¹ˆçŽ°åœ¨åš
 
-- 当前连接器混用多种模式：直接导入核心模块、仅 dist 的桥接方式以及自定义辅助函数。
-- 这使得升级变得脆弱，并阻碍了干净的外部插件接口。
+- å½“å‰è¿žæŽ¥å™¨æ··ç”¨å¤šç§æ¨¡å¼ï¼šç›´æŽ¥å¯¼å…¥æ ¸å¿ƒæ¨¡å—ã€ä»… dist çš„æ¡¥æŽ¥æ–¹å¼ä»¥åŠè‡ªå®šä¹‰è¾…åŠ©å‡½æ•°ã€‚
+- è¿™ä½¿å¾—å‡çº§å˜å¾—è„†å¼±ï¼Œå¹¶é˜»ç¢äº†å¹²å‡€çš„å¤–éƒ¨æ’ä»¶æŽ¥å£ã€‚
 
-## 目标架构（两层）
+## ç›®æ ‡æž¶æž„ï¼ˆä¸¤å±‚ï¼‰
 
-### 1）插件 SDK（编译时，稳定，可发布）
+### 1ï¼‰æ’ä»¶ SDKï¼ˆç¼–è¯‘æ—¶ï¼Œç¨³å®šï¼Œå¯å‘å¸ƒï¼‰
 
-范围：类型、辅助函数和配置工具。无运行时状态，无副作用。
+èŒƒå›´ï¼šç±»åž‹ã€è¾…åŠ©å‡½æ•°å’Œé…ç½®å·¥å…·ã€‚æ— è¿è¡Œæ—¶çŠ¶æ€ï¼Œæ— å‰¯ä½œç”¨ã€‚
 
-内容（示例）：
+å†…å®¹ï¼ˆç¤ºä¾‹ï¼‰ï¼š
 
-- 类型：`ChannelPlugin`、适配器、`ChannelMeta`、`ChannelCapabilities`、`ChannelDirectoryEntry`。
-- 配置辅助函数：`buildChannelConfigSchema`、`setAccountEnabledInConfigSection`、`deleteAccountFromConfigSection`、
-  `applyAccountNameToChannelSection`。
-- 配对辅助函数：`PAIRING_APPROVED_MESSAGE`、`formatPairingApproveHint`。
-- 新手引导辅助函数：`promptChannelAccessConfig`、`addWildcardAllowFrom`、新手引导类型。
-- 工具参数辅助函数：`createActionGate`、`readStringParam`、`readNumberParam`、`readReactionParams`、`jsonResult`。
-- 文档链接辅助函数：`formatDocsLink`。
+- ç±»åž‹ï¼š`ChannelPlugin`ã€é€‚é…å™¨ã€`ChannelMeta`ã€`ChannelCapabilities`ã€`ChannelDirectoryEntry`ã€‚
+- é…ç½®è¾…åŠ©å‡½æ•°ï¼š`buildChannelConfigSchema`ã€`setAccountEnabledInConfigSection`ã€`deleteAccountFromConfigSection`ã€
+  `applyAccountNameToChannelSection`ã€‚
+- é…å¯¹è¾…åŠ©å‡½æ•°ï¼š`PAIRING_APPROVED_MESSAGE`ã€`formatPairingApproveHint`ã€‚
+- æ–°æ‰‹å¼•å¯¼è¾…åŠ©å‡½æ•°ï¼š`promptChannelAccessConfig`ã€`addWildcardAllowFrom`ã€æ–°æ‰‹å¼•å¯¼ç±»åž‹ã€‚
+- å·¥å…·å‚æ•°è¾…åŠ©å‡½æ•°ï¼š`createActionGate`ã€`readStringParam`ã€`readNumberParam`ã€`readReactionParams`ã€`jsonResult`ã€‚
+- æ–‡æ¡£é“¾æŽ¥è¾…åŠ©å‡½æ•°ï¼š`formatDocsLink`ã€‚
 
-交付方式：
+äº¤ä»˜æ–¹å¼ï¼š
 
-- 以 `openclaw/plugin-sdk` 发布（或从核心以 `openclaw/plugin-sdk` 导出）。
-- 使用语义化版本控制，提供明确的稳定性保证。
+- ä»¥ `/plugin-sdk` å‘å¸ƒï¼ˆæˆ–ä»Žæ ¸å¿ƒä»¥ `/plugin-sdk` å¯¼å‡ºï¼‰ã€‚
+- ä½¿ç”¨è¯­ä¹‰åŒ–ç‰ˆæœ¬æŽ§åˆ¶ï¼Œæä¾›æ˜Žç¡®çš„ç¨³å®šæ€§ä¿è¯ã€‚
 
-### 2）插件运行时（执行层，注入式）
+### 2ï¼‰æ’ä»¶è¿è¡Œæ—¶ï¼ˆæ‰§è¡Œå±‚ï¼Œæ³¨å…¥å¼ï¼‰
 
-范围：所有涉及核心运行时行为的内容。
-通过 `OpenClawPluginApi.runtime` 访问，确保插件永远不会导入 `src/**`。
+èŒƒå›´ï¼šæ‰€æœ‰æ¶‰åŠæ ¸å¿ƒè¿è¡Œæ—¶è¡Œä¸ºçš„å†…å®¹ã€‚
+é€šè¿‡ `PluginApi.runtime` è®¿é—®ï¼Œç¡®ä¿æ’ä»¶æ°¸è¿œä¸ä¼šå¯¼å…¥ `src/**`ã€‚
 
-建议的接口（最小但完整）：
+å»ºè®®çš„æŽ¥å£ï¼ˆæœ€å°ä½†å®Œæ•´ï¼‰ï¼š
 
 ```ts
 export type PluginRuntime = {
   channel: {
     text: {
       chunkMarkdownText(text: string, limit: number): string[];
-      resolveTextChunkLimit(cfg: OpenClawConfig, channel: string, accountId?: string): number;
-      hasControlCommand(text: string, cfg: OpenClawConfig): boolean;
+      resolveTextChunkLimit(cfg: Config, channel: string, accountId?: string): number;
+      hasControlCommand(text: string, cfg: Config): boolean;
     };
     reply: {
       dispatchReplyWithBufferedBlockDispatcher(params: {
@@ -101,12 +101,12 @@ export type PluginRuntime = {
       ): Promise<{ path: string; contentType?: string }>;
     };
     mentions: {
-      buildMentionRegexes(cfg: OpenClawConfig, agentId?: string): RegExp[];
+      buildMentionRegexes(cfg: Config, agentId?: string): RegExp[];
       matchesMentionPatterns(text: string, regexes: RegExp[]): boolean;
     };
     groups: {
       resolveGroupPolicy(
-        cfg: OpenClawConfig,
+        cfg: Config,
         channel: string,
         accountId: string,
         groupId: string,
@@ -117,7 +117,7 @@ export type PluginRuntime = {
         defaultConfig?: unknown;
       };
       resolveRequireMention(
-        cfg: OpenClawConfig,
+        cfg: Config,
         channel: string,
         accountId: string,
         groupId: string,
@@ -132,7 +132,7 @@ export type PluginRuntime = {
         onFlush: (entries: T[]) => Promise<void>;
         onError?: (err: unknown) => void;
       }): { push: (v: T) => void; flush: () => Promise<void> };
-      resolveInboundDebounceMs(cfg: OpenClawConfig, channel: string): number;
+      resolveInboundDebounceMs(cfg: Config, channel: string): number;
     };
     commands: {
       resolveCommandAuthorizedFromAuthorizers(params: {
@@ -146,76 +146,77 @@ export type PluginRuntime = {
     getChildLogger(name: string): PluginLogger;
   };
   state: {
-    resolveStateDir(cfg: OpenClawConfig): string;
+    resolveStateDir(cfg: Config): string;
   };
 };
 ```
 
-备注：
+å¤‡æ³¨ï¼š
 
-- 运行时是访问核心行为的唯一方式。
-- SDK 故意保持小巧和稳定。
-- 每个运行时方法都映射到现有的核心实现（无重复代码）。
+- è¿è¡Œæ—¶æ˜¯è®¿é—®æ ¸å¿ƒè¡Œä¸ºçš„å”¯ä¸€æ–¹å¼ã€‚
+- SDK æ•…æ„ä¿æŒå°å·§å’Œç¨³å®šã€‚
+- æ¯ä¸ªè¿è¡Œæ—¶æ–¹æ³•éƒ½æ˜ å°„åˆ°çŽ°æœ‰çš„æ ¸å¿ƒå®žçŽ°ï¼ˆæ— é‡å¤ä»£ç ï¼‰ã€‚
 
-## 迁移计划（分阶段，安全）
+## è¿ç§»è®¡åˆ’ï¼ˆåˆ†é˜¶æ®µï¼Œå®‰å…¨ï¼‰
 
-### 阶段 0：基础搭建
+### é˜¶æ®µ 0ï¼šåŸºç¡€æ­å»º
 
-- 引入 `openclaw/plugin-sdk`。
-- 在 `OpenClawPluginApi` 中添加带有上述接口的 `api.runtime`。
-- 在过渡期内保留现有导入方式（添加弃用警告）。
+- å¼•å…¥ `/plugin-sdk`ã€‚
+- åœ¨ `PluginApi` ä¸­æ·»åŠ å¸¦æœ‰ä¸Šè¿°æŽ¥å£çš„ `api.runtime`ã€‚
+- åœ¨è¿‡æ¸¡æœŸå†…ä¿ç•™çŽ°æœ‰å¯¼å…¥æ–¹å¼ï¼ˆæ·»åŠ å¼ƒç”¨è­¦å‘Šï¼‰ã€‚
 
-### 阶段 1：桥接清理（低风险）
+### é˜¶æ®µ 1ï¼šæ¡¥æŽ¥æ¸…ç†ï¼ˆä½Žé£Žé™©ï¼‰
 
-- 用 `api.runtime` 替换每个扩展中的 `core-bridge.ts`。
-- 优先迁移 BlueBubbles、Zalo、Zalo Personal（已经接近完成）。
-- 移除重复的桥接代码。
+- ç”¨ `api.runtime` æ›¿æ¢æ¯ä¸ªæ‰©å±•ä¸­çš„ `core-bridge.ts`ã€‚
+- ä¼˜å…ˆè¿ç§» BlueBubblesã€Zaloã€Zalo Personalï¼ˆå·²ç»æŽ¥è¿‘å®Œæˆï¼‰ã€‚
+- ç§»é™¤é‡å¤çš„æ¡¥æŽ¥ä»£ç ã€‚
 
-### 阶段 2：轻度直接导入的插件
+### é˜¶æ®µ 2ï¼šè½»åº¦ç›´æŽ¥å¯¼å…¥çš„æ’ä»¶
 
-- 将 Matrix 迁移到 SDK + 运行时。
-- 验证新手引导、目录、群组提及逻辑。
+- å°† Matrix è¿ç§»åˆ° SDK + è¿è¡Œæ—¶ã€‚
+- éªŒè¯æ–°æ‰‹å¼•å¯¼ã€ç›®å½•ã€ç¾¤ç»„æåŠé€»è¾‘ã€‚
 
-### 阶段 3：重度直接导入的插件
+### é˜¶æ®µ 3ï¼šé‡åº¦ç›´æŽ¥å¯¼å…¥çš„æ’ä»¶
 
-- 迁移 Microsoft Teams（使用运行时辅助函数最多的插件）。
-- 确保回复/正在输入的语义与当前行为一致。
+- è¿ç§» Microsoft Teamsï¼ˆä½¿ç”¨è¿è¡Œæ—¶è¾…åŠ©å‡½æ•°æœ€å¤šçš„æ’ä»¶ï¼‰ã€‚
+- ç¡®ä¿å›žå¤/æ­£åœ¨è¾“å…¥çš„è¯­ä¹‰ä¸Žå½“å‰è¡Œä¸ºä¸€è‡´ã€‚
 
-### 阶段 4：iMessage 插件化
+### é˜¶æ®µ 4ï¼šiMessage æ’ä»¶åŒ–
 
-- 将 iMessage 移入 `extensions/imessage`。
-- 用 `api.runtime` 替换直接的核心调用。
-- 保持配置键、CLI 行为和文档不变。
+- å°† iMessage ç§»å…¥ `extensions/imessage`ã€‚
+- ç”¨ `api.runtime` æ›¿æ¢ç›´æŽ¥çš„æ ¸å¿ƒè°ƒç”¨ã€‚
+- ä¿æŒé…ç½®é”®ã€CLI è¡Œä¸ºå’Œæ–‡æ¡£ä¸å˜ã€‚
 
-### 阶段 5：强制执行
+### é˜¶æ®µ 5ï¼šå¼ºåˆ¶æ‰§è¡Œ
 
-- 添加 lint 规则 / CI 检查：禁止 `extensions/**` 从 `src/**` 导入。
-- 添加插件 SDK/版本兼容性检查（运行时 + SDK 语义化版本）。
+- æ·»åŠ  lint è§„åˆ™ / CI æ£€æŸ¥ï¼šç¦æ­¢ `extensions/**` ä»Ž `src/**` å¯¼å…¥ã€‚
+- æ·»åŠ æ’ä»¶ SDK/ç‰ˆæœ¬å…¼å®¹æ€§æ£€æŸ¥ï¼ˆè¿è¡Œæ—¶ + SDK è¯­ä¹‰åŒ–ç‰ˆæœ¬ï¼‰ã€‚
 
-## 兼容性与版本控制
+## å…¼å®¹æ€§ä¸Žç‰ˆæœ¬æŽ§åˆ¶
 
-- SDK：语义化版本控制，已发布，变更有文档记录。
-- 运行时：按核心版本进行版本控制。添加 `api.runtime.version`。
-- 插件声明所需的运行时版本范围（例如 `openclawRuntime: ">=2026.2.0"`）。
+- SDKï¼šè¯­ä¹‰åŒ–ç‰ˆæœ¬æŽ§åˆ¶ï¼Œå·²å‘å¸ƒï¼Œå˜æ›´æœ‰æ–‡æ¡£è®°å½•ã€‚
+- è¿è¡Œæ—¶ï¼šæŒ‰æ ¸å¿ƒç‰ˆæœ¬è¿›è¡Œç‰ˆæœ¬æŽ§åˆ¶ã€‚æ·»åŠ  `api.runtime.version`ã€‚
+- æ’ä»¶å£°æ˜Žæ‰€éœ€çš„è¿è¡Œæ—¶ç‰ˆæœ¬èŒƒå›´ï¼ˆä¾‹å¦‚ `Runtime: ">=2026.2.0"`ï¼‰ã€‚
 
-## 测试策略
+## æµ‹è¯•ç­–ç•¥
 
-- 适配器级单元测试（使用真实核心实现验证运行时函数）。
-- 每个插件的黄金测试：确保行为无偏差（路由、配对、允许列表、提及过滤）。
-- CI 中使用单个端到端插件示例（安装 + 运行 + 冒烟测试）。
+- é€‚é…å™¨çº§å•å…ƒæµ‹è¯•ï¼ˆä½¿ç”¨çœŸå®žæ ¸å¿ƒå®žçŽ°éªŒè¯è¿è¡Œæ—¶å‡½æ•°ï¼‰ã€‚
+- æ¯ä¸ªæ’ä»¶çš„é»„é‡‘æµ‹è¯•ï¼šç¡®ä¿è¡Œä¸ºæ— åå·®ï¼ˆè·¯ç”±ã€é…å¯¹ã€å…è®¸åˆ—è¡¨ã€æåŠè¿‡æ»¤ï¼‰ã€‚
+- CI ä¸­ä½¿ç”¨å•ä¸ªç«¯åˆ°ç«¯æ’ä»¶ç¤ºä¾‹ï¼ˆå®‰è£… + è¿è¡Œ + å†’çƒŸæµ‹è¯•ï¼‰ã€‚
 
-## 待解决问题
+## å¾…è§£å†³é—®é¢˜
 
-- SDK 类型托管在哪里：独立包还是核心导出？
-- 运行时类型分发：在 SDK 中（仅类型）还是在核心中？
-- 如何为内置插件与外部插件暴露文档链接？
-- 过渡期间是否允许仓库内插件有限地直接导入核心模块？
+- SDK ç±»åž‹æ‰˜ç®¡åœ¨å“ªé‡Œï¼šç‹¬ç«‹åŒ…è¿˜æ˜¯æ ¸å¿ƒå¯¼å‡ºï¼Ÿ
+- è¿è¡Œæ—¶ç±»åž‹åˆ†å‘ï¼šåœ¨ SDK ä¸­ï¼ˆä»…ç±»åž‹ï¼‰è¿˜æ˜¯åœ¨æ ¸å¿ƒä¸­ï¼Ÿ
+- å¦‚ä½•ä¸ºå†…ç½®æ’ä»¶ä¸Žå¤–éƒ¨æ’ä»¶æš´éœ²æ–‡æ¡£é“¾æŽ¥ï¼Ÿ
+- è¿‡æ¸¡æœŸé—´æ˜¯å¦å…è®¸ä»“åº“å†…æ’ä»¶æœ‰é™åœ°ç›´æŽ¥å¯¼å…¥æ ¸å¿ƒæ¨¡å—ï¼Ÿ
 
-## 成功标准
+## æˆåŠŸæ ‡å‡†
 
-- 所有渠道连接器都是使用 SDK + 运行时的插件。
-- `extensions/**` 不再从 `src/**` 导入。
-- 新连接器模板仅依赖 SDK + 运行时。
-- 外部插件可以在无需访问核心源码的情况下进行开发和更新。
+- æ‰€æœ‰æ¸ é“è¿žæŽ¥å™¨éƒ½æ˜¯ä½¿ç”¨ SDK + è¿è¡Œæ—¶çš„æ’ä»¶ã€‚
+- `extensions/**` ä¸å†ä»Ž `src/**` å¯¼å…¥ã€‚
+- æ–°è¿žæŽ¥å™¨æ¨¡æ¿ä»…ä¾èµ– SDK + è¿è¡Œæ—¶ã€‚
+- å¤–éƒ¨æ’ä»¶å¯ä»¥åœ¨æ— éœ€è®¿é—®æ ¸å¿ƒæºç çš„æƒ…å†µä¸‹è¿›è¡Œå¼€å‘å’Œæ›´æ–°ã€‚
 
-相关文档：[插件](/plugin)、[渠道](/channels/index)、[配置](/gateway/configuration)。
+ç›¸å…³æ–‡æ¡£ï¼š[æ’ä»¶](/plugin)ã€[æ¸ é“](/channels/index)ã€[é…ç½®](/gateway/configuration)ã€‚
+

@@ -1,4 +1,4 @@
-import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 const { getBotInfoMock, MessagingApiClientMock } = vi.hoisted(() => {
   const getBotInfoMock = vi.fn();
   const MessagingApiClientMock = vi.fn(function () {
@@ -37,9 +37,9 @@ describe("probeLineBot", () => {
 
   it("returns bot info when available", async () => {
     getBotInfoMock.mockResolvedValue({
-      displayName: "OpenClaw",
+      displayName: "",
       userId: "U123",
-      basicId: "@openclaw",
+      basicId: "@",
       pictureUrl: "https://example.com/bot.png",
     });
 
@@ -49,3 +49,4 @@ describe("probeLineBot", () => {
     expect(result.bot?.userId).toBe("U123");
   });
 });
+

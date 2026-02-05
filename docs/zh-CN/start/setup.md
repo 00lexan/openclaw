@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 设置新机器
-  - 你想要"最新最好的"而不破坏你的个人设置
-summary: 设置指南：在保持最新的同时保持你的 OpenClaw 设置个性化
-title: 设置
+  - è®¾ç½®æ–°æœºå™¨
+  - ä½ æƒ³è¦"æœ€æ–°æœ€å¥½çš„"è€Œä¸ç ´åä½ çš„ä¸ªäººè®¾ç½®
+summary: è®¾ç½®æŒ‡å—ï¼šåœ¨ä¿æŒæœ€æ–°çš„åŒæ—¶ä¿æŒä½ çš„  è®¾ç½®ä¸ªæ€§åŒ–
+title: è®¾ç½®
 x-i18n:
   generated_at: "2026-02-03T07:54:27Z"
   model: claude-opus-4-5
@@ -13,141 +13,142 @@ x-i18n:
   workflow: 15
 ---
 
-# 设置
+# è®¾ç½®
 
-最后更新：2026-01-01
+æœ€åŽæ›´æ–°ï¼š2026-01-01
 
-## 太长不看
+## å¤ªé•¿ä¸çœ‹
 
-- **个性化设置存放在仓库之外：** `~/.openclaw/workspace`（工作区）+ `~/.openclaw/openclaw.json`（配置）。
-- **稳定工作流：** 安装 macOS 应用；让它运行内置的 Gateway 网关。
-- **前沿工作流：** 通过 `pnpm gateway:watch` 自己运行 Gateway 网关，然后让 macOS 应用以本地模式连接。
+- **ä¸ªæ€§åŒ–è®¾ç½®å­˜æ”¾åœ¨ä»“åº“ä¹‹å¤–ï¼š** `~/./workspace`ï¼ˆå·¥ä½œåŒºï¼‰+ `~/./.json`ï¼ˆé…ç½®ï¼‰ã€‚
+- **ç¨³å®šå·¥ä½œæµï¼š** å®‰è£… macOS åº”ç”¨ï¼›è®©å®ƒè¿è¡Œå†…ç½®çš„ Gateway ç½‘å…³ã€‚
+- **å‰æ²¿å·¥ä½œæµï¼š** é€šè¿‡ `pnpm gateway:watch` è‡ªå·±è¿è¡Œ Gateway ç½‘å…³ï¼Œç„¶åŽè®© macOS åº”ç”¨ä»¥æœ¬åœ°æ¨¡å¼è¿žæŽ¥ã€‚
 
-## 先决条件（从源码）
+## å…ˆå†³æ¡ä»¶ï¼ˆä»Žæºç ï¼‰
 
 - Node `>=22`
 - `pnpm`
-- Docker（可选；仅用于容器化设置/e2e — 参阅 [Docker](/install/docker)）
+- Dockerï¼ˆå¯é€‰ï¼›ä»…ç”¨äºŽå®¹å™¨åŒ–è®¾ç½®/e2e â€” å‚é˜… [Docker](/install/docker)ï¼‰
 
-## 个性化策略（让更新不会造成问题）
+## ä¸ªæ€§åŒ–ç­–ç•¥ï¼ˆè®©æ›´æ–°ä¸ä¼šé€ æˆé—®é¢˜ï¼‰
 
-如果你想要"100% 为我定制"*并且*易于更新，将你的自定义内容保存在：
+å¦‚æžœä½ æƒ³è¦"100% ä¸ºæˆ‘å®šåˆ¶"*å¹¶ä¸”*æ˜“äºŽæ›´æ–°ï¼Œå°†ä½ çš„è‡ªå®šä¹‰å†…å®¹ä¿å­˜åœ¨ï¼š
 
-- **配置：** `~/.openclaw/openclaw.json`（JSON/JSON5 格式）
-- **工作区：** `~/.openclaw/workspace`（Skills、提示、记忆；将其设为私有 git 仓库）
+- **é…ç½®ï¼š** `~/./.json`ï¼ˆJSON/JSON5 æ ¼å¼ï¼‰
+- **å·¥ä½œåŒºï¼š** `~/./workspace`ï¼ˆSkillsã€æç¤ºã€è®°å¿†ï¼›å°†å…¶è®¾ä¸ºç§æœ‰ git ä»“åº“ï¼‰
 
-引导一次：
-
-```bash
-openclaw setup
-```
-
-在此仓库内部，使用本地 CLI 入口：
+å¼•å¯¼ä¸€æ¬¡ï¼š
 
 ```bash
-openclaw setup
+ setup
 ```
 
-如果你还没有全局安装，通过 `pnpm openclaw setup` 运行它。
-
-## 稳定工作流（macOS 应用优先）
-
-1. 安装并启动 **OpenClaw.app**（菜单栏）。
-2. 完成新手引导/权限检查清单（TCC 提示）。
-3. 确保 Gateway 网关是**本地**并正在运行（应用管理它）。
-4. 链接表面（示例：WhatsApp）：
+åœ¨æ­¤ä»“åº“å†…éƒ¨ï¼Œä½¿ç”¨æœ¬åœ° CLI å…¥å£ï¼š
 
 ```bash
-openclaw channels login
+ setup
 ```
 
-5. 完整性检查：
+å¦‚æžœä½ è¿˜æ²¡æœ‰å…¨å±€å®‰è£…ï¼Œé€šè¿‡ `pnpm  setup` è¿è¡Œå®ƒã€‚
+
+## ç¨³å®šå·¥ä½œæµï¼ˆmacOS åº”ç”¨ä¼˜å…ˆï¼‰
+
+1. å®‰è£…å¹¶å¯åŠ¨ **.app**ï¼ˆèœå•æ ï¼‰ã€‚
+2. å®Œæˆæ–°æ‰‹å¼•å¯¼/æƒé™æ£€æŸ¥æ¸…å•ï¼ˆTCC æç¤ºï¼‰ã€‚
+3. ç¡®ä¿ Gateway ç½‘å…³æ˜¯**æœ¬åœ°**å¹¶æ­£åœ¨è¿è¡Œï¼ˆåº”ç”¨ç®¡ç†å®ƒï¼‰ã€‚
+4. é“¾æŽ¥è¡¨é¢ï¼ˆç¤ºä¾‹ï¼šWhatsAppï¼‰ï¼š
 
 ```bash
-openclaw health
+ channels login
 ```
 
-如果你的构建版本中没有新手引导：
+5. å®Œæ•´æ€§æ£€æŸ¥ï¼š
 
-- 运行 `openclaw setup`，然后 `openclaw channels login`，然后手动启动 Gateway 网关（`openclaw gateway`）。
+```bash
+ health
+```
 
-## 前沿工作流（在终端中运行 Gateway 网关）
+å¦‚æžœä½ çš„æž„å»ºç‰ˆæœ¬ä¸­æ²¡æœ‰æ–°æ‰‹å¼•å¯¼ï¼š
 
-目标：开发 TypeScript Gateway 网关，获得热重载，保持 macOS 应用 UI 连接。
+- è¿è¡Œ ` setup`ï¼Œç„¶åŽ ` channels login`ï¼Œç„¶åŽæ‰‹åŠ¨å¯åŠ¨ Gateway ç½‘å…³ï¼ˆ` gateway`ï¼‰ã€‚
 
-### 0)（可选）也从源码运行 macOS 应用
+## å‰æ²¿å·¥ä½œæµï¼ˆåœ¨ç»ˆç«¯ä¸­è¿è¡Œ Gateway ç½‘å…³ï¼‰
 
-如果你也想让 macOS 应用保持前沿：
+ç›®æ ‡ï¼šå¼€å‘ TypeScript Gateway ç½‘å…³ï¼ŒèŽ·å¾—çƒ­é‡è½½ï¼Œä¿æŒ macOS åº”ç”¨ UI è¿žæŽ¥ã€‚
+
+### 0)ï¼ˆå¯é€‰ï¼‰ä¹Ÿä»Žæºç è¿è¡Œ macOS åº”ç”¨
+
+å¦‚æžœä½ ä¹Ÿæƒ³è®© macOS åº”ç”¨ä¿æŒå‰æ²¿ï¼š
 
 ```bash
 ./scripts/restart-mac.sh
 ```
 
-### 1) 启动开发 Gateway 网关
+### 1) å¯åŠ¨å¼€å‘ Gateway ç½‘å…³
 
 ```bash
 pnpm install
 pnpm gateway:watch
 ```
 
-`gateway:watch` 以监视模式运行 Gateway 网关，并在 TypeScript 更改时重新加载。
+`gateway:watch` ä»¥ç›‘è§†æ¨¡å¼è¿è¡Œ Gateway ç½‘å…³ï¼Œå¹¶åœ¨ TypeScript æ›´æ”¹æ—¶é‡æ–°åŠ è½½ã€‚
 
-### 2) 将 macOS 应用指向你正在运行的 Gateway 网关
+### 2) å°† macOS åº”ç”¨æŒ‡å‘ä½ æ­£åœ¨è¿è¡Œçš„ Gateway ç½‘å…³
 
-在 **OpenClaw.app** 中：
+åœ¨ **.app** ä¸­ï¼š
 
-- 连接模式：**本地**
-  应用将连接到在配置端口上运行的 Gateway 网关。
+- è¿žæŽ¥æ¨¡å¼ï¼š**æœ¬åœ°**
+  åº”ç”¨å°†è¿žæŽ¥åˆ°åœ¨é…ç½®ç«¯å£ä¸Šè¿è¡Œçš„ Gateway ç½‘å…³ã€‚
 
-### 3) 验证
+### 3) éªŒè¯
 
-- 应用内 Gateway 网关状态应显示 **"Using existing gateway …"**
-- 或通过 CLI：
+- åº”ç”¨å†… Gateway ç½‘å…³çŠ¶æ€åº”æ˜¾ç¤º **"Using existing gateway â€¦"**
+- æˆ–é€šè¿‡ CLIï¼š
 
 ```bash
-openclaw health
+ health
 ```
 
-### 常见陷阱
+### å¸¸è§é™·é˜±
 
-- **端口错误：** Gateway 网关 WS 默认为 `ws://127.0.0.1:18789`；保持应用 + CLI 在同一端口上。
-- **状态存储位置：**
-  - 凭证：`~/.openclaw/credentials/`
-  - 会话：`~/.openclaw/agents/<agentId>/sessions/`
-  - 日志：`/tmp/openclaw/`
+- **ç«¯å£é”™è¯¯ï¼š** Gateway ç½‘å…³ WS é»˜è®¤ä¸º `ws://127.0.0.1:18789`ï¼›ä¿æŒåº”ç”¨ + CLI åœ¨åŒä¸€ç«¯å£ä¸Šã€‚
+- **çŠ¶æ€å­˜å‚¨ä½ç½®ï¼š**
+  - å‡­è¯ï¼š`~/./credentials/`
+  - ä¼šè¯ï¼š`~/./agents/<agentId>/sessions/`
+  - æ—¥å¿—ï¼š`/tmp//`
 
-## 凭证存储映射
+## å‡­è¯å­˜å‚¨æ˜ å°„
 
-在调试认证或决定备份什么时使用此映射：
+åœ¨è°ƒè¯•è®¤è¯æˆ–å†³å®šå¤‡ä»½ä»€ä¹ˆæ—¶ä½¿ç”¨æ­¤æ˜ å°„ï¼š
 
-- **WhatsApp**：`~/.openclaw/credentials/whatsapp/<accountId>/creds.json`
-- **Telegram bot token**：配置/环境变量或 `channels.telegram.tokenFile`
-- **Discord bot token**：配置/环境变量（尚不支持令牌文件）
-- **Slack tokens**：配置/环境变量（`channels.slack.*`）
-- **配对允许列表**：`~/.openclaw/credentials/<channel>-allowFrom.json`
-- **模型认证配置文件**：`~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
-- **旧版 OAuth 导入**：`~/.openclaw/credentials/oauth.json`
-  更多详情：[安全](/gateway/security#credential-storage-map)。
+- **WhatsApp**ï¼š`~/./credentials/whatsapp/<accountId>/creds.json`
+- **Telegram bot token**ï¼šé…ç½®/çŽ¯å¢ƒå˜é‡æˆ– `channels.telegram.tokenFile`
+- **Discord bot token**ï¼šé…ç½®/çŽ¯å¢ƒå˜é‡ï¼ˆå°šä¸æ”¯æŒä»¤ç‰Œæ–‡ä»¶ï¼‰
+- **Slack tokens**ï¼šé…ç½®/çŽ¯å¢ƒå˜é‡ï¼ˆ`channels.slack.*`ï¼‰
+- **é…å¯¹å…è®¸åˆ—è¡¨**ï¼š`~/./credentials/<channel>-allowFrom.json`
+- **æ¨¡åž‹è®¤è¯é…ç½®æ–‡ä»¶**ï¼š`~/./agents/<agentId>/agent/auth-profiles.json`
+- **æ—§ç‰ˆ OAuth å¯¼å…¥**ï¼š`~/./credentials/oauth.json`
+  æ›´å¤šè¯¦æƒ…ï¼š[å®‰å…¨](/gateway/security#credential-storage-map)ã€‚
 
-## 更新（不破坏你的设置）
+## æ›´æ–°ï¼ˆä¸ç ´åä½ çš„è®¾ç½®ï¼‰
 
-- 将 `~/.openclaw/workspace` 和 `~/.openclaw/` 保持为"你的东西"；不要将个人提示/配置放入 `openclaw` 仓库。
-- 更新源码：`git pull` + `pnpm install`（当锁文件更改时）+ 继续使用 `pnpm gateway:watch`。
+- å°† `~/./workspace` å’Œ `~/./` ä¿æŒä¸º"ä½ çš„ä¸œè¥¿"ï¼›ä¸è¦å°†ä¸ªäººæç¤º/é…ç½®æ”¾å…¥ `` ä»“åº“ã€‚
+- æ›´æ–°æºç ï¼š`git pull` + `pnpm install`ï¼ˆå½“é”æ–‡ä»¶æ›´æ”¹æ—¶ï¼‰+ ç»§ç»­ä½¿ç”¨ `pnpm gateway:watch`ã€‚
 
-## Linux（systemd 用户服务）
+## Linuxï¼ˆsystemd ç”¨æˆ·æœåŠ¡ï¼‰
 
-Linux 安装使用 systemd **用户**服务。默认情况下，systemd 在注销/空闲时停止用户服务，这会终止 Gateway 网关。新手引导会尝试为你启用 lingering（可能提示 sudo）。如果仍然关闭，运行：
+Linux å®‰è£…ä½¿ç”¨ systemd **ç”¨æˆ·**æœåŠ¡ã€‚é»˜è®¤æƒ…å†µä¸‹ï¼Œsystemd åœ¨æ³¨é”€/ç©ºé—²æ—¶åœæ­¢ç”¨æˆ·æœåŠ¡ï¼Œè¿™ä¼šç»ˆæ­¢ Gateway ç½‘å…³ã€‚æ–°æ‰‹å¼•å¯¼ä¼šå°è¯•ä¸ºä½ å¯ç”¨ lingeringï¼ˆå¯èƒ½æç¤º sudoï¼‰ã€‚å¦‚æžœä»ç„¶å…³é—­ï¼Œè¿è¡Œï¼š
 
 ```bash
 sudo loginctl enable-linger $USER
 ```
 
-对于常驻或多用户服务器，考虑使用**系统**服务而不是用户服务（不需要 lingering）。参阅 [Gateway 网关运行手册](/gateway) 了解 systemd 说明。
+å¯¹äºŽå¸¸é©»æˆ–å¤šç”¨æˆ·æœåŠ¡å™¨ï¼Œè€ƒè™‘ä½¿ç”¨**ç³»ç»Ÿ**æœåŠ¡è€Œä¸æ˜¯ç”¨æˆ·æœåŠ¡ï¼ˆä¸éœ€è¦ lingeringï¼‰ã€‚å‚é˜… [Gateway ç½‘å…³è¿è¡Œæ‰‹å†Œ](/gateway) äº†è§£ systemd è¯´æ˜Žã€‚
 
-## 相关文档
+## ç›¸å…³æ–‡æ¡£
 
-- [Gateway 网关运行手册](/gateway)（标志、监督、端口）
-- [Gateway 网关配置](/gateway/configuration)（配置模式 + 示例）
-- [Discord](/channels/discord) 和 [Telegram](/channels/telegram)（回复标签 + replyToMode 设置）
-- [OpenClaw 助手设置](/start/openclaw)
-- [macOS 应用](/platforms/macos)（Gateway 网关生命周期）
+- [Gateway ç½‘å…³è¿è¡Œæ‰‹å†Œ](/gateway)ï¼ˆæ ‡å¿—ã€ç›‘ç£ã€ç«¯å£ï¼‰
+- [Gateway ç½‘å…³é…ç½®](/gateway/configuration)ï¼ˆé…ç½®æ¨¡å¼ + ç¤ºä¾‹ï¼‰
+- [Discord](/channels/discord) å’Œ [Telegram](/channels/telegram)ï¼ˆå›žå¤æ ‡ç­¾ + replyToMode è®¾ç½®ï¼‰
+- [ åŠ©æ‰‹è®¾ç½®](/start/)
+- [macOS åº”ç”¨](/platforms/macos)ï¼ˆGateway ç½‘å…³ç”Ÿå‘½å‘¨æœŸï¼‰
+

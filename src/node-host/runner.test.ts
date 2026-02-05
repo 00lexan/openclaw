@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { buildNodeInvokeResultParams } from "./runner.js";
 
 describe("buildNodeInvokeResultParams", () => {
@@ -31,3 +31,4 @@ describe("buildNodeInvokeResultParams", () => {
     expect(params.payload).toEqual({ reason: "bad" });
   });
 });
+

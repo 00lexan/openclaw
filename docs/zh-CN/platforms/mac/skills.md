@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 更新 macOS Skills 设置 UI
-  - 更改 Skills 门控或安装行为
-summary: macOS Skills 设置 UI 和基于 Gateway 网关的状态
+  - æ›´æ–° macOS Skills è®¾ç½® UI
+  - æ›´æ”¹ Skills é—¨æŽ§æˆ–å®‰è£…è¡Œä¸º
+summary: macOS Skills è®¾ç½® UI å’ŒåŸºäºŽ Gateway ç½‘å…³çš„çŠ¶æ€
 title: Skills
 x-i18n:
   generated_at: "2026-02-03T10:08:09Z"
@@ -13,28 +13,29 @@ x-i18n:
   workflow: 15
 ---
 
-# Skills（macOS）
+# Skillsï¼ˆmacOSï¼‰
 
-macOS 应用通过 Gateway 网关展示 OpenClaw Skills；它不会在本地解析 Skills。
+macOS åº”ç”¨é€šè¿‡ Gateway ç½‘å…³å±•ç¤º  Skillsï¼›å®ƒä¸ä¼šåœ¨æœ¬åœ°è§£æž Skillsã€‚
 
-## 数据来源
+## æ•°æ®æ¥æº
 
-- `skills.status`（Gateway 网关）返回所有 Skills 以及资格和缺失的要求
-  （包括内置 Skills 的允许列表阻止情况）。
-- 要求来源于每个 `SKILL.md` 中的 `metadata.openclaw.requires`。
+- `skills.status`ï¼ˆGateway ç½‘å…³ï¼‰è¿”å›žæ‰€æœ‰ Skills ä»¥åŠèµ„æ ¼å’Œç¼ºå¤±çš„è¦æ±‚
+  ï¼ˆåŒ…æ‹¬å†…ç½® Skills çš„å…è®¸åˆ—è¡¨é˜»æ­¢æƒ…å†µï¼‰ã€‚
+- è¦æ±‚æ¥æºäºŽæ¯ä¸ª `SKILL.md` ä¸­çš„ `metadata..requires`ã€‚
 
-## 安装操作
+## å®‰è£…æ“ä½œ
 
-- `metadata.openclaw.install` 定义安装选项（brew/node/go/uv）。
-- 应用调用 `skills.install` 在 Gateway 网关主机上运行安装器。
-- 当提供多个安装器时，Gateway 网关仅展示一个首选安装器
-  （如果可用则使用 brew，否则使用来自 `skills.install` 的 node 管理器，默认 npm）。
+- `metadata..install` å®šä¹‰å®‰è£…é€‰é¡¹ï¼ˆbrew/node/go/uvï¼‰ã€‚
+- åº”ç”¨è°ƒç”¨ `skills.install` åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œå®‰è£…å™¨ã€‚
+- å½“æä¾›å¤šä¸ªå®‰è£…å™¨æ—¶ï¼ŒGateway ç½‘å…³ä»…å±•ç¤ºä¸€ä¸ªé¦–é€‰å®‰è£…å™¨
+  ï¼ˆå¦‚æžœå¯ç”¨åˆ™ä½¿ç”¨ brewï¼Œå¦åˆ™ä½¿ç”¨æ¥è‡ª `skills.install` çš„ node ç®¡ç†å™¨ï¼Œé»˜è®¤ npmï¼‰ã€‚
 
-## 环境变量/API 密钥
+## çŽ¯å¢ƒå˜é‡/API å¯†é’¥
 
-- 应用将密钥存储在 `~/.openclaw/openclaw.json` 的 `skills.entries.<skillKey>` 下。
-- `skills.update` 更新 `enabled`、`apiKey` 和 `env`。
+- åº”ç”¨å°†å¯†é’¥å­˜å‚¨åœ¨ `~/./.json` çš„ `skills.entries.<skillKey>` ä¸‹ã€‚
+- `skills.update` æ›´æ–° `enabled`ã€`apiKey` å’Œ `env`ã€‚
 
-## 远程模式
+## è¿œç¨‹æ¨¡å¼
 
-- 安装 + 配置更新发生在 Gateway 网关主机上（不是本地 Mac）。
+- å®‰è£… + é…ç½®æ›´æ–°å‘ç”Ÿåœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šï¼ˆä¸æ˜¯æœ¬åœ° Macï¼‰ã€‚
+

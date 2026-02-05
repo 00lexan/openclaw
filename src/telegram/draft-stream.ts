@@ -1,4 +1,4 @@
-import type { Bot } from "grammy";
+﻿import type { Bot } from "grammy";
 import { buildTelegramThreadParams, type TelegramThreadSpec } from "./bot/helpers.js";
 
 const TELEGRAM_DRAFT_MAX_CHARS = 4096;
@@ -137,3 +137,4 @@ export function createTelegramDraftStream(params: {
 
   return { update, flush, stop };
 }
+

@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { SkillStatusReport } from "../types.ts";
 
 export type SkillsState = {
@@ -155,3 +155,4 @@ export async function installSkill(
     state.skillsBusyKey = null;
   }
 }
+

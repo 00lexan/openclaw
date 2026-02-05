@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   DEFAULT_MEMORY_FLUSH_SOFT_TOKENS,
   resolveMemoryFlushContextWindowTokens,
@@ -120,3 +120,4 @@ describe("resolveMemoryFlushContextWindowTokens", () => {
     expect(resolveMemoryFlushContextWindowTokens({ agentCfgContextTokens: 42_000 })).toBe(42_000);
   });
 });
+

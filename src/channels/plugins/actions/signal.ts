@@ -1,4 +1,4 @@
-import type { ChannelMessageActionAdapter, ChannelMessageActionName } from "../types.js";
+﻿import type { ChannelMessageActionAdapter, ChannelMessageActionName } from "../types.js";
 import { createActionGate, jsonResult, readStringParam } from "../../../agents/tools/common.js";
 import { listEnabledSignalAccounts, resolveSignalAccount } from "../../../signal/accounts.js";
 import { resolveSignalReactionLevel } from "../../../signal/reaction-level.js";
@@ -144,3 +144,4 @@ export const signalMessageActions: ChannelMessageActionAdapter = {
     throw new Error(`Action ${action} not supported for ${providerId}.`);
   },
 };
+

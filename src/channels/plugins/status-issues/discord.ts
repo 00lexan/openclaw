@@ -1,4 +1,4 @@
-import type { ChannelAccountSnapshot, ChannelStatusIssue } from "../types.js";
+﻿import type { ChannelAccountSnapshot, ChannelStatusIssue } from "../types.js";
 import { appendMatchMetadata, asString, isRecord } from "./shared.js";
 
 type DiscordIntentSummary = {
@@ -126,7 +126,7 @@ export function collectDiscordStatusIssues(
         accountId,
         kind: "intent",
         message: "Message Content Intent is disabled. Bot may not see normal channel messages.",
-        fix: "Enable Message Content Intent in Discord Dev Portal → Bot → Privileged Gateway Intents, or require mention-only operation.",
+        fix: "Enable Message Content Intent in Discord Dev Portal â†’ Bot â†’ Privileged Gateway Intents, or require mention-only operation.",
       });
     }
 
@@ -161,3 +161,4 @@ export function collectDiscordStatusIssues(
   }
   return issues;
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Utility functions for provider-specific logic and capabilities.
  */
 
@@ -34,3 +34,4 @@ export function isReasoningTagProvider(provider: string | undefined | null): boo
 
   return false;
 }
+

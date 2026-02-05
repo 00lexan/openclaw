@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { stripEnvelopeFromMessage } from "./chat-sanitize.js";
 
 describe("stripEnvelopeFromMessage", () => {
@@ -40,3 +40,4 @@ describe("stripEnvelopeFromMessage", () => {
     expect(result.content).toBe("note\n[message_id: 123]");
   });
 });
+

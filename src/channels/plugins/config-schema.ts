@@ -1,4 +1,4 @@
-import type { ZodTypeAny } from "zod";
+﻿import type { ZodTypeAny } from "zod";
 import type { ChannelConfigSchema } from "./types.plugin.js";
 
 export function buildChannelConfigSchema(schema: ZodTypeAny): ChannelConfigSchema {
@@ -9,3 +9,4 @@ export function buildChannelConfigSchema(schema: ZodTypeAny): ChannelConfigSchem
     }) as Record<string, unknown>,
   };
 }
+

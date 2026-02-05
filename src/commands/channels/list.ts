@@ -1,4 +1,4 @@
-import type { ChannelAccountSnapshot, ChannelPlugin } from "../../channels/plugins/types.js";
+﻿import type { ChannelAccountSnapshot, ChannelPlugin } from "../../channels/plugins/types.js";
 import { loadAuthProfileStore } from "../../agents/auth-profiles.js";
 import { listChannelPlugins } from "../../channels/plugins/index.js";
 import { buildChannelAccountSnapshot } from "../../channels/plugins/status.js";
@@ -91,7 +91,7 @@ async function loadUsageWithProgress(
 ): Promise<Awaited<ReturnType<typeof loadProviderUsageSummary>> | null> {
   try {
     return await withProgress(
-      { label: "Fetching usage snapshot…", indeterminate: true, enabled: true },
+      { label: "Fetching usage snapshotâ€¦", indeterminate: true, enabled: true },
       async () => await loadProviderUsageSummary(),
     );
   } catch (err) {
@@ -181,3 +181,4 @@ export async function channelsListCommand(
   runtime.log("");
   runtime.log(`Docs: ${formatDocsLink("/gateway/configuration", "gateway/configuration")}`);
 }
+

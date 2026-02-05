@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "./dist",
   "lib": {
@@ -6,3 +6,4 @@
   },
   "allowedNonPeerDependencies": ["markdown-it", "@a2ui/lit"]
 }
+

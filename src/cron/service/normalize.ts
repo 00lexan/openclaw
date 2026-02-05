@@ -1,4 +1,4 @@
-import type { CronPayload } from "../types.js";
+﻿import type { CronPayload } from "../types.js";
 import { normalizeAgentId } from "../../routing/session-key.js";
 import { truncateUtf16Safe } from "../../utils.js";
 
@@ -25,7 +25,7 @@ function truncateText(input: string, maxLen: number) {
   if (input.length <= maxLen) {
     return input;
   }
-  return `${truncateUtf16Safe(input, Math.max(0, maxLen - 1)).trimEnd()}…`;
+  return `${truncateUtf16Safe(input, Math.max(0, maxLen - 1)).trimEnd()}â€¦`;
 }
 
 export function normalizeOptionalAgentId(raw: unknown) {
@@ -77,3 +77,4 @@ export function normalizePayloadToSystemText(payload: CronPayload) {
   }
   return payload.message.trim();
 }
+

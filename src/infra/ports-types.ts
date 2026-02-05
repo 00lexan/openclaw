@@ -1,4 +1,4 @@
-export type PortListener = {
+﻿export type PortListener = {
   pid?: number;
   command?: string;
   commandLine?: string;
@@ -18,3 +18,4 @@ export type PortUsage = {
 };
 
 export type PortListenerKind = "gateway" | "ssh" | "unknown";
+

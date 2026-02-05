@@ -1,4 +1,4 @@
-import { isVoiceCompatibleAudio } from "../media/audio.js";
+﻿import { isVoiceCompatibleAudio } from "../media/audio.js";
 
 export function isTelegramVoiceCompatible(opts: {
   contentType?: string | null;
@@ -40,3 +40,4 @@ export function resolveTelegramVoiceSend(opts: {
   }
   return { useVoice: decision.useVoice };
 }
+

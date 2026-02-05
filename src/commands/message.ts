@@ -1,4 +1,4 @@
-import type { OutboundSendDeps } from "../infra/outbound/deliver.js";
+﻿import type { OutboundSendDeps } from "../infra/outbound/deliver.js";
 import type { RuntimeEnv } from "../runtime.js";
 import {
   CHANNEL_MESSAGE_ACTION_NAMES,
@@ -65,3 +65,4 @@ export async function messageCommand(
     runtime.log(line);
   }
 }
+

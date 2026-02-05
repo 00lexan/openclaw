@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { GatewayRequestContext } from "./types.js";
 import { agentHandlers } from "./agent.js";
 
@@ -214,3 +214,4 @@ describe("gateway agent handler", () => {
     expect(capturedEntry?.claudeCliSessionId).toBeUndefined();
   });
 });
+

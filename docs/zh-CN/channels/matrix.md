@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 开发 Matrix 渠道功能
-summary: Matrix 支持状态、功能和配置
+  - å¼€å‘ Matrix æ¸ é“åŠŸèƒ½
+summary: Matrix æ”¯æŒçŠ¶æ€ã€åŠŸèƒ½å’Œé…ç½®
 title: Matrix
 x-i18n:
   generated_at: "2026-02-03T07:44:02Z"
@@ -12,42 +12,42 @@ x-i18n:
   workflow: 15
 ---
 
-# Matrix（插件）
+# Matrixï¼ˆæ’ä»¶ï¼‰
 
-Matrix 是一个开放的去中心化消息协议。OpenClaw 以 Matrix **用户**身份连接到任意主服务器，因此你需要为机器人创建一个 Matrix 账户。登录后，你可以直接私信机器人或邀请它加入房间（Matrix"群组"）。Beeper 也是一个有效的客户端选项，但它需要启用 E2EE。
+Matrix æ˜¯ä¸€ä¸ªå¼€æ”¾çš„åŽ»ä¸­å¿ƒåŒ–æ¶ˆæ¯åè®®ã€‚ ä»¥ Matrix **ç”¨æˆ·**èº«ä»½è¿žæŽ¥åˆ°ä»»æ„ä¸»æœåŠ¡å™¨ï¼Œå› æ­¤ä½ éœ€è¦ä¸ºæœºå™¨äººåˆ›å»ºä¸€ä¸ª Matrix è´¦æˆ·ã€‚ç™»å½•åŽï¼Œä½ å¯ä»¥ç›´æŽ¥ç§ä¿¡æœºå™¨äººæˆ–é‚€è¯·å®ƒåŠ å…¥æˆ¿é—´ï¼ˆMatrix"ç¾¤ç»„"ï¼‰ã€‚Beeper ä¹Ÿæ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„å®¢æˆ·ç«¯é€‰é¡¹ï¼Œä½†å®ƒéœ€è¦å¯ç”¨ E2EEã€‚
 
-状态：通过插件（@vector-im/matrix-bot-sdk）支持。支持私信、房间、话题、媒体、表情回应、投票（发送 + poll-start 作为文本）、位置和 E2EE（需要加密支持）。
+çŠ¶æ€ï¼šé€šè¿‡æ’ä»¶ï¼ˆ@vector-im/matrix-bot-sdkï¼‰æ”¯æŒã€‚æ”¯æŒç§ä¿¡ã€æˆ¿é—´ã€è¯é¢˜ã€åª’ä½“ã€è¡¨æƒ…å›žåº”ã€æŠ•ç¥¨ï¼ˆå‘é€ + poll-start ä½œä¸ºæ–‡æœ¬ï¼‰ã€ä½ç½®å’Œ E2EEï¼ˆéœ€è¦åŠ å¯†æ”¯æŒï¼‰ã€‚
 
-## 需要插件
+## éœ€è¦æ’ä»¶
 
-Matrix 作为插件提供，不包含在核心安装中。
+Matrix ä½œä¸ºæ’ä»¶æä¾›ï¼Œä¸åŒ…å«åœ¨æ ¸å¿ƒå®‰è£…ä¸­ã€‚
 
-通过 CLI 安装（npm 仓库）：
-
-```bash
-openclaw plugins install @openclaw/matrix
-```
-
-本地检出（从 git 仓库运行时）：
+é€šè¿‡ CLI å®‰è£…ï¼ˆnpm ä»“åº“ï¼‰ï¼š
 
 ```bash
-openclaw plugins install ./extensions/matrix
+ plugins install @/matrix
 ```
 
-如果你在配置/新手引导期间选择 Matrix 并检测到 git 检出，OpenClaw 将自动提供本地安装路径。
+æœ¬åœ°æ£€å‡ºï¼ˆä»Ž git ä»“åº“è¿è¡Œæ—¶ï¼‰ï¼š
 
-详情：[插件](/plugin)
+```bash
+ plugins install ./extensions/matrix
+```
 
-## 设置
+å¦‚æžœä½ åœ¨é…ç½®/æ–°æ‰‹å¼•å¯¼æœŸé—´é€‰æ‹© Matrix å¹¶æ£€æµ‹åˆ° git æ£€å‡ºï¼Œ å°†è‡ªåŠ¨æä¾›æœ¬åœ°å®‰è£…è·¯å¾„ã€‚
 
-1. 安装 Matrix 插件：
-   - 从 npm：`openclaw plugins install @openclaw/matrix`
-   - 从本地检出：`openclaw plugins install ./extensions/matrix`
-2. 在主服务器上创建 Matrix 账户：
-   - 在 [https://matrix.org/ecosystem/hosting/](https://matrix.org/ecosystem/hosting/) 浏览托管选项
-   - 或自行托管。
-3. 获取机器人账户的访问令牌：
-   - 在你的主服务器上使用 `curl` 调用 Matrix 登录 API：
+è¯¦æƒ…ï¼š[æ’ä»¶](/plugin)
+
+## è®¾ç½®
+
+1. å®‰è£… Matrix æ’ä»¶ï¼š
+   - ä»Ž npmï¼š` plugins install @/matrix`
+   - ä»Žæœ¬åœ°æ£€å‡ºï¼š` plugins install ./extensions/matrix`
+2. åœ¨ä¸»æœåŠ¡å™¨ä¸Šåˆ›å»º Matrix è´¦æˆ·ï¼š
+   - åœ¨ [https://matrix.org/ecosystem/hosting/](https://matrix.org/ecosystem/hosting/) æµè§ˆæ‰˜ç®¡é€‰é¡¹
+   - æˆ–è‡ªè¡Œæ‰˜ç®¡ã€‚
+3. èŽ·å–æœºå™¨äººè´¦æˆ·çš„è®¿é—®ä»¤ç‰Œï¼š
+   - åœ¨ä½ çš„ä¸»æœåŠ¡å™¨ä¸Šä½¿ç”¨ `curl` è°ƒç”¨ Matrix ç™»å½• APIï¼š
 
    ```bash
    curl --request POST \
@@ -63,19 +63,19 @@ openclaw plugins install ./extensions/matrix
    }'
    ```
 
-   - 将 `matrix.example.org` 替换为你的主服务器 URL。
-   - 或设置 `channels.matrix.userId` + `channels.matrix.password`：OpenClaw 会调用相同的登录端点，将访问令牌存储在 `~/.openclaw/credentials/matrix/credentials.json`，并在下次启动时重用。
+   - å°† `matrix.example.org` æ›¿æ¢ä¸ºä½ çš„ä¸»æœåŠ¡å™¨ URLã€‚
+   - æˆ–è®¾ç½® `channels.matrix.userId` + `channels.matrix.password`ï¼š ä¼šè°ƒç”¨ç›¸åŒçš„ç™»å½•ç«¯ç‚¹ï¼Œå°†è®¿é—®ä»¤ç‰Œå­˜å‚¨åœ¨ `~/./credentials/matrix/credentials.json`ï¼Œå¹¶åœ¨ä¸‹æ¬¡å¯åŠ¨æ—¶é‡ç”¨ã€‚
 
-4. 配置凭证：
-   - 环境变量：`MATRIX_HOMESERVER`、`MATRIX_ACCESS_TOKEN`（或 `MATRIX_USER_ID` + `MATRIX_PASSWORD`）
-   - 或配置：`channels.matrix.*`
-   - 如果两者都设置，配置优先。
-   - 使用访问令牌时：用户 ID 通过 `/whoami` 自动获取。
-   - 设置时，`channels.matrix.userId` 应为完整的 Matrix ID（示例：`@bot:example.org`）。
-5. 重启 Gateway 网关（或完成新手引导）。
-6. 从任何 Matrix 客户端（Element、Beeper 等；参见 https://matrix.org/ecosystem/clients/）与机器人开始私信或邀请它加入房间。Beeper 需要 E2EE，因此请设置 `channels.matrix.encryption: true` 并验证设备。
+4. é…ç½®å‡­è¯ï¼š
+   - çŽ¯å¢ƒå˜é‡ï¼š`MATRIX_HOMESERVER`ã€`MATRIX_ACCESS_TOKEN`ï¼ˆæˆ– `MATRIX_USER_ID` + `MATRIX_PASSWORD`ï¼‰
+   - æˆ–é…ç½®ï¼š`channels.matrix.*`
+   - å¦‚æžœä¸¤è€…éƒ½è®¾ç½®ï¼Œé…ç½®ä¼˜å…ˆã€‚
+   - ä½¿ç”¨è®¿é—®ä»¤ç‰Œæ—¶ï¼šç”¨æˆ· ID é€šè¿‡ `/whoami` è‡ªåŠ¨èŽ·å–ã€‚
+   - è®¾ç½®æ—¶ï¼Œ`channels.matrix.userId` åº”ä¸ºå®Œæ•´çš„ Matrix IDï¼ˆç¤ºä¾‹ï¼š`@bot:example.org`ï¼‰ã€‚
+5. é‡å¯ Gateway ç½‘å…³ï¼ˆæˆ–å®Œæˆæ–°æ‰‹å¼•å¯¼ï¼‰ã€‚
+6. ä»Žä»»ä½• Matrix å®¢æˆ·ç«¯ï¼ˆElementã€Beeper ç­‰ï¼›å‚è§ https://matrix.org/ecosystem/clients/ï¼‰ä¸Žæœºå™¨äººå¼€å§‹ç§ä¿¡æˆ–é‚€è¯·å®ƒåŠ å…¥æˆ¿é—´ã€‚Beeper éœ€è¦ E2EEï¼Œå› æ­¤è¯·è®¾ç½® `channels.matrix.encryption: true` å¹¶éªŒè¯è®¾å¤‡ã€‚
 
-最小配置（访问令牌，用户 ID 自动获取）：
+æœ€å°é…ç½®ï¼ˆè®¿é—®ä»¤ç‰Œï¼Œç”¨æˆ· ID è‡ªåŠ¨èŽ·å–ï¼‰ï¼š
 
 ```json5
 {
@@ -90,7 +90,7 @@ openclaw plugins install ./extensions/matrix
 }
 ```
 
-E2EE 配置（启用端到端加密）：
+E2EE é…ç½®ï¼ˆå¯ç”¨ç«¯åˆ°ç«¯åŠ å¯†ï¼‰ï¼š
 
 ```json5
 {
@@ -106,42 +106,42 @@ E2EE 配置（启用端到端加密）：
 }
 ```
 
-## 加密（E2EE）
+## åŠ å¯†ï¼ˆE2EEï¼‰
 
-通过 Rust 加密 SDK **支持**端到端加密。
+é€šè¿‡ Rust åŠ å¯† SDK **æ”¯æŒ**ç«¯åˆ°ç«¯åŠ å¯†ã€‚
 
-使用 `channels.matrix.encryption: true` 启用：
+ä½¿ç”¨ `channels.matrix.encryption: true` å¯ç”¨ï¼š
 
-- 如果加密模块加载成功，加密房间会自动解密。
-- 发送到加密房间时，出站媒体会被加密。
-- 首次连接时，OpenClaw 会向你的其他会话请求设备验证。
-- 在另一个 Matrix 客户端（Element 等）中验证设备以启用密钥共享。
-- 如果无法加载加密模块，E2EE 将被禁用，加密房间将无法解密；OpenClaw 会记录警告。
-- 如果你看到缺少加密模块的错误（例如 `@matrix-org/matrix-sdk-crypto-nodejs-*`），请允许 `@matrix-org/matrix-sdk-crypto-nodejs` 的构建脚本并运行 `pnpm rebuild @matrix-org/matrix-sdk-crypto-nodejs`，或使用 `node node_modules/@matrix-org/matrix-sdk-crypto-nodejs/download-lib.js` 获取二进制文件。
+- å¦‚æžœåŠ å¯†æ¨¡å—åŠ è½½æˆåŠŸï¼ŒåŠ å¯†æˆ¿é—´ä¼šè‡ªåŠ¨è§£å¯†ã€‚
+- å‘é€åˆ°åŠ å¯†æˆ¿é—´æ—¶ï¼Œå‡ºç«™åª’ä½“ä¼šè¢«åŠ å¯†ã€‚
+- é¦–æ¬¡è¿žæŽ¥æ—¶ï¼Œ ä¼šå‘ä½ çš„å…¶ä»–ä¼šè¯è¯·æ±‚è®¾å¤‡éªŒè¯ã€‚
+- åœ¨å¦ä¸€ä¸ª Matrix å®¢æˆ·ç«¯ï¼ˆElement ç­‰ï¼‰ä¸­éªŒè¯è®¾å¤‡ä»¥å¯ç”¨å¯†é’¥å…±äº«ã€‚
+- å¦‚æžœæ— æ³•åŠ è½½åŠ å¯†æ¨¡å—ï¼ŒE2EE å°†è¢«ç¦ç”¨ï¼ŒåŠ å¯†æˆ¿é—´å°†æ— æ³•è§£å¯†ï¼› ä¼šè®°å½•è­¦å‘Šã€‚
+- å¦‚æžœä½ çœ‹åˆ°ç¼ºå°‘åŠ å¯†æ¨¡å—çš„é”™è¯¯ï¼ˆä¾‹å¦‚ `@matrix-org/matrix-sdk-crypto-nodejs-*`ï¼‰ï¼Œè¯·å…è®¸ `@matrix-org/matrix-sdk-crypto-nodejs` çš„æž„å»ºè„šæœ¬å¹¶è¿è¡Œ `pnpm rebuild @matrix-org/matrix-sdk-crypto-nodejs`ï¼Œæˆ–ä½¿ç”¨ `node node_modules/@matrix-org/matrix-sdk-crypto-nodejs/download-lib.js` èŽ·å–äºŒè¿›åˆ¶æ–‡ä»¶ã€‚
 
-加密状态按账户 + 访问令牌存储在 `~/.openclaw/matrix/accounts/<account>/<homeserver>__<user>/<token-hash>/crypto/`（SQLite 数据库）。同步状态存储在同目录的 `bot-storage.json` 中。如果访问令牌（设备）更改，将创建新的存储，机器人必须重新验证才能访问加密房间。
+åŠ å¯†çŠ¶æ€æŒ‰è´¦æˆ· + è®¿é—®ä»¤ç‰Œå­˜å‚¨åœ¨ `~/./matrix/accounts/<account>/<homeserver>__<user>/<token-hash>/crypto/`ï¼ˆSQLite æ•°æ®åº“ï¼‰ã€‚åŒæ­¥çŠ¶æ€å­˜å‚¨åœ¨åŒç›®å½•çš„ `bot-storage.json` ä¸­ã€‚å¦‚æžœè®¿é—®ä»¤ç‰Œï¼ˆè®¾å¤‡ï¼‰æ›´æ”¹ï¼Œå°†åˆ›å»ºæ–°çš„å­˜å‚¨ï¼Œæœºå™¨äººå¿…é¡»é‡æ–°éªŒè¯æ‰èƒ½è®¿é—®åŠ å¯†æˆ¿é—´ã€‚
 
-**设备验证：**
-启用 E2EE 时，机器人将在启动时向你的其他会话请求验证。打开 Element（或其他客户端）并批准验证请求以建立信任。验证后，机器人可以解密加密房间中的消息。
+**è®¾å¤‡éªŒè¯ï¼š**
+å¯ç”¨ E2EE æ—¶ï¼Œæœºå™¨äººå°†åœ¨å¯åŠ¨æ—¶å‘ä½ çš„å…¶ä»–ä¼šè¯è¯·æ±‚éªŒè¯ã€‚æ‰“å¼€ Elementï¼ˆæˆ–å…¶ä»–å®¢æˆ·ç«¯ï¼‰å¹¶æ‰¹å‡†éªŒè¯è¯·æ±‚ä»¥å»ºç«‹ä¿¡ä»»ã€‚éªŒè¯åŽï¼Œæœºå™¨äººå¯ä»¥è§£å¯†åŠ å¯†æˆ¿é—´ä¸­çš„æ¶ˆæ¯ã€‚
 
-## 路由模型
+## è·¯ç”±æ¨¡åž‹
 
-- 回复始终返回到 Matrix。
-- 私信共享智能体的主会话；房间映射到群组会话。
+- å›žå¤å§‹ç»ˆè¿”å›žåˆ° Matrixã€‚
+- ç§ä¿¡å…±äº«æ™ºèƒ½ä½“çš„ä¸»ä¼šè¯ï¼›æˆ¿é—´æ˜ å°„åˆ°ç¾¤ç»„ä¼šè¯ã€‚
 
-## 访问控制（私信）
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ï¼‰
 
-- 默认：`channels.matrix.dm.policy = "pairing"`。未知发送者会收到配对码。
-- 通过以下方式批准：
-  - `openclaw pairing list matrix`
-  - `openclaw pairing approve matrix <CODE>`
-- 公开私信：`channels.matrix.dm.policy="open"` 加上 `channels.matrix.dm.allowFrom=["*"]`。
-- `channels.matrix.dm.allowFrom` 仅接受完整 Matrix 用户 ID（例如 `@user:server`）。向导仅在目录搜索得到唯一精确匹配时将显示名称解析为用户 ID。
+- é»˜è®¤ï¼š`channels.matrix.dm.policy = "pairing"`ã€‚æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ã€‚
+- é€šè¿‡ä»¥ä¸‹æ–¹å¼æ‰¹å‡†ï¼š
+  - ` pairing list matrix`
+  - ` pairing approve matrix <CODE>`
+- å…¬å¼€ç§ä¿¡ï¼š`channels.matrix.dm.policy="open"` åŠ ä¸Š `channels.matrix.dm.allowFrom=["*"]`ã€‚
+- `channels.matrix.dm.allowFrom` ä»…æŽ¥å—å®Œæ•´ Matrix ç”¨æˆ· IDï¼ˆä¾‹å¦‚ `@user:server`ï¼‰ã€‚å‘å¯¼ä»…åœ¨ç›®å½•æœç´¢å¾—åˆ°å”¯ä¸€ç²¾ç¡®åŒ¹é…æ—¶å°†æ˜¾ç¤ºåç§°è§£æžä¸ºç”¨æˆ· IDã€‚
 
-## 房间（群组）
+## æˆ¿é—´ï¼ˆç¾¤ç»„ï¼‰
 
-- 默认：`channels.matrix.groupPolicy = "allowlist"`（提及门控）。使用 `channels.defaults.groupPolicy` 在未设置时覆盖默认值。
-- 使用 `channels.matrix.groups` 配置房间允许列表（房间 ID 或别名；名称仅在目录搜索得到唯一精确匹配时解析为 ID）：
+- é»˜è®¤ï¼š`channels.matrix.groupPolicy = "allowlist"`ï¼ˆæåŠé—¨æŽ§ï¼‰ã€‚ä½¿ç”¨ `channels.defaults.groupPolicy` åœ¨æœªè®¾ç½®æ—¶è¦†ç›–é»˜è®¤å€¼ã€‚
+- ä½¿ç”¨ `channels.matrix.groups` é…ç½®æˆ¿é—´å…è®¸åˆ—è¡¨ï¼ˆæˆ¿é—´ ID æˆ–åˆ«åï¼›åç§°ä»…åœ¨ç›®å½•æœç´¢å¾—åˆ°å”¯ä¸€ç²¾ç¡®åŒ¹é…æ—¶è§£æžä¸º IDï¼‰ï¼š
 
 ```json5
 {
@@ -158,64 +158,65 @@ E2EE 配置（启用端到端加密）：
 }
 ```
 
-- `requireMention: false` 启用该房间的自动回复。
-- `groups."*"` 可以设置跨房间的提及门控默认值。
-- `groupAllowFrom` 限制哪些发送者可以在房间中触发机器人（需完整 Matrix 用户 ID）。
-- 每个房间的 `users` 允许列表可以进一步限制特定房间内的发送者（需完整 Matrix 用户 ID）。
-- 配置向导会提示输入房间允许列表（房间 ID、别名或名称），仅在精确且唯一匹配时解析名称。
-- 启动时，OpenClaw 将允许列表中的房间/用户名称解析为 ID 并记录映射；未解析的条目不会参与允许列表匹配。
-- 默认自动加入邀请；使用 `channels.matrix.autoJoin` 和 `channels.matrix.autoJoinAllowlist` 控制。
-- 要**禁止所有房间**，设置 `channels.matrix.groupPolicy: "disabled"`（或保持空的允许列表）。
-- 旧版键名：`channels.matrix.rooms`（与 `groups` 相同的结构）。
+- `requireMention: false` å¯ç”¨è¯¥æˆ¿é—´çš„è‡ªåŠ¨å›žå¤ã€‚
+- `groups."*"` å¯ä»¥è®¾ç½®è·¨æˆ¿é—´çš„æåŠé—¨æŽ§é»˜è®¤å€¼ã€‚
+- `groupAllowFrom` é™åˆ¶å“ªäº›å‘é€è€…å¯ä»¥åœ¨æˆ¿é—´ä¸­è§¦å‘æœºå™¨äººï¼ˆéœ€å®Œæ•´ Matrix ç”¨æˆ· IDï¼‰ã€‚
+- æ¯ä¸ªæˆ¿é—´çš„ `users` å…è®¸åˆ—è¡¨å¯ä»¥è¿›ä¸€æ­¥é™åˆ¶ç‰¹å®šæˆ¿é—´å†…çš„å‘é€è€…ï¼ˆéœ€å®Œæ•´ Matrix ç”¨æˆ· IDï¼‰ã€‚
+- é…ç½®å‘å¯¼ä¼šæç¤ºè¾“å…¥æˆ¿é—´å…è®¸åˆ—è¡¨ï¼ˆæˆ¿é—´ IDã€åˆ«åæˆ–åç§°ï¼‰ï¼Œä»…åœ¨ç²¾ç¡®ä¸”å”¯ä¸€åŒ¹é…æ—¶è§£æžåç§°ã€‚
+- å¯åŠ¨æ—¶ï¼Œ å°†å…è®¸åˆ—è¡¨ä¸­çš„æˆ¿é—´/ç”¨æˆ·åç§°è§£æžä¸º ID å¹¶è®°å½•æ˜ å°„ï¼›æœªè§£æžçš„æ¡ç›®ä¸ä¼šå‚ä¸Žå…è®¸åˆ—è¡¨åŒ¹é…ã€‚
+- é»˜è®¤è‡ªåŠ¨åŠ å…¥é‚€è¯·ï¼›ä½¿ç”¨ `channels.matrix.autoJoin` å’Œ `channels.matrix.autoJoinAllowlist` æŽ§åˆ¶ã€‚
+- è¦**ç¦æ­¢æ‰€æœ‰æˆ¿é—´**ï¼Œè®¾ç½® `channels.matrix.groupPolicy: "disabled"`ï¼ˆæˆ–ä¿æŒç©ºçš„å…è®¸åˆ—è¡¨ï¼‰ã€‚
+- æ—§ç‰ˆé”®åï¼š`channels.matrix.rooms`ï¼ˆä¸Ž `groups` ç›¸åŒçš„ç»“æž„ï¼‰ã€‚
 
-## 话题
+## è¯é¢˜
 
-- 支持回复话题。
-- `channels.matrix.threadReplies` 控制回复是否保持在话题中：
-  - `off`、`inbound`（默认）、`always`
-- `channels.matrix.replyToMode` 控制不在话题中回复时的 reply-to 元数据：
-  - `off`（默认）、`first`、`all`
+- æ”¯æŒå›žå¤è¯é¢˜ã€‚
+- `channels.matrix.threadReplies` æŽ§åˆ¶å›žå¤æ˜¯å¦ä¿æŒåœ¨è¯é¢˜ä¸­ï¼š
+  - `off`ã€`inbound`ï¼ˆé»˜è®¤ï¼‰ã€`always`
+- `channels.matrix.replyToMode` æŽ§åˆ¶ä¸åœ¨è¯é¢˜ä¸­å›žå¤æ—¶çš„ reply-to å…ƒæ•°æ®ï¼š
+  - `off`ï¼ˆé»˜è®¤ï¼‰ã€`first`ã€`all`
 
-## 功能
+## åŠŸèƒ½
 
-| 功能     | 状态                                                   |
+| åŠŸèƒ½     | çŠ¶æ€                                                   |
 | -------- | ------------------------------------------------------ |
-| 私信     | ✅ 支持                                                |
-| 房间     | ✅ 支持                                                |
-| 话题     | ✅ 支持                                                |
-| 媒体     | ✅ 支持                                                |
-| E2EE     | ✅ 支持（需要加密模块）                                |
-| 表情回应 | ✅ 支持（通过工具发送/读取）                           |
-| 投票     | ✅ 支持发送；入站投票开始转换为文本（响应/结束被忽略） |
-| 位置     | ✅ 支持（geo URI；忽略海拔）                           |
-| 原生命令 | ✅ 支持                                                |
+| ç§ä¿¡     | âœ… æ”¯æŒ                                                |
+| æˆ¿é—´     | âœ… æ”¯æŒ                                                |
+| è¯é¢˜     | âœ… æ”¯æŒ                                                |
+| åª’ä½“     | âœ… æ”¯æŒ                                                |
+| E2EE     | âœ… æ”¯æŒï¼ˆéœ€è¦åŠ å¯†æ¨¡å—ï¼‰                                |
+| è¡¨æƒ…å›žåº” | âœ… æ”¯æŒï¼ˆé€šè¿‡å·¥å…·å‘é€/è¯»å–ï¼‰                           |
+| æŠ•ç¥¨     | âœ… æ”¯æŒå‘é€ï¼›å…¥ç«™æŠ•ç¥¨å¼€å§‹è½¬æ¢ä¸ºæ–‡æœ¬ï¼ˆå“åº”/ç»“æŸè¢«å¿½ç•¥ï¼‰ |
+| ä½ç½®     | âœ… æ”¯æŒï¼ˆgeo URIï¼›å¿½ç•¥æµ·æ‹”ï¼‰                           |
+| åŽŸç”Ÿå‘½ä»¤ | âœ… æ”¯æŒ                                                |
 
-## 配置参考（Matrix）
+## é…ç½®å‚è€ƒï¼ˆMatrixï¼‰
 
-完整配置：[配置](/gateway/configuration)
+å®Œæ•´é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-提供商选项：
+æä¾›å•†é€‰é¡¹ï¼š
 
-- `channels.matrix.enabled`：启用/禁用渠道启动。
-- `channels.matrix.homeserver`：主服务器 URL。
-- `channels.matrix.userId`：Matrix 用户 ID（使用访问令牌时可选）。
-- `channels.matrix.accessToken`：访问令牌。
-- `channels.matrix.password`：登录密码（令牌会被存储）。
-- `channels.matrix.deviceName`：设备显示名称。
-- `channels.matrix.encryption`：启用 E2EE（默认：false）。
-- `channels.matrix.initialSyncLimit`：初始同步限制。
-- `channels.matrix.threadReplies`：`off | inbound | always`（默认：inbound）。
-- `channels.matrix.textChunkLimit`：出站文本分块大小（字符）。
-- `channels.matrix.chunkMode`：`length`（默认）或 `newline` 在长度分块前按空行（段落边界）分割。
-- `channels.matrix.dm.policy`：`pairing | allowlist | open | disabled`（默认：pairing）。
-- `channels.matrix.dm.allowFrom`：私信允许列表（需完整 Matrix 用户 ID）。`open` 需要 `"*"`。向导在可能时将名称解析为 ID。
-- `channels.matrix.groupPolicy`：`allowlist | open | disabled`（默认：allowlist）。
-- `channels.matrix.groupAllowFrom`：群组消息的允许发送者列表（需完整 Matrix 用户 ID）。
-- `channels.matrix.allowlistOnly`：强制私信 + 房间使用允许列表规则。
-- `channels.matrix.groups`：群组允许列表 + 每个房间的设置映射。
-- `channels.matrix.rooms`：旧版群组允许列表/配置。
-- `channels.matrix.replyToMode`：话题/标签的 reply-to 模式。
-- `channels.matrix.mediaMaxMb`：入站/出站媒体上限（MB）。
-- `channels.matrix.autoJoin`：邀请处理（`always | allowlist | off`，默认：always）。
-- `channels.matrix.autoJoinAllowlist`：自动加入的允许房间 ID/别名。
-- `channels.matrix.actions`：每个操作的工具限制（reactions/messages/pins/memberInfo/channelInfo）。
+- `channels.matrix.enabled`ï¼šå¯ç”¨/ç¦ç”¨æ¸ é“å¯åŠ¨ã€‚
+- `channels.matrix.homeserver`ï¼šä¸»æœåŠ¡å™¨ URLã€‚
+- `channels.matrix.userId`ï¼šMatrix ç”¨æˆ· IDï¼ˆä½¿ç”¨è®¿é—®ä»¤ç‰Œæ—¶å¯é€‰ï¼‰ã€‚
+- `channels.matrix.accessToken`ï¼šè®¿é—®ä»¤ç‰Œã€‚
+- `channels.matrix.password`ï¼šç™»å½•å¯†ç ï¼ˆä»¤ç‰Œä¼šè¢«å­˜å‚¨ï¼‰ã€‚
+- `channels.matrix.deviceName`ï¼šè®¾å¤‡æ˜¾ç¤ºåç§°ã€‚
+- `channels.matrix.encryption`ï¼šå¯ç”¨ E2EEï¼ˆé»˜è®¤ï¼šfalseï¼‰ã€‚
+- `channels.matrix.initialSyncLimit`ï¼šåˆå§‹åŒæ­¥é™åˆ¶ã€‚
+- `channels.matrix.threadReplies`ï¼š`off | inbound | always`ï¼ˆé»˜è®¤ï¼šinboundï¼‰ã€‚
+- `channels.matrix.textChunkLimit`ï¼šå‡ºç«™æ–‡æœ¬åˆ†å—å¤§å°ï¼ˆå­—ç¬¦ï¼‰ã€‚
+- `channels.matrix.chunkMode`ï¼š`length`ï¼ˆé»˜è®¤ï¼‰æˆ– `newline` åœ¨é•¿åº¦åˆ†å—å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- `channels.matrix.dm.policy`ï¼š`pairing | allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼špairingï¼‰ã€‚
+- `channels.matrix.dm.allowFrom`ï¼šç§ä¿¡å…è®¸åˆ—è¡¨ï¼ˆéœ€å®Œæ•´ Matrix ç”¨æˆ· IDï¼‰ã€‚`open` éœ€è¦ `"*"`ã€‚å‘å¯¼åœ¨å¯èƒ½æ—¶å°†åç§°è§£æžä¸º IDã€‚
+- `channels.matrix.groupPolicy`ï¼š`allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼šallowlistï¼‰ã€‚
+- `channels.matrix.groupAllowFrom`ï¼šç¾¤ç»„æ¶ˆæ¯çš„å…è®¸å‘é€è€…åˆ—è¡¨ï¼ˆéœ€å®Œæ•´ Matrix ç”¨æˆ· IDï¼‰ã€‚
+- `channels.matrix.allowlistOnly`ï¼šå¼ºåˆ¶ç§ä¿¡ + æˆ¿é—´ä½¿ç”¨å…è®¸åˆ—è¡¨è§„åˆ™ã€‚
+- `channels.matrix.groups`ï¼šç¾¤ç»„å…è®¸åˆ—è¡¨ + æ¯ä¸ªæˆ¿é—´çš„è®¾ç½®æ˜ å°„ã€‚
+- `channels.matrix.rooms`ï¼šæ—§ç‰ˆç¾¤ç»„å…è®¸åˆ—è¡¨/é…ç½®ã€‚
+- `channels.matrix.replyToMode`ï¼šè¯é¢˜/æ ‡ç­¾çš„ reply-to æ¨¡å¼ã€‚
+- `channels.matrix.mediaMaxMb`ï¼šå…¥ç«™/å‡ºç«™åª’ä½“ä¸Šé™ï¼ˆMBï¼‰ã€‚
+- `channels.matrix.autoJoin`ï¼šé‚€è¯·å¤„ç†ï¼ˆ`always | allowlist | off`ï¼Œé»˜è®¤ï¼šalwaysï¼‰ã€‚
+- `channels.matrix.autoJoinAllowlist`ï¼šè‡ªåŠ¨åŠ å…¥çš„å…è®¸æˆ¿é—´ ID/åˆ«åã€‚
+- `channels.matrix.actions`ï¼šæ¯ä¸ªæ“ä½œçš„å·¥å…·é™åˆ¶ï¼ˆreactions/messages/pins/memberInfo/channelInfoï¼‰ã€‚
+

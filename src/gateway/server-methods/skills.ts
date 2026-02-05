@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import type { GatewayRequestHandlers } from "./types.js";
 import {
   listAgentIds,
@@ -21,7 +21,7 @@ import {
   validateSkillsUpdateParams,
 } from "../protocol/index.js";
 
-function listWorkspaceDirs(cfg: OpenClawConfig): string[] {
+function listWorkspaceDirs(cfg: Config): string[] {
   const dirs = new Set<string>();
   const list = cfg.agents?.list;
   if (Array.isArray(list)) {
@@ -206,7 +206,7 @@ export const skillsHandlers: GatewayRequestHandlers = {
     }
     entries[p.skillKey] = current;
     skills.entries = entries;
-    const nextConfig: OpenClawConfig = {
+    const nextConfig: Config = {
       ...cfg,
       skills,
     };
@@ -214,3 +214,4 @@ export const skillsHandlers: GatewayRequestHandlers = {
     respond(true, { ok: true, skillKey: p.skillKey, config: current }, undefined);
   },
 };
+

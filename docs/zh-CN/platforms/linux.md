@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 查找 Linux 配套应用状态时
-  - 规划平台覆盖或贡献时
-summary: Linux 支持 + 配套应用状态
-title: Linux 应用
+  - æŸ¥æ‰¾ Linux é…å¥—åº”ç”¨çŠ¶æ€æ—¶
+  - è§„åˆ’å¹³å°è¦†ç›–æˆ–è´¡çŒ®æ—¶
+summary: Linux æ”¯æŒ + é…å¥—åº”ç”¨çŠ¶æ€
+title: Linux åº”ç”¨
 x-i18n:
   generated_at: "2026-02-03T07:52:18Z"
   model: claude-opus-4-5
@@ -13,80 +13,80 @@ x-i18n:
   workflow: 15
 ---
 
-# Linux 应用
+# Linux åº”ç”¨
 
-Gateway 网关在 Linux 上完全支持。**Node 是推荐的运行时**。
-不推荐 Bun 用于 Gateway 网关（WhatsApp/Telegram 存在 bug）。
+Gateway ç½‘å…³åœ¨ Linux ä¸Šå®Œå…¨æ”¯æŒã€‚**Node æ˜¯æŽ¨èçš„è¿è¡Œæ—¶**ã€‚
+ä¸æŽ¨è Bun ç”¨äºŽ Gateway ç½‘å…³ï¼ˆWhatsApp/Telegram å­˜åœ¨ bugï¼‰ã€‚
 
-原生 Linux 配套应用已在计划中。如果你想帮助构建，欢迎贡献。
+åŽŸç”Ÿ Linux é…å¥—åº”ç”¨å·²åœ¨è®¡åˆ’ä¸­ã€‚å¦‚æžœä½ æƒ³å¸®åŠ©æž„å»ºï¼Œæ¬¢è¿Žè´¡çŒ®ã€‚
 
-## 新手快速路径（VPS）
+## æ–°æ‰‹å¿«é€Ÿè·¯å¾„ï¼ˆVPSï¼‰
 
-1. 安装 Node 22+
-2. `npm i -g openclaw@latest`
-3. `openclaw onboard --install-daemon`
-4. 从你的笔记本电脑：`ssh -N -L 18789:127.0.0.1:18789 <user>@<host>`
-5. 打开 `http://127.0.0.1:18789/` 并粘贴你的令牌
+1. å®‰è£… Node 22+
+2. `npm i -g @latest`
+3. ` onboard --install-daemon`
+4. ä»Žä½ çš„ç¬”è®°æœ¬ç”µè„‘ï¼š`ssh -N -L 18789:127.0.0.1:18789 <user>@<host>`
+5. æ‰“å¼€ `http://127.0.0.1:18789/` å¹¶ç²˜è´´ä½ çš„ä»¤ç‰Œ
 
-分步 VPS 指南：[exe.dev](/platforms/exe-dev)
+åˆ†æ­¥ VPS æŒ‡å—ï¼š[exe.dev](/platforms/exe-dev)
 
-## 安装
+## å®‰è£…
 
-- [入门指南](/start/getting-started)
-- [安装与更新](/install/updating)
-- 可选流程：[Bun（实验性）](/install/bun)、[Nix](/install/nix)、[Docker](/install/docker)
+- [å…¥é—¨æŒ‡å—](/start/getting-started)
+- [å®‰è£…ä¸Žæ›´æ–°](/install/updating)
+- å¯é€‰æµç¨‹ï¼š[Bunï¼ˆå®žéªŒæ€§ï¼‰](/install/bun)ã€[Nix](/install/nix)ã€[Docker](/install/docker)
 
-## Gateway 网关
+## Gateway ç½‘å…³
 
-- [Gateway 网关运行手册](/gateway)
-- [配置](/gateway/configuration)
+- [Gateway ç½‘å…³è¿è¡Œæ‰‹å†Œ](/gateway)
+- [é…ç½®](/gateway/configuration)
 
-## Gateway 网关服务安装（CLI）
+## Gateway ç½‘å…³æœåŠ¡å®‰è£…ï¼ˆCLIï¼‰
 
-使用以下任一方式：
-
-```
-openclaw onboard --install-daemon
-```
-
-或：
+ä½¿ç”¨ä»¥ä¸‹ä»»ä¸€æ–¹å¼ï¼š
 
 ```
-openclaw gateway install
+ onboard --install-daemon
 ```
 
-或：
+æˆ–ï¼š
 
 ```
-openclaw configure
+ gateway install
 ```
 
-出现提示时选择 **Gateway service**。
-
-修复/迁移：
+æˆ–ï¼š
 
 ```
-openclaw doctor
+ configure
 ```
 
-## 系统控制（systemd 用户单元）
+å‡ºçŽ°æç¤ºæ—¶é€‰æ‹© **Gateway service**ã€‚
 
-OpenClaw 默认安装 systemd **用户**服务。对于共享或常驻服务器使用**系统**
-服务。完整的单元示例和指南
-在 [Gateway 网关运行手册](/gateway) 中。
+ä¿®å¤/è¿ç§»ï¼š
 
-最小设置：
+```
+ doctor
+```
 
-创建 `~/.config/systemd/user/openclaw-gateway[-<profile>].service`：
+## ç³»ç»ŸæŽ§åˆ¶ï¼ˆsystemd ç”¨æˆ·å•å…ƒï¼‰
+
+ é»˜è®¤å®‰è£… systemd **ç”¨æˆ·**æœåŠ¡ã€‚å¯¹äºŽå…±äº«æˆ–å¸¸é©»æœåŠ¡å™¨ä½¿ç”¨**ç³»ç»Ÿ**
+æœåŠ¡ã€‚å®Œæ•´çš„å•å…ƒç¤ºä¾‹å’ŒæŒ‡å—
+åœ¨ [Gateway ç½‘å…³è¿è¡Œæ‰‹å†Œ](/gateway) ä¸­ã€‚
+
+æœ€å°è®¾ç½®ï¼š
+
+åˆ›å»º `~/.config/systemd/user/-gateway[-<profile>].service`ï¼š
 
 ```
 [Unit]
-Description=OpenClaw Gateway (profile: <profile>, v<version>)
+Description= Gateway (profile: <profile>, v<version>)
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/openclaw gateway --port 18789
+ExecStart=/usr/local/bin/ gateway --port 18789
 Restart=always
 RestartSec=5
 
@@ -94,8 +94,9 @@ RestartSec=5
 WantedBy=default.target
 ```
 
-启用它：
+å¯ç”¨å®ƒï¼š
 
 ```
-systemctl --user enable --now openclaw-gateway[-<profile>].service
+systemctl --user enable --now -gateway[-<profile>].service
 ```
+

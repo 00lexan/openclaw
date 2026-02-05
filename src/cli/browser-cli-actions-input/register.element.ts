@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { BrowserParentOpts } from "../browser-cli-shared.js";
 import { danger } from "../../globals.js";
 import { defaultRuntime } from "../../runtime.js";
@@ -199,7 +199,7 @@ export function registerBrowserElementCommands(
           defaultRuntime.log(JSON.stringify(result, null, 2));
           return;
         }
-        defaultRuntime.log(`dragged ${startRef} → ${endRef}`);
+        defaultRuntime.log(`dragged ${startRef} â†’ ${endRef}`);
       } catch (err) {
         defaultRuntime.error(danger(String(err)));
         defaultRuntime.exit(1);
@@ -236,3 +236,4 @@ export function registerBrowserElementCommands(
       }
     });
 }
+

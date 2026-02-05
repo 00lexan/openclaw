@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想了解 Moonshot K2（Moonshot 开放平台）与 Kimi Coding 的配置
-  - 你需要了解独立的端点、密钥和模型引用
-  - 你想获取任一提供商的可复制粘贴配置
-summary: 配置 Moonshot K2 与 Kimi Coding（独立提供商和密钥）
+  - ä½ æƒ³äº†è§£ Moonshot K2ï¼ˆMoonshot å¼€æ”¾å¹³å°ï¼‰ä¸Ž Kimi Coding çš„é…ç½®
+  - ä½ éœ€è¦äº†è§£ç‹¬ç«‹çš„ç«¯ç‚¹ã€å¯†é’¥å’Œæ¨¡åž‹å¼•ç”¨
+  - ä½ æƒ³èŽ·å–ä»»ä¸€æä¾›å•†çš„å¯å¤åˆ¶ç²˜è´´é…ç½®
+summary: é…ç½® Moonshot K2 ä¸Ž Kimi Codingï¼ˆç‹¬ç«‹æä¾›å•†å’Œå¯†é’¥ï¼‰
 title: Moonshot AI
 x-i18n:
   generated_at: "2026-02-01T21:35:13Z"
@@ -16,9 +16,9 @@ x-i18n:
 
 # Moonshot AI (Kimi)
 
-Moonshot 提供兼容 OpenAI 端点的 Kimi API。配置提供商并将默认模型设置为 `moonshot/kimi-k2.5`，或使用 Kimi Coding 的 `kimi-coding/k2p5`。
+Moonshot æä¾›å…¼å®¹ OpenAI ç«¯ç‚¹çš„ Kimi APIã€‚é…ç½®æä¾›å•†å¹¶å°†é»˜è®¤æ¨¡åž‹è®¾ç½®ä¸º `moonshot/kimi-k2.5`ï¼Œæˆ–ä½¿ç”¨ Kimi Coding çš„ `kimi-coding/k2p5`ã€‚
 
-当前 Kimi K2 模型 ID：
+å½“å‰ Kimi K2 æ¨¡åž‹ IDï¼š
 {/_ moonshot-kimi-k2-ids:start _/}
 
 - `kimi-k2.5`
@@ -29,18 +29,18 @@ Moonshot 提供兼容 OpenAI 端点的 Kimi API。配置提供商并将默认模
   {/_ moonshot-kimi-k2-ids:end _/}
 
 ```bash
-openclaw onboard --auth-choice moonshot-api-key
+ onboard --auth-choice moonshot-api-key
 ```
 
-Kimi Coding：
+Kimi Codingï¼š
 
 ```bash
-openclaw onboard --auth-choice kimi-code-api-key
+ onboard --auth-choice kimi-code-api-key
 ```
 
-注意：Moonshot 和 Kimi Coding 是独立的提供商。密钥不可互换，端点不同，模型引用也不同（Moonshot 使用 `moonshot/...`，Kimi Coding 使用 `kimi-coding/...`）。
+æ³¨æ„ï¼šMoonshot å’Œ Kimi Coding æ˜¯ç‹¬ç«‹çš„æä¾›å•†ã€‚å¯†é’¥ä¸å¯äº’æ¢ï¼Œç«¯ç‚¹ä¸åŒï¼Œæ¨¡åž‹å¼•ç”¨ä¹Ÿä¸åŒï¼ˆMoonshot ä½¿ç”¨ `moonshot/...`ï¼ŒKimi Coding ä½¿ç”¨ `kimi-coding/...`ï¼‰ã€‚
 
-## 配置片段（Moonshot API）
+## é…ç½®ç‰‡æ®µï¼ˆMoonshot APIï¼‰
 
 ```json5
 {
@@ -137,9 +137,10 @@ openclaw onboard --auth-choice kimi-code-api-key
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- Moonshot 模型引用使用 `moonshot/<modelId>`。Kimi Coding 模型引用使用 `kimi-coding/<modelId>`。
-- 如有需要，可在 `models.providers` 中覆盖定价和上下文元数据。
-- 如果 Moonshot 发布了某个模型的不同上下文限制，请相应调整 `contextWindow`。
-- 如需使用中国端点，请使用 `https://api.moonshot.cn/v1`。
+- Moonshot æ¨¡åž‹å¼•ç”¨ä½¿ç”¨ `moonshot/<modelId>`ã€‚Kimi Coding æ¨¡åž‹å¼•ç”¨ä½¿ç”¨ `kimi-coding/<modelId>`ã€‚
+- å¦‚æœ‰éœ€è¦ï¼Œå¯åœ¨ `models.providers` ä¸­è¦†ç›–å®šä»·å’Œä¸Šä¸‹æ–‡å…ƒæ•°æ®ã€‚
+- å¦‚æžœ Moonshot å‘å¸ƒäº†æŸä¸ªæ¨¡åž‹çš„ä¸åŒä¸Šä¸‹æ–‡é™åˆ¶ï¼Œè¯·ç›¸åº”è°ƒæ•´ `contextWindow`ã€‚
+- å¦‚éœ€ä½¿ç”¨ä¸­å›½ç«¯ç‚¹ï¼Œè¯·ä½¿ç”¨ `https://api.moonshot.cn/v1`ã€‚
+

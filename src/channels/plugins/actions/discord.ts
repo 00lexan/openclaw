@@ -1,4 +1,4 @@
-import type { ChannelMessageActionAdapter, ChannelMessageActionName } from "../types.js";
+﻿import type { ChannelMessageActionAdapter, ChannelMessageActionName } from "../types.js";
 import { createActionGate } from "../../../agents/tools/common.js";
 import { listEnabledDiscordAccounts } from "../../../discord/accounts.js";
 import { handleDiscordMessageAction } from "./discord/handle-action.js";
@@ -109,3 +109,4 @@ export const discordMessageActions: ChannelMessageActionAdapter = {
     return await handleDiscordMessageAction({ action, params, cfg, accountId });
   },
 };
+

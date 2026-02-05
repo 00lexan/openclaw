@@ -1,4 +1,4 @@
-import { colorize, isRich, theme } from "../terminal/theme.js";
+﻿import { colorize, isRich, theme } from "../terminal/theme.js";
 
 const formatKv = (line: string, rich: boolean) => {
   const idx = line.indexOf(": ");
@@ -47,3 +47,4 @@ export function formatHealthCheckFailure(err: unknown, opts: { rich?: boolean } 
   }
   return out.join("\n");
 }
+

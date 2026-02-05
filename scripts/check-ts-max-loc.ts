@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+﻿import { execFileSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 
@@ -26,7 +26,7 @@ function parseArgs(argv: string[]): ParsedArgs {
 }
 
 function gitLsFilesAll(): string[] {
-  // Include untracked files too so local refactors don’t “pass” by accident.
+  // Include untracked files too so local refactors donâ€™t â€œpassâ€ by accident.
   const stdout = execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], {
     encoding: "utf8",
   });
@@ -78,3 +78,4 @@ async function main() {
 }
 
 await main();
+

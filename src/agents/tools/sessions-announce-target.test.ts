@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createTestRegistry } from "../../test-utils/channel-plugins.js";
 
 const callGatewayMock = vi.fn();
@@ -102,3 +102,4 @@ describe("resolveAnnounceTarget", () => {
     expect(first?.method).toBe("sessions.list");
   });
 });
+

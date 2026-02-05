@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { loadNodeHostConfig } from "../../node-host/config.js";
 import { runNodeHost } from "../../node-host/runner.js";
 import { formatDocsLink } from "../../terminal/links.js";
@@ -24,7 +24,7 @@ export function registerNodeCli(program: Command) {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/node", "docs.openclaw.ai/cli/node")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/node", "docs..ai/cli/node")}\n`,
     );
 
   node
@@ -99,3 +99,4 @@ export function registerNodeCli(program: Command) {
       await runNodeDaemonRestart(opts);
     });
 }
+

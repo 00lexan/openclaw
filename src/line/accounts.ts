@@ -1,5 +1,5 @@
-import fs from "node:fs";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import fs from "node:fs";
+import type { Config } from "../config/config.js";
 import type {
   LineConfig,
   LineAccountConfig,
@@ -97,7 +97,7 @@ function resolveSecret(params: {
 }
 
 export function resolveLineAccount(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   accountId?: string;
 }): ResolvedLineAccount {
   const { cfg, accountId = DEFAULT_ACCOUNT_ID } = params;
@@ -140,7 +140,7 @@ export function resolveLineAccount(params: {
   };
 }
 
-export function listLineAccountIds(cfg: OpenClawConfig): string[] {
+export function listLineAccountIds(cfg: Config): string[] {
   const lineConfig = cfg.channels?.line as LineConfig | undefined;
   const accounts = lineConfig?.accounts;
   const ids = new Set<string>();
@@ -164,7 +164,7 @@ export function listLineAccountIds(cfg: OpenClawConfig): string[] {
   return Array.from(ids);
 }
 
-export function resolveDefaultLineAccountId(cfg: OpenClawConfig): string {
+export function resolveDefaultLineAccountId(cfg: Config): string {
   const ids = listLineAccountIds(cfg);
   if (ids.includes(DEFAULT_ACCOUNT_ID)) {
     return DEFAULT_ACCOUNT_ID;
@@ -179,3 +179,4 @@ export function normalizeAccountId(accountId: string | undefined): string {
   }
   return trimmed;
 }
+

@@ -1,4 +1,4 @@
-import type { PluginRegistry } from "../../../plugins/registry.js";
+﻿import type { PluginRegistry } from "../../../plugins/registry.js";
 
 export const createTestRegistry = (overrides: Partial<PluginRegistry> = {}): PluginRegistry => {
   const base: PluginRegistry = {
@@ -24,3 +24,4 @@ export const createTestRegistry = (overrides: Partial<PluginRegistry> = {}): Plu
     httpRoutes: merged.httpRoutes ?? [],
   };
 };
+

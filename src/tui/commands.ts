@@ -1,5 +1,5 @@
-import type { SlashCommand } from "@mariozechner/pi-tui";
-import type { OpenClawConfig } from "../config/types.js";
+﻿import type { SlashCommand } from "@mariozechner/pi-tui";
+import type { Config } from "../config/types.js";
 import { listChatCommands, listChatCommandsForConfig } from "../auto-reply/commands-registry.js";
 import { formatThinkingLevels, listThinkingLevelLabels } from "../auto-reply/thinking.js";
 
@@ -15,7 +15,7 @@ export type ParsedCommand = {
 };
 
 export type SlashCommandOptions = {
-  cfg?: OpenClawConfig;
+  cfg?: Config;
   provider?: string;
   model?: string;
 };
@@ -161,3 +161,4 @@ export function helpText(options: SlashCommandOptions = {}): string {
     "/exit",
   ].join("\n");
 }
+

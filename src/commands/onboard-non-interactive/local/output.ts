@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../../../runtime.js";
+﻿import type { RuntimeEnv } from "../../../runtime.js";
 import type { OnboardOptions } from "../../onboard-types.js";
 
 export function logNonInteractiveOnboardingJson(params: {
@@ -38,3 +38,4 @@ export function logNonInteractiveOnboardingJson(params: {
     ),
   );
 }
+

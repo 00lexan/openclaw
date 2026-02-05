@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createCliProgress } from "./progress.js";
 
 describe("cli progress", () => {
@@ -44,3 +44,4 @@ describe("cli progress", () => {
     expect(write).not.toHaveBeenCalled();
   });
 });
+

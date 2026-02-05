@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { subscribeEmbeddedPiSession } from "./pi-embedded-subscribe.js";
 
 type StubSession = {
@@ -45,3 +45,4 @@ describe("subscribeEmbeddedPiSession", () => {
     }).not.toThrow();
   });
 });
+

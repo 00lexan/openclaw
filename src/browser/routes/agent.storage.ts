@@ -1,4 +1,4 @@
-import type { BrowserRouteContext } from "../server-context.js";
+﻿import type { BrowserRouteContext } from "../server-context.js";
 import type { BrowserRouteRegistrar } from "./types.js";
 import { handleRouteError, readBody, requirePwAi, resolveProfileContext } from "./agent.shared.js";
 import { jsonError, toBoolean, toNumber, toStringOrEmpty } from "./utils.js";
@@ -433,3 +433,4 @@ export function registerBrowserAgentStorageRoutes(
     }
   });
 }
+

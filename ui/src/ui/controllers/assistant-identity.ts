@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import { normalizeAssistantIdentity } from "../assistant-identity.ts";
 
 export type AssistantIdentityState = {
@@ -32,3 +32,4 @@ export async function loadAssistantIdentity(
     // Ignore errors; keep last known identity.
   }
 }
+

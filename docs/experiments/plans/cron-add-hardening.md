@@ -1,6 +1,6 @@
----
+﻿---
 summary: "Harden cron.add input handling, align schemas, and improve cron UI/agent tooling"
-owner: "openclaw"
+owner: ""
 status: "complete"
 last_updated: "2026-01-05"
 title: "Cron Add Hardening"
@@ -38,7 +38,7 @@ Recent gateway logs show repeated `cron.add` failures with invalid parameters (m
 - `cron.add` and `cron.update` now normalize common wrapper shapes and infer missing `kind` fields.
 - Agent cron tool schema matches the gateway schema, which reduces invalid payloads.
 - Provider enums are aligned across gateway, CLI, UI, and macOS picker.
-- Control UI uses the gateway’s `jobs` count field for status.
+- Control UI uses the gatewayâ€™s `jobs` count field for status.
 
 ## Current behavior
 
@@ -61,3 +61,4 @@ See [Cron jobs](/automation/cron-jobs) for the normalized shape and examples.
 
 - Should `cron.add` accept explicit `state` from clients (currently disallowed by schema)?
 - Should we allow `webchat` as an explicit delivery provider (currently filtered in delivery resolution)?
+

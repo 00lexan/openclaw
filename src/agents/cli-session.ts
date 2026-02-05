@@ -1,4 +1,4 @@
-import type { SessionEntry } from "../config/sessions.js";
+﻿import type { SessionEntry } from "../config/sessions.js";
 import { normalizeProviderId } from "./model-selection.js";
 
 export function getCliSessionId(
@@ -35,3 +35,4 @@ export function setCliSessionId(entry: SessionEntry, provider: string, sessionId
     entry.claudeCliSessionId = trimmed;
   }
 }
+

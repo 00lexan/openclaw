@@ -1,4 +1,4 @@
-import { EventEmitter } from "node:events";
+﻿import { EventEmitter } from "node:events";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("../globals.js", () => ({
@@ -85,3 +85,4 @@ describe("attachDiscordGatewayLogging", () => {
     expect(runtime.log).not.toHaveBeenCalled();
   });
 });
+

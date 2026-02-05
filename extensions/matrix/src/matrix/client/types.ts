@@ -1,4 +1,4 @@
-export type MatrixResolvedConfig = {
+﻿export type MatrixResolvedConfig = {
   homeserver: string;
   userId: string;
   accessToken?: string;
@@ -32,3 +32,4 @@ export type MatrixStoragePaths = {
   accountKey: string;
   tokenHash: string;
 };
+

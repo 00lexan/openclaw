@@ -1,4 +1,4 @@
-export type HeartbeatRunResult =
+﻿export type HeartbeatRunResult =
   | { status: "ran"; durationMs: number }
   | { status: "skipped"; reason: string }
   | { status: "failed"; reason: string };
@@ -74,3 +74,4 @@ export function hasHeartbeatWakeHandler() {
 export function hasPendingHeartbeatWake() {
   return pendingReason !== null || Boolean(timer) || scheduled;
 }
+

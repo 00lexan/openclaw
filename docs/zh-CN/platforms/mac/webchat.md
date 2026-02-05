@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 调试 macOS WebChat 视图或 loopback 端口
-summary: macOS 应用如何嵌入 Gateway 网关 WebChat 以及如何调试
+  - è°ƒè¯• macOS WebChat è§†å›¾æˆ– loopback ç«¯å£
+summary: macOS åº”ç”¨å¦‚ä½•åµŒå…¥ Gateway ç½‘å…³ WebChat ä»¥åŠå¦‚ä½•è°ƒè¯•
 title: WebChat
 x-i18n:
   generated_at: "2026-02-03T07:52:46Z"
@@ -12,32 +12,33 @@ x-i18n:
   workflow: 15
 ---
 
-# WebChat（macOS 应用）
+# WebChatï¼ˆmacOS åº”ç”¨ï¼‰
 
-macOS 菜单栏应用将 WebChat UI 嵌入为原生 SwiftUI 视图。它连接到 Gateway 网关，默认使用所选智能体的**主会话**（带有会话切换器用于其他会话）。
+macOS èœå•æ åº”ç”¨å°† WebChat UI åµŒå…¥ä¸ºåŽŸç”Ÿ SwiftUI è§†å›¾ã€‚å®ƒè¿žæŽ¥åˆ° Gateway ç½‘å…³ï¼Œé»˜è®¤ä½¿ç”¨æ‰€é€‰æ™ºèƒ½ä½“çš„**ä¸»ä¼šè¯**ï¼ˆå¸¦æœ‰ä¼šè¯åˆ‡æ¢å™¨ç”¨äºŽå…¶ä»–ä¼šè¯ï¼‰ã€‚
 
-- **本地模式**：直接连接到本地 Gateway 网关 WebSocket。
-- **远程模式**：通过 SSH 转发 Gateway 网关控制端口，并使用该隧道作为数据平面。
+- **æœ¬åœ°æ¨¡å¼**ï¼šç›´æŽ¥è¿žæŽ¥åˆ°æœ¬åœ° Gateway ç½‘å…³ WebSocketã€‚
+- **è¿œç¨‹æ¨¡å¼**ï¼šé€šè¿‡ SSH è½¬å‘ Gateway ç½‘å…³æŽ§åˆ¶ç«¯å£ï¼Œå¹¶ä½¿ç”¨è¯¥éš§é“ä½œä¸ºæ•°æ®å¹³é¢ã€‚
 
-## 启动和调试
+## å¯åŠ¨å’Œè°ƒè¯•
 
-- 手动：Lobster 菜单 → "Open Chat"。
-- 测试时自动打开：
+- æ‰‹åŠ¨ï¼šLobster èœå• â†’ "Open Chat"ã€‚
+- æµ‹è¯•æ—¶è‡ªåŠ¨æ‰“å¼€ï¼š
   ```bash
-  dist/OpenClaw.app/Contents/MacOS/OpenClaw --webchat
+  dist/.app/Contents/MacOS/ --webchat
   ```
-- 日志：`./scripts/clawlog.sh`（子系统 `bot.molt`，类别 `WebChatSwiftUI`）。
+- æ—¥å¿—ï¼š`./scripts/clawlog.sh`ï¼ˆå­ç³»ç»Ÿ `bot.molt`ï¼Œç±»åˆ« `WebChatSwiftUI`ï¼‰ã€‚
 
-## 工作原理
+## å·¥ä½œåŽŸç†
 
-- 数据平面：Gateway 网关 WS 方法 `chat.history`、`chat.send`、`chat.abort`、`chat.inject` 和事件 `chat`、`agent`、`presence`、`tick`、`health`。
-- 会话：默认为主会话（`main`，或当范围为全局时为 `global`）。UI 可以在会话之间切换。
-- 新手引导使用专用会话，以将首次运行设置分开。
+- æ•°æ®å¹³é¢ï¼šGateway ç½‘å…³ WS æ–¹æ³• `chat.history`ã€`chat.send`ã€`chat.abort`ã€`chat.inject` å’Œäº‹ä»¶ `chat`ã€`agent`ã€`presence`ã€`tick`ã€`health`ã€‚
+- ä¼šè¯ï¼šé»˜è®¤ä¸ºä¸»ä¼šè¯ï¼ˆ`main`ï¼Œæˆ–å½“èŒƒå›´ä¸ºå…¨å±€æ—¶ä¸º `global`ï¼‰ã€‚UI å¯ä»¥åœ¨ä¼šè¯ä¹‹é—´åˆ‡æ¢ã€‚
+- æ–°æ‰‹å¼•å¯¼ä½¿ç”¨ä¸“ç”¨ä¼šè¯ï¼Œä»¥å°†é¦–æ¬¡è¿è¡Œè®¾ç½®åˆ†å¼€ã€‚
 
-## 安全面
+## å®‰å…¨é¢
 
-- 远程模式仅通过 SSH 转发 Gateway 网关 WebSocket 控制端口。
+- è¿œç¨‹æ¨¡å¼ä»…é€šè¿‡ SSH è½¬å‘ Gateway ç½‘å…³ WebSocket æŽ§åˆ¶ç«¯å£ã€‚
 
-## 已知限制
+## å·²çŸ¥é™åˆ¶
 
-- UI 针对聊天会话优化（不是完整的浏览器沙箱）。
+- UI é’ˆå¯¹èŠå¤©ä¼šè¯ä¼˜åŒ–ï¼ˆä¸æ˜¯å®Œæ•´çš„æµè§ˆå™¨æ²™ç®±ï¼‰ã€‚
+

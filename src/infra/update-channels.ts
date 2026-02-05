@@ -1,4 +1,4 @@
-export type UpdateChannel = "stable" | "beta" | "dev";
+﻿export type UpdateChannel = "stable" | "beta" | "dev";
 export type UpdateChannelSource = "config" | "git-tag" | "git-branch" | "default";
 
 export const DEFAULT_PACKAGE_CHANNEL: UpdateChannel = "stable";
@@ -81,3 +81,4 @@ export function formatUpdateChannelLabel(params: {
   }
   return `${params.channel} (default)`;
 }
+

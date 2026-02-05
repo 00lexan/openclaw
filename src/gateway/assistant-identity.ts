@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent-scope.js";
 import { resolveAgentIdentity } from "../agents/identity.js";
 import { loadAgentIdentity } from "../commands/agents.config.js";
@@ -94,7 +94,7 @@ function normalizeEmojiValue(value: string | undefined): string | undefined {
 }
 
 export function resolveAssistantIdentity(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   agentId?: string | null;
   workspaceDir?: string | null;
 }): AssistantIdentity {
@@ -131,3 +131,4 @@ export function resolveAssistantIdentity(params: {
 
   return { agentId, name, avatar, emoji };
 }
+

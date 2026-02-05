@@ -1,12 +1,12 @@
----
+﻿---
 name: openhue
 description: Control Philips Hue lights/scenes via the OpenHue CLI.
 homepage: https://www.openhue.io/cli
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "💡",
+        "emoji": "ðŸ’¡",
         "requires": { "bins": ["openhue"] },
         "install":
           [
@@ -49,3 +49,4 @@ Notes
 
 - You may need to press the Hue Bridge button during setup.
 - Use `--room "Room Name"` when light names are ambiguous.
+

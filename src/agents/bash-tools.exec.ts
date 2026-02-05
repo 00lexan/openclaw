@@ -1,4 +1,4 @@
-import type { AgentTool, AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentTool, AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { ChildProcessWithoutNullStreams } from "node:child_process";
 import { Type } from "@sinclair/typebox";
 import crypto from "node:crypto";
@@ -112,7 +112,7 @@ const DEFAULT_MAX_OUTPUT = clampNumber(
   200_000,
 );
 const DEFAULT_PENDING_MAX_OUTPUT = clampNumber(
-  readEnvInt("OPENCLAW_BASH_PENDING_MAX_OUTPUT_CHARS"),
+  readEnvInt("_BASH_PENDING_MAX_OUTPUT_CHARS"),
   200_000,
   1_000,
   200_000,
@@ -1628,3 +1628,4 @@ export function createExecTool(
 }
 
 export const execTool = createExecTool();
+

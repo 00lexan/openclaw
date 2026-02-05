@@ -1,4 +1,4 @@
-import type { OutboundSendDeps } from "../infra/outbound/deliver.js";
+﻿import type { OutboundSendDeps } from "../infra/outbound/deliver.js";
 
 export type CliDeps = {
   sendMessageWhatsApp: NonNullable<OutboundSendDeps["sendWhatsApp"]>;
@@ -20,3 +20,4 @@ export function createOutboundSendDeps(deps: CliDeps): OutboundSendDeps {
     sendIMessage: deps.sendMessageIMessage,
   };
 }
+

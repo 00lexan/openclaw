@@ -1,4 +1,4 @@
-const ESC = String.fromCharCode(0x1b);
+﻿const ESC = String.fromCharCode(0x1b);
 const DSR_PATTERN = new RegExp(`${ESC}\\[\\??6n`, "g");
 
 export function stripDsrRequests(input: string): { cleaned: string; requests: number } {
@@ -13,3 +13,4 @@ export function stripDsrRequests(input: string): { cleaned: string; requests: nu
 export function buildCursorPositionResponse(row = 1, col = 1): string {
   return `\x1b[${row};${col}R`;
 }
+

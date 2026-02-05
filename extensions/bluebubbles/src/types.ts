@@ -1,4 +1,4 @@
-export type DmPolicy = "pairing" | "allowlist" | "open" | "disabled";
+﻿export type DmPolicy = "pairing" | "allowlist" | "open" | "disabled";
 export type GroupPolicy = "open" | "disabled" | "allowlist";
 
 export type BlueBubblesGroupConfig = {
@@ -125,3 +125,4 @@ export async function blueBubblesFetchWithTimeout(
     clearTimeout(timer);
   }
 }
+

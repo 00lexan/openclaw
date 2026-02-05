@@ -1,4 +1,4 @@
-# Dependabot configuration
+﻿# Dependabot configuration
 # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
@@ -111,3 +111,4 @@ updates:
           - minor
           - patch
     open-pull-requests-limit: 5
+

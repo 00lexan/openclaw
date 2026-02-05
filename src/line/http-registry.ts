@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+﻿import type { IncomingMessage, ServerResponse } from "node:http";
 
 export type LineHttpRequestHandler = (
   req: IncomingMessage,
@@ -47,3 +47,4 @@ export async function handleLineHttpRequest(
   await handler(req, res);
   return true;
 }
+

@@ -1,4 +1,4 @@
-import type { loadConfig } from "../../../config/config.js";
+﻿import type { loadConfig } from "../../../config/config.js";
 import type { MentionConfig } from "../mentions.js";
 import type { WebInboundMsg } from "../types.js";
 import { hasControlCommand } from "../../../auto-reply/command-detection.js";
@@ -147,3 +147,4 @@ export function applyGroupGating(params: {
 
   return { shouldProcess: true };
 }
+

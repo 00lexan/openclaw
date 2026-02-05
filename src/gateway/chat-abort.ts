@@ -1,4 +1,4 @@
-import { isAbortTrigger } from "../auto-reply/reply/abort.js";
+﻿import { isAbortTrigger } from "../auto-reply/reply/abort.js";
 
 export type ChatAbortControllerEntry = {
   controller: AbortController;
@@ -113,3 +113,4 @@ export function abortChatRunsForSessionKey(
   }
   return { aborted: runIds.length > 0, runIds };
 }
+

@@ -1,9 +1,9 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import type { MsgContext } from "../auto-reply/templating.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import {
   buildProviderRegistry,
   createMediaAttachmentCache,
@@ -13,7 +13,7 @@ import {
 
 describe("runCapability deepgram provider options", () => {
   it("merges provider options, headers, and baseUrl overrides", async () => {
-    const tmpPath = path.join(os.tmpdir(), `openclaw-deepgram-${Date.now()}.wav`);
+    const tmpPath = path.join(os.tmpdir(), `-deepgram-${Date.now()}.wav`);
     await fs.writeFile(tmpPath, Buffer.from("RIFF"));
     const ctx: MsgContext = { MediaPath: tmpPath, MediaType: "audio/wav" };
     const media = normalizeMediaAttachments(ctx);
@@ -78,7 +78,7 @@ describe("runCapability deepgram provider options", () => {
           },
         },
       },
-    } as unknown as OpenClawConfig;
+    } as unknown as Config;
 
     try {
       const result = await runCapability({
@@ -108,3 +108,4 @@ describe("runCapability deepgram provider options", () => {
     }
   });
 });
+

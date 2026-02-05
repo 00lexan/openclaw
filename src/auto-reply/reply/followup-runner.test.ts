@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -63,7 +63,7 @@ const baseQueuedRun = (messageProvider = "whatsapp"): FollowupRun =>
 describe("createFollowupRunner compaction", () => {
   it("adds verbose auto-compaction notice and tracks count", async () => {
     const storePath = path.join(
-      await fs.mkdtemp(path.join(tmpdir(), "openclaw-compaction-")),
+      await fs.mkdtemp(path.join(tmpdir(), "-compaction-")),
       "sessions.json",
     );
     const sessionEntry: SessionEntry = {
@@ -197,7 +197,7 @@ describe("createFollowupRunner messaging tool dedupe", () => {
 
   it("persists usage even when replies are suppressed", async () => {
     const storePath = path.join(
-      await fs.mkdtemp(path.join(tmpdir(), "openclaw-followup-usage-")),
+      await fs.mkdtemp(path.join(tmpdir(), "-followup-usage-")),
       "sessions.json",
     );
     const sessionKey = "main";
@@ -238,3 +238,4 @@ describe("createFollowupRunner messaging tool dedupe", () => {
     expect(store[sessionKey]?.model).toBe("claude-opus-4-5");
   });
 });
+

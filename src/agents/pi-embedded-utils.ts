@@ -1,4 +1,4 @@
-import type { AssistantMessage } from "@mariozechner/pi-ai";
+﻿import type { AssistantMessage } from "@mariozechner/pi-ai";
 import { stripReasoningTagsFromText } from "../shared/text/reasoning-tags.js";
 import { sanitizeUserFacingText } from "./pi-embedded-helpers.js";
 import { formatToolDetail, resolveToolDisplay } from "./tool-display.js";
@@ -417,3 +417,4 @@ export function inferToolMetaFromArgs(toolName: string, args: unknown): string |
   const display = resolveToolDisplay({ name: toolName, args });
   return formatToolDetail(display);
 }
+

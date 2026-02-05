@@ -1,5 +1,5 @@
-import type { ReplyPayload } from "../auto-reply/types.js";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { ReplyPayload } from "../auto-reply/types.js";
+import type { Config } from "../config/config.js";
 import type { SignalReactionNotificationMode } from "../config/types.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { chunkTextWithMode, resolveChunkMode, resolveTextChunkLimit } from "../auto-reply/chunk.js";
@@ -40,7 +40,7 @@ export type MonitorSignalOpts = {
   abortSignal?: AbortSignal;
   account?: string;
   accountId?: string;
-  config?: OpenClawConfig;
+  config?: Config;
   baseUrl?: string;
   autoStart?: boolean;
   startupTimeoutMs?: number;
@@ -398,3 +398,4 @@ export async function monitorSignalProvider(opts: MonitorSignalOpts = {}): Promi
     daemonHandle?.stop();
   }
 }
+

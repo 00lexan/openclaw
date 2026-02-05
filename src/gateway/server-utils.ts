@@ -1,4 +1,4 @@
-import { defaultVoiceWakeTriggers } from "../infra/voicewake.js";
+﻿import { defaultVoiceWakeTriggers } from "../infra/voicewake.js";
 
 export function normalizeVoiceWakeTriggers(input: unknown): string[] {
   const raw = Array.isArray(input) ? input : [];
@@ -38,3 +38,4 @@ export function formatError(err: unknown): string {
     return String(err);
   }
 }
+

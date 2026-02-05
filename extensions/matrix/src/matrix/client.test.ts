@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { CoreConfig } from "../types.js";
 import { resolveMatrixConfig } from "./client.js";
 
@@ -54,3 +54,4 @@ describe("resolveMatrixConfig", () => {
     expect(resolved.encryption).toBe(false);
   });
 });
+

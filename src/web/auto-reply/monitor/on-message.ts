@@ -1,4 +1,4 @@
-import type { getReplyFromConfig } from "../../../auto-reply/reply.js";
+﻿import type { getReplyFromConfig } from "../../../auto-reply/reply.js";
 import type { MsgContext } from "../../../auto-reply/templating.js";
 import type { loadConfig } from "../../../config/config.js";
 import type { MentionConfig } from "../mentions.js";
@@ -84,7 +84,7 @@ export function createWebOnMessageHandler(params: {
 
     // Same-phone mode logging retained
     if (msg.from === msg.to) {
-      logVerbose(`📱 Same-phone mode detected (from === to: ${msg.from})`);
+      logVerbose(`ðŸ“± Same-phone mode detected (from === to: ${msg.from})`);
     }
 
     // Skip if this is a message we just sent (echo detection)
@@ -167,3 +167,4 @@ export function createWebOnMessageHandler(params: {
     await processForRoute(msg, route, groupHistoryKey);
   };
 }
+

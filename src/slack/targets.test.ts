@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizeSlackMessagingTarget } from "../channels/plugins/normalize/slack.js";
 import { parseSlackTarget, resolveSlackChannelId } from "./targets.js";
 
@@ -56,3 +56,4 @@ describe("normalizeSlackMessagingTarget", () => {
     expect(normalizeSlackMessagingTarget("C123")).toBe("channel:c123");
   });
 });
+

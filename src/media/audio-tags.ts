@@ -1,4 +1,4 @@
-import { parseInlineDirectives } from "../utils/directive-tags.js";
+﻿import { parseInlineDirectives } from "../utils/directive-tags.js";
 
 /**
  * Extract audio mode tag from text.
@@ -17,3 +17,4 @@ export function parseAudioTag(text?: string): {
     hadTag: result.hasAudioTag,
   };
 }
+

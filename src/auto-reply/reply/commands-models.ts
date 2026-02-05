@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import type { ReplyPayload } from "../types.js";
 import type { CommandHandler } from "./commands-types.js";
 import { DEFAULT_MODEL, DEFAULT_PROVIDER } from "../../agents/defaults.js";
@@ -31,7 +31,7 @@ export type ModelsProviderData = {
  * Build provider/model data from config and catalog.
  * Exported for reuse by callback handlers.
  */
-export async function buildModelsProviderData(cfg: OpenClawConfig): Promise<ModelsProviderData> {
+export async function buildModelsProviderData(cfg: Config): Promise<ModelsProviderData> {
   const resolvedDefault = resolveConfiguredModelRef({
     cfg,
     defaultProvider: DEFAULT_PROVIDER,
@@ -178,7 +178,7 @@ function parseModelsArgs(raw: string): {
 }
 
 export async function resolveModelsCommandReply(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   commandBodyNormalized: string;
   surface?: string;
   currentModel?: string;
@@ -240,7 +240,7 @@ export async function resolveModelsCommandReply(params: {
 
   if (total === 0) {
     const lines: string[] = [
-      `Models (${provider}) — none`,
+      `Models (${provider}) â€” none`,
       "",
       "Browse: /models",
       "Switch: /model <provider/model>",
@@ -263,7 +263,7 @@ export async function resolveModelsCommandReply(params: {
       pageSize: telegramPageSize,
     });
 
-    const text = `Models (${provider}) — ${total} available`;
+    const text = `Models (${provider}) â€” ${total} available`;
     return {
       text,
       channelData: { telegram: { buttons } },
@@ -289,7 +289,7 @@ export async function resolveModelsCommandReply(params: {
   const endIndexExclusive = Math.min(total, startIndex + effectivePageSize);
   const pageModels = models.slice(startIndex, endIndexExclusive);
 
-  const header = `Models (${provider}) — showing ${startIndex + 1}-${endIndexExclusive} of ${total} (page ${safePage}/${pageCount})`;
+  const header = `Models (${provider}) â€” showing ${startIndex + 1}-${endIndexExclusive} of ${total} (page ${safePage}/${pageCount})`;
 
   const lines: string[] = [header];
   for (const id of pageModels) {
@@ -324,3 +324,4 @@ export const handleModelsCommand: CommandHandler = async (params, allowTextComma
   }
   return { reply, shouldContinue: false };
 };
+

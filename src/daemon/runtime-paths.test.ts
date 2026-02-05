@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 
 const fsMocks = vi.hoisted(() => ({
   access: vi.fn(),
@@ -121,3 +121,4 @@ describe("resolveSystemNodeInfo", () => {
     expect(warning).toContain(darwinNode);
   });
 });
+

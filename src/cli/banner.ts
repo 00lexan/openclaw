@@ -1,4 +1,4 @@
-import { resolveCommitHash } from "../infra/git-commit.js";
+﻿import { resolveCommitHash } from "../infra/git-commit.js";
 import { visibleWidth } from "../terminal/ansi.js";
 import { isRich, theme } from "../terminal/theme.js";
 import { pickTagline, type TaglineOptions } from "./tagline.js";
@@ -39,16 +39,16 @@ export function formatCliBannerLine(version: string, options: BannerOptions = {}
   const commitLabel = commit ?? "unknown";
   const tagline = pickTagline(options);
   const rich = options.richTty ?? isRich();
-  const title = "🦞 OpenClaw";
-  const prefix = "🦞 ";
+  const title = "ðŸ¦ž ";
+  const prefix = "ðŸ¦ž ";
   const columns = options.columns ?? process.stdout.columns ?? 120;
-  const plainFullLine = `${title} ${version} (${commitLabel}) — ${tagline}`;
+  const plainFullLine = `${title} ${version} (${commitLabel}) â€” ${tagline}`;
   const fitsOnOneLine = visibleWidth(plainFullLine) <= columns;
   if (rich) {
     if (fitsOnOneLine) {
       return `${theme.heading(title)} ${theme.info(version)} ${theme.muted(
         `(${commitLabel})`,
-      )} ${theme.muted("—")} ${theme.accentDim(tagline)}`;
+      )} ${theme.muted("â€”")} ${theme.accentDim(tagline)}`;
     }
     const line1 = `${theme.heading(title)} ${theme.info(version)} ${theme.muted(
       `(${commitLabel})`,
@@ -65,12 +65,12 @@ export function formatCliBannerLine(version: string, options: BannerOptions = {}
 }
 
 const LOBSTER_ASCII = [
-  "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",
-  "██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██",
-  "██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██",
-  "██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██",
-  "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀",
-  "                  🦞 OPENCLAW 🦞                    ",
+  "â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„",
+  "â–ˆâ–ˆâ–‘â–„â–„â–„â–‘â–ˆâ–ˆâ–‘â–„â–„â–‘â–ˆâ–ˆâ–‘â–„â–„â–„â–ˆâ–ˆâ–‘â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–‘â–„â–„â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–‘â–„â–„â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–‘â–ˆâ–ˆ",
+  "â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–‘â–ˆâ–ˆâ–‘â–€â–€â–‘â–ˆâ–ˆâ–‘â–„â–„â–„â–ˆâ–ˆâ–‘â–ˆâ–‘â–ˆâ–‘â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–‘â–€â–€â–‘â–ˆâ–ˆâ–‘â–ˆâ–‘â–ˆâ–‘â–ˆâ–ˆ",
+  "â–ˆâ–ˆâ–‘â–€â–€â–€â–‘â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–€â–€â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–„â–‘â–ˆâ–ˆâ–‘â–€â–€â–„â–ˆâ–ˆâ–‘â–€â–€â–‘â–ˆâ–‘â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–„â–€â–„â–€â–„â–ˆâ–ˆ",
+  "â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€",
+  "                  ðŸ¦ž  ðŸ¦ž                    ",
   " ",
 ];
 
@@ -81,25 +81,25 @@ export function formatCliBannerArt(options: BannerOptions = {}): string {
   }
 
   const colorChar = (ch: string) => {
-    if (ch === "█") {
+    if (ch === "â–ˆ") {
       return theme.accentBright(ch);
     }
-    if (ch === "░") {
+    if (ch === "â–‘") {
       return theme.accentDim(ch);
     }
-    if (ch === "▀") {
+    if (ch === "â–€") {
       return theme.accent(ch);
     }
     return theme.muted(ch);
   };
 
   const colored = LOBSTER_ASCII.map((line) => {
-    if (line.includes("OPENCLAW")) {
+    if (line.includes("")) {
       return (
         theme.muted("              ") +
-        theme.accent("🦞") +
-        theme.info(" OPENCLAW ") +
-        theme.accent("🦞")
+        theme.accent("ðŸ¦ž") +
+        theme.info("  ") +
+        theme.accent("ðŸ¦ž")
       );
     }
     return splitGraphemes(line).map(colorChar).join("");
@@ -130,3 +130,4 @@ export function emitCliBanner(version: string, options: BannerOptions = {}) {
 export function hasEmittedCliBanner(): boolean {
   return bannerEmitted;
 }
+

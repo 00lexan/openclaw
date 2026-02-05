@@ -1,12 +1,12 @@
----
+﻿---
 name: openai-image-gen
 description: Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery.
 homepage: https://platform.openai.com/docs/api-reference/images
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🖼️",
+        "emoji": "ðŸ–¼ï¸",
         "requires": { "bins": ["python3"], "env": ["OPENAI_API_KEY"] },
         "primaryEnv": "OPENAI_API_KEY",
         "install":
@@ -25,7 +25,7 @@ metadata:
 
 # OpenAI Image Gen
 
-Generate a handful of “random but structured” prompts and render them via the OpenAI Images API.
+Generate a handful of â€œrandom but structuredâ€ prompts and render them via the OpenAI Images API.
 
 ## Run
 
@@ -85,5 +85,6 @@ Different models support different parameter values. The script automatically se
 ## Output
 
 - `*.png`, `*.jpeg`, or `*.webp` images (output format depends on model + `--output-format`)
-- `prompts.json` (prompt → file mapping)
+- `prompts.json` (prompt â†’ file mapping)
 - `index.html` (thumbnail gallery)
+

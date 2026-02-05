@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   APIChannel,
   APIGuildMember,
   APIGuildScheduledEvent,
@@ -138,3 +138,4 @@ export async function banMemberDiscord(
 }
 
 // Channel management functions
+

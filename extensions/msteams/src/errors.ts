@@ -1,4 +1,4 @@
-export function formatUnknownError(err: unknown): string {
+﻿export function formatUnknownError(err: unknown): string {
   if (err instanceof Error) {
     return err.message;
   }
@@ -188,3 +188,4 @@ export function formatMSTeamsSendErrorHint(
   }
   return undefined;
 }
+

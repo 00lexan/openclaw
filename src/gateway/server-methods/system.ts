@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import { resolveMainSessionKeyFromConfig } from "../../config/sessions.js";
 import { getLastHeartbeatEvent } from "../../infra/heartbeat-events.js";
 import { setHeartbeatsEnabled } from "../../infra/heartbeat-runner.js";
@@ -112,7 +112,7 @@ export const systemHandlers: GatewayRequestHandlers = {
         if (reasonChanged) {
           parts.push(`reason ${reasonValue?.trim() || "event"}`);
         }
-        const deltaText = parts.join(" · ");
+        const deltaText = parts.join(" Â· ");
         if (deltaText) {
           enqueueSystemEvent(deltaText, {
             sessionKey,
@@ -138,3 +138,4 @@ export const systemHandlers: GatewayRequestHandlers = {
     respond(true, { ok: true }, undefined);
   },
 };
+

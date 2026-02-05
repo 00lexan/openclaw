@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { computeNextRunAtMs } from "./schedule.js";
 
 describe("cron schedule", () => {
@@ -34,3 +34,4 @@ describe("cron schedule", () => {
     expect(next).toBe(anchor + 30_000);
   });
 });
+

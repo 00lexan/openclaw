@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { buildNodeShellCommand } from "./node-shell.js";
 
 describe("buildNodeShellCommand", () => {
@@ -37,3 +37,4 @@ describe("buildNodeShellCommand", () => {
     expect(buildNodeShellCommand("echo hi")).toEqual(["/bin/sh", "-lc", "echo hi"]);
   });
 });
+

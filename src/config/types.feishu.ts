@@ -1,4 +1,4 @@
-import type { DmPolicy, GroupPolicy, MarkdownConfig, OutboundRetryConfig } from "./types.base.js";
+﻿import type { DmPolicy, GroupPolicy, MarkdownConfig, OutboundRetryConfig } from "./types.base.js";
 import type { ChannelHeartbeatVisibilityConfig } from "./types.channels.js";
 import type { DmConfig, ProviderCommandsConfig } from "./types.messages.js";
 import type { GroupToolPolicyBySenderConfig, GroupToolPolicyConfig } from "./types.tools.js";
@@ -98,3 +98,4 @@ export type FeishuConfig = {
   /** Top-level app secret file (alternative to accounts). */
   appSecretFile?: string;
 } & Omit<FeishuAccountConfig, "appId" | "appSecret" | "appSecretFile">;
+

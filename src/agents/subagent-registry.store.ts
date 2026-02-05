@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import type { SubagentRunRecord } from "./subagent-registry.js";
 import { STATE_DIR } from "../config/paths.js";
 import { loadJsonFile, saveJsonFile } from "../infra/json-file.js";
@@ -116,3 +116,4 @@ export function saveSubagentRegistryToDisk(runs: Map<string, SubagentRunRecord>)
   };
   saveJsonFile(pathname, out);
 }
+

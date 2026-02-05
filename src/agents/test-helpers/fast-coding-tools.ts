@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+﻿import { vi } from "vitest";
 
 const stubTool = (name: string) => ({
   name,
@@ -20,3 +20,4 @@ vi.mock("../../plugins/tools.js", () => ({
   resolvePluginTools: () => [],
   getPluginToolMeta: () => undefined,
 }));
+

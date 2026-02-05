@@ -1,4 +1,4 @@
-export { applyMediaUnderstanding } from "./apply.js";
+﻿export { applyMediaUnderstanding } from "./apply.js";
 export { formatMediaUnderstandingBody } from "./format.js";
 export { resolveMediaUnderstandingScope } from "./scope.js";
 export type {
@@ -7,3 +7,4 @@ export type {
   MediaUnderstandingProvider,
   MediaUnderstandingKind,
 } from "./types.js";
+

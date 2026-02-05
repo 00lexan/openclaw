@@ -1,4 +1,4 @@
-import { RateLimitError } from "@buape/carbon";
+﻿import { RateLimitError } from "@buape/carbon";
 import { Routes } from "discord-api-types/v10";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
@@ -171,9 +171,9 @@ describe("uploadStickerDiscord", () => {
     await uploadStickerDiscord(
       {
         guildId: "g1",
-        name: "openclaw_wave",
-        description: "OpenClaw waving",
-        tags: "👋",
+        name: "_wave",
+        description: " waving",
+        tags: "ðŸ‘‹",
         mediaUrl: "file:///tmp/wave.png",
       },
       { rest, token: "t" },
@@ -182,9 +182,9 @@ describe("uploadStickerDiscord", () => {
       Routes.guildStickers("g1"),
       expect.objectContaining({
         body: {
-          name: "openclaw_wave",
-          description: "OpenClaw waving",
-          tags: "👋",
+          name: "_wave",
+          description: " waving",
+          tags: "ðŸ‘‹",
           files: [
             expect.objectContaining({
               name: "asset.png",
@@ -387,3 +387,4 @@ describe("retry rate limits", () => {
     expect(postMock).toHaveBeenCalledTimes(3);
   });
 });
+

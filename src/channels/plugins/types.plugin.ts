@@ -1,4 +1,4 @@
-import type { ChannelOnboardingAdapter } from "./onboarding-types.js";
+﻿import type { ChannelOnboardingAdapter } from "./onboarding-types.js";
 import type {
   ChannelAuthAdapter,
   ChannelCommandAdapter,
@@ -82,3 +82,4 @@ export type ChannelPlugin<ResolvedAccount = any, Probe = unknown, Audit = unknow
   // Channel-owned agent tools (login flows, etc.).
   agentTools?: ChannelAgentToolFactory | ChannelAgentTool[];
 };
+

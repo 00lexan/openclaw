@@ -1,4 +1,4 @@
-export * from "./internal-hooks.js";
+﻿export * from "./internal-hooks.js";
 
 export type HookEventType = import("./internal-hooks.js").InternalHookEventType;
 export type HookEvent = import("./internal-hooks.js").InternalHookEvent;
@@ -12,3 +12,4 @@ export {
   triggerInternalHook as triggerHook,
   createInternalHookEvent as createHookEvent,
 } from "./internal-hooks.js";
+

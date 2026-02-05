@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 
 export function registerMessagePinCommands(message: Command, helpers: MessageCliHelpers) {
@@ -33,3 +33,4 @@ export function registerMessagePinCommands(message: Command, helpers: MessageCli
 
   void pins;
 }
+

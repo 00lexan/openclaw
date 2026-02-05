@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   chunkByNewline,
   chunkMarkdownText,
@@ -395,3 +395,4 @@ describe("resolveChunkMode", () => {
     expect(resolveChunkMode(cfg, "slack", "other")).toBe("length");
   });
 });
+

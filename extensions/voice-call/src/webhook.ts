@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import http from "node:http";
 import { URL } from "node:url";
 import type { VoiceCallConfig } from "./config.js";
@@ -489,3 +489,4 @@ export async function cleanupTailscaleExposure(config: VoiceCallConfig): Promise
   const mode = config.tailscale.mode === "funnel" ? "funnel" : "serve";
   await cleanupTailscaleExposureRoute({ mode, path: config.tailscale.path });
 }
+

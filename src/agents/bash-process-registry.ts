@@ -1,4 +1,4 @@
-import type { ChildProcessWithoutNullStreams } from "node:child_process";
+﻿import type { ChildProcessWithoutNullStreams } from "node:child_process";
 import { createSessionSlug as createSessionSlugId } from "./session-slug.js";
 
 const DEFAULT_JOB_TTL_MS = 30 * 60 * 1000; // 30 minutes
@@ -272,3 +272,4 @@ function stopSweeper() {
   clearInterval(sweeper);
   sweeper = null;
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   deliveryContextKey,
   deliveryContextFromSession,
@@ -127,3 +127,4 @@ describe("delivery context helpers", () => {
     expect(normalized.lastThreadId).toBe("444");
   });
 });
+

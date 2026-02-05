@@ -1,4 +1,4 @@
-import type { WizardPrompter } from "../../../wizard/prompts.js";
+﻿import type { WizardPrompter } from "../../../wizard/prompts.js";
 
 export type ChannelAccessPolicy = "allowlist" | "open" | "disabled";
 
@@ -98,3 +98,4 @@ export async function promptChannelAccessConfig(params: {
   });
   return { policy, entries };
 }
+

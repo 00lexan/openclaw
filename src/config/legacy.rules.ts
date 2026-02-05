@@ -1,4 +1,4 @@
-import type { LegacyConfigRule } from "./legacy.shared.js";
+﻿import type { LegacyConfigRule } from "./legacy.shared.js";
 
 export const LEGACY_CONFIG_RULES: LegacyConfigRule[] = [
   {
@@ -129,3 +129,4 @@ export const LEGACY_CONFIG_RULES: LegacyConfigRule[] = [
     message: "gateway.token is ignored; use gateway.auth.token instead (auto-migrated on load).",
   },
 ];
+

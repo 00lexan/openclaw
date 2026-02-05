@@ -1,4 +1,4 @@
-import type { ChannelId } from "../channels/plugins/types.js";
+﻿import type { ChannelId } from "../channels/plugins/types.js";
 
 export type CronSchedule =
   | { kind: "at"; at: string }
@@ -92,3 +92,4 @@ export type CronJobPatch = Partial<Omit<CronJob, "id" | "createdAtMs" | "state" 
   delivery?: CronDeliveryPatch;
   state?: Partial<CronJobState>;
 };
+

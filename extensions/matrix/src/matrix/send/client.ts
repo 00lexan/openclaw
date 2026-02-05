@@ -1,4 +1,4 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
 import type { CoreConfig } from "../types.js";
 import { getMatrixRuntime } from "../../runtime.js";
 import { getActiveMatrixClient } from "../active-client.js";
@@ -37,7 +37,7 @@ export async function resolveMatrixClient(opts: {
   if (active) {
     return { client: active, stopOnDone: false };
   }
-  const shouldShareClient = Boolean(process.env.OPENCLAW_GATEWAY_PORT);
+  const shouldShareClient = Boolean(process.env._GATEWAY_PORT);
   if (shouldShareClient) {
     const client = await resolveSharedMatrixClient({
       timeoutMs: opts.timeoutMs,
@@ -64,3 +64,4 @@ export async function resolveMatrixClient(opts: {
   await client.start();
   return { client, stopOnDone: true };
 }
+

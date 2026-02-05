@@ -1,4 +1,4 @@
-import { parseInlineDirectives } from "../../utils/directive-tags.js";
+﻿import { parseInlineDirectives } from "../../utils/directive-tags.js";
 
 export function extractReplyToTag(
   text?: string,
@@ -20,3 +20,4 @@ export function extractReplyToTag(
     hasTag: result.hasReplyTag,
   };
 }
+

@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import { resolveFetch } from "../infra/fetch.js";
 
 export type SignalRpcOptions = {
@@ -192,3 +192,4 @@ export async function streamSignalEvents(params: {
 
   flushEvent();
 }
+

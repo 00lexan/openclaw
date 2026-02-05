@@ -1,4 +1,4 @@
-import type { SignalEventHandlerDeps, SignalReceivePayload } from "./event-handler.types.js";
+﻿import type { SignalEventHandlerDeps, SignalReceivePayload } from "./event-handler.types.js";
 import { resolveHumanDelayConfig } from "../../agents/identity.js";
 import { hasControlCommand } from "../../auto-reply/command-detection.js";
 import { dispatchInboundMessage } from "../../auto-reply/dispatch.js";
@@ -579,3 +579,4 @@ export function createSignalEventHandler(deps: SignalEventHandlerDeps) {
     });
   };
 }
+

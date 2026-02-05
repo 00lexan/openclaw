@@ -1,4 +1,4 @@
----
+﻿---
 role: language-specification
 summary: |
   Complete syntax grammar, validation rules, and compilation semantics for OpenProse.
@@ -88,7 +88,7 @@ OpenProse provides a declarative syntax for defining multi-agent workflows. Prog
 
 ### Design Principles
 
-- **Pattern over framework**: The simplest solution is barely anything at all—just structure for English
+- **Pattern over framework**: The simplest solution is barely anything at allâ€”just structure for English
 - **Self-evident**: Programs should be understandable with minimal documentation
 - **The OpenProse VM is intelligent**: Design for understanding, not parsing
 - **Framework-agnostic**: Works with Claude Code, OpenCode, and any future agent framework
@@ -2132,8 +2132,8 @@ finally:
 
 #### Execution Order
 
-1. **Try succeeds**: try body → finally body
-2. **Try fails**: try body (until failure) → catch body → finally body
+1. **Try succeeds**: try body â†’ finally body
+2. **Try fails**: try body (until failure) â†’ catch body â†’ finally body
 
 ### Try/Finally (No Catch)
 
@@ -2854,22 +2854,22 @@ All core features through Tier 12 have been implemented. Potential future enhanc
 ## Syntax Grammar (Implemented)
 
 ```
-program     → statement* EOF
-statement   → useStatement | inputDecl | agentDef | session | resumeStmt
+program     â†’ statement* EOF
+statement   â†’ useStatement | inputDecl | agentDef | session | resumeStmt
             | letBinding | constBinding | assignment | outputBinding
             | parallelBlock | repeatBlock | forEachBlock | loopBlock
             | tryBlock | choiceBlock | ifStatement | doBlock | blockDef
             | throwStatement | comment
 
 # Program Composition
-useStatement → "use" string ( "as" IDENTIFIER )?
-inputDecl   → "input" IDENTIFIER ":" string
-outputBinding → "output" IDENTIFIER "=" expression
-programCall → IDENTIFIER "(" ( IDENTIFIER ":" expression )* ")"
+useStatement â†’ "use" string ( "as" IDENTIFIER )?
+inputDecl   â†’ "input" IDENTIFIER ":" string
+outputBinding â†’ "output" IDENTIFIER "=" expression
+programCall â†’ IDENTIFIER "(" ( IDENTIFIER ":" expression )* ")"
 
 # Definitions
-agentDef    → "agent" IDENTIFIER ":" NEWLINE INDENT agentProperty* DEDENT
-agentProperty → "model:" ( "sonnet" | "opus" | "haiku" )
+agentDef    â†’ "agent" IDENTIFIER ":" NEWLINE INDENT agentProperty* DEDENT
+agentProperty â†’ "model:" ( "sonnet" | "opus" | "haiku" )
               | "prompt:" string
               | "persist:" ( "true" | "project" | string )
               | "context:" ( IDENTIFIER | array | objectContext )
@@ -2877,83 +2877,83 @@ agentProperty → "model:" ( "sonnet" | "opus" | "haiku" )
               | "backoff:" ( "none" | "linear" | "exponential" )
               | "skills:" "[" string* "]"
               | "permissions:" NEWLINE INDENT permission* DEDENT
-blockDef    → "block" IDENTIFIER params? ":" NEWLINE INDENT statement* DEDENT
-params      → "(" IDENTIFIER ( "," IDENTIFIER )* ")"
+blockDef    â†’ "block" IDENTIFIER params? ":" NEWLINE INDENT statement* DEDENT
+params      â†’ "(" IDENTIFIER ( "," IDENTIFIER )* ")"
 
 # Control Flow
-parallelBlock → "parallel" parallelMods? ":" NEWLINE INDENT parallelBranch* DEDENT
-parallelMods  → "(" ( joinStrategy | onFail | countMod ) ( "," ( joinStrategy | onFail | countMod ) )* ")"
-joinStrategy  → string                              # "all" | "first" | "any"
-onFail        → "on-fail" ":" string                # "fail-fast" | "continue" | "ignore"
-countMod      → "count" ":" NUMBER                  # only valid with "any"
-parallelBranch → ( IDENTIFIER "=" )? statement
+parallelBlock â†’ "parallel" parallelMods? ":" NEWLINE INDENT parallelBranch* DEDENT
+parallelMods  â†’ "(" ( joinStrategy | onFail | countMod ) ( "," ( joinStrategy | onFail | countMod ) )* ")"
+joinStrategy  â†’ string                              # "all" | "first" | "any"
+onFail        â†’ "on-fail" ":" string                # "fail-fast" | "continue" | "ignore"
+countMod      â†’ "count" ":" NUMBER                  # only valid with "any"
+parallelBranch â†’ ( IDENTIFIER "=" )? statement
 
 # Loops
-repeatBlock → "repeat" NUMBER ( "as" IDENTIFIER )? ":" NEWLINE INDENT statement* DEDENT
-forEachBlock → "parallel"? "for" IDENTIFIER ( "," IDENTIFIER )? "in" collection ":" NEWLINE INDENT statement* DEDENT
-loopBlock   → "loop" ( ( "until" | "while" ) discretion )? loopMods? ( "as" IDENTIFIER )? ":" NEWLINE INDENT statement* DEDENT
-loopMods    → "(" "max" ":" NUMBER ")"
+repeatBlock â†’ "repeat" NUMBER ( "as" IDENTIFIER )? ":" NEWLINE INDENT statement* DEDENT
+forEachBlock â†’ "parallel"? "for" IDENTIFIER ( "," IDENTIFIER )? "in" collection ":" NEWLINE INDENT statement* DEDENT
+loopBlock   â†’ "loop" ( ( "until" | "while" ) discretion )? loopMods? ( "as" IDENTIFIER )? ":" NEWLINE INDENT statement* DEDENT
+loopMods    â†’ "(" "max" ":" NUMBER ")"
 
 # Error Handling
-tryBlock    → "try" ":" NEWLINE INDENT statement+ DEDENT catchBlock? finallyBlock?
-catchBlock  → "catch" ( "as" IDENTIFIER )? ":" NEWLINE INDENT statement+ DEDENT
-finallyBlock → "finally" ":" NEWLINE INDENT statement+ DEDENT
-throwStatement → "throw" string?
+tryBlock    â†’ "try" ":" NEWLINE INDENT statement+ DEDENT catchBlock? finallyBlock?
+catchBlock  â†’ "catch" ( "as" IDENTIFIER )? ":" NEWLINE INDENT statement+ DEDENT
+finallyBlock â†’ "finally" ":" NEWLINE INDENT statement+ DEDENT
+throwStatement â†’ "throw" string?
 
 # Conditionals
-choiceBlock → "choice" discretion ":" NEWLINE INDENT choiceOption+ DEDENT
-choiceOption → "option" string ":" NEWLINE INDENT statement+ DEDENT
-ifStatement → "if" discretion ":" NEWLINE INDENT statement+ DEDENT elifClause* elseClause?
-elifClause  → "elif" discretion ":" NEWLINE INDENT statement+ DEDENT
-elseClause  → "else" ":" NEWLINE INDENT statement+ DEDENT
+choiceBlock â†’ "choice" discretion ":" NEWLINE INDENT choiceOption+ DEDENT
+choiceOption â†’ "option" string ":" NEWLINE INDENT statement+ DEDENT
+ifStatement â†’ "if" discretion ":" NEWLINE INDENT statement+ DEDENT elifClause* elseClause?
+elifClause  â†’ "elif" discretion ":" NEWLINE INDENT statement+ DEDENT
+elseClause  â†’ "else" ":" NEWLINE INDENT statement+ DEDENT
 
 # Composition
-doBlock     → "do" ( ":" NEWLINE INDENT statement* DEDENT | IDENTIFIER args? )
-args        → "(" expression ( "," expression )* ")"
-arrowExpr   → session ( "->" session )+
+doBlock     â†’ "do" ( ":" NEWLINE INDENT statement* DEDENT | IDENTIFIER args? )
+args        â†’ "(" expression ( "," expression )* ")"
+arrowExpr   â†’ session ( "->" session )+
 
 # Sessions
-session     → "session" ( string | ":" IDENTIFIER | IDENTIFIER ":" IDENTIFIER )
+session     â†’ "session" ( string | ":" IDENTIFIER | IDENTIFIER ":" IDENTIFIER )
               ( NEWLINE INDENT sessionProperty* DEDENT )?
-resumeStmt  → "resume" ":" IDENTIFIER ( NEWLINE INDENT sessionProperty* DEDENT )?
-sessionProperty → "model:" ( "sonnet" | "opus" | "haiku" )
+resumeStmt  â†’ "resume" ":" IDENTIFIER ( NEWLINE INDENT sessionProperty* DEDENT )?
+sessionProperty â†’ "model:" ( "sonnet" | "opus" | "haiku" )
                 | "prompt:" string
                 | "context:" ( IDENTIFIER | array | objectContext )
                 | "retry:" NUMBER
                 | "backoff:" ( "none" | "linear" | "exponential" )
 
 # Bindings
-letBinding  → "let" IDENTIFIER "=" expression
-constBinding → "const" IDENTIFIER "=" expression
-assignment  → IDENTIFIER "=" expression
+letBinding  â†’ "let" IDENTIFIER "=" expression
+constBinding â†’ "const" IDENTIFIER "=" expression
+assignment  â†’ IDENTIFIER "=" expression
 
 # Expressions
-expression  → session | doBlock | parallelBlock | repeatBlock | forEachBlock
+expression  â†’ session | doBlock | parallelBlock | repeatBlock | forEachBlock
             | loopBlock | arrowExpr | pipeExpr | programCall | string | IDENTIFIER | array | objectContext
 
 # Pipelines
-pipeExpr    → ( IDENTIFIER | array ) ( "|" pipeOp )+
-pipeOp      → ( "map" | "filter" | "pmap" ) ":" NEWLINE INDENT statement* DEDENT
+pipeExpr    â†’ ( IDENTIFIER | array ) ( "|" pipeOp )+
+pipeOp      â†’ ( "map" | "filter" | "pmap" ) ":" NEWLINE INDENT statement* DEDENT
             | "reduce" "(" IDENTIFIER "," IDENTIFIER ")" ":" NEWLINE INDENT statement* DEDENT
 
 # Properties
-property    → ( "model" | "prompt" | "context" | "retry" | "backoff" | IDENTIFIER )
+property    â†’ ( "model" | "prompt" | "context" | "retry" | "backoff" | IDENTIFIER )
             ":" ( IDENTIFIER | string | array | objectContext | NUMBER )
 
 # Primitives
-discretion  → "**" text "**" | "***" text "***"
-collection  → IDENTIFIER | array
-array       → "[" ( expression ( "," expression )* )? "]"
-objectContext → "{" ( IDENTIFIER ( "," IDENTIFIER )* )? "}"
-comment     → "#" text NEWLINE
+discretion  â†’ "**" text "**" | "***" text "***"
+collection  â†’ IDENTIFIER | array
+array       â†’ "[" ( expression ( "," expression )* )? "]"
+objectContext â†’ "{" ( IDENTIFIER ( "," IDENTIFIER )* )? "}"
+comment     â†’ "#" text NEWLINE
 
 # Strings
-string      → singleString | tripleString | interpolatedString
-singleString → '"' character* '"'
-tripleString → '"""' ( character | NEWLINE )* '"""'
-interpolatedString → string containing "{" IDENTIFIER "}"
-character   → escape | non-quote
-escape      → "\\" | "\"" | "\n" | "\t"
+string      â†’ singleString | tripleString | interpolatedString
+singleString â†’ '"' character* '"'
+tripleString â†’ '"""' ( character | NEWLINE )* '"""'
+interpolatedString â†’ string containing "{" IDENTIFIER "}"
+character   â†’ escape | non-quote
+escape      â†’ "\\" | "\"" | "\n" | "\t"
 ```
 
 ---
@@ -2969,3 +2969,4 @@ When a user invokes `/prose-compile` or asks you to compile a `.prose` file:
 5. **Output** the compiled program or report errors/warnings with line numbers
 
 For direct interpretation without compilation, read `prose.md` and execute statements as described in the Session Statement section.
+

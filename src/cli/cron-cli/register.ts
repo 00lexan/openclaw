@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { formatDocsLink } from "../../terminal/links.js";
 import { theme } from "../../terminal/theme.js";
 import {
@@ -16,7 +16,7 @@ export function registerCronCli(program: Command) {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/cron", "docs.openclaw.ai/cli/cron")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/cron", "docs..ai/cli/cron")}\n`,
     );
 
   registerCronStatusCommand(cron);
@@ -25,3 +25,4 @@ export function registerCronCli(program: Command) {
   registerCronSimpleCommands(cron);
   registerCronEditCommand(cron);
 }
+

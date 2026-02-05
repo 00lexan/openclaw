@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { TuiStreamAssembler } from "./tui-stream-assembler.js";
 
 describe("TuiStreamAssembler", () => {
@@ -90,3 +90,4 @@ describe("TuiStreamAssembler", () => {
     expect(second).toBeNull();
   });
 });
+

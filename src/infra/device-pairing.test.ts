@@ -1,4 +1,4 @@
-import { mkdtemp } from "node:fs/promises";
+﻿import { mkdtemp } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, test } from "vitest";
@@ -11,7 +11,7 @@ import {
 
 describe("device pairing tokens", () => {
   test("preserves existing token scopes when rotating without scopes", async () => {
-    const baseDir = await mkdtemp(join(tmpdir(), "openclaw-device-pairing-"));
+    const baseDir = await mkdtemp(join(tmpdir(), "-device-pairing-"));
     const request = await requestDevicePairing(
       {
         deviceId: "device-1",
@@ -42,3 +42,4 @@ describe("device pairing tokens", () => {
     expect(paired?.tokens?.operator?.scopes).toEqual(["operator.read"]);
   });
 });
+

@@ -1,4 +1,4 @@
-import type { ReplyToMode } from "../config/types.js";
+﻿import type { ReplyToMode } from "../config/types.js";
 import type { SlackAppMentionEvent, SlackMessageEvent } from "./types.js";
 
 export type SlackThreadContext = {
@@ -43,3 +43,4 @@ export function resolveSlackThreadTargets(params: {
   const statusThreadTs = replyThreadTs ?? messageTs;
   return { replyThreadTs, statusThreadTs };
 }
+

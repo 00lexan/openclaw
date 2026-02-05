@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { callGateway } from "../gateway/call.js";
 import { defaultRuntime } from "../runtime.js";
 import { renderTable } from "../terminal/table.js";
@@ -262,3 +262,4 @@ export function registerDevicesCli(program: Command) {
       }),
   );
 }
+

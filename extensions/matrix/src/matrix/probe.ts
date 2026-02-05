@@ -1,4 +1,4 @@
-import { createMatrixClient, isBunRuntime } from "./client.js";
+﻿import { createMatrixClient, isBunRuntime } from "./client.js";
 
 export type MatrixProbe = {
   ok: boolean;
@@ -68,3 +68,4 @@ export async function probeMatrix(params: {
     };
   }
 }
+

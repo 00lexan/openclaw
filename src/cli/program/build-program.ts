@@ -1,4 +1,4 @@
-import { Command } from "commander";
+﻿import { Command } from "commander";
 import { registerProgramCommands } from "./command-registry.js";
 import { createProgramContext } from "./context.js";
 import { configureProgramHelp } from "./help.js";
@@ -16,3 +16,4 @@ export function buildProgram() {
 
   return program;
 }
+

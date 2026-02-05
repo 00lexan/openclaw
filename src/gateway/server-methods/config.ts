@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers, RespondFn } from "./types.js";
+﻿import type { GatewayRequestHandlers, RespondFn } from "./types.js";
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../../agents/agent-scope.js";
 import { listChannelPlugins } from "../../channels/plugins/index.js";
 import {
@@ -19,7 +19,7 @@ import {
   writeRestartSentinel,
 } from "../../infra/restart-sentinel.js";
 import { scheduleGatewaySigusr1Restart } from "../../infra/restart.js";
-import { loadOpenClawPlugins } from "../../plugins/loader.js";
+import { loadPlugins } from "../../plugins/loader.js";
 import {
   ErrorCodes,
   errorShape,
@@ -116,7 +116,7 @@ export const configHandlers: GatewayRequestHandlers = {
     }
     const cfg = loadConfig();
     const workspaceDir = resolveAgentWorkspaceDir(cfg, resolveDefaultAgentId(cfg));
-    const pluginRegistry = loadOpenClawPlugins({
+    const pluginRegistry = loadPlugins({
       config: cfg,
       workspaceDir,
       logger: {
@@ -414,3 +414,4 @@ export const configHandlers: GatewayRequestHandlers = {
     );
   },
 };
+

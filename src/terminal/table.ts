@@ -1,4 +1,4 @@
-import { displayString } from "../utils.js";
+﻿import { displayString } from "../utils.js";
 import { visibleWidth } from "./ansi.js";
 
 type Align = "left" | "right" | "center";
@@ -372,17 +372,17 @@ export function renderTable(opts: RenderTableOptions): string {
           b: "+",
         }
       : {
-          tl: "┌",
-          tr: "┐",
-          bl: "└",
-          br: "┘",
-          h: "─",
-          v: "│",
-          t: "┬",
-          ml: "├",
-          m: "┼",
-          mr: "┤",
-          b: "┴",
+          tl: "â”Œ",
+          tr: "â”",
+          bl: "â””",
+          br: "â”˜",
+          h: "â”€",
+          v: "â”‚",
+          t: "â”¬",
+          ml: "â”œ",
+          m: "â”¼",
+          mr: "â”¤",
+          b: "â”´",
         };
 
   const hLine = (left: string, mid: string, right: string) =>
@@ -417,3 +417,4 @@ export function renderTable(opts: RenderTableOptions): string {
   lines.push(hLine(box.bl, box.b, box.br));
   return `${lines.join("\n")}\n`;
 }
+

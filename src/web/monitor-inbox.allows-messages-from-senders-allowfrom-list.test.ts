@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+﻿import { vi } from "vitest";
 
 vi.mock("../media/store.js", () => ({
   saveMediaBuffer: vi.fn().mockResolvedValue({
@@ -86,7 +86,7 @@ describe("web monitor inbox", () => {
       created: true,
     });
     resetWebInboundDedupe();
-    authDir = fsSync.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-"));
+    authDir = fsSync.mkdtempSync(path.join(os.tmpdir(), "-auth-"));
   });
 
   afterEach(() => {
@@ -480,11 +480,11 @@ describe("web monitor inbox", () => {
     });
     const sock = await createWaSocket();
 
-    await listener.sendReaction("12345@g.us", "msg123", "👍", false, "+6421000000");
+    await listener.sendReaction("12345@g.us", "msg123", "ðŸ‘", false, "+6421000000");
 
     expect(sock.sendMessage).toHaveBeenCalledWith("12345@g.us", {
       react: {
-        text: "👍",
+        text: "ðŸ‘",
         key: {
           remoteJid: "12345@g.us",
           id: "msg123",
@@ -497,3 +497,4 @@ describe("web monitor inbox", () => {
     await listener.close();
   });
 });
+

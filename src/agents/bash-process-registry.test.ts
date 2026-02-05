@@ -1,4 +1,4 @@
-import type { ChildProcessWithoutNullStreams } from "node:child_process";
+﻿import type { ChildProcessWithoutNullStreams } from "node:child_process";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { ProcessSession } from "./bash-process-registry.js";
 import {
@@ -178,3 +178,4 @@ describe("bash process registry", () => {
     expect(listFinishedSessions()).toHaveLength(1);
   });
 });
+

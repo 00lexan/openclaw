@@ -1,4 +1,4 @@
-import {
+﻿import {
   DisconnectReason,
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore,
@@ -117,7 +117,7 @@ export async function createWaSocket(
     version,
     logger,
     printQRInTerminal: false,
-    browser: ["openclaw", "cli", VERSION],
+    browser: ["", "cli", VERSION],
     syncFullHistory: false,
     markOnlineOnConnect: false,
   });
@@ -140,7 +140,7 @@ export async function createWaSocket(
           if (status === DisconnectReason.loggedOut) {
             console.error(
               danger(
-                `WhatsApp session logged out. Run: ${formatCliCommand("openclaw channels login")}`,
+                `WhatsApp session logged out. Run: ${formatCliCommand(" channels login")}`,
               ),
             );
           }
@@ -222,7 +222,7 @@ function safeStringify(value: unknown, limit = 800): string {
     if (!raw) {
       return String(value);
     }
-    return raw.length > limit ? `${raw.slice(0, limit)}…` : raw;
+    return raw.length > limit ? `${raw.slice(0, limit)}â€¦` : raw;
   } catch {
     return String(value);
   }
@@ -314,3 +314,4 @@ export function formatError(err: unknown): string {
 export function newConnectionId() {
   return randomUUID();
 }
+

@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -122,9 +122,9 @@ function createMinimalRun(params?: {
 
 describe("runReplyAgent typing (heartbeat)", () => {
   it("resets corrupted Gemini sessions and deletes transcripts", async () => {
-    const prevStateDir = process.env.OPENCLAW_STATE_DIR;
-    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "openclaw-session-reset-"));
-    process.env.OPENCLAW_STATE_DIR = stateDir;
+    const prevStateDir = process.env._STATE_DIR;
+    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "-session-reset-"));
+    process.env._STATE_DIR = stateDir;
     try {
       const sessionId = "session-corrupt";
       const storePath = path.join(stateDir, "sessions", "sessions.json");
@@ -162,16 +162,16 @@ describe("runReplyAgent typing (heartbeat)", () => {
       expect(persisted.main).toBeUndefined();
     } finally {
       if (prevStateDir) {
-        process.env.OPENCLAW_STATE_DIR = prevStateDir;
+        process.env._STATE_DIR = prevStateDir;
       } else {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env._STATE_DIR;
       }
     }
   });
   it("keeps sessions intact on other errors", async () => {
-    const prevStateDir = process.env.OPENCLAW_STATE_DIR;
-    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "openclaw-session-noreset-"));
-    process.env.OPENCLAW_STATE_DIR = stateDir;
+    const prevStateDir = process.env._STATE_DIR;
+    const stateDir = await fs.mkdtemp(path.join(tmpdir(), "-session-noreset-"));
+    process.env._STATE_DIR = stateDir;
     try {
       const sessionId = "session-ok";
       const storePath = path.join(stateDir, "sessions", "sessions.json");
@@ -207,9 +207,9 @@ describe("runReplyAgent typing (heartbeat)", () => {
       expect(persisted.main).toBeDefined();
     } finally {
       if (prevStateDir) {
-        process.env.OPENCLAW_STATE_DIR = prevStateDir;
+        process.env._STATE_DIR = prevStateDir;
       } else {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env._STATE_DIR;
       }
     }
   });
@@ -241,3 +241,4 @@ describe("runReplyAgent typing (heartbeat)", () => {
     });
   });
 });
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { ProgramContext } from "./context.js";
 import { agentsListCommand } from "../../commands/agents.js";
 import { healthCommand } from "../../commands/health.js";
@@ -186,3 +186,4 @@ export function findRoutedCommand(path: string[]): RouteSpec | null {
   }
   return null;
 }
+

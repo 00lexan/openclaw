@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString } from "./primitives.js";
 
 export const TalkModeParamsSchema = Type.Object(
@@ -104,3 +104,4 @@ export const WebLoginWaitParamsSchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

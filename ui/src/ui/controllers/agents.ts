@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { AgentsListResult } from "../types.ts";
 
 export type AgentsState = {
@@ -35,3 +35,4 @@ export async function loadAgents(state: AgentsState) {
     state.agentsLoading = false;
   }
 }
+

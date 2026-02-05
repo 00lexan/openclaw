@@ -1,5 +1,5 @@
-import { Type } from "@sinclair/typebox";
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import { Type } from "@sinclair/typebox";
+import type { Config } from "../../config/config.js";
 import { loadConfig, resolveConfigSnapshotHash } from "../../config/io.js";
 import { loadSessionStore, resolveStorePath } from "../../config/sessions.js";
 import {
@@ -63,7 +63,7 @@ const GatewayToolSchema = Type.Object({
 
 export function createGatewayTool(opts?: {
   agentSessionKey?: string;
-  config?: OpenClawConfig;
+  config?: Config;
 }): AnyAgentTool {
   return {
     label: "Gateway",
@@ -252,3 +252,4 @@ export function createGatewayTool(opts?: {
     },
   };
 }
+

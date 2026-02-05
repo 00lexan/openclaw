@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 添加或修改智能体工具
-  - 停用或更改 `openclaw-*` Skills
-summary: OpenClaw 的智能体工具接口（browser、canvas、nodes、message、cron），替代旧版 `openclaw-*` Skills
-title: 工具
+  - æ·»åŠ æˆ–ä¿®æ”¹æ™ºèƒ½ä½“å·¥å…·
+  - åœç”¨æˆ–æ›´æ”¹ `-*` Skills
+summary:  çš„æ™ºèƒ½ä½“å·¥å…·æŽ¥å£ï¼ˆbrowserã€canvasã€nodesã€messageã€cronï¼‰ï¼Œæ›¿ä»£æ—§ç‰ˆ `-*` Skills
+title: å·¥å…·
 x-i18n:
   generated_at: "2026-02-03T10:12:41Z"
   model: claude-opus-4-5
@@ -13,16 +13,16 @@ x-i18n:
   workflow: 15
 ---
 
-# 工具（OpenClaw）
+# å·¥å…·ï¼ˆï¼‰
 
-OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具**。
-这些工具取代了旧的 `openclaw-*` Skills：工具是类型化的，无需调用 shell，
-智能体应该直接依赖它们。
+ ä¸º browserã€canvasã€nodes å’Œ cron æš´éœ²**ä¸€æµçš„æ™ºèƒ½ä½“å·¥å…·**ã€‚
+è¿™äº›å·¥å…·å–ä»£äº†æ—§çš„ `-*` Skillsï¼šå·¥å…·æ˜¯ç±»åž‹åŒ–çš„ï¼Œæ— éœ€è°ƒç”¨ shellï¼Œ
+æ™ºèƒ½ä½“åº”è¯¥ç›´æŽ¥ä¾èµ–å®ƒä»¬ã€‚
 
-## 禁用工具
+## ç¦ç”¨å·¥å…·
 
-你可以通过 `openclaw.json` 中的 `tools.allow` / `tools.deny` 全局允许/拒绝工具
-（deny 优先）。这会阻止不允许的工具被发送到模型提供商。
+ä½ å¯ä»¥é€šè¿‡ `.json` ä¸­çš„ `tools.allow` / `tools.deny` å…¨å±€å…è®¸/æ‹’ç»å·¥å…·
+ï¼ˆdeny ä¼˜å…ˆï¼‰ã€‚è¿™ä¼šé˜»æ­¢ä¸å…è®¸çš„å·¥å…·è¢«å‘é€åˆ°æ¨¡åž‹æä¾›å•†ã€‚
 
 ```json5
 {
@@ -30,25 +30,25 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-注意：
+æ³¨æ„ï¼š
 
-- 匹配不区分大小写。
-- 支持 `*` 通配符（`"*"` 表示所有工具）。
-- 如果 `tools.allow` 仅引用未知或未加载的插件工具名称，OpenClaw 会记录警告并忽略允许列表，以确保核心工具保持可用。
+- åŒ¹é…ä¸åŒºåˆ†å¤§å°å†™ã€‚
+- æ”¯æŒ `*` é€šé…ç¬¦ï¼ˆ`"*"` è¡¨ç¤ºæ‰€æœ‰å·¥å…·ï¼‰ã€‚
+- å¦‚æžœ `tools.allow` ä»…å¼•ç”¨æœªçŸ¥æˆ–æœªåŠ è½½çš„æ’ä»¶å·¥å…·åç§°ï¼Œ ä¼šè®°å½•è­¦å‘Šå¹¶å¿½ç•¥å…è®¸åˆ—è¡¨ï¼Œä»¥ç¡®ä¿æ ¸å¿ƒå·¥å…·ä¿æŒå¯ç”¨ã€‚
 
-## 工具配置文件（基础允许列表）
+## å·¥å…·é…ç½®æ–‡ä»¶ï¼ˆåŸºç¡€å…è®¸åˆ—è¡¨ï¼‰
 
-`tools.profile` 在 `tools.allow`/`tools.deny` 之前设置**基础工具允许列表**。
-按智能体覆盖：`agents.list[].tools.profile`。
+`tools.profile` åœ¨ `tools.allow`/`tools.deny` ä¹‹å‰è®¾ç½®**åŸºç¡€å·¥å…·å…è®¸åˆ—è¡¨**ã€‚
+æŒ‰æ™ºèƒ½ä½“è¦†ç›–ï¼š`agents.list[].tools.profile`ã€‚
 
-配置文件：
+é…ç½®æ–‡ä»¶ï¼š
 
-- `minimal`：仅 `session_status`
-- `coding`：`group:fs`、`group:runtime`、`group:sessions`、`group:memory`、`image`
-- `messaging`：`group:messaging`、`sessions_list`、`sessions_history`、`sessions_send`、`session_status`
-- `full`：无限制（与未设置相同）
+- `minimal`ï¼šä»… `session_status`
+- `coding`ï¼š`group:fs`ã€`group:runtime`ã€`group:sessions`ã€`group:memory`ã€`image`
+- `messaging`ï¼š`group:messaging`ã€`sessions_list`ã€`sessions_history`ã€`sessions_send`ã€`session_status`
+- `full`ï¼šæ— é™åˆ¶ï¼ˆä¸Žæœªè®¾ç½®ç›¸åŒï¼‰
 
-示例（默认仅消息，同时允许 Slack + Discord 工具）：
+ç¤ºä¾‹ï¼ˆé»˜è®¤ä»…æ¶ˆæ¯ï¼ŒåŒæ—¶å…è®¸ Slack + Discord å·¥å…·ï¼‰ï¼š
 
 ```json5
 {
@@ -59,7 +59,7 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-示例（coding 配置文件，但在所有地方拒绝 exec/process）：
+ç¤ºä¾‹ï¼ˆcoding é…ç½®æ–‡ä»¶ï¼Œä½†åœ¨æ‰€æœ‰åœ°æ–¹æ‹’ç» exec/processï¼‰ï¼š
 
 ```json5
 {
@@ -70,7 +70,7 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-示例（全局 coding 配置文件，仅消息的支持智能体）：
+ç¤ºä¾‹ï¼ˆå…¨å±€ coding é…ç½®æ–‡ä»¶ï¼Œä»…æ¶ˆæ¯çš„æ”¯æŒæ™ºèƒ½ä½“ï¼‰ï¼š
 
 ```json5
 {
@@ -86,18 +86,18 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-## 特定提供商的工具策略
+## ç‰¹å®šæä¾›å•†çš„å·¥å…·ç­–ç•¥
 
-使用 `tools.byProvider` 为特定提供商（或单个 `provider/model`）**进一步限制**工具，
-而不更改你的全局默认值。
-按智能体覆盖：`agents.list[].tools.byProvider`。
+ä½¿ç”¨ `tools.byProvider` ä¸ºç‰¹å®šæä¾›å•†ï¼ˆæˆ–å•ä¸ª `provider/model`ï¼‰**è¿›ä¸€æ­¥é™åˆ¶**å·¥å…·ï¼Œ
+è€Œä¸æ›´æ”¹ä½ çš„å…¨å±€é»˜è®¤å€¼ã€‚
+æŒ‰æ™ºèƒ½ä½“è¦†ç›–ï¼š`agents.list[].tools.byProvider`ã€‚
 
-这在基础工具配置文件**之后**和允许/拒绝列表**之前**应用，
-因此它只能缩小工具集。
-提供商键接受 `provider`（例如 `google-antigravity`）或
-`provider/model`（例如 `openai/gpt-5.2`）。
+è¿™åœ¨åŸºç¡€å·¥å…·é…ç½®æ–‡ä»¶**ä¹‹åŽ**å’Œå…è®¸/æ‹’ç»åˆ—è¡¨**ä¹‹å‰**åº”ç”¨ï¼Œ
+å› æ­¤å®ƒåªèƒ½ç¼©å°å·¥å…·é›†ã€‚
+æä¾›å•†é”®æŽ¥å— `provider`ï¼ˆä¾‹å¦‚ `google-antigravity`ï¼‰æˆ–
+`provider/model`ï¼ˆä¾‹å¦‚ `openai/gpt-5.2`ï¼‰ã€‚
 
-示例（保持全局 coding 配置文件，但 Google Antigravity 使用最小工具）：
+ç¤ºä¾‹ï¼ˆä¿æŒå…¨å±€ coding é…ç½®æ–‡ä»¶ï¼Œä½† Google Antigravity ä½¿ç”¨æœ€å°å·¥å…·ï¼‰ï¼š
 
 ```json5
 {
@@ -110,7 +110,7 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-示例（针对不稳定端点的 provider/model 特定允许列表）：
+ç¤ºä¾‹ï¼ˆé’ˆå¯¹ä¸ç¨³å®šç«¯ç‚¹çš„ provider/model ç‰¹å®šå…è®¸åˆ—è¡¨ï¼‰ï¼š
 
 ```json5
 {
@@ -123,7 +123,7 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-示例（针对单个提供商的智能体特定覆盖）：
+ç¤ºä¾‹ï¼ˆé’ˆå¯¹å•ä¸ªæä¾›å•†çš„æ™ºèƒ½ä½“ç‰¹å®šè¦†ç›–ï¼‰ï¼š
 
 ```json5
 {
@@ -142,25 +142,25 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-## 工具组（简写）
+## å·¥å…·ç»„ï¼ˆç®€å†™ï¼‰
 
-工具策略（全局、智能体、沙箱）支持 `group:*` 条目，它们会展开为多个工具。
-在 `tools.allow` / `tools.deny` 中使用这些。
+å·¥å…·ç­–ç•¥ï¼ˆå…¨å±€ã€æ™ºèƒ½ä½“ã€æ²™ç®±ï¼‰æ”¯æŒ `group:*` æ¡ç›®ï¼Œå®ƒä»¬ä¼šå±•å¼€ä¸ºå¤šä¸ªå·¥å…·ã€‚
+åœ¨ `tools.allow` / `tools.deny` ä¸­ä½¿ç”¨è¿™äº›ã€‚
 
-可用的组：
+å¯ç”¨çš„ç»„ï¼š
 
-- `group:runtime`：`exec`、`bash`、`process`
-- `group:fs`：`read`、`write`、`edit`、`apply_patch`
-- `group:sessions`：`sessions_list`、`sessions_history`、`sessions_send`、`sessions_spawn`、`session_status`
-- `group:memory`：`memory_search`、`memory_get`
-- `group:web`：`web_search`、`web_fetch`
-- `group:ui`：`browser`、`canvas`
-- `group:automation`：`cron`、`gateway`
-- `group:messaging`：`message`
-- `group:nodes`：`nodes`
-- `group:openclaw`：所有内置 OpenClaw 工具（不包括提供商插件）
+- `group:runtime`ï¼š`exec`ã€`bash`ã€`process`
+- `group:fs`ï¼š`read`ã€`write`ã€`edit`ã€`apply_patch`
+- `group:sessions`ï¼š`sessions_list`ã€`sessions_history`ã€`sessions_send`ã€`sessions_spawn`ã€`session_status`
+- `group:memory`ï¼š`memory_search`ã€`memory_get`
+- `group:web`ï¼š`web_search`ã€`web_fetch`
+- `group:ui`ï¼š`browser`ã€`canvas`
+- `group:automation`ï¼š`cron`ã€`gateway`
+- `group:messaging`ï¼š`message`
+- `group:nodes`ï¼š`nodes`
+- `group:`ï¼šæ‰€æœ‰å†…ç½®  å·¥å…·ï¼ˆä¸åŒ…æ‹¬æä¾›å•†æ’ä»¶ï¼‰
 
-示例（仅允许文件工具 + browser）：
+ç¤ºä¾‹ï¼ˆä»…å…è®¸æ–‡ä»¶å·¥å…· + browserï¼‰ï¼š
 
 ```json5
 {
@@ -170,178 +170,178 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 }
 ```
 
-## 插件 + 工具
+## æ’ä»¶ + å·¥å…·
 
-插件可以在核心集之外注册**额外的工具**（和 CLI 命令）。
-参见[插件](/plugin)了解安装 + 配置，以及 [Skills](/tools/skills) 了解
-工具使用指导如何被注入到提示中。一些插件随工具一起提供自己的 Skills
-（例如，voice-call 插件）。
+æ’ä»¶å¯ä»¥åœ¨æ ¸å¿ƒé›†ä¹‹å¤–æ³¨å†Œ**é¢å¤–çš„å·¥å…·**ï¼ˆå’Œ CLI å‘½ä»¤ï¼‰ã€‚
+å‚è§[æ’ä»¶](/plugin)äº†è§£å®‰è£… + é…ç½®ï¼Œä»¥åŠ [Skills](/tools/skills) äº†è§£
+å·¥å…·ä½¿ç”¨æŒ‡å¯¼å¦‚ä½•è¢«æ³¨å…¥åˆ°æç¤ºä¸­ã€‚ä¸€äº›æ’ä»¶éšå·¥å…·ä¸€èµ·æä¾›è‡ªå·±çš„ Skills
+ï¼ˆä¾‹å¦‚ï¼Œvoice-call æ’ä»¶ï¼‰ã€‚
 
-可选的插件工具：
+å¯é€‰çš„æ’ä»¶å·¥å…·ï¼š
 
-- [Lobster](/tools/lobster)：带有可恢复审批的类型化工作流运行时（需要 Gateway 网关主机上的 Lobster CLI）。
-- [LLM Task](/tools/llm-task)：用于结构化工作流输出的 JSON-only LLM 步骤（可选 schema 验证）。
+- [Lobster](/tools/lobster)ï¼šå¸¦æœ‰å¯æ¢å¤å®¡æ‰¹çš„ç±»åž‹åŒ–å·¥ä½œæµè¿è¡Œæ—¶ï¼ˆéœ€è¦ Gateway ç½‘å…³ä¸»æœºä¸Šçš„ Lobster CLIï¼‰ã€‚
+- [LLM Task](/tools/llm-task)ï¼šç”¨äºŽç»“æž„åŒ–å·¥ä½œæµè¾“å‡ºçš„ JSON-only LLM æ­¥éª¤ï¼ˆå¯é€‰ schema éªŒè¯ï¼‰ã€‚
 
-## 工具清单
+## å·¥å…·æ¸…å•
 
 ### `apply_patch`
 
-跨一个或多个文件应用结构化补丁。用于多块编辑。
-实验性：通过 `tools.exec.applyPatch.enabled` 启用（仅 OpenAI 模型）。
+è·¨ä¸€ä¸ªæˆ–å¤šä¸ªæ–‡ä»¶åº”ç”¨ç»“æž„åŒ–è¡¥ä¸ã€‚ç”¨äºŽå¤šå—ç¼–è¾‘ã€‚
+å®žéªŒæ€§ï¼šé€šè¿‡ `tools.exec.applyPatch.enabled` å¯ç”¨ï¼ˆä»… OpenAI æ¨¡åž‹ï¼‰ã€‚
 
 ### `exec`
 
-在工作区中运行 shell 命令。
+åœ¨å·¥ä½œåŒºä¸­è¿è¡Œ shell å‘½ä»¤ã€‚
 
-核心参数：
+æ ¸å¿ƒå‚æ•°ï¼š
 
-- `command`（必需）
-- `yieldMs`（超时后自动后台运行，默认 10000）
-- `background`（立即后台运行）
-- `timeout`（秒；超过则终止进程，默认 1800）
-- `elevated`（布尔值；如果启用/允许提升模式，则在主机上运行；仅在智能体被沙箱隔离时改变行为）
-- `host`（`sandbox | gateway | node`）
-- `security`（`deny | allowlist | full`）
-- `ask`（`off | on-miss | always`）
-- `node`（`host=node` 时的节点 id/名称）
-- 需要真正的 TTY？设置 `pty: true`。
+- `command`ï¼ˆå¿…éœ€ï¼‰
+- `yieldMs`ï¼ˆè¶…æ—¶åŽè‡ªåŠ¨åŽå°è¿è¡Œï¼Œé»˜è®¤ 10000ï¼‰
+- `background`ï¼ˆç«‹å³åŽå°è¿è¡Œï¼‰
+- `timeout`ï¼ˆç§’ï¼›è¶…è¿‡åˆ™ç»ˆæ­¢è¿›ç¨‹ï¼Œé»˜è®¤ 1800ï¼‰
+- `elevated`ï¼ˆå¸ƒå°”å€¼ï¼›å¦‚æžœå¯ç”¨/å…è®¸æå‡æ¨¡å¼ï¼Œåˆ™åœ¨ä¸»æœºä¸Šè¿è¡Œï¼›ä»…åœ¨æ™ºèƒ½ä½“è¢«æ²™ç®±éš”ç¦»æ—¶æ”¹å˜è¡Œä¸ºï¼‰
+- `host`ï¼ˆ`sandbox | gateway | node`ï¼‰
+- `security`ï¼ˆ`deny | allowlist | full`ï¼‰
+- `ask`ï¼ˆ`off | on-miss | always`ï¼‰
+- `node`ï¼ˆ`host=node` æ—¶çš„èŠ‚ç‚¹ id/åç§°ï¼‰
+- éœ€è¦çœŸæ­£çš„ TTYï¼Ÿè®¾ç½® `pty: true`ã€‚
 
-注意：
+æ³¨æ„ï¼š
 
-- 后台运行时返回带有 `sessionId` 的 `status: "running"`。
-- 使用 `process` 来轮询/日志/写入/终止/清除后台会话。
-- 如果不允许 `process`，`exec` 会同步运行并忽略 `yieldMs`/`background`。
-- `elevated` 受 `tools.elevated` 加上任何 `agents.list[].tools.elevated` 覆盖的门控（两者都必须允许），是 `host=gateway` + `security=full` 的别名。
-- `elevated` 仅在智能体被沙箱隔离时改变行为（否则是空操作）。
-- `host=node` 可以针对 macOS 配套应用或无头节点主机（`openclaw node run`）。
-- Gateway 网关/节点审批和允许列表：[执行审批](/tools/exec-approvals)。
+- åŽå°è¿è¡Œæ—¶è¿”å›žå¸¦æœ‰ `sessionId` çš„ `status: "running"`ã€‚
+- ä½¿ç”¨ `process` æ¥è½®è¯¢/æ—¥å¿—/å†™å…¥/ç»ˆæ­¢/æ¸…é™¤åŽå°ä¼šè¯ã€‚
+- å¦‚æžœä¸å…è®¸ `process`ï¼Œ`exec` ä¼šåŒæ­¥è¿è¡Œå¹¶å¿½ç•¥ `yieldMs`/`background`ã€‚
+- `elevated` å— `tools.elevated` åŠ ä¸Šä»»ä½• `agents.list[].tools.elevated` è¦†ç›–çš„é—¨æŽ§ï¼ˆä¸¤è€…éƒ½å¿…é¡»å…è®¸ï¼‰ï¼Œæ˜¯ `host=gateway` + `security=full` çš„åˆ«åã€‚
+- `elevated` ä»…åœ¨æ™ºèƒ½ä½“è¢«æ²™ç®±éš”ç¦»æ—¶æ”¹å˜è¡Œä¸ºï¼ˆå¦åˆ™æ˜¯ç©ºæ“ä½œï¼‰ã€‚
+- `host=node` å¯ä»¥é’ˆå¯¹ macOS é…å¥—åº”ç”¨æˆ–æ— å¤´èŠ‚ç‚¹ä¸»æœºï¼ˆ` node run`ï¼‰ã€‚
+- Gateway ç½‘å…³/èŠ‚ç‚¹å®¡æ‰¹å’Œå…è®¸åˆ—è¡¨ï¼š[æ‰§è¡Œå®¡æ‰¹](/tools/exec-approvals)ã€‚
 
 ### `process`
 
-管理后台 exec 会话。
+ç®¡ç†åŽå° exec ä¼šè¯ã€‚
 
-核心操作：
+æ ¸å¿ƒæ“ä½œï¼š
 
-- `list`、`poll`、`log`、`write`、`kill`、`clear`、`remove`
+- `list`ã€`poll`ã€`log`ã€`write`ã€`kill`ã€`clear`ã€`remove`
 
-注意：
+æ³¨æ„ï¼š
 
-- `poll` 返回新输出，完成时返回退出状态。
-- `log` 支持基于行的 `offset`/`limit`（省略 `offset` 以获取最后 N 行）。
-- `process` 按智能体作用域；来自其他智能体的会话不可见。
+- `poll` è¿”å›žæ–°è¾“å‡ºï¼Œå®Œæˆæ—¶è¿”å›žé€€å‡ºçŠ¶æ€ã€‚
+- `log` æ”¯æŒåŸºäºŽè¡Œçš„ `offset`/`limit`ï¼ˆçœç•¥ `offset` ä»¥èŽ·å–æœ€åŽ N è¡Œï¼‰ã€‚
+- `process` æŒ‰æ™ºèƒ½ä½“ä½œç”¨åŸŸï¼›æ¥è‡ªå…¶ä»–æ™ºèƒ½ä½“çš„ä¼šè¯ä¸å¯è§ã€‚
 
 ### `web_search`
 
-使用 Brave Search API 搜索网络。
+ä½¿ç”¨ Brave Search API æœç´¢ç½‘ç»œã€‚
 
-核心参数：
+æ ¸å¿ƒå‚æ•°ï¼š
 
-- `query`（必需）
-- `count`（1-10；默认来自 `tools.web.search.maxResults`）
+- `query`ï¼ˆå¿…éœ€ï¼‰
+- `count`ï¼ˆ1-10ï¼›é»˜è®¤æ¥è‡ª `tools.web.search.maxResults`ï¼‰
 
-注意：
+æ³¨æ„ï¼š
 
-- 需要 Brave API 密钥（推荐：`openclaw configure --section web`，或设置 `BRAVE_API_KEY`）。
-- 通过 `tools.web.search.enabled` 启用。
-- 响应被缓存（默认 15 分钟）。
-- 参见 [Web 工具](/tools/web) 了解设置。
+- éœ€è¦ Brave API å¯†é’¥ï¼ˆæŽ¨èï¼š` configure --section web`ï¼Œæˆ–è®¾ç½® `BRAVE_API_KEY`ï¼‰ã€‚
+- é€šè¿‡ `tools.web.search.enabled` å¯ç”¨ã€‚
+- å“åº”è¢«ç¼“å­˜ï¼ˆé»˜è®¤ 15 åˆ†é’Ÿï¼‰ã€‚
+- å‚è§ [Web å·¥å…·](/tools/web) äº†è§£è®¾ç½®ã€‚
 
 ### `web_fetch`
 
-从 URL 获取并提取可读内容（HTML → markdown/text）。
+ä»Ž URL èŽ·å–å¹¶æå–å¯è¯»å†…å®¹ï¼ˆHTML â†’ markdown/textï¼‰ã€‚
 
-核心参数：
+æ ¸å¿ƒå‚æ•°ï¼š
 
-- `url`（必需）
-- `extractMode`（`markdown` | `text`）
-- `maxChars`（截断长页面）
+- `url`ï¼ˆå¿…éœ€ï¼‰
+- `extractMode`ï¼ˆ`markdown` | `text`ï¼‰
+- `maxChars`ï¼ˆæˆªæ–­é•¿é¡µé¢ï¼‰
 
-注意：
+æ³¨æ„ï¼š
 
-- 通过 `tools.web.fetch.enabled` 启用。
-- 响应被缓存（默认 15 分钟）。
-- 对于 JS 密集型网站，优先使用 browser 工具。
-- 参见 [Web 工具](/tools/web) 了解设置。
-- 参见 [Firecrawl](/tools/firecrawl) 了解可选的反机器人回退。
+- é€šè¿‡ `tools.web.fetch.enabled` å¯ç”¨ã€‚
+- å“åº”è¢«ç¼“å­˜ï¼ˆé»˜è®¤ 15 åˆ†é’Ÿï¼‰ã€‚
+- å¯¹äºŽ JS å¯†é›†åž‹ç½‘ç«™ï¼Œä¼˜å…ˆä½¿ç”¨ browser å·¥å…·ã€‚
+- å‚è§ [Web å·¥å…·](/tools/web) äº†è§£è®¾ç½®ã€‚
+- å‚è§ [Firecrawl](/tools/firecrawl) äº†è§£å¯é€‰çš„åæœºå™¨äººå›žé€€ã€‚
 
 ### `browser`
 
-控制专用的 OpenClaw 管理的浏览器。
+æŽ§åˆ¶ä¸“ç”¨çš„  ç®¡ç†çš„æµè§ˆå™¨ã€‚
 
-核心操作：
+æ ¸å¿ƒæ“ä½œï¼š
 
-- `status`、`start`、`stop`、`tabs`、`open`、`focus`、`close`
-- `snapshot`（aria/ai）
-- `screenshot`（返回图像块 + `MEDIA:<path>`）
-- `act`（UI 操作：click/type/press/hover/drag/select/fill/resize/wait/evaluate）
-- `navigate`、`console`、`pdf`、`upload`、`dialog`
+- `status`ã€`start`ã€`stop`ã€`tabs`ã€`open`ã€`focus`ã€`close`
+- `snapshot`ï¼ˆaria/aiï¼‰
+- `screenshot`ï¼ˆè¿”å›žå›¾åƒå— + `MEDIA:<path>`ï¼‰
+- `act`ï¼ˆUI æ“ä½œï¼šclick/type/press/hover/drag/select/fill/resize/wait/evaluateï¼‰
+- `navigate`ã€`console`ã€`pdf`ã€`upload`ã€`dialog`
 
-配置文件管理：
+é…ç½®æ–‡ä»¶ç®¡ç†ï¼š
 
-- `profiles` — 列出所有浏览器配置文件及其状态
-- `create-profile` — 使用自动分配的端口（或 `cdpUrl`）创建新配置文件
-- `delete-profile` — 停止浏览器，删除用户数据，从配置中移除（仅本地）
-- `reset-profile` — 终止配置文件端口上的孤儿进程（仅本地）
+- `profiles` â€” åˆ—å‡ºæ‰€æœ‰æµè§ˆå™¨é…ç½®æ–‡ä»¶åŠå…¶çŠ¶æ€
+- `create-profile` â€” ä½¿ç”¨è‡ªåŠ¨åˆ†é…çš„ç«¯å£ï¼ˆæˆ– `cdpUrl`ï¼‰åˆ›å»ºæ–°é…ç½®æ–‡ä»¶
+- `delete-profile` â€” åœæ­¢æµè§ˆå™¨ï¼Œåˆ é™¤ç”¨æˆ·æ•°æ®ï¼Œä»Žé…ç½®ä¸­ç§»é™¤ï¼ˆä»…æœ¬åœ°ï¼‰
+- `reset-profile` â€” ç»ˆæ­¢é…ç½®æ–‡ä»¶ç«¯å£ä¸Šçš„å­¤å„¿è¿›ç¨‹ï¼ˆä»…æœ¬åœ°ï¼‰
 
-常用参数：
+å¸¸ç”¨å‚æ•°ï¼š
 
-- `profile`（可选；默认为 `browser.defaultProfile`）
-- `target`（`sandbox` | `host` | `node`）
-- `node`（可选；选择特定的节点 id/名称）
-  注意：
-- 需要 `browser.enabled=true`（默认为 `true`；设置为 `false` 以禁用）。
-- 所有操作接受可选的 `profile` 参数以支持多实例。
-- 当省略 `profile` 时，使用 `browser.defaultProfile`（默认为"chrome"）。
-- 配置文件名称：仅小写字母数字 + 连字符（最多 64 字符）。
-- 端口范围：18800-18899（最多约 100 个配置文件）。
-- 远程配置文件仅支持附加（无 start/stop/reset）。
-- 如果连接了支持浏览器的节点，工具可能会自动路由到它（除非你固定了 `target`）。
-- 安装 Playwright 时 `snapshot` 默认为 `ai`；使用 `aria` 获取无障碍树。
-- `snapshot` 还支持角色快照选项（`interactive`、`compact`、`depth`、`selector`），返回像 `e12` 这样的引用。
-- `act` 需要来自 `snapshot` 的 `ref`（AI 快照中的数字 `12`，或角色快照中的 `e12`）；对于罕见的 CSS 选择器需求使用 `evaluate`。
-- 默认避免 `act` → `wait`；仅在特殊情况下使用（没有可靠的 UI 状态可等待）。
-- `upload` 可以选择性地传递 `ref` 以在准备后自动点击。
-- `upload` 还支持 `inputRef`（aria 引用）或 `element`（CSS 选择器）以直接设置 `<input type="file">`。
+- `profile`ï¼ˆå¯é€‰ï¼›é»˜è®¤ä¸º `browser.defaultProfile`ï¼‰
+- `target`ï¼ˆ`sandbox` | `host` | `node`ï¼‰
+- `node`ï¼ˆå¯é€‰ï¼›é€‰æ‹©ç‰¹å®šçš„èŠ‚ç‚¹ id/åç§°ï¼‰
+  æ³¨æ„ï¼š
+- éœ€è¦ `browser.enabled=true`ï¼ˆé»˜è®¤ä¸º `true`ï¼›è®¾ç½®ä¸º `false` ä»¥ç¦ç”¨ï¼‰ã€‚
+- æ‰€æœ‰æ“ä½œæŽ¥å—å¯é€‰çš„ `profile` å‚æ•°ä»¥æ”¯æŒå¤šå®žä¾‹ã€‚
+- å½“çœç•¥ `profile` æ—¶ï¼Œä½¿ç”¨ `browser.defaultProfile`ï¼ˆé»˜è®¤ä¸º"chrome"ï¼‰ã€‚
+- é…ç½®æ–‡ä»¶åç§°ï¼šä»…å°å†™å­—æ¯æ•°å­— + è¿žå­—ç¬¦ï¼ˆæœ€å¤š 64 å­—ç¬¦ï¼‰ã€‚
+- ç«¯å£èŒƒå›´ï¼š18800-18899ï¼ˆæœ€å¤šçº¦ 100 ä¸ªé…ç½®æ–‡ä»¶ï¼‰ã€‚
+- è¿œç¨‹é…ç½®æ–‡ä»¶ä»…æ”¯æŒé™„åŠ ï¼ˆæ—  start/stop/resetï¼‰ã€‚
+- å¦‚æžœè¿žæŽ¥äº†æ”¯æŒæµè§ˆå™¨çš„èŠ‚ç‚¹ï¼Œå·¥å…·å¯èƒ½ä¼šè‡ªåŠ¨è·¯ç”±åˆ°å®ƒï¼ˆé™¤éžä½ å›ºå®šäº† `target`ï¼‰ã€‚
+- å®‰è£… Playwright æ—¶ `snapshot` é»˜è®¤ä¸º `ai`ï¼›ä½¿ç”¨ `aria` èŽ·å–æ— éšœç¢æ ‘ã€‚
+- `snapshot` è¿˜æ”¯æŒè§’è‰²å¿«ç…§é€‰é¡¹ï¼ˆ`interactive`ã€`compact`ã€`depth`ã€`selector`ï¼‰ï¼Œè¿”å›žåƒ `e12` è¿™æ ·çš„å¼•ç”¨ã€‚
+- `act` éœ€è¦æ¥è‡ª `snapshot` çš„ `ref`ï¼ˆAI å¿«ç…§ä¸­çš„æ•°å­— `12`ï¼Œæˆ–è§’è‰²å¿«ç…§ä¸­çš„ `e12`ï¼‰ï¼›å¯¹äºŽç½•è§çš„ CSS é€‰æ‹©å™¨éœ€æ±‚ä½¿ç”¨ `evaluate`ã€‚
+- é»˜è®¤é¿å… `act` â†’ `wait`ï¼›ä»…åœ¨ç‰¹æ®Šæƒ…å†µä¸‹ä½¿ç”¨ï¼ˆæ²¡æœ‰å¯é çš„ UI çŠ¶æ€å¯ç­‰å¾…ï¼‰ã€‚
+- `upload` å¯ä»¥é€‰æ‹©æ€§åœ°ä¼ é€’ `ref` ä»¥åœ¨å‡†å¤‡åŽè‡ªåŠ¨ç‚¹å‡»ã€‚
+- `upload` è¿˜æ”¯æŒ `inputRef`ï¼ˆaria å¼•ç”¨ï¼‰æˆ– `element`ï¼ˆCSS é€‰æ‹©å™¨ï¼‰ä»¥ç›´æŽ¥è®¾ç½® `<input type="file">`ã€‚
 
 ### `canvas`
 
-驱动节点 Canvas（present、eval、snapshot、A2UI）。
+é©±åŠ¨èŠ‚ç‚¹ Canvasï¼ˆpresentã€evalã€snapshotã€A2UIï¼‰ã€‚
 
-核心操作：
+æ ¸å¿ƒæ“ä½œï¼š
 
-- `present`、`hide`、`navigate`、`eval`
-- `snapshot`（返回图像块 + `MEDIA:<path>`）
-- `a2ui_push`、`a2ui_reset`
+- `present`ã€`hide`ã€`navigate`ã€`eval`
+- `snapshot`ï¼ˆè¿”å›žå›¾åƒå— + `MEDIA:<path>`ï¼‰
+- `a2ui_push`ã€`a2ui_reset`
 
-注意：
+æ³¨æ„ï¼š
 
-- 底层使用 Gateway 网关 `node.invoke`。
-- 如果未提供 `node`，工具会选择默认值（单个连接的节点或本地 mac 节点）。
-- A2UI 仅限 v0.8（无 `createSurface`）；CLI 会拒绝 v0.9 JSONL 并显示行错误。
-- 快速冒烟测试：`openclaw nodes canvas a2ui push --node <id> --text "Hello from A2UI"`。
+- åº•å±‚ä½¿ç”¨ Gateway ç½‘å…³ `node.invoke`ã€‚
+- å¦‚æžœæœªæä¾› `node`ï¼Œå·¥å…·ä¼šé€‰æ‹©é»˜è®¤å€¼ï¼ˆå•ä¸ªè¿žæŽ¥çš„èŠ‚ç‚¹æˆ–æœ¬åœ° mac èŠ‚ç‚¹ï¼‰ã€‚
+- A2UI ä»…é™ v0.8ï¼ˆæ—  `createSurface`ï¼‰ï¼›CLI ä¼šæ‹’ç» v0.9 JSONL å¹¶æ˜¾ç¤ºè¡Œé”™è¯¯ã€‚
+- å¿«é€Ÿå†’çƒŸæµ‹è¯•ï¼š` nodes canvas a2ui push --node <id> --text "Hello from A2UI"`ã€‚
 
 ### `nodes`
 
-发现和定位配对的节点；发送通知；捕获摄像头/屏幕。
+å‘çŽ°å’Œå®šä½é…å¯¹çš„èŠ‚ç‚¹ï¼›å‘é€é€šçŸ¥ï¼›æ•èŽ·æ‘„åƒå¤´/å±å¹•ã€‚
 
-核心操作：
+æ ¸å¿ƒæ“ä½œï¼š
 
-- `status`、`describe`
-- `pending`、`approve`、`reject`（配对）
-- `notify`（macOS `system.notify`）
-- `run`（macOS `system.run`）
-- `camera_snap`、`camera_clip`、`screen_record`
+- `status`ã€`describe`
+- `pending`ã€`approve`ã€`reject`ï¼ˆé…å¯¹ï¼‰
+- `notify`ï¼ˆmacOS `system.notify`ï¼‰
+- `run`ï¼ˆmacOS `system.run`ï¼‰
+- `camera_snap`ã€`camera_clip`ã€`screen_record`
 - `location_get`
 
-注意：
+æ³¨æ„ï¼š
 
-- 摄像头/屏幕命令需要节点应用在前台。
-- 图像返回图像块 + `MEDIA:<path>`。
-- 视频返回 `FILE:<path>`（mp4）。
-- 位置返回 JSON 负载（lat/lon/accuracy/timestamp）。
-- `run` 参数：`command` argv 数组；可选的 `cwd`、`env`（`KEY=VAL`）、`commandTimeoutMs`、`invokeTimeoutMs`、`needsScreenRecording`。
+- æ‘„åƒå¤´/å±å¹•å‘½ä»¤éœ€è¦èŠ‚ç‚¹åº”ç”¨åœ¨å‰å°ã€‚
+- å›¾åƒè¿”å›žå›¾åƒå— + `MEDIA:<path>`ã€‚
+- è§†é¢‘è¿”å›ž `FILE:<path>`ï¼ˆmp4ï¼‰ã€‚
+- ä½ç½®è¿”å›ž JSON è´Ÿè½½ï¼ˆlat/lon/accuracy/timestampï¼‰ã€‚
+- `run` å‚æ•°ï¼š`command` argv æ•°ç»„ï¼›å¯é€‰çš„ `cwd`ã€`env`ï¼ˆ`KEY=VAL`ï¼‰ã€`commandTimeoutMs`ã€`invokeTimeoutMs`ã€`needsScreenRecording`ã€‚
 
-示例（`run`）：
+ç¤ºä¾‹ï¼ˆ`run`ï¼‰ï¼š
 
 ```json
 {
@@ -357,28 +357,28 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 
 ### `image`
 
-使用配置的图像模型分析图像。
+ä½¿ç”¨é…ç½®çš„å›¾åƒæ¨¡åž‹åˆ†æžå›¾åƒã€‚
 
-核心参数：
+æ ¸å¿ƒå‚æ•°ï¼š
 
-- `image`（必需的路径或 URL）
-- `prompt`（可选；默认为"Describe the image."）
-- `model`（可选覆盖）
-- `maxBytesMb`（可选大小上限）
+- `image`ï¼ˆå¿…éœ€çš„è·¯å¾„æˆ– URLï¼‰
+- `prompt`ï¼ˆå¯é€‰ï¼›é»˜è®¤ä¸º"Describe the image."ï¼‰
+- `model`ï¼ˆå¯é€‰è¦†ç›–ï¼‰
+- `maxBytesMb`ï¼ˆå¯é€‰å¤§å°ä¸Šé™ï¼‰
 
-注意：
+æ³¨æ„ï¼š
 
-- 仅在配置了 `agents.defaults.imageModel`（主要或回退）时可用，或者当可以从你的默认模型 + 配置的认证推断出隐式图像模型时（尽力配对）。
-- 直接使用图像模型（独立于主聊天模型）。
+- ä»…åœ¨é…ç½®äº† `agents.defaults.imageModel`ï¼ˆä¸»è¦æˆ–å›žé€€ï¼‰æ—¶å¯ç”¨ï¼Œæˆ–è€…å½“å¯ä»¥ä»Žä½ çš„é»˜è®¤æ¨¡åž‹ + é…ç½®çš„è®¤è¯æŽ¨æ–­å‡ºéšå¼å›¾åƒæ¨¡åž‹æ—¶ï¼ˆå°½åŠ›é…å¯¹ï¼‰ã€‚
+- ç›´æŽ¥ä½¿ç”¨å›¾åƒæ¨¡åž‹ï¼ˆç‹¬ç«‹äºŽä¸»èŠå¤©æ¨¡åž‹ï¼‰ã€‚
 
 ### `message`
 
-跨 Discord/Google Chat/Slack/Telegram/WhatsApp/Signal/iMessage/MS Teams 发送消息和渠道操作。
+è·¨ Discord/Google Chat/Slack/Telegram/WhatsApp/Signal/iMessage/MS Teams å‘é€æ¶ˆæ¯å’Œæ¸ é“æ“ä½œã€‚
 
-核心操作：
+æ ¸å¿ƒæ“ä½œï¼š
 
-- `send`（文本 + 可选媒体；MS Teams 还支持用于 Adaptive Cards 的 `card`）
-- `poll`（WhatsApp/Discord/MS Teams 投票）
+- `send`ï¼ˆæ–‡æœ¬ + å¯é€‰åª’ä½“ï¼›MS Teams è¿˜æ”¯æŒç”¨äºŽ Adaptive Cards çš„ `card`ï¼‰
+- `poll`ï¼ˆWhatsApp/Discord/MS Teams æŠ•ç¥¨ï¼‰
 - `react` / `reactions` / `read` / `edit` / `delete`
 - `pin` / `unpin` / `list-pins`
 - `permissions`
@@ -393,123 +393,124 @@ OpenClaw 为 browser、canvas、nodes 和 cron 暴露**一流的智能体工具*
 - `event-list` / `event-create`
 - `timeout` / `kick` / `ban`
 
-注意：
+æ³¨æ„ï¼š
 
-- `send` 通过 Gateway 网关路由 WhatsApp；其他渠道直接发送。
-- `poll` 对 WhatsApp 和 MS Teams 使用 Gateway 网关；Discord 投票直接发送。
-- 当消息工具调用绑定到活动聊天会话时，发送被限制到该会话的目标以避免跨上下文泄露。
+- `send` é€šè¿‡ Gateway ç½‘å…³è·¯ç”± WhatsAppï¼›å…¶ä»–æ¸ é“ç›´æŽ¥å‘é€ã€‚
+- `poll` å¯¹ WhatsApp å’Œ MS Teams ä½¿ç”¨ Gateway ç½‘å…³ï¼›Discord æŠ•ç¥¨ç›´æŽ¥å‘é€ã€‚
+- å½“æ¶ˆæ¯å·¥å…·è°ƒç”¨ç»‘å®šåˆ°æ´»åŠ¨èŠå¤©ä¼šè¯æ—¶ï¼Œå‘é€è¢«é™åˆ¶åˆ°è¯¥ä¼šè¯çš„ç›®æ ‡ä»¥é¿å…è·¨ä¸Šä¸‹æ–‡æ³„éœ²ã€‚
 
 ### `cron`
 
-管理 Gateway 网关定时任务和唤醒。
+ç®¡ç† Gateway ç½‘å…³å®šæ—¶ä»»åŠ¡å’Œå”¤é†’ã€‚
 
-核心操作：
+æ ¸å¿ƒæ“ä½œï¼š
 
-- `status`、`list`
-- `add`、`update`、`remove`、`run`、`runs`
-- `wake`（入队系统事件 + 可选的立即心跳）
+- `status`ã€`list`
+- `add`ã€`update`ã€`remove`ã€`run`ã€`runs`
+- `wake`ï¼ˆå…¥é˜Ÿç³»ç»Ÿäº‹ä»¶ + å¯é€‰çš„ç«‹å³å¿ƒè·³ï¼‰
 
-注意：
+æ³¨æ„ï¼š
 
-- `add` 期望完整的定时任务对象（与 `cron.add` RPC 相同的 schema）。
-- `update` 使用 `{ id, patch }`。
+- `add` æœŸæœ›å®Œæ•´çš„å®šæ—¶ä»»åŠ¡å¯¹è±¡ï¼ˆä¸Ž `cron.add` RPC ç›¸åŒçš„ schemaï¼‰ã€‚
+- `update` ä½¿ç”¨ `{ id, patch }`ã€‚
 
 ### `gateway`
 
-重启或对运行中的 Gateway 网关进程应用更新（就地）。
+é‡å¯æˆ–å¯¹è¿è¡Œä¸­çš„ Gateway ç½‘å…³è¿›ç¨‹åº”ç”¨æ›´æ–°ï¼ˆå°±åœ°ï¼‰ã€‚
 
-核心操作：
+æ ¸å¿ƒæ“ä½œï¼š
 
-- `restart`（授权 + 发送 `SIGUSR1` 进行进程内重启；`openclaw gateway` 就地重启）
+- `restart`ï¼ˆæŽˆæƒ + å‘é€ `SIGUSR1` è¿›è¡Œè¿›ç¨‹å†…é‡å¯ï¼›` gateway` å°±åœ°é‡å¯ï¼‰
 - `config.get` / `config.schema`
-- `config.apply`（验证 + 写入配置 + 重启 + 唤醒）
-- `config.patch`（合并部分更新 + 重启 + 唤醒）
-- `update.run`（运行更新 + 重启 + 唤醒）
+- `config.apply`ï¼ˆéªŒè¯ + å†™å…¥é…ç½® + é‡å¯ + å”¤é†’ï¼‰
+- `config.patch`ï¼ˆåˆå¹¶éƒ¨åˆ†æ›´æ–° + é‡å¯ + å”¤é†’ï¼‰
+- `update.run`ï¼ˆè¿è¡Œæ›´æ–° + é‡å¯ + å”¤é†’ï¼‰
 
-注意：
+æ³¨æ„ï¼š
 
-- 使用 `delayMs`（默认 2000）以避免中断进行中的回复。
-- `restart` 默认禁用；使用 `commands.restart: true` 启用。
+- ä½¿ç”¨ `delayMs`ï¼ˆé»˜è®¤ 2000ï¼‰ä»¥é¿å…ä¸­æ–­è¿›è¡Œä¸­çš„å›žå¤ã€‚
+- `restart` é»˜è®¤ç¦ç”¨ï¼›ä½¿ç”¨ `commands.restart: true` å¯ç”¨ã€‚
 
 ### `sessions_list` / `sessions_history` / `sessions_send` / `sessions_spawn` / `session_status`
 
-列出会话，检查转录历史，或发送到另一个会话。
+åˆ—å‡ºä¼šè¯ï¼Œæ£€æŸ¥è½¬å½•åŽ†å²ï¼Œæˆ–å‘é€åˆ°å¦ä¸€ä¸ªä¼šè¯ã€‚
 
-核心参数：
+æ ¸å¿ƒå‚æ•°ï¼š
 
-- `sessions_list`：`kinds?`、`limit?`、`activeMinutes?`、`messageLimit?`（0 = 无）
-- `sessions_history`：`sessionKey`（或 `sessionId`）、`limit?`、`includeTools?`
-- `sessions_send`：`sessionKey`（或 `sessionId`）、`message`、`timeoutSeconds?`（0 = fire-and-forget）
-- `sessions_spawn`：`task`、`label?`、`agentId?`、`model?`、`runTimeoutSeconds?`、`cleanup?`
-- `session_status`：`sessionKey?`（默认当前；接受 `sessionId`）、`model?`（`default` 清除覆盖）
+- `sessions_list`ï¼š`kinds?`ã€`limit?`ã€`activeMinutes?`ã€`messageLimit?`ï¼ˆ0 = æ— ï¼‰
+- `sessions_history`ï¼š`sessionKey`ï¼ˆæˆ– `sessionId`ï¼‰ã€`limit?`ã€`includeTools?`
+- `sessions_send`ï¼š`sessionKey`ï¼ˆæˆ– `sessionId`ï¼‰ã€`message`ã€`timeoutSeconds?`ï¼ˆ0 = fire-and-forgetï¼‰
+- `sessions_spawn`ï¼š`task`ã€`label?`ã€`agentId?`ã€`model?`ã€`runTimeoutSeconds?`ã€`cleanup?`
+- `session_status`ï¼š`sessionKey?`ï¼ˆé»˜è®¤å½“å‰ï¼›æŽ¥å— `sessionId`ï¼‰ã€`model?`ï¼ˆ`default` æ¸…é™¤è¦†ç›–ï¼‰
 
-注意：
+æ³¨æ„ï¼š
 
-- `main` 是规范的私聊键；global/unknown 是隐藏的。
-- `messageLimit > 0` 获取每个会话的最后 N 条消息（工具消息被过滤）。
-- 当 `timeoutSeconds > 0` 时，`sessions_send` 等待最终完成。
-- 递送/宣告发生在完成后，是尽力而为的；`status: "ok"` 确认智能体运行完成，而不是宣告已递送。
-- `sessions_spawn` 启动子智能体运行并将宣告回复发送回请求者聊天。
-- `sessions_spawn` 是非阻塞的，立即返回 `status: "accepted"`。
-- `sessions_send` 运行回复往返乒乓（回复 `REPLY_SKIP` 以停止；最大轮次通过 `session.agentToAgent.maxPingPongTurns`，0-5）。
-- 乒乓之后，目标智能体运行一个**宣告步骤**；回复 `ANNOUNCE_SKIP` 以抑制宣告。
+- `main` æ˜¯è§„èŒƒçš„ç§èŠé”®ï¼›global/unknown æ˜¯éšè—çš„ã€‚
+- `messageLimit > 0` èŽ·å–æ¯ä¸ªä¼šè¯çš„æœ€åŽ N æ¡æ¶ˆæ¯ï¼ˆå·¥å…·æ¶ˆæ¯è¢«è¿‡æ»¤ï¼‰ã€‚
+- å½“ `timeoutSeconds > 0` æ—¶ï¼Œ`sessions_send` ç­‰å¾…æœ€ç»ˆå®Œæˆã€‚
+- é€’é€/å®£å‘Šå‘ç”Ÿåœ¨å®ŒæˆåŽï¼Œæ˜¯å°½åŠ›è€Œä¸ºçš„ï¼›`status: "ok"` ç¡®è®¤æ™ºèƒ½ä½“è¿è¡Œå®Œæˆï¼Œè€Œä¸æ˜¯å®£å‘Šå·²é€’é€ã€‚
+- `sessions_spawn` å¯åŠ¨å­æ™ºèƒ½ä½“è¿è¡Œå¹¶å°†å®£å‘Šå›žå¤å‘é€å›žè¯·æ±‚è€…èŠå¤©ã€‚
+- `sessions_spawn` æ˜¯éžé˜»å¡žçš„ï¼Œç«‹å³è¿”å›ž `status: "accepted"`ã€‚
+- `sessions_send` è¿è¡Œå›žå¤å¾€è¿”ä¹’ä¹“ï¼ˆå›žå¤ `REPLY_SKIP` ä»¥åœæ­¢ï¼›æœ€å¤§è½®æ¬¡é€šè¿‡ `session.agentToAgent.maxPingPongTurns`ï¼Œ0-5ï¼‰ã€‚
+- ä¹’ä¹“ä¹‹åŽï¼Œç›®æ ‡æ™ºèƒ½ä½“è¿è¡Œä¸€ä¸ª**å®£å‘Šæ­¥éª¤**ï¼›å›žå¤ `ANNOUNCE_SKIP` ä»¥æŠ‘åˆ¶å®£å‘Šã€‚
 
 ### `agents_list`
 
-列出当前会话可以用 `sessions_spawn` 定位的智能体 id。
+åˆ—å‡ºå½“å‰ä¼šè¯å¯ä»¥ç”¨ `sessions_spawn` å®šä½çš„æ™ºèƒ½ä½“ idã€‚
 
-注意：
+æ³¨æ„ï¼š
 
-- 结果受每智能体允许列表限制（`agents.list[].subagents.allowAgents`）。
-- 当配置为 `["*"]` 时，工具包含所有已配置的智能体并标记 `allowAny: true`。
+- ç»“æžœå—æ¯æ™ºèƒ½ä½“å…è®¸åˆ—è¡¨é™åˆ¶ï¼ˆ`agents.list[].subagents.allowAgents`ï¼‰ã€‚
+- å½“é…ç½®ä¸º `["*"]` æ—¶ï¼Œå·¥å…·åŒ…å«æ‰€æœ‰å·²é…ç½®çš„æ™ºèƒ½ä½“å¹¶æ ‡è®° `allowAny: true`ã€‚
 
-## 参数（通用）
+## å‚æ•°ï¼ˆé€šç”¨ï¼‰
 
-Gateway 网关支持的工具（`canvas`、`nodes`、`cron`）：
+Gateway ç½‘å…³æ”¯æŒçš„å·¥å…·ï¼ˆ`canvas`ã€`nodes`ã€`cron`ï¼‰ï¼š
 
-- `gatewayUrl`（默认 `ws://127.0.0.1:18789`）
-- `gatewayToken`（如果启用了认证）
+- `gatewayUrl`ï¼ˆé»˜è®¤ `ws://127.0.0.1:18789`ï¼‰
+- `gatewayToken`ï¼ˆå¦‚æžœå¯ç”¨äº†è®¤è¯ï¼‰
 - `timeoutMs`
 
-Browser 工具：
+Browser å·¥å…·ï¼š
 
-- `profile`（可选；默认为 `browser.defaultProfile`）
-- `target`（`sandbox` | `host` | `node`）
-- `node`（可选；固定特定的节点 id/名称）
+- `profile`ï¼ˆå¯é€‰ï¼›é»˜è®¤ä¸º `browser.defaultProfile`ï¼‰
+- `target`ï¼ˆ`sandbox` | `host` | `node`ï¼‰
+- `node`ï¼ˆå¯é€‰ï¼›å›ºå®šç‰¹å®šçš„èŠ‚ç‚¹ id/åç§°ï¼‰
 
-## 推荐的智能体流程
+## æŽ¨èçš„æ™ºèƒ½ä½“æµç¨‹
 
-浏览器自动化：
+æµè§ˆå™¨è‡ªåŠ¨åŒ–ï¼š
 
-1. `browser` → `status` / `start`
-2. `snapshot`（ai 或 aria）
-3. `act`（click/type/press）
-4. `screenshot` 如果你需要视觉确认
+1. `browser` â†’ `status` / `start`
+2. `snapshot`ï¼ˆai æˆ– ariaï¼‰
+3. `act`ï¼ˆclick/type/pressï¼‰
+4. `screenshot` å¦‚æžœä½ éœ€è¦è§†è§‰ç¡®è®¤
 
-Canvas 渲染：
+Canvas æ¸²æŸ“ï¼š
 
-1. `canvas` → `present`
-2. `a2ui_push`（可选）
+1. `canvas` â†’ `present`
+2. `a2ui_push`ï¼ˆå¯é€‰ï¼‰
 3. `snapshot`
 
-节点定位：
+èŠ‚ç‚¹å®šä½ï¼š
 
-1. `nodes` → `status`
-2. 在选定的节点上 `describe`
+1. `nodes` â†’ `status`
+2. åœ¨é€‰å®šçš„èŠ‚ç‚¹ä¸Š `describe`
 3. `notify` / `run` / `camera_snap` / `screen_record`
 
-## 安全性
+## å®‰å…¨æ€§
 
-- 避免直接 `system.run`；仅在用户明确同意时使用 `nodes` → `run`。
-- 尊重用户对摄像头/屏幕捕获的同意。
-- 在调用媒体命令前使用 `status/describe` 确保权限。
+- é¿å…ç›´æŽ¥ `system.run`ï¼›ä»…åœ¨ç”¨æˆ·æ˜Žç¡®åŒæ„æ—¶ä½¿ç”¨ `nodes` â†’ `run`ã€‚
+- å°Šé‡ç”¨æˆ·å¯¹æ‘„åƒå¤´/å±å¹•æ•èŽ·çš„åŒæ„ã€‚
+- åœ¨è°ƒç”¨åª’ä½“å‘½ä»¤å‰ä½¿ç”¨ `status/describe` ç¡®ä¿æƒé™ã€‚
 
-## 工具如何呈现给智能体
+## å·¥å…·å¦‚ä½•å‘ˆçŽ°ç»™æ™ºèƒ½ä½“
 
-工具通过两个并行渠道暴露：
+å·¥å…·é€šè¿‡ä¸¤ä¸ªå¹¶è¡Œæ¸ é“æš´éœ²ï¼š
 
-1. **系统提示文本**：人类可读的列表 + 指导。
-2. **工具 schema**：发送到模型 API 的结构化函数定义。
+1. **ç³»ç»Ÿæç¤ºæ–‡æœ¬**ï¼šäººç±»å¯è¯»çš„åˆ—è¡¨ + æŒ‡å¯¼ã€‚
+2. **å·¥å…· schema**ï¼šå‘é€åˆ°æ¨¡åž‹ API çš„ç»“æž„åŒ–å‡½æ•°å®šä¹‰ã€‚
 
-这意味着智能体同时看到"存在哪些工具"和"如何调用它们"。如果工具
-没有出现在系统提示或 schema 中，模型就无法调用它。
+è¿™æ„å‘³ç€æ™ºèƒ½ä½“åŒæ—¶çœ‹åˆ°"å­˜åœ¨å“ªäº›å·¥å…·"å’Œ"å¦‚ä½•è°ƒç”¨å®ƒä»¬"ã€‚å¦‚æžœå·¥å…·
+æ²¡æœ‰å‡ºçŽ°åœ¨ç³»ç»Ÿæç¤ºæˆ– schema ä¸­ï¼Œæ¨¡åž‹å°±æ— æ³•è°ƒç”¨å®ƒã€‚
+

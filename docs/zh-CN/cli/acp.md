@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 设置基于 ACP 的 IDE 集成
-  - 调试到 Gateway 网关的 ACP 会话路由
-summary: 运行用于 IDE 集成的 ACP 桥接器
+  - è®¾ç½®åŸºäºŽ ACP çš„ IDE é›†æˆ
+  - è°ƒè¯•åˆ° Gateway ç½‘å…³çš„ ACP ä¼šè¯è·¯ç”±
+summary: è¿è¡Œç”¨äºŽ IDE é›†æˆçš„ ACP æ¡¥æŽ¥å™¨
 title: acp
 x-i18n:
   generated_at: "2026-02-03T07:44:38Z"
@@ -15,88 +15,88 @@ x-i18n:
 
 # acp
 
-运行与 OpenClaw Gateway 网关通信的 ACP（Agent Client Protocol）桥接器。
+è¿è¡Œä¸Ž  Gateway ç½‘å…³é€šä¿¡çš„ ACPï¼ˆAgent Client Protocolï¼‰æ¡¥æŽ¥å™¨ã€‚
 
-此命令通过 stdio 使用 ACP 协议与 IDE 通信，并通过 WebSocket 将提示转发到 Gateway 网关。它将 ACP 会话映射到 Gateway 网关会话键。
+æ­¤å‘½ä»¤é€šè¿‡ stdio ä½¿ç”¨ ACP åè®®ä¸Ž IDE é€šä¿¡ï¼Œå¹¶é€šè¿‡ WebSocket å°†æç¤ºè½¬å‘åˆ° Gateway ç½‘å…³ã€‚å®ƒå°† ACP ä¼šè¯æ˜ å°„åˆ° Gateway ç½‘å…³ä¼šè¯é”®ã€‚
 
-## 用法
+## ç”¨æ³•
 
 ```bash
-openclaw acp
+ acp
 
 # Remote Gateway
-openclaw acp --url wss://gateway-host:18789 --token <token>
+ acp --url wss://gateway-host:18789 --token <token>
 
 # Attach to an existing session key
-openclaw acp --session agent:main:main
+ acp --session agent:main:main
 
 # Attach by label (must already exist)
-openclaw acp --session-label "support inbox"
+ acp --session-label "support inbox"
 
 # Reset the session key before the first prompt
-openclaw acp --session agent:main:main --reset-session
+ acp --session agent:main:main --reset-session
 ```
 
-## ACP 客户端（调试）
+## ACP å®¢æˆ·ç«¯ï¼ˆè°ƒè¯•ï¼‰
 
-使用内置 ACP 客户端在没有 IDE 的情况下检查桥接器的安装完整性。
-它会启动 ACP 桥接器并让你交互式输入提示。
+ä½¿ç”¨å†…ç½® ACP å®¢æˆ·ç«¯åœ¨æ²¡æœ‰ IDE çš„æƒ…å†µä¸‹æ£€æŸ¥æ¡¥æŽ¥å™¨çš„å®‰è£…å®Œæ•´æ€§ã€‚
+å®ƒä¼šå¯åŠ¨ ACP æ¡¥æŽ¥å™¨å¹¶è®©ä½ äº¤äº’å¼è¾“å…¥æç¤ºã€‚
 
 ```bash
-openclaw acp client
+ acp client
 
 # Point the spawned bridge at a remote Gateway
-openclaw acp client --server-args --url wss://gateway-host:18789 --token <token>
+ acp client --server-args --url wss://gateway-host:18789 --token <token>
 
-# Override the server command (default: openclaw)
-openclaw acp client --server "node" --server-args openclaw.mjs acp --url ws://127.0.0.1:19001
+# Override the server command (default: )
+ acp client --server "node" --server-args .mjs acp --url ws://127.0.0.1:19001
 ```
 
-## 如何使用
+## å¦‚ä½•ä½¿ç”¨
 
-当 IDE（或其他客户端）使用 Agent Client Protocol 并且你希望它驱动 OpenClaw Gateway 网关会话时，请使用 ACP。
+å½“ IDEï¼ˆæˆ–å…¶ä»–å®¢æˆ·ç«¯ï¼‰ä½¿ç”¨ Agent Client Protocol å¹¶ä¸”ä½ å¸Œæœ›å®ƒé©±åŠ¨  Gateway ç½‘å…³ä¼šè¯æ—¶ï¼Œè¯·ä½¿ç”¨ ACPã€‚
 
-1. 确保 Gateway 网关正在运行（本地或远程）。
-2. 配置 Gateway 网关目标（配置或标志）。
-3. 将你的 IDE 配置为通过 stdio 运行 `openclaw acp`。
+1. ç¡®ä¿ Gateway ç½‘å…³æ­£åœ¨è¿è¡Œï¼ˆæœ¬åœ°æˆ–è¿œç¨‹ï¼‰ã€‚
+2. é…ç½® Gateway ç½‘å…³ç›®æ ‡ï¼ˆé…ç½®æˆ–æ ‡å¿—ï¼‰ã€‚
+3. å°†ä½ çš„ IDE é…ç½®ä¸ºé€šè¿‡ stdio è¿è¡Œ ` acp`ã€‚
 
-示例配置（持久化）：
+ç¤ºä¾‹é…ç½®ï¼ˆæŒä¹…åŒ–ï¼‰ï¼š
 
 ```bash
-openclaw config set gateway.remote.url wss://gateway-host:18789
-openclaw config set gateway.remote.token <token>
+ config set gateway.remote.url wss://gateway-host:18789
+ config set gateway.remote.token <token>
 ```
 
-示例直接运行（不写入配置）：
+ç¤ºä¾‹ç›´æŽ¥è¿è¡Œï¼ˆä¸å†™å…¥é…ç½®ï¼‰ï¼š
 
 ```bash
-openclaw acp --url wss://gateway-host:18789 --token <token>
+ acp --url wss://gateway-host:18789 --token <token>
 ```
 
-## 选择智能体
+## é€‰æ‹©æ™ºèƒ½ä½“
 
-ACP 不直接选择智能体。它通过 Gateway 网关会话键进行路由。
+ACP ä¸ç›´æŽ¥é€‰æ‹©æ™ºèƒ½ä½“ã€‚å®ƒé€šè¿‡ Gateway ç½‘å…³ä¼šè¯é”®è¿›è¡Œè·¯ç”±ã€‚
 
-使用智能体作用域的会话键来定位特定智能体：
+ä½¿ç”¨æ™ºèƒ½ä½“ä½œç”¨åŸŸçš„ä¼šè¯é”®æ¥å®šä½ç‰¹å®šæ™ºèƒ½ä½“ï¼š
 
 ```bash
-openclaw acp --session agent:main:main
-openclaw acp --session agent:design:main
-openclaw acp --session agent:qa:bug-123
+ acp --session agent:main:main
+ acp --session agent:design:main
+ acp --session agent:qa:bug-123
 ```
 
-每个 ACP 会话映射到单个 Gateway 网关会话键。一个智能体可以有多个会话；除非你覆盖键或标签，否则 ACP 默认使用隔离的 `acp:<uuid>` 会话。
+æ¯ä¸ª ACP ä¼šè¯æ˜ å°„åˆ°å•ä¸ª Gateway ç½‘å…³ä¼šè¯é”®ã€‚ä¸€ä¸ªæ™ºèƒ½ä½“å¯ä»¥æœ‰å¤šä¸ªä¼šè¯ï¼›é™¤éžä½ è¦†ç›–é”®æˆ–æ ‡ç­¾ï¼Œå¦åˆ™ ACP é»˜è®¤ä½¿ç”¨éš”ç¦»çš„ `acp:<uuid>` ä¼šè¯ã€‚
 
-## Zed 编辑器设置
+## Zed ç¼–è¾‘å™¨è®¾ç½®
 
-在 `~/.config/zed/settings.json` 中添加自定义 ACP 智能体（或使用 Zed 的设置界面）：
+åœ¨ `~/.config/zed/settings.json` ä¸­æ·»åŠ è‡ªå®šä¹‰ ACP æ™ºèƒ½ä½“ï¼ˆæˆ–ä½¿ç”¨ Zed çš„è®¾ç½®ç•Œé¢ï¼‰ï¼š
 
 ```json
 {
   "agent_servers": {
-    "OpenClaw ACP": {
+    " ACP": {
       "type": "custom",
-      "command": "openclaw",
+      "command": "",
       "args": ["acp"],
       "env": {}
     }
@@ -104,14 +104,14 @@ openclaw acp --session agent:qa:bug-123
 }
 ```
 
-要定位特定的 Gateway 网关或智能体：
+è¦å®šä½ç‰¹å®šçš„ Gateway ç½‘å…³æˆ–æ™ºèƒ½ä½“ï¼š
 
 ```json
 {
   "agent_servers": {
-    "OpenClaw ACP": {
+    " ACP": {
       "type": "custom",
-      "command": "openclaw",
+      "command": "",
       "args": [
         "acp",
         "--url",
@@ -127,18 +127,18 @@ openclaw acp --session agent:qa:bug-123
 }
 ```
 
-在 Zed 中，打开 Agent 面板并选择"OpenClaw ACP"来开始一个会话。
+åœ¨ Zed ä¸­ï¼Œæ‰“å¼€ Agent é¢æ¿å¹¶é€‰æ‹©" ACP"æ¥å¼€å§‹ä¸€ä¸ªä¼šè¯ã€‚
 
-## 会话映射
+## ä¼šè¯æ˜ å°„
 
-默认情况下，ACP 会话获得一个带有 `acp:` 前缀的隔离 Gateway 网关会话键。
-要重用已知会话，请传递会话键或标签：
+é»˜è®¤æƒ…å†µä¸‹ï¼ŒACP ä¼šè¯èŽ·å¾—ä¸€ä¸ªå¸¦æœ‰ `acp:` å‰ç¼€çš„éš”ç¦» Gateway ç½‘å…³ä¼šè¯é”®ã€‚
+è¦é‡ç”¨å·²çŸ¥ä¼šè¯ï¼Œè¯·ä¼ é€’ä¼šè¯é”®æˆ–æ ‡ç­¾ï¼š
 
-- `--session <key>`：使用特定的 Gateway 网关会话键。
-- `--session-label <label>`：通过标签解析现有会话。
-- `--reset-session`：为该键生成新的会话 ID（相同键，新对话记录）。
+- `--session <key>`ï¼šä½¿ç”¨ç‰¹å®šçš„ Gateway ç½‘å…³ä¼šè¯é”®ã€‚
+- `--session-label <label>`ï¼šé€šè¿‡æ ‡ç­¾è§£æžçŽ°æœ‰ä¼šè¯ã€‚
+- `--reset-session`ï¼šä¸ºè¯¥é”®ç”Ÿæˆæ–°çš„ä¼šè¯ IDï¼ˆç›¸åŒé”®ï¼Œæ–°å¯¹è¯è®°å½•ï¼‰ã€‚
 
-如果你的 ACP 客户端支持元数据，你可以按会话覆盖：
+å¦‚æžœä½ çš„ ACP å®¢æˆ·ç«¯æ”¯æŒå…ƒæ•°æ®ï¼Œä½ å¯ä»¥æŒ‰ä¼šè¯è¦†ç›–ï¼š
 
 ```json
 {
@@ -150,24 +150,25 @@ openclaw acp --session agent:qa:bug-123
 }
 ```
 
-在 [/concepts/session](/concepts/session) 了解更多关于会话键的信息。
+åœ¨ [/concepts/session](/concepts/session) äº†è§£æ›´å¤šå…³äºŽä¼šè¯é”®çš„ä¿¡æ¯ã€‚
 
-## 选项
+## é€‰é¡¹
 
-- `--url <url>`：Gateway 网关 WebSocket URL（配置后默认为 gateway.remote.url）。
-- `--token <token>`：Gateway 网关认证令牌。
-- `--password <password>`：Gateway 网关认证密码。
-- `--session <key>`：默认会话键。
-- `--session-label <label>`：要解析的默认会话标签。
-- `--require-existing`：如果会话键/标签不存在则失败。
-- `--reset-session`：在首次使用前重置会话键。
-- `--no-prefix-cwd`：不在提示前添加工作目录前缀。
-- `--verbose, -v`：向 stderr 输出详细日志。
+- `--url <url>`ï¼šGateway ç½‘å…³ WebSocket URLï¼ˆé…ç½®åŽé»˜è®¤ä¸º gateway.remote.urlï¼‰ã€‚
+- `--token <token>`ï¼šGateway ç½‘å…³è®¤è¯ä»¤ç‰Œã€‚
+- `--password <password>`ï¼šGateway ç½‘å…³è®¤è¯å¯†ç ã€‚
+- `--session <key>`ï¼šé»˜è®¤ä¼šè¯é”®ã€‚
+- `--session-label <label>`ï¼šè¦è§£æžçš„é»˜è®¤ä¼šè¯æ ‡ç­¾ã€‚
+- `--require-existing`ï¼šå¦‚æžœä¼šè¯é”®/æ ‡ç­¾ä¸å­˜åœ¨åˆ™å¤±è´¥ã€‚
+- `--reset-session`ï¼šåœ¨é¦–æ¬¡ä½¿ç”¨å‰é‡ç½®ä¼šè¯é”®ã€‚
+- `--no-prefix-cwd`ï¼šä¸åœ¨æç¤ºå‰æ·»åŠ å·¥ä½œç›®å½•å‰ç¼€ã€‚
+- `--verbose, -v`ï¼šå‘ stderr è¾“å‡ºè¯¦ç»†æ—¥å¿—ã€‚
 
-### `acp client` 选项
+### `acp client` é€‰é¡¹
 
-- `--cwd <dir>`：ACP 会话的工作目录。
-- `--server <command>`：ACP 服务器命令（默认：`openclaw`）。
-- `--server-args <args...>`：传递给 ACP 服务器的额外参数。
-- `--server-verbose`：启用 ACP 服务器的详细日志。
-- `--verbose, -v`：详细客户端日志。
+- `--cwd <dir>`ï¼šACP ä¼šè¯çš„å·¥ä½œç›®å½•ã€‚
+- `--server <command>`ï¼šACP æœåŠ¡å™¨å‘½ä»¤ï¼ˆé»˜è®¤ï¼š``ï¼‰ã€‚
+- `--server-args <args...>`ï¼šä¼ é€’ç»™ ACP æœåŠ¡å™¨çš„é¢å¤–å‚æ•°ã€‚
+- `--server-verbose`ï¼šå¯ç”¨ ACP æœåŠ¡å™¨çš„è¯¦ç»†æ—¥å¿—ã€‚
+- `--verbose, -v`ï¼šè¯¦ç»†å®¢æˆ·ç«¯æ—¥å¿—ã€‚
+

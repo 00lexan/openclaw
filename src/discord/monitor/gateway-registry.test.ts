@@ -1,4 +1,4 @@
-import type { GatewayPlugin } from "@buape/carbon/gateway";
+﻿import type { GatewayPlugin } from "@buape/carbon/gateway";
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   clearGateways,
@@ -54,3 +54,4 @@ describe("gateway-registry", () => {
     expect(getGateway("account-a")).toBe(gateway2);
   });
 });
+

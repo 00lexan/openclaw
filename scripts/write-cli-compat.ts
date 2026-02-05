@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -23,3 +23,4 @@ const contents =
 
 fs.mkdirSync(cliDir, { recursive: true });
 fs.writeFileSync(path.join(cliDir, "daemon-cli.js"), contents);
+

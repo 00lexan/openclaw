@@ -1,4 +1,4 @@
-import type { loadConfig } from "../../../config/config.js";
+﻿import type { loadConfig } from "../../../config/config.js";
 import type { resolveAgentRoute } from "../../../routing/resolve-route.js";
 import type { WebInboundMsg } from "../types.js";
 import type { GroupHistoryEntry } from "./process-message.js";
@@ -97,3 +97,4 @@ export async function maybeBroadcastMessage(params: {
 
   return true;
 }
+

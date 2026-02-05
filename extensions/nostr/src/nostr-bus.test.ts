@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   validatePrivateKey,
   getPublicKeyFromPrivate,
@@ -197,3 +197,4 @@ describe("pubkeyToNpub", () => {
     expect(pubkeyToNpub(lower)).toBe(pubkeyToNpub(upper));
   });
 });
+

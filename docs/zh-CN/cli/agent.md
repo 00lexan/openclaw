@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你想从脚本运行一个智能体回合（可选发送回复）
-summary: "`openclaw agent` 的 CLI 参考（通过 Gateway 网关发送一个智能体回合）"
+  - ä½ æƒ³ä»Žè„šæœ¬è¿è¡Œä¸€ä¸ªæ™ºèƒ½ä½“å›žåˆï¼ˆå¯é€‰å‘é€å›žå¤ï¼‰
+summary: "` agent` çš„ CLI å‚è€ƒï¼ˆé€šè¿‡ Gateway ç½‘å…³å‘é€ä¸€ä¸ªæ™ºèƒ½ä½“å›žåˆï¼‰"
 title: agent
 x-i18n:
   generated_at: "2026-02-03T07:44:38Z"
@@ -12,19 +12,20 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw agent`
+# ` agent`
 
-通过 Gateway 网关运行智能体回合（使用 `--local` 进行嵌入式运行）。使用 `--agent <id>` 直接指定已配置的智能体。
+é€šè¿‡ Gateway ç½‘å…³è¿è¡Œæ™ºèƒ½ä½“å›žåˆï¼ˆä½¿ç”¨ `--local` è¿›è¡ŒåµŒå…¥å¼è¿è¡Œï¼‰ã€‚ä½¿ç”¨ `--agent <id>` ç›´æŽ¥æŒ‡å®šå·²é…ç½®çš„æ™ºèƒ½ä½“ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 智能体发送工具：[Agent send](/tools/agent-send)
+- æ™ºèƒ½ä½“å‘é€å·¥å…·ï¼š[Agent send](/tools/agent-send)
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
-openclaw agent --to +15555550123 --message "status update" --deliver
-openclaw agent --agent ops --message "Summarize logs"
-openclaw agent --session-id 1234 --message "Summarize inbox" --thinking medium
-openclaw agent --agent ops --message "Generate report" --deliver --reply-channel slack --reply-to "#reports"
+ agent --to +15555550123 --message "status update" --deliver
+ agent --agent ops --message "Summarize logs"
+ agent --session-id 1234 --message "Summarize inbox" --thinking medium
+ agent --agent ops --message "Generate report" --deliver --reply-channel slack --reply-to "#reports"
 ```
+

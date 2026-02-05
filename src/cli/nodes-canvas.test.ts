@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { parseCanvasSnapshotPayload } from "./nodes-canvas.js";
 
 describe("nodes canvas helpers", () => {
@@ -15,3 +15,4 @@ describe("nodes canvas helpers", () => {
     );
   });
 });
+

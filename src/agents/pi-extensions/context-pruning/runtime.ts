@@ -1,4 +1,4 @@
-import type { EffectiveContextPruningSettings } from "./settings.js";
+﻿import type { EffectiveContextPruningSettings } from "./settings.js";
 
 export type ContextPruningRuntimeValue = {
   settings: EffectiveContextPruningSettings;
@@ -38,3 +38,4 @@ export function getContextPruningRuntime(
 
   return REGISTRY.get(sessionManager) ?? null;
 }
+

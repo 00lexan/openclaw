@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString } from "./primitives.js";
 
 export const ConfigGetParamsSchema = Type.Object({}, { additionalProperties: false });
@@ -68,3 +68,4 @@ export const ConfigSchemaResponseSchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

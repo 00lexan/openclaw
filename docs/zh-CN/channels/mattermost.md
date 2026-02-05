@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 设置 Mattermost
-  - 调试 Mattermost 路由
-summary: Mattermost 机器人设置和 OpenClaw 配置
+  - è®¾ç½® Mattermost
+  - è°ƒè¯• Mattermost è·¯ç”±
+summary: Mattermost æœºå™¨äººè®¾ç½®å’Œ  é…ç½®
 title: Mattermost
 x-i18n:
   generated_at: "2026-02-03T07:43:43Z"
@@ -13,40 +13,40 @@ x-i18n:
   workflow: 15
 ---
 
-# Mattermost（插件）
+# Mattermostï¼ˆæ’ä»¶ï¼‰
 
-状态：通过插件支持（bot token + WebSocket 事件）。支持频道、群组和私信。
-Mattermost 是一个可自托管的团队消息平台；有关产品详情和下载，请访问官方网站
-[mattermost.com](https://mattermost.com)。
+çŠ¶æ€ï¼šé€šè¿‡æ’ä»¶æ”¯æŒï¼ˆbot token + WebSocket äº‹ä»¶ï¼‰ã€‚æ”¯æŒé¢‘é“ã€ç¾¤ç»„å’Œç§ä¿¡ã€‚
+Mattermost æ˜¯ä¸€ä¸ªå¯è‡ªæ‰˜ç®¡çš„å›¢é˜Ÿæ¶ˆæ¯å¹³å°ï¼›æœ‰å…³äº§å“è¯¦æƒ…å’Œä¸‹è½½ï¼Œè¯·è®¿é—®å®˜æ–¹ç½‘ç«™
+[mattermost.com](https://mattermost.com)ã€‚
 
-## 需要插件
+## éœ€è¦æ’ä»¶
 
-Mattermost 以插件形式提供，不包含在核心安装中。
+Mattermost ä»¥æ’ä»¶å½¢å¼æä¾›ï¼Œä¸åŒ…å«åœ¨æ ¸å¿ƒå®‰è£…ä¸­ã€‚
 
-通过 CLI 安装（npm 注册表）：
-
-```bash
-openclaw plugins install @openclaw/mattermost
-```
-
-本地检出（从 git 仓库运行时）：
+é€šè¿‡ CLI å®‰è£…ï¼ˆnpm æ³¨å†Œè¡¨ï¼‰ï¼š
 
 ```bash
-openclaw plugins install ./extensions/mattermost
+ plugins install @/mattermost
 ```
 
-如果你在配置/新手引导期间选择 Mattermost 并检测到 git 检出，OpenClaw 会自动提供本地安装路径。
+æœ¬åœ°æ£€å‡ºï¼ˆä»Ž git ä»“åº“è¿è¡Œæ—¶ï¼‰ï¼š
 
-详情：[插件](/plugin)
+```bash
+ plugins install ./extensions/mattermost
+```
 
-## 快速设置
+å¦‚æžœä½ åœ¨é…ç½®/æ–°æ‰‹å¼•å¯¼æœŸé—´é€‰æ‹© Mattermost å¹¶æ£€æµ‹åˆ° git æ£€å‡ºï¼Œ ä¼šè‡ªåŠ¨æä¾›æœ¬åœ°å®‰è£…è·¯å¾„ã€‚
 
-1. 安装 Mattermost 插件。
-2. 创建 Mattermost bot 账户并复制 **bot token**。
-3. 复制 Mattermost **基础 URL**（例如 `https://chat.example.com`）。
-4. 配置 OpenClaw 并启动 Gateway 网关。
+è¯¦æƒ…ï¼š[æ’ä»¶](/plugin)
 
-最小配置：
+## å¿«é€Ÿè®¾ç½®
+
+1. å®‰è£… Mattermost æ’ä»¶ã€‚
+2. åˆ›å»º Mattermost bot è´¦æˆ·å¹¶å¤åˆ¶ **bot token**ã€‚
+3. å¤åˆ¶ Mattermost **åŸºç¡€ URL**ï¼ˆä¾‹å¦‚ `https://chat.example.com`ï¼‰ã€‚
+4. é…ç½®  å¹¶å¯åŠ¨ Gateway ç½‘å…³ã€‚
+
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -61,24 +61,24 @@ openclaw plugins install ./extensions/mattermost
 }
 ```
 
-## 环境变量（默认账户）
+## çŽ¯å¢ƒå˜é‡ï¼ˆé»˜è®¤è´¦æˆ·ï¼‰
 
-如果你偏好使用环境变量，请在 Gateway 网关主机上设置：
+å¦‚æžœä½ åå¥½ä½¿ç”¨çŽ¯å¢ƒå˜é‡ï¼Œè¯·åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè®¾ç½®ï¼š
 
 - `MATTERMOST_BOT_TOKEN=...`
 - `MATTERMOST_URL=https://chat.example.com`
 
-环境变量仅适用于**默认**账户（`default`）。其他账户必须使用配置值。
+çŽ¯å¢ƒå˜é‡ä»…é€‚ç”¨äºŽ**é»˜è®¤**è´¦æˆ·ï¼ˆ`default`ï¼‰ã€‚å…¶ä»–è´¦æˆ·å¿…é¡»ä½¿ç”¨é…ç½®å€¼ã€‚
 
-## 聊天模式
+## èŠå¤©æ¨¡å¼
 
-Mattermost 自动响应私信。频道行为由 `chatmode` 控制：
+Mattermost è‡ªåŠ¨å“åº”ç§ä¿¡ã€‚é¢‘é“è¡Œä¸ºç”± `chatmode` æŽ§åˆ¶ï¼š
 
-- `oncall`（默认）：仅在频道中被 @提及时响应。
-- `onmessage`：响应每条频道消息。
-- `onchar`：当消息以触发前缀开头时响应。
+- `oncall`ï¼ˆé»˜è®¤ï¼‰ï¼šä»…åœ¨é¢‘é“ä¸­è¢« @æåŠæ—¶å“åº”ã€‚
+- `onmessage`ï¼šå“åº”æ¯æ¡é¢‘é“æ¶ˆæ¯ã€‚
+- `onchar`ï¼šå½“æ¶ˆæ¯ä»¥è§¦å‘å‰ç¼€å¼€å¤´æ—¶å“åº”ã€‚
 
-配置示例：
+é…ç½®ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -91,38 +91,38 @@ Mattermost 自动响应私信。频道行为由 `chatmode` 控制：
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- `onchar` 仍会响应显式 @提及。
-- `channels.mattermost.requireMention` 对旧配置仍然有效，但推荐使用 `chatmode`。
+- `onchar` ä»ä¼šå“åº”æ˜¾å¼ @æåŠã€‚
+- `channels.mattermost.requireMention` å¯¹æ—§é…ç½®ä»ç„¶æœ‰æ•ˆï¼Œä½†æŽ¨èä½¿ç”¨ `chatmode`ã€‚
 
-## 访问控制（私信）
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ï¼‰
 
-- 默认：`channels.mattermost.dmPolicy = "pairing"`（未知发送者会收到配对码）。
-- 通过以下方式批准：
-  - `openclaw pairing list mattermost`
-  - `openclaw pairing approve mattermost <CODE>`
-- 公开私信：`channels.mattermost.dmPolicy="open"` 加上 `channels.mattermost.allowFrom=["*"]`。
+- é»˜è®¤ï¼š`channels.mattermost.dmPolicy = "pairing"`ï¼ˆæœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼‰ã€‚
+- é€šè¿‡ä»¥ä¸‹æ–¹å¼æ‰¹å‡†ï¼š
+  - ` pairing list mattermost`
+  - ` pairing approve mattermost <CODE>`
+- å…¬å¼€ç§ä¿¡ï¼š`channels.mattermost.dmPolicy="open"` åŠ ä¸Š `channels.mattermost.allowFrom=["*"]`ã€‚
 
-## 频道（群组）
+## é¢‘é“ï¼ˆç¾¤ç»„ï¼‰
 
-- 默认：`channels.mattermost.groupPolicy = "allowlist"`（提及限制）。
-- 使用 `channels.mattermost.groupAllowFrom` 将发送者加入允许列表（用户 ID 或 `@username`）。
-- 开放频道：`channels.mattermost.groupPolicy="open"`（提及限制）。
+- é»˜è®¤ï¼š`channels.mattermost.groupPolicy = "allowlist"`ï¼ˆæåŠé™åˆ¶ï¼‰ã€‚
+- ä½¿ç”¨ `channels.mattermost.groupAllowFrom` å°†å‘é€è€…åŠ å…¥å…è®¸åˆ—è¡¨ï¼ˆç”¨æˆ· ID æˆ– `@username`ï¼‰ã€‚
+- å¼€æ”¾é¢‘é“ï¼š`channels.mattermost.groupPolicy="open"`ï¼ˆæåŠé™åˆ¶ï¼‰ã€‚
 
-## 出站投递目标
+## å‡ºç«™æŠ•é€’ç›®æ ‡
 
-在 `openclaw message send` 或 cron/webhooks 中使用这些目标格式：
+åœ¨ ` message send` æˆ– cron/webhooks ä¸­ä½¿ç”¨è¿™äº›ç›®æ ‡æ ¼å¼ï¼š
 
-- `channel:<id>` 用于频道
-- `user:<id>` 用于私信
-- `@username` 用于私信（通过 Mattermost API 解析）
+- `channel:<id>` ç”¨äºŽé¢‘é“
+- `user:<id>` ç”¨äºŽç§ä¿¡
+- `@username` ç”¨äºŽç§ä¿¡ï¼ˆé€šè¿‡ Mattermost API è§£æžï¼‰
 
-裸 ID 被视为频道。
+è£¸ ID è¢«è§†ä¸ºé¢‘é“ã€‚
 
-## 多账户
+## å¤šè´¦æˆ·
 
-Mattermost 支持在 `channels.mattermost.accounts` 下配置多个账户：
+Mattermost æ”¯æŒåœ¨ `channels.mattermost.accounts` ä¸‹é…ç½®å¤šä¸ªè´¦æˆ·ï¼š
 
 ```json5
 {
@@ -137,8 +137,9 @@ Mattermost 支持在 `channels.mattermost.accounts` 下配置多个账户：
 }
 ```
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-- 频道中无回复：确保 bot 在频道中并提及它（oncall），使用触发前缀（onchar），或设置 `chatmode: "onmessage"`。
-- 认证错误：检查 bot token、基础 URL 以及账户是否已启用。
-- 多账户问题：环境变量仅适用于 `default` 账户。
+- é¢‘é“ä¸­æ— å›žå¤ï¼šç¡®ä¿ bot åœ¨é¢‘é“ä¸­å¹¶æåŠå®ƒï¼ˆoncallï¼‰ï¼Œä½¿ç”¨è§¦å‘å‰ç¼€ï¼ˆoncharï¼‰ï¼Œæˆ–è®¾ç½® `chatmode: "onmessage"`ã€‚
+- è®¤è¯é”™è¯¯ï¼šæ£€æŸ¥ bot tokenã€åŸºç¡€ URL ä»¥åŠè´¦æˆ·æ˜¯å¦å·²å¯ç”¨ã€‚
+- å¤šè´¦æˆ·é—®é¢˜ï¼šçŽ¯å¢ƒå˜é‡ä»…é€‚ç”¨äºŽ `default` è´¦æˆ·ã€‚
+

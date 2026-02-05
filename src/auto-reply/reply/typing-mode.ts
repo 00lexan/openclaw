@@ -1,4 +1,4 @@
-import type { TypingMode } from "../../config/types.js";
+﻿import type { TypingMode } from "../../config/types.js";
 import type { TypingController } from "./typing.js";
 import { isSilentReplyText, SILENT_REPLY_TOKEN } from "../tokens.js";
 
@@ -140,3 +140,4 @@ export function createTypingSignaler(params: {
     signalToolStart,
   };
 }
+

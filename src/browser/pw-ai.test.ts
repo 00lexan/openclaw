@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("playwright-core", () => ({
   chromium: {
@@ -186,3 +186,4 @@ describe("pw-ai", () => {
     expect(connect).toHaveBeenCalledTimes(1);
   });
 });
+

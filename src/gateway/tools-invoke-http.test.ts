@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+﻿import type { IncomingMessage, ServerResponse } from "node:http";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -10,8 +10,8 @@ installGatewayTestHooks({ scope: "suite" });
 
 beforeEach(() => {
   // Ensure these tests are not affected by host env vars.
-  delete process.env.OPENCLAW_GATEWAY_TOKEN;
-  delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+  delete process.env._GATEWAY_TOKEN;
+  delete process.env._GATEWAY_PASSWORD;
 });
 
 const resolveGatewayToken = (): string => {
@@ -342,3 +342,4 @@ describe("POST /tools/invoke", () => {
     await server.close();
   });
 });
+

@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../../runtime.js";
+﻿import type { RuntimeEnv } from "../../runtime.js";
 import { resolveAgentDir, resolveDefaultAgentId } from "../../agents/agent-scope.js";
 import {
   type AuthProfileStore,
@@ -139,3 +139,4 @@ export async function modelsAuthOrderSetCommand(
   runtime.log(`Provider: ${provider}`);
   runtime.log(`Order override: ${describeOrder(updated, provider).join(", ")}`);
 }
+

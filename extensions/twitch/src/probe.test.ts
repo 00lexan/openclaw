@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { TwitchAccountConfig } from "./types.js";
 import { probeTwitch } from "./probe.js";
 
@@ -193,3 +193,4 @@ describe("probeTwitch", () => {
     mockConnect.mockImplementation(defaultConnectImpl);
   });
 });
+

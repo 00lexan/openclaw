@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import { describe, expect, it } from "vitest";
 import { listSystemPresence, updateSystemPresence, upsertPresence } from "./system-presence.js";
 
@@ -8,14 +8,14 @@ describe("system-presence", () => {
     const instanceIdLower = instanceIdUpper.toLowerCase();
 
     upsertPresence(instanceIdUpper, {
-      host: "openclaw",
+      host: "",
       mode: "ui",
       instanceId: instanceIdUpper,
       reason: "connect",
     });
 
     updateSystemPresence({
-      text: "Node: Peter-Mac-Studio (10.0.0.1) · ui 2.0.0 · last input 5s ago · mode ui · reason beacon",
+      text: "Node: Peter-Mac-Studio (10.0.0.1) Â· ui 2.0.0 Â· last input 5s ago Â· mode ui Â· reason beacon",
       instanceId: instanceIdLower,
       host: "Peter-Mac-Studio",
       ip: "10.0.0.1",
@@ -39,7 +39,7 @@ describe("system-presence", () => {
 
     upsertPresence(deviceId, {
       deviceId,
-      host: "openclaw",
+      host: "",
       roles: ["operator"],
       scopes: ["operator.admin"],
       reason: "connect",
@@ -57,3 +57,4 @@ describe("system-presence", () => {
     expect(entry?.scopes).toEqual(expect.arrayContaining(["operator.admin", "system.run"]));
   });
 });
+

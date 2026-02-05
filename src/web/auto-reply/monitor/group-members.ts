@@ -1,4 +1,4 @@
-import { normalizeE164 } from "../../../utils.js";
+﻿import { normalizeE164 } from "../../../utils.js";
 
 export function noteGroupMember(
   groupMemberNames: Map<string, Map<string, string>>,
@@ -69,3 +69,4 @@ export function formatGroupMembers(params: {
     })
     .join(", ");
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { downgradeOpenAIReasoningBlocks } from "./pi-embedded-helpers.js";
 
 describe("downgradeOpenAIReasoningBlocks", () => {
@@ -76,3 +76,4 @@ describe("downgradeOpenAIReasoningBlocks", () => {
     expect(downgradeOpenAIReasoningBlocks(input as any)).toEqual(input);
   });
 });
+

@@ -1,5 +1,5 @@
-import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import path from "node:path";
+import type { Config } from "../config/config.js";
 import type { SessionSendPolicyConfig } from "../config/types.base.js";
 import type {
   MemoryBackend,
@@ -228,7 +228,7 @@ function resolveDefaultCollections(
 }
 
 export function resolveMemoryBackendConfig(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   agentId: string;
 }): ResolvedMemoryBackendConfig {
   const backend = params.cfg.memory?.backend ?? DEFAULT_BACKEND;
@@ -270,3 +270,4 @@ export function resolveMemoryBackendConfig(params: {
     qmd: resolved,
   };
 }
+

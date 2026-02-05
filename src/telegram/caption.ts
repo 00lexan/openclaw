@@ -1,4 +1,4 @@
-export const TELEGRAM_MAX_CAPTION_LENGTH = 1024;
+﻿export const TELEGRAM_MAX_CAPTION_LENGTH = 1024;
 
 export function splitTelegramCaption(text?: string): {
   caption?: string;
@@ -13,3 +13,4 @@ export function splitTelegramCaption(text?: string): {
   }
   return { caption: trimmed, followUpText: undefined };
 }
+

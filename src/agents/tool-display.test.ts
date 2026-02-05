@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { formatToolDetail, resolveToolDisplay } from "./tool-display.js";
 
 describe("tool display details", () => {
@@ -53,3 +53,4 @@ describe("tool display details", () => {
     expect(detail).toContain("tools true");
   });
 });
+

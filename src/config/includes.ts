@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Config includes: $include directive for modular configs
  *
  * @example
@@ -247,3 +247,4 @@ export function resolveConfigIncludes(
 ): unknown {
   return new IncludeProcessor(configPath, resolver).process(obj);
 }
+

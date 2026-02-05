@@ -1,11 +1,11 @@
----
+﻿---
 read_when:
-  - 你想让 OpenClaw 与你的主 macOS 环境隔离
-  - 你想在沙箱中集成 iMessage（BlueBubbles）
-  - 你想要一个可重置、可克隆的 macOS 环境
-  - 你想比较本地与托管 macOS VM 选项
-summary: 在沙箱隔离的 macOS VM（本地或托管）中运行 OpenClaw，当你需要隔离或 iMessage 时
-title: macOS 虚拟机
+  - ä½ æƒ³è®©  ä¸Žä½ çš„ä¸» macOS çŽ¯å¢ƒéš”ç¦»
+  - ä½ æƒ³åœ¨æ²™ç®±ä¸­é›†æˆ iMessageï¼ˆBlueBubblesï¼‰
+  - ä½ æƒ³è¦ä¸€ä¸ªå¯é‡ç½®ã€å¯å…‹éš†çš„ macOS çŽ¯å¢ƒ
+  - ä½ æƒ³æ¯”è¾ƒæœ¬åœ°ä¸Žæ‰˜ç®¡ macOS VM é€‰é¡¹
+summary: åœ¨æ²™ç®±éš”ç¦»çš„ macOS VMï¼ˆæœ¬åœ°æˆ–æ‰˜ç®¡ï¼‰ä¸­è¿è¡Œ ï¼Œå½“ä½ éœ€è¦éš”ç¦»æˆ– iMessage æ—¶
+title: macOS è™šæ‹Ÿæœº
 x-i18n:
   generated_at: "2026-02-03T07:53:09Z"
   model: claude-opus-4-5
@@ -15,152 +15,152 @@ x-i18n:
   workflow: 15
 ---
 
-# 在 macOS 虚拟机上运行 OpenClaw（沙箱隔离）
+# åœ¨ macOS è™šæ‹Ÿæœºä¸Šè¿è¡Œ ï¼ˆæ²™ç®±éš”ç¦»ï¼‰
 
-## 推荐默认方案（大多数用户）
+## æŽ¨èé»˜è®¤æ–¹æ¡ˆï¼ˆå¤§å¤šæ•°ç”¨æˆ·ï¼‰
 
-- **小型 Linux VPS** 用于永久在线的 Gateway 网关，成本低。参见 [VPS 托管](/vps)。
-- **专用硬件**（Mac mini 或 Linux 机器）如果你想要完全控制和**住宅 IP** 用于浏览器自动化。许多网站会屏蔽数据中心 IP，所以本地浏览通常效果更好。
-- **混合方案：** 将 Gateway 网关保持在廉价 VPS 上，当你需要浏览器/UI 自动化时，将你的 Mac 作为**节点**连接。参见[节点](/nodes)和 [Gateway 网关远程](/gateway/remote)。
+- **å°åž‹ Linux VPS** ç”¨äºŽæ°¸ä¹…åœ¨çº¿çš„ Gateway ç½‘å…³ï¼Œæˆæœ¬ä½Žã€‚å‚è§ [VPS æ‰˜ç®¡](/vps)ã€‚
+- **ä¸“ç”¨ç¡¬ä»¶**ï¼ˆMac mini æˆ– Linux æœºå™¨ï¼‰å¦‚æžœä½ æƒ³è¦å®Œå…¨æŽ§åˆ¶å’Œ**ä½å®… IP** ç”¨äºŽæµè§ˆå™¨è‡ªåŠ¨åŒ–ã€‚è®¸å¤šç½‘ç«™ä¼šå±è”½æ•°æ®ä¸­å¿ƒ IPï¼Œæ‰€ä»¥æœ¬åœ°æµè§ˆé€šå¸¸æ•ˆæžœæ›´å¥½ã€‚
+- **æ··åˆæ–¹æ¡ˆï¼š** å°† Gateway ç½‘å…³ä¿æŒåœ¨å»‰ä»· VPS ä¸Šï¼Œå½“ä½ éœ€è¦æµè§ˆå™¨/UI è‡ªåŠ¨åŒ–æ—¶ï¼Œå°†ä½ çš„ Mac ä½œä¸º**èŠ‚ç‚¹**è¿žæŽ¥ã€‚å‚è§[èŠ‚ç‚¹](/nodes)å’Œ [Gateway ç½‘å…³è¿œç¨‹](/gateway/remote)ã€‚
 
-当你特别需要 macOS 独有功能（iMessage/BlueBubbles）或想要与日常 Mac 严格隔离时，使用 macOS VM。
+å½“ä½ ç‰¹åˆ«éœ€è¦ macOS ç‹¬æœ‰åŠŸèƒ½ï¼ˆiMessage/BlueBubblesï¼‰æˆ–æƒ³è¦ä¸Žæ—¥å¸¸ Mac ä¸¥æ ¼éš”ç¦»æ—¶ï¼Œä½¿ç”¨ macOS VMã€‚
 
-## macOS VM 选项
+## macOS VM é€‰é¡¹
 
-### 在你的 Apple Silicon Mac 上运行本地 VM（Lume）
+### åœ¨ä½ çš„ Apple Silicon Mac ä¸Šè¿è¡Œæœ¬åœ° VMï¼ˆLumeï¼‰
 
-使用 [Lume](https://cua.ai/docs/lume) 在你现有的 Apple Silicon Mac 上的沙箱 macOS VM 中运行 OpenClaw。
+ä½¿ç”¨ [Lume](https://cua.ai/docs/lume) åœ¨ä½ çŽ°æœ‰çš„ Apple Silicon Mac ä¸Šçš„æ²™ç®± macOS VM ä¸­è¿è¡Œ ã€‚
 
-这为你提供：
+è¿™ä¸ºä½ æä¾›ï¼š
 
-- 隔离的完整 macOS 环境（你的主机保持干净）
-- 通过 BlueBubbles 支持 iMessage（在 Linux/Windows 上不可能）
-- 通过克隆 VM 即时重置
-- 无需额外硬件或云成本
+- éš”ç¦»çš„å®Œæ•´ macOS çŽ¯å¢ƒï¼ˆä½ çš„ä¸»æœºä¿æŒå¹²å‡€ï¼‰
+- é€šè¿‡ BlueBubbles æ”¯æŒ iMessageï¼ˆåœ¨ Linux/Windows ä¸Šä¸å¯èƒ½ï¼‰
+- é€šè¿‡å…‹éš† VM å³æ—¶é‡ç½®
+- æ— éœ€é¢å¤–ç¡¬ä»¶æˆ–äº‘æˆæœ¬
 
-### 托管 Mac 提供商（云）
+### æ‰˜ç®¡ Mac æä¾›å•†ï¼ˆäº‘ï¼‰
 
-如果你想要云端的 macOS，托管 Mac 提供商也可以：
+å¦‚æžœä½ æƒ³è¦äº‘ç«¯çš„ macOSï¼Œæ‰˜ç®¡ Mac æä¾›å•†ä¹Ÿå¯ä»¥ï¼š
 
-- [MacStadium](https://www.macstadium.com/)（托管 Mac）
-- 其他托管 Mac 供应商也可以；按照他们的 VM + SSH 文档操作
+- [MacStadium](https://www.macstadium.com/)ï¼ˆæ‰˜ç®¡ Macï¼‰
+- å…¶ä»–æ‰˜ç®¡ Mac ä¾›åº”å•†ä¹Ÿå¯ä»¥ï¼›æŒ‰ç…§ä»–ä»¬çš„ VM + SSH æ–‡æ¡£æ“ä½œ
 
-一旦你有了 macOS VM 的 SSH 访问权限，继续下面的步骤 6。
-
----
-
-## 快速路径（Lume，有经验的用户）
-
-1. 安装 Lume
-2. `lume create openclaw --os macos --ipsw latest`
-3. 完成设置助手，启用远程登录（SSH）
-4. `lume run openclaw --no-display`
-5. SSH 进入，安装 OpenClaw，配置渠道
-6. 完成
+ä¸€æ—¦ä½ æœ‰äº† macOS VM çš„ SSH è®¿é—®æƒé™ï¼Œç»§ç»­ä¸‹é¢çš„æ­¥éª¤ 6ã€‚
 
 ---
 
-## 你需要什么（Lume）
+## å¿«é€Ÿè·¯å¾„ï¼ˆLumeï¼Œæœ‰ç»éªŒçš„ç”¨æˆ·ï¼‰
 
-- Apple Silicon Mac（M1/M2/M3/M4）
-- 主机上安装 macOS Sequoia 或更高版本
-- 每个 VM 约 60 GB 可用磁盘空间
-- 约 20 分钟
+1. å®‰è£… Lume
+2. `lume create  --os macos --ipsw latest`
+3. å®Œæˆè®¾ç½®åŠ©æ‰‹ï¼Œå¯ç”¨è¿œç¨‹ç™»å½•ï¼ˆSSHï¼‰
+4. `lume run  --no-display`
+5. SSH è¿›å…¥ï¼Œå®‰è£… ï¼Œé…ç½®æ¸ é“
+6. å®Œæˆ
 
 ---
 
-## 1) 安装 Lume
+## ä½ éœ€è¦ä»€ä¹ˆï¼ˆLumeï¼‰
+
+- Apple Silicon Macï¼ˆM1/M2/M3/M4ï¼‰
+- ä¸»æœºä¸Šå®‰è£… macOS Sequoia æˆ–æ›´é«˜ç‰ˆæœ¬
+- æ¯ä¸ª VM çº¦ 60 GB å¯ç”¨ç£ç›˜ç©ºé—´
+- çº¦ 20 åˆ†é’Ÿ
+
+---
+
+## 1) å®‰è£… Lume
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/trycua/cua/main/libs/lume/scripts/install.sh)"
 ```
 
-如果 `~/.local/bin` 不在你的 PATH 中：
+å¦‚æžœ `~/.local/bin` ä¸åœ¨ä½ çš„ PATH ä¸­ï¼š
 
 ```bash
 echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.zshrc && source ~/.zshrc
 ```
 
-验证：
+éªŒè¯ï¼š
 
 ```bash
 lume --version
 ```
 
-文档：[Lume 安装](https://cua.ai/docs/lume/guide/getting-started/installation)
+æ–‡æ¡£ï¼š[Lume å®‰è£…](https://cua.ai/docs/lume/guide/getting-started/installation)
 
 ---
 
-## 2) 创建 macOS VM
+## 2) åˆ›å»º macOS VM
 
 ```bash
-lume create openclaw --os macos --ipsw latest
+lume create  --os macos --ipsw latest
 ```
 
-这会下载 macOS 并创建 VM。VNC 窗口会自动打开。
+è¿™ä¼šä¸‹è½½ macOS å¹¶åˆ›å»º VMã€‚VNC çª—å£ä¼šè‡ªåŠ¨æ‰“å¼€ã€‚
 
-注意：下载可能需要一段时间，取决于你的网络连接。
-
----
-
-## 3) 完成设置助手
-
-在 VNC 窗口中：
-
-1. 选择语言和地区
-2. 跳过 Apple ID（或者如果你以后想要 iMessage 就登录）
-3. 创建用户账户（记住用户名和密码）
-4. 跳过所有可选功能
-
-设置完成后，启用 SSH：
-
-1. 打开系统设置 → 通用 → 共享
-2. 启用"远程登录"
+æ³¨æ„ï¼šä¸‹è½½å¯èƒ½éœ€è¦ä¸€æ®µæ—¶é—´ï¼Œå–å†³äºŽä½ çš„ç½‘ç»œè¿žæŽ¥ã€‚
 
 ---
 
-## 4) 获取 VM 的 IP 地址
+## 3) å®Œæˆè®¾ç½®åŠ©æ‰‹
+
+åœ¨ VNC çª—å£ä¸­ï¼š
+
+1. é€‰æ‹©è¯­è¨€å’Œåœ°åŒº
+2. è·³è¿‡ Apple IDï¼ˆæˆ–è€…å¦‚æžœä½ ä»¥åŽæƒ³è¦ iMessage å°±ç™»å½•ï¼‰
+3. åˆ›å»ºç”¨æˆ·è´¦æˆ·ï¼ˆè®°ä½ç”¨æˆ·åå’Œå¯†ç ï¼‰
+4. è·³è¿‡æ‰€æœ‰å¯é€‰åŠŸèƒ½
+
+è®¾ç½®å®ŒæˆåŽï¼Œå¯ç”¨ SSHï¼š
+
+1. æ‰“å¼€ç³»ç»Ÿè®¾ç½® â†’ é€šç”¨ â†’ å…±äº«
+2. å¯ç”¨"è¿œç¨‹ç™»å½•"
+
+---
+
+## 4) èŽ·å– VM çš„ IP åœ°å€
 
 ```bash
-lume get openclaw
+lume get 
 ```
 
-查找 IP 地址（通常是 `192.168.64.x`）。
+æŸ¥æ‰¾ IP åœ°å€ï¼ˆé€šå¸¸æ˜¯ `192.168.64.x`ï¼‰ã€‚
 
 ---
 
-## 5) SSH 进入 VM
+## 5) SSH è¿›å…¥ VM
 
 ```bash
 ssh youruser@192.168.64.X
 ```
 
-将 `youruser` 替换为你创建的账户，IP 替换为你 VM 的 IP。
+å°† `youruser` æ›¿æ¢ä¸ºä½ åˆ›å»ºçš„è´¦æˆ·ï¼ŒIP æ›¿æ¢ä¸ºä½  VM çš„ IPã€‚
 
 ---
 
-## 6) 安装 OpenClaw
+## 6) å®‰è£… 
 
-在 VM 内：
+åœ¨ VM å†…ï¼š
 
 ```bash
-npm install -g openclaw@latest
-openclaw onboard --install-daemon
+npm install -g @latest
+ onboard --install-daemon
 ```
 
-按照新手引导提示设置你的模型提供商（Anthropic、OpenAI 等）。
+æŒ‰ç…§æ–°æ‰‹å¼•å¯¼æç¤ºè®¾ç½®ä½ çš„æ¨¡åž‹æä¾›å•†ï¼ˆAnthropicã€OpenAI ç­‰ï¼‰ã€‚
 
 ---
 
-## 7) 配置渠道
+## 7) é…ç½®æ¸ é“
 
-编辑配置文件：
+ç¼–è¾‘é…ç½®æ–‡ä»¶ï¼š
 
 ```bash
-nano ~/.openclaw/openclaw.json
+nano ~/./.json
 ```
 
-添加你的渠道：
+æ·»åŠ ä½ çš„æ¸ é“ï¼š
 
 ```json
 {
@@ -176,45 +176,45 @@ nano ~/.openclaw/openclaw.json
 }
 ```
 
-然后登录 WhatsApp（扫描二维码）：
+ç„¶åŽç™»å½• WhatsAppï¼ˆæ‰«æäºŒç»´ç ï¼‰ï¼š
 
 ```bash
-openclaw channels login
+ channels login
 ```
 
 ---
 
-## 8) 无头运行 VM
+## 8) æ— å¤´è¿è¡Œ VM
 
-停止 VM 并在无显示器模式下重启：
+åœæ­¢ VM å¹¶åœ¨æ— æ˜¾ç¤ºå™¨æ¨¡å¼ä¸‹é‡å¯ï¼š
 
 ```bash
-lume stop openclaw
-lume run openclaw --no-display
+lume stop 
+lume run  --no-display
 ```
 
-VM 在后台运行。OpenClaw 的守护进程保持 Gateway 网关运行。
+VM åœ¨åŽå°è¿è¡Œã€‚ çš„å®ˆæŠ¤è¿›ç¨‹ä¿æŒ Gateway ç½‘å…³è¿è¡Œã€‚
 
-检查状态：
+æ£€æŸ¥çŠ¶æ€ï¼š
 
 ```bash
-ssh youruser@192.168.64.X "openclaw status"
+ssh youruser@192.168.64.X " status"
 ```
 
 ---
 
-## 额外：iMessage 集成
+## é¢å¤–ï¼šiMessage é›†æˆ
 
-这是在 macOS 上运行的杀手级功能。使用 [BlueBubbles](https://bluebubbles.app) 将 iMessage 添加到 OpenClaw。
+è¿™æ˜¯åœ¨ macOS ä¸Šè¿è¡Œçš„æ€æ‰‹çº§åŠŸèƒ½ã€‚ä½¿ç”¨ [BlueBubbles](https://bluebubbles.app) å°† iMessage æ·»åŠ åˆ° ã€‚
 
-在 VM 内：
+åœ¨ VM å†…ï¼š
 
-1. 从 bluebubbles.app 下载 BlueBubbles
-2. 用你的 Apple ID 登录
-3. 启用 Web API 并设置密码
-4. 将 BlueBubbles webhooks 指向你的 Gateway 网关（示例：`https://your-gateway-host:3000/bluebubbles-webhook?password=<password>`）
+1. ä»Ž bluebubbles.app ä¸‹è½½ BlueBubbles
+2. ç”¨ä½ çš„ Apple ID ç™»å½•
+3. å¯ç”¨ Web API å¹¶è®¾ç½®å¯†ç 
+4. å°† BlueBubbles webhooks æŒ‡å‘ä½ çš„ Gateway ç½‘å…³ï¼ˆç¤ºä¾‹ï¼š`https://your-gateway-host:3000/bluebubbles-webhook?password=<password>`ï¼‰
 
-添加到你的 OpenClaw 配置：
+æ·»åŠ åˆ°ä½ çš„  é…ç½®ï¼š
 
 ```json
 {
@@ -228,61 +228,62 @@ ssh youruser@192.168.64.X "openclaw status"
 }
 ```
 
-重启 Gateway 网关。现在你的智能体可以发送和接收 iMessage 了。
+é‡å¯ Gateway ç½‘å…³ã€‚çŽ°åœ¨ä½ çš„æ™ºèƒ½ä½“å¯ä»¥å‘é€å’ŒæŽ¥æ”¶ iMessage äº†ã€‚
 
-完整设置详情：[BlueBubbles 渠道](/channels/bluebubbles)
+å®Œæ•´è®¾ç½®è¯¦æƒ…ï¼š[BlueBubbles æ¸ é“](/channels/bluebubbles)
 
 ---
 
-## 保存黄金镜像
+## ä¿å­˜é»„é‡‘é•œåƒ
 
-在进一步自定义之前，快照你的干净状态：
+åœ¨è¿›ä¸€æ­¥è‡ªå®šä¹‰ä¹‹å‰ï¼Œå¿«ç…§ä½ çš„å¹²å‡€çŠ¶æ€ï¼š
 
 ```bash
-lume stop openclaw
-lume clone openclaw openclaw-golden
+lume stop 
+lume clone  -golden
 ```
 
-随时重置：
+éšæ—¶é‡ç½®ï¼š
 
 ```bash
-lume stop openclaw && lume delete openclaw
-lume clone openclaw-golden openclaw
-lume run openclaw --no-display
+lume stop  && lume delete 
+lume clone -golden 
+lume run  --no-display
 ```
 
 ---
 
-## 24/7 运行
+## 24/7 è¿è¡Œ
 
-通过以下方式保持 VM 运行：
+é€šè¿‡ä»¥ä¸‹æ–¹å¼ä¿æŒ VM è¿è¡Œï¼š
 
-- 保持你的 Mac 插电
-- 在系统设置 → 节能中禁用睡眠
-- 如需要使用 `caffeinate`
+- ä¿æŒä½ çš„ Mac æ’ç”µ
+- åœ¨ç³»ç»Ÿè®¾ç½® â†’ èŠ‚èƒ½ä¸­ç¦ç”¨ç¡çœ 
+- å¦‚éœ€è¦ä½¿ç”¨ `caffeinate`
 
-对于真正的永久在线，考虑专用 Mac mini 或小型 VPS。参见 [VPS 托管](/vps)。
+å¯¹äºŽçœŸæ­£çš„æ°¸ä¹…åœ¨çº¿ï¼Œè€ƒè™‘ä¸“ç”¨ Mac mini æˆ–å°åž‹ VPSã€‚å‚è§ [VPS æ‰˜ç®¡](/vps)ã€‚
 
 ---
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-| 问题                    | 解决方案                                                         |
+| é—®é¢˜                    | è§£å†³æ–¹æ¡ˆ                                                         |
 | ----------------------- | ---------------------------------------------------------------- |
-| 无法 SSH 进入 VM        | 检查 VM 的系统设置中是否启用了"远程登录"                         |
-| VM IP 未显示            | 等待 VM 完全启动，再次运行 `lume get openclaw`                   |
-| 找不到 Lume 命令        | 将 `~/.local/bin` 添加到你的 PATH                                |
-| WhatsApp 二维码扫描失败 | 确保运行 `openclaw channels login` 时你是登录到 VM（而不是主机） |
+| æ— æ³• SSH è¿›å…¥ VM        | æ£€æŸ¥ VM çš„ç³»ç»Ÿè®¾ç½®ä¸­æ˜¯å¦å¯ç”¨äº†"è¿œç¨‹ç™»å½•"                         |
+| VM IP æœªæ˜¾ç¤º            | ç­‰å¾… VM å®Œå…¨å¯åŠ¨ï¼Œå†æ¬¡è¿è¡Œ `lume get `                   |
+| æ‰¾ä¸åˆ° Lume å‘½ä»¤        | å°† `~/.local/bin` æ·»åŠ åˆ°ä½ çš„ PATH                                |
+| WhatsApp äºŒç»´ç æ‰«æå¤±è´¥ | ç¡®ä¿è¿è¡Œ ` channels login` æ—¶ä½ æ˜¯ç™»å½•åˆ° VMï¼ˆè€Œä¸æ˜¯ä¸»æœºï¼‰ |
 
 ---
 
-## 相关文档
+## ç›¸å…³æ–‡æ¡£
 
-- [VPS 托管](/vps)
-- [节点](/nodes)
-- [Gateway 网关远程](/gateway/remote)
-- [BlueBubbles 渠道](/channels/bluebubbles)
-- [Lume 快速入门](https://cua.ai/docs/lume/guide/getting-started/quickstart)
-- [Lume CLI 参考](https://cua.ai/docs/lume/reference/cli-reference)
-- [无人值守 VM 设置](https://cua.ai/docs/lume/guide/fundamentals/unattended-setup)（高级）
-- [Docker 沙箱隔离](/install/docker)（替代隔离方案）
+- [VPS æ‰˜ç®¡](/vps)
+- [èŠ‚ç‚¹](/nodes)
+- [Gateway ç½‘å…³è¿œç¨‹](/gateway/remote)
+- [BlueBubbles æ¸ é“](/channels/bluebubbles)
+- [Lume å¿«é€Ÿå…¥é—¨](https://cua.ai/docs/lume/guide/getting-started/quickstart)
+- [Lume CLI å‚è€ƒ](https://cua.ai/docs/lume/reference/cli-reference)
+- [æ— äººå€¼å®ˆ VM è®¾ç½®](https://cua.ai/docs/lume/guide/fundamentals/unattended-setup)ï¼ˆé«˜çº§ï¼‰
+- [Docker æ²™ç®±éš”ç¦»](/install/docker)ï¼ˆæ›¿ä»£éš”ç¦»æ–¹æ¡ˆï¼‰
+

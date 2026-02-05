@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveMemorySearchConfig } from "./memory-search.js";
 
 describe("memory search config", () => {
@@ -256,3 +256,4 @@ describe("memory search config", () => {
     expect(resolved?.sources).toContain("sessions");
   });
 });
+

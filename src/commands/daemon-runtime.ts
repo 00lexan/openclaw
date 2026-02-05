@@ -1,4 +1,4 @@
-export type GatewayDaemonRuntime = "node" | "bun";
+﻿export type GatewayDaemonRuntime = "node" | "bun";
 
 export const DEFAULT_GATEWAY_DAEMON_RUNTIME: GatewayDaemonRuntime = "node";
 
@@ -17,3 +17,4 @@ export const GATEWAY_DAEMON_RUNTIME_OPTIONS: Array<{
 export function isGatewayDaemonRuntime(value: string | undefined): value is GatewayDaemonRuntime {
   return value === "node" || value === "bun";
 }
+

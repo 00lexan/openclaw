@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("./session.js", () => {
   const createWaSocket = vi.fn(
@@ -58,3 +58,4 @@ describe("login-qr", () => {
     expect(logoutWeb).not.toHaveBeenCalled();
   });
 });
+

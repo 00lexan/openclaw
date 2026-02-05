@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import { EventEmitter } from "node:events";
 import { describe, expect, it, vi } from "vitest";
 
@@ -81,3 +81,4 @@ describe("ssh-config", () => {
     expect(config).toBeNull();
   });
 });
+

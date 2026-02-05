@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { validateConfigObject } from "./config.js";
 
 describe("ui.seamColor", () => {
@@ -17,3 +17,4 @@ describe("ui.seamColor", () => {
     expect(res.ok).toBe(false);
   });
 });
+

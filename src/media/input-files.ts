@@ -1,4 +1,4 @@
-import { fetchWithSsrFGuard } from "../infra/net/fetch-guard.js";
+﻿import { fetchWithSsrFGuard } from "../infra/net/fetch-guard.js";
 import { logWarn } from "../logger.js";
 
 type CanvasModule = typeof import("@napi-rs/canvas");
@@ -146,7 +146,7 @@ export async function fetchWithGuard(params: {
     url: params.url,
     maxRedirects: params.maxRedirects,
     timeoutMs: params.timeoutMs,
-    init: { headers: { "User-Agent": "OpenClaw-Gateway/1.0" } },
+    init: { headers: { "User-Agent": "-Gateway/1.0" } },
   });
 
   try {
@@ -354,3 +354,4 @@ export async function extractFileContentFromSource(params: {
   const text = clampText(decodeTextContent(buffer, charset), limits.maxChars);
   return { filename, text };
 }
+

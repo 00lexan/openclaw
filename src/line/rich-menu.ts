@@ -1,4 +1,4 @@
-import { messagingApi } from "@line/bot-sdk";
+﻿import { messagingApi } from "@line/bot-sdk";
 import { readFile } from "node:fs/promises";
 import { loadConfig } from "../config/config.js";
 import { logVerbose } from "../globals.js";
@@ -463,3 +463,4 @@ export function createDefaultMenuConfig(): CreateRichMenuParams {
 
 // Re-export types
 export type { RichMenuRequest, RichMenuResponse, RichMenuArea, Action };
+

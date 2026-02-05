@@ -1,4 +1,4 @@
-import type { MarkdownTableMode } from "../config/types.base.js";
+﻿import type { MarkdownTableMode } from "../config/types.base.js";
 import {
   chunkMarkdownIR,
   markdownToIR,
@@ -236,3 +236,4 @@ export function markdownToSignalTextChunks(
   const chunks = chunkMarkdownIR(ir, limit);
   return chunks.map((chunk) => renderSignalText(chunk));
 }
+

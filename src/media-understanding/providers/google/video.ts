@@ -1,4 +1,4 @@
-import type { VideoDescriptionRequest, VideoDescriptionResult } from "../../types.js";
+﻿import type { VideoDescriptionRequest, VideoDescriptionResult } from "../../types.js";
 import { normalizeGoogleModelId } from "../../../agents/models-config.providers.js";
 import { fetchWithTimeoutGuarded, normalizeBaseUrl, readErrorResponse } from "../shared.js";
 
@@ -90,3 +90,4 @@ export async function describeGeminiVideo(
     await release();
   }
 }
+

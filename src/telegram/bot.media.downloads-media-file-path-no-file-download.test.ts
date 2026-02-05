@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetInboundDedupe } from "../auto-reply/reply/inbound-dedupe.js";
 import * as ssrf from "../infra/net/ssrf.js";
 import { MEDIA_GROUP_TIMEOUT_MS } from "./bot-updates.js";
@@ -165,7 +165,7 @@ describe("telegram inbound media", () => {
           photo: [{ file_id: "fid" }],
           date: 1736380800, // 2025-01-09T00:00:00Z
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "photos/1.jpg" }),
       });
 
@@ -223,7 +223,7 @@ describe("telegram inbound media", () => {
         chat: { id: 1234, type: "private" },
         photo: [{ file_id: "fid" }],
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ file_path: "photos/2.jpg" }),
     });
 
@@ -269,7 +269,7 @@ describe("telegram inbound media", () => {
         chat: { id: 1234, type: "private" },
         photo: [{ file_id: "fid" }],
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({}),
     });
 
@@ -339,7 +339,7 @@ describe("telegram media groups", () => {
           media_group_id: "album123",
           photo: [{ file_id: "photo1" }],
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "photos/photo1.jpg" }),
       });
 
@@ -351,7 +351,7 @@ describe("telegram media groups", () => {
           media_group_id: "album123",
           photo: [{ file_id: "photo2" }],
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "photos/photo2.jpg" }),
       });
 
@@ -405,7 +405,7 @@ describe("telegram media groups", () => {
           media_group_id: "albumA",
           photo: [{ file_id: "photoA1" }],
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "photos/photoA1.jpg" }),
       });
 
@@ -418,7 +418,7 @@ describe("telegram media groups", () => {
           media_group_id: "albumB",
           photo: [{ file_id: "photoB1" }],
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "photos/photoB1.jpg" }),
       });
 
@@ -492,12 +492,12 @@ describe("telegram stickers", () => {
             height: 512,
             is_animated: false,
             is_video: false,
-            emoji: "🎉",
+            emoji: "ðŸŽ‰",
             set_name: "TestStickerPack",
           },
           date: 1736380800,
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "stickers/sticker.webp" }),
       });
 
@@ -509,7 +509,7 @@ describe("telegram stickers", () => {
       expect(replySpy).toHaveBeenCalledTimes(1);
       const payload = replySpy.mock.calls[0][0];
       expect(payload.Body).toContain("<media:sticker>");
-      expect(payload.Sticker?.emoji).toBe("🎉");
+      expect(payload.Sticker?.emoji).toBe("ðŸŽ‰");
       expect(payload.Sticker?.setName).toBe("TestStickerPack");
       expect(payload.Sticker?.fileId).toBe("sticker_file_id_123");
 
@@ -532,7 +532,7 @@ describe("telegram stickers", () => {
       getCachedStickerSpy.mockReturnValue({
         fileId: "old_file_id",
         fileUniqueId: "sticker_unique_456",
-        emoji: "😴",
+        emoji: "ðŸ˜´",
         setName: "OldSet",
         description: "Cached description",
         cachedAt: "2026-01-20T10:00:00.000Z",
@@ -574,12 +574,12 @@ describe("telegram stickers", () => {
             height: 512,
             is_animated: false,
             is_video: false,
-            emoji: "🔥",
+            emoji: "ðŸ”¥",
             set_name: "NewSet",
           },
           date: 1736380800,
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "stickers/sticker.webp" }),
       });
 
@@ -587,7 +587,7 @@ describe("telegram stickers", () => {
       expect(cacheStickerSpy).toHaveBeenCalledWith(
         expect.objectContaining({
           fileId: "new_file_id",
-          emoji: "🔥",
+          emoji: "ðŸ”¥",
           setName: "NewSet",
         }),
       );
@@ -640,12 +640,12 @@ describe("telegram stickers", () => {
             height: 512,
             is_animated: true, // TGS format
             is_video: false,
-            emoji: "😎",
+            emoji: "ðŸ˜Ž",
             set_name: "AnimatedPack",
           },
           date: 1736380800,
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "stickers/animated.tgs" }),
       });
 
@@ -700,12 +700,12 @@ describe("telegram stickers", () => {
             height: 512,
             is_animated: false,
             is_video: true, // WEBM format
-            emoji: "🎬",
+            emoji: "ðŸŽ¬",
             set_name: "VideoPack",
           },
           date: 1736380800,
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({ file_path: "stickers/video.webm" }),
       });
 
@@ -758,7 +758,7 @@ describe("telegram text fragments", () => {
           date: 1736380800,
           text: part1,
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({}),
       });
 
@@ -769,7 +769,7 @@ describe("telegram text fragments", () => {
           date: 1736380801,
           text: part2,
         },
-        me: { username: "openclaw_bot" },
+        me: { username: "_bot" },
         getFile: async () => ({}),
       });
 
@@ -784,3 +784,4 @@ describe("telegram text fragments", () => {
     TEXT_FRAGMENT_TEST_TIMEOUT_MS,
   );
 });
+

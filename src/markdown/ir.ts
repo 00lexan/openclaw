@@ -1,4 +1,4 @@
-import MarkdownIt from "markdown-it";
+﻿import MarkdownIt from "markdown-it";
 import type { MarkdownTableMode } from "../config/types.base.js";
 import { chunkText } from "../auto-reply/chunk.js";
 
@@ -235,7 +235,7 @@ function appendListPrefix(state: RenderState) {
   }
   top.index += 1;
   const indent = "  ".repeat(Math.max(0, stack.length - 1));
-  const prefix = top.type === "ordered" ? `${top.index}. ` : "• ";
+  const prefix = top.type === "ordered" ? `${top.index}. ` : "â€¢ ";
   state.text += `${indent}${prefix}`;
 }
 
@@ -398,7 +398,7 @@ function renderTableAsBullets(state: RenderState) {
         if (!value?.text) {
           continue;
         }
-        state.text += "• ";
+        state.text += "â€¢ ";
         if (header?.text) {
           appendCell(state, header);
           state.text += ": ";
@@ -419,7 +419,7 @@ function renderTableAsBullets(state: RenderState) {
         if (!value?.text) {
           continue;
         }
-        state.text += "• ";
+        state.text += "â€¢ ";
         if (header?.text) {
           appendCell(state, header);
           state.text += ": ";
@@ -879,3 +879,4 @@ export function chunkMarkdownIR(ir: MarkdownIR, limit: number): MarkdownIR[] {
 
   return results;
 }
+

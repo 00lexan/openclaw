@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 添加或修改 Skills 配置
-  - 调整内置白名单或安装行为
-summary: Skills 配置 schema 和示例
-title: Skills 配置
+  - æ·»åŠ æˆ–ä¿®æ”¹ Skills é…ç½®
+  - è°ƒæ•´å†…ç½®ç™½åå•æˆ–å®‰è£…è¡Œä¸º
+summary: Skills é…ç½® schema å’Œç¤ºä¾‹
+title: Skills é…ç½®
 x-i18n:
   generated_at: "2026-02-03T10:10:59Z"
   model: claude-opus-4-5
@@ -13,9 +13,9 @@ x-i18n:
   workflow: 15
 ---
 
-# Skills 配置
+# Skills é…ç½®
 
-所有 Skills 相关配置都位于 `~/.openclaw/openclaw.json` 中的 `skills` 下。
+æ‰€æœ‰ Skills ç›¸å…³é…ç½®éƒ½ä½äºŽ `~/./.json` ä¸­çš„ `skills` ä¸‹ã€‚
 
 ```json5
 {
@@ -28,7 +28,7 @@ x-i18n:
     },
     install: {
       preferBrew: true,
-      nodeManager: "npm", // npm | pnpm | yarn | bun（Gateway 网关运行时仍为 Node；不推荐 bun）
+      nodeManager: "npm", // npm | pnpm | yarn | bunï¼ˆGateway ç½‘å…³è¿è¡Œæ—¶ä»ä¸º Nodeï¼›ä¸æŽ¨è bunï¼‰
     },
     entries: {
       "nano-banana-pro": {
@@ -45,34 +45,35 @@ x-i18n:
 }
 ```
 
-## 字段
+## å­—æ®µ
 
-- `allowBundled`：可选的仅用于**内置** Skills 的白名单。设置后，只有列表中的内置 Skills 才有资格（托管/工作区 Skills 不受影响）。
-- `load.extraDirs`：要扫描的附加 Skills 目录（最低优先级）。
-- `load.watch`：监视 Skills 文件夹并刷新 Skills 快照（默认：true）。
-- `load.watchDebounceMs`：Skills 监视器事件的防抖时间（毫秒）（默认：250）。
-- `install.preferBrew`：在可用时优先使用 brew 安装器（默认：true）。
-- `install.nodeManager`：node 安装器偏好（`npm` | `pnpm` | `yarn` | `bun`，默认：npm）。这仅影响 **Skills 安装**；Gateway 网关运行时应仍为 Node（不推荐 Bun 用于 WhatsApp/Telegram）。
-- `entries.<skillKey>`：单 Skills 覆盖。
+- `allowBundled`ï¼šå¯é€‰çš„ä»…ç”¨äºŽ**å†…ç½®** Skills çš„ç™½åå•ã€‚è®¾ç½®åŽï¼Œåªæœ‰åˆ—è¡¨ä¸­çš„å†…ç½® Skills æ‰æœ‰èµ„æ ¼ï¼ˆæ‰˜ç®¡/å·¥ä½œåŒº Skills ä¸å—å½±å“ï¼‰ã€‚
+- `load.extraDirs`ï¼šè¦æ‰«æçš„é™„åŠ  Skills ç›®å½•ï¼ˆæœ€ä½Žä¼˜å…ˆçº§ï¼‰ã€‚
+- `load.watch`ï¼šç›‘è§† Skills æ–‡ä»¶å¤¹å¹¶åˆ·æ–° Skills å¿«ç…§ï¼ˆé»˜è®¤ï¼štrueï¼‰ã€‚
+- `load.watchDebounceMs`ï¼šSkills ç›‘è§†å™¨äº‹ä»¶çš„é˜²æŠ–æ—¶é—´ï¼ˆæ¯«ç§’ï¼‰ï¼ˆé»˜è®¤ï¼š250ï¼‰ã€‚
+- `install.preferBrew`ï¼šåœ¨å¯ç”¨æ—¶ä¼˜å…ˆä½¿ç”¨ brew å®‰è£…å™¨ï¼ˆé»˜è®¤ï¼štrueï¼‰ã€‚
+- `install.nodeManager`ï¼šnode å®‰è£…å™¨åå¥½ï¼ˆ`npm` | `pnpm` | `yarn` | `bun`ï¼Œé»˜è®¤ï¼šnpmï¼‰ã€‚è¿™ä»…å½±å“ **Skills å®‰è£…**ï¼›Gateway ç½‘å…³è¿è¡Œæ—¶åº”ä»ä¸º Nodeï¼ˆä¸æŽ¨è Bun ç”¨äºŽ WhatsApp/Telegramï¼‰ã€‚
+- `entries.<skillKey>`ï¼šå• Skills è¦†ç›–ã€‚
 
-单 Skills 字段：
+å• Skills å­—æ®µï¼š
 
-- `enabled`：设置为 `false` 以禁用某个 Skills，即使它是内置/已安装的。
-- `env`：为智能体运行注入的环境变量（仅在尚未设置时）。
-- `apiKey`：可选的便捷字段，用于声明主环境变量的 Skills。
+- `enabled`ï¼šè®¾ç½®ä¸º `false` ä»¥ç¦ç”¨æŸä¸ª Skillsï¼Œå³ä½¿å®ƒæ˜¯å†…ç½®/å·²å®‰è£…çš„ã€‚
+- `env`ï¼šä¸ºæ™ºèƒ½ä½“è¿è¡Œæ³¨å…¥çš„çŽ¯å¢ƒå˜é‡ï¼ˆä»…åœ¨å°šæœªè®¾ç½®æ—¶ï¼‰ã€‚
+- `apiKey`ï¼šå¯é€‰çš„ä¾¿æ·å­—æ®µï¼Œç”¨äºŽå£°æ˜Žä¸»çŽ¯å¢ƒå˜é‡çš„ Skillsã€‚
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- `entries` 下的键默认映射到 Skills 名称。如果 Skills 定义了 `metadata.openclaw.skillKey`，则使用该键。
-- 启用监视器后，Skills 的更改会在下一个智能体轮次被获取。
+- `entries` ä¸‹çš„é”®é»˜è®¤æ˜ å°„åˆ° Skills åç§°ã€‚å¦‚æžœ Skills å®šä¹‰äº† `metadata..skillKey`ï¼Œåˆ™ä½¿ç”¨è¯¥é”®ã€‚
+- å¯ç”¨ç›‘è§†å™¨åŽï¼ŒSkills çš„æ›´æ”¹ä¼šåœ¨ä¸‹ä¸€ä¸ªæ™ºèƒ½ä½“è½®æ¬¡è¢«èŽ·å–ã€‚
 
-### 沙箱隔离的 Skills + 环境变量
+### æ²™ç®±éš”ç¦»çš„ Skills + çŽ¯å¢ƒå˜é‡
 
-当会话处于**沙箱隔离**状态时，Skills 进程在 Docker 内运行。沙箱**不会**继承宿主机的 `process.env`。
+å½“ä¼šè¯å¤„äºŽ**æ²™ç®±éš”ç¦»**çŠ¶æ€æ—¶ï¼ŒSkills è¿›ç¨‹åœ¨ Docker å†…è¿è¡Œã€‚æ²™ç®±**ä¸ä¼š**ç»§æ‰¿å®¿ä¸»æœºçš„ `process.env`ã€‚
 
-使用以下方式之一：
+ä½¿ç”¨ä»¥ä¸‹æ–¹å¼ä¹‹ä¸€ï¼š
 
-- `agents.defaults.sandbox.docker.env`（或单智能体的 `agents.list[].sandbox.docker.env`）
-- 将环境变量烘焙到你的自定义沙箱镜像中
+- `agents.defaults.sandbox.docker.env`ï¼ˆæˆ–å•æ™ºèƒ½ä½“çš„ `agents.list[].sandbox.docker.env`ï¼‰
+- å°†çŽ¯å¢ƒå˜é‡çƒ˜ç„™åˆ°ä½ çš„è‡ªå®šä¹‰æ²™ç®±é•œåƒä¸­
 
-全局 `env` 和 `skills.entries.<skill>.env/apiKey` 仅适用于**宿主机**运行。
+å…¨å±€ `env` å’Œ `skills.entries.<skill>.env/apiKey` ä»…é€‚ç”¨äºŽ**å®¿ä¸»æœº**è¿è¡Œã€‚
+

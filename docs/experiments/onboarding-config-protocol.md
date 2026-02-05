@@ -1,4 +1,4 @@
----
+﻿---
 summary: "RPC protocol notes for onboarding wizard and config schema"
 read_when: "Changing onboarding wizard steps or config schema endpoints"
 title: "Onboarding and Config Protocol"
@@ -38,3 +38,4 @@ Responses (shape)
 ## Notes
 
 - This doc is the single place to track protocol refactors for onboarding/config.
+

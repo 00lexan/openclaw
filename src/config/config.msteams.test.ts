@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 describe("config msteams", () => {
   it("accepts replyStyle at global/team/channel levels", async () => {
@@ -38,3 +38,4 @@ describe("config msteams", () => {
     expect(res.ok).toBe(false);
   });
 });
+

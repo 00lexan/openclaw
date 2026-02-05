@@ -1,4 +1,4 @@
-import { Command } from "commander";
+﻿import { Command } from "commander";
 import { describe, expect, it } from "vitest";
 
 describe("browser CLI --browser-profile flag", () => {
@@ -77,3 +77,4 @@ describe("browser CLI --browser-profile flag", () => {
     expect(browserProfile).toBe("onasset");
   });
 });
+

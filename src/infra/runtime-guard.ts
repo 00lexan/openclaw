@@ -1,4 +1,4 @@
-import process from "node:process";
+﻿import process from "node:process";
 import { defaultRuntime, type RuntimeEnv } from "../runtime.js";
 
 export type RuntimeKind = "node" | "unknown";
@@ -88,12 +88,13 @@ export function assertSupportedRuntime(
 
   runtime.error(
     [
-      "openclaw requires Node >=22.0.0.",
+      " requires Node >=22.0.0.",
       `Detected: ${runtimeLabel} (exec: ${execLabel}).`,
       `PATH searched: ${details.pathEnv}`,
       "Install Node: https://nodejs.org/en/download",
-      "Upgrade Node and re-run openclaw.",
+      "Upgrade Node and re-run .",
     ].join("\n"),
   );
   runtime.exit(1);
 }
+

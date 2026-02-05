@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   ChannelMessageActionAdapter,
   ChannelMessageActionContext,
   ChannelMessageActionName,
@@ -220,3 +220,4 @@ export function createSlackActions(providerId: string): ChannelMessageActionAdap
     },
   };
 }
+

@@ -1,4 +1,4 @@
-import type { ModelDefinitionConfig } from "../config/types.js";
+﻿import type { ModelDefinitionConfig } from "../config/types.js";
 
 export const DEFAULT_MINIMAX_BASE_URL = "https://api.minimax.io/v1";
 export const MINIMAX_API_BASE_URL = "https://api.minimax.io/anthropic";
@@ -92,3 +92,4 @@ export function buildMoonshotModelDefinition(): ModelDefinitionConfig {
     maxTokens: MOONSHOT_DEFAULT_MAX_TOKENS,
   };
 }
+

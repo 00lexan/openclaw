@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 使用或配置聊天命令
-  - 调试命令路由或权限
-summary: 斜杠命令：文本 vs 原生、配置和支持的命令
-title: 斜杠命令
+  - ä½¿ç”¨æˆ–é…ç½®èŠå¤©å‘½ä»¤
+  - è°ƒè¯•å‘½ä»¤è·¯ç”±æˆ–æƒé™
+summary: æ–œæ å‘½ä»¤ï¼šæ–‡æœ¬ vs åŽŸç”Ÿã€é…ç½®å’Œæ”¯æŒçš„å‘½ä»¤
+title: æ–œæ å‘½ä»¤
 x-i18n:
   generated_at: "2026-02-03T10:12:40Z"
   model: claude-opus-4-5
@@ -13,25 +13,25 @@ x-i18n:
   workflow: 15
 ---
 
-# 斜杠命令
+# æ–œæ å‘½ä»¤
 
-命令由 Gateway 网关处理。大多数命令必须作为以 `/` 开头的**独立**消息发送。
-仅主机的 bash 聊天命令使用 `! <cmd>`（`/bash <cmd>` 是别名）。
+å‘½ä»¤ç”± Gateway ç½‘å…³å¤„ç†ã€‚å¤§å¤šæ•°å‘½ä»¤å¿…é¡»ä½œä¸ºä»¥ `/` å¼€å¤´çš„**ç‹¬ç«‹**æ¶ˆæ¯å‘é€ã€‚
+ä»…ä¸»æœºçš„ bash èŠå¤©å‘½ä»¤ä½¿ç”¨ `! <cmd>`ï¼ˆ`/bash <cmd>` æ˜¯åˆ«åï¼‰ã€‚
 
-有两个相关系统：
+æœ‰ä¸¤ä¸ªç›¸å…³ç³»ç»Ÿï¼š
 
-- **命令**：独立的 `/...` 消息。
-- **指令**：`/think`、`/verbose`、`/reasoning`、`/elevated`、`/exec`、`/model`、`/queue`。
-  - 指令在模型看到消息之前被剥离。
-  - 在普通聊天消息中（不是仅指令消息），它们被视为"内联提示"，**不会**持久化会话设置。
-  - 在仅指令消息中（消息只包含指令），它们会持久化到会话并回复确认。
-  - 指令仅对**授权发送者**生效（渠道白名单/配对加上 `commands.useAccessGroups`）。
-    未授权发送者的指令被视为纯文本。
+- **å‘½ä»¤**ï¼šç‹¬ç«‹çš„ `/...` æ¶ˆæ¯ã€‚
+- **æŒ‡ä»¤**ï¼š`/think`ã€`/verbose`ã€`/reasoning`ã€`/elevated`ã€`/exec`ã€`/model`ã€`/queue`ã€‚
+  - æŒ‡ä»¤åœ¨æ¨¡åž‹çœ‹åˆ°æ¶ˆæ¯ä¹‹å‰è¢«å‰¥ç¦»ã€‚
+  - åœ¨æ™®é€šèŠå¤©æ¶ˆæ¯ä¸­ï¼ˆä¸æ˜¯ä»…æŒ‡ä»¤æ¶ˆæ¯ï¼‰ï¼Œå®ƒä»¬è¢«è§†ä¸º"å†…è”æç¤º"ï¼Œ**ä¸ä¼š**æŒä¹…åŒ–ä¼šè¯è®¾ç½®ã€‚
+  - åœ¨ä»…æŒ‡ä»¤æ¶ˆæ¯ä¸­ï¼ˆæ¶ˆæ¯åªåŒ…å«æŒ‡ä»¤ï¼‰ï¼Œå®ƒä»¬ä¼šæŒä¹…åŒ–åˆ°ä¼šè¯å¹¶å›žå¤ç¡®è®¤ã€‚
+  - æŒ‡ä»¤ä»…å¯¹**æŽˆæƒå‘é€è€…**ç”Ÿæ•ˆï¼ˆæ¸ é“ç™½åå•/é…å¯¹åŠ ä¸Š `commands.useAccessGroups`ï¼‰ã€‚
+    æœªæŽˆæƒå‘é€è€…çš„æŒ‡ä»¤è¢«è§†ä¸ºçº¯æ–‡æœ¬ã€‚
 
-还有一些**内联快捷方式**（仅限白名单/授权发送者）：`/help`、`/commands`、`/status`、`/whoami`（`/id`）。
-它们立即运行，在模型看到消息之前被剥离，剩余文本继续通过正常流程。
+è¿˜æœ‰ä¸€äº›**å†…è”å¿«æ·æ–¹å¼**ï¼ˆä»…é™ç™½åå•/æŽˆæƒå‘é€è€…ï¼‰ï¼š`/help`ã€`/commands`ã€`/status`ã€`/whoami`ï¼ˆ`/id`ï¼‰ã€‚
+å®ƒä»¬ç«‹å³è¿è¡Œï¼Œåœ¨æ¨¡åž‹çœ‹åˆ°æ¶ˆæ¯ä¹‹å‰è¢«å‰¥ç¦»ï¼Œå‰©ä½™æ–‡æœ¬ç»§ç»­é€šè¿‡æ­£å¸¸æµç¨‹ã€‚
 
-## 配置
+## é…ç½®
 
 ```json5
 {
@@ -49,97 +49,97 @@ x-i18n:
 }
 ```
 
-- `commands.text`（默认 `true`）启用解析聊天消息中的 `/...`。
-  - 在没有原生命令的平台上（WhatsApp/WebChat/Signal/iMessage/Google Chat/MS Teams），即使你将此设置为 `false`，文本命令仍然有效。
-- `commands.native`（默认 `"auto"`）注册原生命令。
-  - Auto：在 Discord/Telegram 上启用；在 Slack 上禁用（直到你添加斜杠命令）；在不支持原生命令的提供商上忽略。
-  - 设置 `channels.discord.commands.native`、`channels.telegram.commands.native` 或 `channels.slack.commands.native` 以按提供商覆盖（布尔值或 `"auto"`）。
-  - `false` 在启动时清除 Discord/Telegram 上之前注册的命令。Slack 命令在 Slack 应用中管理，不会自动删除。
-- `commands.nativeSkills`（默认 `"auto"`）在支持时原生注册 **Skill** 命令。
-  - Auto：在 Discord/Telegram 上启用；在 Slack 上禁用（Slack 需要为每个 Skill 创建一个斜杠命令）。
-  - 设置 `channels.discord.commands.nativeSkills`、`channels.telegram.commands.nativeSkills` 或 `channels.slack.commands.nativeSkills` 以按提供商覆盖（布尔值或 `"auto"`）。
-- `commands.bash`（默认 `false`）启用 `! <cmd>` 来运行主机 shell 命令（`/bash <cmd>` 是别名；需要 `tools.elevated` 白名单）。
-- `commands.bashForegroundMs`（默认 `2000`）控制 bash 切换到后台模式之前等待多长时间（`0` 立即后台运行）。
-- `commands.config`（默认 `false`）启用 `/config`（读写 `openclaw.json`）。
-- `commands.debug`（默认 `false`）启用 `/debug`（仅运行时覆盖）。
-- `commands.useAccessGroups`（默认 `true`）对命令强制执行白名单/策略。
+- `commands.text`ï¼ˆé»˜è®¤ `true`ï¼‰å¯ç”¨è§£æžèŠå¤©æ¶ˆæ¯ä¸­çš„ `/...`ã€‚
+  - åœ¨æ²¡æœ‰åŽŸç”Ÿå‘½ä»¤çš„å¹³å°ä¸Šï¼ˆWhatsApp/WebChat/Signal/iMessage/Google Chat/MS Teamsï¼‰ï¼Œå³ä½¿ä½ å°†æ­¤è®¾ç½®ä¸º `false`ï¼Œæ–‡æœ¬å‘½ä»¤ä»ç„¶æœ‰æ•ˆã€‚
+- `commands.native`ï¼ˆé»˜è®¤ `"auto"`ï¼‰æ³¨å†ŒåŽŸç”Ÿå‘½ä»¤ã€‚
+  - Autoï¼šåœ¨ Discord/Telegram ä¸Šå¯ç”¨ï¼›åœ¨ Slack ä¸Šç¦ç”¨ï¼ˆç›´åˆ°ä½ æ·»åŠ æ–œæ å‘½ä»¤ï¼‰ï¼›åœ¨ä¸æ”¯æŒåŽŸç”Ÿå‘½ä»¤çš„æä¾›å•†ä¸Šå¿½ç•¥ã€‚
+  - è®¾ç½® `channels.discord.commands.native`ã€`channels.telegram.commands.native` æˆ– `channels.slack.commands.native` ä»¥æŒ‰æä¾›å•†è¦†ç›–ï¼ˆå¸ƒå°”å€¼æˆ– `"auto"`ï¼‰ã€‚
+  - `false` åœ¨å¯åŠ¨æ—¶æ¸…é™¤ Discord/Telegram ä¸Šä¹‹å‰æ³¨å†Œçš„å‘½ä»¤ã€‚Slack å‘½ä»¤åœ¨ Slack åº”ç”¨ä¸­ç®¡ç†ï¼Œä¸ä¼šè‡ªåŠ¨åˆ é™¤ã€‚
+- `commands.nativeSkills`ï¼ˆé»˜è®¤ `"auto"`ï¼‰åœ¨æ”¯æŒæ—¶åŽŸç”Ÿæ³¨å†Œ **Skill** å‘½ä»¤ã€‚
+  - Autoï¼šåœ¨ Discord/Telegram ä¸Šå¯ç”¨ï¼›åœ¨ Slack ä¸Šç¦ç”¨ï¼ˆSlack éœ€è¦ä¸ºæ¯ä¸ª Skill åˆ›å»ºä¸€ä¸ªæ–œæ å‘½ä»¤ï¼‰ã€‚
+  - è®¾ç½® `channels.discord.commands.nativeSkills`ã€`channels.telegram.commands.nativeSkills` æˆ– `channels.slack.commands.nativeSkills` ä»¥æŒ‰æä¾›å•†è¦†ç›–ï¼ˆå¸ƒå°”å€¼æˆ– `"auto"`ï¼‰ã€‚
+- `commands.bash`ï¼ˆé»˜è®¤ `false`ï¼‰å¯ç”¨ `! <cmd>` æ¥è¿è¡Œä¸»æœº shell å‘½ä»¤ï¼ˆ`/bash <cmd>` æ˜¯åˆ«åï¼›éœ€è¦ `tools.elevated` ç™½åå•ï¼‰ã€‚
+- `commands.bashForegroundMs`ï¼ˆé»˜è®¤ `2000`ï¼‰æŽ§åˆ¶ bash åˆ‡æ¢åˆ°åŽå°æ¨¡å¼ä¹‹å‰ç­‰å¾…å¤šé•¿æ—¶é—´ï¼ˆ`0` ç«‹å³åŽå°è¿è¡Œï¼‰ã€‚
+- `commands.config`ï¼ˆé»˜è®¤ `false`ï¼‰å¯ç”¨ `/config`ï¼ˆè¯»å†™ `.json`ï¼‰ã€‚
+- `commands.debug`ï¼ˆé»˜è®¤ `false`ï¼‰å¯ç”¨ `/debug`ï¼ˆä»…è¿è¡Œæ—¶è¦†ç›–ï¼‰ã€‚
+- `commands.useAccessGroups`ï¼ˆé»˜è®¤ `true`ï¼‰å¯¹å‘½ä»¤å¼ºåˆ¶æ‰§è¡Œç™½åå•/ç­–ç•¥ã€‚
 
-## 命令列表
+## å‘½ä»¤åˆ—è¡¨
 
-文本 + 原生（启用时）：
+æ–‡æœ¬ + åŽŸç”Ÿï¼ˆå¯ç”¨æ—¶ï¼‰ï¼š
 
 - `/help`
 - `/commands`
-- `/skill <name> [input]`（按名称运行 Skill）
-- `/status`（显示当前状态；在可用时包含当前模型提供商的提供商使用量/配额）
-- `/allowlist`（列出/添加/删除白名单条目）
-- `/approve <id> allow-once|allow-always|deny`（解决 exec 审批提示）
-- `/context [list|detail|json]`（解释"上下文"；`detail` 显示每个文件 + 每个工具 + 每个 Skill + 系统提示词大小）
-- `/whoami`（显示你的发送者 ID；别名：`/id`）
-- `/subagents list|stop|log|info|send`（检查、停止、记录或向当前会话的子智能体运行发送消息）
-- `/config show|get|set|unset`（将配置持久化到磁盘，仅所有者；需要 `commands.config: true`）
-- `/debug show|set|unset|reset`（运行时覆盖，仅所有者；需要 `commands.debug: true`）
-- `/usage off|tokens|full|cost`（每响应使用量页脚或本地成本摘要）
-- `/tts off|always|inbound|tagged|status|provider|limit|summary|audio`（控制 TTS；参见 [/tts](/tts)）
-  - Discord：原生命令是 `/voice`（Discord 保留了 `/tts`）；文本 `/tts` 仍然有效。
+- `/skill <name> [input]`ï¼ˆæŒ‰åç§°è¿è¡Œ Skillï¼‰
+- `/status`ï¼ˆæ˜¾ç¤ºå½“å‰çŠ¶æ€ï¼›åœ¨å¯ç”¨æ—¶åŒ…å«å½“å‰æ¨¡åž‹æä¾›å•†çš„æä¾›å•†ä½¿ç”¨é‡/é…é¢ï¼‰
+- `/allowlist`ï¼ˆåˆ—å‡º/æ·»åŠ /åˆ é™¤ç™½åå•æ¡ç›®ï¼‰
+- `/approve <id> allow-once|allow-always|deny`ï¼ˆè§£å†³ exec å®¡æ‰¹æç¤ºï¼‰
+- `/context [list|detail|json]`ï¼ˆè§£é‡Š"ä¸Šä¸‹æ–‡"ï¼›`detail` æ˜¾ç¤ºæ¯ä¸ªæ–‡ä»¶ + æ¯ä¸ªå·¥å…· + æ¯ä¸ª Skill + ç³»ç»Ÿæç¤ºè¯å¤§å°ï¼‰
+- `/whoami`ï¼ˆæ˜¾ç¤ºä½ çš„å‘é€è€… IDï¼›åˆ«åï¼š`/id`ï¼‰
+- `/subagents list|stop|log|info|send`ï¼ˆæ£€æŸ¥ã€åœæ­¢ã€è®°å½•æˆ–å‘å½“å‰ä¼šè¯çš„å­æ™ºèƒ½ä½“è¿è¡Œå‘é€æ¶ˆæ¯ï¼‰
+- `/config show|get|set|unset`ï¼ˆå°†é…ç½®æŒä¹…åŒ–åˆ°ç£ç›˜ï¼Œä»…æ‰€æœ‰è€…ï¼›éœ€è¦ `commands.config: true`ï¼‰
+- `/debug show|set|unset|reset`ï¼ˆè¿è¡Œæ—¶è¦†ç›–ï¼Œä»…æ‰€æœ‰è€…ï¼›éœ€è¦ `commands.debug: true`ï¼‰
+- `/usage off|tokens|full|cost`ï¼ˆæ¯å“åº”ä½¿ç”¨é‡é¡µè„šæˆ–æœ¬åœ°æˆæœ¬æ‘˜è¦ï¼‰
+- `/tts off|always|inbound|tagged|status|provider|limit|summary|audio`ï¼ˆæŽ§åˆ¶ TTSï¼›å‚è§ [/tts](/tts)ï¼‰
+  - Discordï¼šåŽŸç”Ÿå‘½ä»¤æ˜¯ `/voice`ï¼ˆDiscord ä¿ç•™äº† `/tts`ï¼‰ï¼›æ–‡æœ¬ `/tts` ä»ç„¶æœ‰æ•ˆã€‚
 - `/stop`
 - `/restart`
-- `/dock-telegram`（别名：`/dock_telegram`）（将回复切换到 Telegram）
-- `/dock-discord`（别名：`/dock_discord`）（将回复切换到 Discord）
-- `/dock-slack`（别名：`/dock_slack`）（将回复切换到 Slack）
-- `/activation mention|always`（仅限群组）
-- `/send on|off|inherit`（仅所有者）
-- `/reset` 或 `/new [model]`（可选模型提示；其余部分传递）
-- `/think <off|minimal|low|medium|high|xhigh>`（按模型/提供商动态选择；别名：`/thinking`、`/t`）
-- `/verbose on|full|off`（别名：`/v`）
-- `/reasoning on|off|stream`（别名：`/reason`；启用时，发送带有 `Reasoning:` 前缀的单独消息；`stream` = 仅 Telegram 草稿）
-- `/elevated on|off|ask|full`（别名：`/elev`；`full` 跳过 exec 审批）
-- `/exec host=<sandbox|gateway|node> security=<deny|allowlist|full> ask=<off|on-miss|always> node=<id>`（发送 `/exec` 显示当前设置）
-- `/model <name>`（别名：`/models`；或 `agents.defaults.models.*.alias` 中的 `/<alias>`）
-- `/queue <mode>`（加上选项如 `debounce:2s cap:25 drop:summarize`；发送 `/queue` 查看当前设置）
-- `/bash <command>`（仅主机；`! <command>` 的别名；需要 `commands.bash: true` + `tools.elevated` 白名单）
+- `/dock-telegram`ï¼ˆåˆ«åï¼š`/dock_telegram`ï¼‰ï¼ˆå°†å›žå¤åˆ‡æ¢åˆ° Telegramï¼‰
+- `/dock-discord`ï¼ˆåˆ«åï¼š`/dock_discord`ï¼‰ï¼ˆå°†å›žå¤åˆ‡æ¢åˆ° Discordï¼‰
+- `/dock-slack`ï¼ˆåˆ«åï¼š`/dock_slack`ï¼‰ï¼ˆå°†å›žå¤åˆ‡æ¢åˆ° Slackï¼‰
+- `/activation mention|always`ï¼ˆä»…é™ç¾¤ç»„ï¼‰
+- `/send on|off|inherit`ï¼ˆä»…æ‰€æœ‰è€…ï¼‰
+- `/reset` æˆ– `/new [model]`ï¼ˆå¯é€‰æ¨¡åž‹æç¤ºï¼›å…¶ä½™éƒ¨åˆ†ä¼ é€’ï¼‰
+- `/think <off|minimal|low|medium|high|xhigh>`ï¼ˆæŒ‰æ¨¡åž‹/æä¾›å•†åŠ¨æ€é€‰æ‹©ï¼›åˆ«åï¼š`/thinking`ã€`/t`ï¼‰
+- `/verbose on|full|off`ï¼ˆåˆ«åï¼š`/v`ï¼‰
+- `/reasoning on|off|stream`ï¼ˆåˆ«åï¼š`/reason`ï¼›å¯ç”¨æ—¶ï¼Œå‘é€å¸¦æœ‰ `Reasoning:` å‰ç¼€çš„å•ç‹¬æ¶ˆæ¯ï¼›`stream` = ä»… Telegram è‰ç¨¿ï¼‰
+- `/elevated on|off|ask|full`ï¼ˆåˆ«åï¼š`/elev`ï¼›`full` è·³è¿‡ exec å®¡æ‰¹ï¼‰
+- `/exec host=<sandbox|gateway|node> security=<deny|allowlist|full> ask=<off|on-miss|always> node=<id>`ï¼ˆå‘é€ `/exec` æ˜¾ç¤ºå½“å‰è®¾ç½®ï¼‰
+- `/model <name>`ï¼ˆåˆ«åï¼š`/models`ï¼›æˆ– `agents.defaults.models.*.alias` ä¸­çš„ `/<alias>`ï¼‰
+- `/queue <mode>`ï¼ˆåŠ ä¸Šé€‰é¡¹å¦‚ `debounce:2s cap:25 drop:summarize`ï¼›å‘é€ `/queue` æŸ¥çœ‹å½“å‰è®¾ç½®ï¼‰
+- `/bash <command>`ï¼ˆä»…ä¸»æœºï¼›`! <command>` çš„åˆ«åï¼›éœ€è¦ `commands.bash: true` + `tools.elevated` ç™½åå•ï¼‰
 
-仅文本：
+ä»…æ–‡æœ¬ï¼š
 
-- `/compact [instructions]`（参见 [/concepts/compaction](/concepts/compaction)）
-- `! <command>`（仅主机；一次一个；对长时间运行的任务使用 `!poll` + `!stop`）
-- `!poll`（检查输出/状态；接受可选的 `sessionId`；`/bash poll` 也可用）
-- `!stop`（停止正在运行的 bash 任务；接受可选的 `sessionId`；`/bash stop` 也可用）
+- `/compact [instructions]`ï¼ˆå‚è§ [/concepts/compaction](/concepts/compaction)ï¼‰
+- `! <command>`ï¼ˆä»…ä¸»æœºï¼›ä¸€æ¬¡ä¸€ä¸ªï¼›å¯¹é•¿æ—¶é—´è¿è¡Œçš„ä»»åŠ¡ä½¿ç”¨ `!poll` + `!stop`ï¼‰
+- `!poll`ï¼ˆæ£€æŸ¥è¾“å‡º/çŠ¶æ€ï¼›æŽ¥å—å¯é€‰çš„ `sessionId`ï¼›`/bash poll` ä¹Ÿå¯ç”¨ï¼‰
+- `!stop`ï¼ˆåœæ­¢æ­£åœ¨è¿è¡Œçš„ bash ä»»åŠ¡ï¼›æŽ¥å—å¯é€‰çš„ `sessionId`ï¼›`/bash stop` ä¹Ÿå¯ç”¨ï¼‰
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 命令接受命令和参数之间的可选 `:`（例如 `/think: high`、`/send: on`、`/help:`）。
-- `/new <model>` 接受模型别名、`provider/model` 或提供商名称（模糊匹配）；如果没有匹配，文本被视为消息正文。
-- 要获取完整的提供商使用量分解，使用 `openclaw status --usage`。
-- `/allowlist add|remove` 需要 `commands.config=true` 并遵循渠道 `configWrites`。
-- `/usage` 控制每响应使用量页脚；`/usage cost` 从 OpenClaw 会话日志打印本地成本摘要。
-- `/restart` 默认禁用；设置 `commands.restart: true` 启用它。
-- `/verbose` 用于调试和额外可见性；在正常使用中保持**关闭**。
-- `/reasoning`（和 `/verbose`）在群组设置中有风险：它们可能会暴露你不打算公开的内部推理或工具输出。最好保持关闭，尤其是在群聊中。
-- **快速路径：** 来自白名单发送者的仅命令消息会立即处理（绕过队列 + 模型）。
-- **群组提及门控：** 来自白名单发送者的仅命令消息绕过提及要求。
-- **内联快捷方式（仅限白名单发送者）：** 某些命令在嵌入普通消息时也能工作，并在模型看到剩余文本之前被剥离。
-  - 示例：`hey /status` 触发状态回复，剩余文本继续通过正常流程。
-- 目前：`/help`、`/commands`、`/status`、`/whoami`（`/id`）。
-- 未授权的仅命令消息被静默忽略，内联 `/...` 令牌被视为纯文本。
-- **Skill 命令：** `user-invocable` Skills 作为斜杠命令公开。名称被清理为 `a-z0-9_`（最多 32 个字符）；冲突获得数字后缀（例如 `_2`）。
-  - `/skill <name> [input]` 按名称运行 Skill（当原生命令限制阻止每个 Skill 命令时有用）。
-  - 默认情况下，Skill 命令作为普通请求转发给模型。
-  - Skills 可以选择声明 `command-dispatch: tool` 将命令直接路由到工具（确定性，无模型）。
-  - 示例：`/prose`（OpenProse 插件）— 参见 [OpenProse](/prose)。
-- **原生命令参数：** Discord 使用自动完成进行动态选项（以及当你省略必需参数时的按钮菜单）。当命令支持选择且你省略参数时，Telegram 和 Slack 显示按钮菜单。
+- å‘½ä»¤æŽ¥å—å‘½ä»¤å’Œå‚æ•°ä¹‹é—´çš„å¯é€‰ `:`ï¼ˆä¾‹å¦‚ `/think: high`ã€`/send: on`ã€`/help:`ï¼‰ã€‚
+- `/new <model>` æŽ¥å—æ¨¡åž‹åˆ«åã€`provider/model` æˆ–æä¾›å•†åç§°ï¼ˆæ¨¡ç³ŠåŒ¹é…ï¼‰ï¼›å¦‚æžœæ²¡æœ‰åŒ¹é…ï¼Œæ–‡æœ¬è¢«è§†ä¸ºæ¶ˆæ¯æ­£æ–‡ã€‚
+- è¦èŽ·å–å®Œæ•´çš„æä¾›å•†ä½¿ç”¨é‡åˆ†è§£ï¼Œä½¿ç”¨ ` status --usage`ã€‚
+- `/allowlist add|remove` éœ€è¦ `commands.config=true` å¹¶éµå¾ªæ¸ é“ `configWrites`ã€‚
+- `/usage` æŽ§åˆ¶æ¯å“åº”ä½¿ç”¨é‡é¡µè„šï¼›`/usage cost` ä»Ž  ä¼šè¯æ—¥å¿—æ‰“å°æœ¬åœ°æˆæœ¬æ‘˜è¦ã€‚
+- `/restart` é»˜è®¤ç¦ç”¨ï¼›è®¾ç½® `commands.restart: true` å¯ç”¨å®ƒã€‚
+- `/verbose` ç”¨äºŽè°ƒè¯•å’Œé¢å¤–å¯è§æ€§ï¼›åœ¨æ­£å¸¸ä½¿ç”¨ä¸­ä¿æŒ**å…³é—­**ã€‚
+- `/reasoning`ï¼ˆå’Œ `/verbose`ï¼‰åœ¨ç¾¤ç»„è®¾ç½®ä¸­æœ‰é£Žé™©ï¼šå®ƒä»¬å¯èƒ½ä¼šæš´éœ²ä½ ä¸æ‰“ç®—å…¬å¼€çš„å†…éƒ¨æŽ¨ç†æˆ–å·¥å…·è¾“å‡ºã€‚æœ€å¥½ä¿æŒå…³é—­ï¼Œå°¤å…¶æ˜¯åœ¨ç¾¤èŠä¸­ã€‚
+- **å¿«é€Ÿè·¯å¾„ï¼š** æ¥è‡ªç™½åå•å‘é€è€…çš„ä»…å‘½ä»¤æ¶ˆæ¯ä¼šç«‹å³å¤„ç†ï¼ˆç»•è¿‡é˜Ÿåˆ— + æ¨¡åž‹ï¼‰ã€‚
+- **ç¾¤ç»„æåŠé—¨æŽ§ï¼š** æ¥è‡ªç™½åå•å‘é€è€…çš„ä»…å‘½ä»¤æ¶ˆæ¯ç»•è¿‡æåŠè¦æ±‚ã€‚
+- **å†…è”å¿«æ·æ–¹å¼ï¼ˆä»…é™ç™½åå•å‘é€è€…ï¼‰ï¼š** æŸäº›å‘½ä»¤åœ¨åµŒå…¥æ™®é€šæ¶ˆæ¯æ—¶ä¹Ÿèƒ½å·¥ä½œï¼Œå¹¶åœ¨æ¨¡åž‹çœ‹åˆ°å‰©ä½™æ–‡æœ¬ä¹‹å‰è¢«å‰¥ç¦»ã€‚
+  - ç¤ºä¾‹ï¼š`hey /status` è§¦å‘çŠ¶æ€å›žå¤ï¼Œå‰©ä½™æ–‡æœ¬ç»§ç»­é€šè¿‡æ­£å¸¸æµç¨‹ã€‚
+- ç›®å‰ï¼š`/help`ã€`/commands`ã€`/status`ã€`/whoami`ï¼ˆ`/id`ï¼‰ã€‚
+- æœªæŽˆæƒçš„ä»…å‘½ä»¤æ¶ˆæ¯è¢«é™é»˜å¿½ç•¥ï¼Œå†…è” `/...` ä»¤ç‰Œè¢«è§†ä¸ºçº¯æ–‡æœ¬ã€‚
+- **Skill å‘½ä»¤ï¼š** `user-invocable` Skills ä½œä¸ºæ–œæ å‘½ä»¤å…¬å¼€ã€‚åç§°è¢«æ¸…ç†ä¸º `a-z0-9_`ï¼ˆæœ€å¤š 32 ä¸ªå­—ç¬¦ï¼‰ï¼›å†²çªèŽ·å¾—æ•°å­—åŽç¼€ï¼ˆä¾‹å¦‚ `_2`ï¼‰ã€‚
+  - `/skill <name> [input]` æŒ‰åç§°è¿è¡Œ Skillï¼ˆå½“åŽŸç”Ÿå‘½ä»¤é™åˆ¶é˜»æ­¢æ¯ä¸ª Skill å‘½ä»¤æ—¶æœ‰ç”¨ï¼‰ã€‚
+  - é»˜è®¤æƒ…å†µä¸‹ï¼ŒSkill å‘½ä»¤ä½œä¸ºæ™®é€šè¯·æ±‚è½¬å‘ç»™æ¨¡åž‹ã€‚
+  - Skills å¯ä»¥é€‰æ‹©å£°æ˜Ž `command-dispatch: tool` å°†å‘½ä»¤ç›´æŽ¥è·¯ç”±åˆ°å·¥å…·ï¼ˆç¡®å®šæ€§ï¼Œæ— æ¨¡åž‹ï¼‰ã€‚
+  - ç¤ºä¾‹ï¼š`/prose`ï¼ˆOpenProse æ’ä»¶ï¼‰â€” å‚è§ [OpenProse](/prose)ã€‚
+- **åŽŸç”Ÿå‘½ä»¤å‚æ•°ï¼š** Discord ä½¿ç”¨è‡ªåŠ¨å®Œæˆè¿›è¡ŒåŠ¨æ€é€‰é¡¹ï¼ˆä»¥åŠå½“ä½ çœç•¥å¿…éœ€å‚æ•°æ—¶çš„æŒ‰é’®èœå•ï¼‰ã€‚å½“å‘½ä»¤æ”¯æŒé€‰æ‹©ä¸”ä½ çœç•¥å‚æ•°æ—¶ï¼ŒTelegram å’Œ Slack æ˜¾ç¤ºæŒ‰é’®èœå•ã€‚
 
-## 使用量显示（什么显示在哪里）
+## ä½¿ç”¨é‡æ˜¾ç¤ºï¼ˆä»€ä¹ˆæ˜¾ç¤ºåœ¨å“ªé‡Œï¼‰
 
-- **提供商使用量/配额**（示例："Claude 80% left"）在启用使用量跟踪时显示在 `/status` 中，针对当前模型提供商。
-- **每响应令牌/成本**由 `/usage off|tokens|full` 控制（附加到普通回复）。
-- `/model status` 是关于**模型/认证/端点**的，不是使用量。
+- **æä¾›å•†ä½¿ç”¨é‡/é…é¢**ï¼ˆç¤ºä¾‹ï¼š"Claude 80% left"ï¼‰åœ¨å¯ç”¨ä½¿ç”¨é‡è·Ÿè¸ªæ—¶æ˜¾ç¤ºåœ¨ `/status` ä¸­ï¼Œé’ˆå¯¹å½“å‰æ¨¡åž‹æä¾›å•†ã€‚
+- **æ¯å“åº”ä»¤ç‰Œ/æˆæœ¬**ç”± `/usage off|tokens|full` æŽ§åˆ¶ï¼ˆé™„åŠ åˆ°æ™®é€šå›žå¤ï¼‰ã€‚
+- `/model status` æ˜¯å…³äºŽ**æ¨¡åž‹/è®¤è¯/ç«¯ç‚¹**çš„ï¼Œä¸æ˜¯ä½¿ç”¨é‡ã€‚
 
-## 模型选择（`/model`）
+## æ¨¡åž‹é€‰æ‹©ï¼ˆ`/model`ï¼‰
 
-`/model` 作为指令实现。
+`/model` ä½œä¸ºæŒ‡ä»¤å®žçŽ°ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```
 /model
@@ -150,56 +150,57 @@ x-i18n:
 /model status
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- `/model` 和 `/model list` 显示紧凑的编号选择器（模型系列 + 可用提供商）。
-- `/model <#>` 从该选择器中选择（并在可能时优先选择当前提供商）。
-- `/model status` 显示详细视图，包括在可用时配置的提供商端点（`baseUrl`）和 API 模式（`api`）。
+- `/model` å’Œ `/model list` æ˜¾ç¤ºç´§å‡‘çš„ç¼–å·é€‰æ‹©å™¨ï¼ˆæ¨¡åž‹ç³»åˆ— + å¯ç”¨æä¾›å•†ï¼‰ã€‚
+- `/model <#>` ä»Žè¯¥é€‰æ‹©å™¨ä¸­é€‰æ‹©ï¼ˆå¹¶åœ¨å¯èƒ½æ—¶ä¼˜å…ˆé€‰æ‹©å½“å‰æä¾›å•†ï¼‰ã€‚
+- `/model status` æ˜¾ç¤ºè¯¦ç»†è§†å›¾ï¼ŒåŒ…æ‹¬åœ¨å¯ç”¨æ—¶é…ç½®çš„æä¾›å•†ç«¯ç‚¹ï¼ˆ`baseUrl`ï¼‰å’Œ API æ¨¡å¼ï¼ˆ`api`ï¼‰ã€‚
 
-## 调试覆盖
+## è°ƒè¯•è¦†ç›–
 
-`/debug` 让你设置**仅运行时**的配置覆盖（内存，不写磁盘）。仅所有者。默认禁用；使用 `commands.debug: true` 启用。
+`/debug` è®©ä½ è®¾ç½®**ä»…è¿è¡Œæ—¶**çš„é…ç½®è¦†ç›–ï¼ˆå†…å­˜ï¼Œä¸å†™ç£ç›˜ï¼‰ã€‚ä»…æ‰€æœ‰è€…ã€‚é»˜è®¤ç¦ç”¨ï¼›ä½¿ç”¨ `commands.debug: true` å¯ç”¨ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```
 /debug show
-/debug set messages.responsePrefix="[openclaw]"
+/debug set messages.responsePrefix="[]"
 /debug set channels.whatsapp.allowFrom=["+1555","+4477"]
 /debug unset messages.responsePrefix
 /debug reset
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 覆盖立即应用于新的配置读取，但**不会**写入 `openclaw.json`。
-- 使用 `/debug reset` 清除所有覆盖并返回到磁盘上的配置。
+- è¦†ç›–ç«‹å³åº”ç”¨äºŽæ–°çš„é…ç½®è¯»å–ï¼Œä½†**ä¸ä¼š**å†™å…¥ `.json`ã€‚
+- ä½¿ç”¨ `/debug reset` æ¸…é™¤æ‰€æœ‰è¦†ç›–å¹¶è¿”å›žåˆ°ç£ç›˜ä¸Šçš„é…ç½®ã€‚
 
-## 配置更新
+## é…ç½®æ›´æ–°
 
-`/config` 写入你的磁盘配置（`openclaw.json`）。仅所有者。默认禁用；使用 `commands.config: true` 启用。
+`/config` å†™å…¥ä½ çš„ç£ç›˜é…ç½®ï¼ˆ`.json`ï¼‰ã€‚ä»…æ‰€æœ‰è€…ã€‚é»˜è®¤ç¦ç”¨ï¼›ä½¿ç”¨ `commands.config: true` å¯ç”¨ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```
 /config show
 /config show messages.responsePrefix
 /config get messages.responsePrefix
-/config set messages.responsePrefix="[openclaw]"
+/config set messages.responsePrefix="[]"
 /config unset messages.responsePrefix
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 配置在写入前会验证；无效更改会被拒绝。
-- `/config` 更新在重启后持久化。
+- é…ç½®åœ¨å†™å…¥å‰ä¼šéªŒè¯ï¼›æ— æ•ˆæ›´æ”¹ä¼šè¢«æ‹’ç»ã€‚
+- `/config` æ›´æ–°åœ¨é‡å¯åŽæŒä¹…åŒ–ã€‚
 
-## 平台注意事项
+## å¹³å°æ³¨æ„äº‹é¡¹
 
-- **文本命令**在普通聊天会话中运行（私信共享 `main`，群组有自己的会话）。
-- **原生命令**使用隔离的会话：
-  - Discord：`agent:<agentId>:discord:slash:<userId>`
-  - Slack：`agent:<agentId>:slack:slash:<userId>`（前缀可通过 `channels.slack.slashCommand.sessionPrefix` 配置）
-  - Telegram：`telegram:slash:<userId>`（通过 `CommandTargetSessionKey` 定向到聊天会话）
-- **`/stop`** 定向到活动聊天会话，因此可以中止当前运行。
-- **Slack：** `channels.slack.slashCommand` 仍然支持单个 `/openclaw` 风格的命令。如果你启用 `commands.native`，你必须为每个内置命令创建一个 Slack 斜杠命令（与 `/help` 相同的名称）。Slack 的命令参数菜单以临时 Block Kit 按钮形式发送。
+- **æ–‡æœ¬å‘½ä»¤**åœ¨æ™®é€šèŠå¤©ä¼šè¯ä¸­è¿è¡Œï¼ˆç§ä¿¡å…±äº« `main`ï¼Œç¾¤ç»„æœ‰è‡ªå·±çš„ä¼šè¯ï¼‰ã€‚
+- **åŽŸç”Ÿå‘½ä»¤**ä½¿ç”¨éš”ç¦»çš„ä¼šè¯ï¼š
+  - Discordï¼š`agent:<agentId>:discord:slash:<userId>`
+  - Slackï¼š`agent:<agentId>:slack:slash:<userId>`ï¼ˆå‰ç¼€å¯é€šè¿‡ `channels.slack.slashCommand.sessionPrefix` é…ç½®ï¼‰
+  - Telegramï¼š`telegram:slash:<userId>`ï¼ˆé€šè¿‡ `CommandTargetSessionKey` å®šå‘åˆ°èŠå¤©ä¼šè¯ï¼‰
+- **`/stop`** å®šå‘åˆ°æ´»åŠ¨èŠå¤©ä¼šè¯ï¼Œå› æ­¤å¯ä»¥ä¸­æ­¢å½“å‰è¿è¡Œã€‚
+- **Slackï¼š** `channels.slack.slashCommand` ä»ç„¶æ”¯æŒå•ä¸ª `/` é£Žæ ¼çš„å‘½ä»¤ã€‚å¦‚æžœä½ å¯ç”¨ `commands.native`ï¼Œä½ å¿…é¡»ä¸ºæ¯ä¸ªå†…ç½®å‘½ä»¤åˆ›å»ºä¸€ä¸ª Slack æ–œæ å‘½ä»¤ï¼ˆä¸Ž `/help` ç›¸åŒçš„åç§°ï¼‰ã€‚Slack çš„å‘½ä»¤å‚æ•°èœå•ä»¥ä¸´æ—¶ Block Kit æŒ‰é’®å½¢å¼å‘é€ã€‚
+

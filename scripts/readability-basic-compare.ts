@@ -1,4 +1,4 @@
-import { createWebFetchTool } from "../src/agents/tools/web-tools.js";
+﻿import { createWebFetchTool } from "../src/agents/tools/web-tools.js";
 
 const DEFAULT_URLS = [
   "https://example.com/",
@@ -40,7 +40,7 @@ function truncate(value: string, max = 160): string {
   if (!value) {
     return "";
   }
-  return value.length > max ? `${value.slice(0, max)}…` : value;
+  return value.length > max ? `${value.slice(0, max)}â€¦` : value;
 }
 
 async function run() {
@@ -64,3 +64,4 @@ run().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+

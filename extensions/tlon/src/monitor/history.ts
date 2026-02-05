@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "openclaw/plugin-sdk";
+﻿import type { RuntimeEnv } from "/plugin-sdk";
 import { extractMessageText } from "./utils.js";
 
 export type TlonHistoryEntry = {
@@ -88,3 +88,4 @@ export async function getChannelHistory(
   runtime?.log?.(`[tlon] Cache has ${cache.length} messages, need ${count}, fetching from scry...`);
   return await fetchChannelHistory(api, channelNest, count, runtime);
 }
+

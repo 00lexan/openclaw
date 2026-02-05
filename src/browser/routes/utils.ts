@@ -1,4 +1,4 @@
-import type { BrowserRouteContext, ProfileContext } from "../server-context.js";
+﻿import type { BrowserRouteContext, ProfileContext } from "../server-context.js";
 import type { BrowserRequest, BrowserResponse } from "./types.js";
 import { parseBooleanValue } from "../../utils/boolean.js";
 
@@ -71,3 +71,4 @@ export function toStringArray(value: unknown): string[] | undefined {
   const strings = value.map((v) => toStringOrEmpty(v)).filter(Boolean);
   return strings.length ? strings : undefined;
 }
+

@@ -1,4 +1,4 @@
-import type { ChannelId } from "../channels/plugins/types.js";
+﻿import type { ChannelId } from "../channels/plugins/types.js";
 
 export type SessionStatus = {
   agentId?: string;
@@ -56,3 +56,4 @@ export type StatusSummary = {
     }>;
   };
 };
+

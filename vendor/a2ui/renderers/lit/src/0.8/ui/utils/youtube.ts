@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -75,3 +75,4 @@ export function videoIdFromWatchOrShortsOrEmbedUri(uri: string) {
 export function createWatchUriFromVideoId(id: string) {
   return `https://www.youtube.com/watch?v=${id}`;
 }
+

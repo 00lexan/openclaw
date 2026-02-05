@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import * as mod from "./channel-web.js";
 
 describe("channel-web barrel", () => {
@@ -12,3 +12,4 @@ describe("channel-web barrel", () => {
     expect(mod.WA_WEB_AUTH_DIR).toBeTruthy();
   });
 });
+

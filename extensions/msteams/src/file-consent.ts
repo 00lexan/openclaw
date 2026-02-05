@@ -1,4 +1,4 @@
-/**
+﻿/**
  * FileConsentCard utilities for MS Teams large file uploads (>4MB) in personal chats.
  *
  * Teams requires user consent before the bot can upload large files. This module provides
@@ -124,3 +124,4 @@ export async function uploadToConsentUrl(params: {
     throw new Error(`File upload to consent URL failed: ${res.status} ${res.statusText}`);
   }
 }
+

@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { resolveGatewayPort } from "../config/config.js";
 import { findTailscaleBinary } from "../infra/tailscale.js";
@@ -10,10 +10,10 @@ import { guardCancel, normalizeGatewayTokenInput, randomToken } from "./onboard-
 type GatewayAuthChoice = "token" | "password";
 
 export async function promptGatewayConfig(
-  cfg: OpenClawConfig,
+  cfg: Config,
   runtime: RuntimeEnv,
 ): Promise<{
-  config: OpenClawConfig;
+  config: Config;
   port: number;
   token?: string;
 }> {
@@ -43,7 +43,7 @@ export async function promptGatewayConfig(
         },
         {
           value: "auto",
-          label: "Auto (Loopback → LAN)",
+          label: "Auto (Loopback â†’ LAN)",
           hint: "Prefer loopback; fall back to all interfaces if unavailable",
         },
         {
@@ -144,7 +144,7 @@ export async function promptGatewayConfig(
   let tailscaleResetOnExit = false;
   if (tailscaleMode !== "off") {
     note(
-      ["Docs:", "https://docs.openclaw.ai/gateway/tailscale", "https://docs.openclaw.ai/web"].join(
+      ["Docs:", "https://docs..ai/gateway/tailscale", "https://docs..ai/web"].join(
         "\n",
       ),
       "Tailscale",
@@ -222,3 +222,4 @@ export async function promptGatewayConfig(
 
   return { config: next, port, token: gatewayToken };
 }
+

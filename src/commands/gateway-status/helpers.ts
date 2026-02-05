@@ -1,4 +1,4 @@
-import type { OpenClawConfig, ConfigFileSnapshot } from "../../config/types.js";
+﻿import type { Config, ConfigFileSnapshot } from "../../config/types.js";
 import type { GatewayProbeResult } from "../../gateway/probe.js";
 import { resolveGatewayPort } from "../../config/config.js";
 import { pickPrimaryTailnetIPv4 } from "../../infra/tailnet.js";
@@ -87,7 +87,7 @@ function normalizeWsUrl(value: string): string | null {
   return trimmed;
 }
 
-export function resolveTargets(cfg: OpenClawConfig, explicitUrl?: string): GatewayStatusTarget[] {
+export function resolveTargets(cfg: Config, explicitUrl?: string): GatewayStatusTarget[] {
   const targets: GatewayStatusTarget[] = [];
   const add = (t: GatewayStatusTarget) => {
     if (!targets.some((x) => x.url === t.url)) {
@@ -144,7 +144,7 @@ export function sanitizeSshTarget(value: unknown): string | null {
 }
 
 export function resolveAuthForTarget(
-  cfg: OpenClawConfig,
+  cfg: Config,
   target: GatewayStatusTarget,
   overrides: { token?: string; password?: string },
 ): { token?: string; password?: string } {
@@ -165,8 +165,8 @@ export function resolveAuthForTarget(
     };
   }
 
-  const envToken = process.env.OPENCLAW_GATEWAY_TOKEN?.trim() || "";
-  const envPassword = process.env.OPENCLAW_GATEWAY_PASSWORD?.trim() || "";
+  const envToken = process.env._GATEWAY_TOKEN?.trim() || "";
+  const envPassword = process.env._GATEWAY_PASSWORD?.trim() || "";
   const cfgToken =
     typeof cfg.gateway?.auth?.token === "string" ? cfg.gateway.auth.token.trim() : "";
   const cfgPassword =
@@ -263,7 +263,7 @@ export function extractConfigSummary(snapshotUnknown: unknown): GatewayConfigSum
   };
 }
 
-export function buildNetworkHints(cfg: OpenClawConfig) {
+export function buildNetworkHints(cfg: Config) {
   const tailnetIPv4 = pickPrimaryTailnetIPv4();
   const port = resolveGatewayPort(cfg);
   return {
@@ -291,15 +291,16 @@ export function renderProbeSummaryLine(probe: GatewayProbeResult, rich: boolean)
   if (probe.ok) {
     const latency =
       typeof probe.connectLatencyMs === "number" ? `${probe.connectLatencyMs}ms` : "unknown";
-    return `${colorize(rich, theme.success, "Connect: ok")} (${latency}) · ${colorize(rich, theme.success, "RPC: ok")}`;
+    return `${colorize(rich, theme.success, "Connect: ok")} (${latency}) Â· ${colorize(rich, theme.success, "RPC: ok")}`;
   }
 
   const detail = probe.error ? ` - ${probe.error}` : "";
   if (probe.connectLatencyMs != null) {
     const latency =
       typeof probe.connectLatencyMs === "number" ? `${probe.connectLatencyMs}ms` : "unknown";
-    return `${colorize(rich, theme.success, "Connect: ok")} (${latency}) · ${colorize(rich, theme.error, "RPC: failed")}${detail}`;
+    return `${colorize(rich, theme.success, "Connect: ok")} (${latency}) Â· ${colorize(rich, theme.error, "RPC: failed")}${detail}`;
   }
 
   return `${colorize(rich, theme.error, "Connect: failed")}${detail}`;
 }
+

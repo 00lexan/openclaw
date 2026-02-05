@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import type { CoreConfig } from "./src/core-bridge.js";
 import { registerVoiceCallCli } from "./src/cli.js";
 import {
@@ -491,3 +491,4 @@ const voiceCallPlugin = {
 };
 
 export default voiceCallPlugin;
+

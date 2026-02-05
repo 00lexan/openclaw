@@ -1,4 +1,4 @@
-export async function authenticate(url: string, code: string): Promise<string> {
+﻿export async function authenticate(url: string, code: string): Promise<string> {
   const resp = await fetch(`${url}/~/login`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -16,3 +16,4 @@ export async function authenticate(url: string, code: string): Promise<string> {
   }
   return cookie;
 }
+

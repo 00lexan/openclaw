@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Model authentication: OAuth, API keys, and setup-token"
 read_when:
   - Debugging model auth or OAuth expiry
@@ -8,30 +8,30 @@ title: "Authentication"
 
 # Authentication
 
-OpenClaw supports OAuth and API keys for model providers. For Anthropic
+ supports OAuth and API keys for model providers. For Anthropic
 accounts, we recommend using an **API key**. For Claude subscription access,
-use the long‑lived token created by `claude setup-token`.
+use the longâ€‘lived token created by `claude setup-token`.
 
 See [/concepts/oauth](/concepts/oauth) for the full OAuth flow and storage
 layout.
 
 ## Recommended Anthropic setup (API key)
 
-If you’re using Anthropic directly, use an API key.
+If youâ€™re using Anthropic directly, use an API key.
 
 1. Create an API key in the Anthropic Console.
-2. Put it on the **gateway host** (the machine running `openclaw gateway`).
+2. Put it on the **gateway host** (the machine running ` gateway`).
 
 ```bash
 export ANTHROPIC_API_KEY="..."
-openclaw models status
+ models status
 ```
 
 3. If the Gateway runs under systemd/launchd, prefer putting the key in
-   `~/.openclaw/.env` so the daemon can read it:
+   `~/./.env` so the daemon can read it:
 
 ```bash
-cat >> ~/.openclaw/.env <<'EOF'
+cat >> ~/./.env <<'EOF'
 ANTHROPIC_API_KEY=...
 EOF
 ```
@@ -39,35 +39,35 @@ EOF
 Then restart the daemon (or restart your Gateway process) and re-check:
 
 ```bash
-openclaw models status
-openclaw doctor
+ models status
+ doctor
 ```
 
-If you’d rather not manage env vars yourself, the onboarding wizard can store
-API keys for daemon use: `openclaw onboard`.
+If youâ€™d rather not manage env vars yourself, the onboarding wizard can store
+API keys for daemon use: ` onboard`.
 
 See [Help](/help) for details on env inheritance (`env.shellEnv`,
-`~/.openclaw/.env`, systemd/launchd).
+`~/./.env`, systemd/launchd).
 
 ## Anthropic: setup-token (subscription auth)
 
-For Anthropic, the recommended path is an **API key**. If you’re using a Claude
+For Anthropic, the recommended path is an **API key**. If youâ€™re using a Claude
 subscription, the setup-token flow is also supported. Run it on the **gateway host**:
 
 ```bash
 claude setup-token
 ```
 
-Then paste it into OpenClaw:
+Then paste it into :
 
 ```bash
-openclaw models auth setup-token --provider anthropic
+ models auth setup-token --provider anthropic
 ```
 
 If the token was created on another machine, paste it manually:
 
 ```bash
-openclaw models auth paste-token --provider anthropic
+ models auth paste-token --provider anthropic
 ```
 
 If you see an Anthropic error like:
@@ -76,19 +76,19 @@ If you see an Anthropic error like:
 This credential is only authorized for use with Claude Code and cannot be used for other API requests.
 ```
 
-…use an Anthropic API key instead.
+â€¦use an Anthropic API key instead.
 
 Manual token entry (any provider; writes `auth-profiles.json` + updates config):
 
 ```bash
-openclaw models auth paste-token --provider anthropic
-openclaw models auth paste-token --provider openrouter
+ models auth paste-token --provider anthropic
+ models auth paste-token --provider openrouter
 ```
 
 Automation-friendly check (exit `1` when expired/missing, `2` when expiring):
 
 ```bash
-openclaw models status --check
+ models status --check
 ```
 
 Optional ops scripts (systemd/Termux) are documented here:
@@ -99,8 +99,8 @@ Optional ops scripts (systemd/Termux) are documented here:
 ## Checking model auth status
 
 ```bash
-openclaw models status
-openclaw doctor
+ models status
+ doctor
 ```
 
 ## Controlling which credential is used
@@ -113,33 +113,34 @@ Use `/model` (or `/model list`) for a compact picker; use `/model status` for th
 
 ### Per-agent (CLI override)
 
-Set an explicit auth profile order override for an agent (stored in that agent’s `auth-profiles.json`):
+Set an explicit auth profile order override for an agent (stored in that agentâ€™s `auth-profiles.json`):
 
 ```bash
-openclaw models auth order get --provider anthropic
-openclaw models auth order set --provider anthropic anthropic:default
-openclaw models auth order clear --provider anthropic
+ models auth order get --provider anthropic
+ models auth order set --provider anthropic anthropic:default
+ models auth order clear --provider anthropic
 ```
 
 Use `--agent <id>` to target a specific agent; omit it to use the configured default agent.
 
 ## Troubleshooting
 
-### “No credentials found”
+### â€œNo credentials foundâ€
 
 If the Anthropic token profile is missing, run `claude setup-token` on the
 **gateway host**, then re-check:
 
 ```bash
-openclaw models status
+ models status
 ```
 
 ### Token expiring/expired
 
-Run `openclaw models status` to confirm which profile is expiring. If the profile
+Run ` models status` to confirm which profile is expiring. If the profile
 is missing, rerun `claude setup-token` and paste the token again.
 
 ## Requirements
 
 - Claude Max or Pro subscription (for `claude setup-token`)
 - Claude Code CLI installed (`claude` command available)
+

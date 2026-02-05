@@ -1,4 +1,4 @@
----
+﻿---
 name: Bug report
 about: Report a problem or unexpected behavior in Clawdbot.
 title: "[Bug]: "
@@ -32,3 +32,4 @@ What actually happened?
 ## Logs or screenshots
 
 Paste relevant logs or add screenshots (redact secrets).
+

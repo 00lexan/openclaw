@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Voice call response generator - uses the embedded Pi agent for tool support.
  * Routes voice responses through the same agent infrastructure as messaging.
  */
@@ -10,7 +10,7 @@ import { loadCoreAgentDeps, type CoreConfig } from "./core-bridge.js";
 export type VoiceResponseParams = {
   /** Voice call config */
   voiceConfig: VoiceCallConfig;
-  /** Core OpenClaw config */
+  /** Core  config */
   coreConfig: CoreConfig;
   /** Call ID for session tracking */
   callId: string;
@@ -156,3 +156,4 @@ export async function generateVoiceResponse(
     return { text: null, error: String(err) };
   }
 }
+

@@ -1,4 +1,4 @@
-export type NormalizedAllowFrom = {
+﻿export type NormalizedAllowFrom = {
   entries: string[];
   hasWildcard: boolean;
   hasEntries: boolean;
@@ -58,3 +58,4 @@ export const isSenderAllowed = (params: {
   }
   return allow.entries.includes(senderId);
 };
+

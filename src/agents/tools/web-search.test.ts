@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { __testing } from "./web-search.js";
 
 const { inferPerplexityBaseUrlFromApiKey, resolvePerplexityBaseUrl, normalizeFreshness } =
@@ -68,3 +68,4 @@ describe("web_search freshness normalization", () => {
     expect(normalizeFreshness("2024-03-10to2024-03-01")).toBeUndefined();
   });
 });
+

@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 import {
   GroupChatSchema,
   InboundDebounceSchema,
@@ -117,3 +117,4 @@ export const CommandsSchema = z
   .strict()
   .optional()
   .default({ native: "auto", nativeSkills: "auto" });
+

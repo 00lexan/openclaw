@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isWhatsAppGroupJid, isWhatsAppUserTarget, normalizeWhatsAppTarget } from "./normalize.js";
 
 describe("normalizeWhatsAppTarget", () => {
@@ -70,3 +70,4 @@ describe("isWhatsAppGroupJid", () => {
     expect(isWhatsAppGroupJid("+1555123")).toBe(false);
   });
 });
+

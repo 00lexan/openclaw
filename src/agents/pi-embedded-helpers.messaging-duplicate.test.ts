@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isMessagingToolDuplicate, normalizeTextForComparison } from "./pi-embedded-helpers.js";
 
 describe("normalizeTextForComparison", () => {
@@ -15,11 +15,11 @@ describe("normalizeTextForComparison", () => {
   });
 
   it("strips emoji", () => {
-    expect(normalizeTextForComparison("Hello 👋 World 🌍")).toBe("hello world");
+    expect(normalizeTextForComparison("Hello ðŸ‘‹ World ðŸŒ")).toBe("hello world");
   });
 
   it("handles mixed normalization", () => {
-    expect(normalizeTextForComparison("  Hello 👋   WORLD  🌍  ")).toBe("hello world");
+    expect(normalizeTextForComparison("  Hello ðŸ‘‹   WORLD  ðŸŒ  ")).toBe("hello world");
   });
 });
 
@@ -50,7 +50,7 @@ describe("isMessagingToolDuplicate", () => {
 
   it("detects duplicates with emoji variations", () => {
     expect(
-      isMessagingToolDuplicate("Hello! 👋 This is a test message!", [
+      isMessagingToolDuplicate("Hello! ðŸ‘‹ This is a test message!", [
         "Hello! This is a test message!",
       ]),
     ).toBe(true);
@@ -80,3 +80,4 @@ describe("isMessagingToolDuplicate", () => {
     ).toBe(false);
   });
 });
+

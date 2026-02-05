@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { onAgentEvent } from "../infra/agent-events.js";
 import { subscribeEmbeddedPiSession } from "./pi-embedded-subscribe.js";
 
@@ -169,7 +169,7 @@ describe("subscribeEmbeddedPiSession", () => {
 
     expect(onToolResult).toHaveBeenCalledTimes(1);
     const payload = onToolResult.mock.calls[0][0];
-    expect(payload.text).toContain("🌐");
+    expect(payload.text).toContain("ðŸŒ");
     expect(payload.text).toContain("Browser");
     expect(payload.text).toContain("snapshot");
     expect(payload.text).toContain("https://example.com");
@@ -237,3 +237,4 @@ describe("subscribeEmbeddedPiSession", () => {
     expect(readOutput.text).toContain("file data");
   });
 });
+

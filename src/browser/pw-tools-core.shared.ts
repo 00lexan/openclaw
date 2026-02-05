@@ -1,4 +1,4 @@
-import { parseRoleRef } from "./pw-role-snapshot.js";
+﻿import { parseRoleRef } from "./pw-role-snapshot.js";
 
 let nextUploadArmId = 0;
 let nextDialogArmId = 0;
@@ -68,3 +68,4 @@ export function toAIFriendlyError(error: unknown, selector: string): Error {
 
   return error instanceof Error ? error : new Error(message);
 }
+

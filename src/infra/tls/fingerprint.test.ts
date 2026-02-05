@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizeFingerprint } from "./fingerprint.js";
 
 describe("normalizeFingerprint", () => {
@@ -8,3 +8,4 @@ describe("normalizeFingerprint", () => {
     expect(normalizeFingerprint("aa:bb:cc")).toBe("aabbcc");
   });
 });
+

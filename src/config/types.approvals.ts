@@ -1,4 +1,4 @@
-export type ExecApprovalForwardingMode = "session" | "targets" | "both";
+﻿export type ExecApprovalForwardingMode = "session" | "targets" | "both";
 
 export type ExecApprovalForwardTarget = {
   /** Channel id (e.g. "discord", "slack", or plugin channel id). */
@@ -27,3 +27,4 @@ export type ExecApprovalForwardingConfig = {
 export type ApprovalsConfig = {
   exec?: ExecApprovalForwardingConfig;
 };
+

@@ -1,4 +1,4 @@
-import type { QueueDropPolicy, QueueMode } from "./types.js";
+﻿import type { QueueDropPolicy, QueueMode } from "./types.js";
 import { parseDurationMs } from "../../../cli/parse-duration.js";
 import { normalizeQueueDropPolicy, normalizeQueueMode } from "./normalize.js";
 
@@ -194,3 +194,4 @@ export function extractQueueDirective(body?: string): {
     hasOptions: parsed.hasOptions,
   };
 }
+

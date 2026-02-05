@@ -1,4 +1,4 @@
-import type { ChannelChoice } from "../onboard-types.js";
+﻿import type { ChannelChoice } from "../onboard-types.js";
 import type { ChannelOnboardingAdapter } from "./types.js";
 import { listChannelPlugins } from "../../channels/plugins/index.js";
 
@@ -24,3 +24,4 @@ export function listChannelOnboardingAdapters(): ChannelOnboardingAdapter[] {
 // Legacy aliases (pre-rename).
 export const getProviderOnboardingAdapter = getChannelOnboardingAdapter;
 export const listProviderOnboardingAdapters = listChannelOnboardingAdapters;
+

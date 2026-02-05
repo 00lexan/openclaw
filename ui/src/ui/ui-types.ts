@@ -1,4 +1,4 @@
-export type ChatAttachment = {
+﻿export type ChatAttachment = {
   id: string;
   dataUrl: string;
   mimeType: string;
@@ -34,3 +34,4 @@ export type CronFormState = {
   deliveryTo: string;
   timeoutSeconds: string;
 };
+

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createEditorSubmitHandler } from "./tui.js";
 
 describe("createEditorSubmitHandler", () => {
@@ -94,3 +94,4 @@ describe("createEditorSubmitHandler", () => {
     expect(editor.addToHistory).toHaveBeenCalledWith("hello");
   });
 });
+

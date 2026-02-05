@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 import { collectOption } from "../helpers.js";
 
@@ -28,3 +28,4 @@ export function registerMessageSearchCommand(message: Command, helpers: MessageC
       await helpers.runMessageAction("search", opts);
     });
 }
+

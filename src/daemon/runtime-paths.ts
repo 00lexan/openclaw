@@ -1,4 +1,4 @@
-import { execFile } from "node:child_process";
+﻿import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
@@ -162,3 +162,4 @@ export async function resolvePreferredNodePath(params: {
   }
   return systemNode.path;
 }
+

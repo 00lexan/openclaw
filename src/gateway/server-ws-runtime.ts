@@ -1,4 +1,4 @@
-import type { WebSocketServer } from "ws";
+﻿import type { WebSocketServer } from "ws";
 import type { createSubsystemLogger } from "../logging/subsystem.js";
 import type { ResolvedGatewayAuth } from "./auth.js";
 import type { GatewayRequestContext, GatewayRequestHandlers } from "./server-methods/types.js";
@@ -47,3 +47,4 @@ export function attachGatewayWsHandlers(params: {
     buildRequestContext: () => params.context,
   });
 }
+

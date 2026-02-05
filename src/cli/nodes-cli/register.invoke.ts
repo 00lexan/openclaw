@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import path from "node:path";
 import type { NodesRpcOpts } from "./types.js";
 import { resolveAgentConfig, resolveDefaultAgentId } from "../../agents/agent-scope.js";
@@ -381,3 +381,4 @@ export function registerNodesInvokeCommands(nodes: Command) {
     { timeoutMs: 35_000 },
   );
 }
+

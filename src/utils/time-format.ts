@@ -1,4 +1,4 @@
-export function formatRelativeTime(timestamp: number): string {
+﻿export function formatRelativeTime(timestamp: number): string {
   const now = Date.now();
   const diff = now - timestamp;
   const seconds = Math.floor(diff / 1000);
@@ -23,3 +23,4 @@ export function formatRelativeTime(timestamp: number): string {
   }
   return new Date(timestamp).toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
+

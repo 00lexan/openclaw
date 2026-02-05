@@ -1,4 +1,4 @@
-import type { AddressInfo } from "node:net";
+﻿import type { AddressInfo } from "node:net";
 import { createServer } from "node:http";
 import { afterEach, describe, expect, it } from "vitest";
 import WebSocket from "ws";
@@ -367,3 +367,4 @@ describe("chrome extension relay server", () => {
     ext.close();
   });
 });
+

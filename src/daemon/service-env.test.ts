@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildMinimalServicePath,
@@ -223,25 +223,25 @@ describe("buildServiceEnvironment", () => {
     } else {
       expect(env.PATH).toContain("/usr/bin");
     }
-    expect(env.OPENCLAW_GATEWAY_PORT).toBe("18789");
-    expect(env.OPENCLAW_GATEWAY_TOKEN).toBe("secret");
-    expect(env.OPENCLAW_SERVICE_MARKER).toBe("openclaw");
-    expect(env.OPENCLAW_SERVICE_KIND).toBe("gateway");
-    expect(typeof env.OPENCLAW_SERVICE_VERSION).toBe("string");
-    expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway.service");
+    expect(env._GATEWAY_PORT).toBe("18789");
+    expect(env._GATEWAY_TOKEN).toBe("secret");
+    expect(env._SERVICE_MARKER).toBe("");
+    expect(env._SERVICE_KIND).toBe("gateway");
+    expect(typeof env._SERVICE_VERSION).toBe("string");
+    expect(env._SYSTEMD_UNIT).toBe("-gateway.service");
     if (process.platform === "darwin") {
-      expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.openclaw.gateway");
+      expect(env._LAUNCHD_LABEL).toBe("ai..gateway");
     }
   });
 
   it("uses profile-specific unit and label", () => {
     const env = buildServiceEnvironment({
-      env: { HOME: "/home/user", OPENCLAW_PROFILE: "work" },
+      env: { HOME: "/home/user", _PROFILE: "work" },
       port: 18789,
     });
-    expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway-work.service");
+    expect(env._SYSTEMD_UNIT).toBe("-gateway-work.service");
     if (process.platform === "darwin") {
-      expect(env.OPENCLAW_LAUNCHD_LABEL).toBe("ai.openclaw.work");
+      expect(env._LAUNCHD_LABEL).toBe("ai..work");
     }
   });
 });
@@ -254,3 +254,4 @@ describe("buildNodeServiceEnvironment", () => {
     expect(env.HOME).toBe("/home/user");
   });
 });
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Tests for send.ts module
  *
  * Tests cover:
@@ -10,7 +10,7 @@
  * - Registry integration
  */
 
-import type { OpenClawConfig } from "openclaw/plugin-sdk";
+import type { Config } from "/plugin-sdk";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { sendMessageTwitchInternal } from "./send.js";
 
@@ -57,7 +57,7 @@ describe("send", () => {
         },
       },
     },
-  } as unknown as OpenClawConfig;
+  } as unknown as Config;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -287,3 +287,4 @@ describe("send", () => {
     });
   });
 });
+

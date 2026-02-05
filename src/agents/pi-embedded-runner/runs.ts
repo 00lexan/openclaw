@@ -1,4 +1,4 @@
-import {
+﻿import {
   diagnosticLogger as diag,
   logMessageQueued,
   logSessionStateChange,
@@ -138,3 +138,4 @@ export function clearActiveEmbeddedRun(sessionId: string, handle: EmbeddedPiQueu
 }
 
 export type { EmbeddedPiQueueHandle };
+

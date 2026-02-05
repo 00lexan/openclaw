@@ -1,4 +1,4 @@
-export type BooleanParseOptions = {
+﻿export type BooleanParseOptions = {
   truthy?: string[];
   falsy?: string[];
 };
@@ -34,3 +34,4 @@ export function parseBooleanValue(
   }
   return undefined;
 }
+

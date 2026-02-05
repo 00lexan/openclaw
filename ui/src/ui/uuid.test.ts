@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { generateUUID } from "./uuid.ts";
 
 describe("generateUUID", () => {
@@ -37,3 +37,4 @@ describe("generateUUID", () => {
     }
   });
 });
+

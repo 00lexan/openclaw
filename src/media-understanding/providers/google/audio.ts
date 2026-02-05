@@ -1,4 +1,4 @@
-import type { AudioTranscriptionRequest, AudioTranscriptionResult } from "../../types.js";
+﻿import type { AudioTranscriptionRequest, AudioTranscriptionResult } from "../../types.js";
 import { normalizeGoogleModelId } from "../../../agents/models-config.providers.js";
 import { fetchWithTimeoutGuarded, normalizeBaseUrl, readErrorResponse } from "../shared.js";
 
@@ -90,3 +90,4 @@ export async function transcribeGeminiAudio(
     await release();
   }
 }
+

@@ -1,5 +1,5 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+import type { Config } from "../../config/config.js";
 import { createActionGate, readStringParam } from "./common.js";
 import { handleDiscordGuildAction } from "./discord-actions-guild.js";
 import { handleDiscordMessagingAction } from "./discord-actions-messaging.js";
@@ -56,7 +56,7 @@ const presenceActions = new Set(["setPresence"]);
 
 export async function handleDiscordAction(
   params: Record<string, unknown>,
-  cfg: OpenClawConfig,
+  cfg: Config,
 ): Promise<AgentToolResult<unknown>> {
   const action = readStringParam(params, "action", { required: true });
   const isActionEnabled = createActionGate(cfg.channels?.discord?.actions);
@@ -75,3 +75,4 @@ export async function handleDiscordAction(
   }
   throw new Error(`Unknown action: ${action}`);
 }
+

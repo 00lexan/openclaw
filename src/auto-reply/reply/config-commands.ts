@@ -1,4 +1,4 @@
-import { parseConfigValue } from "./config-value.js";
+﻿import { parseConfigValue } from "./config-value.js";
 
 export type ConfigCommand =
   | { action: "show"; path?: string }
@@ -69,3 +69,4 @@ export function parseConfigCommand(raw: string): ConfigCommand | null {
       };
   }
 }
+

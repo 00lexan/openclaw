@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { subscribeEmbeddedPiSession } from "./pi-embedded-subscribe.js";
 
 type StubSession = {
@@ -101,3 +101,4 @@ describe("subscribeEmbeddedPiSession thinking tag code span awareness", () => {
     expect(lastCall[0].text).toContain("world");
   });
 });
+

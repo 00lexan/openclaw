@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想选择一个模型提供商
-  - 你想要 LLM 认证 + 模型选择的快速设置示例
-summary: OpenClaw 支持的模型提供商（LLM）
-title: 模型提供商快速入门
+  - ä½ æƒ³é€‰æ‹©ä¸€ä¸ªæ¨¡åž‹æä¾›å•†
+  - ä½ æƒ³è¦ LLM è®¤è¯ + æ¨¡åž‹é€‰æ‹©çš„å¿«é€Ÿè®¾ç½®ç¤ºä¾‹
+summary:  æ”¯æŒçš„æ¨¡åž‹æä¾›å•†ï¼ˆLLMï¼‰
+title: æ¨¡åž‹æä¾›å•†å¿«é€Ÿå…¥é—¨
 x-i18n:
   generated_at: "2026-02-03T07:53:35Z"
   model: claude-opus-4-5
@@ -13,23 +13,23 @@ x-i18n:
   workflow: 15
 ---
 
-# 模型提供商
+# æ¨¡åž‹æä¾›å•†
 
-OpenClaw 可以使用许多 LLM 提供商。选择一个，进行认证，然后将默认模型设置为 `provider/model`。
+ å¯ä»¥ä½¿ç”¨è®¸å¤š LLM æä¾›å•†ã€‚é€‰æ‹©ä¸€ä¸ªï¼Œè¿›è¡Œè®¤è¯ï¼Œç„¶åŽå°†é»˜è®¤æ¨¡åž‹è®¾ç½®ä¸º `provider/model`ã€‚
 
-## 推荐：Venice（Venice AI）
+## æŽ¨èï¼šVeniceï¼ˆVenice AIï¼‰
 
-Venice 是我们推荐的 Venice AI 设置，用于隐私优先的推理，并可选择使用 Opus 处理最困难的任务。
+Venice æ˜¯æˆ‘ä»¬æŽ¨èçš„ Venice AI è®¾ç½®ï¼Œç”¨äºŽéšç§ä¼˜å…ˆçš„æŽ¨ç†ï¼Œå¹¶å¯é€‰æ‹©ä½¿ç”¨ Opus å¤„ç†æœ€å›°éš¾çš„ä»»åŠ¡ã€‚
 
-- 默认：`venice/llama-3.3-70b`
-- 最佳综合：`venice/claude-opus-45`（Opus 仍然是最强的）
+- é»˜è®¤ï¼š`venice/llama-3.3-70b`
+- æœ€ä½³ç»¼åˆï¼š`venice/claude-opus-45`ï¼ˆOpus ä»ç„¶æ˜¯æœ€å¼ºçš„ï¼‰
 
-参见 [Venice AI](/providers/venice)。
+å‚è§ [Venice AI](/providers/venice)ã€‚
 
-## 快速开始（两个步骤）
+## å¿«é€Ÿå¼€å§‹ï¼ˆä¸¤ä¸ªæ­¥éª¤ï¼‰
 
-1. 与提供商认证（通常通过 `openclaw onboard`）。
-2. 设置默认模型：
+1. ä¸Žæä¾›å•†è®¤è¯ï¼ˆé€šå¸¸é€šè¿‡ ` onboard`ï¼‰ã€‚
+2. è®¾ç½®é»˜è®¤æ¨¡åž‹ï¼š
 
 ```json5
 {
@@ -37,19 +37,20 @@ Venice 是我们推荐的 Venice AI 设置，用于隐私优先的推理，并�
 }
 ```
 
-## 支持的提供商（入门集）
+## æ”¯æŒçš„æä¾›å•†ï¼ˆå…¥é—¨é›†ï¼‰
 
-- [OpenAI（API + Codex）](/providers/openai)
-- [Anthropic（API + Claude Code CLI）](/providers/anthropic)
+- [OpenAIï¼ˆAPI + Codexï¼‰](/providers/openai)
+- [Anthropicï¼ˆAPI + Claude Code CLIï¼‰](/providers/anthropic)
 - [OpenRouter](/providers/openrouter)
 - [Vercel AI Gateway](/providers/vercel-ai-gateway)
-- [Moonshot AI（Kimi + Kimi Coding）](/providers/moonshot)
+- [Moonshot AIï¼ˆKimi + Kimi Codingï¼‰](/providers/moonshot)
 - [Synthetic](/providers/synthetic)
 - [OpenCode Zen](/providers/opencode)
 - [Z.AI](/providers/zai)
-- [GLM 模型](/providers/glm)
+- [GLM æ¨¡åž‹](/providers/glm)
 - [MiniMax](/providers/minimax)
-- [Venice（Venice AI）](/providers/venice)
+- [Veniceï¼ˆVenice AIï¼‰](/providers/venice)
 - [Amazon Bedrock](/bedrock)
 
-有关完整的提供商目录（xAI、Groq、Mistral 等）和高级配置，请参阅[模型提供商](/concepts/model-providers)。
+æœ‰å…³å®Œæ•´çš„æä¾›å•†ç›®å½•ï¼ˆxAIã€Groqã€Mistral ç­‰ï¼‰å’Œé«˜çº§é…ç½®ï¼Œè¯·å‚é˜…[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)ã€‚
+

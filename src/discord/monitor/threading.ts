@@ -1,4 +1,4 @@
-import { ChannelType, type Client } from "@buape/carbon";
+﻿import { ChannelType, type Client } from "@buape/carbon";
 import { Routes } from "discord-api-types/v10";
 import type { ReplyToMode } from "../../config/config.js";
 import type { DiscordChannelConfigResolved } from "./allow-list.js";
@@ -344,3 +344,4 @@ export function resolveDiscordReplyDeliveryPlan(params: {
   });
   return { deliverTarget, replyTarget, replyReference };
 }
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { CostUsageSummary } from "../../infra/session-cost-usage.js";
 import type { GatewayDiscoverOpts } from "./discover.js";
 import { gatewayStatusCommand } from "../../commands/gateway-status.js";
@@ -97,7 +97,7 @@ function renderCostUsageSummary(summary: CostUsageSummary, days: number, rich: b
   const totalTokens = formatTokenCount(summary.totals.totalTokens) ?? "0";
   const lines = [
     colorize(rich, theme.heading, `Usage cost (${days} days)`),
-    `${colorize(rich, theme.muted, "Total:")} ${totalCost} · ${totalTokens} tokens`,
+    `${colorize(rich, theme.muted, "Total:")} ${totalCost} Â· ${totalTokens} tokens`,
   ];
 
   if (summary.totals.missingCostEntries > 0) {
@@ -111,7 +111,7 @@ function renderCostUsageSummary(summary: CostUsageSummary, days: number, rich: b
     const latestCost = formatUsd(latest.totalCost) ?? "$0.00";
     const latestTokens = formatTokenCount(latest.totalTokens) ?? "0";
     lines.push(
-      `${colorize(rich, theme.muted, "Latest day:")} ${latest.date} · ${latestCost} · ${latestTokens} tokens`,
+      `${colorize(rich, theme.muted, "Latest day:")} ${latest.date} Â· ${latestCost} Â· ${latestTokens} tokens`,
     );
   }
 
@@ -126,7 +126,7 @@ export function registerGatewayCli(program: Command) {
       .addHelpText(
         "after",
         () =>
-          `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/gateway", "docs.openclaw.ai/cli/gateway")}\n`,
+          `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/gateway", "docs..ai/cli/gateway")}\n`,
       ),
   );
 
@@ -301,7 +301,7 @@ export function registerGatewayCli(program: Command) {
         const domains = ["local.", ...(wideAreaDomain ? [wideAreaDomain] : [])];
         const beacons = await withProgress(
           {
-            label: "Scanning for gateways…",
+            label: "Scanning for gatewaysâ€¦",
             indeterminate: true,
             enabled: opts.json !== true,
             delayMs: 0,
@@ -342,7 +342,7 @@ export function registerGatewayCli(program: Command) {
           colorize(
             rich,
             theme.muted,
-            `Found ${deduped.length} gateway(s) · domains: ${domains.join(", ")}`,
+            `Found ${deduped.length} gateway(s) Â· domains: ${domains.join(", ")}`,
           ),
         );
         if (deduped.length === 0) {
@@ -357,3 +357,4 @@ export function registerGatewayCli(program: Command) {
       }, "gateway discover failed");
     });
 }
+

@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Sub-agents: spawning isolated agent runs that announce results back to the requester chat"
 read_when:
   - You want background/parallel work via the agent
@@ -24,7 +24,7 @@ Use `/subagents` to inspect or control sub-agent runs for the **current session*
 
 Primary goals:
 
-- Parallelize “research / long task / slow tool” work without blocking the main run.
+- Parallelize â€œresearch / long task / slow toolâ€ work without blocking the main run.
 - Keep sub-agents isolated by default (session separation + optional sandboxing).
 - Keep the tool surface hard to misuse: sub-agents do **not** get session tools by default.
 - Avoid nested fan-out: sub-agents cannot spawn sub-agents.
@@ -73,8 +73,8 @@ Auto-archive:
 Sub-agent auth is resolved by **agent id**, not by session type:
 
 - The sub-agent session key is `agent:<agentId>:subagent:<uuid>`.
-- The auth store is loaded from that agent’s `agentDir`.
-- The main agent’s auth profiles are merged in as a **fallback**; agent profiles override main profiles on conflicts.
+- The auth store is loaded from that agentâ€™s `agentDir`.
+- The main agentâ€™s auth profiles are merged in as a **fallback**; agent profiles override main profiles on conflicts.
 
 Note: the merge is additive, so main profiles are always available as fallbacks. Fully isolated auth per agent is not supported yet.
 
@@ -145,7 +145,8 @@ Sub-agents use a dedicated in-process queue lane:
 
 ## Limitations
 
-- Sub-agent announce is **best-effort**. If the gateway restarts, pending “announce back” work is lost.
+- Sub-agent announce is **best-effort**. If the gateway restarts, pending â€œannounce backâ€ work is lost.
 - Sub-agents still share the same gateway process resources; treat `maxConcurrent` as a safety valve.
 - `sessions_spawn` is always non-blocking: it returns `{ status: "accepted", runId, childSessionKey }` immediately.
 - Sub-agent context only injects `AGENTS.md` + `TOOLS.md` (no `SOUL.md`, `IDENTITY.md`, `USER.md`, `HEARTBEAT.md`, or `BOOTSTRAP.md`).
+

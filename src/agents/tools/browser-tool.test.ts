@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 
 const browserClientMocks = vi.hoisted(() => ({
   browserCloseTab: vi.fn(async () => ({})),
@@ -289,3 +289,4 @@ describe("browser tool snapshot labels", () => {
     expect(result?.content?.[1]).toMatchObject({ type: "image" });
   });
 });
+

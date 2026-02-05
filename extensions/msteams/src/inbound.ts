@@ -1,4 +1,4 @@
-export type MentionableActivity = {
+﻿export type MentionableActivity = {
   recipient?: { id?: string } | null;
   entities?: Array<{
     type?: string;
@@ -46,3 +46,4 @@ export function wasMSTeamsBotMentioned(activity: MentionableActivity): boolean {
   const entities = activity.entities ?? [];
   return entities.some((e) => e.type === "mention" && e.mentioned?.id === botId);
 }
+

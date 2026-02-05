@@ -1,8 +1,8 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import type {
   MemoryEmbeddingProbeResult,
   MemoryProviderStatus,
@@ -50,7 +50,7 @@ type SessionExporterConfig = {
 
 export class QmdMemoryManager implements MemorySearchManager {
   static async create(params: {
-    cfg: OpenClawConfig;
+    cfg: Config;
     agentId: string;
     resolved: ResolvedMemoryBackendConfig;
   }): Promise<QmdMemoryManager | null> {
@@ -63,7 +63,7 @@ export class QmdMemoryManager implements MemorySearchManager {
     return manager;
   }
 
-  private readonly cfg: OpenClawConfig;
+  private readonly cfg: Config;
   private readonly agentId: string;
   private readonly qmd: ResolvedQmdConfig;
   private readonly workspaceDir: string;
@@ -89,7 +89,7 @@ export class QmdMemoryManager implements MemorySearchManager {
   private lastEmbedAt: number | null = null;
 
   private constructor(params: {
-    cfg: OpenClawConfig;
+    cfg: Config;
     agentId: string;
     resolved: ResolvedQmdConfig;
   }) {
@@ -282,7 +282,7 @@ export class QmdMemoryManager implements MemorySearchManager {
     progress?: (update: MemorySyncProgressUpdate) => void;
   }): Promise<void> {
     if (params?.progress) {
-      params.progress({ completed: 0, total: 1, label: "Updating QMD index…" });
+      params.progress({ completed: 0, total: 1, label: "Updating QMD indexâ€¦" });
     }
     await this.runUpdate(params?.reason ?? "manual", params?.force);
     if (params?.progress) {
@@ -808,3 +808,4 @@ export class QmdMemoryManager implements MemorySearchManager {
     return Date.now() - this.lastUpdateAt < debounceMs;
   }
 }
+

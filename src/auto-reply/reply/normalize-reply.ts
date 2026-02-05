@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "../types.js";
+﻿import type { ReplyPayload } from "../types.js";
 import { sanitizeUserFacingText } from "../../agents/pi-embedded-helpers.js";
 import { stripHeartbeatToken } from "../heartbeat.js";
 import { HEARTBEAT_TOKEN, isSilentReplyText, SILENT_REPLY_TOKEN } from "../tokens.js";
@@ -92,3 +92,4 @@ export function normalizeReplyPayload(
 
   return { ...enrichedPayload, text };
 }
+

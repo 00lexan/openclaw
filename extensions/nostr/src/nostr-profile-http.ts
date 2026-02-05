@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Nostr Profile HTTP Handler
  *
  * Handles HTTP requests for profile management:
@@ -517,3 +517,4 @@ async function handleImportProfile(
   });
   return true;
 }
+

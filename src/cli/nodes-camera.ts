@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
@@ -80,3 +80,4 @@ export async function writeBase64ToFile(filePath: string, base64: string) {
   await fs.writeFile(filePath, buf);
   return { path: filePath, bytes: buf.length };
 }
+

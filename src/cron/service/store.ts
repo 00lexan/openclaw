@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import type { CronJob } from "../types.js";
 import type { CronServiceState } from "./state.js";
 import { parseAbsoluteTimeMs } from "../parse.js";
@@ -127,7 +127,7 @@ async function getFileMtimeMs(path: string): Promise<number | null> {
 }
 
 export async function ensureLoaded(state: CronServiceState, opts?: { forceReload?: boolean }) {
-  // Fast path: store is already in memory. Other callers (add, list, run, …)
+  // Fast path: store is already in memory. Other callers (add, list, run, â€¦)
   // trust the in-memory copy to avoid a stat syscall on every operation.
   if (state.store && !opts?.forceReload) {
     return;
@@ -285,3 +285,4 @@ export async function persist(state: CronServiceState) {
   // Update file mtime after save to prevent immediate reload
   state.storeFileMtimeMs = await getFileMtimeMs(state.deps.storePath);
 }
+

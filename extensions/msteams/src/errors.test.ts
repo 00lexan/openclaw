@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   classifyMSTeamsSendError,
   formatMSTeamsSendErrorHint,
@@ -43,3 +43,4 @@ describe("msteams errors", () => {
     expect(formatMSTeamsSendErrorHint({ kind: "throttled" })).toContain("throttled");
   });
 });
+

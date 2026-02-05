@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { ChannelPlugin } from "../../channels/plugins/types.js";
 import type { MessageActionRunResult } from "../../infra/outbound/message-action-runner.js";
 import { setActivePluginRegistry } from "../../plugins/runtime.js";
@@ -216,3 +216,4 @@ describe("message tool sandbox passthrough", () => {
     expect(call?.sandboxRoot).toBeUndefined();
   });
 });
+

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const sendTypingMock = vi.fn();
 const sendReadReceiptMock = vi.fn();
@@ -96,3 +96,4 @@ describe("signal event handler typing + read receipts", () => {
     );
   });
 });
+

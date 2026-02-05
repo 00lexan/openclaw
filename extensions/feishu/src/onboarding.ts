@@ -1,26 +1,26 @@
-import type {
+﻿import type {
   ChannelOnboardingAdapter,
   ChannelOnboardingDmPolicy,
   DmPolicy,
-  OpenClawConfig,
+  Config,
   WizardPrompter,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import {
   addWildcardAllowFrom,
   DEFAULT_ACCOUNT_ID,
   formatDocsLink,
   normalizeAccountId,
   promptAccountId,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import {
   listFeishuAccountIds,
   resolveDefaultFeishuAccountId,
   resolveFeishuAccount,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 
 const channel = "feishu" as const;
 
-function setFeishuDmPolicy(cfg: OpenClawConfig, policy: DmPolicy): OpenClawConfig {
+function setFeishuDmPolicy(cfg: Config, policy: DmPolicy): Config {
   const allowFrom =
     policy === "open" ? addWildcardAllowFrom(cfg.channels?.feishu?.allowFrom) : undefined;
   return {
@@ -62,10 +62,10 @@ function resolveDomainChoice(domain?: string | null): "feishu" | "lark" {
 }
 
 async function promptFeishuAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   prompter: WizardPrompter;
   accountId?: string | null;
-}): Promise<OpenClawConfig> {
+}): Promise<Config> {
   const { cfg, prompter } = params;
   const accountId = normalizeAccountId(params.accountId);
   const isDefault = accountId === DEFAULT_ACCOUNT_ID;
@@ -151,12 +151,12 @@ const dmPolicy: ChannelOnboardingDmPolicy = {
 };
 
 function updateFeishuConfig(
-  cfg: OpenClawConfig,
+  cfg: Config,
   accountId: string,
   updates: { appId?: string; appSecret?: string; domain?: string; enabled?: boolean },
-): OpenClawConfig {
+): Config {
   const isDefault = accountId === DEFAULT_ACCOUNT_ID;
-  const next = { ...cfg } as OpenClawConfig;
+  const next = { ...cfg } as Config;
   const feishu = { ...next.channels?.feishu } as Record<string, unknown>;
   const accounts = feishu.accounts
     ? { ...(feishu.accounts as Record<string, unknown>) }
@@ -235,8 +235,8 @@ export const feishuOnboardingAdapter: ChannelOnboardingAdapter = {
     const domainChoice = await prompter.select({
       message: "Feishu domain",
       options: [
-        { value: "feishu", label: "Feishu (China) — open.feishu.cn" },
-        { value: "lark", label: "Lark (global) — open.larksuite.com" },
+        { value: "feishu", label: "Feishu (China) â€” open.feishu.cn" },
+        { value: "lark", label: "Lark (global) â€” open.larksuite.com" },
       ],
       initialValue: resolveDomainChoice(resolved.config.domain),
     });
@@ -276,3 +276,4 @@ export const feishuOnboardingAdapter: ChannelOnboardingAdapter = {
     return { cfg: next, accountId };
   },
 };
+

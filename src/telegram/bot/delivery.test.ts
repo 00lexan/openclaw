@@ -1,4 +1,4 @@
-import type { Bot } from "grammy";
+﻿import type { Bot } from "grammy";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { deliverReplies } from "./delivery.js";
 
@@ -332,3 +332,4 @@ describe("deliverReplies", () => {
     expect(sendMessage).not.toHaveBeenCalled();
   });
 });
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isSenderAllowed } from "./monitor.js";
 
 describe("isSenderAllowed", () => {
@@ -20,3 +20,4 @@ describe("isSenderAllowed", () => {
     );
   });
 });
+

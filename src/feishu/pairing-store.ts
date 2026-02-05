@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import {
   addChannelAllowFromStoreEntry,
   approveChannelPairingCode,
@@ -92,7 +92,7 @@ export async function approveFeishuPairingCode(params: {
 }
 
 export async function resolveFeishuEffectiveAllowFrom(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   accountId?: string;
   env?: NodeJS.ProcessEnv;
 }): Promise<{ dm: string[]; group: string[] }> {
@@ -127,3 +127,4 @@ export async function resolveFeishuEffectiveAllowFrom(params: {
   );
   return { dm, group };
 }
+

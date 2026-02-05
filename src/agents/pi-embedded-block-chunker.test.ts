@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { EmbeddedBlockChunker } from "./pi-embedded-block-chunker.js";
 
 describe("EmbeddedBlockChunker", () => {
@@ -128,3 +128,4 @@ describe("EmbeddedBlockChunker", () => {
     expect(chunker.bufferedText).toBe("After fence");
   });
 });
+

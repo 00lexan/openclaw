@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Nostr Profile Management (NIP-01 kind:0)
  *
  * Profile events are "replaceable" - the latest created_at wins.
@@ -275,3 +275,4 @@ export function sanitizeProfileForDisplay(profile: NostrProfile): NostrProfile {
     lud16: escapeHtml(profile.lud16),
   };
 }
+

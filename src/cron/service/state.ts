@@ -1,4 +1,4 @@
-import type { HeartbeatRunResult } from "../../infra/heartbeat-wake.js";
+﻿import type { HeartbeatRunResult } from "../../infra/heartbeat-wake.js";
 import type { CronJob, CronJobCreate, CronJobPatch, CronStoreFile } from "../types.js";
 
 export type CronEvent = {
@@ -88,3 +88,4 @@ export type CronUpdateResult = CronJob;
 export type CronListResult = CronJob[];
 export type CronAddInput = CronJobCreate;
 export type CronUpdateInput = CronJobPatch;
+

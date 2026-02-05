@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想将 Gmail Pub/Sub 事件接入 OpenClaw
-  - 你需要 Webhook 辅助命令
-summary: "`openclaw webhooks`（Webhook 辅助工具 + Gmail Pub/Sub）的 CLI 参考"
+  - ä½ æƒ³å°† Gmail Pub/Sub äº‹ä»¶æŽ¥å…¥ 
+  - ä½ éœ€è¦ Webhook è¾…åŠ©å‘½ä»¤
+summary: "` webhooks`ï¼ˆWebhook è¾…åŠ©å·¥å…· + Gmail Pub/Subï¼‰çš„ CLI å‚è€ƒ"
 title: webhooks
 x-i18n:
   generated_at: "2026-02-01T20:21:38Z"
@@ -13,20 +13,21 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw webhooks`
+# ` webhooks`
 
-Webhook 辅助工具和集成（Gmail Pub/Sub、Webhook 辅助工具）。
+Webhook è¾…åŠ©å·¥å…·å’Œé›†æˆï¼ˆGmail Pub/Subã€Webhook è¾…åŠ©å·¥å…·ï¼‰ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- Webhook：[Webhook](/automation/webhook)
-- Gmail Pub/Sub：[Gmail Pub/Sub](/automation/gmail-pubsub)
+- Webhookï¼š[Webhook](/automation/webhook)
+- Gmail Pub/Subï¼š[Gmail Pub/Sub](/automation/gmail-pubsub)
 
 ## Gmail
 
 ```bash
-openclaw webhooks gmail setup --account you@example.com
-openclaw webhooks gmail run
+ webhooks gmail setup --account you@example.com
+ webhooks gmail run
 ```
 
-详情请参阅 [Gmail Pub/Sub 文档](/automation/gmail-pubsub)。
+è¯¦æƒ…è¯·å‚é˜… [Gmail Pub/Sub æ–‡æ¡£](/automation/gmail-pubsub)ã€‚
+

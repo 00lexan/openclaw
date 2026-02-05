@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isSignalGroupAllowed } from "./identity.js";
 
 describe("signal groupPolicy gating", () => {
@@ -65,3 +65,4 @@ describe("signal groupPolicy gating", () => {
     ).toBe(true);
   });
 });
+

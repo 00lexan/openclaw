@@ -1,4 +1,4 @@
-import type { GatewayAuthChoice } from "../commands/onboard-types.js";
+﻿import type { GatewayAuthChoice } from "../commands/onboard-types.js";
 
 export type WizardFlow = "quickstart" | "advanced";
 
@@ -23,3 +23,4 @@ export type GatewayWizardSettings = {
   tailscaleMode: "off" | "serve" | "funnel";
   tailscaleResetOnExit: boolean;
 };
+

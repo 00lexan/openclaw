@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "../types.js";
+﻿import type { ReplyPayload } from "../types.js";
 import type { TypingSignaler } from "./typing-mode.js";
 import { loadSessionStore } from "../../config/sessions.js";
 import { isAudioFileName } from "../../media/mime.js";
@@ -91,3 +91,4 @@ export const signalTypingIfNeeded = async (
     await typingSignals.signalRunStart();
   }
 };
+

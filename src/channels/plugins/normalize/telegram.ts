@@ -1,4 +1,4 @@
-export function normalizeTelegramMessagingTarget(raw: string): string | undefined {
+﻿export function normalizeTelegramMessagingTarget(raw: string): string | undefined {
   const trimmed = raw.trim();
   if (!trimmed) {
     return undefined;
@@ -37,3 +37,4 @@ export function looksLikeTelegramTargetId(raw: string): boolean {
   }
   return /^-?\d{6,}$/.test(trimmed);
 }
+

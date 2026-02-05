@@ -1,4 +1,4 @@
-import type { CronJob, GatewaySessionRow, PresenceEntry } from "./types.ts";
+﻿import type { CronJob, GatewaySessionRow, PresenceEntry } from "./types.ts";
 import { formatAgo, formatDurationMs, formatMs } from "./format.ts";
 
 export function formatPresenceSummary(entry: PresenceEntry): string {
@@ -47,7 +47,7 @@ export function formatCronState(job: CronJob) {
   const next = state.nextRunAtMs ? formatMs(state.nextRunAtMs) : "n/a";
   const last = state.lastRunAtMs ? formatMs(state.lastRunAtMs) : "n/a";
   const status = state.lastStatus ?? "n/a";
-  return `${status} · next ${next} · last ${last}`;
+  return `${status} Â· next ${next} Â· last ${last}`;
 }
 
 export function formatCronSchedule(job: CronJob) {
@@ -74,7 +74,8 @@ export function formatCronPayload(job: CronJob) {
       delivery.channel || delivery.to
         ? ` (${delivery.channel ?? "last"}${delivery.to ? ` -> ${delivery.to}` : ""})`
         : "";
-    return `${base} · ${delivery.mode}${target}`;
+    return `${base} Â· ${delivery.mode}${target}`;
   }
   return base;
 }
+

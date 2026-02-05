@@ -1,4 +1,4 @@
-export type MapConfig = {
+﻿export type MapConfig = {
   ensureLogins?: string[];
   displayName?: Record<string, string>;
   nameToLogin?: Record<string, string>;
@@ -30,3 +30,4 @@ export type Entry = {
   avatar_url: string;
   lines: number;
 };
+

@@ -1,4 +1,4 @@
-import { formatErrorMessage } from "../infra/errors.js";
+﻿import { formatErrorMessage } from "../infra/errors.js";
 import { getChildLogger } from "../logging.js";
 import { resolveFeishuApiBase } from "./domain.js";
 
@@ -120,3 +120,4 @@ export async function probeFeishu(
     };
   }
 }
+

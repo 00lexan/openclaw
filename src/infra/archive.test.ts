@@ -1,4 +1,4 @@
-import JSZip from "jszip";
+﻿import JSZip from "jszip";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -9,7 +9,7 @@ import { extractArchive, resolveArchiveKind, resolvePackedRootDir } from "./arch
 const tempDirs: string[] = [];
 
 async function makeTempDir() {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-archive-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "-archive-"));
   tempDirs.push(dir);
   return dir;
 }
@@ -66,3 +66,4 @@ describe("archive utils", () => {
     expect(content).toBe("yo");
   });
 });
+

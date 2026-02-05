@@ -1,7 +1,7 @@
-import { createHash, randomBytes } from "node:crypto";
+﻿import { createHash, randomBytes } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk";
+import { emptyPluginConfigSchema } from "/plugin-sdk";
 
 // OAuth constants - decoded from pi-ai's base64 encoded values to stay in sync
 const decode = (s: string) => Buffer.from(s, "base64").toString();
@@ -32,7 +32,7 @@ const RESPONSE_PAGE = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>OpenClaw Antigravity OAuth</title>
+    <title> Antigravity OAuth</title>
   </head>
   <body>
     <main>
@@ -343,7 +343,7 @@ async function loginAntigravity(params: {
   }
 
   if (!needsManual) {
-    params.progress.update("Opening Google sign-in…");
+    params.progress.update("Opening Google sign-inâ€¦");
     try {
       await params.openUrl(authUrl);
     } catch {
@@ -355,13 +355,13 @@ async function loginAntigravity(params: {
   let returnedState = "";
 
   if (callbackServer) {
-    params.progress.update("Waiting for OAuth callback…");
+    params.progress.update("Waiting for OAuth callbackâ€¦");
     const callback = await callbackServer.waitForCallback();
     code = callback.searchParams.get("code") ?? "";
     returnedState = callback.searchParams.get("state") ?? "";
     await callbackServer.close();
   } else {
-    params.progress.update("Waiting for redirect URL…");
+    params.progress.update("Waiting for redirect URLâ€¦");
     const input = await params.prompt("Paste the redirect URL: ");
     const parsed = parseCallbackInput(input);
     if ("error" in parsed) {
@@ -378,7 +378,7 @@ async function loginAntigravity(params: {
     throw new Error("OAuth state mismatch. Please try again.");
   }
 
-  params.progress.update("Exchanging code for tokens…");
+  params.progress.update("Exchanging code for tokensâ€¦");
   const tokens = await exchangeCode({ code, verifier });
   const email = await fetchUserEmail(tokens.access);
   const projectId = await fetchProjectId(tokens.access);
@@ -405,7 +405,7 @@ const antigravityPlugin = {
           hint: "PKCE + localhost callback",
           kind: "oauth",
           run: async (ctx) => {
-            const spin = ctx.prompter.progress("Starting Antigravity OAuth…");
+            const spin = ctx.prompter.progress("Starting Antigravity OAuthâ€¦");
             try {
               const result = await loginAntigravity({
                 isRemote: ctx.isRemote,
@@ -459,3 +459,4 @@ const antigravityPlugin = {
 };
 
 export default antigravityPlugin;
+

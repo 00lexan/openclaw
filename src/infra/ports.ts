@@ -1,4 +1,4 @@
-import net from "node:net";
+﻿import net from "node:net";
 import type { RuntimeEnv } from "../runtime.js";
 import type { PortListener, PortListenerKind, PortUsage, PortUsageStatus } from "./ports-types.js";
 import { danger, info, shouldLogVerbose, warn } from "../globals.js";
@@ -65,10 +65,10 @@ export async function handlePortError(
     if (details) {
       runtime.error(info("Port listener details:"));
       runtime.error(details);
-      if (/openclaw|src\/index\.ts|dist\/index\.js/.test(details)) {
+      if (/|src\/index\.ts|dist\/index\.js/.test(details)) {
         runtime.error(
           warn(
-            "It looks like another OpenClaw instance is already running. Stop it or pick a different port.",
+            "It looks like another  instance is already running. Stop it or pick a different port.",
           ),
         );
       }
@@ -96,3 +96,4 @@ export { PortInUseError };
 export type { PortListener, PortListenerKind, PortUsage, PortUsageStatus };
 export { buildPortHints, classifyPortListener, formatPortDiagnostics } from "./ports-format.js";
 export { inspectPortUsage } from "./ports-inspect.js";
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { BrowserParentOpts } from "./browser-cli-shared.js";
 import { danger } from "../globals.js";
 import { defaultRuntime } from "../runtime.js";
@@ -19,7 +19,7 @@ import { formatHelpExamples } from "./help-format.js";
 export function registerBrowserCli(program: Command) {
   const browser = program
     .command("browser")
-    .description("Manage OpenClaw's dedicated browser (Chrome/Chromium)")
+    .description("Manage 's dedicated browser (Chrome/Chromium)")
     .option("--browser-profile <name>", "Browser profile name (default from config)")
     .option("--json", "Output machine-readable JSON", false)
     .addHelpText(
@@ -30,13 +30,13 @@ export function registerBrowserCli(program: Command) {
           true,
         )}\n\n${theme.muted("Docs:")} ${formatDocsLink(
           "/cli/browser",
-          "docs.openclaw.ai/cli/browser",
+          "docs..ai/cli/browser",
         )}\n`,
     )
     .action(() => {
       browser.outputHelp();
       defaultRuntime.error(
-        danger(`Missing subcommand. Try: "${formatCliCommand("openclaw browser status")}"`),
+        danger(`Missing subcommand. Try: "${formatCliCommand(" browser status")}"`),
       );
       defaultRuntime.exit(1);
     });
@@ -53,3 +53,4 @@ export function registerBrowserCli(program: Command) {
   registerBrowserDebugCommands(browser, parentOpts);
   registerBrowserStateCommands(browser, parentOpts);
 }
+

@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 
 export function validateLineSignature(
   body: string,
@@ -16,3 +16,4 @@ export function validateLineSignature(
 
   return crypto.timingSafeEqual(hashBuffer, signatureBuffer);
 }
+

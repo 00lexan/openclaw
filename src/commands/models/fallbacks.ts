@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../../runtime.js";
+﻿import type { RuntimeEnv } from "../../runtime.js";
 import { buildModelAliasIndex, resolveModelRefFromString } from "../../agents/model-selection.js";
 import { loadConfig } from "../../config/config.js";
 import { logConfigUpdated } from "../../config/logging.js";
@@ -162,3 +162,4 @@ export async function modelsFallbacksClearCommand(runtime: RuntimeEnv) {
   logConfigUpdated(runtime);
   runtime.log("Fallback list cleared.");
 }
+

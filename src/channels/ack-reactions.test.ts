@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { sleep } from "../utils.ts";
 import {
   removeAckReactionAfterReply,
@@ -141,7 +141,7 @@ describe("shouldAckReactionForWhatsApp", () => {
   it("respects direct and group modes", () => {
     expect(
       shouldAckReactionForWhatsApp({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         isDirect: true,
         isGroup: false,
         directEnabled: true,
@@ -153,7 +153,7 @@ describe("shouldAckReactionForWhatsApp", () => {
 
     expect(
       shouldAckReactionForWhatsApp({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         isDirect: true,
         isGroup: false,
         directEnabled: false,
@@ -165,7 +165,7 @@ describe("shouldAckReactionForWhatsApp", () => {
 
     expect(
       shouldAckReactionForWhatsApp({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         isDirect: false,
         isGroup: true,
         directEnabled: true,
@@ -177,7 +177,7 @@ describe("shouldAckReactionForWhatsApp", () => {
 
     expect(
       shouldAckReactionForWhatsApp({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         isDirect: false,
         isGroup: true,
         directEnabled: true,
@@ -191,7 +191,7 @@ describe("shouldAckReactionForWhatsApp", () => {
   it("honors mentions or activation for group-mentions", () => {
     expect(
       shouldAckReactionForWhatsApp({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         isDirect: false,
         isGroup: true,
         directEnabled: true,
@@ -203,7 +203,7 @@ describe("shouldAckReactionForWhatsApp", () => {
 
     expect(
       shouldAckReactionForWhatsApp({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         isDirect: false,
         isGroup: true,
         directEnabled: true,
@@ -215,7 +215,7 @@ describe("shouldAckReactionForWhatsApp", () => {
 
     expect(
       shouldAckReactionForWhatsApp({
-        emoji: "👀",
+        emoji: "ðŸ‘€",
         isDirect: false,
         isGroup: true,
         directEnabled: true,
@@ -234,7 +234,7 @@ describe("removeAckReactionAfterReply", () => {
     removeAckReactionAfterReply({
       removeAfterReply: true,
       ackReactionPromise: Promise.resolve(true),
-      ackReactionValue: "👀",
+      ackReactionValue: "ðŸ‘€",
       remove,
       onError,
     });
@@ -248,7 +248,7 @@ describe("removeAckReactionAfterReply", () => {
     removeAckReactionAfterReply({
       removeAfterReply: true,
       ackReactionPromise: Promise.resolve(false),
-      ackReactionValue: "👀",
+      ackReactionValue: "ðŸ‘€",
       remove,
     });
     await sleep(0);
@@ -260,10 +260,11 @@ describe("removeAckReactionAfterReply", () => {
     removeAckReactionAfterReply({
       removeAfterReply: false,
       ackReactionPromise: Promise.resolve(true),
-      ackReactionValue: "👀",
+      ackReactionValue: "ðŸ‘€",
       remove,
     });
     await sleep(0);
     expect(remove).not.toHaveBeenCalled();
   });
 });
+

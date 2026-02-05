@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { hasNonzeroUsage, normalizeUsage } from "./usage.js";
 
 describe("normalizeUsage", () => {
@@ -47,3 +47,4 @@ describe("normalizeUsage", () => {
     expect(hasNonzeroUsage({ total: 1 })).toBe(true);
   });
 });
+

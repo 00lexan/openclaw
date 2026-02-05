@@ -1,76 +1,76 @@
-# Changelog
+﻿# Changelog
 
 ## 2026.2.4
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.2.2
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.31
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.30
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.29
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.23
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.22
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.21
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.20
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.17-1
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.17
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.16
 
 ### Changes
 
-- Version alignment with core OpenClaw release numbers.
+- Version alignment with core  release numbers.
 
 ## 2026.1.15
 
@@ -87,3 +87,4 @@
 - Attachment processing: placeholders + HTML summaries, inline image extraction (including data: URLs).
 - Media downloads with host allowlist, auth scope fallback, and Graph hostedContents/attachments fallback.
 - Retry/backoff on transient/throttled sends with classified errors + helpful hints.
+

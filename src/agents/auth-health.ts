@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import {
   type AuthProfileCredential,
   type AuthProfileStore,
@@ -84,7 +84,7 @@ function buildProfileHealth(params: {
   profileId: string;
   credential: AuthProfileCredential;
   store: AuthProfileStore;
-  cfg?: OpenClawConfig;
+  cfg?: Config;
   now: number;
   warnAfterMs: number;
 }): AuthProfileHealth {
@@ -155,7 +155,7 @@ function buildProfileHealth(params: {
 
 export function buildAuthHealthSummary(params: {
   store: AuthProfileStore;
-  cfg?: OpenClawConfig;
+  cfg?: Config;
   warnAfterMs?: number;
   providers?: string[];
 }): AuthHealthSummary {
@@ -250,3 +250,4 @@ export function buildAuthHealthSummary(params: {
 
   return { now, warnAfterMs, profiles, providers };
 }
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Tests for Nostr Profile HTTP Handler
  */
 
@@ -376,3 +376,4 @@ describe("nostr-profile-http", () => {
     });
   });
 });
+

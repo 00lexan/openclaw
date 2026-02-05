@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想通过 Ollama 使用本地模型运行 OpenClaw
-  - 你需要 Ollama 的安装和配置指导
-summary: 通过 Ollama（本地 LLM 运行时）运行 OpenClaw
+  - ä½ æƒ³é€šè¿‡ Ollama ä½¿ç”¨æœ¬åœ°æ¨¡åž‹è¿è¡Œ 
+  - ä½ éœ€è¦ Ollama çš„å®‰è£…å’Œé…ç½®æŒ‡å¯¼
+summary: é€šè¿‡ Ollamaï¼ˆæœ¬åœ° LLM è¿è¡Œæ—¶ï¼‰è¿è¡Œ 
 title: Ollama
 x-i18n:
   generated_at: "2026-02-01T21:35:22Z"
@@ -15,33 +15,33 @@ x-i18n:
 
 # Ollama
 
-Ollama 是一个本地 LLM 运行时，可以轻松在你的机器上运行开源模型。OpenClaw 通过 Ollama 的 OpenAI 兼容 API 进行集成，并且当你通过 `OLLAMA_API_KEY`（或认证配置）启用且未定义显式的 `models.providers.ollama` 条目时，可以**自动发现支持工具调用的模型**。
+Ollama æ˜¯ä¸€ä¸ªæœ¬åœ° LLM è¿è¡Œæ—¶ï¼Œå¯ä»¥è½»æ¾åœ¨ä½ çš„æœºå™¨ä¸Šè¿è¡Œå¼€æºæ¨¡åž‹ã€‚ é€šè¿‡ Ollama çš„ OpenAI å…¼å®¹ API è¿›è¡Œé›†æˆï¼Œå¹¶ä¸”å½“ä½ é€šè¿‡ `OLLAMA_API_KEY`ï¼ˆæˆ–è®¤è¯é…ç½®ï¼‰å¯ç”¨ä¸”æœªå®šä¹‰æ˜¾å¼çš„ `models.providers.ollama` æ¡ç›®æ—¶ï¼Œå¯ä»¥**è‡ªåŠ¨å‘çŽ°æ”¯æŒå·¥å…·è°ƒç”¨çš„æ¨¡åž‹**ã€‚
 
-## 快速开始
+## å¿«é€Ÿå¼€å§‹
 
-1. 安装 Ollama：https://ollama.ai
+1. å®‰è£… Ollamaï¼šhttps://ollama.ai
 
-2. 拉取模型：
+2. æ‹‰å–æ¨¡åž‹ï¼š
 
 ```bash
 ollama pull llama3.3
-# 或
+# æˆ–
 ollama pull qwen2.5-coder:32b
-# 或
+# æˆ–
 ollama pull deepseek-r1:32b
 ```
 
-3. 为 OpenClaw 启用 Ollama（任意值即可；Ollama 不需要真实密钥）：
+3. ä¸º  å¯ç”¨ Ollamaï¼ˆä»»æ„å€¼å³å¯ï¼›Ollama ä¸éœ€è¦çœŸå®žå¯†é’¥ï¼‰ï¼š
 
 ```bash
-# 设置环境变量
+# è®¾ç½®çŽ¯å¢ƒå˜é‡
 export OLLAMA_API_KEY="ollama-local"
 
-# 或在配置文件中设置
-openclaw config set models.providers.ollama.apiKey "ollama-local"
+# æˆ–åœ¨é…ç½®æ–‡ä»¶ä¸­è®¾ç½®
+ config set models.providers.ollama.apiKey "ollama-local"
 ```
 
-4. 使用 Ollama 模型：
+4. ä½¿ç”¨ Ollama æ¨¡åž‹ï¼š
 
 ```json5
 {
@@ -53,60 +53,60 @@ openclaw config set models.providers.ollama.apiKey "ollama-local"
 }
 ```
 
-## 模型发现（隐式提供商）
+## æ¨¡åž‹å‘çŽ°ï¼ˆéšå¼æä¾›å•†ï¼‰
 
-当你设置了 `OLLAMA_API_KEY`（或认证配置）且**未**定义 `models.providers.ollama` 时，OpenClaw 会从本地 Ollama 实例 `http://127.0.0.1:11434` 发现模型：
+å½“ä½ è®¾ç½®äº† `OLLAMA_API_KEY`ï¼ˆæˆ–è®¤è¯é…ç½®ï¼‰ä¸”**æœª**å®šä¹‰ `models.providers.ollama` æ—¶ï¼Œ ä¼šä»Žæœ¬åœ° Ollama å®žä¾‹ `http://127.0.0.1:11434` å‘çŽ°æ¨¡åž‹ï¼š
 
-- 查询 `/api/tags` 和 `/api/show`
-- 仅保留报告了 `tools` 能力的模型
-- 当模型报告 `thinking` 时标记为 `reasoning`
-- 在可用时从 `model_info["<arch>.context_length"]` 读取 `contextWindow`
-- 将 `maxTokens` 设置为上下文窗口的 10 倍
-- 所有费用设置为 `0`
+- æŸ¥è¯¢ `/api/tags` å’Œ `/api/show`
+- ä»…ä¿ç•™æŠ¥å‘Šäº† `tools` èƒ½åŠ›çš„æ¨¡åž‹
+- å½“æ¨¡åž‹æŠ¥å‘Š `thinking` æ—¶æ ‡è®°ä¸º `reasoning`
+- åœ¨å¯ç”¨æ—¶ä»Ž `model_info["<arch>.context_length"]` è¯»å– `contextWindow`
+- å°† `maxTokens` è®¾ç½®ä¸ºä¸Šä¸‹æ–‡çª—å£çš„ 10 å€
+- æ‰€æœ‰è´¹ç”¨è®¾ç½®ä¸º `0`
 
-这样无需手动配置模型条目，同时保持目录与 Ollama 的能力对齐。
+è¿™æ ·æ— éœ€æ‰‹åŠ¨é…ç½®æ¨¡åž‹æ¡ç›®ï¼ŒåŒæ—¶ä¿æŒç›®å½•ä¸Ž Ollama çš„èƒ½åŠ›å¯¹é½ã€‚
 
-查看可用模型：
+æŸ¥çœ‹å¯ç”¨æ¨¡åž‹ï¼š
 
 ```bash
 ollama list
-openclaw models list
+ models list
 ```
 
-要添加新模型，只需通过 Ollama 拉取：
+è¦æ·»åŠ æ–°æ¨¡åž‹ï¼Œåªéœ€é€šè¿‡ Ollama æ‹‰å–ï¼š
 
 ```bash
 ollama pull mistral
 ```
 
-新模型将被自动发现并可供使用。
+æ–°æ¨¡åž‹å°†è¢«è‡ªåŠ¨å‘çŽ°å¹¶å¯ä¾›ä½¿ç”¨ã€‚
 
-如果你显式设置了 `models.providers.ollama`，自动发现将被跳过，你必须手动定义模型（见下文）。
+å¦‚æžœä½ æ˜¾å¼è®¾ç½®äº† `models.providers.ollama`ï¼Œè‡ªåŠ¨å‘çŽ°å°†è¢«è·³è¿‡ï¼Œä½ å¿…é¡»æ‰‹åŠ¨å®šä¹‰æ¨¡åž‹ï¼ˆè§ä¸‹æ–‡ï¼‰ã€‚
 
-## 配置
+## é…ç½®
 
-### 基本设置（隐式发现）
+### åŸºæœ¬è®¾ç½®ï¼ˆéšå¼å‘çŽ°ï¼‰
 
-启用 Ollama 最简单的方式是通过环境变量：
+å¯ç”¨ Ollama æœ€ç®€å•çš„æ–¹å¼æ˜¯é€šè¿‡çŽ¯å¢ƒå˜é‡ï¼š
 
 ```bash
 export OLLAMA_API_KEY="ollama-local"
 ```
 
-### 显式设置（手动模型）
+### æ˜¾å¼è®¾ç½®ï¼ˆæ‰‹åŠ¨æ¨¡åž‹ï¼‰
 
-在以下情况使用显式配置：
+åœ¨ä»¥ä¸‹æƒ…å†µä½¿ç”¨æ˜¾å¼é…ç½®ï¼š
 
-- Ollama 运行在其他主机/端口上。
-- 你想强制指定上下文窗口或模型列表。
-- 你想包含未报告工具支持的模型。
+- Ollama è¿è¡Œåœ¨å…¶ä»–ä¸»æœº/ç«¯å£ä¸Šã€‚
+- ä½ æƒ³å¼ºåˆ¶æŒ‡å®šä¸Šä¸‹æ–‡çª—å£æˆ–æ¨¡åž‹åˆ—è¡¨ã€‚
+- ä½ æƒ³åŒ…å«æœªæŠ¥å‘Šå·¥å…·æ”¯æŒçš„æ¨¡åž‹ã€‚
 
 ```json5
 {
   models: {
     providers: {
       ollama: {
-        // 使用包含 /v1 的主机地址以兼容 OpenAI API
+        // ä½¿ç”¨åŒ…å« /v1 çš„ä¸»æœºåœ°å€ä»¥å…¼å®¹ OpenAI API
         baseUrl: "http://ollama-host:11434/v1",
         apiKey: "ollama-local",
         api: "openai-completions",
@@ -127,11 +127,11 @@ export OLLAMA_API_KEY="ollama-local"
 }
 ```
 
-如果设置了 `OLLAMA_API_KEY`，你可以在提供商条目中省略 `apiKey`，OpenClaw 会自动填充以进行可用性检查。
+å¦‚æžœè®¾ç½®äº† `OLLAMA_API_KEY`ï¼Œä½ å¯ä»¥åœ¨æä¾›å•†æ¡ç›®ä¸­çœç•¥ `apiKey`ï¼Œ ä¼šè‡ªåŠ¨å¡«å……ä»¥è¿›è¡Œå¯ç”¨æ€§æ£€æŸ¥ã€‚
 
-### 自定义基础 URL（显式配置）
+### è‡ªå®šä¹‰åŸºç¡€ URLï¼ˆæ˜¾å¼é…ç½®ï¼‰
 
-如果 Ollama 运行在不同的主机或端口上（显式配置会禁用自动发现，因此需要手动定义模型）：
+å¦‚æžœ Ollama è¿è¡Œåœ¨ä¸åŒçš„ä¸»æœºæˆ–ç«¯å£ä¸Šï¼ˆæ˜¾å¼é…ç½®ä¼šç¦ç”¨è‡ªåŠ¨å‘çŽ°ï¼Œå› æ­¤éœ€è¦æ‰‹åŠ¨å®šä¹‰æ¨¡åž‹ï¼‰ï¼š
 
 ```json5
 {
@@ -146,9 +146,9 @@ export OLLAMA_API_KEY="ollama-local"
 }
 ```
 
-### 模型选择
+### æ¨¡åž‹é€‰æ‹©
 
-配置完成后，所有 Ollama 模型即可使用：
+é…ç½®å®ŒæˆåŽï¼Œæ‰€æœ‰ Ollama æ¨¡åž‹å³å¯ä½¿ç”¨ï¼š
 
 ```json5
 {
@@ -163,68 +163,69 @@ export OLLAMA_API_KEY="ollama-local"
 }
 ```
 
-## 高级用法
+## é«˜çº§ç”¨æ³•
 
-### 推理模型
+### æŽ¨ç†æ¨¡åž‹
 
-当 Ollama 在 `/api/show` 中报告 `thinking` 时，OpenClaw 会将模型标记为具有推理能力：
+å½“ Ollama åœ¨ `/api/show` ä¸­æŠ¥å‘Š `thinking` æ—¶ï¼Œ ä¼šå°†æ¨¡åž‹æ ‡è®°ä¸ºå…·æœ‰æŽ¨ç†èƒ½åŠ›ï¼š
 
 ```bash
 ollama pull deepseek-r1:32b
 ```
 
-### 模型费用
+### æ¨¡åž‹è´¹ç”¨
 
-Ollama 免费且在本地运行，因此所有模型费用均设置为 $0。
+Ollama å…è´¹ä¸”åœ¨æœ¬åœ°è¿è¡Œï¼Œå› æ­¤æ‰€æœ‰æ¨¡åž‹è´¹ç”¨å‡è®¾ç½®ä¸º $0ã€‚
 
-### 上下文窗口
+### ä¸Šä¸‹æ–‡çª—å£
 
-对于自动发现的模型，OpenClaw 会使用 Ollama 报告的上下文窗口（如果可用），否则默认为 `8192`。你可以在显式提供商配置中覆盖 `contextWindow` 和 `maxTokens`。
+å¯¹äºŽè‡ªåŠ¨å‘çŽ°çš„æ¨¡åž‹ï¼Œ ä¼šä½¿ç”¨ Ollama æŠ¥å‘Šçš„ä¸Šä¸‹æ–‡çª—å£ï¼ˆå¦‚æžœå¯ç”¨ï¼‰ï¼Œå¦åˆ™é»˜è®¤ä¸º `8192`ã€‚ä½ å¯ä»¥åœ¨æ˜¾å¼æä¾›å•†é…ç½®ä¸­è¦†ç›– `contextWindow` å’Œ `maxTokens`ã€‚
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-### Ollama 未被检测到
+### Ollama æœªè¢«æ£€æµ‹åˆ°
 
-确保 Ollama 正在运行，且你已设置 `OLLAMA_API_KEY`（或认证配置），并且**未**定义显式的 `models.providers.ollama` 条目：
+ç¡®ä¿ Ollama æ­£åœ¨è¿è¡Œï¼Œä¸”ä½ å·²è®¾ç½® `OLLAMA_API_KEY`ï¼ˆæˆ–è®¤è¯é…ç½®ï¼‰ï¼Œå¹¶ä¸”**æœª**å®šä¹‰æ˜¾å¼çš„ `models.providers.ollama` æ¡ç›®ï¼š
 
 ```bash
 ollama serve
 ```
 
-同时确认 API 可访问：
+åŒæ—¶ç¡®è®¤ API å¯è®¿é—®ï¼š
 
 ```bash
 curl http://localhost:11434/api/tags
 ```
 
-### 没有可用模型
+### æ²¡æœ‰å¯ç”¨æ¨¡åž‹
 
-OpenClaw 仅自动发现报告了工具支持的模型。如果你的模型未列出，可以：
+ ä»…è‡ªåŠ¨å‘çŽ°æŠ¥å‘Šäº†å·¥å…·æ”¯æŒçš„æ¨¡åž‹ã€‚å¦‚æžœä½ çš„æ¨¡åž‹æœªåˆ—å‡ºï¼Œå¯ä»¥ï¼š
 
-- 拉取一个支持工具调用的模型，或
-- 在 `models.providers.ollama` 中显式定义该模型。
+- æ‹‰å–ä¸€ä¸ªæ”¯æŒå·¥å…·è°ƒç”¨çš„æ¨¡åž‹ï¼Œæˆ–
+- åœ¨ `models.providers.ollama` ä¸­æ˜¾å¼å®šä¹‰è¯¥æ¨¡åž‹ã€‚
 
-添加模型：
+æ·»åŠ æ¨¡åž‹ï¼š
 
 ```bash
-ollama list  # 查看已安装的模型
-ollama pull llama3.3  # 拉取模型
+ollama list  # æŸ¥çœ‹å·²å®‰è£…çš„æ¨¡åž‹
+ollama pull llama3.3  # æ‹‰å–æ¨¡åž‹
 ```
 
-### 连接被拒绝
+### è¿žæŽ¥è¢«æ‹’ç»
 
-检查 Ollama 是否在正确的端口上运行：
+æ£€æŸ¥ Ollama æ˜¯å¦åœ¨æ­£ç¡®çš„ç«¯å£ä¸Šè¿è¡Œï¼š
 
 ```bash
-# 检查 Ollama 是否在运行
+# æ£€æŸ¥ Ollama æ˜¯å¦åœ¨è¿è¡Œ
 ps aux | grep ollama
 
-# 或重启 Ollama
+# æˆ–é‡å¯ Ollama
 ollama serve
 ```
 
-## 另请参阅
+## å¦è¯·å‚é˜…
 
-- [模型提供商](/concepts/model-providers) - 所有提供商概览
-- [模型选择](/concepts/models) - 如何选择模型
-- [配置](/gateway/configuration) - 完整配置参考
+- [æ¨¡åž‹æä¾›å•†](/concepts/model-providers) - æ‰€æœ‰æä¾›å•†æ¦‚è§ˆ
+- [æ¨¡åž‹é€‰æ‹©](/concepts/models) - å¦‚ä½•é€‰æ‹©æ¨¡åž‹
+- [é…ç½®](/gateway/configuration) - å®Œæ•´é…ç½®å‚è€ƒ
+

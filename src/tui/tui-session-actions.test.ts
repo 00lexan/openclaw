@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { TuiStateAccess } from "./tui-types.js";
 import { createSessionActions } from "./tui-session-actions.js";
 
@@ -111,3 +111,4 @@ describe("tui session actions", () => {
     expect(requestRender).toHaveBeenCalledTimes(2);
   });
 });
+

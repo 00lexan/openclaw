@@ -1,4 +1,4 @@
-import net from "node:net";
+﻿import net from "node:net";
 import { pickPrimaryTailnetIPv4, pickPrimaryTailnetIPv6 } from "../infra/tailnet.js";
 
 export function isLoopbackAddress(ip: string | undefined): boolean {
@@ -159,12 +159,12 @@ export async function resolveGatewayBindHost(
     const host = customHost?.trim();
     if (!host) {
       return "0.0.0.0";
-    } // invalid config → fall back to all
+    } // invalid config â†’ fall back to all
 
     if (isValidIPv4(host) && (await canBindToHost(host))) {
       return host;
     }
-    // Custom IP failed → fall back to LAN
+    // Custom IP failed â†’ fall back to LAN
     return "0.0.0.0";
   }
 
@@ -234,3 +234,4 @@ function isValidIPv4(host: string): boolean {
 export function isLoopbackHost(host: string): boolean {
   return isLoopbackAddress(host);
 }
+

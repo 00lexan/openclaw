@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Exec approvals, allowlists, and sandbox escape prompts"
 read_when:
   - Configuring exec approvals or allowlists
@@ -22,8 +22,8 @@ resolved by the **ask fallback** (default: deny).
 
 Exec approvals are enforced locally on the execution host:
 
-- **gateway host** → `openclaw` process on the gateway machine
-- **node host** → node runner (macOS companion app or headless node host)
+- **gateway host** â†’ `` process on the gateway machine
+- **node host** â†’ node runner (macOS companion app or headless node host)
 
 macOS split:
 
@@ -34,7 +34,7 @@ macOS split:
 
 Approvals live in a local JSON file on the execution host:
 
-`~/.openclaw/exec-approvals.json`
+`~/./exec-approvals.json`
 
 Example schema:
 
@@ -42,7 +42,7 @@ Example schema:
 {
   "version": 1,
   "socket": {
-    "path": "~/.openclaw/exec-approvals.sock",
+    "path": "~/./exec-approvals.sock",
     "token": "base64url-token"
   },
   "defaults": {
@@ -95,7 +95,7 @@ If a prompt is required but no UI is reachable, fallback decides:
 
 ## Allowlist (per agent)
 
-Allowlists are **per agent**. If multiple agents exist, switch which agent you’re
+Allowlists are **per agent**. If multiple agents exist, switch which agent youâ€™re
 editing in the macOS app. Patterns are **case-insensitive glob matches**.
 Patterns should resolve to **binary paths** (basename-only entries are ignored).
 Legacy `agents.default` entries are migrated to `agents.main` on load.
@@ -135,7 +135,7 @@ Default safe bins: `jq`, `grep`, `cut`, `sort`, `uniq`, `head`, `tail`, `tr`, `w
 
 ## Control UI editing
 
-Use the **Control UI → Nodes → Exec approvals** card to edit defaults, per‑agent
+Use the **Control UI â†’ Nodes â†’ Exec approvals** card to edit defaults, perâ€‘agent
 overrides, and allowlists. Pick a scope (Defaults or an agent), tweak the policy,
 add/remove allowlist patterns, then **Save**. The UI shows **last used** metadata
 per pattern so you can keep the list tidy.
@@ -143,9 +143,9 @@ per pattern so you can keep the list tidy.
 The target selector chooses **Gateway** (local approvals) or a **Node**. Nodes
 must advertise `system.execApprovals.get/set` (macOS app or headless node host).
 If a node does not advertise exec approvals yet, edit its local
-`~/.openclaw/exec-approvals.json` directly.
+`~/./exec-approvals.json` directly.
 
-CLI: `openclaw approvals` supports gateway or node editing (see [Approvals CLI](/cli/approvals)).
+CLI: ` approvals` supports gateway or node editing (see [Approvals CLI](/cli/approvals)).
 
 ## Approval flow
 
@@ -167,9 +167,9 @@ The confirmation dialog includes:
 
 Actions:
 
-- **Allow once** → run now
-- **Always allow** → add to allowlist + run
-- **Deny** → block
+- **Allow once** â†’ run now
+- **Always allow** â†’ add to allowlist + run
+- **Deny** â†’ block
 
 ## Approval forwarding to chat channels
 
@@ -226,7 +226,7 @@ Exec lifecycle is surfaced as system messages:
 - `Exec finished`
 - `Exec denied`
 
-These are posted to the agent’s session after the node reports the event.
+These are posted to the agentâ€™s session after the node reports the event.
 Gateway-host exec approvals emit the same lifecycle events when the command finishes (and optionally when running longer than the threshold).
 Approval-gated execs reuse the approval id as the `runId` in these messages for easy correlation.
 
@@ -234,7 +234,7 @@ Approval-gated execs reuse the approval id as the `runId` in these messages for 
 
 - **full** is powerful; prefer allowlists when possible.
 - **ask** keeps you in the loop while still allowing fast approvals.
-- Per-agent allowlists prevent one agent’s approvals from leaking into others.
+- Per-agent allowlists prevent one agentâ€™s approvals from leaking into others.
 - Approvals only apply to host exec requests from **authorized senders**. Unauthorized senders cannot issue `/exec`.
 - `/exec security=full` is a session-level convenience for authorized operators and skips approvals by design.
   To hard-block host exec, set approvals security to `deny` or deny the `exec` tool via tool policy.
@@ -244,3 +244,4 @@ Related:
 - [Exec tool](/tools/exec)
 - [Elevated mode](/tools/elevated)
 - [Skills](/tools/skills)
+

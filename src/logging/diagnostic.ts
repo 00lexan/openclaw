@@ -1,4 +1,4 @@
-import { emitDiagnosticEvent } from "../infra/diagnostic-events.js";
+﻿import { emitDiagnosticEvent } from "../infra/diagnostic-events.js";
 import { createSubsystemLogger } from "./subsystem.js";
 
 const diag = createSubsystemLogger("diagnostic");
@@ -364,3 +364,4 @@ export function stopDiagnosticHeartbeat() {
 }
 
 export { diag as diagnosticLogger };
+

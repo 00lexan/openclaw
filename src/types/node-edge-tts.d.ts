@@ -1,4 +1,4 @@
-declare module "node-edge-tts" {
+﻿declare module "node-edge-tts" {
   export type EdgeTTSOptions = {
     voice?: string;
     lang?: string;
@@ -16,3 +16,4 @@ declare module "node-edge-tts" {
     ttsPromise(text: string, outputPath: string): Promise<void>;
   }
 }
+

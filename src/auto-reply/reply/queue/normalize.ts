@@ -1,4 +1,4 @@
-import type { QueueDropPolicy, QueueMode } from "./types.js";
+﻿import type { QueueDropPolicy, QueueMode } from "./types.js";
 
 export function normalizeQueueMode(raw?: string): QueueMode | undefined {
   if (!raw) {
@@ -42,3 +42,4 @@ export function normalizeQueueDropPolicy(raw?: string): QueueDropPolicy | undefi
   }
   return undefined;
 }
+

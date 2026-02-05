@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers, GatewayRequestOptions } from "./server-methods/types.js";
+﻿import type { GatewayRequestHandlers, GatewayRequestOptions } from "./server-methods/types.js";
 import { ErrorCodes, errorShape } from "./protocol/index.js";
 import { agentHandlers } from "./server-methods/agent.js";
 import { agentsHandlers } from "./server-methods/agents.js";
@@ -214,3 +214,4 @@ export async function handleGatewayRequest(
     context,
   });
 }
+

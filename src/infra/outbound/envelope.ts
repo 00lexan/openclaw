@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "../../auto-reply/types.js";
+﻿import type { ReplyPayload } from "../../auto-reply/types.js";
 import type { OutboundDeliveryJson } from "./format.js";
 import { normalizeOutboundPayloadsForJson, type OutboundPayloadJson } from "./payloads.js";
 
@@ -42,3 +42,4 @@ export function buildOutboundResultEnvelope(
     ...(params.delivery ? { delivery: params.delivery } : {}),
   };
 }
+

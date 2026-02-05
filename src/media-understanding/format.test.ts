@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { formatMediaUnderstandingBody } from "./format.js";
 
 describe("formatMediaUnderstandingBody", () => {
@@ -89,3 +89,4 @@ describe("formatMediaUnderstandingBody", () => {
     expect(body).toBe("[Image]\nDescription:\na cat");
   });
 });
+

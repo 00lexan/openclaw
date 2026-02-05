@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../../config/config.js";
+﻿import { describe, expect, it, vi } from "vitest";
+import type { Config } from "../../../config/config.js";
 import { signalMessageActions } from "./signal.js";
 
 const sendReactionSignal = vi.fn(async () => ({ ok: true }));
@@ -12,14 +12,14 @@ vi.mock("../../../signal/send-reactions.js", () => ({
 
 describe("signalMessageActions", () => {
   it("returns no actions when no configured accounts exist", () => {
-    const cfg = {} as OpenClawConfig;
+    const cfg = {} as Config;
     expect(signalMessageActions.listActions({ cfg })).toEqual([]);
   });
 
   it("hides react when reactions are disabled", () => {
     const cfg = {
       channels: { signal: { account: "+15550001111", actions: { reactions: false } } },
-    } as OpenClawConfig;
+    } as Config;
     expect(signalMessageActions.listActions({ cfg })).toEqual(["send"]);
   });
 
@@ -33,7 +33,7 @@ describe("signalMessageActions", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as Config;
     expect(signalMessageActions.listActions({ cfg })).toEqual(["send", "react"]);
   });
 
@@ -45,12 +45,12 @@ describe("signalMessageActions", () => {
   it("blocks reactions when action gate is disabled", async () => {
     const cfg = {
       channels: { signal: { account: "+15550001111", actions: { reactions: false } } },
-    } as OpenClawConfig;
+    } as Config;
 
     await expect(
       signalMessageActions.handleAction({
         action: "react",
-        params: { to: "+15550001111", messageId: "123", emoji: "✅" },
+        params: { to: "+15550001111", messageId: "123", emoji: "âœ…" },
         cfg,
         accountId: undefined,
       }),
@@ -68,16 +68,16 @@ describe("signalMessageActions", () => {
           },
         },
       },
-    } as OpenClawConfig;
+    } as Config;
 
     await signalMessageActions.handleAction({
       action: "react",
-      params: { to: "+15550001111", messageId: "123", emoji: "👍" },
+      params: { to: "+15550001111", messageId: "123", emoji: "ðŸ‘" },
       cfg,
       accountId: "work",
     });
 
-    expect(sendReactionSignal).toHaveBeenCalledWith("+15550001111", 123, "👍", {
+    expect(sendReactionSignal).toHaveBeenCalledWith("+15550001111", 123, "ðŸ‘", {
       accountId: "work",
     });
   });
@@ -86,14 +86,14 @@ describe("signalMessageActions", () => {
     sendReactionSignal.mockClear();
     const cfg = {
       channels: { signal: { account: "+15550001111" } },
-    } as OpenClawConfig;
+    } as Config;
 
     await signalMessageActions.handleAction({
       action: "react",
       params: {
         recipient: "uuid:123e4567-e89b-12d3-a456-426614174000",
         messageId: "123",
-        emoji: "🔥",
+        emoji: "ðŸ”¥",
       },
       cfg,
       accountId: undefined,
@@ -102,7 +102,7 @@ describe("signalMessageActions", () => {
     expect(sendReactionSignal).toHaveBeenCalledWith(
       "123e4567-e89b-12d3-a456-426614174000",
       123,
-      "🔥",
+      "ðŸ”¥",
       { accountId: undefined },
     );
   });
@@ -110,12 +110,12 @@ describe("signalMessageActions", () => {
   it("requires targetAuthor for group reactions", async () => {
     const cfg = {
       channels: { signal: { account: "+15550001111" } },
-    } as OpenClawConfig;
+    } as Config;
 
     await expect(
       signalMessageActions.handleAction({
         action: "react",
-        params: { to: "signal:group:group-id", messageId: "123", emoji: "✅" },
+        params: { to: "signal:group:group-id", messageId: "123", emoji: "âœ…" },
         cfg,
         accountId: undefined,
       }),
@@ -126,7 +126,7 @@ describe("signalMessageActions", () => {
     sendReactionSignal.mockClear();
     const cfg = {
       channels: { signal: { account: "+15550001111" } },
-    } as OpenClawConfig;
+    } as Config;
 
     await signalMessageActions.handleAction({
       action: "react",
@@ -134,13 +134,13 @@ describe("signalMessageActions", () => {
         to: "signal:group:group-id",
         targetAuthor: "uuid:123e4567-e89b-12d3-a456-426614174000",
         messageId: "123",
-        emoji: "✅",
+        emoji: "âœ…",
       },
       cfg,
       accountId: undefined,
     });
 
-    expect(sendReactionSignal).toHaveBeenCalledWith("", 123, "✅", {
+    expect(sendReactionSignal).toHaveBeenCalledWith("", 123, "âœ…", {
       accountId: undefined,
       groupId: "group-id",
       targetAuthor: "uuid:123e4567-e89b-12d3-a456-426614174000",
@@ -148,3 +148,4 @@ describe("signalMessageActions", () => {
     });
   });
 });
+

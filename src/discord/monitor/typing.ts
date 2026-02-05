@@ -1,4 +1,4 @@
-import type { Client } from "@buape/carbon";
+﻿import type { Client } from "@buape/carbon";
 
 export async function sendTyping(params: { client: Client; channelId: string }) {
   const channel = await params.client.fetchChannel(params.channelId);
@@ -9,3 +9,4 @@ export async function sendTyping(params: { client: Client; channelId: string }) 
     await channel.triggerTyping();
   }
 }
+

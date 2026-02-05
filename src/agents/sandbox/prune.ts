@@ -1,4 +1,4 @@
-import type { SandboxConfig } from "./types.js";
+﻿import type { SandboxConfig } from "./types.js";
 import { stopBrowserBridgeServer } from "../../browser/bridge-server.js";
 import { defaultRuntime } from "../../runtime.js";
 import { BROWSER_BRIDGES } from "./browser-bridges.js";
@@ -99,3 +99,4 @@ export async function ensureDockerContainerIsRunning(containerName: string) {
     await execDocker(["start", containerName]);
   }
 }
+

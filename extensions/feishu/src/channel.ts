@@ -1,4 +1,4 @@
-import {
+﻿import {
   buildChannelConfigSchema,
   DEFAULT_ACCOUNT_ID,
   deleteAccountFromConfigSection,
@@ -18,7 +18,7 @@ import {
   type ChannelPlugin,
   type ChannelStatusIssue,
   type ResolvedFeishuAccount,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import { FeishuConfigSchema } from "./config-schema.js";
 import { feishuOnboardingAdapter } from "./onboarding.js";
 
@@ -274,3 +274,4 @@ export const feishuPlugin: ChannelPlugin<ResolvedFeishuAccount> = {
     },
   },
 };
+

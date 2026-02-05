@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createCommandHandlers } from "./tui-command-handlers.js";
 
 describe("tui command handlers", () => {
@@ -46,3 +46,4 @@ describe("tui command handlers", () => {
     expect(requestRender).toHaveBeenCalled();
   });
 });
+

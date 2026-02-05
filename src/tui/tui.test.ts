@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveFinalAssistantText } from "./tui.js";
 
 describe("resolveFinalAssistantText", () => {
@@ -15,3 +15,4 @@ describe("resolveFinalAssistantText", () => {
     ).toBe("All done");
   });
 });
+

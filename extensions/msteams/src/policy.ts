@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   AllowlistMatch,
   ChannelGroupContext,
   GroupPolicy,
@@ -7,14 +7,14 @@ import type {
   MSTeamsConfig,
   MSTeamsReplyStyle,
   MSTeamsTeamConfig,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import {
   buildChannelKeyCandidates,
   normalizeChannelSlug,
   resolveToolsBySender,
   resolveChannelEntryMatchWithFallback,
   resolveNestedAllowlistDecision,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 
 export type MSTeamsResolvedRouteConfig = {
   teamConfig?: MSTeamsTeamConfig;
@@ -271,3 +271,4 @@ export function isMSTeamsGroupAllowed(params: {
   }
   return resolveMSTeamsAllowlistMatch(params).allowed;
 }
+

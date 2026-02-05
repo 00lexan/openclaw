@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Loopback WebChat static host and Gateway WS usage for chat UI"
 read_when:
   - Debugging or configuring WebChat access
@@ -47,3 +47,4 @@ Related global options:
 - `gateway.auth.mode`, `gateway.auth.token`, `gateway.auth.password`: WebSocket auth.
 - `gateway.remote.url`, `gateway.remote.token`, `gateway.remote.password`: remote gateway target.
 - `session.*`: session storage and main key defaults.
+

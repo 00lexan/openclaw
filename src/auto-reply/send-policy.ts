@@ -1,4 +1,4 @@
-import { normalizeCommandBody } from "./commands-registry.js";
+﻿import { normalizeCommandBody } from "./commands-registry.js";
 
 export type SendPolicyOverride = "allow" | "deny";
 
@@ -42,3 +42,4 @@ export function parseSendPolicyCommand(raw?: string): {
   const mode = normalizeSendPolicyOverride(token);
   return { hasCommand: true, mode };
 }
+

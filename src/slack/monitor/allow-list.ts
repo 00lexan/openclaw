@@ -1,4 +1,4 @@
-import type { AllowlistMatch } from "../../channels/allowlist-match.js";
+﻿import type { AllowlistMatch } from "../../channels/allowlist-match.js";
 
 export function normalizeSlackSlug(raw?: string) {
   const trimmed = raw?.trim().toLowerCase() ?? "";
@@ -79,3 +79,4 @@ export function resolveSlackUserAllowed(params: {
     name: params.userName,
   });
 }
+

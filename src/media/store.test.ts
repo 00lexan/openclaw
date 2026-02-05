@@ -1,4 +1,4 @@
-import JSZip from "jszip";
+﻿import JSZip from "jszip";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -12,7 +12,7 @@ describe("media store", () => {
   const envSnapshot: Record<string, string | undefined> = {};
 
   const snapshotEnv = () => {
-    for (const key of ["HOME", "USERPROFILE", "HOMEDRIVE", "HOMEPATH", "OPENCLAW_STATE_DIR"]) {
+    for (const key of ["HOME", "USERPROFILE", "HOMEDRIVE", "HOMEPATH", "_STATE_DIR"]) {
       envSnapshot[key] = process.env[key];
     }
   };
@@ -29,10 +29,10 @@ describe("media store", () => {
 
   beforeAll(async () => {
     snapshotEnv();
-    home = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-test-home-"));
+    home = await fs.mkdtemp(path.join(os.tmpdir(), "-test-home-"));
     process.env.HOME = home;
     process.env.USERPROFILE = home;
-    process.env.OPENCLAW_STATE_DIR = path.join(home, ".openclaw");
+    process.env._STATE_DIR = path.join(home, ".");
     if (process.platform === "win32") {
       const match = home.match(/^([A-Za-z]:)(.*)$/);
       if (match) {
@@ -40,7 +40,7 @@ describe("media store", () => {
         process.env.HOMEPATH = match[2] || "\\";
       }
     }
-    await fs.mkdir(path.join(home, ".openclaw"), { recursive: true });
+    await fs.mkdir(path.join(home, "."), { recursive: true });
     store = await import("./store.js");
   });
 
@@ -63,7 +63,7 @@ describe("media store", () => {
     await withTempStore(async (store, home) => {
       const dir = await store.ensureMediaDir();
       expect(isPathWithinBase(home, dir)).toBe(true);
-      expect(path.normalize(dir)).toContain(`${path.sep}.openclaw${path.sep}media`);
+      expect(path.normalize(dir)).toContain(`${path.sep}.${path.sep}media`);
       const stat = await fs.stat(dir);
       expect(stat.isDirectory()).toBe(true);
     });
@@ -198,9 +198,9 @@ describe("media store", () => {
 
     it("preserves original name with special characters", async () => {
       await withTempStore(async (store) => {
-        const filename = "报告_2024---a1b2c3d4-e5f6-7890-abcd-ef1234567890.pdf";
+        const filename = "æŠ¥å‘Š_2024---a1b2c3d4-e5f6-7890-abcd-ef1234567890.pdf";
         const result = store.extractOriginalFilename(`/media/${filename}`);
-        expect(result).toBe("报告_2024.pdf");
+        expect(result).toBe("æŠ¥å‘Š_2024.pdf");
       });
     });
   });
@@ -274,3 +274,4 @@ describe("media store", () => {
     });
   });
 });
+

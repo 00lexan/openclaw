@@ -1,4 +1,4 @@
-import type { DatabaseSync } from "node:sqlite";
+﻿import type { DatabaseSync } from "node:sqlite";
 
 export async function loadSqliteVecExtension(params: {
   db: DatabaseSync;
@@ -22,3 +22,4 @@ export async function loadSqliteVecExtension(params: {
     return { ok: false, error: message };
   }
 }
+

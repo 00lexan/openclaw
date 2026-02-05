@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -98,3 +98,4 @@ export abstract class DynamicComponent<T extends Types.AnyComponentNode = Types.
     return `${prefix}-${idCounter++}`;
   }
 }
+

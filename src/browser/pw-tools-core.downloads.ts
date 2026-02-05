@@ -1,4 +1,4 @@
-import type { Page } from "playwright-core";
+﻿import type { Page } from "playwright-core";
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -20,7 +20,7 @@ import {
 function buildTempDownloadPath(fileName: string): string {
   const id = crypto.randomUUID();
   const safeName = fileName.trim() ? fileName.trim() : "download.bin";
-  return path.join("/tmp/openclaw/downloads", `${id}-${safeName}`);
+  return path.join("/tmp//downloads", `${id}-${safeName}`);
 }
 
 function createPageDownloadWaiter(page: Page, timeoutMs: number) {
@@ -249,3 +249,4 @@ export async function downloadViaPlaywright(opts: {
     throw err;
   }
 }
+

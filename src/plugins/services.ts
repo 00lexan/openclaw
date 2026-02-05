@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import type { PluginRegistry } from "./registry.js";
 import { STATE_DIR } from "../config/paths.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
@@ -11,7 +11,7 @@ export type PluginServicesHandle = {
 
 export async function startPluginServices(params: {
   registry: PluginRegistry;
-  config: OpenClawConfig;
+  config: Config;
   workspaceDir?: string;
 }): Promise<PluginServicesHandle> {
   const running: Array<{
@@ -70,3 +70,4 @@ export async function startPluginServices(params: {
     },
   };
 }
+

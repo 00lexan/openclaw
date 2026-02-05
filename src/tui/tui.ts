@@ -1,4 +1,4 @@
-import {
+﻿import {
   CombinedAutocompleteProvider,
   Container,
   Loader,
@@ -324,7 +324,7 @@ export async function runTui(opts: TuiOptions) {
     const agentLabel = formatAgentLabel(currentAgentId);
     header.setText(
       theme.header(
-        `openclaw tui - ${client.connection.url} - agent ${agentLabel} - session ${sessionLabel}`,
+        ` tui - ${client.connection.url} - agent ${agentLabel} - session ${sessionLabel}`,
       ),
     );
   };
@@ -393,7 +393,7 @@ export async function runTui(opts: TuiOptions) {
       return;
     }
 
-    statusLoader.setMessage(`${activityStatus} • ${elapsed} | ${connectionStatus}`);
+    statusLoader.setMessage(`${activityStatus} â€¢ ${elapsed} | ${connectionStatus}`);
   };
 
   const startStatusTimer = () => {
@@ -707,3 +707,4 @@ export async function runTui(opts: TuiOptions) {
     process.once("SIGTERM", finish);
   });
 }
+

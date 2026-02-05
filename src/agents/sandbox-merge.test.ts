@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 
 describe("sandbox config merges", () => {
   it("resolves sandbox scope deterministically", { timeout: 60_000 }, async () => {
@@ -125,3 +125,4 @@ describe("sandbox config merges", () => {
     expect(pruneShared).toEqual({ idleHours: 24, maxAgeDays: 7 });
   });
 });
+

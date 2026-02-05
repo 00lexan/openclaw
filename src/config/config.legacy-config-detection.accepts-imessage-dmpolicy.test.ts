@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { withTempHome } from "./test-helpers.js";
@@ -133,7 +133,7 @@ describe("legacy config detection", () => {
       telegram: { requireMention: false },
     });
     expect(res.changes).toContain(
-      'Moved telegram.requireMention → channels.telegram.groups."*".requireMention.',
+      'Moved telegram.requireMention â†’ channels.telegram.groups."*".requireMention.',
     );
     expect(res.config?.channels?.telegram?.groups?.["*"]?.requireMention).toBe(false);
     expect(res.config?.channels?.telegram?.requireMention).toBeUndefined();
@@ -144,7 +144,7 @@ describe("legacy config detection", () => {
     const res = migrateLegacyConfig({
       messages: { tts: { enabled: true } },
     });
-    expect(res.changes).toContain("Moved messages.tts.enabled → messages.tts.auto (always).");
+    expect(res.changes).toContain("Moved messages.tts.enabled â†’ messages.tts.auto (always).");
     expect(res.config?.messages?.tts?.auto).toBe("always");
     expect(res.config?.messages?.tts?.enabled).toBeUndefined();
   });
@@ -176,7 +176,7 @@ describe("legacy config detection", () => {
   });
   it("flags legacy config in snapshot", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -202,7 +202,7 @@ describe("legacy config detection", () => {
   });
   it("does not auto-migrate claude-cli auth profile mode on load", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -234,7 +234,7 @@ describe("legacy config detection", () => {
   });
   it("flags legacy provider sections in snapshot", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -260,7 +260,7 @@ describe("legacy config detection", () => {
   });
   it("flags routing.allowFrom in snapshot", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -286,7 +286,7 @@ describe("legacy config detection", () => {
   });
   it("rejects bindings[].match.provider on load", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -316,7 +316,7 @@ describe("legacy config detection", () => {
   });
   it("rejects bindings[].match.accountID on load", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -346,7 +346,7 @@ describe("legacy config detection", () => {
   });
   it("rejects session.sendPolicy.rules[].match.provider on load", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -380,7 +380,7 @@ describe("legacy config detection", () => {
   });
   it("rejects messages.queue.byProvider on load", async () => {
     await withTempHome(async (home) => {
-      const configPath = path.join(home, ".openclaw", "openclaw.json");
+      const configPath = path.join(home, ".", ".json");
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -407,3 +407,4 @@ describe("legacy config detection", () => {
     });
   });
 });
+

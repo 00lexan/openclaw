@@ -1,4 +1,4 @@
-# fastlane setup (OpenClaw iOS)
+﻿# fastlane setup ( iOS)
 
 Install:
 
@@ -8,7 +8,7 @@ brew install fastlane
 
 Create an App Store Connect API key:
 
-- App Store Connect → Users and Access → Keys → App Store Connect API → Generate API Key
+- App Store Connect â†’ Users and Access â†’ Keys â†’ App Store Connect API â†’ Generate API Key
 - Download the `.p8`, note the **Issuer ID** and **Key ID**
 
 Create `apps/ios/fastlane/.env` (gitignored):
@@ -30,3 +30,4 @@ Run:
 cd apps/ios
 fastlane beta
 ```
+

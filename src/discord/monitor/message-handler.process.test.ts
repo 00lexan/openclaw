@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
@@ -29,10 +29,10 @@ vi.mock("../../auto-reply/reply/reply-dispatcher.js", () => ({
 const { processDiscordMessage } = await import("./message-handler.process.js");
 
 async function createBaseContext(overrides: Record<string, unknown> = {}) {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-discord-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "-discord-"));
   const storePath = path.join(dir, "sessions.json");
   return {
-    cfg: { messages: { ackReaction: "👀" }, session: { store: storePath } },
+    cfg: { messages: { ackReaction: "ðŸ‘€" }, session: { store: storePath } },
     discordConfig: {},
     accountId: "default",
     token: "token",
@@ -121,6 +121,7 @@ describe("processDiscordMessage ack reactions", () => {
     // oxlint-disable-next-line typescript/no-explicit-any
     await processDiscordMessage(ctx as any);
 
-    expect(reactMessageDiscord).toHaveBeenCalledWith("c1", "m1", "👀", { rest: {} });
+    expect(reactMessageDiscord).toHaveBeenCalledWith("c1", "m1", "ðŸ‘€", { rest: {} });
   });
 });
+

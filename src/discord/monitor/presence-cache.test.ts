@@ -1,4 +1,4 @@
-import type { GatewayPresenceUpdate } from "discord-api-types/v10";
+﻿import type { GatewayPresenceUpdate } from "discord-api-types/v10";
 import { beforeEach, describe, expect, it } from "vitest";
 import { clearPresences, getPresence, presenceCacheSize, setPresence } from "./presence-cache.js";
 
@@ -32,3 +32,4 @@ describe("presence-cache", () => {
     expect(presenceCacheSize()).toBe(1);
   });
 });
+

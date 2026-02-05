@@ -1,4 +1,4 @@
-import { Routes } from "discord-api-types/v10";
+﻿import { Routes } from "discord-api-types/v10";
 import type { DiscordReactionSummary, DiscordReactOpts } from "./send.types.js";
 import { loadConfig } from "../config/config.js";
 import {
@@ -120,3 +120,4 @@ export async function fetchReactionsDiscord(
 }
 
 export { fetchChannelPermissionsDiscord } from "./send.permissions.js";
+

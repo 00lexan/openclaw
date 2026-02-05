@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 
 type UpdateFileChunk = {
   changeContext?: string;
@@ -197,3 +197,4 @@ function normalizePunctuation(value: string): string {
     })
     .join("");
 }
+

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const messageCommand = vi.fn();
 const statusCommand = vi.fn();
@@ -65,7 +65,7 @@ describe("cli program (nodes basics)", () => {
     runtime.log.mockClear();
     await program.parseAsync(["nodes", "list"], { from: "user" });
     expect(callGateway).toHaveBeenCalledWith(expect.objectContaining({ method: "node.pair.list" }));
-    expect(runtime.log).toHaveBeenCalledWith("Pending: 0 · Paired: 0");
+    expect(runtime.log).toHaveBeenCalledWith("Pending: 0 Â· Paired: 0");
   });
 
   it("runs nodes list --connected and filters to connected nodes", async () => {
@@ -170,7 +170,7 @@ describe("cli program (nodes basics)", () => {
     );
 
     const output = runtime.log.mock.calls.map((c) => String(c[0] ?? "")).join("\n");
-    expect(output).toContain("Known: 1 · Paired: 1 · Connected: 1");
+    expect(output).toContain("Known: 1 Â· Paired: 1 Â· Connected: 1");
     expect(output).toContain("iOS Node");
     expect(output).toContain("Detail");
     expect(output).toContain("device: iPad");
@@ -203,7 +203,7 @@ describe("cli program (nodes basics)", () => {
     await program.parseAsync(["nodes", "status"], { from: "user" });
 
     const output = runtime.log.mock.calls.map((c) => String(c[0] ?? "")).join("\n");
-    expect(output).toContain("Known: 1 · Paired: 0 · Connected: 1");
+    expect(output).toContain("Known: 1 Â· Paired: 0 Â· Connected: 1");
     expect(output).toContain("Peter's Tab");
     expect(output).toContain("S10 Ultra");
     expect(output).toContain("Detail");
@@ -344,3 +344,4 @@ describe("cli program (nodes basics)", () => {
     expect(runtime.log).toHaveBeenCalled();
   });
 });
+

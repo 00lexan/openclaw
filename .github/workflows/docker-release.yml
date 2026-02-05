@@ -1,4 +1,4 @@
-name: Docker Release
+﻿name: Docker Release
 
 on:
   push:
@@ -141,3 +141,4 @@ jobs:
             ${{ needs.build-arm64.outputs.image-digest }}
         env:
           DOCKER_METADATA_OUTPUT_JSON: ${{ steps.meta.outputs.json }}
+

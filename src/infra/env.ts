@@ -1,4 +1,4 @@
-import { createSubsystemLogger } from "../logging/subsystem.js";
+﻿import { createSubsystemLogger } from "../logging/subsystem.js";
 import { parseBooleanValue } from "../utils/boolean.js";
 
 const log = createSubsystemLogger("env");
@@ -19,7 +19,7 @@ function formatEnvValue(value: string, redact?: boolean): string {
   if (singleLine.length <= 160) {
     return singleLine;
   }
-  return `${singleLine.slice(0, 160)}…`;
+  return `${singleLine.slice(0, 160)}â€¦`;
 }
 
 export function logAcceptedEnvOption(option: AcceptedEnvOption): void {
@@ -50,3 +50,4 @@ export function isTruthyEnvValue(value?: string): boolean {
 export function normalizeEnv(): void {
   normalizeZaiEnv();
 }
+

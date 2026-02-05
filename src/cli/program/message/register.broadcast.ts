@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 import { CHANNEL_TARGETS_DESCRIPTION } from "../../../infra/outbound/channel-target.js";
 
@@ -14,3 +14,4 @@ export function registerMessageBroadcastCommand(message: Command, helpers: Messa
       await helpers.runMessageAction("broadcast", options);
     });
 }
+

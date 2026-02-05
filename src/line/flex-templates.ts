@@ -1,4 +1,4 @@
-import type { messagingApi } from "@line/bot-sdk";
+﻿import type { messagingApi } from "@line/bot-sdk";
 
 // Re-export types for convenience
 type FlexContainer = messagingApi.FlexContainer;
@@ -696,7 +696,7 @@ export function createEventCard(params: {
         contents: [
           {
             type: "text",
-            text: "📍",
+            text: "ðŸ“",
             size: "sm",
             flex: 0,
           } as FlexText,
@@ -805,7 +805,7 @@ export function createAgendaCard(params: {
       contents: [
         {
           type: "text",
-          text: event.time ?? "—",
+          text: event.time ?? "â€”",
           size: "sm",
           weight: isActive ? "bold" : "regular",
           color: isActive ? "#06C755" : "#666666",
@@ -862,7 +862,7 @@ export function createAgendaCard(params: {
     if (secondaryParts.length > 0) {
       detailContents.push({
         type: "text",
-        text: secondaryParts.join(" · "),
+        text: secondaryParts.join(" Â· "),
         size: "xs",
         color: "#888888",
         wrap: true,
@@ -1090,7 +1090,7 @@ export function createMediaPlayerCard(params: {
           type: "button",
           action: {
             type: "postback",
-            label: "⏮",
+            label: "â®",
             data: controls.previous.data,
           },
           style: "secondary",
@@ -1104,7 +1104,7 @@ export function createMediaPlayerCard(params: {
           type: "button",
           action: {
             type: "postback",
-            label: "▶",
+            label: "â–¶",
             data: controls.play.data,
           },
           style: isPlaying ? "secondary" : "primary",
@@ -1119,7 +1119,7 @@ export function createMediaPlayerCard(params: {
           type: "button",
           action: {
             type: "postback",
-            label: "⏸",
+            label: "â¸",
             data: controls.pause.data,
           },
           style: isPlaying ? "primary" : "secondary",
@@ -1134,7 +1134,7 @@ export function createMediaPlayerCard(params: {
           type: "button",
           action: {
             type: "postback",
-            label: "⏭",
+            label: "â­",
             data: controls.next.data,
           },
           style: "secondary",
@@ -1256,22 +1256,22 @@ export function createAppleTvRemoteCard(params: {
     {
       type: "box",
       layout: "horizontal",
-      contents: [{ type: "filler" }, makeButton("↑", actionData.up), { type: "filler" }],
+      contents: [{ type: "filler" }, makeButton("â†‘", actionData.up), { type: "filler" }],
     } as FlexBox,
     {
       type: "box",
       layout: "horizontal",
       contents: [
-        makeButton("←", actionData.left),
+        makeButton("â†", actionData.left),
         makeButton("OK", actionData.select, "primary"),
-        makeButton("→", actionData.right),
+        makeButton("â†’", actionData.right),
       ],
       margin: "md",
     } as FlexBox,
     {
       type: "box",
       layout: "horizontal",
-      contents: [{ type: "filler" }, makeButton("↓", actionData.down), { type: "filler" }],
+      contents: [{ type: "filler" }, makeButton("â†“", actionData.down), { type: "filler" }],
       margin: "md",
     } as FlexBox,
   ];
@@ -1509,3 +1509,4 @@ export type {
   FlexComponent,
   Action,
 };
+

@@ -1,4 +1,4 @@
-import { afterAll, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterAll, beforeEach, describe, expect, it, vi } from "vitest";
 import type {
   ChannelMessageActionAdapter,
   ChannelOutboundAdapter,
@@ -282,3 +282,4 @@ describe("messageCommand", () => {
     );
   });
 });
+

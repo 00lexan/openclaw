@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 describe("legacy config detection", () => {
   it("rejects routing.allowFrom", async () => {
@@ -30,7 +30,7 @@ describe("legacy config detection", () => {
       routing: { allowFrom: ["+15555550123"] },
       channels: { whatsapp: {} },
     });
-    expect(res.changes).toContain("Moved routing.allowFrom → channels.whatsapp.allowFrom.");
+    expect(res.changes).toContain("Moved routing.allowFrom â†’ channels.whatsapp.allowFrom.");
     expect(res.config?.channels?.whatsapp?.allowFrom).toEqual(["+15555550123"]);
     expect(res.config?.routing?.allowFrom).toBeUndefined();
   });
@@ -52,13 +52,13 @@ describe("legacy config detection", () => {
       channels: { whatsapp: {} },
     });
     expect(res.changes).toContain(
-      'Moved routing.groupChat.requireMention → channels.whatsapp.groups."*".requireMention.',
+      'Moved routing.groupChat.requireMention â†’ channels.whatsapp.groups."*".requireMention.',
     );
     expect(res.changes).toContain(
-      'Moved routing.groupChat.requireMention → channels.telegram.groups."*".requireMention.',
+      'Moved routing.groupChat.requireMention â†’ channels.telegram.groups."*".requireMention.',
     );
     expect(res.changes).toContain(
-      'Moved routing.groupChat.requireMention → channels.imessage.groups."*".requireMention.',
+      'Moved routing.groupChat.requireMention â†’ channels.imessage.groups."*".requireMention.',
     );
     expect(res.config?.channels?.whatsapp?.groups?.["*"]?.requireMention).toBe(false);
     expect(res.config?.channels?.telegram?.groups?.["*"]?.requireMention).toBe(false);
@@ -72,13 +72,13 @@ describe("legacy config detection", () => {
       routing: { groupChat: { requireMention: false } },
     });
     expect(res.changes).toContain(
-      'Moved routing.groupChat.requireMention → channels.telegram.groups."*".requireMention.',
+      'Moved routing.groupChat.requireMention â†’ channels.telegram.groups."*".requireMention.',
     );
     expect(res.changes).toContain(
-      'Moved routing.groupChat.requireMention → channels.imessage.groups."*".requireMention.',
+      'Moved routing.groupChat.requireMention â†’ channels.imessage.groups."*".requireMention.',
     );
     expect(res.changes).not.toContain(
-      'Moved routing.groupChat.requireMention → channels.whatsapp.groups."*".requireMention.',
+      'Moved routing.groupChat.requireMention â†’ channels.whatsapp.groups."*".requireMention.',
     );
     expect(res.config?.channels?.whatsapp).toBeUndefined();
     expect(res.config?.channels?.telegram?.groups?.["*"]?.requireMention).toBe(false);
@@ -89,12 +89,12 @@ describe("legacy config detection", () => {
     vi.resetModules();
     const { migrateLegacyConfig } = await import("./config.js");
     const res = migrateLegacyConfig({
-      routing: { groupChat: { mentionPatterns: ["@openclaw"] } },
+      routing: { groupChat: { mentionPatterns: ["@"] } },
     });
     expect(res.changes).toContain(
-      "Moved routing.groupChat.mentionPatterns → messages.groupChat.mentionPatterns.",
+      "Moved routing.groupChat.mentionPatterns â†’ messages.groupChat.mentionPatterns.",
     );
-    expect(res.config?.messages?.groupChat?.mentionPatterns).toEqual(["@openclaw"]);
+    expect(res.config?.messages?.groupChat?.mentionPatterns).toEqual(["@"]);
     expect(res.config?.routing?.groupChat?.mentionPatterns).toBeUndefined();
   });
   it("migrates routing agentToAgent/queue/transcribeAudio to tools/messages/media", async () => {
@@ -110,9 +110,9 @@ describe("legacy config detection", () => {
         },
       },
     });
-    expect(res.changes).toContain("Moved routing.agentToAgent → tools.agentToAgent.");
-    expect(res.changes).toContain("Moved routing.queue → messages.queue.");
-    expect(res.changes).toContain("Moved routing.transcribeAudio → tools.media.audio.models.");
+    expect(res.changes).toContain("Moved routing.agentToAgent â†’ tools.agentToAgent.");
+    expect(res.changes).toContain("Moved routing.queue â†’ messages.queue.");
+    expect(res.changes).toContain("Moved routing.transcribeAudio â†’ tools.media.audio.models.");
     expect(res.config?.tools?.agentToAgent).toEqual({
       enabled: true,
       allow: ["main"],
@@ -147,13 +147,13 @@ describe("legacy config detection", () => {
         subagents: { tools: { deny: ["sandbox"] } },
       },
     });
-    expect(res.changes).toContain("Moved agent.tools.allow → tools.allow.");
-    expect(res.changes).toContain("Moved agent.tools.deny → tools.deny.");
-    expect(res.changes).toContain("Moved agent.elevated → tools.elevated.");
-    expect(res.changes).toContain("Moved agent.bash → tools.exec.");
-    expect(res.changes).toContain("Moved agent.sandbox.tools → tools.sandbox.tools.");
-    expect(res.changes).toContain("Moved agent.subagents.tools → tools.subagents.tools.");
-    expect(res.changes).toContain("Moved agent → agents.defaults.");
+    expect(res.changes).toContain("Moved agent.tools.allow â†’ tools.allow.");
+    expect(res.changes).toContain("Moved agent.tools.deny â†’ tools.deny.");
+    expect(res.changes).toContain("Moved agent.elevated â†’ tools.elevated.");
+    expect(res.changes).toContain("Moved agent.bash â†’ tools.exec.");
+    expect(res.changes).toContain("Moved agent.sandbox.tools â†’ tools.sandbox.tools.");
+    expect(res.changes).toContain("Moved agent.subagents.tools â†’ tools.subagents.tools.");
+    expect(res.changes).toContain("Moved agent â†’ agents.defaults.");
     expect(res.config?.agents?.defaults?.model).toEqual({
       primary: "openai/gpt-5.2",
       fallbacks: [],
@@ -181,7 +181,7 @@ describe("legacy config detection", () => {
         bash: { timeoutSec: 12 },
       },
     });
-    expect(res.changes).toContain("Moved tools.bash → tools.exec.");
+    expect(res.changes).toContain("Moved tools.bash â†’ tools.exec.");
     expect(res.config?.tools?.exec).toEqual({ timeoutSec: 12 });
     expect((res.config?.tools as { bash?: unknown } | undefined)?.bash).toBeUndefined();
   });
@@ -198,7 +198,7 @@ describe("legacy config detection", () => {
         list: [
           {
             id: "work",
-            workspace: "~/openclaw-work",
+            workspace: "~/-work",
             tools: {
               elevated: {
                 enabled: false,
@@ -245,7 +245,7 @@ describe("legacy config detection", () => {
     const res = migrateLegacyConfig({
       gateway: { token: "legacy-token" },
     });
-    expect(res.changes).toContain("Moved gateway.token → gateway.auth.token.");
+    expect(res.changes).toContain("Moved gateway.token â†’ gateway.auth.token.");
     expect(res.config?.gateway?.auth?.token).toBe("legacy-token");
     expect(res.config?.gateway?.auth?.mode).toBe("token");
     expect((res.config?.gateway as { token?: string })?.token).toBeUndefined();
@@ -439,3 +439,4 @@ describe("legacy config detection", () => {
     }
   });
 });
+

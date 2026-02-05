@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { ChannelUiMetaEntry, CronJob, CronRunLogEntry, CronStatus } from "../types.ts";
 import type { CronFormState } from "../ui-types.ts";
 import { formatMs } from "../format.ts";
@@ -82,7 +82,7 @@ export function renderCron(props: CronProps) {
         </div>
         <div class="row" style="margin-top: 12px;">
           <button class="btn" ?disabled=${props.loading} @click=${props.onRefresh}>
-            ${props.loading ? "Refreshing…" : "Refresh"}
+            ${props.loading ? "Refreshingâ€¦" : "Refresh"}
           </button>
           ${props.error ? html`<span class="muted">${props.error}</span>` : nothing}
         </div>
@@ -253,7 +253,7 @@ export function renderCron(props: CronProps) {
                                 props.onFormChange({
                                   deliveryTo: (e.target as HTMLInputElement).value,
                                 })}
-                              placeholder="+1555… or chat id"
+                              placeholder="+1555â€¦ or chat id"
                             />
                           </label>
                         `
@@ -265,7 +265,7 @@ export function renderCron(props: CronProps) {
         }
         <div class="row" style="margin-top: 14px;">
           <button class="btn primary" ?disabled=${props.busy} @click=${props.onAdd}>
-            ${props.busy ? "Saving…" : "Add job"}
+            ${props.busy ? "Savingâ€¦" : "Add job"}
           </button>
         </div>
       </div>
@@ -458,3 +458,4 @@ function renderRun(entry: CronRunLogEntry) {
     </div>
   `;
 }
+

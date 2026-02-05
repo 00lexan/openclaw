@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 设置或调试远程 mac 控制时
-summary: macOS 应用通过 SSH 控制远程 OpenClaw Gateway 网关的流程
-title: 远程控制
+  - è®¾ç½®æˆ–è°ƒè¯•è¿œç¨‹ mac æŽ§åˆ¶æ—¶
+summary: macOS åº”ç”¨é€šè¿‡ SSH æŽ§åˆ¶è¿œç¨‹  Gateway ç½‘å…³çš„æµç¨‹
+title: è¿œç¨‹æŽ§åˆ¶
 x-i18n:
   generated_at: "2026-02-03T07:52:53Z"
   model: claude-opus-4-5
@@ -12,79 +12,80 @@ x-i18n:
   workflow: 15
 ---
 
-# 远程 OpenClaw（macOS ⇄ 远程主机）
+# è¿œç¨‹ ï¼ˆmacOS â‡„ è¿œç¨‹ä¸»æœºï¼‰
 
-此流程让 macOS 应用作为运行在另一台主机（桌面/服务器）上的 OpenClaw Gateway 网关的完整远程控制。这是应用的 **Remote over SSH**（远程运行）功能。所有功能——健康检查、语音唤醒转发和 Web Chat——都重用来自 _Settings → General_ 的相同远程 SSH 配置。
+æ­¤æµç¨‹è®© macOS åº”ç”¨ä½œä¸ºè¿è¡Œåœ¨å¦ä¸€å°ä¸»æœºï¼ˆæ¡Œé¢/æœåŠ¡å™¨ï¼‰ä¸Šçš„  Gateway ç½‘å…³çš„å®Œæ•´è¿œç¨‹æŽ§åˆ¶ã€‚è¿™æ˜¯åº”ç”¨çš„ **Remote over SSH**ï¼ˆè¿œç¨‹è¿è¡Œï¼‰åŠŸèƒ½ã€‚æ‰€æœ‰åŠŸèƒ½â€”â€”å¥åº·æ£€æŸ¥ã€è¯­éŸ³å”¤é†’è½¬å‘å’Œ Web Chatâ€”â€”éƒ½é‡ç”¨æ¥è‡ª _Settings â†’ General_ çš„ç›¸åŒè¿œç¨‹ SSH é…ç½®ã€‚
 
-## 模式
+## æ¨¡å¼
 
-- **Local (this Mac)**：一切都在笔记本电脑上运行。不涉及 SSH。
-- **Remote over SSH（默认）**：OpenClaw 命令在远程主机上执行。mac 应用使用 `-o BatchMode` 加上你选择的身份/密钥打开 SSH 连接，并进行本地端口转发。
-- **Remote direct (ws/wss)**：无 SSH 隧道。mac 应用直接连接到 Gateway 网关 URL（例如，通过 Tailscale Serve 或公共 HTTPS 反向代理）。
+- **Local (this Mac)**ï¼šä¸€åˆ‡éƒ½åœ¨ç¬”è®°æœ¬ç”µè„‘ä¸Šè¿è¡Œã€‚ä¸æ¶‰åŠ SSHã€‚
+- **Remote over SSHï¼ˆé»˜è®¤ï¼‰**ï¼š å‘½ä»¤åœ¨è¿œç¨‹ä¸»æœºä¸Šæ‰§è¡Œã€‚mac åº”ç”¨ä½¿ç”¨ `-o BatchMode` åŠ ä¸Šä½ é€‰æ‹©çš„èº«ä»½/å¯†é’¥æ‰“å¼€ SSH è¿žæŽ¥ï¼Œå¹¶è¿›è¡Œæœ¬åœ°ç«¯å£è½¬å‘ã€‚
+- **Remote direct (ws/wss)**ï¼šæ—  SSH éš§é“ã€‚mac åº”ç”¨ç›´æŽ¥è¿žæŽ¥åˆ° Gateway ç½‘å…³ URLï¼ˆä¾‹å¦‚ï¼Œé€šè¿‡ Tailscale Serve æˆ–å…¬å…± HTTPS åå‘ä»£ç†ï¼‰ã€‚
 
-## 远程传输
+## è¿œç¨‹ä¼ è¾“
 
-远程模式支持两种传输方式：
+è¿œç¨‹æ¨¡å¼æ”¯æŒä¸¤ç§ä¼ è¾“æ–¹å¼ï¼š
 
-- **SSH 隧道**（默认）：使用 `ssh -N -L ...` 将 Gateway 网关端口转发到 localhost。Gateway 网关会将节点的 IP 视为 `127.0.0.1`，因为隧道是 loopback。
-- **Direct (ws/wss)**：直接连接到 Gateway 网关 URL。Gateway 网关看到真实的客户端 IP。
+- **SSH éš§é“**ï¼ˆé»˜è®¤ï¼‰ï¼šä½¿ç”¨ `ssh -N -L ...` å°† Gateway ç½‘å…³ç«¯å£è½¬å‘åˆ° localhostã€‚Gateway ç½‘å…³ä¼šå°†èŠ‚ç‚¹çš„ IP è§†ä¸º `127.0.0.1`ï¼Œå› ä¸ºéš§é“æ˜¯ loopbackã€‚
+- **Direct (ws/wss)**ï¼šç›´æŽ¥è¿žæŽ¥åˆ° Gateway ç½‘å…³ URLã€‚Gateway ç½‘å…³çœ‹åˆ°çœŸå®žçš„å®¢æˆ·ç«¯ IPã€‚
 
-## 远程主机上的先决条件
+## è¿œç¨‹ä¸»æœºä¸Šçš„å…ˆå†³æ¡ä»¶
 
-1. 安装 Node + pnpm 并构建/安装 OpenClaw CLI（`pnpm install && pnpm build && pnpm link --global`）。
-2. 确保 `openclaw` 在非交互式 shell 的 PATH 中（如需要，请符号链接到 `/usr/local/bin` 或 `/opt/homebrew/bin`）。
-3. 使用密钥认证打开 SSH。我们推荐使用 **Tailscale** IP 以实现离开局域网时的稳定可达性。
+1. å®‰è£… Node + pnpm å¹¶æž„å»º/å®‰è£…  CLIï¼ˆ`pnpm install && pnpm build && pnpm link --global`ï¼‰ã€‚
+2. ç¡®ä¿ `` åœ¨éžäº¤äº’å¼ shell çš„ PATH ä¸­ï¼ˆå¦‚éœ€è¦ï¼Œè¯·ç¬¦å·é“¾æŽ¥åˆ° `/usr/local/bin` æˆ– `/opt/homebrew/bin`ï¼‰ã€‚
+3. ä½¿ç”¨å¯†é’¥è®¤è¯æ‰“å¼€ SSHã€‚æˆ‘ä»¬æŽ¨èä½¿ç”¨ **Tailscale** IP ä»¥å®žçŽ°ç¦»å¼€å±€åŸŸç½‘æ—¶çš„ç¨³å®šå¯è¾¾æ€§ã€‚
 
-## macOS 应用设置
+## macOS åº”ç”¨è®¾ç½®
 
-1. 打开 _Settings → General_。
-2. 在 **OpenClaw runs** 下，选择 **Remote over SSH** 并设置：
-   - **Transport**：**SSH tunnel** 或 **Direct (ws/wss)**。
-   - **SSH target**：`user@host`（可选 `:port`）。
-     - 如果 Gateway 网关在同一局域网上并广播 Bonjour，从发现列表中选择它以自动填充此字段。
-   - **Gateway URL**（仅 Direct）：`wss://gateway.example.ts.net`（或本地/局域网使用 `ws://...`）。
-   - **Identity file**（高级）：你的密钥路径。
-   - **Project root**（高级）：用于命令的远程 checkout 路径。
-   - **CLI path**（高级）：可运行的 `openclaw` 入口点/二进制文件的可选路径（广播时自动填充）。
-3. 点击 **Test remote**。成功表示远程 `openclaw status --json` 正确运行。失败通常意味着 PATH/CLI 问题；退出码 127 表示远程找不到 CLI。
-4. 健康检查和 Web Chat 现在将自动通过此 SSH 隧道运行。
+1. æ‰“å¼€ _Settings â†’ General_ã€‚
+2. åœ¨ ** runs** ä¸‹ï¼Œé€‰æ‹© **Remote over SSH** å¹¶è®¾ç½®ï¼š
+   - **Transport**ï¼š**SSH tunnel** æˆ– **Direct (ws/wss)**ã€‚
+   - **SSH target**ï¼š`user@host`ï¼ˆå¯é€‰ `:port`ï¼‰ã€‚
+     - å¦‚æžœ Gateway ç½‘å…³åœ¨åŒä¸€å±€åŸŸç½‘ä¸Šå¹¶å¹¿æ’­ Bonjourï¼Œä»Žå‘çŽ°åˆ—è¡¨ä¸­é€‰æ‹©å®ƒä»¥è‡ªåŠ¨å¡«å……æ­¤å­—æ®µã€‚
+   - **Gateway URL**ï¼ˆä»… Directï¼‰ï¼š`wss://gateway.example.ts.net`ï¼ˆæˆ–æœ¬åœ°/å±€åŸŸç½‘ä½¿ç”¨ `ws://...`ï¼‰ã€‚
+   - **Identity file**ï¼ˆé«˜çº§ï¼‰ï¼šä½ çš„å¯†é’¥è·¯å¾„ã€‚
+   - **Project root**ï¼ˆé«˜çº§ï¼‰ï¼šç”¨äºŽå‘½ä»¤çš„è¿œç¨‹ checkout è·¯å¾„ã€‚
+   - **CLI path**ï¼ˆé«˜çº§ï¼‰ï¼šå¯è¿è¡Œçš„ `` å…¥å£ç‚¹/äºŒè¿›åˆ¶æ–‡ä»¶çš„å¯é€‰è·¯å¾„ï¼ˆå¹¿æ’­æ—¶è‡ªåŠ¨å¡«å……ï¼‰ã€‚
+3. ç‚¹å‡» **Test remote**ã€‚æˆåŠŸè¡¨ç¤ºè¿œç¨‹ ` status --json` æ­£ç¡®è¿è¡Œã€‚å¤±è´¥é€šå¸¸æ„å‘³ç€ PATH/CLI é—®é¢˜ï¼›é€€å‡ºç  127 è¡¨ç¤ºè¿œç¨‹æ‰¾ä¸åˆ° CLIã€‚
+4. å¥åº·æ£€æŸ¥å’Œ Web Chat çŽ°åœ¨å°†è‡ªåŠ¨é€šè¿‡æ­¤ SSH éš§é“è¿è¡Œã€‚
 
 ## Web Chat
 
-- **SSH 隧道**：Web Chat 通过转发的 WebSocket 控制端口（默认 18789）连接到 Gateway 网关。
-- **Direct (ws/wss)**：Web Chat 直接连接到配置的 Gateway 网关 URL。
-- 不再有单独的 WebChat HTTP 服务器。
+- **SSH éš§é“**ï¼šWeb Chat é€šè¿‡è½¬å‘çš„ WebSocket æŽ§åˆ¶ç«¯å£ï¼ˆé»˜è®¤ 18789ï¼‰è¿žæŽ¥åˆ° Gateway ç½‘å…³ã€‚
+- **Direct (ws/wss)**ï¼šWeb Chat ç›´æŽ¥è¿žæŽ¥åˆ°é…ç½®çš„ Gateway ç½‘å…³ URLã€‚
+- ä¸å†æœ‰å•ç‹¬çš„ WebChat HTTP æœåŠ¡å™¨ã€‚
 
-## 权限
+## æƒé™
 
-- 远程主机需要与本地相同的 TCC 批准（自动化、辅助功能、屏幕录制、麦克风、语音识别、通知）。在该机器上运行新手引导以一次性授予它们。
-- 节点通过 `node.list` / `node.describe` 广播其权限状态，以便智能体知道哪些可用。
+- è¿œç¨‹ä¸»æœºéœ€è¦ä¸Žæœ¬åœ°ç›¸åŒçš„ TCC æ‰¹å‡†ï¼ˆè‡ªåŠ¨åŒ–ã€è¾…åŠ©åŠŸèƒ½ã€å±å¹•å½•åˆ¶ã€éº¦å…‹é£Žã€è¯­éŸ³è¯†åˆ«ã€é€šçŸ¥ï¼‰ã€‚åœ¨è¯¥æœºå™¨ä¸Šè¿è¡Œæ–°æ‰‹å¼•å¯¼ä»¥ä¸€æ¬¡æ€§æŽˆäºˆå®ƒä»¬ã€‚
+- èŠ‚ç‚¹é€šè¿‡ `node.list` / `node.describe` å¹¿æ’­å…¶æƒé™çŠ¶æ€ï¼Œä»¥ä¾¿æ™ºèƒ½ä½“çŸ¥é“å“ªäº›å¯ç”¨ã€‚
 
-## 安全注意事项
+## å®‰å…¨æ³¨æ„äº‹é¡¹
 
-- 优先在远程主机上使用 loopback 绑定，并通过 SSH 或 Tailscale 连接。
-- 如果你将 Gateway 网关绑定到非 loopback 接口，请要求令牌/密码认证。
-- 参见[安全](/gateway/security)和 [Tailscale](/gateway/tailscale)。
+- ä¼˜å…ˆåœ¨è¿œç¨‹ä¸»æœºä¸Šä½¿ç”¨ loopback ç»‘å®šï¼Œå¹¶é€šè¿‡ SSH æˆ– Tailscale è¿žæŽ¥ã€‚
+- å¦‚æžœä½ å°† Gateway ç½‘å…³ç»‘å®šåˆ°éž loopback æŽ¥å£ï¼Œè¯·è¦æ±‚ä»¤ç‰Œ/å¯†ç è®¤è¯ã€‚
+- å‚è§[å®‰å…¨](/gateway/security)å’Œ [Tailscale](/gateway/tailscale)ã€‚
 
-## WhatsApp 登录流程（远程）
+## WhatsApp ç™»å½•æµç¨‹ï¼ˆè¿œç¨‹ï¼‰
 
-- **在远程主机上**运行 `openclaw channels login --verbose`。用手机上的 WhatsApp 扫描二维码。
-- 如果认证过期，在该主机上重新运行登录。健康检查会显示关联问题。
+- **åœ¨è¿œç¨‹ä¸»æœºä¸Š**è¿è¡Œ ` channels login --verbose`ã€‚ç”¨æ‰‹æœºä¸Šçš„ WhatsApp æ‰«æäºŒç»´ç ã€‚
+- å¦‚æžœè®¤è¯è¿‡æœŸï¼Œåœ¨è¯¥ä¸»æœºä¸Šé‡æ–°è¿è¡Œç™»å½•ã€‚å¥åº·æ£€æŸ¥ä¼šæ˜¾ç¤ºå…³è”é—®é¢˜ã€‚
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-- **exit 127 / not found**：`openclaw` 不在非登录 shell 的 PATH 中。将其添加到 `/etc/paths`、你的 shell rc，或符号链接到 `/usr/local/bin`/`/opt/homebrew/bin`。
-- **Health probe failed**：检查 SSH 可达性、PATH，以及 Baileys 是否已登录（`openclaw status --json`）。
-- **Web Chat 卡住**：确认 Gateway 网关正在远程主机上运行，转发的端口与 Gateway 网关 WS 端口匹配；UI 需要健康的 WS 连接。
-- **节点 IP 显示 127.0.0.1**：使用 SSH 隧道时是预期的。如果你想让 Gateway 网关看到真实的客户端 IP，请将 **Transport** 切换到 **Direct (ws/wss)**。
-- **Voice Wake**：触发短语在远程模式下自动转发；不需要单独的转发器。
+- **exit 127 / not found**ï¼š`` ä¸åœ¨éžç™»å½• shell çš„ PATH ä¸­ã€‚å°†å…¶æ·»åŠ åˆ° `/etc/paths`ã€ä½ çš„ shell rcï¼Œæˆ–ç¬¦å·é“¾æŽ¥åˆ° `/usr/local/bin`/`/opt/homebrew/bin`ã€‚
+- **Health probe failed**ï¼šæ£€æŸ¥ SSH å¯è¾¾æ€§ã€PATHï¼Œä»¥åŠ Baileys æ˜¯å¦å·²ç™»å½•ï¼ˆ` status --json`ï¼‰ã€‚
+- **Web Chat å¡ä½**ï¼šç¡®è®¤ Gateway ç½‘å…³æ­£åœ¨è¿œç¨‹ä¸»æœºä¸Šè¿è¡Œï¼Œè½¬å‘çš„ç«¯å£ä¸Ž Gateway ç½‘å…³ WS ç«¯å£åŒ¹é…ï¼›UI éœ€è¦å¥åº·çš„ WS è¿žæŽ¥ã€‚
+- **èŠ‚ç‚¹ IP æ˜¾ç¤º 127.0.0.1**ï¼šä½¿ç”¨ SSH éš§é“æ—¶æ˜¯é¢„æœŸçš„ã€‚å¦‚æžœä½ æƒ³è®© Gateway ç½‘å…³çœ‹åˆ°çœŸå®žçš„å®¢æˆ·ç«¯ IPï¼Œè¯·å°† **Transport** åˆ‡æ¢åˆ° **Direct (ws/wss)**ã€‚
+- **Voice Wake**ï¼šè§¦å‘çŸ­è¯­åœ¨è¿œç¨‹æ¨¡å¼ä¸‹è‡ªåŠ¨è½¬å‘ï¼›ä¸éœ€è¦å•ç‹¬çš„è½¬å‘å™¨ã€‚
 
-## 通知声音
+## é€šçŸ¥å£°éŸ³
 
-通过带有 `openclaw` 和 `node.invoke` 的脚本为每个通知选择声音，例如：
+é€šè¿‡å¸¦æœ‰ `` å’Œ `node.invoke` çš„è„šæœ¬ä¸ºæ¯ä¸ªé€šçŸ¥é€‰æ‹©å£°éŸ³ï¼Œä¾‹å¦‚ï¼š
 
 ```bash
-openclaw nodes notify --node <id> --title "Ping" --body "Remote gateway ready" --sound Glass
+ nodes notify --node <id> --title "Ping" --body "Remote gateway ready" --sound Glass
 ```
 
-应用中不再有全局"默认声音"开关；调用者为每个请求选择声音（或无声音）。
+åº”ç”¨ä¸­ä¸å†æœ‰å…¨å±€"é»˜è®¤å£°éŸ³"å¼€å…³ï¼›è°ƒç”¨è€…ä¸ºæ¯ä¸ªè¯·æ±‚é€‰æ‹©å£°éŸ³ï¼ˆæˆ–æ— å£°éŸ³ï¼‰ã€‚
+

@@ -1,4 +1,4 @@
-# A2UI Gemini Agent Guide
+﻿# A2UI Gemini Agent Guide
 
 This document serves as a guide for using the Gemini agent within the A2UI repository. It outlines the repository's structure, explains the core concepts of the A2UI protocol, and provides instructions for running the various demos and keeping this guide up-to-date.
 
@@ -92,3 +92,4 @@ To get this file back in sync, you can run the following commands:
 1. List all the files in the entire repo with `git ls-tree main --name-only -r`
 2. Read the ~50 most important files in the list, potentially in batches.
 3. Update this file.
+

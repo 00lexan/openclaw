@@ -1,4 +1,4 @@
-function escapeRegExp(value: string) {
+﻿function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
@@ -50,3 +50,4 @@ export function extractModelDirective(
     hasDirective: !!match,
   };
 }
+

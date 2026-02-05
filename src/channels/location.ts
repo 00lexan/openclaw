@@ -1,4 +1,4 @@
-export type LocationSource = "pin" | "place" | "live";
+﻿export type LocationSource = "pin" | "place" | "live";
 
 export type NormalizedLocation = {
   latitude: number;
@@ -28,7 +28,7 @@ function formatAccuracy(accuracy?: number): string {
   if (!Number.isFinite(accuracy)) {
     return "";
   }
-  return ` ±${Math.round(accuracy ?? 0)}m`;
+  return ` Â±${Math.round(accuracy ?? 0)}m`;
 }
 
 function formatCoords(latitude: number, longitude: number): string {
@@ -43,12 +43,12 @@ export function formatLocationText(location: NormalizedLocation): string {
   let header = "";
 
   if (resolved.source === "live" || resolved.isLive) {
-    header = `🛰 Live location: ${coords}${accuracy}`;
+    header = `ðŸ›° Live location: ${coords}${accuracy}`;
   } else if (resolved.name || resolved.address) {
-    const label = [resolved.name, resolved.address].filter(Boolean).join(" — ");
-    header = `📍 ${label} (${coords}${accuracy})`;
+    const label = [resolved.name, resolved.address].filter(Boolean).join(" â€” ");
+    header = `ðŸ“ ${label} (${coords}${accuracy})`;
   } else {
-    header = `📍 ${coords}${accuracy}`;
+    header = `ðŸ“ ${coords}${accuracy}`;
   }
 
   return caption ? `${header}\n${caption}` : header;
@@ -74,3 +74,4 @@ export function toLocationContext(location: NormalizedLocation): {
     LocationIsLive: resolved.isLive,
   };
 }
+

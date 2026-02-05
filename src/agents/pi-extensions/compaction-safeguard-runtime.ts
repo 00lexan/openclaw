@@ -1,4 +1,4 @@
-export type CompactionSafeguardRuntimeValue = {
+﻿export type CompactionSafeguardRuntimeValue = {
   maxHistoryShare?: number;
   contextWindowTokens?: number;
 };
@@ -33,3 +33,4 @@ export function getCompactionSafeguardRuntime(
 
   return REGISTRY.get(sessionManager) ?? null;
 }
+

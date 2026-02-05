@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你查找了 docs/sessions.md；规范文档位于 docs/session.md
-summary: 会话管理文档的别名
-title: 会话
+  - ä½ æŸ¥æ‰¾äº† docs/sessions.mdï¼›è§„èŒƒæ–‡æ¡£ä½äºŽ docs/session.md
+summary: ä¼šè¯ç®¡ç†æ–‡æ¡£çš„åˆ«å
+title: ä¼šè¯
 x-i18n:
   generated_at: "2026-02-01T20:23:55Z"
   model: claude-opus-4-5
@@ -12,6 +12,7 @@ x-i18n:
   workflow: 14
 ---
 
-# 会话
+# ä¼šè¯
 
-规范的会话管理文档位于[会话管理](/concepts/session)。
+è§„èŒƒçš„ä¼šè¯ç®¡ç†æ–‡æ¡£ä½äºŽ[ä¼šè¯ç®¡ç†](/concepts/session)ã€‚
+

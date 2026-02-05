@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+﻿/* istanbul ignore file */
 export {
   createWaSocket,
   loginWeb,
@@ -11,3 +11,4 @@ export {
   waitForWaConnection,
   webAuthExists,
 } from "../../channel-web.js";
+

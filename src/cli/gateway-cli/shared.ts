@@ -1,4 +1,4 @@
-import {
+﻿import {
   resolveGatewayLaunchAgentLabel,
   resolveGatewaySystemdServiceName,
   resolveGatewayWindowsTaskName,
@@ -82,25 +82,25 @@ export function extractGatewayMiskeys(parsed: unknown): {
 }
 
 export function renderGatewayServiceStopHints(env: NodeJS.ProcessEnv = process.env): string[] {
-  const profile = env.OPENCLAW_PROFILE;
+  const profile = env._PROFILE;
   switch (process.platform) {
     case "darwin":
       return [
-        `Tip: ${formatCliCommand("openclaw gateway stop")}`,
+        `Tip: ${formatCliCommand(" gateway stop")}`,
         `Or: launchctl bootout gui/$UID/${resolveGatewayLaunchAgentLabel(profile)}`,
       ];
     case "linux":
       return [
-        `Tip: ${formatCliCommand("openclaw gateway stop")}`,
+        `Tip: ${formatCliCommand(" gateway stop")}`,
         `Or: systemctl --user stop ${resolveGatewaySystemdServiceName(profile)}.service`,
       ];
     case "win32":
       return [
-        `Tip: ${formatCliCommand("openclaw gateway stop")}`,
+        `Tip: ${formatCliCommand(" gateway stop")}`,
         `Or: schtasks /End /TN "${resolveGatewayWindowsTaskName(profile)}"`,
       ];
     default:
-      return [`Tip: ${formatCliCommand("openclaw gateway stop")}`];
+      return [`Tip: ${formatCliCommand(" gateway stop")}`];
   }
 }
 
@@ -124,3 +124,4 @@ export async function maybeExplainGatewayServiceStop() {
     defaultRuntime.error(hint);
   }
 }
+

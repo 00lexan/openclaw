@@ -1,4 +1,4 @@
-const warningFilterKey = Symbol.for("openclaw.warning-filter");
+﻿const warningFilterKey = Symbol.for(".warning-filter");
 
 type Warning = Error & {
   code?: string;
@@ -38,3 +38,4 @@ export function installProcessWarningFilter(): void {
     process.stderr.write(`${warning.stack ?? warning.toString()}\n`);
   });
 }
+

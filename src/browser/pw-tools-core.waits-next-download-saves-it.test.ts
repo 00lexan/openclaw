@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 let currentPage: Record<string, unknown> | null = null;
@@ -190,3 +190,4 @@ describe("pw-tools-core", () => {
     ).rejects.toThrow(/ref is required/i);
   });
 });
+

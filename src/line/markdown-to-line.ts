@@ -1,4 +1,4 @@
-import type { messagingApi } from "@line/bot-sdk";
+﻿import type { messagingApi } from "@line/bot-sdk";
 import { createReceiptCard, toFlexMessage, type FlexBubble } from "./flex-templates.js";
 
 type FlexMessage = messagingApi.FlexMessage;
@@ -376,8 +376,8 @@ export function stripMarkdown(text: string): string {
 
 /**
  * Main function: Process text for LINE output
- * - Extracts tables → Flex Messages
- * - Extracts code blocks → Flex Messages
+ * - Extracts tables â†’ Flex Messages
+ * - Extracts code blocks â†’ Flex Messages
  * - Strips remaining markdown
  * - Returns processed text + Flex Messages
  */
@@ -449,3 +449,4 @@ export function hasMarkdownToConvert(text: string): boolean {
 
   return false;
 }
+

@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "openclaw/plugin-sdk";
+﻿import type { RuntimeEnv } from "/plugin-sdk";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
 import type {
   CoreConfig,
@@ -244,3 +244,4 @@ export async function monitorNextcloudTalkProvider(
 
   return { stop };
 }
+

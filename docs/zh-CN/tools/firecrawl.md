@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想要 Firecrawl 支持的网页提取
-  - 你需要 Firecrawl API 密钥
-  - 你想要 web_fetch 的反机器人提取
-summary: 用于 web_fetch 的 Firecrawl 回退（反机器人 + 缓存提取）
+  - ä½ æƒ³è¦ Firecrawl æ”¯æŒçš„ç½‘é¡µæå–
+  - ä½ éœ€è¦ Firecrawl API å¯†é’¥
+  - ä½ æƒ³è¦ web_fetch çš„åæœºå™¨äººæå–
+summary: ç”¨äºŽ web_fetch çš„ Firecrawl å›žé€€ï¼ˆåæœºå™¨äºº + ç¼“å­˜æå–ï¼‰
 title: Firecrawl
 x-i18n:
   generated_at: "2026-02-03T10:10:35Z"
@@ -16,16 +16,16 @@ x-i18n:
 
 # Firecrawl
 
-OpenClaw 可以使用 **Firecrawl** 作为 `web_fetch` 的回退提取器。它是一个托管的
-内容提取服务，支持机器人规避和缓存，有助于处理
-JS 密集型网站或阻止普通 HTTP 请求的页面。
+ å¯ä»¥ä½¿ç”¨ **Firecrawl** ä½œä¸º `web_fetch` çš„å›žé€€æå–å™¨ã€‚å®ƒæ˜¯ä¸€ä¸ªæ‰˜ç®¡çš„
+å†…å®¹æå–æœåŠ¡ï¼Œæ”¯æŒæœºå™¨äººè§„é¿å’Œç¼“å­˜ï¼Œæœ‰åŠ©äºŽå¤„ç†
+JS å¯†é›†åž‹ç½‘ç«™æˆ–é˜»æ­¢æ™®é€š HTTP è¯·æ±‚çš„é¡µé¢ã€‚
 
-## 获取 API 密钥
+## èŽ·å– API å¯†é’¥
 
-1. 创建 Firecrawl 账户并生成 API 密钥。
-2. 将其存储在配置中或在 Gateway 网关环境中设置 `FIRECRAWL_API_KEY`。
+1. åˆ›å»º Firecrawl è´¦æˆ·å¹¶ç”Ÿæˆ API å¯†é’¥ã€‚
+2. å°†å…¶å­˜å‚¨åœ¨é…ç½®ä¸­æˆ–åœ¨ Gateway ç½‘å…³çŽ¯å¢ƒä¸­è®¾ç½® `FIRECRAWL_API_KEY`ã€‚
 
-## 配置 Firecrawl
+## é…ç½® Firecrawl
 
 ```json5
 {
@@ -45,24 +45,25 @@ JS 密集型网站或阻止普通 HTTP 请求的页面。
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 当存在 API 密钥时，`firecrawl.enabled` 默认为 true。
-- `maxAgeMs` 控制缓存结果可以保留多久（毫秒）。默认为 2 天。
+- å½“å­˜åœ¨ API å¯†é’¥æ—¶ï¼Œ`firecrawl.enabled` é»˜è®¤ä¸º trueã€‚
+- `maxAgeMs` æŽ§åˆ¶ç¼“å­˜ç»“æžœå¯ä»¥ä¿ç•™å¤šä¹…ï¼ˆæ¯«ç§’ï¼‰ã€‚é»˜è®¤ä¸º 2 å¤©ã€‚
 
-## 隐身 / 机器人规避
+## éšèº« / æœºå™¨äººè§„é¿
 
-Firecrawl 提供了一个用于机器人规避的**代理模式**参数（`basic`、`stealth` 或 `auto`）。
-OpenClaw 对 Firecrawl 请求始终使用 `proxy: "auto"` 加 `storeInCache: true`。
-如果省略 proxy，Firecrawl 默认使用 `auto`。`auto` 在基本尝试失败时会使用隐身代理重试，这可能比
-仅使用基本抓取消耗更多积分。
+Firecrawl æä¾›äº†ä¸€ä¸ªç”¨äºŽæœºå™¨äººè§„é¿çš„**ä»£ç†æ¨¡å¼**å‚æ•°ï¼ˆ`basic`ã€`stealth` æˆ– `auto`ï¼‰ã€‚
+ å¯¹ Firecrawl è¯·æ±‚å§‹ç»ˆä½¿ç”¨ `proxy: "auto"` åŠ  `storeInCache: true`ã€‚
+å¦‚æžœçœç•¥ proxyï¼ŒFirecrawl é»˜è®¤ä½¿ç”¨ `auto`ã€‚`auto` åœ¨åŸºæœ¬å°è¯•å¤±è´¥æ—¶ä¼šä½¿ç”¨éšèº«ä»£ç†é‡è¯•ï¼Œè¿™å¯èƒ½æ¯”
+ä»…ä½¿ç”¨åŸºæœ¬æŠ“å–æ¶ˆè€—æ›´å¤šç§¯åˆ†ã€‚
 
-## `web_fetch` 如何使用 Firecrawl
+## `web_fetch` å¦‚ä½•ä½¿ç”¨ Firecrawl
 
-`web_fetch` 提取顺序：
+`web_fetch` æå–é¡ºåºï¼š
 
-1. Readability（本地）
-2. Firecrawl（如果已配置）
-3. 基本 HTML 清理（最后回退）
+1. Readabilityï¼ˆæœ¬åœ°ï¼‰
+2. Firecrawlï¼ˆå¦‚æžœå·²é…ç½®ï¼‰
+3. åŸºæœ¬ HTML æ¸…ç†ï¼ˆæœ€åŽå›žé€€ï¼‰
 
-参见 [Web 工具](/tools/web) 了解完整的 Web 工具设置。
+å‚è§ [Web å·¥å…·](/tools/web) äº†è§£å®Œæ•´çš„ Web å·¥å…·è®¾ç½®ã€‚
+

@@ -1,10 +1,10 @@
-import {
+﻿import {
   BlockStreamingCoalesceSchema,
   DmPolicySchema,
   GroupPolicySchema,
   MarkdownConfigSchema,
   requireOpenAllowFrom,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import { z } from "zod";
 
 const MattermostAccountSchemaBase = z
@@ -54,3 +54,4 @@ export const MattermostConfigSchema = MattermostAccountSchemaBase.extend({
       'channels.mattermost.dmPolicy="open" requires channels.mattermost.allowFrom to include "*"',
   });
 });
+

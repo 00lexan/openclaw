@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import {
   emitDiagnosticEvent,
   onDiagnosticEvent,
@@ -52,3 +52,4 @@ describe("diagnostic-events", () => {
     expect(types).toEqual(["webhook.received", "message.queued", "session.state"]);
   });
 });
+

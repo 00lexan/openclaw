@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 
 export const ChannelHeartbeatVisibilitySchema = z
   .object({
@@ -8,3 +8,4 @@ export const ChannelHeartbeatVisibilitySchema = z
   })
   .strict()
   .optional();
+

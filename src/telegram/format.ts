@@ -1,4 +1,4 @@
-import type { MarkdownTableMode } from "../config/types.base.js";
+﻿import type { MarkdownTableMode } from "../config/types.base.js";
 import {
   chunkMarkdownIR,
   markdownToIR,
@@ -96,3 +96,4 @@ export function markdownToTelegramChunks(
 export function markdownToTelegramHtmlChunks(markdown: string, limit: number): string[] {
   return markdownToTelegramChunks(markdown, limit).map((chunk) => chunk.html);
 }
+

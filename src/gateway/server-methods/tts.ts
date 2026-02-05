@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import { loadConfig } from "../../config/config.js";
 import {
   OPENAI_TTS_MODELS,
@@ -155,3 +155,4 @@ export const ttsHandlers: GatewayRequestHandlers = {
     }
   },
 };
+

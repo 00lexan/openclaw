@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "feishu",
   "channels": ["feishu"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

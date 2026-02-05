@@ -1,4 +1,4 @@
-import type { monitorWebInbox } from "../inbound.js";
+﻿import type { monitorWebInbox } from "../inbound.js";
 import type { ReconnectPolicy } from "../reconnect.js";
 
 export type WebInboundMsg = Parameters<typeof monitorWebInbox>[0]["onMessage"] extends (
@@ -33,3 +33,4 @@ export type WebMonitorTuning = {
   /** Debounce window (ms) for batching rapid consecutive messages from the same sender. */
   debounceMs?: number;
 };
+

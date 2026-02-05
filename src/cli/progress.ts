@@ -1,4 +1,4 @@
-import { spinner } from "@clack/prompts";
+﻿import { spinner } from "@clack/prompts";
 import { createOscProgressController, supportsOscProgress } from "osc-progress";
 import {
   clearActiveProgressLine,
@@ -228,3 +228,4 @@ export async function withProgressTotals<T>(
     return await work(update, progress);
   });
 }
+

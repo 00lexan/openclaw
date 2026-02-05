@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   ChannelAccountSnapshot,
   ChannelsStatusSnapshot,
   ConfigUiHints,
@@ -60,3 +60,4 @@ export type ChannelsChannelData = {
   nostr?: NostrStatus | null;
   channelAccounts?: Record<string, ChannelAccountSnapshot[]> | null;
 };
+

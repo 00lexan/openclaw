@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想在 OpenClaw 中使用 Qwen
-  - 你想要免费层 OAuth 访问 Qwen Coder
-summary: 在 OpenClaw 中使用 Qwen OAuth（免费层）
+  - ä½ æƒ³åœ¨  ä¸­ä½¿ç”¨ Qwen
+  - ä½ æƒ³è¦å…è´¹å±‚ OAuth è®¿é—® Qwen Coder
+summary: åœ¨  ä¸­ä½¿ç”¨ Qwen OAuthï¼ˆå…è´¹å±‚ï¼‰
 title: Qwen
 x-i18n:
   generated_at: "2026-02-03T07:53:34Z"
@@ -15,41 +15,42 @@ x-i18n:
 
 # Qwen
 
-Qwen 为 Qwen Coder 和 Qwen Vision 模型提供免费层 OAuth 流程（每天 2,000 次请求，受 Qwen 速率限制约束）。
+Qwen ä¸º Qwen Coder å’Œ Qwen Vision æ¨¡åž‹æä¾›å…è´¹å±‚ OAuth æµç¨‹ï¼ˆæ¯å¤© 2,000 æ¬¡è¯·æ±‚ï¼Œå— Qwen é€ŸçŽ‡é™åˆ¶çº¦æŸï¼‰ã€‚
 
-## 启用插件
-
-```bash
-openclaw plugins enable qwen-portal-auth
-```
-
-启用后重启 Gateway 网关。
-
-## 认证
+## å¯ç”¨æ’ä»¶
 
 ```bash
-openclaw models auth login --provider qwen-portal --set-default
+ plugins enable qwen-portal-auth
 ```
 
-这会运行 Qwen 设备码 OAuth 流程并将提供商条目写入你的 `models.json`（加上一个 `qwen` 别名以便快速切换）。
+å¯ç”¨åŽé‡å¯ Gateway ç½‘å…³ã€‚
 
-## 模型 ID
+## è®¤è¯
+
+```bash
+ models auth login --provider qwen-portal --set-default
+```
+
+è¿™ä¼šè¿è¡Œ Qwen è®¾å¤‡ç  OAuth æµç¨‹å¹¶å°†æä¾›å•†æ¡ç›®å†™å…¥ä½ çš„ `models.json`ï¼ˆåŠ ä¸Šä¸€ä¸ª `qwen` åˆ«åä»¥ä¾¿å¿«é€Ÿåˆ‡æ¢ï¼‰ã€‚
+
+## æ¨¡åž‹ ID
 
 - `qwen-portal/coder-model`
 - `qwen-portal/vision-model`
 
-切换模型：
+åˆ‡æ¢æ¨¡åž‹ï¼š
 
 ```bash
-openclaw models set qwen-portal/coder-model
+ models set qwen-portal/coder-model
 ```
 
-## 复用 Qwen Code CLI 登录
+## å¤ç”¨ Qwen Code CLI ç™»å½•
 
-如果你已经使用 Qwen Code CLI 登录，OpenClaw 会在加载认证存储时从 `~/.qwen/oauth_creds.json` 同步凭证。你仍然需要一个 `models.providers.qwen-portal` 条目（使用上面的登录命令创建一个）。
+å¦‚æžœä½ å·²ç»ä½¿ç”¨ Qwen Code CLI ç™»å½•ï¼Œ ä¼šåœ¨åŠ è½½è®¤è¯å­˜å‚¨æ—¶ä»Ž `~/.qwen/oauth_creds.json` åŒæ­¥å‡­è¯ã€‚ä½ ä»ç„¶éœ€è¦ä¸€ä¸ª `models.providers.qwen-portal` æ¡ç›®ï¼ˆä½¿ç”¨ä¸Šé¢çš„ç™»å½•å‘½ä»¤åˆ›å»ºä¸€ä¸ªï¼‰ã€‚
 
-## 注意
+## æ³¨æ„
 
-- 令牌自动刷新；如果刷新失败或访问被撤销，请重新运行登录命令。
-- 默认基础 URL：`https://portal.qwen.ai/v1`（如果 Qwen 提供不同的端点，使用 `models.providers.qwen-portal.baseUrl` 覆盖）。
-- 参阅[模型提供商](/concepts/model-providers)了解提供商级别的规则。
+- ä»¤ç‰Œè‡ªåŠ¨åˆ·æ–°ï¼›å¦‚æžœåˆ·æ–°å¤±è´¥æˆ–è®¿é—®è¢«æ’¤é”€ï¼Œè¯·é‡æ–°è¿è¡Œç™»å½•å‘½ä»¤ã€‚
+- é»˜è®¤åŸºç¡€ URLï¼š`https://portal.qwen.ai/v1`ï¼ˆå¦‚æžœ Qwen æä¾›ä¸åŒçš„ç«¯ç‚¹ï¼Œä½¿ç”¨ `models.providers.qwen-portal.baseUrl` è¦†ç›–ï¼‰ã€‚
+- å‚é˜…[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)äº†è§£æä¾›å•†çº§åˆ«çš„è§„åˆ™ã€‚
+

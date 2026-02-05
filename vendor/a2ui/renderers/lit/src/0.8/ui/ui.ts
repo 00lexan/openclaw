@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -117,3 +117,4 @@ export function instanceOf<T extends keyof A2UITagNameMap>(tagName: T) {
 
   return new ctor();
 }
+

@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import type { CommandHandler } from "./commands-types.js";
 import {
   abortEmbeddedPiRun,
@@ -16,7 +16,7 @@ import { incrementCompactionCount } from "./session-updates.js";
 function extractCompactInstructions(params: {
   rawBody?: string;
   ctx: import("../templating.js").MsgContext;
-  cfg: OpenClawConfig;
+  cfg: Config;
   agentId?: string;
   isGroup: boolean;
 }): string | undefined {
@@ -56,7 +56,7 @@ export const handleCompactCommand: CommandHandler = async (params) => {
   if (!params.sessionEntry?.sessionId) {
     return {
       shouldContinue: false,
-      reply: { text: "⚙️ Compaction unavailable (missing session id)." },
+      reply: { text: "âš™ï¸ Compaction unavailable (missing session id)." },
     };
   }
   const sessionId = params.sessionEntry.sessionId;
@@ -99,7 +99,7 @@ export const handleCompactCommand: CommandHandler = async (params) => {
   const compactLabel = result.ok
     ? result.compacted
       ? result.result?.tokensBefore != null && result.result?.tokensAfter != null
-        ? `Compacted (${formatTokenCount(result.result.tokensBefore)} → ${formatTokenCount(result.result.tokensAfter)})`
+        ? `Compacted (${formatTokenCount(result.result.tokensBefore)} â†’ ${formatTokenCount(result.result.tokensAfter)})`
         : result.result?.tokensBefore
           ? `Compacted (${formatTokenCount(result.result.tokensBefore)} before)`
           : "Compacted"
@@ -127,8 +127,9 @@ export const handleCompactCommand: CommandHandler = async (params) => {
   );
   const reason = result.reason?.trim();
   const line = reason
-    ? `${compactLabel}: ${reason} • ${contextSummary}`
-    : `${compactLabel} • ${contextSummary}`;
+    ? `${compactLabel}: ${reason} â€¢ ${contextSummary}`
+    : `${compactLabel} â€¢ ${contextSummary}`;
   enqueueSystemEvent(line, { sessionKey: params.sessionKey });
-  return { shouldContinue: false, reply: { text: `⚙️ ${line}` } };
+  return { shouldContinue: false, reply: { text: `âš™ï¸ ${line}` } };
 };
+

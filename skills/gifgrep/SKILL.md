@@ -1,12 +1,12 @@
----
+﻿---
 name: gifgrep
 description: Search GIF providers with CLI/TUI, download results, and extract stills/sheets.
 homepage: https://gifgrep.com
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🧲",
+        "emoji": "ðŸ§²",
         "requires": { "bins": ["gifgrep"] },
         "install":
           [
@@ -35,7 +35,7 @@ Use `gifgrep` to search GIF providers (Tenor/Giphy), browse in a TUI, download r
 
 GIF-Grab (gifgrep workflow)
 
-- Search → preview → download → extract (still/sheet) for fast review and sharing.
+- Search â†’ preview â†’ download â†’ extract (still/sheet) for fast review and sharing.
 
 Quick start
 
@@ -77,3 +77,4 @@ Environment tweaks
 
 - `GIFGREP_SOFTWARE_ANIM=1` to force software animation
 - `GIFGREP_CELL_ASPECT=0.5` to tweak preview geometry
+

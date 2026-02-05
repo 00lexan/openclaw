@@ -1,4 +1,4 @@
-import type { TwitchAccountConfig, TwitchChatMessage } from "./types.js";
+﻿import type { TwitchAccountConfig, TwitchChatMessage } from "./types.js";
 
 /**
  * Result of checking access control for a Twitch message
@@ -164,3 +164,4 @@ export function extractMentions(message: string): string[] {
 
   return mentions;
 }
+

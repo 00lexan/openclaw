@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../runtime.js";
+﻿import type { RuntimeEnv } from "../runtime.js";
 import type { WizardSection } from "./configure.shared.js";
 import { defaultRuntime } from "../runtime.js";
 import { runConfigureWizard } from "./configure.wizard.js";
@@ -13,3 +13,4 @@ export async function configureCommandWithSections(
 ) {
   await runConfigureWizard({ command: "configure", sections }, runtime);
 }
+

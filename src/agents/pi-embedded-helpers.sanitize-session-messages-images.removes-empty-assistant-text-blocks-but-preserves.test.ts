@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import { describe, expect, it } from "vitest";
 import { sanitizeSessionMessagesImages } from "./pi-embedded-helpers.js";
 
@@ -118,3 +118,4 @@ describe("sanitizeSessionMessagesImages", () => {
     expect(out[1]?.role).toBe("toolResult");
   });
 });
+

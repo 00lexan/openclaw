@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { resolveStateDir } from "../config/paths.js";
@@ -70,3 +70,4 @@ export async function ensureNodeHostConfig(): Promise<NodeHostConfig> {
   await saveNodeHostConfig(normalized);
   return normalized;
 }
+

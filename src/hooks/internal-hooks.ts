@@ -1,19 +1,19 @@
-/**
- * Hook system for OpenClaw agent events
+﻿/**
+ * Hook system for  agent events
  *
  * Provides an extensible event-driven hook system for agent events
  * like command processing, session lifecycle, etc.
  */
 
 import type { WorkspaceBootstrapFile } from "../agents/workspace.js";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 
 export type InternalHookEventType = "command" | "session" | "agent" | "gateway";
 
 export type AgentBootstrapHookContext = {
   workspaceDir: string;
   bootstrapFiles: WorkspaceBootstrapFile[];
-  cfg?: OpenClawConfig;
+  cfg?: Config;
   sessionKey?: string;
   sessionId?: string;
   agentId?: string;
@@ -179,3 +179,4 @@ export function isAgentBootstrapEvent(event: InternalHookEvent): event is AgentB
   }
   return Array.isArray(context.bootstrapFiles);
 }
+

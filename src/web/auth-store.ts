@@ -1,4 +1,4 @@
-import fsSync from "node:fs";
+﻿import fsSync from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { WebChannel } from "../utils.js";
@@ -194,8 +194,9 @@ export async function pickWebChannel(
   const hasWeb = await webAuthExists(authDir);
   if (!hasWeb) {
     throw new Error(
-      `No WhatsApp Web session found. Run \`${formatCliCommand("openclaw channels login --channel whatsapp --verbose")}\` to link.`,
+      `No WhatsApp Web session found. Run \`${formatCliCommand(" channels login --channel whatsapp --verbose")}\` to link.`,
     );
   }
   return choice;
 }
+

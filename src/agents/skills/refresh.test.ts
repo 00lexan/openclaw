@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 const watchMock = vi.fn(() => ({
   on: vi.fn(),
@@ -29,3 +29,4 @@ describe("ensureSkillsWatcher", () => {
     expect(ignored.some((re) => re.test("/tmp/.hidden/skills/index.md"))).toBe(false);
   });
 });
+

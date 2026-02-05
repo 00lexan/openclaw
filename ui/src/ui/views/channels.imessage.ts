@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { IMessageStatus } from "../types.ts";
 import type { ChannelsProps } from "./channels.types.ts";
 import { formatAgo } from "../format.ts";
@@ -47,7 +47,7 @@ export function renderIMessageCard(params: {
       ${
         imessage?.probe
           ? html`<div class="callout" style="margin-top: 12px;">
-            Probe ${imessage.probe.ok ? "ok" : "failed"} ·
+            Probe ${imessage.probe.ok ? "ok" : "failed"} Â·
             ${imessage.probe.error ?? ""}
           </div>`
           : nothing
@@ -63,3 +63,4 @@ export function renderIMessageCard(params: {
     </div>
   `;
 }
+

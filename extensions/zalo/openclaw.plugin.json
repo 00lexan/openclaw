@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "zalo",
   "channels": ["zalo"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

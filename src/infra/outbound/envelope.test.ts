@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { OutboundDeliveryJson } from "./format.js";
 import { buildOutboundResultEnvelope } from "./envelope.js";
 
@@ -62,3 +62,4 @@ describe("buildOutboundResultEnvelope", () => {
     expect(envelope).toEqual({ delivery });
   });
 });
+

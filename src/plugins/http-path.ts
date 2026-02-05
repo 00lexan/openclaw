@@ -1,4 +1,4 @@
-export function normalizePluginHttpPath(
+﻿export function normalizePluginHttpPath(
   path?: string | null,
   fallback?: string | null,
 ): string | null {
@@ -12,3 +12,4 @@ export function normalizePluginHttpPath(
   }
   return trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
 }
+

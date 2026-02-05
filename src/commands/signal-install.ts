@@ -1,4 +1,4 @@
-import { createWriteStream } from "node:fs";
+﻿import { createWriteStream } from "node:fs";
 import fs from "node:fs/promises";
 import { request } from "node:https";
 import os from "node:os";
@@ -121,7 +121,7 @@ export async function installSignalCli(runtime: RuntimeEnv): Promise<SignalInsta
   const apiUrl = "https://api.github.com/repos/AsamK/signal-cli/releases/latest";
   const response = await fetch(apiUrl, {
     headers: {
-      "User-Agent": "openclaw",
+      "User-Agent": "",
       Accept: "application/vnd.github+json",
     },
   });
@@ -147,10 +147,10 @@ export async function installSignalCli(runtime: RuntimeEnv): Promise<SignalInsta
     };
   }
 
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-signal-"));
+  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "-signal-"));
   const archivePath = path.join(tmpDir, assetName);
 
-  runtime.log(`Downloading signal-cli ${version} (${assetName})…`);
+  runtime.log(`Downloading signal-cli ${version} (${assetName})â€¦`);
   await downloadToFile(assetUrl, archivePath);
 
   const installRoot = path.join(CONFIG_DIR, "tools", "signal-cli", version);
@@ -180,3 +180,4 @@ export async function installSignalCli(runtime: RuntimeEnv): Promise<SignalInsta
 
   return { ok: true, cliPath, version };
 }
+

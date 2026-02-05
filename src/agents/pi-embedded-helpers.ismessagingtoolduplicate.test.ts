@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isMessagingToolDuplicate } from "./pi-embedded-helpers.js";
 import { DEFAULT_AGENTS_FILENAME } from "./workspace.js";
 
@@ -32,7 +32,7 @@ describe("isMessagingToolDuplicate", () => {
   });
   it("detects duplicates with emoji variations", () => {
     expect(
-      isMessagingToolDuplicate("Hello! 👋 This is a test message!", [
+      isMessagingToolDuplicate("Hello! ðŸ‘‹ This is a test message!", [
         "Hello! This is a test message!",
       ]),
     ).toBe(true);
@@ -59,3 +59,4 @@ describe("isMessagingToolDuplicate", () => {
     ).toBe(false);
   });
 });
+

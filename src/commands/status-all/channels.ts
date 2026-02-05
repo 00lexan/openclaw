@@ -1,11 +1,11 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import fs from "node:fs";
 import type {
   ChannelAccountSnapshot,
   ChannelId,
   ChannelPlugin,
 } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import { resolveChannelDefaultAccountId } from "../../channels/plugins/helpers.js";
 import { listChannelPlugins } from "../../channels/plugins/index.js";
 import { formatAge } from "./format.js";
@@ -40,7 +40,7 @@ function summarizeSources(sources: Array<string | undefined>): {
   }
   const parts = [...counts.entries()]
     .toSorted((a, b) => b[1] - a[1])
-    .map(([key, n]) => `${key}${n > 1 ? `×${n}` : ""}`);
+    .map(([key, n]) => `${key}${n > 1 ? `Ã—${n}` : ""}`);
   const label = parts.length > 0 ? parts.join("+") : "unknown";
   return { label, parts };
 }
@@ -67,14 +67,14 @@ function formatTokenHint(token: string, opts: { showSecrets: boolean }): string 
     return "empty";
   }
   if (!opts.showSecrets) {
-    return `sha256:${sha256HexPrefix(t)} · len ${t.length}`;
+    return `sha256:${sha256HexPrefix(t)} Â· len ${t.length}`;
   }
   const head = t.slice(0, 4);
   const tail = t.slice(-4);
   if (t.length <= 10) {
-    return `${t} · len ${t.length}`;
+    return `${t} Â· len ${t.length}`;
   }
-  return `${head}…${tail} · len ${t.length}`;
+  return `${head}â€¦${tail} Â· len ${t.length}`;
 }
 
 const formatAccountLabel = (params: { accountId: string; name?: string }) => {
@@ -88,7 +88,7 @@ const formatAccountLabel = (params: { accountId: string; name?: string }) => {
 const resolveAccountEnabled = (
   plugin: ChannelPlugin,
   account: unknown,
-  cfg: OpenClawConfig,
+  cfg: Config,
 ): boolean => {
   if (plugin.config.isEnabled) {
     return plugin.config.isEnabled(account, cfg);
@@ -100,7 +100,7 @@ const resolveAccountEnabled = (
 const resolveAccountConfigured = async (
   plugin: ChannelPlugin,
   account: unknown,
-  cfg: OpenClawConfig,
+  cfg: Config,
 ): Promise<boolean> => {
   if (plugin.config.isConfigured) {
     return await plugin.config.isConfigured(account, cfg);
@@ -112,7 +112,7 @@ const resolveAccountConfigured = async (
 const buildAccountSnapshot = (params: {
   plugin: ChannelPlugin;
   account: unknown;
-  cfg: OpenClawConfig;
+  cfg: Config;
   accountId: string;
   enabled: boolean;
   configured: boolean;
@@ -128,7 +128,7 @@ const buildAccountSnapshot = (params: {
 
 const formatAllowFrom = (params: {
   plugin: ChannelPlugin;
-  cfg: OpenClawConfig;
+  cfg: Config;
   accountId?: string | null;
   allowFrom: Array<string | number>;
 }) => {
@@ -144,7 +144,7 @@ const formatAllowFrom = (params: {
 
 const buildAccountNotes = (params: {
   plugin: ChannelPlugin;
-  cfg: OpenClawConfig;
+  cfg: Config;
   entry: ChannelAccountRow;
 }) => {
   const { plugin, cfg, entry } = params;
@@ -234,7 +234,7 @@ function collectMissingPaths(accounts: ChannelAccountRow[]): string[] {
 
 function summarizeTokenConfig(params: {
   plugin: ChannelPlugin;
-  cfg: OpenClawConfig;
+  cfg: Config;
   accounts: ChannelAccountRow[];
   showSecrets: boolean;
 }): { state: "ok" | "setup" | "warn" | null; detail: string | null } {
@@ -270,7 +270,7 @@ function summarizeTokenConfig(params: {
     if (partial.length > 0) {
       return {
         state: "warn",
-        detail: `partial tokens (need bot+app) · accounts ${partial.length}`,
+        detail: `partial tokens (need bot+app) Â· accounts ${partial.length}`,
       };
     }
 
@@ -294,7 +294,7 @@ function summarizeTokenConfig(params: {
     const hint = botHint || appHint ? ` (bot ${botHint || "?"}, app ${appHint || "?"})` : "";
     return {
       state: "ok",
-      detail: `tokens ok (bot ${botSources.label}, app ${appSources.label})${hint} · accounts ${ready.length}/${enabled.length || 1}`,
+      detail: `tokens ok (bot ${botSources.label}, app ${appSources.label})${hint} Â· accounts ${ready.length}/${enabled.length || 1}`,
     };
   }
 
@@ -314,14 +314,14 @@ function summarizeTokenConfig(params: {
     : "";
   return {
     state: "ok",
-    detail: `token ${sources.label}${hint} · accounts ${ready.length}/${enabled.length || 1}`,
+    detail: `token ${sources.label}${hint} Â· accounts ${ready.length}/${enabled.length || 1}`,
   };
 }
 
 // `status --all` channels table.
 // Keep this generic: channel-specific rules belong in the channel plugin.
 export async function buildChannelsTable(
-  cfg: OpenClawConfig,
+  cfg: Config,
   opts?: { showSecrets?: boolean },
 ): Promise<{
   rows: ChannelRow[];
@@ -445,7 +445,7 @@ export async function buildChannelsTable(
         if (accounts.length > 1 || plugin.meta.forceAccountBinding) {
           extra.push(`accounts ${accounts.length || 1}`);
         }
-        return extra.length > 0 ? `${base} · ${extra.join(" · ")}` : base;
+        return extra.length > 0 ? `${base} Â· ${extra.join(" Â· ")}` : base;
       }
 
       if (tokenSummary.detail) {
@@ -457,7 +457,7 @@ export async function buildChannelsTable(
         if (accounts.length <= 1 && !plugin.meta.forceAccountBinding) {
           return head;
         }
-        return `${head} · accounts ${configuredAccounts.length}/${enabledAccounts.length || 1}`;
+        return `${head} Â· accounts ${configuredAccounts.length}/${enabledAccounts.length || 1}`;
       }
 
       const reason =
@@ -487,7 +487,7 @@ export async function buildChannelsTable(
               name: entry.snapshot.name,
             }),
             Status: entry.enabled ? "OK" : "WARN",
-            Notes: notes.join(" · "),
+            Notes: notes.join(" Â· "),
           };
         }),
       });
@@ -499,3 +499,4 @@ export async function buildChannelsTable(
     details,
   };
 }
+

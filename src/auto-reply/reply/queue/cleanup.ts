@@ -1,4 +1,4 @@
-import { resolveEmbeddedSessionLane } from "../../../agents/pi-embedded.js";
+﻿import { resolveEmbeddedSessionLane } from "../../../agents/pi-embedded.js";
 import { clearCommandLane } from "../../../process/command-queue.js";
 import { clearFollowupQueue } from "./state.js";
 
@@ -27,3 +27,4 @@ export function clearSessionQueues(keys: Array<string | undefined>): ClearSessio
 
   return { followupCleared, laneCleared, keys: clearedKeys };
 }
+

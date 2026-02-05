@@ -1,4 +1,4 @@
-import { redactToolDetail } from "../logging/redact.js";
+﻿import { redactToolDetail } from "../logging/redact.js";
 import { shortenHomeInString } from "../utils.js";
 import TOOL_DISPLAY_JSON from "./tool-display.json" with { type: "json" };
 
@@ -31,7 +31,7 @@ export type ToolDisplay = {
 };
 
 const TOOL_DISPLAY_CONFIG = TOOL_DISPLAY_JSON as ToolDisplayConfig;
-const FALLBACK = TOOL_DISPLAY_CONFIG.fallback ?? { emoji: "🧩" };
+const FALLBACK = TOOL_DISPLAY_CONFIG.fallback ?? { emoji: "ðŸ§©" };
 const TOOL_MAP = TOOL_DISPLAY_CONFIG.tools ?? {};
 const DETAIL_LABEL_OVERRIDES: Record<string, string> = {
   agentId: "agent",
@@ -93,7 +93,7 @@ function coerceDisplayValue(value: unknown): string | undefined {
     if (!firstLine) {
       return undefined;
     }
-    return firstLine.length > 160 ? `${firstLine.slice(0, 157)}…` : firstLine;
+    return firstLine.length > 160 ? `${firstLine.slice(0, 157)}â€¦` : firstLine;
   }
   if (typeof value === "boolean") {
     return value ? "true" : undefined;
@@ -112,7 +112,7 @@ function coerceDisplayValue(value: unknown): string | undefined {
       return undefined;
     }
     const preview = values.slice(0, 3).join(", ");
-    return values.length > 3 ? `${preview}…` : preview;
+    return values.length > 3 ? `${preview}â€¦` : preview;
   }
   return undefined;
 }
@@ -180,7 +180,7 @@ function resolveDetailFromKeys(args: unknown, keys: string[]): string | undefine
   return unique
     .slice(0, MAX_DETAIL_ENTRIES)
     .map((entry) => `${entry.label} ${entry.value}`)
-    .join(" · ");
+    .join(" Â· ");
 }
 
 function resolveReadDetail(args: unknown): string | undefined {
@@ -227,7 +227,7 @@ export function resolveToolDisplay(params: {
   const name = normalizeToolName(params.name);
   const key = name.toLowerCase();
   const spec = TOOL_MAP[key];
-  const emoji = spec?.emoji ?? FALLBACK.emoji ?? "🧩";
+  const emoji = spec?.emoji ?? FALLBACK.emoji ?? "ðŸ§©";
   const title = spec?.title ?? defaultTitle(name);
   const label = spec?.label ?? title;
   const actionRaw =
@@ -280,7 +280,7 @@ export function formatToolDetail(display: ToolDisplay): string | undefined {
   if (parts.length === 0) {
     return undefined;
   }
-  return parts.join(" · ");
+  return parts.join(" Â· ");
 }
 
 export function formatToolSummary(display: ToolDisplay): string {
@@ -289,3 +289,4 @@ export function formatToolSummary(display: ToolDisplay): string {
     ? `${display.emoji} ${display.label}: ${detail}`
     : `${display.emoji} ${display.label}`;
 }
+

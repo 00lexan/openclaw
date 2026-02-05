@@ -1,4 +1,4 @@
-export type GatewayWsLogStyle = "auto" | "full" | "compact";
+﻿export type GatewayWsLogStyle = "auto" | "full" | "compact";
 
 let gatewayWsLogStyle: GatewayWsLogStyle = "auto";
 
@@ -11,3 +11,4 @@ export function getGatewayWsLogStyle(): GatewayWsLogStyle {
 }
 
 export const DEFAULT_WS_SLOW_MS = 50;
+

@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Directive syntax for /think + /verbose and how they affect model reasoning"
 read_when:
   - Adjusting thinking or verbose directive parsing or defaults
@@ -11,11 +11,11 @@ title: "Thinking Levels"
 
 - Inline directive in any inbound body: `/t <level>`, `/think:<level>`, or `/thinking <level>`.
 - Levels (aliases): `off | minimal | low | medium | high | xhigh` (GPT-5.2 + Codex models only)
-  - minimal → “think”
-  - low → “think hard”
-  - medium → “think harder”
-  - high → “ultrathink” (max budget)
-  - xhigh → “ultrathink+” (GPT-5.2 + Codex models only)
+  - minimal â†’ â€œthinkâ€
+  - low â†’ â€œthink hardâ€
+  - medium â†’ â€œthink harderâ€
+  - high â†’ â€œultrathinkâ€ (max budget)
+  - xhigh â†’ â€œultrathink+â€ (GPT-5.2 + Codex models only)
   - `highest`, `max` map to `high`.
 - Provider notes:
   - Z.AI (`zai/*`) only supports binary thinking (`on`/`off`). Any non-`off` level is treated as `on` (mapped to `low`).
@@ -71,3 +71,4 @@ title: "Thinking Levels"
 - The web chat thinking selector mirrors the session's stored level from the inbound session store/config when the page loads.
 - Picking another level applies only to the next message (`thinkingOnce`); after sending, the selector snaps back to the stored session level.
 - To change the session default, send a `/think:<level>` directive (as before); the selector will reflect it after the next reload.
+

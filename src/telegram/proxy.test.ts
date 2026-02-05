@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 const { ProxyAgent, undiciFetch, proxyAgentSpy, getLastAgent } = vi.hoisted(() => {
   const undiciFetch = vi.fn();
@@ -43,3 +43,4 @@ describe("makeProxyFetch", () => {
     );
   });
 });
+

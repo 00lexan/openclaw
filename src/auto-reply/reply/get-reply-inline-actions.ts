@@ -1,5 +1,5 @@
-import type { SkillCommandSpec } from "../../agents/skills.js";
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { SkillCommandSpec } from "../../agents/skills.js";
+import type { Config } from "../../config/config.js";
 import type { SessionEntry } from "../../config/sessions.js";
 import type { MsgContext, TemplateContext } from "../templating.js";
 import type { ElevatedLevel, ReasoningLevel, ThinkLevel, VerboseLevel } from "../thinking.js";
@@ -7,7 +7,7 @@ import type { GetReplyOptions, ReplyPayload } from "../types.js";
 import type { InlineDirectives } from "./directive-handling.js";
 import type { createModelSelectionState } from "./model-selection.js";
 import type { TypingController } from "./typing.js";
-import { createOpenClawTools } from "../../agents/openclaw-tools.js";
+import { createTools } from "../../agents/-tools.js";
 import { getChannelDock } from "../../channels/dock.js";
 import { logVerbose } from "../../globals.js";
 import { resolveGatewayMessageChannel } from "../../utils/message-channel.js";
@@ -57,7 +57,7 @@ function extractTextFromToolResult(result: any): string | null {
 export async function handleInlineActions(params: {
   ctx: MsgContext;
   sessionCtx: TemplateContext;
-  cfg: OpenClawConfig;
+  cfg: Config;
   agentId: string;
   agentDir?: string;
   sessionEntry?: SessionEntry;
@@ -171,7 +171,7 @@ export async function handleInlineActions(params: {
         resolveGatewayMessageChannel(ctx.Provider) ??
         undefined;
 
-      const tools = createOpenClawTools({
+      const tools = createTools({
         agentSessionKey: sessionKey,
         agentChannel: channel,
         agentAccountId: (ctx as { AccountId?: string }).AccountId,
@@ -185,7 +185,7 @@ export async function handleInlineActions(params: {
       const tool = tools.find((candidate) => candidate.name === dispatch.toolName);
       if (!tool) {
         typing.cleanup();
-        return { kind: "reply", reply: { text: `❌ Tool not available: ${dispatch.toolName}` } };
+        return { kind: "reply", reply: { text: `âŒ Tool not available: ${dispatch.toolName}` } };
       }
 
       const toolCallId = `cmd_${Date.now()}_${Math.random().toString(16).slice(2)}`;
@@ -196,13 +196,13 @@ export async function handleInlineActions(params: {
           skillName: skillInvocation.command.skillName,
           // oxlint-disable-next-line typescript/no-explicit-any
         } as any);
-        const text = extractTextFromToolResult(result) ?? "✅ Done.";
+        const text = extractTextFromToolResult(result) ?? "âœ… Done.";
         typing.cleanup();
         return { kind: "reply", reply: { text } };
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
         typing.cleanup();
-        return { kind: "reply", reply: { text: `❌ ${message}` } };
+        return { kind: "reply", reply: { text: `âŒ ${message}` } };
       }
     }
 
@@ -382,3 +382,4 @@ export async function handleInlineActions(params: {
     abortedLastRun,
   };
 }
+

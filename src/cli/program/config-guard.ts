@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../../runtime.js";
+﻿import type { RuntimeEnv } from "../../runtime.js";
 import { loadAndMaybeMigrateDoctorConfig } from "../../commands/doctor-config-flow.js";
 import { readConfigFileSnapshot } from "../../config/config.js";
 import { colorize, isRich, theme } from "../../terminal/theme.js";
@@ -74,9 +74,10 @@ export async function ensureConfigReady(params: {
   }
   params.runtime.error("");
   params.runtime.error(
-    `${muted("Run:")} ${commandText(formatCliCommand("openclaw doctor --fix"))}`,
+    `${muted("Run:")} ${commandText(formatCliCommand(" doctor --fix"))}`,
   );
   if (!allowInvalid) {
     params.runtime.exit(1);
   }
 }
+

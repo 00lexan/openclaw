@@ -1,4 +1,4 @@
-export type AllowlistMatchSource =
+﻿export type AllowlistMatchSource =
   | "wildcard"
   | "id"
   | "name"
@@ -21,3 +21,4 @@ export function formatAllowlistMatchMeta(
 ): string {
   return `matchKey=${match?.matchKey ?? "none"} matchSource=${match?.matchSource ?? "none"}`;
 }
+

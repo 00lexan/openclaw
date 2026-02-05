@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Tests for status.ts module
  *
  * Tests cover:
@@ -268,3 +268,4 @@ describe("status", () => {
     });
   });
 });
+

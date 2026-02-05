@@ -1,4 +1,4 @@
-export type TtsProvider = "elevenlabs" | "openai" | "edge";
+﻿export type TtsProvider = "elevenlabs" | "openai" | "edge";
 
 export type TtsMode = "final" | "all";
 
@@ -80,3 +80,4 @@ export type TtsConfig = {
   /** API request timeout (ms). */
   timeoutMs?: number;
 };
+

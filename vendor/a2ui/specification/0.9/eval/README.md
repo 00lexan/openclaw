@@ -1,4 +1,4 @@
-# Genkit Eval Framework for UI generation
+﻿# Genkit Eval Framework for UI generation
 
 This is for evaluating A2UI (v0.9) against various LLMs.
 
@@ -77,3 +77,4 @@ pnpm run eval -- --runs-per-prompt=5 --clean-results
 The framework includes a two-tiered rate limiting system:
 1. **Proactive Limiting**: Locally tracks token and request usage to stay within configured limits (defined in `src/models.ts`).
 2. **Reactive Circuit Breaker**: Automatically pauses requests to a model if a `RESOURCE_EXHAUSTED` (429) error is received, resuming only after the requested retry duration.
+

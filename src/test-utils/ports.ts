@@ -1,4 +1,4 @@
-import { createServer } from "node:net";
+﻿import { createServer } from "node:net";
 import { isMainThread, threadId } from "node:worker_threads";
 
 async function isPortFree(port: number): Promise<boolean> {
@@ -90,3 +90,4 @@ export async function getDeterministicFreePortBlock(params?: {
 
   throw new Error("failed to acquire a free port block");
 }
+

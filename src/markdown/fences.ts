@@ -1,4 +1,4 @@
-export type FenceSpan = {
+﻿export type FenceSpan = {
   start: number;
   end: number;
   openLine: string;
@@ -79,3 +79,4 @@ export function findFenceSpanAt(spans: FenceSpan[], index: number): FenceSpan | 
 export function isSafeFenceBreak(spans: FenceSpan[], index: number): boolean {
   return !findFenceSpanAt(spans, index);
 }
+

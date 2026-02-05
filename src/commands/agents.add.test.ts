@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { RuntimeEnv } from "../runtime.js";
 
 const configMocks = vi.hoisted(() => ({
@@ -24,7 +24,7 @@ const runtime: RuntimeEnv = {
 };
 
 const baseSnapshot = {
-  path: "/tmp/openclaw.json",
+  path: "/tmp/.json",
   exists: true,
   raw: "{}",
   parsed: {},
@@ -65,3 +65,4 @@ describe("agents add command", () => {
     expect(configMocks.writeConfigFile).not.toHaveBeenCalled();
   });
 });
+

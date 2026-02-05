@@ -1,4 +1,4 @@
-import type { GatewayServiceRuntime } from "./service-runtime.js";
+﻿import type { GatewayServiceRuntime } from "./service-runtime.js";
 import {
   installLaunchAgent,
   isLaunchAgentLoaded,
@@ -153,3 +153,4 @@ export function resolveGatewayService(): GatewayService {
 
   throw new Error(`Gateway service install not supported on ${process.platform}`);
 }
+

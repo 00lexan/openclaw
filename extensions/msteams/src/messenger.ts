@@ -1,4 +1,4 @@
-import {
+﻿import {
   type ChunkMode,
   isSilentReplyText,
   loadWebMedia,
@@ -6,7 +6,7 @@ import {
   type MSTeamsReplyStyle,
   type ReplyPayload,
   SILENT_REPLY_TOKEN,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { MSTeamsAccessTokenProvider } from "./attachments/types.js";
 import type { StoredConversationReference } from "./conversation-store.js";
 import { classifyMSTeamsSendError } from "./errors.js";
@@ -358,7 +358,7 @@ async function buildActivity(
         });
 
         // Bot Framework doesn't support "reference" attachment type for sending
-        const fileLink = `📎 [${uploaded.name}](${uploaded.shareUrl})`;
+        const fileLink = `ðŸ“Ž [${uploaded.name}](${uploaded.shareUrl})`;
         activity.text = msg.text ? `${msg.text}\n\n${fileLink}` : fileLink;
         return activity;
       }
@@ -493,3 +493,4 @@ export async function sendMSTeamsMessages(params: {
   });
   return messageIds;
 }
+

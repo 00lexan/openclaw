@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { buildWaitingStatusMessage, pickWaitingPhrase } from "./tui-waiting.js";
 
 const theme = {
@@ -39,3 +39,4 @@ describe("tui-waiting", () => {
     expect(msg).toContain("<d>");
   });
 });
+

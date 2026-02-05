@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 想要使用当前令牌打开控制界面
-  - 想要打印 URL 而不启动浏览器
-summary: "`openclaw dashboard` 的 CLI 参考（打开控制界面）"
+  - æƒ³è¦ä½¿ç”¨å½“å‰ä»¤ç‰Œæ‰“å¼€æŽ§åˆ¶ç•Œé¢
+  - æƒ³è¦æ‰“å° URL è€Œä¸å¯åŠ¨æµè§ˆå™¨
+summary: "` dashboard` çš„ CLI å‚è€ƒï¼ˆæ‰“å¼€æŽ§åˆ¶ç•Œé¢ï¼‰"
 title: dashboard
 x-i18n:
   generated_at: "2026-02-01T19:58:50Z"
@@ -13,11 +13,12 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw dashboard`
+# ` dashboard`
 
-使用当前认证信息打开控制界面。
+ä½¿ç”¨å½“å‰è®¤è¯ä¿¡æ¯æ‰“å¼€æŽ§åˆ¶ç•Œé¢ã€‚
 
 ```bash
-openclaw dashboard
-openclaw dashboard --no-open
+ dashboard
+ dashboard --no-open
 ```
+

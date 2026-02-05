@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { monitorTelegramProvider } from "./monitor.js";
 
 type MockCtx = {
@@ -188,3 +188,4 @@ describe("monitorTelegramProvider (grammY)", () => {
     await expect(monitorTelegramProvider({ token: "tok" })).rejects.toThrow("bad token");
   });
 });
+

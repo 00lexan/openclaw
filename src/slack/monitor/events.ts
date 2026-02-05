@@ -1,4 +1,4 @@
-import type { ResolvedSlackAccount } from "../accounts.js";
+﻿import type { ResolvedSlackAccount } from "../accounts.js";
 import type { SlackMonitorContext } from "./context.js";
 import type { SlackMessageHandler } from "./message-handler.js";
 import { registerSlackChannelEvents } from "./events/channels.js";
@@ -21,3 +21,4 @@ export function registerSlackMonitorEvents(params: {
   registerSlackChannelEvents({ ctx: params.ctx });
   registerSlackPinEvents({ ctx: params.ctx });
 }
+

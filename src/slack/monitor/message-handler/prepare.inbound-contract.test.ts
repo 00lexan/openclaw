@@ -1,6 +1,6 @@
-import type { App } from "@slack/bolt";
+﻿import type { App } from "@slack/bolt";
 import { describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "../../../config/config.js";
+import type { Config } from "../../../config/config.js";
 import type { RuntimeEnv } from "../../../runtime.js";
 import type { ResolvedSlackAccount } from "../../accounts.js";
 import type { SlackMessageEvent } from "../../types.js";
@@ -13,7 +13,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
     const slackCtx = createSlackMonitorContext({
       cfg: {
         channels: { slack: { enabled: true } },
-      } as OpenClawConfig,
+      } as Config,
       accountId: "default",
       botToken: "token",
       app: { client: {} } as App,
@@ -39,7 +39,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
       threadInheritParent: false,
       slashCommand: {
         enabled: false,
-        name: "openclaw",
+        name: "",
         sessionPrefix: "slack:slash",
         ephemeral: true,
       },
@@ -87,7 +87,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
             enabled: true,
           },
         },
-      } as OpenClawConfig,
+      } as Config,
       accountId: "default",
       botToken: "token",
       app: { client: {} } as App,
@@ -116,7 +116,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
       threadInheritParent: false,
       slashCommand: {
         enabled: false,
-        name: "openclaw",
+        name: "",
         sessionPrefix: "slack:slash",
         ephemeral: true,
       },
@@ -171,7 +171,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
     const slackCtx = createSlackMonitorContext({
       cfg: {
         channels: { slack: { enabled: true, replyToMode: "all" } },
-      } as OpenClawConfig,
+      } as Config,
       accountId: "default",
       botToken: "token",
       app: { client: {} } as App,
@@ -197,7 +197,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
       threadInheritParent: false,
       slashCommand: {
         enabled: false,
-        name: "openclaw",
+        name: "",
         sessionPrefix: "slack:slash",
         ephemeral: true,
       },
@@ -236,3 +236,4 @@ describe("slack prepareSlackMessage inbound contract", () => {
     expect(prepared!.ctxPayload.MessageThreadId).toBe("1.000");
   });
 });
+

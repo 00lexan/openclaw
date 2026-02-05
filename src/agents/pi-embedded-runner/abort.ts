@@ -1,4 +1,4 @@
-export function isAbortError(err: unknown): boolean {
+﻿export function isAbortError(err: unknown): boolean {
   if (!err || typeof err !== "object") {
     return false;
   }
@@ -10,3 +10,4 @@ export function isAbortError(err: unknown): boolean {
     "message" in err && typeof err.message === "string" ? err.message.toLowerCase() : "";
   return message.includes("aborted");
 }
+

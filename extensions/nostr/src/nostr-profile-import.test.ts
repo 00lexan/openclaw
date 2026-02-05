@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Tests for Nostr Profile Import
  */
 
@@ -117,3 +117,4 @@ describe("nostr-profile-import", () => {
     });
   });
 });
+

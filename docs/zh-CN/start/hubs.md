@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想要一份完整的文档地图
-summary: 链接到每篇 OpenClaw 文档的导航中心
-title: 文档导航中心
+  - ä½ æƒ³è¦ä¸€ä»½å®Œæ•´çš„æ–‡æ¡£åœ°å›¾
+summary: é“¾æŽ¥åˆ°æ¯ç¯‡  æ–‡æ¡£çš„å¯¼èˆªä¸­å¿ƒ
+title: æ–‡æ¡£å¯¼èˆªä¸­å¿ƒ
 x-i18n:
   generated_at: "2026-02-04T17:55:29Z"
   model: claude-opus-4-5
@@ -12,189 +12,190 @@ x-i18n:
   workflow: 15
 ---
 
-# 文档导航中心
+# æ–‡æ¡£å¯¼èˆªä¸­å¿ƒ
 
-使用这些导航中心发现每一个页面，包括深入解析和参考文档——它们不一定出现在左侧导航栏中。
+ä½¿ç”¨è¿™äº›å¯¼èˆªä¸­å¿ƒå‘çŽ°æ¯ä¸€ä¸ªé¡µé¢ï¼ŒåŒ…æ‹¬æ·±å…¥è§£æžå’Œå‚è€ƒæ–‡æ¡£â€”â€”å®ƒä»¬ä¸ä¸€å®šå‡ºçŽ°åœ¨å·¦ä¾§å¯¼èˆªæ ä¸­ã€‚
 
-## 从这里开始
+## ä»Žè¿™é‡Œå¼€å§‹
 
-- [索引](/)
-- [入门指南](/start/getting-started)
-- [快速开始](/start/quickstart)
-- [新手引导](/start/onboarding)
-- [向导](/start/wizard)
-- [安装配置](/start/setup)
-- [仪表盘（本地 Gateway 网关）](http://127.0.0.1:18789/)
-- [帮助](/help)
-- [文档目录](/start/docs-directory)
-- [配置](/gateway/configuration)
-- [配置示例](/gateway/configuration-examples)
-- [OpenClaw 助手](/start/openclaw)
-- [展示](/start/showcase)
-- [背景故事](/start/lore)
+- [ç´¢å¼•](/)
+- [å…¥é—¨æŒ‡å—](/start/getting-started)
+- [å¿«é€Ÿå¼€å§‹](/start/quickstart)
+- [æ–°æ‰‹å¼•å¯¼](/start/onboarding)
+- [å‘å¯¼](/start/wizard)
+- [å®‰è£…é…ç½®](/start/setup)
+- [ä»ªè¡¨ç›˜ï¼ˆæœ¬åœ° Gateway ç½‘å…³ï¼‰](http://127.0.0.1:18789/)
+- [å¸®åŠ©](/help)
+- [æ–‡æ¡£ç›®å½•](/start/docs-directory)
+- [é…ç½®](/gateway/configuration)
+- [é…ç½®ç¤ºä¾‹](/gateway/configuration-examples)
+- [ åŠ©æ‰‹](/start/)
+- [å±•ç¤º](/start/showcase)
+- [èƒŒæ™¯æ•…äº‹](/start/lore)
 
-## 安装 + 更新
+## å®‰è£… + æ›´æ–°
 
 - [Docker](/install/docker)
 - [Nix](/install/nix)
-- [更新 / 回滚](/install/updating)
-- [Bun 工作流（实验性）](/install/bun)
+- [æ›´æ–° / å›žæ»š](/install/updating)
+- [Bun å·¥ä½œæµï¼ˆå®žéªŒæ€§ï¼‰](/install/bun)
 
-## 核心概念
+## æ ¸å¿ƒæ¦‚å¿µ
 
-- [架构](/concepts/architecture)
-- [功能](/concepts/features)
-- [网络中心](/network)
-- [智能体运行时](/concepts/agent)
-- [智能体工作区](/concepts/agent-workspace)
-- [记忆](/concepts/memory)
-- [智能体循环](/concepts/agent-loop)
-- [流式传输 + 分块](/concepts/streaming)
-- [多智能体路由](/concepts/multi-agent)
-- [压缩](/concepts/compaction)
-- [会话](/concepts/session)
-- [会话（别名）](/concepts/sessions)
-- [会话修剪](/concepts/session-pruning)
-- [会话工具](/concepts/session-tool)
-- [队列](/concepts/queue)
-- [斜杠命令](/tools/slash-commands)
-- [RPC 适配器](/reference/rpc)
-- [TypeBox 模式](/concepts/typebox)
-- [时区处理](/concepts/timezone)
-- [在线状态](/concepts/presence)
-- [设备发现 + 传输协议](/gateway/discovery)
+- [æž¶æž„](/concepts/architecture)
+- [åŠŸèƒ½](/concepts/features)
+- [ç½‘ç»œä¸­å¿ƒ](/network)
+- [æ™ºèƒ½ä½“è¿è¡Œæ—¶](/concepts/agent)
+- [æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)
+- [è®°å¿†](/concepts/memory)
+- [æ™ºèƒ½ä½“å¾ªçŽ¯](/concepts/agent-loop)
+- [æµå¼ä¼ è¾“ + åˆ†å—](/concepts/streaming)
+- [å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)
+- [åŽ‹ç¼©](/concepts/compaction)
+- [ä¼šè¯](/concepts/session)
+- [ä¼šè¯ï¼ˆåˆ«åï¼‰](/concepts/sessions)
+- [ä¼šè¯ä¿®å‰ª](/concepts/session-pruning)
+- [ä¼šè¯å·¥å…·](/concepts/session-tool)
+- [é˜Ÿåˆ—](/concepts/queue)
+- [æ–œæ å‘½ä»¤](/tools/slash-commands)
+- [RPC é€‚é…å™¨](/reference/rpc)
+- [TypeBox æ¨¡å¼](/concepts/typebox)
+- [æ—¶åŒºå¤„ç†](/concepts/timezone)
+- [åœ¨çº¿çŠ¶æ€](/concepts/presence)
+- [è®¾å¤‡å‘çŽ° + ä¼ è¾“åè®®](/gateway/discovery)
 - [Bonjour](/gateway/bonjour)
-- [渠道路由](/concepts/channel-routing)
-- [群组](/concepts/groups)
-- [群组消息](/concepts/group-messages)
-- [模型故障转移](/concepts/model-failover)
+- [æ¸ é“è·¯ç”±](/concepts/channel-routing)
+- [ç¾¤ç»„](/concepts/groups)
+- [ç¾¤ç»„æ¶ˆæ¯](/concepts/group-messages)
+- [æ¨¡åž‹æ•…éšœè½¬ç§»](/concepts/model-failover)
 - [OAuth](/concepts/oauth)
 
-## 提供商 + 入口
+## æä¾›å•† + å…¥å£
 
-- [聊天渠道中心](/channels)
-- [模型提供商中心](/providers/models)
+- [èŠå¤©æ¸ é“ä¸­å¿ƒ](/channels)
+- [æ¨¡åž‹æä¾›å•†ä¸­å¿ƒ](/providers/models)
 - [WhatsApp](/channels/whatsapp)
 - [Telegram](/channels/telegram)
-- [Telegram（grammY 注意事项）](/channels/grammy)
+- [Telegramï¼ˆgrammY æ³¨æ„äº‹é¡¹ï¼‰](/channels/grammy)
 - [Slack](/channels/slack)
 - [Discord](/channels/discord)
-- [Mattermost](/channels/mattermost)（插件）
+- [Mattermost](/channels/mattermost)ï¼ˆæ’ä»¶ï¼‰
 - [Signal](/channels/signal)
 - [BlueBubbles (iMessage)](/channels/bluebubbles)
-- [iMessage（旧版）](/channels/imessage)
-- [位置解析](/channels/location)
+- [iMessageï¼ˆæ—§ç‰ˆï¼‰](/channels/imessage)
+- [ä½ç½®è§£æž](/channels/location)
 - [WebChat](/web/webchat)
 - [Webhooks](/automation/webhook)
 - [Gmail Pub/Sub](/automation/gmail-pubsub)
 
-## Gateway 网关 + 运维
+## Gateway ç½‘å…³ + è¿ç»´
 
-- [Gateway 网关运维手册](/gateway)
-- [网络模型](/gateway/network-model)
-- [Gateway 网关配对](/gateway/pairing)
-- [Gateway 网关锁](/gateway/gateway-lock)
-- [后台进程](/gateway/background-process)
-- [健康检查](/gateway/health)
-- [心跳](/gateway/heartbeat)
+- [Gateway ç½‘å…³è¿ç»´æ‰‹å†Œ](/gateway)
+- [ç½‘ç»œæ¨¡åž‹](/gateway/network-model)
+- [Gateway ç½‘å…³é…å¯¹](/gateway/pairing)
+- [Gateway ç½‘å…³é”](/gateway/gateway-lock)
+- [åŽå°è¿›ç¨‹](/gateway/background-process)
+- [å¥åº·æ£€æŸ¥](/gateway/health)
+- [å¿ƒè·³](/gateway/heartbeat)
 - [Doctor](/gateway/doctor)
-- [日志](/gateway/logging)
-- [沙箱隔离](/gateway/sandboxing)
-- [仪表盘](/web/dashboard)
-- [控制界面](/web/control-ui)
-- [远程访问](/gateway/remote)
-- [远程 Gateway 网关 README](/gateway/remote-gateway-readme)
+- [æ—¥å¿—](/gateway/logging)
+- [æ²™ç®±éš”ç¦»](/gateway/sandboxing)
+- [ä»ªè¡¨ç›˜](/web/dashboard)
+- [æŽ§åˆ¶ç•Œé¢](/web/control-ui)
+- [è¿œç¨‹è®¿é—®](/gateway/remote)
+- [è¿œç¨‹ Gateway ç½‘å…³ README](/gateway/remote-gateway-readme)
 - [Tailscale](/gateway/tailscale)
-- [安全](/gateway/security)
-- [故障排除](/gateway/troubleshooting)
+- [å®‰å…¨](/gateway/security)
+- [æ•…éšœæŽ’é™¤](/gateway/troubleshooting)
 
-## 工具 + 自动化
+## å·¥å…· + è‡ªåŠ¨åŒ–
 
-- [工具概览](/tools)
+- [å·¥å…·æ¦‚è§ˆ](/tools)
 - [OpenProse](/prose)
-- [CLI 参考](/cli)
-- [Exec 工具](/tools/exec)
-- [提权模式](/tools/elevated)
-- [定时任务](/automation/cron-jobs)
-- [定时任务 vs 心跳](/automation/cron-vs-heartbeat)
-- [思考 + 详细输出](/tools/thinking)
-- [模型](/concepts/models)
-- [子智能体](/tools/subagents)
+- [CLI å‚è€ƒ](/cli)
+- [Exec å·¥å…·](/tools/exec)
+- [ææƒæ¨¡å¼](/tools/elevated)
+- [å®šæ—¶ä»»åŠ¡](/automation/cron-jobs)
+- [å®šæ—¶ä»»åŠ¡ vs å¿ƒè·³](/automation/cron-vs-heartbeat)
+- [æ€è€ƒ + è¯¦ç»†è¾“å‡º](/tools/thinking)
+- [æ¨¡åž‹](/concepts/models)
+- [å­æ™ºèƒ½ä½“](/tools/subagents)
 - [Agent send CLI](/tools/agent-send)
-- [终端界面](/tui)
-- [浏览器控制](/tools/browser)
-- [浏览器（Linux 故障排除）](/tools/browser-linux-troubleshooting)
-- [轮询](/automation/poll)
+- [ç»ˆç«¯ç•Œé¢](/tui)
+- [æµè§ˆå™¨æŽ§åˆ¶](/tools/browser)
+- [æµè§ˆå™¨ï¼ˆLinux æ•…éšœæŽ’é™¤ï¼‰](/tools/browser-linux-troubleshooting)
+- [è½®è¯¢](/automation/poll)
 
-## 节点、媒体、语音
+## èŠ‚ç‚¹ã€åª’ä½“ã€è¯­éŸ³
 
-- [节点概览](/nodes)
-- [摄像头](/nodes/camera)
-- [图片](/nodes/images)
-- [音频](/nodes/audio)
-- [位置命令](/nodes/location-command)
-- [语音唤醒](/nodes/voicewake)
-- [对话模式](/nodes/talk)
+- [èŠ‚ç‚¹æ¦‚è§ˆ](/nodes)
+- [æ‘„åƒå¤´](/nodes/camera)
+- [å›¾ç‰‡](/nodes/images)
+- [éŸ³é¢‘](/nodes/audio)
+- [ä½ç½®å‘½ä»¤](/nodes/location-command)
+- [è¯­éŸ³å”¤é†’](/nodes/voicewake)
+- [å¯¹è¯æ¨¡å¼](/nodes/talk)
 
-## 平台
+## å¹³å°
 
-- [平台概览](/platforms)
+- [å¹³å°æ¦‚è§ˆ](/platforms)
 - [macOS](/platforms/macos)
 - [iOS](/platforms/ios)
 - [Android](/platforms/android)
 - [Windows (WSL2)](/platforms/windows)
 - [Linux](/platforms/linux)
-- [Web 界面](/web)
+- [Web ç•Œé¢](/web)
 
-## macOS 配套应用（高级）
+## macOS é…å¥—åº”ç”¨ï¼ˆé«˜çº§ï¼‰
 
-- [macOS 开发环境配置](/platforms/mac/dev-setup)
-- [macOS 菜单栏](/platforms/mac/menu-bar)
-- [macOS 语音唤醒](/platforms/mac/voicewake)
-- [macOS 语音悬浮窗](/platforms/mac/voice-overlay)
+- [macOS å¼€å‘çŽ¯å¢ƒé…ç½®](/platforms/mac/dev-setup)
+- [macOS èœå•æ ](/platforms/mac/menu-bar)
+- [macOS è¯­éŸ³å”¤é†’](/platforms/mac/voicewake)
+- [macOS è¯­éŸ³æ‚¬æµ®çª—](/platforms/mac/voice-overlay)
 - [macOS WebChat](/platforms/mac/webchat)
 - [macOS Canvas](/platforms/mac/canvas)
-- [macOS 子进程](/platforms/mac/child-process)
-- [macOS 健康检查](/platforms/mac/health)
-- [macOS 图标](/platforms/mac/icon)
-- [macOS 日志](/platforms/mac/logging)
-- [macOS 权限](/platforms/mac/permissions)
-- [macOS 远程](/platforms/mac/remote)
-- [macOS 签名](/platforms/mac/signing)
-- [macOS 发布](/platforms/mac/release)
-- [macOS Gateway 网关 (launchd)](/platforms/mac/bundled-gateway)
+- [macOS å­è¿›ç¨‹](/platforms/mac/child-process)
+- [macOS å¥åº·æ£€æŸ¥](/platforms/mac/health)
+- [macOS å›¾æ ‡](/platforms/mac/icon)
+- [macOS æ—¥å¿—](/platforms/mac/logging)
+- [macOS æƒé™](/platforms/mac/permissions)
+- [macOS è¿œç¨‹](/platforms/mac/remote)
+- [macOS ç­¾å](/platforms/mac/signing)
+- [macOS å‘å¸ƒ](/platforms/mac/release)
+- [macOS Gateway ç½‘å…³ (launchd)](/platforms/mac/bundled-gateway)
 - [macOS XPC](/platforms/mac/xpc)
 - [macOS Skills](/platforms/mac/skills)
 - [macOS Peekaboo](/platforms/mac/peekaboo)
 
-## 工作区 + 模板
+## å·¥ä½œåŒº + æ¨¡æ¿
 
 - [Skills](/tools/skills)
 - [ClawHub](/tools/clawhub)
-- [Skills 配置](/tools/skills-config)
-- [默认 AGENTS](/reference/AGENTS.default)
-- [模板：AGENTS](/reference/templates/AGENTS)
-- [模板：BOOTSTRAP](/reference/templates/BOOTSTRAP)
-- [模板：HEARTBEAT](/reference/templates/HEARTBEAT)
-- [模板：IDENTITY](/reference/templates/IDENTITY)
-- [模板：SOUL](/reference/templates/SOUL)
-- [模板：TOOLS](/reference/templates/TOOLS)
-- [模板：USER](/reference/templates/USER)
+- [Skills é…ç½®](/tools/skills-config)
+- [é»˜è®¤ AGENTS](/reference/AGENTS.default)
+- [æ¨¡æ¿ï¼šAGENTS](/reference/templates/AGENTS)
+- [æ¨¡æ¿ï¼šBOOTSTRAP](/reference/templates/BOOTSTRAP)
+- [æ¨¡æ¿ï¼šHEARTBEAT](/reference/templates/HEARTBEAT)
+- [æ¨¡æ¿ï¼šIDENTITY](/reference/templates/IDENTITY)
+- [æ¨¡æ¿ï¼šSOUL](/reference/templates/SOUL)
+- [æ¨¡æ¿ï¼šTOOLS](/reference/templates/TOOLS)
+- [æ¨¡æ¿ï¼šUSER](/reference/templates/USER)
 
-## 实验（探索性）
+## å®žéªŒï¼ˆæŽ¢ç´¢æ€§ï¼‰
 
-- [新手引导配置协议](/experiments/onboarding-config-protocol)
-- [定时任务加固笔记](/experiments/plans/cron-add-hardening)
-- [群组策略加固笔记](/experiments/plans/group-policy-hardening)
-- [研究：记忆](/experiments/research/memory)
-- [模型配置探索](/experiments/proposals/model-config)
+- [æ–°æ‰‹å¼•å¯¼é…ç½®åè®®](/experiments/onboarding-config-protocol)
+- [å®šæ—¶ä»»åŠ¡åŠ å›ºç¬”è®°](/experiments/plans/cron-add-hardening)
+- [ç¾¤ç»„ç­–ç•¥åŠ å›ºç¬”è®°](/experiments/plans/group-policy-hardening)
+- [ç ”ç©¶ï¼šè®°å¿†](/experiments/research/memory)
+- [æ¨¡åž‹é…ç½®æŽ¢ç´¢](/experiments/proposals/model-config)
 
-## 项目
+## é¡¹ç›®
 
-- [致谢](/reference/credits)
+- [è‡´è°¢](/reference/credits)
 
-## 测试 + 发布
+## æµ‹è¯• + å‘å¸ƒ
 
-- [测试](/reference/test)
-- [发布检查清单](/reference/RELEASING)
-- [设备型号](/reference/device-models)
+- [æµ‹è¯•](/reference/test)
+- [å‘å¸ƒæ£€æŸ¥æ¸…å•](/reference/RELEASING)
+- [è®¾å¤‡åž‹å·](/reference/device-models)
+

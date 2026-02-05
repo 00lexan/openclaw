@@ -1,4 +1,4 @@
-import type { TlsOptions } from "node:tls";
+﻿import type { TlsOptions } from "node:tls";
 import type { WebSocketServer } from "ws";
 import {
   createServer as createHttpServer,
@@ -93,7 +93,7 @@ export function createHooksRequestHandler(
       logHooks.warn(
         "Hook token provided via query parameter is deprecated for security reasons. " +
           "Tokens in URLs appear in logs, browser history, and referrer headers. " +
-          "Use Authorization: Bearer <token> or X-OpenClaw-Token header instead.",
+          "Use Authorization: Bearer <token> or X--Token header instead.",
       );
     }
 
@@ -342,3 +342,4 @@ export function attachGatewayUpgradeHandler(opts: {
     });
   });
 }
+

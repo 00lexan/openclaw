@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你需要远程跟踪 Gateway 网关日志（无需 SSH）
-  - 你需要 JSON 日志行用于工具处理
-summary: "`openclaw logs` 的 CLI 参考（通过 RPC 跟踪 Gateway 网关日志）"
+  - ä½ éœ€è¦è¿œç¨‹è·Ÿè¸ª Gateway ç½‘å…³æ—¥å¿—ï¼ˆæ— éœ€ SSHï¼‰
+  - ä½ éœ€è¦ JSON æ—¥å¿—è¡Œç”¨äºŽå·¥å…·å¤„ç†
+summary: "` logs` çš„ CLI å‚è€ƒï¼ˆé€šè¿‡ RPC è·Ÿè¸ª Gateway ç½‘å…³æ—¥å¿—ï¼‰"
 title: logs
 x-i18n:
   generated_at: "2026-02-03T07:44:57Z"
@@ -13,19 +13,20 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw logs`
+# ` logs`
 
-通过 RPC 跟踪 Gateway 网关文件日志（在远程模式下可用）。
+é€šè¿‡ RPC è·Ÿè¸ª Gateway ç½‘å…³æ–‡ä»¶æ—¥å¿—ï¼ˆåœ¨è¿œç¨‹æ¨¡å¼ä¸‹å¯ç”¨ï¼‰ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 日志概述：[日志](/logging)
+- æ—¥å¿—æ¦‚è¿°ï¼š[æ—¥å¿—](/logging)
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
-openclaw logs
-openclaw logs --follow
-openclaw logs --json
-openclaw logs --limit 500
+ logs
+ logs --follow
+ logs --json
+ logs --limit 500
 ```
+

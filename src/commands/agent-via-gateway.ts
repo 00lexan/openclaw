@@ -1,4 +1,4 @@
-import type { CliDeps } from "../cli/deps.js";
+﻿import type { CliDeps } from "../cli/deps.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { listAgentIds } from "../agents/agent-scope.js";
 import { DEFAULT_CHAT_CHANNEL } from "../channels/registry.js";
@@ -99,7 +99,7 @@ export async function agentViaGatewayCommand(opts: AgentCliOpts, runtime: Runtim
     const knownAgents = listAgentIds(cfg);
     if (!knownAgents.includes(agentId)) {
       throw new Error(
-        `Unknown agent id "${agentIdRaw}". Use "${formatCliCommand("openclaw agents list")}" to see configured agents.`,
+        `Unknown agent id "${agentIdRaw}". Use "${formatCliCommand(" agents list")}" to see configured agents.`,
       );
     }
   }
@@ -118,7 +118,7 @@ export async function agentViaGatewayCommand(opts: AgentCliOpts, runtime: Runtim
 
   const response = await withProgress(
     {
-      label: "Waiting for agent reply…",
+      label: "Waiting for agent replyâ€¦",
       indeterminate: true,
       enabled: opts.json !== true,
     },
@@ -189,3 +189,4 @@ export async function agentCliCommand(opts: AgentCliOpts, runtime: RuntimeEnv, d
     return await agentCommand(localOpts, runtime, deps);
   }
 }
+

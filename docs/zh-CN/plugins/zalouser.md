@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想在 OpenClaw 中支持 Zalo Personal（非官方）
-  - 你正在配置或开发 zalouser 插件
-summary: Zalo Personal 插件：通过 zca-cli 进行 QR 登录 + 消息（插件安装 + 渠道配置 + CLI + 工具）
-title: Zalo Personal 插件
+  - ä½ æƒ³åœ¨  ä¸­æ”¯æŒ Zalo Personalï¼ˆéžå®˜æ–¹ï¼‰
+  - ä½ æ­£åœ¨é…ç½®æˆ–å¼€å‘ zalouser æ’ä»¶
+summary: Zalo Personal æ’ä»¶ï¼šé€šè¿‡ zca-cli è¿›è¡Œ QR ç™»å½• + æ¶ˆæ¯ï¼ˆæ’ä»¶å®‰è£… + æ¸ é“é…ç½® + CLI + å·¥å…·ï¼‰
+title: Zalo Personal æ’ä»¶
 x-i18n:
   generated_at: "2026-02-03T07:53:33Z"
   model: claude-opus-4-5
@@ -13,52 +13,52 @@ x-i18n:
   workflow: 15
 ---
 
-# Zalo Personal（插件）
+# Zalo Personalï¼ˆæ’ä»¶ï¼‰
 
-通过插件为 OpenClaw 提供 Zalo Personal 支持，使用 `zca-cli` 自动化普通 Zalo 用户账户。
+é€šè¿‡æ’ä»¶ä¸º  æä¾› Zalo Personal æ”¯æŒï¼Œä½¿ç”¨ `zca-cli` è‡ªåŠ¨åŒ–æ™®é€š Zalo ç”¨æˆ·è´¦æˆ·ã€‚
 
-> **警告：** 非官方自动化可能导致账户被暂停/封禁。使用风险自负。
+> **è­¦å‘Šï¼š** éžå®˜æ–¹è‡ªåŠ¨åŒ–å¯èƒ½å¯¼è‡´è´¦æˆ·è¢«æš‚åœ/å°ç¦ã€‚ä½¿ç”¨é£Žé™©è‡ªè´Ÿã€‚
 
-## 命名
+## å‘½å
 
-渠道 id 是 `zalouser`，以明确表示这是自动化**个人 Zalo 用户账户**（非官方）。我们保留 `zalo` 用于潜在的未来官方 Zalo API 集成。
+æ¸ é“ id æ˜¯ `zalouser`ï¼Œä»¥æ˜Žç¡®è¡¨ç¤ºè¿™æ˜¯è‡ªåŠ¨åŒ–**ä¸ªäºº Zalo ç”¨æˆ·è´¦æˆ·**ï¼ˆéžå®˜æ–¹ï¼‰ã€‚æˆ‘ä»¬ä¿ç•™ `zalo` ç”¨äºŽæ½œåœ¨çš„æœªæ¥å®˜æ–¹ Zalo API é›†æˆã€‚
 
-## 运行位置
+## è¿è¡Œä½ç½®
 
-此插件**在 Gateway 网关进程内**运行。
+æ­¤æ’ä»¶**åœ¨ Gateway ç½‘å…³è¿›ç¨‹å†…**è¿è¡Œã€‚
 
-如果你使用远程 Gateway 网关，请在**运行 Gateway 网关的机器**上安装/配置它，然后重启 Gateway 网关。
+å¦‚æžœä½ ä½¿ç”¨è¿œç¨‹ Gateway ç½‘å…³ï¼Œè¯·åœ¨**è¿è¡Œ Gateway ç½‘å…³çš„æœºå™¨**ä¸Šå®‰è£…/é…ç½®å®ƒï¼Œç„¶åŽé‡å¯ Gateway ç½‘å…³ã€‚
 
-## 安装
+## å®‰è£…
 
-### 选项 A：从 npm 安装
+### é€‰é¡¹ Aï¼šä»Ž npm å®‰è£…
 
 ```bash
-openclaw plugins install @openclaw/zalouser
+ plugins install @/zalouser
 ```
 
-之后重启 Gateway 网关。
+ä¹‹åŽé‡å¯ Gateway ç½‘å…³ã€‚
 
-### 选项 B：从本地文件夹安装（开发）
+### é€‰é¡¹ Bï¼šä»Žæœ¬åœ°æ–‡ä»¶å¤¹å®‰è£…ï¼ˆå¼€å‘ï¼‰
 
 ```bash
-openclaw plugins install ./extensions/zalouser
+ plugins install ./extensions/zalouser
 cd ./extensions/zalouser && pnpm install
 ```
 
-之后重启 Gateway 网关。
+ä¹‹åŽé‡å¯ Gateway ç½‘å…³ã€‚
 
-## 前置条件：zca-cli
+## å‰ç½®æ¡ä»¶ï¼šzca-cli
 
-Gateway 网关机器必须在 `PATH` 中有 `zca`：
+Gateway ç½‘å…³æœºå™¨å¿…é¡»åœ¨ `PATH` ä¸­æœ‰ `zca`ï¼š
 
 ```bash
 zca --version
 ```
 
-## 配置
+## é…ç½®
 
-渠道配置位于 `channels.zalouser` 下（不是 `plugins.entries.*`）：
+æ¸ é“é…ç½®ä½äºŽ `channels.zalouser` ä¸‹ï¼ˆä¸æ˜¯ `plugins.entries.*`ï¼‰ï¼š
 
 ```json5
 {
@@ -74,15 +74,16 @@ zca --version
 ## CLI
 
 ```bash
-openclaw channels login --channel zalouser
-openclaw channels logout --channel zalouser
-openclaw channels status --probe
-openclaw message send --channel zalouser --target <threadId> --message "Hello from OpenClaw"
-openclaw directory peers list --channel zalouser --query "name"
+ channels login --channel zalouser
+ channels logout --channel zalouser
+ channels status --probe
+ message send --channel zalouser --target <threadId> --message "Hello from "
+ directory peers list --channel zalouser --query "name"
 ```
 
-## 智能体工具
+## æ™ºèƒ½ä½“å·¥å…·
 
-工具名称：`zalouser`
+å·¥å…·åç§°ï¼š`zalouser`
 
-操作：`send`、`image`、`link`、`friends`、`groups`、`me`、`status`
+æ“ä½œï¼š`send`ã€`image`ã€`link`ã€`friends`ã€`groups`ã€`me`ã€`status`
+

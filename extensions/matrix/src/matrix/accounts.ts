@@ -1,4 +1,4 @@
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk";
+﻿import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "/plugin-sdk";
 import type { CoreConfig, MatrixConfig } from "../types.js";
 import { resolveMatrixConfig } from "./client.js";
 import { credentialsMatchConfig, loadMatrixCredentials } from "./credentials.js";
@@ -63,3 +63,4 @@ export function listEnabledMatrixAccounts(cfg: CoreConfig): ResolvedMatrixAccoun
     .map((accountId) => resolveMatrixAccount({ cfg, accountId }))
     .filter((account) => account.enabled);
 }
+

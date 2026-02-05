@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import { getStatusSummary } from "../../commands/status.js";
 import { ErrorCodes, errorShape } from "../protocol/index.js";
 import { HEALTH_REFRESH_INTERVAL_MS } from "../server-constants.js";
@@ -30,3 +30,4 @@ export const healthHandlers: GatewayRequestHandlers = {
     respond(true, status, undefined);
   },
 };
+

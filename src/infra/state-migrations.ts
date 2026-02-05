@@ -1,7 +1,7 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import type { SessionEntry } from "../config/sessions.js";
 import type { SessionScope } from "../config/sessions/types.js";
 import { resolveDefaultAgentId } from "../agents/agent-scope.js";
@@ -349,7 +349,7 @@ function resolveSymlinkTarget(linkPath: string): string | null {
 }
 
 function formatStateDirMigration(legacyDir: string, targetDir: string): string {
-  return `State dir: ${legacyDir} → ${targetDir} (legacy path now symlinked)`;
+  return `State dir: ${legacyDir} â†’ ${targetDir} (legacy path now symlinked)`;
 }
 
 function isDirPath(filePath: string): boolean {
@@ -371,7 +371,7 @@ export async function autoMigrateLegacyStateDir(params: {
   autoMigrateStateDirChecked = true;
 
   const env = params.env ?? process.env;
-  if (env.OPENCLAW_STATE_DIR?.trim()) {
+  if (env._STATE_DIR?.trim()) {
     return { migrated: false, skipped: true, changes: [], warnings: [] };
   }
 
@@ -437,7 +437,7 @@ export async function autoMigrateLegacyStateDir(params: {
       continue;
     }
     warnings.push(
-      `Legacy state dir is a symlink (${legacyDir ?? "unknown"} → ${legacyTarget}); skipping auto-migration.`,
+      `Legacy state dir is a symlink (${legacyDir ?? "unknown"} â†’ ${legacyTarget}); skipping auto-migration.`,
     );
     return { migrated: false, skipped: false, changes, warnings };
   }
@@ -456,7 +456,7 @@ export async function autoMigrateLegacyStateDir(params: {
     fs.renameSync(legacyDir, targetDir);
   } catch (err) {
     warnings.push(
-      `Failed to move legacy state dir (${legacyDir ?? "unknown"} → ${targetDir}): ${String(err)}`,
+      `Failed to move legacy state dir (${legacyDir ?? "unknown"} â†’ ${targetDir}): ${String(err)}`,
     );
     return { migrated: false, skipped: false, changes, warnings };
   }
@@ -491,12 +491,12 @@ export async function autoMigrateLegacyStateDir(params: {
         return { migrated: false, skipped: false, changes: [], warnings };
       } catch (rollbackErr) {
         warnings.push(
-          `State dir moved but failed to link legacy path (${legacyDir ?? "unknown"} → ${targetDir}): ${String(fallbackErr)}`,
+          `State dir moved but failed to link legacy path (${legacyDir ?? "unknown"} â†’ ${targetDir}): ${String(fallbackErr)}`,
         );
         warnings.push(
-          `Rollback failed; set OPENCLAW_STATE_DIR=${targetDir} to avoid split state: ${String(rollbackErr)}`,
+          `Rollback failed; set _STATE_DIR=${targetDir} to avoid split state: ${String(rollbackErr)}`,
         );
-        changes.push(`State dir: ${legacyDir ?? "unknown"} → ${targetDir}`);
+        changes.push(`State dir: ${legacyDir ?? "unknown"} â†’ ${targetDir}`);
       }
     }
   }
@@ -505,7 +505,7 @@ export async function autoMigrateLegacyStateDir(params: {
 }
 
 export async function detectLegacyStateMigrations(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   env?: NodeJS.ProcessEnv;
   homedir?: () => string;
 }): Promise<LegacyStateDetection> {
@@ -554,16 +554,16 @@ export async function detectLegacyStateMigrations(params: {
 
   const preview: string[] = [];
   if (hasLegacySessions) {
-    preview.push(`- Sessions: ${sessionsLegacyDir} → ${sessionsTargetDir}`);
+    preview.push(`- Sessions: ${sessionsLegacyDir} â†’ ${sessionsTargetDir}`);
   }
   if (legacyKeys.length > 0) {
     preview.push(`- Sessions: canonicalize legacy keys in ${sessionsTargetStorePath}`);
   }
   if (hasLegacyAgentDir) {
-    preview.push(`- Agent dir: ${legacyAgentDir} → ${targetAgentDir}`);
+    preview.push(`- Agent dir: ${legacyAgentDir} â†’ ${targetAgentDir}`);
   }
   if (hasLegacyWhatsAppAuth) {
-    preview.push(`- WhatsApp auth: ${oauthDir} → ${targetWhatsAppAuthDir} (keep oauth.json)`);
+    preview.push(`- WhatsApp auth: ${oauthDir} â†’ ${targetWhatsAppAuthDir} (keep oauth.json)`);
   }
 
   return {
@@ -645,7 +645,7 @@ async function migrateLegacySessions(
     const latest = pickLatestLegacyDirectEntry(legacyStore);
     if (latest?.sessionId) {
       merged[mainKey] = latest;
-      changes.push(`Migrated latest direct-chat session → ${mainKey}`);
+      changes.push(`Migrated latest direct-chat session â†’ ${mainKey}`);
     }
   }
 
@@ -668,7 +668,7 @@ async function migrateLegacySessions(
       normalized[key] = normalizedEntry;
     }
     await saveSessionStore(detected.sessions.targetStorePath, normalized);
-    changes.push(`Merged sessions store → ${detected.sessions.targetStorePath}`);
+    changes.push(`Merged sessions store â†’ ${detected.sessions.targetStorePath}`);
     if (canonicalizedTarget.legacyKeys.length > 0) {
       changes.push(`Canonicalized ${canonicalizedTarget.legacyKeys.length} legacy session key(s)`);
     }
@@ -689,7 +689,7 @@ async function migrateLegacySessions(
     }
     try {
       fs.renameSync(from, to);
-      changes.push(`Moved ${entry.name} → agents/${detected.targetAgentId}/sessions`);
+      changes.push(`Moved ${entry.name} â†’ agents/${detected.targetAgentId}/sessions`);
     } catch (err) {
       warnings.push(`Failed moving ${from}: ${String(err)}`);
     }
@@ -741,7 +741,7 @@ export async function migrateLegacyAgentDir(
     }
     try {
       fs.renameSync(from, to);
-      changes.push(`Moved agent file ${entry.name} → agents/${detected.targetAgentId}/agent`);
+      changes.push(`Moved agent file ${entry.name} â†’ agents/${detected.targetAgentId}/agent`);
     } catch (err) {
       warnings.push(`Failed moving ${from}: ${String(err)}`);
     }
@@ -795,7 +795,7 @@ async function migrateLegacyWhatsAppAuth(
     }
     try {
       fs.renameSync(from, to);
-      changes.push(`Moved WhatsApp auth ${entry.name} → whatsapp/default`);
+      changes.push(`Moved WhatsApp auth ${entry.name} â†’ whatsapp/default`);
     } catch (err) {
       warnings.push(`Failed moving ${from}: ${String(err)}`);
     }
@@ -820,7 +820,7 @@ export async function runLegacyStateMigrations(params: {
 }
 
 export async function autoMigrateLegacyAgentDir(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   env?: NodeJS.ProcessEnv;
   homedir?: () => string;
   log?: MigrationLogger;
@@ -835,7 +835,7 @@ export async function autoMigrateLegacyAgentDir(params: {
 }
 
 export async function autoMigrateLegacyState(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   env?: NodeJS.ProcessEnv;
   homedir?: () => string;
   log?: MigrationLogger;
@@ -857,7 +857,7 @@ export async function autoMigrateLegacyState(params: {
     homedir: params.homedir,
     log: params.log,
   });
-  if (env.OPENCLAW_AGENT_DIR?.trim() || env.PI_CODING_AGENT_DIR?.trim()) {
+  if (env._AGENT_DIR?.trim() || env.PI_CODING_AGENT_DIR?.trim()) {
     return {
       migrated: stateDirResult.migrated,
       skipped: true,
@@ -903,3 +903,4 @@ export async function autoMigrateLegacyState(params: {
     warnings,
   };
 }
+

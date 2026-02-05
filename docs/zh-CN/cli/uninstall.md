@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想移除 Gateway 网关服务和/或本地状态
-  - 你想先进行试运行
-summary: "`openclaw uninstall` 的 CLI 参考（移除 Gateway 网关服务 + 本地数据）"
+  - ä½ æƒ³ç§»é™¤ Gateway ç½‘å…³æœåŠ¡å’Œ/æˆ–æœ¬åœ°çŠ¶æ€
+  - ä½ æƒ³å…ˆè¿›è¡Œè¯•è¿è¡Œ
+summary: "` uninstall` çš„ CLI å‚è€ƒï¼ˆç§»é™¤ Gateway ç½‘å…³æœåŠ¡ + æœ¬åœ°æ•°æ®ï¼‰"
 title: uninstall
 x-i18n:
   generated_at: "2026-02-03T10:04:23Z"
@@ -13,12 +13,13 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw uninstall`
+# ` uninstall`
 
-卸载 Gateway 网关服务 + 本地数据（CLI 保留）。
+å¸è½½ Gateway ç½‘å…³æœåŠ¡ + æœ¬åœ°æ•°æ®ï¼ˆCLI ä¿ç•™ï¼‰ã€‚
 
 ```bash
-openclaw uninstall
-openclaw uninstall --all --yes
-openclaw uninstall --dry-run
+ uninstall
+ uninstall --all --yes
+ uninstall --dry-run
 ```
+

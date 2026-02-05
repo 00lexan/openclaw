@@ -1,4 +1,4 @@
-import { isSilentReplyText, SILENT_REPLY_TOKEN } from "../tokens.js";
+﻿import { isSilentReplyText, SILENT_REPLY_TOKEN } from "../tokens.js";
 
 export type TypingController = {
   onReplyStart: () => Promise<void>;
@@ -187,3 +187,4 @@ export function createTypingController(params: {
     cleanup,
   };
 }
+

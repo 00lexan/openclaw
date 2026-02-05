@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 
 let wslCached: boolean | null = null;
 
@@ -26,3 +26,4 @@ export async function isWSL(): Promise<boolean> {
   }
   return wslCached;
 }
+

@@ -1,4 +1,4 @@
-import type { EventEmitter } from "node:events";
+﻿import type { EventEmitter } from "node:events";
 
 export type DiscordGatewayHandle = {
   emitter?: Pick<EventEmitter, "on" | "removeListener">;
@@ -67,3 +67,4 @@ export async function waitForDiscordGatewayStop(params: {
     emitter?.on("error", onGatewayErrorEvent);
   });
 }
+

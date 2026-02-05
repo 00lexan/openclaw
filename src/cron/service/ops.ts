@@ -1,4 +1,4 @@
-import type { CronJobCreate, CronJobPatch } from "../types.js";
+﻿import type { CronJobCreate, CronJobPatch } from "../types.js";
 import type { CronServiceState } from "./state.js";
 import {
   applyJobPatch,
@@ -144,3 +144,4 @@ export function wakeNow(
 ) {
   return wake(state, opts);
 }
+

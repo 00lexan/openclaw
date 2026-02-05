@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你需要定时作业和唤醒功能
-  - 你正在调试 cron 执行和日志
-summary: "`openclaw cron` 的 CLI 参考（调度和运行后台作业）"
+  - ä½ éœ€è¦å®šæ—¶ä½œä¸šå’Œå”¤é†’åŠŸèƒ½
+  - ä½ æ­£åœ¨è°ƒè¯• cron æ‰§è¡Œå’Œæ—¥å¿—
+summary: "` cron` çš„ CLI å‚è€ƒï¼ˆè°ƒåº¦å’Œè¿è¡ŒåŽå°ä½œä¸šï¼‰"
 title: cron
 x-i18n:
   generated_at: "2026-02-03T07:44:47Z"
@@ -13,31 +13,32 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw cron`
+# ` cron`
 
-管理 Gateway 网关调度器的 cron 作业。
+ç®¡ç† Gateway ç½‘å…³è°ƒåº¦å™¨çš„ cron ä½œä¸šã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- Cron 作业：[Cron 作业](/automation/cron-jobs)
+- Cron ä½œä¸šï¼š[Cron ä½œä¸š](/automation/cron-jobs)
 
-提示：运行 `openclaw cron --help` 查看完整的命令集。
+æç¤ºï¼šè¿è¡Œ ` cron --help` æŸ¥çœ‹å®Œæ•´çš„å‘½ä»¤é›†ã€‚
 
-说明：隔离式 `cron add` 任务默认使用 `--announce` 投递摘要。使用 `--no-deliver` 仅内部运行。
-`--deliver` 仍作为 `--announce` 的弃用别名保留。
+è¯´æ˜Žï¼šéš”ç¦»å¼ `cron add` ä»»åŠ¡é»˜è®¤ä½¿ç”¨ `--announce` æŠ•é€’æ‘˜è¦ã€‚ä½¿ç”¨ `--no-deliver` ä»…å†…éƒ¨è¿è¡Œã€‚
+`--deliver` ä»ä½œä¸º `--announce` çš„å¼ƒç”¨åˆ«åä¿ç•™ã€‚
 
-说明：一次性（`--at`）任务成功后默认删除。使用 `--keep-after-run` 保留。
+è¯´æ˜Žï¼šä¸€æ¬¡æ€§ï¼ˆ`--at`ï¼‰ä»»åŠ¡æˆåŠŸåŽé»˜è®¤åˆ é™¤ã€‚ä½¿ç”¨ `--keep-after-run` ä¿ç•™ã€‚
 
-## 常见编辑
+## å¸¸è§ç¼–è¾‘
 
-更新投递设置而不更改消息：
-
-```bash
-openclaw cron edit <job-id> --announce --channel telegram --to "123456789"
-```
-
-为隔离的作业禁用投递：
+æ›´æ–°æŠ•é€’è®¾ç½®è€Œä¸æ›´æ”¹æ¶ˆæ¯ï¼š
 
 ```bash
-openclaw cron edit <job-id> --no-deliver
+ cron edit <job-id> --announce --channel telegram --to "123456789"
 ```
+
+ä¸ºéš”ç¦»çš„ä½œä¸šç¦ç”¨æŠ•é€’ï¼š
+
+```bash
+ cron edit <job-id> --no-deliver
+```
+

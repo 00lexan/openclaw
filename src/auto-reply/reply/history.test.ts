@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   appendHistoryEntry,
   buildHistoryContext,
@@ -150,3 +150,4 @@ describe("history helpers", () => {
     expect(historyMap.get("group")).toEqual([]);
   });
 });
+

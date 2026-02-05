@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import { describe, expect, it } from "vitest";
 import {
   isValidCloudCodeAssistToolId,
@@ -265,3 +265,4 @@ describe("sanitizeToolCallIdsForCloudCodeAssist", () => {
     });
   });
 });
+

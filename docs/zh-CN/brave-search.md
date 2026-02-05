@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想使用 Brave Search 进行 web_search
-  - 你需要 BRAVE_API_KEY 或套餐详情
-summary: 用于 web_search 的 Brave Search API 设置
+  - ä½ æƒ³ä½¿ç”¨ Brave Search è¿›è¡Œ web_search
+  - ä½ éœ€è¦ BRAVE_API_KEY æˆ–å¥—é¤è¯¦æƒ…
+summary: ç”¨äºŽ web_search çš„ Brave Search API è®¾ç½®
 title: Brave Search
 x-i18n:
   generated_at: "2026-02-03T07:43:09Z"
@@ -15,15 +15,15 @@ x-i18n:
 
 # Brave Search API
 
-OpenClaw 使用 Brave Search 作为 `web_search` 的默认提供商。
+ ä½¿ç”¨ Brave Search ä½œä¸º `web_search` çš„é»˜è®¤æä¾›å•†ã€‚
 
-## 获取 API 密钥
+## èŽ·å– API å¯†é’¥
 
-1. 在 https://brave.com/search/api/ 创建 Brave Search API 账户
-2. 在控制面板中，选择 **Data for Search** 套餐并生成 API 密钥。
-3. 将密钥存储在配置中（推荐），或在 Gateway 网关环境中设置 `BRAVE_API_KEY`。
+1. åœ¨ https://brave.com/search/api/ åˆ›å»º Brave Search API è´¦æˆ·
+2. åœ¨æŽ§åˆ¶é¢æ¿ä¸­ï¼Œé€‰æ‹© **Data for Search** å¥—é¤å¹¶ç”Ÿæˆ API å¯†é’¥ã€‚
+3. å°†å¯†é’¥å­˜å‚¨åœ¨é…ç½®ä¸­ï¼ˆæŽ¨èï¼‰ï¼Œæˆ–åœ¨ Gateway ç½‘å…³çŽ¯å¢ƒä¸­è®¾ç½® `BRAVE_API_KEY`ã€‚
 
-## 配置示例
+## é…ç½®ç¤ºä¾‹
 
 ```json5
 {
@@ -40,9 +40,10 @@ OpenClaw 使用 Brave Search 作为 `web_search` 的默认提供商。
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- Data for AI 套餐与 `web_search` **不**兼容。
-- Brave 提供免费层级和付费套餐；请查看 Brave API 门户了解当前限制。
+- Data for AI å¥—é¤ä¸Ž `web_search` **ä¸**å…¼å®¹ã€‚
+- Brave æä¾›å…è´¹å±‚çº§å’Œä»˜è´¹å¥—é¤ï¼›è¯·æŸ¥çœ‹ Brave API é—¨æˆ·äº†è§£å½“å‰é™åˆ¶ã€‚
 
-请参阅 [Web 工具](/tools/web) 了解完整的 web_search 配置。
+è¯·å‚é˜… [Web å·¥å…·](/tools/web) äº†è§£å®Œæ•´çš„ web_search é…ç½®ã€‚
+

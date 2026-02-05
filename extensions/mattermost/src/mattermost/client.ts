@@ -1,4 +1,4 @@
-export type MattermostClient = {
+﻿export type MattermostClient = {
   baseUrl: string;
   apiBaseUrl: string;
   token: string;
@@ -218,3 +218,4 @@ export async function uploadMattermostFile(
   }
   return info;
 }
+

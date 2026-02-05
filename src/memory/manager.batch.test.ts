@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -48,7 +48,7 @@ describe("memory indexing with OpenAI batches", () => {
       }
       return realSetTimeout(handler, delay, ...args);
     }) as typeof setTimeout);
-    workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-mem-batch-"));
+    workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "-mem-batch-"));
     indexPath = path.join(workspaceDir, "index.sqlite");
     await fs.mkdir(path.join(workspaceDir, "memory"));
   });
@@ -494,3 +494,4 @@ describe("memory indexing with OpenAI batches", () => {
     expect(embedBatch).toHaveBeenCalled();
   });
 });
+

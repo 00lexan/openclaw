@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isContextOverflowError } from "./pi-embedded-helpers.js";
 
 describe("isContextOverflowError", () => {
@@ -47,3 +47,4 @@ describe("isContextOverflowError", () => {
     expect(isContextOverflowError("authentication failed")).toBe(false);
   });
 });
+

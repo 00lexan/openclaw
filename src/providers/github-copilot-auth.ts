@@ -1,4 +1,4 @@
-import { intro, note, outro, spinner } from "@clack/prompts";
+﻿import { intro, note, outro, spinner } from "@clack/prompts";
 import type { RuntimeEnv } from "../runtime.js";
 import { ensureAuthProfileStore, upsertAuthProfile } from "../agents/auth-profiles.js";
 import { updateConfig } from "../commands/models/shared.js";
@@ -182,3 +182,4 @@ export async function githubCopilotLoginCommand(
 
   outro("Done");
 }
+

@@ -1,4 +1,4 @@
-export type QueueSummaryState = {
+﻿export type QueueSummaryState = {
   dropPolicy: "summarize" | "old" | "new";
   droppedCount: number;
   summaryLines: string[];
@@ -15,7 +15,7 @@ export function elideQueueText(text: string, limit = 140): string {
   if (text.length <= limit) {
     return text;
   }
-  return `${text.slice(0, Math.max(0, limit - 1)).trimEnd()}…`;
+  return `${text.slice(0, Math.max(0, limit - 1)).trimEnd()}â€¦`;
 }
 
 export function buildQueueSummaryLine(text: string, limit = 160): string {
@@ -149,3 +149,4 @@ export function hasCrossChannelItems<T>(
   }
   return keys.size > 1;
 }
+

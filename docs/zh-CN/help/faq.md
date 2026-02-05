@@ -1,6 +1,6 @@
----
-summary: 关于 OpenClaw 安装、配置和使用的常见问题
-title: 常见问题
+﻿---
+summary: å…³äºŽ  å®‰è£…ã€é…ç½®å’Œä½¿ç”¨çš„å¸¸è§é—®é¢˜
+title: å¸¸è§é—®é¢˜
 x-i18n:
   generated_at: "2026-02-01T21:32:04Z"
   model: claude-opus-4-5
@@ -10,764 +10,764 @@ x-i18n:
   workflow: 15
 ---
 
-# 常见问题
+# å¸¸è§é—®é¢˜
 
-快速解答及针对实际部署场景（本地开发、VPS、多智能体、OAuth/API 密钥、模型故障转移）的深入故障排除。运行时诊断请参阅[故障排除](/gateway/troubleshooting)。完整配置参考请参阅[配置](/gateway/configuration)。
+å¿«é€Ÿè§£ç­”åŠé’ˆå¯¹å®žé™…éƒ¨ç½²åœºæ™¯ï¼ˆæœ¬åœ°å¼€å‘ã€VPSã€å¤šæ™ºèƒ½ä½“ã€OAuth/API å¯†é’¥ã€æ¨¡åž‹æ•…éšœè½¬ç§»ï¼‰çš„æ·±å…¥æ•…éšœæŽ’é™¤ã€‚è¿è¡Œæ—¶è¯Šæ–­è¯·å‚é˜…[æ•…éšœæŽ’é™¤](/gateway/troubleshooting)ã€‚å®Œæ•´é…ç½®å‚è€ƒè¯·å‚é˜…[é…ç½®](/gateway/configuration)ã€‚
 
-## 目录
+## ç›®å½•
 
-- [快速开始与首次运行设置](#quick-start-and-firstrun-setup)
-  - [我卡住了，最快的排障方法是什么？](#im-stuck-whats-the-fastest-way-to-get-unstuck)
-  - [安装和设置 OpenClaw 的推荐方式是什么？](#whats-the-recommended-way-to-install-and-set-up-openclaw)
-  - [新手引导后如何打开仪表板？](#how-do-i-open-the-dashboard-after-onboarding)
-  - [如何在本地和远程环境中验证仪表板（令牌）？](#how-do-i-authenticate-the-dashboard-token-on-localhost-vs-remote)
-  - [我需要什么运行时？](#what-runtime-do-i-need)
-  - [能在 Raspberry Pi 上运行吗？](#does-it-run-on-raspberry-pi)
-  - [Raspberry Pi 安装有什么建议？](#any-tips-for-raspberry-pi-installs)
-  - [卡在 "wake up my friend" / 新手引导无法启动，怎么办？](#it-is-stuck-on-wake-up-my-friend-onboarding-will-not-hatch-what-now)
-  - [能否将我的设置迁移到新机器（Mac mini）而不重新进行新手引导？](#can-i-migrate-my-setup-to-a-new-machine-mac-mini-without-redoing-onboarding)
-  - [在哪里查看最新版本的更新内容？](#where-do-i-see-whats-new-in-the-latest-version)
-  - [无法访问 docs.openclaw.ai（SSL 错误），怎么办？](#i-cant-access-docsopenclawai-ssl-error-what-now)
-  - [stable 和 beta 有什么区别？](#whats-the-difference-between-stable-and-beta)
-- [如何安装 beta 版本，beta 和 dev 有什么区别？](#how-do-i-install-the-beta-version-and-whats-the-difference-between-beta-and-dev)
-  - [如何试用最新代码？](#how-do-i-try-the-latest-bits)
-  - [安装和新手引导通常需要多长时间？](#how-long-does-install-and-onboarding-usually-take)
-  - [安装程序卡住了？如何获取更多反馈？](#installer-stuck-how-do-i-get-more-feedback)
-  - [Windows 安装提示找不到 git 或无法识别 openclaw](#windows-install-says-git-not-found-or-openclaw-not-recognized)
-  - [文档没有解答我的问题——如何获得更好的答案？](#the-docs-didnt-answer-my-question-how-do-i-get-a-better-answer)
-  - [如何在 Linux 上安装 OpenClaw？](#how-do-i-install-openclaw-on-linux)
-  - [如何在 VPS 上安装 OpenClaw？](#how-do-i-install-openclaw-on-a-vps)
-  - [云/VPS 安装指南在哪里？](#where-are-the-cloudvps-install-guides)
-  - [可以让 OpenClaw 自行更新吗？](#can-i-ask-openclaw-to-update-itself)
-  - [新手引导向导具体做了什么？](#what-does-the-onboarding-wizard-actually-do)
-  - [运行 OpenClaw 需要 Claude 或 OpenAI 订阅吗？](#do-i-need-a-claude-or-openai-subscription-to-run-this)
-  - [能否使用 Claude Max 订阅而不需要 API 密钥？](#can-i-use-claude-max-subscription-without-an-api-key)
-  - [Anthropic "setup-token" 认证如何工作？](#how-does-anthropic-setuptoken-auth-work)
-  - [在哪里获取 Anthropic setup-token？](#where-do-i-find-an-anthropic-setuptoken)
-  - [是否支持 Claude 订阅认证（Claude Code OAuth）？](#do-you-support-claude-subscription-auth-claude-code-oauth)
-  - [为什么我看到 `HTTP 429: rate_limit_error`（来自 Anthropic）？](#why-am-i-seeing-http-429-ratelimiterror-from-anthropic)
-  - [支持 AWS Bedrock 吗？](#is-aws-bedrock-supported)
-  - [Codex 认证如何工作？](#how-does-codex-auth-work)
-  - [是否支持 OpenAI 订阅认证（Codex OAuth）？](#do-you-support-openai-subscription-auth-codex-oauth)
-  - [如何设置 Gemini CLI OAuth？](#how-do-i-set-up-gemini-cli-oauth)
-  - [本地模型适合日常聊天吗？](#is-a-local-model-ok-for-casual-chats)
-  - [如何将托管模型流量限制在特定区域？](#how-do-i-keep-hosted-model-traffic-in-a-specific-region)
-  - [我必须购买 Mac Mini 才能安装吗？](#do-i-have-to-buy-a-mac-mini-to-install-this)
-  - [iMessage 支持需要 Mac mini 吗？](#do-i-need-a-mac-mini-for-imessage-support)
-  - [如果我买了 Mac mini 运行 OpenClaw，能连接到我的 MacBook Pro 吗？](#if-i-buy-a-mac-mini-to-run-openclaw-can-i-connect-it-to-my-macbook-pro)
-  - [可以使用 Bun 吗？](#can-i-use-bun)
-  - [Telegram：`allowFrom` 填什么？](#telegram-what-goes-in-allowfrom)
-  - [多人能否使用同一个 WhatsApp 号码配合不同的 OpenClaw 实例？](#can-multiple-people-use-one-whatsapp-number-with-different-openclaw-instances)
-  - [能否同时运行一个“快速聊天”智能体和一个“用 Opus 编程”的智能体？](#can-i-run-a-fast-chat-agent-and-an-opus-for-coding-agent)
-  - [Homebrew 在 Linux 上可用吗？](#does-homebrew-work-on-linux)
-  - [可编辑（git）安装和 npm 安装有什么区别？](#whats-the-difference-between-the-hackable-git-install-and-npm-install)
-  - [之后可以在 npm 和 git 安装之间切换吗？](#can-i-switch-between-npm-and-git-installs-later)
-  - [应该在笔记本电脑还是 VPS 上运行 Gateway 网关？](#should-i-run-the-gateway-on-my-laptop-or-a-vps)
-  - [在专用机器上运行 OpenClaw 有多重要？](#how-important-is-it-to-run-openclaw-on-a-dedicated-machine)
-  - [VPS 的最低要求和推荐操作系统是什么？](#what-are-the-minimum-vps-requirements-and-recommended-os)
-  - [可以在虚拟机中运行 OpenClaw 吗？有什么要求？](#can-i-run-openclaw-in-a-vm-and-what-are-the-requirements)
-- [什么是 OpenClaw？](#what-is-openclaw)
-  - [用一段话描述 OpenClaw？](#what-is-openclaw-in-one-paragraph)
-  - [价值主张是什么？](#whats-the-value-proposition)
-  - [刚设置好，应该先做什么？](#i-just-set-it-up-what-should-i-do-first)
-  - [OpenClaw 日常最常用的五个场景是什么？](#what-are-the-top-five-everyday-use-cases-for-openclaw)
-  - [OpenClaw 能否帮助 SaaS 进行获客、外联、广告和博客？](#can-openclaw-help-with-lead-gen-outreach-ads-and-blogs-for-a-saas)
-  - [相比 Claude Code，在 Web 开发方面有什么优势？](#what-are-the-advantages-vs-claude-code-for-web-development)
-- [Skills 与自动化](#skills-and-automation)
-  - [如何自定义 Skills 而不弄脏仓库？](#how-do-i-customize-skills-without-keeping-the-repo-dirty)
-  - [可以从自定义文件夹加载 Skills 吗？](#can-i-load-skills-from-a-custom-folder)
-  - [如何为不同任务使用不同模型？](#how-can-i-use-different-models-for-different-tasks)
-  - [机器人在执行繁重工作时卡住了，如何卸载任务？](#the-bot-freezes-while-doing-heavy-work-how-do-i-offload-that)
-  - [定时任务或提醒没有触发，应该检查什么？](#cron-or-reminders-do-not-fire-what-should-i-check)
-  - [如何在 Linux 上安装 Skills？](#how-do-i-install-skills-on-linux)
-  - [OpenClaw 能否按计划或在后台持续运行任务？](#can-openclaw-run-tasks-on-a-schedule-or-continuously-in-the-background)
-  - [能否从 Linux 运行仅限 Apple/macOS 的 Skills？](#can-i-run-applemacosonly-skills-from-linux)
-  - [有 Notion 或 HeyGen 集成吗？](#do-you-have-a-notion-or-heygen-integration)
-  - [如何安装用于浏览器接管的 Chrome 扩展？](#how-do-i-install-the-chrome-extension-for-browser-takeover)
-- [沙箱与记忆](#sandboxing-and-memory)
-  - [有专门的沙箱文档吗？](#is-there-a-dedicated-sandboxing-doc)
-  - [如何将主机文件夹绑定到沙箱中？](#how-do-i-bind-a-host-folder-into-the-sandbox)
-  - [记忆是如何工作的？](#how-does-memory-work)
-  - [记忆总是遗忘，如何让它持久保存？](#memory-keeps-forgetting-things-how-do-i-make-it-stick)
-  - [记忆是否永久保留？有什么限制？](#does-memory-persist-forever-what-are-the-limits)
-  - [语义记忆搜索需要 OpenAI API 密钥吗？](#does-semantic-memory-search-require-an-openai-api-key)
-- [磁盘上的文件位置](#where-things-live-on-disk)
-  - [OpenClaw 使用的所有数据都保存在本地吗？](#is-all-data-used-with-openclaw-saved-locally)
-  - [OpenClaw 将数据存储在哪里？](#where-does-openclaw-store-its-data)
-  - [AGENTS.md / SOUL.md / USER.md / MEMORY.md 应该放在哪里？](#where-should-agentsmd-soulmd-usermd-memorymd-live)
-  - [推荐的备份策略是什么？](#whats-the-recommended-backup-strategy)
-  - [如何完全卸载 OpenClaw？](#how-do-i-completely-uninstall-openclaw)
-  - [智能体可以在工作区外工作吗？](#can-agents-work-outside-the-workspace)
-  - [我处于远程模式——会话存储在哪里？](#im-in-remote-mode-where-is-the-session-store)
-- [配置基础](#config-basics)
-  - [配置文件是什么格式？在哪里？](#what-format-is-the-config-where-is-it)
-  - [我设置了 `gateway.bind: "lan"`（或 `"tailnet"`），现在什么都监听不了 / UI 显示未授权](#i-set-gatewaybind-lan-or-tailnet-and-now-nothing-listens-the-ui-says-unauthorized)
-  - [为什么现在在 localhost 也需要令牌？](#why-do-i-need-a-token-on-localhost-now)
-  - [更改配置后需要重启吗？](#do-i-have-to-restart-after-changing-config)
-  - [如何启用网络搜索（和网页抓取）？](#how-do-i-enable-web-search-and-web-fetch)
-  - [config.apply 清空了我的配置，如何恢复和避免？](#configapply-wiped-my-config-how-do-i-recover-and-avoid-this)
-  - [如何运行一个中心 Gateway 网关配合跨设备的专用工作节点？](#how-do-i-run-a-central-gateway-with-specialized-workers-across-devices)
-  - [OpenClaw 浏览器可以无头运行吗？](#can-the-openclaw-browser-run-headless)
-  - [如何使用 Brave 进行浏览器控制？](#how-do-i-use-brave-for-browser-control)
-- [远程 Gateway 网关与节点](#remote-gateways-nodes)
-  - [命令如何在 Telegram、Gateway 网关和节点之间传播？](#how-do-commands-propagate-between-telegram-the-gateway-and-nodes)
-  - [如果 Gateway 网关托管在远程，我的智能体如何访问我的电脑？](#how-can-my-agent-access-my-computer-if-the-gateway-is-hosted-remotely)
-  - [Tailscale 已连接但收不到回复，怎么办？](#tailscale-is-connected-but-i-get-no-replies-what-now)
-  - [两个 OpenClaw 实例（本地 + VPS）可以互相通信吗？](#can-two-openclaw-instances-talk-to-each-other-local-vps)
-  - [多个智能体需要独立的 VPS 吗？](#do-i-need-separate-vpses-for-multiple-agents)
-  - [在个人笔记本电脑上使用节点而不是从 VPS SSH 有什么好处？](#is-there-a-benefit-to-using-a-node-on-my-personal-laptop-instead-of-ssh-from-a-vps)
-  - [节点会运行 Gateway 网关服务吗？](#do-nodes-run-a-gateway-service)
-  - [有 API / RPC 方式来应用配置吗？](#is-there-an-api-rpc-way-to-apply-config)
-  - [首次安装的最小“合理”配置是什么？](#whats-a-minimal-sane-config-for-a-first-install)
-  - [如何在 VPS 上设置 Tailscale 并从 Mac 连接？](#how-do-i-set-up-tailscale-on-a-vps-and-connect-from-my-mac)
-  - [如何将 Mac 节点连接到远程 Gateway 网关（Tailscale Serve）？](#how-do-i-connect-a-mac-node-to-a-remote-gateway-tailscale-serve)
-  - [应该在第二台笔记本上安装还是只添加一个节点？](#should-i-install-on-a-second-laptop-or-just-add-a-node)
-- [环境变量和 .env 加载](#env-vars-and-env-loading)
-  - [OpenClaw 如何加载环境变量？](#how-does-openclaw-load-environment-variables)
-  - [“我通过服务启动了 Gateway 网关，但环境变量消失了。”怎么办？](#i-started-the-gateway-via-the-service-and-my-env-vars-disappeared-what-now)
-  - [我设置了 `COPILOT_GITHUB_TOKEN`，但 models status 显示"Shell env: off"，为什么？](#i-set-copilotgithubtoken-but-models-status-shows-shell-env-off-why)
-- [会话与多聊天](#sessions-multiple-chats)
-  - [如何开始一个新对话？](#how-do-i-start-a-fresh-conversation)
-  - [如果我从不发送 `/new`，会话会自动重置吗？](#do-sessions-reset-automatically-if-i-never-send-new)
-  - [能否创建一个 OpenClaw 实例团队——一个 CEO 和多个智能体？](#is-there-a-way-to-make-a-team-of-openclaw-instances-one-ceo-and-many-agents)
-  - [为什么上下文在任务中途被截断了？如何防止？](#why-did-context-get-truncated-midtask-how-do-i-prevent-it)
-  - [如何完全重置 OpenClaw 但保留安装？](#how-do-i-completely-reset-openclaw-but-keep-it-installed)
-  - [我遇到了"context too large"错误——如何重置或压缩？](#im-getting-context-too-large-errors-how-do-i-reset-or-compact)
-  - [为什么我看到"LLM request rejected: messages.N.content.X.tool_use.input: Field required"？](#why-am-i-seeing-llm-request-rejected-messagesncontentxtooluseinput-field-required)
-  - [为什么每 30 分钟收到一次心跳消息？](#why-am-i-getting-heartbeat-messages-every-30-minutes)
-  - [需要在 WhatsApp 群组中添加“机器人账号”吗？](#do-i-need-to-add-a-bot-account-to-a-whatsapp-group)
-  - [如何获取 WhatsApp 群组的 JID？](#how-do-i-get-the-jid-of-a-whatsapp-group)
-  - [为什么 OpenClaw 不在群组中回复？](#why-doesnt-openclaw-reply-in-a-group)
-  - [群组/线程与私聊共享上下文吗？](#do-groupsthreads-share-context-with-dms)
-  - [可以创建多少个工作区和智能体？](#how-many-workspaces-and-agents-can-i-create)
-  - [可以同时运行多个机器人或聊天（Slack）吗？应该如何设置？](#can-i-run-multiple-bots-or-chats-at-the-same-time-slack-and-how-should-i-set-that-up)
-- [模型：默认值、选择、别名、切换](#models-defaults-selection-aliases-switching)
-  - [什么是“默认模型”？](#what-is-the-default-model)
-  - [推荐什么模型？](#what-model-do-you-recommend)
-  - [如何在不清空配置的情况下切换模型？](#how-do-i-switch-models-without-wiping-my-config)
-  - [可以使用自托管模型（llama.cpp、vLLM、Ollama）吗？](#can-i-use-selfhosted-models-llamacpp-vllm-ollama)
-  - [OpenClaw、Flawd 和 Krill 使用什么模型？](#what-do-openclaw-flawd-and-krill-use-for-models)
-  - [如何在运行中切换模型（无需重启）？](#how-do-i-switch-models-on-the-fly-without-restarting)
-  - [能否日常任务用 GPT 5.2，编程用 Codex 5.2？](#can-i-use-gpt-52-for-daily-tasks-and-codex-52-for-coding)
-  - [为什么我看到"Model … is not allowed"然后没有回复？](#why-do-i-see-model-is-not-allowed-and-then-no-reply)
-  - [为什么我看到"Unknown model: minimax/MiniMax-M2.1"？](#why-do-i-see-unknown-model-minimaxminimaxm21)
-  - [能否将 MiniMax 设为默认，复杂任务用 OpenAI？](#can-i-use-minimax-as-my-default-and-openai-for-complex-tasks)
-  - [opus / sonnet / gpt 是内置快捷方式吗？](#are-opus-sonnet-gpt-builtin-shortcuts)
-  - [如何定义/覆盖模型快捷方式（别名）？](#how-do-i-defineoverride-model-shortcuts-aliases)
-  - [如何添加其他提供商（如 OpenRouter 或 Z.AI）的模型？](#how-do-i-add-models-from-other-providers-like-openrouter-or-zai)
-- [模型故障转移与"All models failed"](#model-failover-and-all-models-failed)
-  - [故障转移是如何工作的？](#how-does-failover-work)
-  - [这个错误是什么意思？](#what-does-this-error-mean)
-  - [`No credentials found for profile "anthropic:default"` 的修复清单](#fix-checklist-for-no-credentials-found-for-profile-anthropicdefault)
-  - [为什么还尝试了 Google Gemini 并且失败了？](#why-did-it-also-try-google-gemini-and-fail)
-- [认证配置文件：概念和管理方式](#auth-profiles-what-they-are-and-how-to-manage-them)
-  - [什么是认证配置文件？](#what-is-an-auth-profile)
-  - [典型的配置文件 ID 有哪些？](#what-are-typical-profile-ids)
-  - [可以控制首先尝试哪个认证配置文件吗？](#can-i-control-which-auth-profile-is-tried-first)
-  - [OAuth 与 API 密钥：有什么区别？](#oauth-vs-api-key-whats-the-difference)
-- [Gateway 网关：端口、“已在运行”和远程模式](#gateway-ports-already-running-and-remote-mode)
-  - [Gateway 网关使用什么端口？](#what-port-does-the-gateway-use)
-  - [为什么 `openclaw gateway status` 显示 `Runtime: running` 但 `RPC probe: failed`？](#why-does-openclaw-gateway-status-say-runtime-running-but-rpc-probe-failed)
-  - [为什么 `openclaw gateway status` 显示 `Config (cli)` 和 `Config (service)` 不同？](#why-does-openclaw-gateway-status-show-config-cli-and-config-service-different)
-  - ["another gateway instance is already listening"是什么意思？](#what-does-another-gateway-instance-is-already-listening-mean)
-  - [如何以远程模式运行 OpenClaw（客户端连接到其他位置的 Gateway 网关）？](#how-do-i-run-openclaw-in-remote-mode-client-connects-to-a-gateway-elsewhere)
-  - [控制 UI 显示"unauthorized"（或持续重连），怎么办？](#the-control-ui-says-unauthorized-or-keeps-reconnecting-what-now)
-  - [我设置了 `gateway.bind: "tailnet"` 但无法绑定 / 什么都没监听](#i-set-gatewaybind-tailnet-but-it-cant-bind-nothing-listens)
-  - [可以在同一主机上运行多个 Gateway 网关吗？](#can-i-run-multiple-gateways-on-the-same-host)
-  - ["invalid handshake" / code 1008 是什么意思？](#what-does-invalid-handshake-code-1008-mean)
-- [日志与调试](#logging-and-debugging)
-  - [日志在哪里？](#where-are-logs)
-  - [如何启动/停止/重启 Gateway 网关服务？](#how-do-i-startstoprestart-the-gateway-service)
-  - [我在 Windows 上关闭了终端——如何重启 OpenClaw？](#i-closed-my-terminal-on-windows-how-do-i-restart-openclaw)
-  - [Gateway 网关已启动但回复始终不到达，应该检查什么？](#the-gateway-is-up-but-replies-never-arrive-what-should-i-check)
-  - ["Disconnected from gateway: no reason"——怎么办？](#disconnected-from-gateway-no-reason-what-now)
-  - [Telegram setMyCommands 因网络错误失败，应该检查什么？](#telegram-setmycommands-fails-with-network-errors-what-should-i-check)
-  - [TUI 没有输出，应该检查什么？](#tui-shows-no-output-what-should-i-check)
-  - [如何完全停止然后启动 Gateway 网关？](#how-do-i-completely-stop-then-start-the-gateway)
-  - [通俗解释：`openclaw gateway restart` 与 `openclaw gateway`](#eli5-openclaw-gateway-restart-vs-openclaw-gateway)
-  - [出现故障时获取更多详情的最快方法是什么？](#whats-the-fastest-way-to-get-more-details-when-something-fails)
-- [媒体与附件](#media-attachments)
-  - [我的 Skills 生成了图片/PDF，但什么都没发送](#my-skill-generated-an-imagepdf-but-nothing-was-sent)
-- [安全与访问控制](#security-and-access-control)
-  - [将 OpenClaw 暴露给入站私信安全吗？](#is-it-safe-to-expose-openclaw-to-inbound-dms)
-  - [提示注入只对公开机器人有影响吗？](#is-prompt-injection-only-a-concern-for-public-bots)
-  - [我的机器人应该有自己的邮箱、GitHub 账户或电话号码吗？](#should-my-bot-have-its-own-email-github-account-or-phone-number)
-  - [我能让它自主管理我的短信吗？这安全吗？](#can-i-give-it-autonomy-over-my-text-messages-and-is-that-safe)
-  - [个人助理任务可以使用更便宜的模型吗？](#can-i-use-cheaper-models-for-personal-assistant-tasks)
-  - [我在 Telegram 中运行了 `/start` 但没收到配对码](#i-ran-start-in-telegram-but-didnt-get-a-pairing-code)
-  - [WhatsApp：会给我的联系人发消息吗？配对如何工作？](#whatsapp-will-it-message-my-contacts-how-does-pairing-work)
-- [聊天命令、中止任务和“停不下来”](#chat-commands-aborting-tasks-and-it-wont-stop)
-  - [如何阻止内部系统消息显示在聊天中？](#how-do-i-stop-internal-system-messages-from-showing-in-chat)
-  - [如何停止/取消正在运行的任务？](#how-do-i-stopcancel-a-running-task)
-  - [如何从 Telegram 发送 Discord 消息？（"Cross-context messaging denied"）](#how-do-i-send-a-discord-message-from-telegram-crosscontext-messaging-denied)
-  - [为什么感觉机器人“忽略”了快速连发的消息？](#why-does-it-feel-like-the-bot-ignores-rapidfire-messages)
+- [å¿«é€Ÿå¼€å§‹ä¸Žé¦–æ¬¡è¿è¡Œè®¾ç½®](#quick-start-and-firstrun-setup)
+  - [æˆ‘å¡ä½äº†ï¼Œæœ€å¿«çš„æŽ’éšœæ–¹æ³•æ˜¯ä»€ä¹ˆï¼Ÿ](#im-stuck-whats-the-fastest-way-to-get-unstuck)
+  - [å®‰è£…å’Œè®¾ç½®  çš„æŽ¨èæ–¹å¼æ˜¯ä»€ä¹ˆï¼Ÿ](#whats-the-recommended-way-to-install-and-set-up-)
+  - [æ–°æ‰‹å¼•å¯¼åŽå¦‚ä½•æ‰“å¼€ä»ªè¡¨æ¿ï¼Ÿ](#how-do-i-open-the-dashboard-after-onboarding)
+  - [å¦‚ä½•åœ¨æœ¬åœ°å’Œè¿œç¨‹çŽ¯å¢ƒä¸­éªŒè¯ä»ªè¡¨æ¿ï¼ˆä»¤ç‰Œï¼‰ï¼Ÿ](#how-do-i-authenticate-the-dashboard-token-on-localhost-vs-remote)
+  - [æˆ‘éœ€è¦ä»€ä¹ˆè¿è¡Œæ—¶ï¼Ÿ](#what-runtime-do-i-need)
+  - [èƒ½åœ¨ Raspberry Pi ä¸Šè¿è¡Œå—ï¼Ÿ](#does-it-run-on-raspberry-pi)
+  - [Raspberry Pi å®‰è£…æœ‰ä»€ä¹ˆå»ºè®®ï¼Ÿ](#any-tips-for-raspberry-pi-installs)
+  - [å¡åœ¨ "wake up my friend" / æ–°æ‰‹å¼•å¯¼æ— æ³•å¯åŠ¨ï¼Œæ€Žä¹ˆåŠžï¼Ÿ](#it-is-stuck-on-wake-up-my-friend-onboarding-will-not-hatch-what-now)
+  - [èƒ½å¦å°†æˆ‘çš„è®¾ç½®è¿ç§»åˆ°æ–°æœºå™¨ï¼ˆMac miniï¼‰è€Œä¸é‡æ–°è¿›è¡Œæ–°æ‰‹å¼•å¯¼ï¼Ÿ](#can-i-migrate-my-setup-to-a-new-machine-mac-mini-without-redoing-onboarding)
+  - [åœ¨å“ªé‡ŒæŸ¥çœ‹æœ€æ–°ç‰ˆæœ¬çš„æ›´æ–°å†…å®¹ï¼Ÿ](#where-do-i-see-whats-new-in-the-latest-version)
+  - [æ— æ³•è®¿é—® docs..aiï¼ˆSSL é”™è¯¯ï¼‰ï¼Œæ€Žä¹ˆåŠžï¼Ÿ](#i-cant-access-docsai-ssl-error-what-now)
+  - [stable å’Œ beta æœ‰ä»€ä¹ˆåŒºåˆ«ï¼Ÿ](#whats-the-difference-between-stable-and-beta)
+- [å¦‚ä½•å®‰è£… beta ç‰ˆæœ¬ï¼Œbeta å’Œ dev æœ‰ä»€ä¹ˆåŒºåˆ«ï¼Ÿ](#how-do-i-install-the-beta-version-and-whats-the-difference-between-beta-and-dev)
+  - [å¦‚ä½•è¯•ç”¨æœ€æ–°ä»£ç ï¼Ÿ](#how-do-i-try-the-latest-bits)
+  - [å®‰è£…å’Œæ–°æ‰‹å¼•å¯¼é€šå¸¸éœ€è¦å¤šé•¿æ—¶é—´ï¼Ÿ](#how-long-does-install-and-onboarding-usually-take)
+  - [å®‰è£…ç¨‹åºå¡ä½äº†ï¼Ÿå¦‚ä½•èŽ·å–æ›´å¤šåé¦ˆï¼Ÿ](#installer-stuck-how-do-i-get-more-feedback)
+  - [Windows å®‰è£…æç¤ºæ‰¾ä¸åˆ° git æˆ–æ— æ³•è¯†åˆ« ](#windows-install-says-git-not-found-or--not-recognized)
+  - [æ–‡æ¡£æ²¡æœ‰è§£ç­”æˆ‘çš„é—®é¢˜â€”â€”å¦‚ä½•èŽ·å¾—æ›´å¥½çš„ç­”æ¡ˆï¼Ÿ](#the-docs-didnt-answer-my-question-how-do-i-get-a-better-answer)
+  - [å¦‚ä½•åœ¨ Linux ä¸Šå®‰è£… ï¼Ÿ](#how-do-i-install--on-linux)
+  - [å¦‚ä½•åœ¨ VPS ä¸Šå®‰è£… ï¼Ÿ](#how-do-i-install--on-a-vps)
+  - [äº‘/VPS å®‰è£…æŒ‡å—åœ¨å“ªé‡Œï¼Ÿ](#where-are-the-cloudvps-install-guides)
+  - [å¯ä»¥è®©  è‡ªè¡Œæ›´æ–°å—ï¼Ÿ](#can-i-ask--to-update-itself)
+  - [æ–°æ‰‹å¼•å¯¼å‘å¯¼å…·ä½“åšäº†ä»€ä¹ˆï¼Ÿ](#what-does-the-onboarding-wizard-actually-do)
+  - [è¿è¡Œ  éœ€è¦ Claude æˆ– OpenAI è®¢é˜…å—ï¼Ÿ](#do-i-need-a-claude-or-openai-subscription-to-run-this)
+  - [èƒ½å¦ä½¿ç”¨ Claude Max è®¢é˜…è€Œä¸éœ€è¦ API å¯†é’¥ï¼Ÿ](#can-i-use-claude-max-subscription-without-an-api-key)
+  - [Anthropic "setup-token" è®¤è¯å¦‚ä½•å·¥ä½œï¼Ÿ](#how-does-anthropic-setuptoken-auth-work)
+  - [åœ¨å“ªé‡ŒèŽ·å– Anthropic setup-tokenï¼Ÿ](#where-do-i-find-an-anthropic-setuptoken)
+  - [æ˜¯å¦æ”¯æŒ Claude è®¢é˜…è®¤è¯ï¼ˆClaude Code OAuthï¼‰ï¼Ÿ](#do-you-support-claude-subscription-auth-claude-code-oauth)
+  - [ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ° `HTTP 429: rate_limit_error`ï¼ˆæ¥è‡ª Anthropicï¼‰ï¼Ÿ](#why-am-i-seeing-http-429-ratelimiterror-from-anthropic)
+  - [æ”¯æŒ AWS Bedrock å—ï¼Ÿ](#is-aws-bedrock-supported)
+  - [Codex è®¤è¯å¦‚ä½•å·¥ä½œï¼Ÿ](#how-does-codex-auth-work)
+  - [æ˜¯å¦æ”¯æŒ OpenAI è®¢é˜…è®¤è¯ï¼ˆCodex OAuthï¼‰ï¼Ÿ](#do-you-support-openai-subscription-auth-codex-oauth)
+  - [å¦‚ä½•è®¾ç½® Gemini CLI OAuthï¼Ÿ](#how-do-i-set-up-gemini-cli-oauth)
+  - [æœ¬åœ°æ¨¡åž‹é€‚åˆæ—¥å¸¸èŠå¤©å—ï¼Ÿ](#is-a-local-model-ok-for-casual-chats)
+  - [å¦‚ä½•å°†æ‰˜ç®¡æ¨¡åž‹æµé‡é™åˆ¶åœ¨ç‰¹å®šåŒºåŸŸï¼Ÿ](#how-do-i-keep-hosted-model-traffic-in-a-specific-region)
+  - [æˆ‘å¿…é¡»è´­ä¹° Mac Mini æ‰èƒ½å®‰è£…å—ï¼Ÿ](#do-i-have-to-buy-a-mac-mini-to-install-this)
+  - [iMessage æ”¯æŒéœ€è¦ Mac mini å—ï¼Ÿ](#do-i-need-a-mac-mini-for-imessage-support)
+  - [å¦‚æžœæˆ‘ä¹°äº† Mac mini è¿è¡Œ ï¼Œèƒ½è¿žæŽ¥åˆ°æˆ‘çš„ MacBook Pro å—ï¼Ÿ](#if-i-buy-a-mac-mini-to-run--can-i-connect-it-to-my-macbook-pro)
+  - [å¯ä»¥ä½¿ç”¨ Bun å—ï¼Ÿ](#can-i-use-bun)
+  - [Telegramï¼š`allowFrom` å¡«ä»€ä¹ˆï¼Ÿ](#telegram-what-goes-in-allowfrom)
+  - [å¤šäººèƒ½å¦ä½¿ç”¨åŒä¸€ä¸ª WhatsApp å·ç é…åˆä¸åŒçš„  å®žä¾‹ï¼Ÿ](#can-multiple-people-use-one-whatsapp-number-with-different--instances)
+  - [èƒ½å¦åŒæ—¶è¿è¡Œä¸€ä¸ªâ€œå¿«é€ŸèŠå¤©â€æ™ºèƒ½ä½“å’Œä¸€ä¸ªâ€œç”¨ Opus ç¼–ç¨‹â€çš„æ™ºèƒ½ä½“ï¼Ÿ](#can-i-run-a-fast-chat-agent-and-an-opus-for-coding-agent)
+  - [Homebrew åœ¨ Linux ä¸Šå¯ç”¨å—ï¼Ÿ](#does-homebrew-work-on-linux)
+  - [å¯ç¼–è¾‘ï¼ˆgitï¼‰å®‰è£…å’Œ npm å®‰è£…æœ‰ä»€ä¹ˆåŒºåˆ«ï¼Ÿ](#whats-the-difference-between-the-hackable-git-install-and-npm-install)
+  - [ä¹‹åŽå¯ä»¥åœ¨ npm å’Œ git å®‰è£…ä¹‹é—´åˆ‡æ¢å—ï¼Ÿ](#can-i-switch-between-npm-and-git-installs-later)
+  - [åº”è¯¥åœ¨ç¬”è®°æœ¬ç”µè„‘è¿˜æ˜¯ VPS ä¸Šè¿è¡Œ Gateway ç½‘å…³ï¼Ÿ](#should-i-run-the-gateway-on-my-laptop-or-a-vps)
+  - [åœ¨ä¸“ç”¨æœºå™¨ä¸Šè¿è¡Œ  æœ‰å¤šé‡è¦ï¼Ÿ](#how-important-is-it-to-run--on-a-dedicated-machine)
+  - [VPS çš„æœ€ä½Žè¦æ±‚å’ŒæŽ¨èæ“ä½œç³»ç»Ÿæ˜¯ä»€ä¹ˆï¼Ÿ](#what-are-the-minimum-vps-requirements-and-recommended-os)
+  - [å¯ä»¥åœ¨è™šæ‹Ÿæœºä¸­è¿è¡Œ  å—ï¼Ÿæœ‰ä»€ä¹ˆè¦æ±‚ï¼Ÿ](#can-i-run--in-a-vm-and-what-are-the-requirements)
+- [ä»€ä¹ˆæ˜¯ ï¼Ÿ](#what-is-)
+  - [ç”¨ä¸€æ®µè¯æè¿° ï¼Ÿ](#what-is--in-one-paragraph)
+  - [ä»·å€¼ä¸»å¼ æ˜¯ä»€ä¹ˆï¼Ÿ](#whats-the-value-proposition)
+  - [åˆšè®¾ç½®å¥½ï¼Œåº”è¯¥å…ˆåšä»€ä¹ˆï¼Ÿ](#i-just-set-it-up-what-should-i-do-first)
+  - [ æ—¥å¸¸æœ€å¸¸ç”¨çš„äº”ä¸ªåœºæ™¯æ˜¯ä»€ä¹ˆï¼Ÿ](#what-are-the-top-five-everyday-use-cases-for-)
+  - [ èƒ½å¦å¸®åŠ© SaaS è¿›è¡ŒèŽ·å®¢ã€å¤–è”ã€å¹¿å‘Šå’Œåšå®¢ï¼Ÿ](#can--help-with-lead-gen-outreach-ads-and-blogs-for-a-saas)
+  - [ç›¸æ¯” Claude Codeï¼Œåœ¨ Web å¼€å‘æ–¹é¢æœ‰ä»€ä¹ˆä¼˜åŠ¿ï¼Ÿ](#what-are-the-advantages-vs-claude-code-for-web-development)
+- [Skills ä¸Žè‡ªåŠ¨åŒ–](#skills-and-automation)
+  - [å¦‚ä½•è‡ªå®šä¹‰ Skills è€Œä¸å¼„è„ä»“åº“ï¼Ÿ](#how-do-i-customize-skills-without-keeping-the-repo-dirty)
+  - [å¯ä»¥ä»Žè‡ªå®šä¹‰æ–‡ä»¶å¤¹åŠ è½½ Skills å—ï¼Ÿ](#can-i-load-skills-from-a-custom-folder)
+  - [å¦‚ä½•ä¸ºä¸åŒä»»åŠ¡ä½¿ç”¨ä¸åŒæ¨¡åž‹ï¼Ÿ](#how-can-i-use-different-models-for-different-tasks)
+  - [æœºå™¨äººåœ¨æ‰§è¡Œç¹é‡å·¥ä½œæ—¶å¡ä½äº†ï¼Œå¦‚ä½•å¸è½½ä»»åŠ¡ï¼Ÿ](#the-bot-freezes-while-doing-heavy-work-how-do-i-offload-that)
+  - [å®šæ—¶ä»»åŠ¡æˆ–æé†’æ²¡æœ‰è§¦å‘ï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆï¼Ÿ](#cron-or-reminders-do-not-fire-what-should-i-check)
+  - [å¦‚ä½•åœ¨ Linux ä¸Šå®‰è£… Skillsï¼Ÿ](#how-do-i-install-skills-on-linux)
+  - [ èƒ½å¦æŒ‰è®¡åˆ’æˆ–åœ¨åŽå°æŒç»­è¿è¡Œä»»åŠ¡ï¼Ÿ](#can--run-tasks-on-a-schedule-or-continuously-in-the-background)
+  - [èƒ½å¦ä»Ž Linux è¿è¡Œä»…é™ Apple/macOS çš„ Skillsï¼Ÿ](#can-i-run-applemacosonly-skills-from-linux)
+  - [æœ‰ Notion æˆ– HeyGen é›†æˆå—ï¼Ÿ](#do-you-have-a-notion-or-heygen-integration)
+  - [å¦‚ä½•å®‰è£…ç”¨äºŽæµè§ˆå™¨æŽ¥ç®¡çš„ Chrome æ‰©å±•ï¼Ÿ](#how-do-i-install-the-chrome-extension-for-browser-takeover)
+- [æ²™ç®±ä¸Žè®°å¿†](#sandboxing-and-memory)
+  - [æœ‰ä¸“é—¨çš„æ²™ç®±æ–‡æ¡£å—ï¼Ÿ](#is-there-a-dedicated-sandboxing-doc)
+  - [å¦‚ä½•å°†ä¸»æœºæ–‡ä»¶å¤¹ç»‘å®šåˆ°æ²™ç®±ä¸­ï¼Ÿ](#how-do-i-bind-a-host-folder-into-the-sandbox)
+  - [è®°å¿†æ˜¯å¦‚ä½•å·¥ä½œçš„ï¼Ÿ](#how-does-memory-work)
+  - [è®°å¿†æ€»æ˜¯é—å¿˜ï¼Œå¦‚ä½•è®©å®ƒæŒä¹…ä¿å­˜ï¼Ÿ](#memory-keeps-forgetting-things-how-do-i-make-it-stick)
+  - [è®°å¿†æ˜¯å¦æ°¸ä¹…ä¿ç•™ï¼Ÿæœ‰ä»€ä¹ˆé™åˆ¶ï¼Ÿ](#does-memory-persist-forever-what-are-the-limits)
+  - [è¯­ä¹‰è®°å¿†æœç´¢éœ€è¦ OpenAI API å¯†é’¥å—ï¼Ÿ](#does-semantic-memory-search-require-an-openai-api-key)
+- [ç£ç›˜ä¸Šçš„æ–‡ä»¶ä½ç½®](#where-things-live-on-disk)
+  - [ ä½¿ç”¨çš„æ‰€æœ‰æ•°æ®éƒ½ä¿å­˜åœ¨æœ¬åœ°å—ï¼Ÿ](#is-all-data-used-with--saved-locally)
+  - [ å°†æ•°æ®å­˜å‚¨åœ¨å“ªé‡Œï¼Ÿ](#where-does--store-its-data)
+  - [AGENTS.md / SOUL.md / USER.md / MEMORY.md åº”è¯¥æ”¾åœ¨å“ªé‡Œï¼Ÿ](#where-should-agentsmd-soulmd-usermd-memorymd-live)
+  - [æŽ¨èçš„å¤‡ä»½ç­–ç•¥æ˜¯ä»€ä¹ˆï¼Ÿ](#whats-the-recommended-backup-strategy)
+  - [å¦‚ä½•å®Œå…¨å¸è½½ ï¼Ÿ](#how-do-i-completely-uninstall-)
+  - [æ™ºèƒ½ä½“å¯ä»¥åœ¨å·¥ä½œåŒºå¤–å·¥ä½œå—ï¼Ÿ](#can-agents-work-outside-the-workspace)
+  - [æˆ‘å¤„äºŽè¿œç¨‹æ¨¡å¼â€”â€”ä¼šè¯å­˜å‚¨åœ¨å“ªé‡Œï¼Ÿ](#im-in-remote-mode-where-is-the-session-store)
+- [é…ç½®åŸºç¡€](#config-basics)
+  - [é…ç½®æ–‡ä»¶æ˜¯ä»€ä¹ˆæ ¼å¼ï¼Ÿåœ¨å“ªé‡Œï¼Ÿ](#what-format-is-the-config-where-is-it)
+  - [æˆ‘è®¾ç½®äº† `gateway.bind: "lan"`ï¼ˆæˆ– `"tailnet"`ï¼‰ï¼ŒçŽ°åœ¨ä»€ä¹ˆéƒ½ç›‘å¬ä¸äº† / UI æ˜¾ç¤ºæœªæŽˆæƒ](#i-set-gatewaybind-lan-or-tailnet-and-now-nothing-listens-the-ui-says-unauthorized)
+  - [ä¸ºä»€ä¹ˆçŽ°åœ¨åœ¨ localhost ä¹Ÿéœ€è¦ä»¤ç‰Œï¼Ÿ](#why-do-i-need-a-token-on-localhost-now)
+  - [æ›´æ”¹é…ç½®åŽéœ€è¦é‡å¯å—ï¼Ÿ](#do-i-have-to-restart-after-changing-config)
+  - [å¦‚ä½•å¯ç”¨ç½‘ç»œæœç´¢ï¼ˆå’Œç½‘é¡µæŠ“å–ï¼‰ï¼Ÿ](#how-do-i-enable-web-search-and-web-fetch)
+  - [config.apply æ¸…ç©ºäº†æˆ‘çš„é…ç½®ï¼Œå¦‚ä½•æ¢å¤å’Œé¿å…ï¼Ÿ](#configapply-wiped-my-config-how-do-i-recover-and-avoid-this)
+  - [å¦‚ä½•è¿è¡Œä¸€ä¸ªä¸­å¿ƒ Gateway ç½‘å…³é…åˆè·¨è®¾å¤‡çš„ä¸“ç”¨å·¥ä½œèŠ‚ç‚¹ï¼Ÿ](#how-do-i-run-a-central-gateway-with-specialized-workers-across-devices)
+  - [ æµè§ˆå™¨å¯ä»¥æ— å¤´è¿è¡Œå—ï¼Ÿ](#can-the--browser-run-headless)
+  - [å¦‚ä½•ä½¿ç”¨ Brave è¿›è¡Œæµè§ˆå™¨æŽ§åˆ¶ï¼Ÿ](#how-do-i-use-brave-for-browser-control)
+- [è¿œç¨‹ Gateway ç½‘å…³ä¸ŽèŠ‚ç‚¹](#remote-gateways-nodes)
+  - [å‘½ä»¤å¦‚ä½•åœ¨ Telegramã€Gateway ç½‘å…³å’ŒèŠ‚ç‚¹ä¹‹é—´ä¼ æ’­ï¼Ÿ](#how-do-commands-propagate-between-telegram-the-gateway-and-nodes)
+  - [å¦‚æžœ Gateway ç½‘å…³æ‰˜ç®¡åœ¨è¿œç¨‹ï¼Œæˆ‘çš„æ™ºèƒ½ä½“å¦‚ä½•è®¿é—®æˆ‘çš„ç”µè„‘ï¼Ÿ](#how-can-my-agent-access-my-computer-if-the-gateway-is-hosted-remotely)
+  - [Tailscale å·²è¿žæŽ¥ä½†æ”¶ä¸åˆ°å›žå¤ï¼Œæ€Žä¹ˆåŠžï¼Ÿ](#tailscale-is-connected-but-i-get-no-replies-what-now)
+  - [ä¸¤ä¸ª  å®žä¾‹ï¼ˆæœ¬åœ° + VPSï¼‰å¯ä»¥äº’ç›¸é€šä¿¡å—ï¼Ÿ](#can-two--instances-talk-to-each-other-local-vps)
+  - [å¤šä¸ªæ™ºèƒ½ä½“éœ€è¦ç‹¬ç«‹çš„ VPS å—ï¼Ÿ](#do-i-need-separate-vpses-for-multiple-agents)
+  - [åœ¨ä¸ªäººç¬”è®°æœ¬ç”µè„‘ä¸Šä½¿ç”¨èŠ‚ç‚¹è€Œä¸æ˜¯ä»Ž VPS SSH æœ‰ä»€ä¹ˆå¥½å¤„ï¼Ÿ](#is-there-a-benefit-to-using-a-node-on-my-personal-laptop-instead-of-ssh-from-a-vps)
+  - [èŠ‚ç‚¹ä¼šè¿è¡Œ Gateway ç½‘å…³æœåŠ¡å—ï¼Ÿ](#do-nodes-run-a-gateway-service)
+  - [æœ‰ API / RPC æ–¹å¼æ¥åº”ç”¨é…ç½®å—ï¼Ÿ](#is-there-an-api-rpc-way-to-apply-config)
+  - [é¦–æ¬¡å®‰è£…çš„æœ€å°â€œåˆç†â€é…ç½®æ˜¯ä»€ä¹ˆï¼Ÿ](#whats-a-minimal-sane-config-for-a-first-install)
+  - [å¦‚ä½•åœ¨ VPS ä¸Šè®¾ç½® Tailscale å¹¶ä»Ž Mac è¿žæŽ¥ï¼Ÿ](#how-do-i-set-up-tailscale-on-a-vps-and-connect-from-my-mac)
+  - [å¦‚ä½•å°† Mac èŠ‚ç‚¹è¿žæŽ¥åˆ°è¿œç¨‹ Gateway ç½‘å…³ï¼ˆTailscale Serveï¼‰ï¼Ÿ](#how-do-i-connect-a-mac-node-to-a-remote-gateway-tailscale-serve)
+  - [åº”è¯¥åœ¨ç¬¬äºŒå°ç¬”è®°æœ¬ä¸Šå®‰è£…è¿˜æ˜¯åªæ·»åŠ ä¸€ä¸ªèŠ‚ç‚¹ï¼Ÿ](#should-i-install-on-a-second-laptop-or-just-add-a-node)
+- [çŽ¯å¢ƒå˜é‡å’Œ .env åŠ è½½](#env-vars-and-env-loading)
+  - [ å¦‚ä½•åŠ è½½çŽ¯å¢ƒå˜é‡ï¼Ÿ](#how-does--load-environment-variables)
+  - [â€œæˆ‘é€šè¿‡æœåŠ¡å¯åŠ¨äº† Gateway ç½‘å…³ï¼Œä½†çŽ¯å¢ƒå˜é‡æ¶ˆå¤±äº†ã€‚â€æ€Žä¹ˆåŠžï¼Ÿ](#i-started-the-gateway-via-the-service-and-my-env-vars-disappeared-what-now)
+  - [æˆ‘è®¾ç½®äº† `COPILOT_GITHUB_TOKEN`ï¼Œä½† models status æ˜¾ç¤º"Shell env: off"ï¼Œä¸ºä»€ä¹ˆï¼Ÿ](#i-set-copilotgithubtoken-but-models-status-shows-shell-env-off-why)
+- [ä¼šè¯ä¸Žå¤šèŠå¤©](#sessions-multiple-chats)
+  - [å¦‚ä½•å¼€å§‹ä¸€ä¸ªæ–°å¯¹è¯ï¼Ÿ](#how-do-i-start-a-fresh-conversation)
+  - [å¦‚æžœæˆ‘ä»Žä¸å‘é€ `/new`ï¼Œä¼šè¯ä¼šè‡ªåŠ¨é‡ç½®å—ï¼Ÿ](#do-sessions-reset-automatically-if-i-never-send-new)
+  - [èƒ½å¦åˆ›å»ºä¸€ä¸ª  å®žä¾‹å›¢é˜Ÿâ€”â€”ä¸€ä¸ª CEO å’Œå¤šä¸ªæ™ºèƒ½ä½“ï¼Ÿ](#is-there-a-way-to-make-a-team-of--instances-one-ceo-and-many-agents)
+  - [ä¸ºä»€ä¹ˆä¸Šä¸‹æ–‡åœ¨ä»»åŠ¡ä¸­é€”è¢«æˆªæ–­äº†ï¼Ÿå¦‚ä½•é˜²æ­¢ï¼Ÿ](#why-did-context-get-truncated-midtask-how-do-i-prevent-it)
+  - [å¦‚ä½•å®Œå…¨é‡ç½®  ä½†ä¿ç•™å®‰è£…ï¼Ÿ](#how-do-i-completely-reset--but-keep-it-installed)
+  - [æˆ‘é‡åˆ°äº†"context too large"é”™è¯¯â€”â€”å¦‚ä½•é‡ç½®æˆ–åŽ‹ç¼©ï¼Ÿ](#im-getting-context-too-large-errors-how-do-i-reset-or-compact)
+  - [ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ°"LLM request rejected: messages.N.content.X.tool_use.input: Field required"ï¼Ÿ](#why-am-i-seeing-llm-request-rejected-messagesncontentxtooluseinput-field-required)
+  - [ä¸ºä»€ä¹ˆæ¯ 30 åˆ†é’Ÿæ”¶åˆ°ä¸€æ¬¡å¿ƒè·³æ¶ˆæ¯ï¼Ÿ](#why-am-i-getting-heartbeat-messages-every-30-minutes)
+  - [éœ€è¦åœ¨ WhatsApp ç¾¤ç»„ä¸­æ·»åŠ â€œæœºå™¨äººè´¦å·â€å—ï¼Ÿ](#do-i-need-to-add-a-bot-account-to-a-whatsapp-group)
+  - [å¦‚ä½•èŽ·å– WhatsApp ç¾¤ç»„çš„ JIDï¼Ÿ](#how-do-i-get-the-jid-of-a-whatsapp-group)
+  - [ä¸ºä»€ä¹ˆ  ä¸åœ¨ç¾¤ç»„ä¸­å›žå¤ï¼Ÿ](#why-doesnt--reply-in-a-group)
+  - [ç¾¤ç»„/çº¿ç¨‹ä¸Žç§èŠå…±äº«ä¸Šä¸‹æ–‡å—ï¼Ÿ](#do-groupsthreads-share-context-with-dms)
+  - [å¯ä»¥åˆ›å»ºå¤šå°‘ä¸ªå·¥ä½œåŒºå’Œæ™ºèƒ½ä½“ï¼Ÿ](#how-many-workspaces-and-agents-can-i-create)
+  - [å¯ä»¥åŒæ—¶è¿è¡Œå¤šä¸ªæœºå™¨äººæˆ–èŠå¤©ï¼ˆSlackï¼‰å—ï¼Ÿåº”è¯¥å¦‚ä½•è®¾ç½®ï¼Ÿ](#can-i-run-multiple-bots-or-chats-at-the-same-time-slack-and-how-should-i-set-that-up)
+- [æ¨¡åž‹ï¼šé»˜è®¤å€¼ã€é€‰æ‹©ã€åˆ«åã€åˆ‡æ¢](#models-defaults-selection-aliases-switching)
+  - [ä»€ä¹ˆæ˜¯â€œé»˜è®¤æ¨¡åž‹â€ï¼Ÿ](#what-is-the-default-model)
+  - [æŽ¨èä»€ä¹ˆæ¨¡åž‹ï¼Ÿ](#what-model-do-you-recommend)
+  - [å¦‚ä½•åœ¨ä¸æ¸…ç©ºé…ç½®çš„æƒ…å†µä¸‹åˆ‡æ¢æ¨¡åž‹ï¼Ÿ](#how-do-i-switch-models-without-wiping-my-config)
+  - [å¯ä»¥ä½¿ç”¨è‡ªæ‰˜ç®¡æ¨¡åž‹ï¼ˆllama.cppã€vLLMã€Ollamaï¼‰å—ï¼Ÿ](#can-i-use-selfhosted-models-llamacpp-vllm-ollama)
+  - [ã€Flawd å’Œ Krill ä½¿ç”¨ä»€ä¹ˆæ¨¡åž‹ï¼Ÿ](#what-do--flawd-and-krill-use-for-models)
+  - [å¦‚ä½•åœ¨è¿è¡Œä¸­åˆ‡æ¢æ¨¡åž‹ï¼ˆæ— éœ€é‡å¯ï¼‰ï¼Ÿ](#how-do-i-switch-models-on-the-fly-without-restarting)
+  - [èƒ½å¦æ—¥å¸¸ä»»åŠ¡ç”¨ GPT 5.2ï¼Œç¼–ç¨‹ç”¨ Codex 5.2ï¼Ÿ](#can-i-use-gpt-52-for-daily-tasks-and-codex-52-for-coding)
+  - [ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ°"Model â€¦ is not allowed"ç„¶åŽæ²¡æœ‰å›žå¤ï¼Ÿ](#why-do-i-see-model-is-not-allowed-and-then-no-reply)
+  - [ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ°"Unknown model: minimax/MiniMax-M2.1"ï¼Ÿ](#why-do-i-see-unknown-model-minimaxminimaxm21)
+  - [èƒ½å¦å°† MiniMax è®¾ä¸ºé»˜è®¤ï¼Œå¤æ‚ä»»åŠ¡ç”¨ OpenAIï¼Ÿ](#can-i-use-minimax-as-my-default-and-openai-for-complex-tasks)
+  - [opus / sonnet / gpt æ˜¯å†…ç½®å¿«æ·æ–¹å¼å—ï¼Ÿ](#are-opus-sonnet-gpt-builtin-shortcuts)
+  - [å¦‚ä½•å®šä¹‰/è¦†ç›–æ¨¡åž‹å¿«æ·æ–¹å¼ï¼ˆåˆ«åï¼‰ï¼Ÿ](#how-do-i-defineoverride-model-shortcuts-aliases)
+  - [å¦‚ä½•æ·»åŠ å…¶ä»–æä¾›å•†ï¼ˆå¦‚ OpenRouter æˆ– Z.AIï¼‰çš„æ¨¡åž‹ï¼Ÿ](#how-do-i-add-models-from-other-providers-like-openrouter-or-zai)
+- [æ¨¡åž‹æ•…éšœè½¬ç§»ä¸Ž"All models failed"](#model-failover-and-all-models-failed)
+  - [æ•…éšœè½¬ç§»æ˜¯å¦‚ä½•å·¥ä½œçš„ï¼Ÿ](#how-does-failover-work)
+  - [è¿™ä¸ªé”™è¯¯æ˜¯ä»€ä¹ˆæ„æ€ï¼Ÿ](#what-does-this-error-mean)
+  - [`No credentials found for profile "anthropic:default"` çš„ä¿®å¤æ¸…å•](#fix-checklist-for-no-credentials-found-for-profile-anthropicdefault)
+  - [ä¸ºä»€ä¹ˆè¿˜å°è¯•äº† Google Gemini å¹¶ä¸”å¤±è´¥äº†ï¼Ÿ](#why-did-it-also-try-google-gemini-and-fail)
+- [è®¤è¯é…ç½®æ–‡ä»¶ï¼šæ¦‚å¿µå’Œç®¡ç†æ–¹å¼](#auth-profiles-what-they-are-and-how-to-manage-them)
+  - [ä»€ä¹ˆæ˜¯è®¤è¯é…ç½®æ–‡ä»¶ï¼Ÿ](#what-is-an-auth-profile)
+  - [å…¸åž‹çš„é…ç½®æ–‡ä»¶ ID æœ‰å“ªäº›ï¼Ÿ](#what-are-typical-profile-ids)
+  - [å¯ä»¥æŽ§åˆ¶é¦–å…ˆå°è¯•å“ªä¸ªè®¤è¯é…ç½®æ–‡ä»¶å—ï¼Ÿ](#can-i-control-which-auth-profile-is-tried-first)
+  - [OAuth ä¸Ž API å¯†é’¥ï¼šæœ‰ä»€ä¹ˆåŒºåˆ«ï¼Ÿ](#oauth-vs-api-key-whats-the-difference)
+- [Gateway ç½‘å…³ï¼šç«¯å£ã€â€œå·²åœ¨è¿è¡Œâ€å’Œè¿œç¨‹æ¨¡å¼](#gateway-ports-already-running-and-remote-mode)
+  - [Gateway ç½‘å…³ä½¿ç”¨ä»€ä¹ˆç«¯å£ï¼Ÿ](#what-port-does-the-gateway-use)
+  - [ä¸ºä»€ä¹ˆ ` gateway status` æ˜¾ç¤º `Runtime: running` ä½† `RPC probe: failed`ï¼Ÿ](#why-does--gateway-status-say-runtime-running-but-rpc-probe-failed)
+  - [ä¸ºä»€ä¹ˆ ` gateway status` æ˜¾ç¤º `Config (cli)` å’Œ `Config (service)` ä¸åŒï¼Ÿ](#why-does--gateway-status-show-config-cli-and-config-service-different)
+  - ["another gateway instance is already listening"æ˜¯ä»€ä¹ˆæ„æ€ï¼Ÿ](#what-does-another-gateway-instance-is-already-listening-mean)
+  - [å¦‚ä½•ä»¥è¿œç¨‹æ¨¡å¼è¿è¡Œ ï¼ˆå®¢æˆ·ç«¯è¿žæŽ¥åˆ°å…¶ä»–ä½ç½®çš„ Gateway ç½‘å…³ï¼‰ï¼Ÿ](#how-do-i-run--in-remote-mode-client-connects-to-a-gateway-elsewhere)
+  - [æŽ§åˆ¶ UI æ˜¾ç¤º"unauthorized"ï¼ˆæˆ–æŒç»­é‡è¿žï¼‰ï¼Œæ€Žä¹ˆåŠžï¼Ÿ](#the-control-ui-says-unauthorized-or-keeps-reconnecting-what-now)
+  - [æˆ‘è®¾ç½®äº† `gateway.bind: "tailnet"` ä½†æ— æ³•ç»‘å®š / ä»€ä¹ˆéƒ½æ²¡ç›‘å¬](#i-set-gatewaybind-tailnet-but-it-cant-bind-nothing-listens)
+  - [å¯ä»¥åœ¨åŒä¸€ä¸»æœºä¸Šè¿è¡Œå¤šä¸ª Gateway ç½‘å…³å—ï¼Ÿ](#can-i-run-multiple-gateways-on-the-same-host)
+  - ["invalid handshake" / code 1008 æ˜¯ä»€ä¹ˆæ„æ€ï¼Ÿ](#what-does-invalid-handshake-code-1008-mean)
+- [æ—¥å¿—ä¸Žè°ƒè¯•](#logging-and-debugging)
+  - [æ—¥å¿—åœ¨å“ªé‡Œï¼Ÿ](#where-are-logs)
+  - [å¦‚ä½•å¯åŠ¨/åœæ­¢/é‡å¯ Gateway ç½‘å…³æœåŠ¡ï¼Ÿ](#how-do-i-startstoprestart-the-gateway-service)
+  - [æˆ‘åœ¨ Windows ä¸Šå…³é—­äº†ç»ˆç«¯â€”â€”å¦‚ä½•é‡å¯ ï¼Ÿ](#i-closed-my-terminal-on-windows-how-do-i-restart-)
+  - [Gateway ç½‘å…³å·²å¯åŠ¨ä½†å›žå¤å§‹ç»ˆä¸åˆ°è¾¾ï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆï¼Ÿ](#the-gateway-is-up-but-replies-never-arrive-what-should-i-check)
+  - ["Disconnected from gateway: no reason"â€”â€”æ€Žä¹ˆåŠžï¼Ÿ](#disconnected-from-gateway-no-reason-what-now)
+  - [Telegram setMyCommands å› ç½‘ç»œé”™è¯¯å¤±è´¥ï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆï¼Ÿ](#telegram-setmycommands-fails-with-network-errors-what-should-i-check)
+  - [TUI æ²¡æœ‰è¾“å‡ºï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆï¼Ÿ](#tui-shows-no-output-what-should-i-check)
+  - [å¦‚ä½•å®Œå…¨åœæ­¢ç„¶åŽå¯åŠ¨ Gateway ç½‘å…³ï¼Ÿ](#how-do-i-completely-stop-then-start-the-gateway)
+  - [é€šä¿—è§£é‡Šï¼š` gateway restart` ä¸Ž ` gateway`](#eli5--gateway-restart-vs--gateway)
+  - [å‡ºçŽ°æ•…éšœæ—¶èŽ·å–æ›´å¤šè¯¦æƒ…çš„æœ€å¿«æ–¹æ³•æ˜¯ä»€ä¹ˆï¼Ÿ](#whats-the-fastest-way-to-get-more-details-when-something-fails)
+- [åª’ä½“ä¸Žé™„ä»¶](#media-attachments)
+  - [æˆ‘çš„ Skills ç”Ÿæˆäº†å›¾ç‰‡/PDFï¼Œä½†ä»€ä¹ˆéƒ½æ²¡å‘é€](#my-skill-generated-an-imagepdf-but-nothing-was-sent)
+- [å®‰å…¨ä¸Žè®¿é—®æŽ§åˆ¶](#security-and-access-control)
+  - [å°†  æš´éœ²ç»™å…¥ç«™ç§ä¿¡å®‰å…¨å—ï¼Ÿ](#is-it-safe-to-expose--to-inbound-dms)
+  - [æç¤ºæ³¨å…¥åªå¯¹å…¬å¼€æœºå™¨äººæœ‰å½±å“å—ï¼Ÿ](#is-prompt-injection-only-a-concern-for-public-bots)
+  - [æˆ‘çš„æœºå™¨äººåº”è¯¥æœ‰è‡ªå·±çš„é‚®ç®±ã€GitHub è´¦æˆ·æˆ–ç”µè¯å·ç å—ï¼Ÿ](#should-my-bot-have-its-own-email-github-account-or-phone-number)
+  - [æˆ‘èƒ½è®©å®ƒè‡ªä¸»ç®¡ç†æˆ‘çš„çŸ­ä¿¡å—ï¼Ÿè¿™å®‰å…¨å—ï¼Ÿ](#can-i-give-it-autonomy-over-my-text-messages-and-is-that-safe)
+  - [ä¸ªäººåŠ©ç†ä»»åŠ¡å¯ä»¥ä½¿ç”¨æ›´ä¾¿å®œçš„æ¨¡åž‹å—ï¼Ÿ](#can-i-use-cheaper-models-for-personal-assistant-tasks)
+  - [æˆ‘åœ¨ Telegram ä¸­è¿è¡Œäº† `/start` ä½†æ²¡æ”¶åˆ°é…å¯¹ç ](#i-ran-start-in-telegram-but-didnt-get-a-pairing-code)
+  - [WhatsAppï¼šä¼šç»™æˆ‘çš„è”ç³»äººå‘æ¶ˆæ¯å—ï¼Ÿé…å¯¹å¦‚ä½•å·¥ä½œï¼Ÿ](#whatsapp-will-it-message-my-contacts-how-does-pairing-work)
+- [èŠå¤©å‘½ä»¤ã€ä¸­æ­¢ä»»åŠ¡å’Œâ€œåœä¸ä¸‹æ¥â€](#chat-commands-aborting-tasks-and-it-wont-stop)
+  - [å¦‚ä½•é˜»æ­¢å†…éƒ¨ç³»ç»Ÿæ¶ˆæ¯æ˜¾ç¤ºåœ¨èŠå¤©ä¸­ï¼Ÿ](#how-do-i-stop-internal-system-messages-from-showing-in-chat)
+  - [å¦‚ä½•åœæ­¢/å–æ¶ˆæ­£åœ¨è¿è¡Œçš„ä»»åŠ¡ï¼Ÿ](#how-do-i-stopcancel-a-running-task)
+  - [å¦‚ä½•ä»Ž Telegram å‘é€ Discord æ¶ˆæ¯ï¼Ÿï¼ˆ"Cross-context messaging denied"ï¼‰](#how-do-i-send-a-discord-message-from-telegram-crosscontext-messaging-denied)
+  - [ä¸ºä»€ä¹ˆæ„Ÿè§‰æœºå™¨äººâ€œå¿½ç•¥â€äº†å¿«é€Ÿè¿žå‘çš„æ¶ˆæ¯ï¼Ÿ](#why-does-it-feel-like-the-bot-ignores-rapidfire-messages)
 
-## 出问题后的最初六十秒
+## å‡ºé—®é¢˜åŽçš„æœ€åˆå…­åç§’
 
-1. **快速状态（首先检查）**
-
-   ```bash
-   openclaw status
-   ```
-
-   快速本地摘要：操作系统 + 更新、Gateway 网关/服务可达性、智能体/会话、提供商配置 + 运行时问题（Gateway 网关可达时）。
-
-2. **可粘贴的报告（可安全分享）**
+1. **å¿«é€ŸçŠ¶æ€ï¼ˆé¦–å…ˆæ£€æŸ¥ï¼‰**
 
    ```bash
-   openclaw status --all
+    status
    ```
 
-   只读诊断，附带日志尾部（令牌已脱敏）。
+   å¿«é€Ÿæœ¬åœ°æ‘˜è¦ï¼šæ“ä½œç³»ç»Ÿ + æ›´æ–°ã€Gateway ç½‘å…³/æœåŠ¡å¯è¾¾æ€§ã€æ™ºèƒ½ä½“/ä¼šè¯ã€æä¾›å•†é…ç½® + è¿è¡Œæ—¶é—®é¢˜ï¼ˆGateway ç½‘å…³å¯è¾¾æ—¶ï¼‰ã€‚
 
-3. **守护进程 + 端口状态**
+2. **å¯ç²˜è´´çš„æŠ¥å‘Šï¼ˆå¯å®‰å…¨åˆ†äº«ï¼‰**
 
    ```bash
-   openclaw gateway status
+    status --all
    ```
 
-   显示 supervisor 运行状态与 RPC 可达性、探测目标 URL，以及服务可能使用的配置。
+   åªè¯»è¯Šæ–­ï¼Œé™„å¸¦æ—¥å¿—å°¾éƒ¨ï¼ˆä»¤ç‰Œå·²è„±æ•ï¼‰ã€‚
 
-4. **深度探测**
+3. **å®ˆæŠ¤è¿›ç¨‹ + ç«¯å£çŠ¶æ€**
 
    ```bash
-   openclaw status --deep
+    gateway status
    ```
 
-   运行 Gateway 网关健康检查 + 提供商探测（需要可达的 Gateway 网关）。参阅[健康检查](/gateway/health)。
+   æ˜¾ç¤º supervisor è¿è¡ŒçŠ¶æ€ä¸Ž RPC å¯è¾¾æ€§ã€æŽ¢æµ‹ç›®æ ‡ URLï¼Œä»¥åŠæœåŠ¡å¯èƒ½ä½¿ç”¨çš„é…ç½®ã€‚
 
-5. **跟踪最新日志**
+4. **æ·±åº¦æŽ¢æµ‹**
 
    ```bash
-   openclaw logs --follow
+    status --deep
    ```
 
-   如果 RPC 不可用，回退到：
+   è¿è¡Œ Gateway ç½‘å…³å¥åº·æ£€æŸ¥ + æä¾›å•†æŽ¢æµ‹ï¼ˆéœ€è¦å¯è¾¾çš„ Gateway ç½‘å…³ï¼‰ã€‚å‚é˜…[å¥åº·æ£€æŸ¥](/gateway/health)ã€‚
+
+5. **è·Ÿè¸ªæœ€æ–°æ—¥å¿—**
 
    ```bash
-   tail -f "$(ls -t /tmp/openclaw/openclaw-*.log | head -1)"
+    logs --follow
    ```
 
-   文件日志与服务日志是分开的；参阅[日志](/logging)和[故障排除](/gateway/troubleshooting)。
-
-6. **运行 doctor（修复）**
+   å¦‚æžœ RPC ä¸å¯ç”¨ï¼Œå›žé€€åˆ°ï¼š
 
    ```bash
-   openclaw doctor
+   tail -f "$(ls -t /tmp//-*.log | head -1)"
    ```
 
-   修复/迁移配置/状态 + 运行健康检查。参阅 [Doctor](/gateway/doctor)。
+   æ–‡ä»¶æ—¥å¿—ä¸ŽæœåŠ¡æ—¥å¿—æ˜¯åˆ†å¼€çš„ï¼›å‚é˜…[æ—¥å¿—](/logging)å’Œ[æ•…éšœæŽ’é™¤](/gateway/troubleshooting)ã€‚
 
-7. **Gateway 网关快照**
+6. **è¿è¡Œ doctorï¼ˆä¿®å¤ï¼‰**
+
    ```bash
-   openclaw health --json
-   openclaw health --verbose   # 出错时显示目标 URL + 配置路径
+    doctor
    ```
-   向运行中的 Gateway 网关请求完整快照（仅 WS）。参阅[健康检查](/gateway/health)。
 
-## 快速开始与首次运行设置
+   ä¿®å¤/è¿ç§»é…ç½®/çŠ¶æ€ + è¿è¡Œå¥åº·æ£€æŸ¥ã€‚å‚é˜… [Doctor](/gateway/doctor)ã€‚
 
-### 我卡住了，最快的排障方法是什么
+7. **Gateway ç½‘å…³å¿«ç…§**
+   ```bash
+    health --json
+    health --verbose   # å‡ºé”™æ—¶æ˜¾ç¤ºç›®æ ‡ URL + é…ç½®è·¯å¾„
+   ```
+   å‘è¿è¡Œä¸­çš„ Gateway ç½‘å…³è¯·æ±‚å®Œæ•´å¿«ç…§ï¼ˆä»… WSï¼‰ã€‚å‚é˜…[å¥åº·æ£€æŸ¥](/gateway/health)ã€‚
 
-使用能**看到你机器**的本地 AI 智能体。这比在 Discord 上提问有效得多，因为大多数“卡住了”的情况都是**本地配置或环境问题**，远程帮助者无法检查。
+## å¿«é€Ÿå¼€å§‹ä¸Žé¦–æ¬¡è¿è¡Œè®¾ç½®
 
-- **Claude Code**：https://www.anthropic.com/claude-code/
-- **OpenAI Codex**：https://openai.com/codex/
+### æˆ‘å¡ä½äº†ï¼Œæœ€å¿«çš„æŽ’éšœæ–¹æ³•æ˜¯ä»€ä¹ˆ
 
-这些工具可以读取仓库、运行命令、检查日志，并帮助修复你的机器级别设置（PATH、服务、权限、认证文件）。通过可编辑（git）安装提供**完整源代码**：
+ä½¿ç”¨èƒ½**çœ‹åˆ°ä½ æœºå™¨**çš„æœ¬åœ° AI æ™ºèƒ½ä½“ã€‚è¿™æ¯”åœ¨ Discord ä¸Šæé—®æœ‰æ•ˆå¾—å¤šï¼Œå› ä¸ºå¤§å¤šæ•°â€œå¡ä½äº†â€çš„æƒ…å†µéƒ½æ˜¯**æœ¬åœ°é…ç½®æˆ–çŽ¯å¢ƒé—®é¢˜**ï¼Œè¿œç¨‹å¸®åŠ©è€…æ— æ³•æ£€æŸ¥ã€‚
+
+- **Claude Code**ï¼šhttps://www.anthropic.com/claude-code/
+- **OpenAI Codex**ï¼šhttps://openai.com/codex/
+
+è¿™äº›å·¥å…·å¯ä»¥è¯»å–ä»“åº“ã€è¿è¡Œå‘½ä»¤ã€æ£€æŸ¥æ—¥å¿—ï¼Œå¹¶å¸®åŠ©ä¿®å¤ä½ çš„æœºå™¨çº§åˆ«è®¾ç½®ï¼ˆPATHã€æœåŠ¡ã€æƒé™ã€è®¤è¯æ–‡ä»¶ï¼‰ã€‚é€šè¿‡å¯ç¼–è¾‘ï¼ˆgitï¼‰å®‰è£…æä¾›**å®Œæ•´æºä»£ç **ï¼š
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
+curl -fsSL https://.ai/install.sh | bash -s -- --install-method git
 ```
 
-这会从 **git checkout** 安装 OpenClaw，这样智能体可以读取代码 + 文档，并推理你正在运行的确切版本。你可以随时通过不带 `--install-method git` 重新运行安装程序切回稳定版。
+è¿™ä¼šä»Ž **git checkout** å®‰è£… ï¼Œè¿™æ ·æ™ºèƒ½ä½“å¯ä»¥è¯»å–ä»£ç  + æ–‡æ¡£ï¼Œå¹¶æŽ¨ç†ä½ æ­£åœ¨è¿è¡Œçš„ç¡®åˆ‡ç‰ˆæœ¬ã€‚ä½ å¯ä»¥éšæ—¶é€šè¿‡ä¸å¸¦ `--install-method git` é‡æ–°è¿è¡Œå®‰è£…ç¨‹åºåˆ‡å›žç¨³å®šç‰ˆã€‚
 
-提示：要求智能体**计划并监督**修复（逐步进行），然后只执行必要的命令。这样改动较小，更容易审查。
+æç¤ºï¼šè¦æ±‚æ™ºèƒ½ä½“**è®¡åˆ’å¹¶ç›‘ç£**ä¿®å¤ï¼ˆé€æ­¥è¿›è¡Œï¼‰ï¼Œç„¶åŽåªæ‰§è¡Œå¿…è¦çš„å‘½ä»¤ã€‚è¿™æ ·æ”¹åŠ¨è¾ƒå°ï¼Œæ›´å®¹æ˜“å®¡æŸ¥ã€‚
 
-如果你发现了真正的 bug 或修复方案，请提交 GitHub issue 或发送 PR：
-https://github.com/openclaw/openclaw/issues
-https://github.com/openclaw/openclaw/pulls
+å¦‚æžœä½ å‘çŽ°äº†çœŸæ­£çš„ bug æˆ–ä¿®å¤æ–¹æ¡ˆï¼Œè¯·æäº¤ GitHub issue æˆ–å‘é€ PRï¼š
+https://github.com///issues
+https://github.com///pulls
 
-从以下命令开始（在寻求帮助时分享输出）：
+ä»Žä»¥ä¸‹å‘½ä»¤å¼€å§‹ï¼ˆåœ¨å¯»æ±‚å¸®åŠ©æ—¶åˆ†äº«è¾“å‡ºï¼‰ï¼š
 
 ```bash
-openclaw status
-openclaw models status
-openclaw doctor
+ status
+ models status
+ doctor
 ```
 
-它们的作用：
+å®ƒä»¬çš„ä½œç”¨ï¼š
 
-- `openclaw status`：Gateway 网关/智能体健康状况 + 基本配置的快速快照。
-- `openclaw models status`：检查提供商认证 + 模型可用性。
-- `openclaw doctor`：验证并修复常见的配置/状态问题。
+- ` status`ï¼šGateway ç½‘å…³/æ™ºèƒ½ä½“å¥åº·çŠ¶å†µ + åŸºæœ¬é…ç½®çš„å¿«é€Ÿå¿«ç…§ã€‚
+- ` models status`ï¼šæ£€æŸ¥æä¾›å•†è®¤è¯ + æ¨¡åž‹å¯ç”¨æ€§ã€‚
+- ` doctor`ï¼šéªŒè¯å¹¶ä¿®å¤å¸¸è§çš„é…ç½®/çŠ¶æ€é—®é¢˜ã€‚
 
-其他有用的 CLI 检查：`openclaw status --all`、`openclaw logs --follow`、
-`openclaw gateway status`、`openclaw health --verbose`。
+å…¶ä»–æœ‰ç”¨çš„ CLI æ£€æŸ¥ï¼š` status --all`ã€` logs --follow`ã€
+` gateway status`ã€` health --verbose`ã€‚
 
-快速调试流程：[出问题后的最初六十秒](#first-60-seconds-if-somethings-broken)。
-安装文档：[安装](/install)、[安装程序标志](/install/installer)、[更新](/install/updating)。
+å¿«é€Ÿè°ƒè¯•æµç¨‹ï¼š[å‡ºé—®é¢˜åŽçš„æœ€åˆå…­åç§’](#first-60-seconds-if-somethings-broken)ã€‚
+å®‰è£…æ–‡æ¡£ï¼š[å®‰è£…](/install)ã€[å®‰è£…ç¨‹åºæ ‡å¿—](/install/installer)ã€[æ›´æ–°](/install/updating)ã€‚
 
-### 安装和设置 OpenClaw 的推荐方式是什么
+### å®‰è£…å’Œè®¾ç½®  çš„æŽ¨èæ–¹å¼æ˜¯ä»€ä¹ˆ
 
-仓库推荐从源码运行并使用新手引导向导：
+ä»“åº“æŽ¨èä»Žæºç è¿è¡Œå¹¶ä½¿ç”¨æ–°æ‰‹å¼•å¯¼å‘å¯¼ï¼š
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash
-openclaw onboard --install-daemon
+curl -fsSL https://.ai/install.sh | bash
+ onboard --install-daemon
 ```
 
-向导还可以自动构建 UI 资源。新手引导后，通常在端口 **18789** 上运行 Gateway 网关。
+å‘å¯¼è¿˜å¯ä»¥è‡ªåŠ¨æž„å»º UI èµ„æºã€‚æ–°æ‰‹å¼•å¯¼åŽï¼Œé€šå¸¸åœ¨ç«¯å£ **18789** ä¸Šè¿è¡Œ Gateway ç½‘å…³ã€‚
 
-从源码安装（贡献者/开发者）：
+ä»Žæºç å®‰è£…ï¼ˆè´¡çŒ®è€…/å¼€å‘è€…ï¼‰ï¼š
 
 ```bash
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw
+git clone https://github.com//.git
+cd 
 pnpm install
 pnpm build
-pnpm ui:build # 首次运行时自动安装 UI 依赖
-openclaw onboard
+pnpm ui:build # é¦–æ¬¡è¿è¡Œæ—¶è‡ªåŠ¨å®‰è£… UI ä¾èµ–
+ onboard
 ```
 
-如果你还没有全局安装，通过 `pnpm openclaw onboard` 运行。
+å¦‚æžœä½ è¿˜æ²¡æœ‰å…¨å±€å®‰è£…ï¼Œé€šè¿‡ `pnpm  onboard` è¿è¡Œã€‚
 
-### 新手引导后如何打开仪表板
+### æ–°æ‰‹å¼•å¯¼åŽå¦‚ä½•æ‰“å¼€ä»ªè¡¨æ¿
 
-向导现在会在新手引导完成后立即使用带令牌的仪表板 URL 打开浏览器，并在摘要中打印完整链接（带令牌）。保持该标签页打开；如果没有自动启动，请在同一台机器上复制/粘贴打印的 URL。令牌保持在本地主机上——不会从浏览器获取任何内容。
+å‘å¯¼çŽ°åœ¨ä¼šåœ¨æ–°æ‰‹å¼•å¯¼å®ŒæˆåŽç«‹å³ä½¿ç”¨å¸¦ä»¤ç‰Œçš„ä»ªè¡¨æ¿ URL æ‰“å¼€æµè§ˆå™¨ï¼Œå¹¶åœ¨æ‘˜è¦ä¸­æ‰“å°å®Œæ•´é“¾æŽ¥ï¼ˆå¸¦ä»¤ç‰Œï¼‰ã€‚ä¿æŒè¯¥æ ‡ç­¾é¡µæ‰“å¼€ï¼›å¦‚æžœæ²¡æœ‰è‡ªåŠ¨å¯åŠ¨ï¼Œè¯·åœ¨åŒä¸€å°æœºå™¨ä¸Šå¤åˆ¶/ç²˜è´´æ‰“å°çš„ URLã€‚ä»¤ç‰Œä¿æŒåœ¨æœ¬åœ°ä¸»æœºä¸Šâ€”â€”ä¸ä¼šä»Žæµè§ˆå™¨èŽ·å–ä»»ä½•å†…å®¹ã€‚
 
-### 如何在本地和远程环境中验证仪表板令牌
+### å¦‚ä½•åœ¨æœ¬åœ°å’Œè¿œç¨‹çŽ¯å¢ƒä¸­éªŒè¯ä»ªè¡¨æ¿ä»¤ç‰Œ
 
-**本地（同一台机器）：**
+**æœ¬åœ°ï¼ˆåŒä¸€å°æœºå™¨ï¼‰ï¼š**
 
-- 打开 `http://127.0.0.1:18789/`。
-- 如果要求认证，运行 `openclaw dashboard` 并使用带令牌的链接（`?token=...`）。
-- 令牌与 `gateway.auth.token`（或 `OPENCLAW_GATEWAY_TOKEN`）的值相同，UI 在首次加载后会存储它。
+- æ‰“å¼€ `http://127.0.0.1:18789/`ã€‚
+- å¦‚æžœè¦æ±‚è®¤è¯ï¼Œè¿è¡Œ ` dashboard` å¹¶ä½¿ç”¨å¸¦ä»¤ç‰Œçš„é“¾æŽ¥ï¼ˆ`?token=...`ï¼‰ã€‚
+- ä»¤ç‰Œä¸Ž `gateway.auth.token`ï¼ˆæˆ– `_GATEWAY_TOKEN`ï¼‰çš„å€¼ç›¸åŒï¼ŒUI åœ¨é¦–æ¬¡åŠ è½½åŽä¼šå­˜å‚¨å®ƒã€‚
 
-**非本地环境：**
+**éžæœ¬åœ°çŽ¯å¢ƒï¼š**
 
-- **Tailscale Serve**（推荐）：保持绑定 loopback，运行 `openclaw gateway --tailscale serve`，打开 `https://<magicdns>/`。如果 `gateway.auth.allowTailscale` 为 `true`，身份标头满足认证要求（无需令牌）。
-- **Tailnet 绑定**：运行 `openclaw gateway --bind tailnet --token "<token>"`，打开 `http://<tailscale-ip>:18789/`，在仪表板设置中粘贴令牌。
-- **SSH 隧道**：`ssh -N -L 18789:127.0.0.1:18789 user@host`，然后从 `openclaw dashboard` 打开 `http://127.0.0.1:18789/?token=...`。
+- **Tailscale Serve**ï¼ˆæŽ¨èï¼‰ï¼šä¿æŒç»‘å®š loopbackï¼Œè¿è¡Œ ` gateway --tailscale serve`ï¼Œæ‰“å¼€ `https://<magicdns>/`ã€‚å¦‚æžœ `gateway.auth.allowTailscale` ä¸º `true`ï¼Œèº«ä»½æ ‡å¤´æ»¡è¶³è®¤è¯è¦æ±‚ï¼ˆæ— éœ€ä»¤ç‰Œï¼‰ã€‚
+- **Tailnet ç»‘å®š**ï¼šè¿è¡Œ ` gateway --bind tailnet --token "<token>"`ï¼Œæ‰“å¼€ `http://<tailscale-ip>:18789/`ï¼Œåœ¨ä»ªè¡¨æ¿è®¾ç½®ä¸­ç²˜è´´ä»¤ç‰Œã€‚
+- **SSH éš§é“**ï¼š`ssh -N -L 18789:127.0.0.1:18789 user@host`ï¼Œç„¶åŽä»Ž ` dashboard` æ‰“å¼€ `http://127.0.0.1:18789/?token=...`ã€‚
 
-参阅[仪表板](/web/dashboard)和 [Web 界面](/web)了解绑定模式和认证详情。
+å‚é˜…[ä»ªè¡¨æ¿](/web/dashboard)å’Œ [Web ç•Œé¢](/web)äº†è§£ç»‘å®šæ¨¡å¼å’Œè®¤è¯è¯¦æƒ…ã€‚
 
-### 我需要什么运行时
+### æˆ‘éœ€è¦ä»€ä¹ˆè¿è¡Œæ—¶
 
-Node **>= 22** 是必需的。推荐使用 `pnpm`。**不推荐**使用 Bun 运行 Gateway 网关。
+Node **>= 22** æ˜¯å¿…éœ€çš„ã€‚æŽ¨èä½¿ç”¨ `pnpm`ã€‚**ä¸æŽ¨è**ä½¿ç”¨ Bun è¿è¡Œ Gateway ç½‘å…³ã€‚
 
-### 能在 Raspberry Pi 上运行吗
+### èƒ½åœ¨ Raspberry Pi ä¸Šè¿è¡Œå—
 
-可以。Gateway 网关是轻量级的——文档列出 **512MB-1GB RAM**、**1 核**和约 **500MB** 磁盘空间足够个人使用，并指出 **Raspberry Pi 4 可以运行**。
+å¯ä»¥ã€‚Gateway ç½‘å…³æ˜¯è½»é‡çº§çš„â€”â€”æ–‡æ¡£åˆ—å‡º **512MB-1GB RAM**ã€**1 æ ¸**å’Œçº¦ **500MB** ç£ç›˜ç©ºé—´è¶³å¤Ÿä¸ªäººä½¿ç”¨ï¼Œå¹¶æŒ‡å‡º **Raspberry Pi 4 å¯ä»¥è¿è¡Œ**ã€‚
 
-如果你需要额外的余量（日志、媒体、其他服务），**推荐 2GB**，但这不是硬性最低要求。
+å¦‚æžœä½ éœ€è¦é¢å¤–çš„ä½™é‡ï¼ˆæ—¥å¿—ã€åª’ä½“ã€å…¶ä»–æœåŠ¡ï¼‰ï¼Œ**æŽ¨è 2GB**ï¼Œä½†è¿™ä¸æ˜¯ç¡¬æ€§æœ€ä½Žè¦æ±‚ã€‚
 
-提示：小型 Pi/VPS 可以托管 Gateway 网关，你可以在笔记本/手机上配对**节点**以获取本地屏幕/摄像头/画布或命令执行能力。参阅[节点](/nodes)。
+æç¤ºï¼šå°åž‹ Pi/VPS å¯ä»¥æ‰˜ç®¡ Gateway ç½‘å…³ï¼Œä½ å¯ä»¥åœ¨ç¬”è®°æœ¬/æ‰‹æœºä¸Šé…å¯¹**èŠ‚ç‚¹**ä»¥èŽ·å–æœ¬åœ°å±å¹•/æ‘„åƒå¤´/ç”»å¸ƒæˆ–å‘½ä»¤æ‰§è¡Œèƒ½åŠ›ã€‚å‚é˜…[èŠ‚ç‚¹](/nodes)ã€‚
 
-### Raspberry Pi 安装有什么建议
+### Raspberry Pi å®‰è£…æœ‰ä»€ä¹ˆå»ºè®®
 
-简短回答：可以运行，但预期会有一些粗糙之处。
+ç®€çŸ­å›žç­”ï¼šå¯ä»¥è¿è¡Œï¼Œä½†é¢„æœŸä¼šæœ‰ä¸€äº›ç²—ç³™ä¹‹å¤„ã€‚
 
-- 使用 **64 位**操作系统并保持 Node >= 22。
-- 优先选择**可编辑（git）安装**，以便查看日志和快速更新。
-- 先不启用渠道/Skills，然后逐个添加。
-- 如果遇到奇怪的二进制问题，通常是 **ARM 兼容性**问题。
+- ä½¿ç”¨ **64 ä½**æ“ä½œç³»ç»Ÿå¹¶ä¿æŒ Node >= 22ã€‚
+- ä¼˜å…ˆé€‰æ‹©**å¯ç¼–è¾‘ï¼ˆgitï¼‰å®‰è£…**ï¼Œä»¥ä¾¿æŸ¥çœ‹æ—¥å¿—å’Œå¿«é€Ÿæ›´æ–°ã€‚
+- å…ˆä¸å¯ç”¨æ¸ é“/Skillsï¼Œç„¶åŽé€ä¸ªæ·»åŠ ã€‚
+- å¦‚æžœé‡åˆ°å¥‡æ€ªçš„äºŒè¿›åˆ¶é—®é¢˜ï¼Œé€šå¸¸æ˜¯ **ARM å…¼å®¹æ€§**é—®é¢˜ã€‚
 
-文档：[Linux](/platforms/linux)、[安装](/install)。
+æ–‡æ¡£ï¼š[Linux](/platforms/linux)ã€[å®‰è£…](/install)ã€‚
 
-### 卡在 wake up my friend / 新手引导无法启动，怎么办
+### å¡åœ¨ wake up my friend / æ–°æ‰‹å¼•å¯¼æ— æ³•å¯åŠ¨ï¼Œæ€Žä¹ˆåŠž
 
-该界面依赖于 Gateway 网关可达且已认证。TUI 也会在首次启动时自动发送"Wake up, my friend!"。如果你看到该行但**没有回复**且令牌保持为 0，说明智能体从未运行。
+è¯¥ç•Œé¢ä¾èµ–äºŽ Gateway ç½‘å…³å¯è¾¾ä¸”å·²è®¤è¯ã€‚TUI ä¹Ÿä¼šåœ¨é¦–æ¬¡å¯åŠ¨æ—¶è‡ªåŠ¨å‘é€"Wake up, my friend!"ã€‚å¦‚æžœä½ çœ‹åˆ°è¯¥è¡Œä½†**æ²¡æœ‰å›žå¤**ä¸”ä»¤ç‰Œä¿æŒä¸º 0ï¼Œè¯´æ˜Žæ™ºèƒ½ä½“ä»Žæœªè¿è¡Œã€‚
 
-1. 重启 Gateway 网关：
+1. é‡å¯ Gateway ç½‘å…³ï¼š
 
 ```bash
-openclaw gateway restart
+ gateway restart
 ```
 
-2. 检查状态和认证：
+2. æ£€æŸ¥çŠ¶æ€å’Œè®¤è¯ï¼š
 
 ```bash
-openclaw status
-openclaw models status
-openclaw logs --follow
+ status
+ models status
+ logs --follow
 ```
 
-3. 如果仍然挂起，运行：
+3. å¦‚æžœä»ç„¶æŒ‚èµ·ï¼Œè¿è¡Œï¼š
 
 ```bash
-openclaw doctor
+ doctor
 ```
 
-如果 Gateway 网关在远程，确保隧道/Tailscale 连接正常，且 UI 指向正确的 Gateway 网关。参阅[远程访问](/gateway/remote)。
+å¦‚æžœ Gateway ç½‘å…³åœ¨è¿œç¨‹ï¼Œç¡®ä¿éš§é“/Tailscale è¿žæŽ¥æ­£å¸¸ï¼Œä¸” UI æŒ‡å‘æ­£ç¡®çš„ Gateway ç½‘å…³ã€‚å‚é˜…[è¿œç¨‹è®¿é—®](/gateway/remote)ã€‚
 
-### 能否将我的设置迁移到新机器（Mac mini）而不重新进行新手引导
+### èƒ½å¦å°†æˆ‘çš„è®¾ç½®è¿ç§»åˆ°æ–°æœºå™¨ï¼ˆMac miniï¼‰è€Œä¸é‡æ–°è¿›è¡Œæ–°æ‰‹å¼•å¯¼
 
-可以。复制**状态目录**和**工作区**，然后运行一次 Doctor。只要你同时复制**两个**位置，就能保持你的机器人“完全一样”（记忆、会话历史、认证和渠道状态）：
+å¯ä»¥ã€‚å¤åˆ¶**çŠ¶æ€ç›®å½•**å’Œ**å·¥ä½œåŒº**ï¼Œç„¶åŽè¿è¡Œä¸€æ¬¡ Doctorã€‚åªè¦ä½ åŒæ—¶å¤åˆ¶**ä¸¤ä¸ª**ä½ç½®ï¼Œå°±èƒ½ä¿æŒä½ çš„æœºå™¨äººâ€œå®Œå…¨ä¸€æ ·â€ï¼ˆè®°å¿†ã€ä¼šè¯åŽ†å²ã€è®¤è¯å’Œæ¸ é“çŠ¶æ€ï¼‰ï¼š
 
-1. 在新机器上安装 OpenClaw。
-2. 从旧机器复制 `$OPENCLAW_STATE_DIR`（默认：`~/.openclaw`）。
-3. 复制你的工作区（默认：`~/.openclaw/workspace`）。
-4. 运行 `openclaw doctor` 并重启 Gateway 网关服务。
+1. åœ¨æ–°æœºå™¨ä¸Šå®‰è£… ã€‚
+2. ä»Žæ—§æœºå™¨å¤åˆ¶ `$_STATE_DIR`ï¼ˆé»˜è®¤ï¼š`~/.`ï¼‰ã€‚
+3. å¤åˆ¶ä½ çš„å·¥ä½œåŒºï¼ˆé»˜è®¤ï¼š`~/./workspace`ï¼‰ã€‚
+4. è¿è¡Œ ` doctor` å¹¶é‡å¯ Gateway ç½‘å…³æœåŠ¡ã€‚
 
-这会保留配置、认证配置文件、WhatsApp 凭据、会话和记忆。如果你处于远程模式，请记住 Gateway 网关主机拥有会话存储和工作区。
+è¿™ä¼šä¿ç•™é…ç½®ã€è®¤è¯é…ç½®æ–‡ä»¶ã€WhatsApp å‡­æ®ã€ä¼šè¯å’Œè®°å¿†ã€‚å¦‚æžœä½ å¤„äºŽè¿œç¨‹æ¨¡å¼ï¼Œè¯·è®°ä½ Gateway ç½‘å…³ä¸»æœºæ‹¥æœ‰ä¼šè¯å­˜å‚¨å’Œå·¥ä½œåŒºã€‚
 
-**重要：** 如果你只将工作区提交/推送到 GitHub，你只备份了**记忆 + 引导文件**，但**不包括**会话历史或认证。它们位于 `~/.openclaw/` 下（例如 `~/.openclaw/agents/<agentId>/sessions/`）。
+**é‡è¦ï¼š** å¦‚æžœä½ åªå°†å·¥ä½œåŒºæäº¤/æŽ¨é€åˆ° GitHubï¼Œä½ åªå¤‡ä»½äº†**è®°å¿† + å¼•å¯¼æ–‡ä»¶**ï¼Œä½†**ä¸åŒ…æ‹¬**ä¼šè¯åŽ†å²æˆ–è®¤è¯ã€‚å®ƒä»¬ä½äºŽ `~/./` ä¸‹ï¼ˆä¾‹å¦‚ `~/./agents/<agentId>/sessions/`ï¼‰ã€‚
 
-相关：[迁移](/install/migrating)、[磁盘上的文件位置](/help/faq#where-does-openclaw-store-its-data)、
-[智能体工作区](/concepts/agent-workspace)、[Doctor](/gateway/doctor)、
-[远程模式](/gateway/remote)。
+ç›¸å…³ï¼š[è¿ç§»](/install/migrating)ã€[ç£ç›˜ä¸Šçš„æ–‡ä»¶ä½ç½®](/help/faq#where-does--store-its-data)ã€
+[æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)ã€[Doctor](/gateway/doctor)ã€
+[è¿œç¨‹æ¨¡å¼](/gateway/remote)ã€‚
 
-### 在哪里查看最新版本的更新内容
+### åœ¨å“ªé‡ŒæŸ¥çœ‹æœ€æ–°ç‰ˆæœ¬çš„æ›´æ–°å†…å®¹
 
-查看 GitHub 变更日志：
-https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md
+æŸ¥çœ‹ GitHub å˜æ›´æ—¥å¿—ï¼š
+https://github.com///blob/main/CHANGELOG.md
 
-最新条目在顶部。如果顶部部分标记为 **Unreleased**，则下一个带日期的部分是最新发布版本。条目按**亮点**、**变更**和**修复**分组（需要时还有文档/其他部分）。
+æœ€æ–°æ¡ç›®åœ¨é¡¶éƒ¨ã€‚å¦‚æžœé¡¶éƒ¨éƒ¨åˆ†æ ‡è®°ä¸º **Unreleased**ï¼Œåˆ™ä¸‹ä¸€ä¸ªå¸¦æ—¥æœŸçš„éƒ¨åˆ†æ˜¯æœ€æ–°å‘å¸ƒç‰ˆæœ¬ã€‚æ¡ç›®æŒ‰**äº®ç‚¹**ã€**å˜æ›´**å’Œ**ä¿®å¤**åˆ†ç»„ï¼ˆéœ€è¦æ—¶è¿˜æœ‰æ–‡æ¡£/å…¶ä»–éƒ¨åˆ†ï¼‰ã€‚
 
-### 无法访问 docs.openclaw.ai（SSL 错误），怎么办
+### æ— æ³•è®¿é—® docs..aiï¼ˆSSL é”™è¯¯ï¼‰ï¼Œæ€Žä¹ˆåŠž
 
-一些 Comcast/Xfinity 连接通过 Xfinity Advanced Security 错误地拦截了 `docs.openclaw.ai`。禁用该功能或将 `docs.openclaw.ai` 加入白名单，然后重试。更多详情：[故障排除](/help/troubleshooting#docsopenclawai-shows-an-ssl-error-comcastxfinity)。
-请帮助我们在此处报告以解除封锁：https://spa.xfinity.com/check_url_status。
+ä¸€äº› Comcast/Xfinity è¿žæŽ¥é€šè¿‡ Xfinity Advanced Security é”™è¯¯åœ°æ‹¦æˆªäº† `docs..ai`ã€‚ç¦ç”¨è¯¥åŠŸèƒ½æˆ–å°† `docs..ai` åŠ å…¥ç™½åå•ï¼Œç„¶åŽé‡è¯•ã€‚æ›´å¤šè¯¦æƒ…ï¼š[æ•…éšœæŽ’é™¤](/help/troubleshooting#docsai-shows-an-ssl-error-comcastxfinity)ã€‚
+è¯·å¸®åŠ©æˆ‘ä»¬åœ¨æ­¤å¤„æŠ¥å‘Šä»¥è§£é™¤å°é”ï¼šhttps://spa.xfinity.com/check_url_statusã€‚
 
-如果仍然无法访问该网站，文档在 GitHub 上有镜像：
-https://github.com/openclaw/openclaw/tree/main/docs
+å¦‚æžœä»ç„¶æ— æ³•è®¿é—®è¯¥ç½‘ç«™ï¼Œæ–‡æ¡£åœ¨ GitHub ä¸Šæœ‰é•œåƒï¼š
+https://github.com///tree/main/docs
 
-### stable 和 beta 有什么区别
+### stable å’Œ beta æœ‰ä»€ä¹ˆåŒºåˆ«
 
-**Stable** 和 **beta** 是 **npm dist-tags**，不是独立的代码分支：
+**Stable** å’Œ **beta** æ˜¯ **npm dist-tags**ï¼Œä¸æ˜¯ç‹¬ç«‹çš„ä»£ç åˆ†æ”¯ï¼š
 
 - `latest` = stable
-- `beta` = 用于测试的早期构建
+- `beta` = ç”¨äºŽæµ‹è¯•çš„æ—©æœŸæž„å»º
 
-我们将构建发布到 **beta**，测试后，一旦构建稳定，就会**将同一版本提升为 `latest`**。这就是为什么 beta 和 stable 可以指向**相同版本**。
+æˆ‘ä»¬å°†æž„å»ºå‘å¸ƒåˆ° **beta**ï¼Œæµ‹è¯•åŽï¼Œä¸€æ—¦æž„å»ºç¨³å®šï¼Œå°±ä¼š**å°†åŒä¸€ç‰ˆæœ¬æå‡ä¸º `latest`**ã€‚è¿™å°±æ˜¯ä¸ºä»€ä¹ˆ beta å’Œ stable å¯ä»¥æŒ‡å‘**ç›¸åŒç‰ˆæœ¬**ã€‚
 
-查看变更：
-https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md
+æŸ¥çœ‹å˜æ›´ï¼š
+https://github.com///blob/main/CHANGELOG.md
 
-### 如何安装 beta 版本，beta 和 dev 有什么区别
+### å¦‚ä½•å®‰è£… beta ç‰ˆæœ¬ï¼Œbeta å’Œ dev æœ‰ä»€ä¹ˆåŒºåˆ«
 
-**Beta** 是 npm dist-tag `beta`（可能与 `latest` 相同）。
-**Dev** 是 `main` 的滚动头部（git）；发布时使用 npm dist-tag `dev`。
+**Beta** æ˜¯ npm dist-tag `beta`ï¼ˆå¯èƒ½ä¸Ž `latest` ç›¸åŒï¼‰ã€‚
+**Dev** æ˜¯ `main` çš„æ»šåŠ¨å¤´éƒ¨ï¼ˆgitï¼‰ï¼›å‘å¸ƒæ—¶ä½¿ç”¨ npm dist-tag `dev`ã€‚
 
-一行命令（macOS/Linux）：
+ä¸€è¡Œå‘½ä»¤ï¼ˆmacOS/Linuxï¼‰ï¼š
 
 ```bash
-curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --beta
+curl -fsSL --proto '=https' --tlsv1.2 https://.ai/install.sh | bash -s -- --beta
 ```
 
 ```bash
-curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -- --install-method git
+curl -fsSL --proto '=https' --tlsv1.2 https://.ai/install.sh | bash -s -- --install-method git
 ```
 
-Windows 安装程序（PowerShell）：
-https://openclaw.ai/install.ps1
+Windows å®‰è£…ç¨‹åºï¼ˆPowerShellï¼‰ï¼š
+https://.ai/install.ps1
 
-更多详情：[开发渠道](/install/development-channels)和[安装程序标志](/install/installer)。
+æ›´å¤šè¯¦æƒ…ï¼š[å¼€å‘æ¸ é“](/install/development-channels)å’Œ[å®‰è£…ç¨‹åºæ ‡å¿—](/install/installer)ã€‚
 
-### 安装和新手引导通常需要多长时间
+### å®‰è£…å’Œæ–°æ‰‹å¼•å¯¼é€šå¸¸éœ€è¦å¤šé•¿æ—¶é—´
 
-大致指南：
+å¤§è‡´æŒ‡å—ï¼š
 
-- **安装：** 2-5 分钟
-- **新手引导：** 5-15 分钟，取决于配置多少渠道/模型
+- **å®‰è£…ï¼š** 2-5 åˆ†é’Ÿ
+- **æ–°æ‰‹å¼•å¯¼ï¼š** 5-15 åˆ†é’Ÿï¼Œå–å†³äºŽé…ç½®å¤šå°‘æ¸ é“/æ¨¡åž‹
 
-如果挂起，请参阅[安装程序卡住](/help/faq#installer-stuck-how-do-i-get-more-feedback)和[我卡住了](/help/faq#im-stuck--whats-the-fastest-way-to-get-unstuck)中的快速调试流程。
+å¦‚æžœæŒ‚èµ·ï¼Œè¯·å‚é˜…[å®‰è£…ç¨‹åºå¡ä½](/help/faq#installer-stuck-how-do-i-get-more-feedback)å’Œ[æˆ‘å¡ä½äº†](/help/faq#im-stuck--whats-the-fastest-way-to-get-unstuck)ä¸­çš„å¿«é€Ÿè°ƒè¯•æµç¨‹ã€‚
 
-### 如何试用最新代码
+### å¦‚ä½•è¯•ç”¨æœ€æ–°ä»£ç 
 
-两个选项：
+ä¸¤ä¸ªé€‰é¡¹ï¼š
 
-1. **Dev 渠道（git checkout）：**
+1. **Dev æ¸ é“ï¼ˆgit checkoutï¼‰ï¼š**
 
 ```bash
-openclaw update --channel dev
+ update --channel dev
 ```
 
-这会切换到 `main` 分支并从源码更新。
+è¿™ä¼šåˆ‡æ¢åˆ° `main` åˆ†æ”¯å¹¶ä»Žæºç æ›´æ–°ã€‚
 
-2. **可编辑安装（从安装程序网站）：**
+2. **å¯ç¼–è¾‘å®‰è£…ï¼ˆä»Žå®‰è£…ç¨‹åºç½‘ç«™ï¼‰ï¼š**
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
+curl -fsSL https://.ai/install.sh | bash -s -- --install-method git
 ```
 
-这会给你一个可编辑的本地仓库，然后通过 git 更新。
+è¿™ä¼šç»™ä½ ä¸€ä¸ªå¯ç¼–è¾‘çš„æœ¬åœ°ä»“åº“ï¼Œç„¶åŽé€šè¿‡ git æ›´æ–°ã€‚
 
-如果你更喜欢手动克隆，使用：
+å¦‚æžœä½ æ›´å–œæ¬¢æ‰‹åŠ¨å…‹éš†ï¼Œä½¿ç”¨ï¼š
 
 ```bash
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw
+git clone https://github.com//.git
+cd 
 pnpm install
 pnpm build
 ```
 
-文档：[更新](/cli/update)、[开发渠道](/install/development-channels)、
-[安装](/install)。
+æ–‡æ¡£ï¼š[æ›´æ–°](/cli/update)ã€[å¼€å‘æ¸ é“](/install/development-channels)ã€
+[å®‰è£…](/install)ã€‚
 
-### 安装程序卡住了？如何获取更多反馈
+### å®‰è£…ç¨‹åºå¡ä½äº†ï¼Ÿå¦‚ä½•èŽ·å–æ›´å¤šåé¦ˆ
 
-使用**详细输出**重新运行安装程序：
-
-```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --verbose
-```
-
-带详细输出的 Beta 安装：
+ä½¿ç”¨**è¯¦ç»†è¾“å‡º**é‡æ–°è¿è¡Œå®‰è£…ç¨‹åºï¼š
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --beta --verbose
+curl -fsSL https://.ai/install.sh | bash -s -- --verbose
 ```
 
-可编辑（git）安装：
+å¸¦è¯¦ç»†è¾“å‡ºçš„ Beta å®‰è£…ï¼š
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git --verbose
+curl -fsSL https://.ai/install.sh | bash -s -- --beta --verbose
 ```
 
-更多选项：[安装程序标志](/install/installer)。
+å¯ç¼–è¾‘ï¼ˆgitï¼‰å®‰è£…ï¼š
 
-### Windows 安装提示找不到 git 或无法识别 openclaw
+```bash
+curl -fsSL https://.ai/install.sh | bash -s -- --install-method git --verbose
+```
 
-两个常见的 Windows 问题：
+æ›´å¤šé€‰é¡¹ï¼š[å®‰è£…ç¨‹åºæ ‡å¿—](/install/installer)ã€‚
+
+### Windows å®‰è£…æç¤ºæ‰¾ä¸åˆ° git æˆ–æ— æ³•è¯†åˆ« 
+
+ä¸¤ä¸ªå¸¸è§çš„ Windows é—®é¢˜ï¼š
 
 **1) npm error spawn git / git not found**
 
-- 安装 **Git for Windows** 并确保 `git` 在你的 PATH 中。
-- 关闭并重新打开 PowerShell，然后重新运行安装程序。
+- å®‰è£… **Git for Windows** å¹¶ç¡®ä¿ `git` åœ¨ä½ çš„ PATH ä¸­ã€‚
+- å…³é—­å¹¶é‡æ–°æ‰“å¼€ PowerShellï¼Œç„¶åŽé‡æ–°è¿è¡Œå®‰è£…ç¨‹åºã€‚
 
-**2) openclaw is not recognized（安装后）**
+**2)  is not recognizedï¼ˆå®‰è£…åŽï¼‰**
 
-- 你的 npm 全局 bin 文件夹不在 PATH 中。
-- 检查路径：
+- ä½ çš„ npm å…¨å±€ bin æ–‡ä»¶å¤¹ä¸åœ¨ PATH ä¸­ã€‚
+- æ£€æŸ¥è·¯å¾„ï¼š
   ```powershell
   npm config get prefix
   ```
-- 确保 `<prefix>\\bin` 在 PATH 中（在大多数系统上是 `%AppData%\\npm`）。
-- 更新 PATH 后关闭并重新打开 PowerShell。
+- ç¡®ä¿ `<prefix>\\bin` åœ¨ PATH ä¸­ï¼ˆåœ¨å¤§å¤šæ•°ç³»ç»Ÿä¸Šæ˜¯ `%AppData%\\npm`ï¼‰ã€‚
+- æ›´æ–° PATH åŽå…³é—­å¹¶é‡æ–°æ‰“å¼€ PowerShellã€‚
 
-如果你想要最顺畅的 Windows 设置，请使用 **WSL2** 而不是原生 Windows。
-文档：[Windows](/platforms/windows)。
+å¦‚æžœä½ æƒ³è¦æœ€é¡ºç•…çš„ Windows è®¾ç½®ï¼Œè¯·ä½¿ç”¨ **WSL2** è€Œä¸æ˜¯åŽŸç”Ÿ Windowsã€‚
+æ–‡æ¡£ï¼š[Windows](/platforms/windows)ã€‚
 
-### 文档没有解答我的问题——如何获得更好的答案
+### æ–‡æ¡£æ²¡æœ‰è§£ç­”æˆ‘çš„é—®é¢˜â€”â€”å¦‚ä½•èŽ·å¾—æ›´å¥½çš„ç­”æ¡ˆ
 
-使用**可编辑（git）安装**，这样你在本地拥有完整的源码和文档，然后从该文件夹向你的机器人（或 Claude/Codex）提问，这样它可以读取仓库并精确回答。
+ä½¿ç”¨**å¯ç¼–è¾‘ï¼ˆgitï¼‰å®‰è£…**ï¼Œè¿™æ ·ä½ åœ¨æœ¬åœ°æ‹¥æœ‰å®Œæ•´çš„æºç å’Œæ–‡æ¡£ï¼Œç„¶åŽä»Žè¯¥æ–‡ä»¶å¤¹å‘ä½ çš„æœºå™¨äººï¼ˆæˆ– Claude/Codexï¼‰æé—®ï¼Œè¿™æ ·å®ƒå¯ä»¥è¯»å–ä»“åº“å¹¶ç²¾ç¡®å›žç­”ã€‚
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git
+curl -fsSL https://.ai/install.sh | bash -s -- --install-method git
 ```
 
-更多详情：[安装](/install)和[安装程序标志](/install/installer)。
+æ›´å¤šè¯¦æƒ…ï¼š[å®‰è£…](/install)å’Œ[å®‰è£…ç¨‹åºæ ‡å¿—](/install/installer)ã€‚
 
-### 如何在 Linux 上安装 OpenClaw
+### å¦‚ä½•åœ¨ Linux ä¸Šå®‰è£… 
 
-简短回答：按照 Linux 指南操作，然后运行新手引导向导。
+ç®€çŸ­å›žç­”ï¼šæŒ‰ç…§ Linux æŒ‡å—æ“ä½œï¼Œç„¶åŽè¿è¡Œæ–°æ‰‹å¼•å¯¼å‘å¯¼ã€‚
 
-- Linux 快速路径 + 服务安装：[Linux](/platforms/linux)。
-- 完整指南：[入门](/start/getting-started)。
-- 安装和更新：[安装与更新](/install/updating)。
+- Linux å¿«é€Ÿè·¯å¾„ + æœåŠ¡å®‰è£…ï¼š[Linux](/platforms/linux)ã€‚
+- å®Œæ•´æŒ‡å—ï¼š[å…¥é—¨](/start/getting-started)ã€‚
+- å®‰è£…å’Œæ›´æ–°ï¼š[å®‰è£…ä¸Žæ›´æ–°](/install/updating)ã€‚
 
-### 如何在 VPS 上安装 OpenClaw
+### å¦‚ä½•åœ¨ VPS ä¸Šå®‰è£… 
 
-任何 Linux VPS 都可以。在服务器上安装，然后使用 SSH/Tailscale 访问 Gateway 网关。
+ä»»ä½• Linux VPS éƒ½å¯ä»¥ã€‚åœ¨æœåŠ¡å™¨ä¸Šå®‰è£…ï¼Œç„¶åŽä½¿ç”¨ SSH/Tailscale è®¿é—® Gateway ç½‘å…³ã€‚
 
-指南：[exe.dev](/platforms/exe-dev)、[Hetzner](/platforms/hetzner)、[Fly.io](/platforms/fly)。
-远程访问：[Gateway 网关远程](/gateway/remote)。
+æŒ‡å—ï¼š[exe.dev](/platforms/exe-dev)ã€[Hetzner](/platforms/hetzner)ã€[Fly.io](/platforms/fly)ã€‚
+è¿œç¨‹è®¿é—®ï¼š[Gateway ç½‘å…³è¿œç¨‹](/gateway/remote)ã€‚
 
-### 云/VPS 安装指南在哪里
+### äº‘/VPS å®‰è£…æŒ‡å—åœ¨å“ªé‡Œ
 
-我们维护了一个**托管中心**，涵盖常见提供商。选择一个并按指南操作：
+æˆ‘ä»¬ç»´æŠ¤äº†ä¸€ä¸ª**æ‰˜ç®¡ä¸­å¿ƒ**ï¼Œæ¶µç›–å¸¸è§æä¾›å•†ã€‚é€‰æ‹©ä¸€ä¸ªå¹¶æŒ‰æŒ‡å—æ“ä½œï¼š
 
-- [VPS 托管](/vps)（所有提供商汇总）
+- [VPS æ‰˜ç®¡](/vps)ï¼ˆæ‰€æœ‰æä¾›å•†æ±‡æ€»ï¼‰
 - [Fly.io](/platforms/fly)
 - [Hetzner](/platforms/hetzner)
 - [exe.dev](/platforms/exe-dev)
 
-在云端的工作方式：**Gateway 网关运行在服务器上**，你通过控制 UI（或 Tailscale/SSH）从笔记本/手机访问。你的状态 + 工作区位于服务器上，因此将主机视为数据来源并做好备份。
+åœ¨äº‘ç«¯çš„å·¥ä½œæ–¹å¼ï¼š**Gateway ç½‘å…³è¿è¡Œåœ¨æœåŠ¡å™¨ä¸Š**ï¼Œä½ é€šè¿‡æŽ§åˆ¶ UIï¼ˆæˆ– Tailscale/SSHï¼‰ä»Žç¬”è®°æœ¬/æ‰‹æœºè®¿é—®ã€‚ä½ çš„çŠ¶æ€ + å·¥ä½œåŒºä½äºŽæœåŠ¡å™¨ä¸Šï¼Œå› æ­¤å°†ä¸»æœºè§†ä¸ºæ•°æ®æ¥æºå¹¶åšå¥½å¤‡ä»½ã€‚
 
-你可以将**节点**（Mac/iOS/Android/无头）配对到云端 Gateway 网关，以访问本地屏幕/摄像头/画布或在笔记本上执行命令，同时 Gateway 网关保持在云端。
+ä½ å¯ä»¥å°†**èŠ‚ç‚¹**ï¼ˆMac/iOS/Android/æ— å¤´ï¼‰é…å¯¹åˆ°äº‘ç«¯ Gateway ç½‘å…³ï¼Œä»¥è®¿é—®æœ¬åœ°å±å¹•/æ‘„åƒå¤´/ç”»å¸ƒæˆ–åœ¨ç¬”è®°æœ¬ä¸Šæ‰§è¡Œå‘½ä»¤ï¼ŒåŒæ—¶ Gateway ç½‘å…³ä¿æŒåœ¨äº‘ç«¯ã€‚
 
-中心：[平台](/platforms)。远程访问：[Gateway 网关远程](/gateway/remote)。
-节点：[节点](/nodes)、[节点 CLI](/cli/nodes)。
+ä¸­å¿ƒï¼š[å¹³å°](/platforms)ã€‚è¿œç¨‹è®¿é—®ï¼š[Gateway ç½‘å…³è¿œç¨‹](/gateway/remote)ã€‚
+èŠ‚ç‚¹ï¼š[èŠ‚ç‚¹](/nodes)ã€[èŠ‚ç‚¹ CLI](/cli/nodes)ã€‚
 
-### 可以让 OpenClaw 自行更新吗
+### å¯ä»¥è®©  è‡ªè¡Œæ›´æ–°å—
 
-简短回答：**可以，但不推荐**。更新流程可能重启 Gateway 网关（这会中断活跃会话），可能需要干净的 git checkout，并且可能提示确认。更安全的做法：作为运维人员从 shell 运行更新。
+ç®€çŸ­å›žç­”ï¼š**å¯ä»¥ï¼Œä½†ä¸æŽ¨è**ã€‚æ›´æ–°æµç¨‹å¯èƒ½é‡å¯ Gateway ç½‘å…³ï¼ˆè¿™ä¼šä¸­æ–­æ´»è·ƒä¼šè¯ï¼‰ï¼Œå¯èƒ½éœ€è¦å¹²å‡€çš„ git checkoutï¼Œå¹¶ä¸”å¯èƒ½æç¤ºç¡®è®¤ã€‚æ›´å®‰å…¨çš„åšæ³•ï¼šä½œä¸ºè¿ç»´äººå‘˜ä»Ž shell è¿è¡Œæ›´æ–°ã€‚
 
-使用 CLI：
-
-```bash
-openclaw update
-openclaw update status
-openclaw update --channel stable|beta|dev
-openclaw update --tag <dist-tag|version>
-openclaw update --no-restart
-```
-
-如果必须从智能体自动化：
+ä½¿ç”¨ CLIï¼š
 
 ```bash
-openclaw update --yes --no-restart
-openclaw gateway restart
+ update
+ update status
+ update --channel stable|beta|dev
+ update --tag <dist-tag|version>
+ update --no-restart
 ```
 
-文档：[更新](/cli/update)、[更新指南](/install/updating)。
+å¦‚æžœå¿…é¡»ä»Žæ™ºèƒ½ä½“è‡ªåŠ¨åŒ–ï¼š
 
-### 新手引导向导具体做了什么
+```bash
+ update --yes --no-restart
+ gateway restart
+```
 
-`openclaw onboard` 是推荐的设置路径。在**本地模式**下，它引导你完成：
+æ–‡æ¡£ï¼š[æ›´æ–°](/cli/update)ã€[æ›´æ–°æŒ‡å—](/install/updating)ã€‚
 
-- **模型/认证设置**（推荐使用 Anthropic **setup-token** 进行 Claude 订阅，支持 OpenAI Codex OAuth，API 密钥可选，支持 LM Studio 本地模型）
-- **工作区**位置 + 引导文件
-- **Gateway 网关设置**（绑定/端口/认证/tailscale）
-- **渠道**（WhatsApp、Telegram、Discord、Mattermost（插件）、Signal、iMessage）
-- **守护进程安装**（macOS 上的 LaunchAgent；Linux/WSL2 上的 systemd 用户单元）
-- **健康检查**和**Skills**选择
+### æ–°æ‰‹å¼•å¯¼å‘å¯¼å…·ä½“åšäº†ä»€ä¹ˆ
 
-如果你配置的模型未知或缺少认证，它还会发出警告。
+` onboard` æ˜¯æŽ¨èçš„è®¾ç½®è·¯å¾„ã€‚åœ¨**æœ¬åœ°æ¨¡å¼**ä¸‹ï¼Œå®ƒå¼•å¯¼ä½ å®Œæˆï¼š
 
-### 运行 OpenClaw 需要 Claude 或 OpenAI 订阅吗
+- **æ¨¡åž‹/è®¤è¯è®¾ç½®**ï¼ˆæŽ¨èä½¿ç”¨ Anthropic **setup-token** è¿›è¡Œ Claude è®¢é˜…ï¼Œæ”¯æŒ OpenAI Codex OAuthï¼ŒAPI å¯†é’¥å¯é€‰ï¼Œæ”¯æŒ LM Studio æœ¬åœ°æ¨¡åž‹ï¼‰
+- **å·¥ä½œåŒº**ä½ç½® + å¼•å¯¼æ–‡ä»¶
+- **Gateway ç½‘å…³è®¾ç½®**ï¼ˆç»‘å®š/ç«¯å£/è®¤è¯/tailscaleï¼‰
+- **æ¸ é“**ï¼ˆWhatsAppã€Telegramã€Discordã€Mattermostï¼ˆæ’ä»¶ï¼‰ã€Signalã€iMessageï¼‰
+- **å®ˆæŠ¤è¿›ç¨‹å®‰è£…**ï¼ˆmacOS ä¸Šçš„ LaunchAgentï¼›Linux/WSL2 ä¸Šçš„ systemd ç”¨æˆ·å•å…ƒï¼‰
+- **å¥åº·æ£€æŸ¥**å’Œ**Skills**é€‰æ‹©
 
-不需要。你可以使用 **API 密钥**（Anthropic/OpenAI/其他）或**纯本地模型**运行 OpenClaw，这样你的数据留在你的设备上。订阅（Claude Pro/Max 或 OpenAI Codex）是这些提供商的可选认证方式。
+å¦‚æžœä½ é…ç½®çš„æ¨¡åž‹æœªçŸ¥æˆ–ç¼ºå°‘è®¤è¯ï¼Œå®ƒè¿˜ä¼šå‘å‡ºè­¦å‘Šã€‚
 
-文档：[Anthropic](/providers/anthropic)、[OpenAI](/providers/openai)、
-[本地模型](/gateway/local-models)、[模型](/concepts/models)。
+### è¿è¡Œ  éœ€è¦ Claude æˆ– OpenAI è®¢é˜…å—
 
-### 能否使用 Claude Max 订阅而不需要 API 密钥
+ä¸éœ€è¦ã€‚ä½ å¯ä»¥ä½¿ç”¨ **API å¯†é’¥**ï¼ˆAnthropic/OpenAI/å…¶ä»–ï¼‰æˆ–**çº¯æœ¬åœ°æ¨¡åž‹**è¿è¡Œ ï¼Œè¿™æ ·ä½ çš„æ•°æ®ç•™åœ¨ä½ çš„è®¾å¤‡ä¸Šã€‚è®¢é˜…ï¼ˆClaude Pro/Max æˆ– OpenAI Codexï¼‰æ˜¯è¿™äº›æä¾›å•†çš„å¯é€‰è®¤è¯æ–¹å¼ã€‚
 
-可以。你可以使用 **setup-token** 代替 API 密钥进行认证。这是订阅路径。
+æ–‡æ¡£ï¼š[Anthropic](/providers/anthropic)ã€[OpenAI](/providers/openai)ã€
+[æœ¬åœ°æ¨¡åž‹](/gateway/local-models)ã€[æ¨¡åž‹](/concepts/models)ã€‚
 
-Claude Pro/Max 订阅**不包含 API 密钥**，因此这是订阅账户的正确方式。重要提示：你必须向 Anthropic 确认此用法是否符合其订阅政策和条款。如果你想要最明确、受支持的方式，请使用 Anthropic API 密钥。
+### èƒ½å¦ä½¿ç”¨ Claude Max è®¢é˜…è€Œä¸éœ€è¦ API å¯†é’¥
 
-### Anthropic setup-token 认证如何工作
+å¯ä»¥ã€‚ä½ å¯ä»¥ä½¿ç”¨ **setup-token** ä»£æ›¿ API å¯†é’¥è¿›è¡Œè®¤è¯ã€‚è¿™æ˜¯è®¢é˜…è·¯å¾„ã€‚
 
-`claude setup-token` 通过 Claude Code CLI 生成一个**令牌字符串**（在 Web 控制台中不可用）。你可以在**任何机器**上运行它。在向导中选择 **Anthropic token (paste setup-token)** 或使用 `openclaw models auth paste-token --provider anthropic` 粘贴。令牌作为 **anthropic** 提供商的认证配置文件存储，像 API 密钥一样使用（无自动刷新）。更多详情：[OAuth](/concepts/oauth)。
+Claude Pro/Max è®¢é˜…**ä¸åŒ…å« API å¯†é’¥**ï¼Œå› æ­¤è¿™æ˜¯è®¢é˜…è´¦æˆ·çš„æ­£ç¡®æ–¹å¼ã€‚é‡è¦æç¤ºï¼šä½ å¿…é¡»å‘ Anthropic ç¡®è®¤æ­¤ç”¨æ³•æ˜¯å¦ç¬¦åˆå…¶è®¢é˜…æ”¿ç­–å’Œæ¡æ¬¾ã€‚å¦‚æžœä½ æƒ³è¦æœ€æ˜Žç¡®ã€å—æ”¯æŒçš„æ–¹å¼ï¼Œè¯·ä½¿ç”¨ Anthropic API å¯†é’¥ã€‚
 
-### 在哪里获取 Anthropic setup-token
+### Anthropic setup-token è®¤è¯å¦‚ä½•å·¥ä½œ
 
-它**不在** Anthropic Console 中。setup-token 由 **Claude Code CLI** 在**任何机器**上生成：
+`claude setup-token` é€šè¿‡ Claude Code CLI ç”Ÿæˆä¸€ä¸ª**ä»¤ç‰Œå­—ç¬¦ä¸²**ï¼ˆåœ¨ Web æŽ§åˆ¶å°ä¸­ä¸å¯ç”¨ï¼‰ã€‚ä½ å¯ä»¥åœ¨**ä»»ä½•æœºå™¨**ä¸Šè¿è¡Œå®ƒã€‚åœ¨å‘å¯¼ä¸­é€‰æ‹© **Anthropic token (paste setup-token)** æˆ–ä½¿ç”¨ ` models auth paste-token --provider anthropic` ç²˜è´´ã€‚ä»¤ç‰Œä½œä¸º **anthropic** æä¾›å•†çš„è®¤è¯é…ç½®æ–‡ä»¶å­˜å‚¨ï¼Œåƒ API å¯†é’¥ä¸€æ ·ä½¿ç”¨ï¼ˆæ— è‡ªåŠ¨åˆ·æ–°ï¼‰ã€‚æ›´å¤šè¯¦æƒ…ï¼š[OAuth](/concepts/oauth)ã€‚
+
+### åœ¨å“ªé‡ŒèŽ·å– Anthropic setup-token
+
+å®ƒ**ä¸åœ¨** Anthropic Console ä¸­ã€‚setup-token ç”± **Claude Code CLI** åœ¨**ä»»ä½•æœºå™¨**ä¸Šç”Ÿæˆï¼š
 
 ```bash
 claude setup-token
 ```
 
-复制它打印的令牌，然后在向导中选择 **Anthropic token (paste setup-token)**。如果你想在 Gateway 网关主机上运行，使用 `openclaw models auth setup-token --provider anthropic`。如果你在其他地方运行了 `claude setup-token`，在 Gateway 网关主机上使用 `openclaw models auth paste-token --provider anthropic` 粘贴。参阅 [Anthropic](/providers/anthropic)。
+å¤åˆ¶å®ƒæ‰“å°çš„ä»¤ç‰Œï¼Œç„¶åŽåœ¨å‘å¯¼ä¸­é€‰æ‹© **Anthropic token (paste setup-token)**ã€‚å¦‚æžœä½ æƒ³åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œï¼Œä½¿ç”¨ ` models auth setup-token --provider anthropic`ã€‚å¦‚æžœä½ åœ¨å…¶ä»–åœ°æ–¹è¿è¡Œäº† `claude setup-token`ï¼Œåœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šä½¿ç”¨ ` models auth paste-token --provider anthropic` ç²˜è´´ã€‚å‚é˜… [Anthropic](/providers/anthropic)ã€‚
 
-### 是否支持 Claude 订阅认证（Claude Pro/Max）
+### æ˜¯å¦æ”¯æŒ Claude è®¢é˜…è®¤è¯ï¼ˆClaude Pro/Maxï¼‰
 
-是的——通过 **setup-token**。OpenClaw 不再复用 Claude Code CLI OAuth 令牌；请使用 setup-token 或 Anthropic API 密钥。在任何地方生成令牌并在 Gateway 网关主机上粘贴。参阅 [Anthropic](/providers/anthropic) 和 [OAuth](/concepts/oauth)。
+æ˜¯çš„â€”â€”é€šè¿‡ **setup-token**ã€‚ ä¸å†å¤ç”¨ Claude Code CLI OAuth ä»¤ç‰Œï¼›è¯·ä½¿ç”¨ setup-token æˆ– Anthropic API å¯†é’¥ã€‚åœ¨ä»»ä½•åœ°æ–¹ç”Ÿæˆä»¤ç‰Œå¹¶åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šç²˜è´´ã€‚å‚é˜… [Anthropic](/providers/anthropic) å’Œ [OAuth](/concepts/oauth)ã€‚
 
-注意：Claude 订阅访问受 Anthropic 条款约束。对于生产或多用户工作负载，API 密钥通常是更安全的选择。
+æ³¨æ„ï¼šClaude è®¢é˜…è®¿é—®å— Anthropic æ¡æ¬¾çº¦æŸã€‚å¯¹äºŽç”Ÿäº§æˆ–å¤šç”¨æˆ·å·¥ä½œè´Ÿè½½ï¼ŒAPI å¯†é’¥é€šå¸¸æ˜¯æ›´å®‰å…¨çš„é€‰æ‹©ã€‚
 
-### 为什么我看到 HTTP 429 rate_limit_error（来自 Anthropic）
+### ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ° HTTP 429 rate_limit_errorï¼ˆæ¥è‡ª Anthropicï¼‰
 
-这意味着你当前窗口的 **Anthropic 配额/速率限制**已耗尽。如果你使用 **Claude 订阅**（setup-token 或 Claude Code OAuth），请等待窗口重置或升级你的计划。如果你使用 **Anthropic API 密钥**，请在 Anthropic Console 中检查使用量/计费并根据需要提高限制。
+è¿™æ„å‘³ç€ä½ å½“å‰çª—å£çš„ **Anthropic é…é¢/é€ŸçŽ‡é™åˆ¶**å·²è€—å°½ã€‚å¦‚æžœä½ ä½¿ç”¨ **Claude è®¢é˜…**ï¼ˆsetup-token æˆ– Claude Code OAuthï¼‰ï¼Œè¯·ç­‰å¾…çª—å£é‡ç½®æˆ–å‡çº§ä½ çš„è®¡åˆ’ã€‚å¦‚æžœä½ ä½¿ç”¨ **Anthropic API å¯†é’¥**ï¼Œè¯·åœ¨ Anthropic Console ä¸­æ£€æŸ¥ä½¿ç”¨é‡/è®¡è´¹å¹¶æ ¹æ®éœ€è¦æé«˜é™åˆ¶ã€‚
 
-提示：设置一个**备用模型**，这样 OpenClaw 在某个提供商被限速时仍能继续回复。
-参阅[模型](/cli/models)和 [OAuth](/concepts/oauth)。
+æç¤ºï¼šè®¾ç½®ä¸€ä¸ª**å¤‡ç”¨æ¨¡åž‹**ï¼Œè¿™æ ·  åœ¨æŸä¸ªæä¾›å•†è¢«é™é€Ÿæ—¶ä»èƒ½ç»§ç»­å›žå¤ã€‚
+å‚é˜…[æ¨¡åž‹](/cli/models)å’Œ [OAuth](/concepts/oauth)ã€‚
 
-### 支持 AWS Bedrock 吗
+### æ”¯æŒ AWS Bedrock å—
 
-是的——通过 pi-ai 的 **Amazon Bedrock (Converse)** 提供商进行**手动配置**。你必须在 Gateway 网关主机上提供 AWS 凭据/区域，并在模型配置中添加 Bedrock 提供商条目。参阅 [Amazon Bedrock](/bedrock) 和[模型提供商](/providers/models)。如果你更喜欢托管密钥流程，在 Bedrock 前面使用兼容 OpenAI 的代理仍然是有效选项。
+æ˜¯çš„â€”â€”é€šè¿‡ pi-ai çš„ **Amazon Bedrock (Converse)** æä¾›å•†è¿›è¡Œ**æ‰‹åŠ¨é…ç½®**ã€‚ä½ å¿…é¡»åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šæä¾› AWS å‡­æ®/åŒºåŸŸï¼Œå¹¶åœ¨æ¨¡åž‹é…ç½®ä¸­æ·»åŠ  Bedrock æä¾›å•†æ¡ç›®ã€‚å‚é˜… [Amazon Bedrock](/bedrock) å’Œ[æ¨¡åž‹æä¾›å•†](/providers/models)ã€‚å¦‚æžœä½ æ›´å–œæ¬¢æ‰˜ç®¡å¯†é’¥æµç¨‹ï¼Œåœ¨ Bedrock å‰é¢ä½¿ç”¨å…¼å®¹ OpenAI çš„ä»£ç†ä»ç„¶æ˜¯æœ‰æ•ˆé€‰é¡¹ã€‚
 
-### Codex 认证如何工作
+### Codex è®¤è¯å¦‚ä½•å·¥ä½œ
 
-OpenClaw 通过 OAuth（ChatGPT 登录）支持 **OpenAI Code (Codex)**。向导可以运行 OAuth 流程，并在适当时将默认模型设置为 `openai-codex/gpt-5.2`。参阅[模型提供商](/concepts/model-providers)和[向导](/start/wizard)。
+ é€šè¿‡ OAuthï¼ˆChatGPT ç™»å½•ï¼‰æ”¯æŒ **OpenAI Code (Codex)**ã€‚å‘å¯¼å¯ä»¥è¿è¡Œ OAuth æµç¨‹ï¼Œå¹¶åœ¨é€‚å½“æ—¶å°†é»˜è®¤æ¨¡åž‹è®¾ç½®ä¸º `openai-codex/gpt-5.2`ã€‚å‚é˜…[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)å’Œ[å‘å¯¼](/start/wizard)ã€‚
 
-### 是否支持 OpenAI 订阅认证（Codex OAuth）
+### æ˜¯å¦æ”¯æŒ OpenAI è®¢é˜…è®¤è¯ï¼ˆCodex OAuthï¼‰
 
-是的。OpenClaw 完全支持 **OpenAI Code (Codex) 订阅 OAuth**。新手引导向导可以为你运行 OAuth 流程。
+æ˜¯çš„ã€‚ å®Œå…¨æ”¯æŒ **OpenAI Code (Codex) è®¢é˜… OAuth**ã€‚æ–°æ‰‹å¼•å¯¼å‘å¯¼å¯ä»¥ä¸ºä½ è¿è¡Œ OAuth æµç¨‹ã€‚
 
-参阅 [OAuth](/concepts/oauth)、[模型提供商](/concepts/model-providers)和[向导](/start/wizard)。
+å‚é˜… [OAuth](/concepts/oauth)ã€[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)å’Œ[å‘å¯¼](/start/wizard)ã€‚
 
-### 如何设置 Gemini CLI OAuth
+### å¦‚ä½•è®¾ç½® Gemini CLI OAuth
 
-Gemini CLI 使用**插件认证流程**，而不是 `openclaw.json` 中的 client id 或 secret。
+Gemini CLI ä½¿ç”¨**æ’ä»¶è®¤è¯æµç¨‹**ï¼Œè€Œä¸æ˜¯ `.json` ä¸­çš„ client id æˆ– secretã€‚
 
-步骤：
+æ­¥éª¤ï¼š
 
-1. 启用插件：`openclaw plugins enable google-gemini-cli-auth`
-2. 登录：`openclaw models auth login --provider google-gemini-cli --set-default`
+1. å¯ç”¨æ’ä»¶ï¼š` plugins enable google-gemini-cli-auth`
+2. ç™»å½•ï¼š` models auth login --provider google-gemini-cli --set-default`
 
-这会在 Gateway 网关主机上将 OAuth 令牌存储为认证配置文件。详情：[模型提供商](/concepts/model-providers)。
+è¿™ä¼šåœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šå°† OAuth ä»¤ç‰Œå­˜å‚¨ä¸ºè®¤è¯é…ç½®æ–‡ä»¶ã€‚è¯¦æƒ…ï¼š[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)ã€‚
 
-### 本地模型适合日常聊天吗
+### æœ¬åœ°æ¨¡åž‹é€‚åˆæ—¥å¸¸èŠå¤©å—
 
-通常不适合。OpenClaw 需要大上下文 + 强安全性；小显卡会截断且泄漏。如果必须使用，请在本地运行你能运行的**最大** MiniMax M2.1 版本（LM Studio），参阅 [/gateway/local-models](/gateway/local-models)。较小/量化的模型会增加提示注入风险——参阅[安全](/gateway/security)。
+é€šå¸¸ä¸é€‚åˆã€‚ éœ€è¦å¤§ä¸Šä¸‹æ–‡ + å¼ºå®‰å…¨æ€§ï¼›å°æ˜¾å¡ä¼šæˆªæ–­ä¸”æ³„æ¼ã€‚å¦‚æžœå¿…é¡»ä½¿ç”¨ï¼Œè¯·åœ¨æœ¬åœ°è¿è¡Œä½ èƒ½è¿è¡Œçš„**æœ€å¤§** MiniMax M2.1 ç‰ˆæœ¬ï¼ˆLM Studioï¼‰ï¼Œå‚é˜… [/gateway/local-models](/gateway/local-models)ã€‚è¾ƒå°/é‡åŒ–çš„æ¨¡åž‹ä¼šå¢žåŠ æç¤ºæ³¨å…¥é£Žé™©â€”â€”å‚é˜…[å®‰å…¨](/gateway/security)ã€‚
 
-### 如何将托管模型流量限制在特定区域
+### å¦‚ä½•å°†æ‰˜ç®¡æ¨¡åž‹æµé‡é™åˆ¶åœ¨ç‰¹å®šåŒºåŸŸ
 
-选择区域固定的端点。OpenRouter 为 MiniMax、Kimi 和 GLM 提供美国托管选项；选择美国托管变体以保持数据在区域内。你仍然可以通过使用 `models.mode: "merge"` 在这些旁边列出 Anthropic/OpenAI，这样故障转移保持可用，同时尊重你选择的区域提供商。
+é€‰æ‹©åŒºåŸŸå›ºå®šçš„ç«¯ç‚¹ã€‚OpenRouter ä¸º MiniMaxã€Kimi å’Œ GLM æä¾›ç¾Žå›½æ‰˜ç®¡é€‰é¡¹ï¼›é€‰æ‹©ç¾Žå›½æ‰˜ç®¡å˜ä½“ä»¥ä¿æŒæ•°æ®åœ¨åŒºåŸŸå†…ã€‚ä½ ä»ç„¶å¯ä»¥é€šè¿‡ä½¿ç”¨ `models.mode: "merge"` åœ¨è¿™äº›æ—è¾¹åˆ—å‡º Anthropic/OpenAIï¼Œè¿™æ ·æ•…éšœè½¬ç§»ä¿æŒå¯ç”¨ï¼ŒåŒæ—¶å°Šé‡ä½ é€‰æ‹©çš„åŒºåŸŸæä¾›å•†ã€‚
 
-### 我必须购买 Mac Mini 才能安装吗
+### æˆ‘å¿…é¡»è´­ä¹° Mac Mini æ‰èƒ½å®‰è£…å—
 
-不需要。OpenClaw 运行在 macOS 或 Linux 上（Windows 通过 WSL2）。Mac mini 是可选的——有些人买一台作为常开主机，但小型 VPS、家庭服务器或 Raspberry Pi 级别的设备也可以。
+ä¸éœ€è¦ã€‚ è¿è¡Œåœ¨ macOS æˆ– Linux ä¸Šï¼ˆWindows é€šè¿‡ WSL2ï¼‰ã€‚Mac mini æ˜¯å¯é€‰çš„â€”â€”æœ‰äº›äººä¹°ä¸€å°ä½œä¸ºå¸¸å¼€ä¸»æœºï¼Œä½†å°åž‹ VPSã€å®¶åº­æœåŠ¡å™¨æˆ– Raspberry Pi çº§åˆ«çš„è®¾å¤‡ä¹Ÿå¯ä»¥ã€‚
 
-你只有在使用 **macOS 专用工具**时才需要 Mac。对于 iMessage，你可以将 Gateway 网关保持在 Linux 上，通过将 `channels.imessage.cliPath` 指向 SSH 包装器在任何 Mac 上运行 `imsg`。如果你需要其他 macOS 专用工具，在 Mac 上运行 Gateway 网关或配对一个 macOS 节点。
+ä½ åªæœ‰åœ¨ä½¿ç”¨ **macOS ä¸“ç”¨å·¥å…·**æ—¶æ‰éœ€è¦ Macã€‚å¯¹äºŽ iMessageï¼Œä½ å¯ä»¥å°† Gateway ç½‘å…³ä¿æŒåœ¨ Linux ä¸Šï¼Œé€šè¿‡å°† `channels.imessage.cliPath` æŒ‡å‘ SSH åŒ…è£…å™¨åœ¨ä»»ä½• Mac ä¸Šè¿è¡Œ `imsg`ã€‚å¦‚æžœä½ éœ€è¦å…¶ä»– macOS ä¸“ç”¨å·¥å…·ï¼Œåœ¨ Mac ä¸Šè¿è¡Œ Gateway ç½‘å…³æˆ–é…å¯¹ä¸€ä¸ª macOS èŠ‚ç‚¹ã€‚
 
-文档：[iMessage](/channels/imessage)、[节点](/nodes)、[Mac 远程模式](/platforms/mac/remote)。
+æ–‡æ¡£ï¼š[iMessage](/channels/imessage)ã€[èŠ‚ç‚¹](/nodes)ã€[Mac è¿œç¨‹æ¨¡å¼](/platforms/mac/remote)ã€‚
 
-### iMessage 支持需要 Mac mini 吗
+### iMessage æ”¯æŒéœ€è¦ Mac mini å—
 
-你需要**某台登录了 Messages 的 macOS 设备**。它**不一定**是 Mac mini——任何 Mac 都可以。OpenClaw 的 iMessage 集成在 macOS 上运行（BlueBubbles 或 `imsg`），而 Gateway 网关可以在其他地方运行。
+ä½ éœ€è¦**æŸå°ç™»å½•äº† Messages çš„ macOS è®¾å¤‡**ã€‚å®ƒ**ä¸ä¸€å®š**æ˜¯ Mac miniâ€”â€”ä»»ä½• Mac éƒ½å¯ä»¥ã€‚ çš„ iMessage é›†æˆåœ¨ macOS ä¸Šè¿è¡Œï¼ˆBlueBubbles æˆ– `imsg`ï¼‰ï¼Œè€Œ Gateway ç½‘å…³å¯ä»¥åœ¨å…¶ä»–åœ°æ–¹è¿è¡Œã€‚
 
-常见设置：
+å¸¸è§è®¾ç½®ï¼š
 
-- 在 Linux/VPS 上运行 Gateway 网关，将 `channels.imessage.cliPath` 指向在 Mac 上运行 `imsg` 的 SSH 包装器。
-- 如果你想要最简单的单机设置，在 Mac 上运行所有组件。
+- åœ¨ Linux/VPS ä¸Šè¿è¡Œ Gateway ç½‘å…³ï¼Œå°† `channels.imessage.cliPath` æŒ‡å‘åœ¨ Mac ä¸Šè¿è¡Œ `imsg` çš„ SSH åŒ…è£…å™¨ã€‚
+- å¦‚æžœä½ æƒ³è¦æœ€ç®€å•çš„å•æœºè®¾ç½®ï¼Œåœ¨ Mac ä¸Šè¿è¡Œæ‰€æœ‰ç»„ä»¶ã€‚
 
-文档：[iMessage](/channels/imessage)、[BlueBubbles](/channels/bluebubbles)、
-[Mac 远程模式](/platforms/mac/remote)。
+æ–‡æ¡£ï¼š[iMessage](/channels/imessage)ã€[BlueBubbles](/channels/bluebubbles)ã€
+[Mac è¿œç¨‹æ¨¡å¼](/platforms/mac/remote)ã€‚
 
-### 如果我买了 Mac mini 运行 OpenClaw，能连接到我的 MacBook Pro 吗
+### å¦‚æžœæˆ‘ä¹°äº† Mac mini è¿è¡Œ ï¼Œèƒ½è¿žæŽ¥åˆ°æˆ‘çš„ MacBook Pro å—
 
-可以。**Mac mini 可以运行 Gateway 网关**，你的 MacBook Pro 可以作为**节点**（伴随设备）连接。节点不运行 Gateway 网关——它们提供额外功能，如该设备上的屏幕/摄像头/画布和 `system.run`。
+å¯ä»¥ã€‚**Mac mini å¯ä»¥è¿è¡Œ Gateway ç½‘å…³**ï¼Œä½ çš„ MacBook Pro å¯ä»¥ä½œä¸º**èŠ‚ç‚¹**ï¼ˆä¼´éšè®¾å¤‡ï¼‰è¿žæŽ¥ã€‚èŠ‚ç‚¹ä¸è¿è¡Œ Gateway ç½‘å…³â€”â€”å®ƒä»¬æä¾›é¢å¤–åŠŸèƒ½ï¼Œå¦‚è¯¥è®¾å¤‡ä¸Šçš„å±å¹•/æ‘„åƒå¤´/ç”»å¸ƒå’Œ `system.run`ã€‚
 
-常见模式：
+å¸¸è§æ¨¡å¼ï¼š
 
-- Gateway 网关在 Mac mini 上（常开）。
-- MacBook Pro 运行 macOS 应用或节点主机并配对到 Gateway 网关。
-- 使用 `openclaw nodes status` / `openclaw nodes list` 查看它。
+- Gateway ç½‘å…³åœ¨ Mac mini ä¸Šï¼ˆå¸¸å¼€ï¼‰ã€‚
+- MacBook Pro è¿è¡Œ macOS åº”ç”¨æˆ–èŠ‚ç‚¹ä¸»æœºå¹¶é…å¯¹åˆ° Gateway ç½‘å…³ã€‚
+- ä½¿ç”¨ ` nodes status` / ` nodes list` æŸ¥çœ‹å®ƒã€‚
 
-文档：[节点](/nodes)、[节点 CLI](/cli/nodes)。
+æ–‡æ¡£ï¼š[èŠ‚ç‚¹](/nodes)ã€[èŠ‚ç‚¹ CLI](/cli/nodes)ã€‚
 
-### 可以使用 Bun 吗
+### å¯ä»¥ä½¿ç”¨ Bun å—
 
-Bun **不推荐**。我们观察到运行时 bug，特别是在 WhatsApp 和 Telegram 方面。
-使用 **Node** 以获得稳定的 Gateway 网关。
+Bun **ä¸æŽ¨è**ã€‚æˆ‘ä»¬è§‚å¯Ÿåˆ°è¿è¡Œæ—¶ bugï¼Œç‰¹åˆ«æ˜¯åœ¨ WhatsApp å’Œ Telegram æ–¹é¢ã€‚
+ä½¿ç”¨ **Node** ä»¥èŽ·å¾—ç¨³å®šçš„ Gateway ç½‘å…³ã€‚
 
-如果你仍想尝试 Bun，请在没有 WhatsApp/Telegram 的非生产 Gateway 网关上进行。
+å¦‚æžœä½ ä»æƒ³å°è¯• Bunï¼Œè¯·åœ¨æ²¡æœ‰ WhatsApp/Telegram çš„éžç”Ÿäº§ Gateway ç½‘å…³ä¸Šè¿›è¡Œã€‚
 
-### Telegram：allowFrom 填什么
+### Telegramï¼šallowFrom å¡«ä»€ä¹ˆ
 
-`channels.telegram.allowFrom` 是**人类发送者的 Telegram 用户 ID**（数字，推荐）或 `@username`。它不是机器人用户名。
+`channels.telegram.allowFrom` æ˜¯**äººç±»å‘é€è€…çš„ Telegram ç”¨æˆ· ID**ï¼ˆæ•°å­—ï¼ŒæŽ¨èï¼‰æˆ– `@username`ã€‚å®ƒä¸æ˜¯æœºå™¨äººç”¨æˆ·åã€‚
 
-更安全的方式（无需第三方机器人）：
+æ›´å®‰å…¨çš„æ–¹å¼ï¼ˆæ— éœ€ç¬¬ä¸‰æ–¹æœºå™¨äººï¼‰ï¼š
 
-- 给你的机器人发私信，然后运行 `openclaw logs --follow` 并读取 `from.id`。
+- ç»™ä½ çš„æœºå™¨äººå‘ç§ä¿¡ï¼Œç„¶åŽè¿è¡Œ ` logs --follow` å¹¶è¯»å– `from.id`ã€‚
 
-官方 Bot API：
+å®˜æ–¹ Bot APIï¼š
 
-- 给你的机器人发私信，然后调用 `https://api.telegram.org/bot<bot_token>/getUpdates` 并读取 `message.from.id`。
+- ç»™ä½ çš„æœºå™¨äººå‘ç§ä¿¡ï¼Œç„¶åŽè°ƒç”¨ `https://api.telegram.org/bot<bot_token>/getUpdates` å¹¶è¯»å– `message.from.id`ã€‚
 
-第三方（隐私性较低）：
+ç¬¬ä¸‰æ–¹ï¼ˆéšç§æ€§è¾ƒä½Žï¼‰ï¼š
 
-- 给 `@userinfobot` 或 `@getidsbot` 发私信。
+- ç»™ `@userinfobot` æˆ– `@getidsbot` å‘ç§ä¿¡ã€‚
 
-参阅 [/channels/telegram](/channels/telegram#access-control-dms--groups)。
+å‚é˜… [/channels/telegram](/channels/telegram#access-control-dms--groups)ã€‚
 
-### 多人能否使用同一个 WhatsApp 号码配合不同的 OpenClaw 实例
+### å¤šäººèƒ½å¦ä½¿ç”¨åŒä¸€ä¸ª WhatsApp å·ç é…åˆä¸åŒçš„  å®žä¾‹
 
-可以，通过**多智能体路由**。将每个发送者的 WhatsApp **私信**（peer `kind: "dm"`，发送者 E.164 格式如 `+15551234567`）绑定到不同的 `agentId`，这样每个人获得自己的工作区和会话存储。回复仍然来自**同一个 WhatsApp 账户**，且私信访问控制（`channels.whatsapp.dmPolicy` / `channels.whatsapp.allowFrom`）对每个 WhatsApp 账户是全局的。参阅[多智能体路由](/concepts/multi-agent)和 [WhatsApp](/channels/whatsapp)。
+å¯ä»¥ï¼Œé€šè¿‡**å¤šæ™ºèƒ½ä½“è·¯ç”±**ã€‚å°†æ¯ä¸ªå‘é€è€…çš„ WhatsApp **ç§ä¿¡**ï¼ˆpeer `kind: "dm"`ï¼Œå‘é€è€… E.164 æ ¼å¼å¦‚ `+15551234567`ï¼‰ç»‘å®šåˆ°ä¸åŒçš„ `agentId`ï¼Œè¿™æ ·æ¯ä¸ªäººèŽ·å¾—è‡ªå·±çš„å·¥ä½œåŒºå’Œä¼šè¯å­˜å‚¨ã€‚å›žå¤ä»ç„¶æ¥è‡ª**åŒä¸€ä¸ª WhatsApp è´¦æˆ·**ï¼Œä¸”ç§ä¿¡è®¿é—®æŽ§åˆ¶ï¼ˆ`channels.whatsapp.dmPolicy` / `channels.whatsapp.allowFrom`ï¼‰å¯¹æ¯ä¸ª WhatsApp è´¦æˆ·æ˜¯å…¨å±€çš„ã€‚å‚é˜…[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)å’Œ [WhatsApp](/channels/whatsapp)ã€‚
 
-### 能否同时运行一个“快速聊天”智能体和一个“用 Opus 编程”的智能体
+### èƒ½å¦åŒæ—¶è¿è¡Œä¸€ä¸ªâ€œå¿«é€ŸèŠå¤©â€æ™ºèƒ½ä½“å’Œä¸€ä¸ªâ€œç”¨ Opus ç¼–ç¨‹â€çš„æ™ºèƒ½ä½“
 
-可以。使用多智能体路由：为每个智能体设置自己的默认模型，然后将入站路由（提供商账户或特定对等方）绑定到每个智能体。示例配置位于[多智能体路由](/concepts/multi-agent)。另参阅[模型](/concepts/models)和[配置](/gateway/configuration)。
+å¯ä»¥ã€‚ä½¿ç”¨å¤šæ™ºèƒ½ä½“è·¯ç”±ï¼šä¸ºæ¯ä¸ªæ™ºèƒ½ä½“è®¾ç½®è‡ªå·±çš„é»˜è®¤æ¨¡åž‹ï¼Œç„¶åŽå°†å…¥ç«™è·¯ç”±ï¼ˆæä¾›å•†è´¦æˆ·æˆ–ç‰¹å®šå¯¹ç­‰æ–¹ï¼‰ç»‘å®šåˆ°æ¯ä¸ªæ™ºèƒ½ä½“ã€‚ç¤ºä¾‹é…ç½®ä½äºŽ[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)ã€‚å¦å‚é˜…[æ¨¡åž‹](/concepts/models)å’Œ[é…ç½®](/gateway/configuration)ã€‚
 
-### Homebrew 在 Linux 上可用吗
+### Homebrew åœ¨ Linux ä¸Šå¯ç”¨å—
 
-可以。Homebrew 支持 Linux（Linuxbrew）。快速设置：
+å¯ä»¥ã€‚Homebrew æ”¯æŒ Linuxï¼ˆLinuxbrewï¼‰ã€‚å¿«é€Ÿè®¾ç½®ï¼š
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -776,216 +776,216 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install <formula>
 ```
 
-如果你通过 systemd 运行 OpenClaw，确保服务 PATH 包含 `/home/linuxbrew/.linuxbrew/bin`（或你的 brew 前缀），以便 `brew` 安装的工具在非登录 shell 中可解析。
-最近的构建还会在 Linux systemd 服务上自动添加常见的用户 bin 目录（例如 `~/.local/bin`、`~/.npm-global/bin`、`~/.local/share/pnpm`、`~/.bun/bin`），并在设置时尊重 `PNPM_HOME`、`NPM_CONFIG_PREFIX`、`BUN_INSTALL`、`VOLTA_HOME`、`ASDF_DATA_DIR`、`NVM_DIR` 和 `FNM_DIR`。
+å¦‚æžœä½ é€šè¿‡ systemd è¿è¡Œ ï¼Œç¡®ä¿æœåŠ¡ PATH åŒ…å« `/home/linuxbrew/.linuxbrew/bin`ï¼ˆæˆ–ä½ çš„ brew å‰ç¼€ï¼‰ï¼Œä»¥ä¾¿ `brew` å®‰è£…çš„å·¥å…·åœ¨éžç™»å½• shell ä¸­å¯è§£æžã€‚
+æœ€è¿‘çš„æž„å»ºè¿˜ä¼šåœ¨ Linux systemd æœåŠ¡ä¸Šè‡ªåŠ¨æ·»åŠ å¸¸è§çš„ç”¨æˆ· bin ç›®å½•ï¼ˆä¾‹å¦‚ `~/.local/bin`ã€`~/.npm-global/bin`ã€`~/.local/share/pnpm`ã€`~/.bun/bin`ï¼‰ï¼Œå¹¶åœ¨è®¾ç½®æ—¶å°Šé‡ `PNPM_HOME`ã€`NPM_CONFIG_PREFIX`ã€`BUN_INSTALL`ã€`VOLTA_HOME`ã€`ASDF_DATA_DIR`ã€`NVM_DIR` å’Œ `FNM_DIR`ã€‚
 
-### 可编辑（git）安装和 npm 安装有什么区别
+### å¯ç¼–è¾‘ï¼ˆgitï¼‰å®‰è£…å’Œ npm å®‰è£…æœ‰ä»€ä¹ˆåŒºåˆ«
 
-- **可编辑（git）安装：** 完整源码 checkout，可编辑，最适合贡献者。你在本地运行构建并可以修补代码/文档。
-- **npm 安装：** 全局 CLI 安装，无仓库，最适合“直接运行”。更新来自 npm dist-tags。
+- **å¯ç¼–è¾‘ï¼ˆgitï¼‰å®‰è£…ï¼š** å®Œæ•´æºç  checkoutï¼Œå¯ç¼–è¾‘ï¼Œæœ€é€‚åˆè´¡çŒ®è€…ã€‚ä½ åœ¨æœ¬åœ°è¿è¡Œæž„å»ºå¹¶å¯ä»¥ä¿®è¡¥ä»£ç /æ–‡æ¡£ã€‚
+- **npm å®‰è£…ï¼š** å…¨å±€ CLI å®‰è£…ï¼Œæ— ä»“åº“ï¼Œæœ€é€‚åˆâ€œç›´æŽ¥è¿è¡Œâ€ã€‚æ›´æ–°æ¥è‡ª npm dist-tagsã€‚
 
-文档：[入门](/start/getting-started)、[更新](/install/updating)。
+æ–‡æ¡£ï¼š[å…¥é—¨](/start/getting-started)ã€[æ›´æ–°](/install/updating)ã€‚
 
-### 之后可以在 npm 和 git 安装之间切换吗
+### ä¹‹åŽå¯ä»¥åœ¨ npm å’Œ git å®‰è£…ä¹‹é—´åˆ‡æ¢å—
 
-可以。安装另一种方式，然后运行 Doctor 使 Gateway 网关服务指向新的入口点。
-这**不会删除你的数据**——它只改变 OpenClaw 代码的安装位置。你的状态
-（`~/.openclaw`）和工作区（`~/.openclaw/workspace`）保持不变。
+å¯ä»¥ã€‚å®‰è£…å¦ä¸€ç§æ–¹å¼ï¼Œç„¶åŽè¿è¡Œ Doctor ä½¿ Gateway ç½‘å…³æœåŠ¡æŒ‡å‘æ–°çš„å…¥å£ç‚¹ã€‚
+è¿™**ä¸ä¼šåˆ é™¤ä½ çš„æ•°æ®**â€”â€”å®ƒåªæ”¹å˜  ä»£ç çš„å®‰è£…ä½ç½®ã€‚ä½ çš„çŠ¶æ€
+ï¼ˆ`~/.`ï¼‰å’Œå·¥ä½œåŒºï¼ˆ`~/./workspace`ï¼‰ä¿æŒä¸å˜ã€‚
 
-从 npm → git：
+ä»Ž npm â†’ gitï¼š
 
 ```bash
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw
+git clone https://github.com//.git
+cd 
 pnpm install
 pnpm build
-openclaw doctor
-openclaw gateway restart
+ doctor
+ gateway restart
 ```
 
-从 git → npm：
+ä»Ž git â†’ npmï¼š
 
 ```bash
-npm install -g openclaw@latest
-openclaw doctor
-openclaw gateway restart
+npm install -g @latest
+ doctor
+ gateway restart
 ```
 
-Doctor 会检测 Gateway 网关服务入口点不匹配，并提供重写服务配置以匹配当前安装的选项（在自动化中使用 `--repair`）。
+Doctor ä¼šæ£€æµ‹ Gateway ç½‘å…³æœåŠ¡å…¥å£ç‚¹ä¸åŒ¹é…ï¼Œå¹¶æä¾›é‡å†™æœåŠ¡é…ç½®ä»¥åŒ¹é…å½“å‰å®‰è£…çš„é€‰é¡¹ï¼ˆåœ¨è‡ªåŠ¨åŒ–ä¸­ä½¿ç”¨ `--repair`ï¼‰ã€‚
 
-备份提示：参阅[备份策略](/help/faq#whats-the-recommended-backup-strategy)。
+å¤‡ä»½æç¤ºï¼šå‚é˜…[å¤‡ä»½ç­–ç•¥](/help/faq#whats-the-recommended-backup-strategy)ã€‚
 
-### 应该在笔记本电脑还是 VPS 上运行 Gateway 网关简短回答：**如果你想要 24/7 可靠性，使用 VPS**。如果你想要最低摩擦且能接受休眠/重启，在本地运行。
+### åº”è¯¥åœ¨ç¬”è®°æœ¬ç”µè„‘è¿˜æ˜¯ VPS ä¸Šè¿è¡Œ Gateway ç½‘å…³ç®€çŸ­å›žç­”ï¼š**å¦‚æžœä½ æƒ³è¦ 24/7 å¯é æ€§ï¼Œä½¿ç”¨ VPS**ã€‚å¦‚æžœä½ æƒ³è¦æœ€ä½Žæ‘©æ“¦ä¸”èƒ½æŽ¥å—ä¼‘çœ /é‡å¯ï¼Œåœ¨æœ¬åœ°è¿è¡Œã€‚
 
-**笔记本（本地 Gateway 网关）**
+**ç¬”è®°æœ¬ï¼ˆæœ¬åœ° Gateway ç½‘å…³ï¼‰**
 
-- **优点：** 无服务器成本，直接访问本地文件，实时浏览器窗口。
-- **缺点：** 休眠/网络中断 = 断连，操作系统更新/重启会中断，必须保持唤醒。
+- **ä¼˜ç‚¹ï¼š** æ— æœåŠ¡å™¨æˆæœ¬ï¼Œç›´æŽ¥è®¿é—®æœ¬åœ°æ–‡ä»¶ï¼Œå®žæ—¶æµè§ˆå™¨çª—å£ã€‚
+- **ç¼ºç‚¹ï¼š** ä¼‘çœ /ç½‘ç»œä¸­æ–­ = æ–­è¿žï¼Œæ“ä½œç³»ç»Ÿæ›´æ–°/é‡å¯ä¼šä¸­æ–­ï¼Œå¿…é¡»ä¿æŒå”¤é†’ã€‚
 
-**VPS / 云**
+**VPS / äº‘**
 
-- **优点：** 常开，网络稳定，无笔记本休眠问题，更容易保持运行。
-- **缺点：** 通常无头运行（使用截图），仅远程文件访问，更新需要 SSH。
+- **ä¼˜ç‚¹ï¼š** å¸¸å¼€ï¼Œç½‘ç»œç¨³å®šï¼Œæ— ç¬”è®°æœ¬ä¼‘çœ é—®é¢˜ï¼Œæ›´å®¹æ˜“ä¿æŒè¿è¡Œã€‚
+- **ç¼ºç‚¹ï¼š** é€šå¸¸æ— å¤´è¿è¡Œï¼ˆä½¿ç”¨æˆªå›¾ï¼‰ï¼Œä»…è¿œç¨‹æ–‡ä»¶è®¿é—®ï¼Œæ›´æ–°éœ€è¦ SSHã€‚
 
-**OpenClaw 特定说明：** WhatsApp/Telegram/Slack/Mattermost（插件）/Discord 在 VPS 上都能正常工作。唯一的真正权衡是**无头浏览器**与可见窗口。参阅[浏览器](/tools/browser)。
+** ç‰¹å®šè¯´æ˜Žï¼š** WhatsApp/Telegram/Slack/Mattermostï¼ˆæ’ä»¶ï¼‰/Discord åœ¨ VPS ä¸Šéƒ½èƒ½æ­£å¸¸å·¥ä½œã€‚å”¯ä¸€çš„çœŸæ­£æƒè¡¡æ˜¯**æ— å¤´æµè§ˆå™¨**ä¸Žå¯è§çª—å£ã€‚å‚é˜…[æµè§ˆå™¨](/tools/browser)ã€‚
 
-**推荐默认值：** 如果之前遇到过 Gateway 网关断连，使用 VPS。当你正在积极使用 Mac 并且需要本地文件访问或可见浏览器的 UI 自动化时，本地运行很好。
+**æŽ¨èé»˜è®¤å€¼ï¼š** å¦‚æžœä¹‹å‰é‡åˆ°è¿‡ Gateway ç½‘å…³æ–­è¿žï¼Œä½¿ç”¨ VPSã€‚å½“ä½ æ­£åœ¨ç§¯æžä½¿ç”¨ Mac å¹¶ä¸”éœ€è¦æœ¬åœ°æ–‡ä»¶è®¿é—®æˆ–å¯è§æµè§ˆå™¨çš„ UI è‡ªåŠ¨åŒ–æ—¶ï¼Œæœ¬åœ°è¿è¡Œå¾ˆå¥½ã€‚
 
-### 在专用机器上运行 OpenClaw 有多重要
+### åœ¨ä¸“ç”¨æœºå™¨ä¸Šè¿è¡Œ  æœ‰å¤šé‡è¦
 
-不是必需的，但**推荐用于可靠性和隔离**。
+ä¸æ˜¯å¿…éœ€çš„ï¼Œä½†**æŽ¨èç”¨äºŽå¯é æ€§å’Œéš”ç¦»**ã€‚
 
-- **专用主机（VPS/Mac mini/Pi）：** 常开，更少的休眠/重启中断，更干净的权限，更容易保持运行。
-- **共享的笔记本/台式机：** 完全适合测试和活跃使用，但当机器休眠或更新时预期会有暂停。
+- **ä¸“ç”¨ä¸»æœºï¼ˆVPS/Mac mini/Piï¼‰ï¼š** å¸¸å¼€ï¼Œæ›´å°‘çš„ä¼‘çœ /é‡å¯ä¸­æ–­ï¼Œæ›´å¹²å‡€çš„æƒé™ï¼Œæ›´å®¹æ˜“ä¿æŒè¿è¡Œã€‚
+- **å…±äº«çš„ç¬”è®°æœ¬/å°å¼æœºï¼š** å®Œå…¨é€‚åˆæµ‹è¯•å’Œæ´»è·ƒä½¿ç”¨ï¼Œä½†å½“æœºå™¨ä¼‘çœ æˆ–æ›´æ–°æ—¶é¢„æœŸä¼šæœ‰æš‚åœã€‚
 
-如果你想要两全其美，将 Gateway 网关保持在专用主机上，并将笔记本配对为**节点**以获取本地屏幕/摄像头/执行工具。参阅[节点](/nodes)。
-安全指南请阅读[安全](/gateway/security)。
+å¦‚æžœä½ æƒ³è¦ä¸¤å…¨å…¶ç¾Žï¼Œå°† Gateway ç½‘å…³ä¿æŒåœ¨ä¸“ç”¨ä¸»æœºä¸Šï¼Œå¹¶å°†ç¬”è®°æœ¬é…å¯¹ä¸º**èŠ‚ç‚¹**ä»¥èŽ·å–æœ¬åœ°å±å¹•/æ‘„åƒå¤´/æ‰§è¡Œå·¥å…·ã€‚å‚é˜…[èŠ‚ç‚¹](/nodes)ã€‚
+å®‰å…¨æŒ‡å—è¯·é˜…è¯»[å®‰å…¨](/gateway/security)ã€‚
 
-### VPS 的最低要求和推荐操作系统是什么
+### VPS çš„æœ€ä½Žè¦æ±‚å’ŒæŽ¨èæ“ä½œç³»ç»Ÿæ˜¯ä»€ä¹ˆ
 
-OpenClaw 是轻量级的。对于基本的 Gateway 网关 + 一个聊天渠道：
+ æ˜¯è½»é‡çº§çš„ã€‚å¯¹äºŽåŸºæœ¬çš„ Gateway ç½‘å…³ + ä¸€ä¸ªèŠå¤©æ¸ é“ï¼š
 
-- **绝对最低：** 1 vCPU，1GB RAM，约 500MB 磁盘。
-- **推荐：** 1-2 vCPU，2GB RAM 或更多以留有余量（日志、媒体、多渠道）。节点工具和浏览器自动化可能消耗较多资源。
+- **ç»å¯¹æœ€ä½Žï¼š** 1 vCPUï¼Œ1GB RAMï¼Œçº¦ 500MB ç£ç›˜ã€‚
+- **æŽ¨èï¼š** 1-2 vCPUï¼Œ2GB RAM æˆ–æ›´å¤šä»¥ç•™æœ‰ä½™é‡ï¼ˆæ—¥å¿—ã€åª’ä½“ã€å¤šæ¸ é“ï¼‰ã€‚èŠ‚ç‚¹å·¥å…·å’Œæµè§ˆå™¨è‡ªåŠ¨åŒ–å¯èƒ½æ¶ˆè€—è¾ƒå¤šèµ„æºã€‚
 
-操作系统：使用 **Ubuntu LTS**（或任何现代 Debian/Ubuntu）。Linux 安装路径在那里测试得最充分。
+æ“ä½œç³»ç»Ÿï¼šä½¿ç”¨ **Ubuntu LTS**ï¼ˆæˆ–ä»»ä½•çŽ°ä»£ Debian/Ubuntuï¼‰ã€‚Linux å®‰è£…è·¯å¾„åœ¨é‚£é‡Œæµ‹è¯•å¾—æœ€å……åˆ†ã€‚
 
-文档：[Linux](/platforms/linux)、[VPS 托管](/vps)。
+æ–‡æ¡£ï¼š[Linux](/platforms/linux)ã€[VPS æ‰˜ç®¡](/vps)ã€‚
 
-### 可以在虚拟机中运行 OpenClaw 吗？有什么要求
+### å¯ä»¥åœ¨è™šæ‹Ÿæœºä¸­è¿è¡Œ  å—ï¼Ÿæœ‰ä»€ä¹ˆè¦æ±‚
 
-可以。将虚拟机视为与 VPS 相同：它需要常开、可达，并有足够的 RAM 用于 Gateway 网关和你启用的任何渠道。
+å¯ä»¥ã€‚å°†è™šæ‹Ÿæœºè§†ä¸ºä¸Ž VPS ç›¸åŒï¼šå®ƒéœ€è¦å¸¸å¼€ã€å¯è¾¾ï¼Œå¹¶æœ‰è¶³å¤Ÿçš„ RAM ç”¨äºŽ Gateway ç½‘å…³å’Œä½ å¯ç”¨çš„ä»»ä½•æ¸ é“ã€‚
 
-基准指南：
+åŸºå‡†æŒ‡å—ï¼š
 
-- **绝对最低：** 1 vCPU，1GB RAM。
-- **推荐：** 2GB RAM 或更多，如果你运行多个渠道、浏览器自动化或媒体工具。
-- **操作系统：** Ubuntu LTS 或其他现代 Debian/Ubuntu。
+- **ç»å¯¹æœ€ä½Žï¼š** 1 vCPUï¼Œ1GB RAMã€‚
+- **æŽ¨èï¼š** 2GB RAM æˆ–æ›´å¤šï¼Œå¦‚æžœä½ è¿è¡Œå¤šä¸ªæ¸ é“ã€æµè§ˆå™¨è‡ªåŠ¨åŒ–æˆ–åª’ä½“å·¥å…·ã€‚
+- **æ“ä½œç³»ç»Ÿï¼š** Ubuntu LTS æˆ–å…¶ä»–çŽ°ä»£ Debian/Ubuntuã€‚
 
-如果你使用 Windows，**WSL2 是最简单的虚拟机式设置**，具有最佳的工具兼容性。参阅 [Windows](/platforms/windows)、[VPS 托管](/vps)。
-如果你在虚拟机中运行 macOS，参阅 [macOS VM](/platforms/macos-vm)。
+å¦‚æžœä½ ä½¿ç”¨ Windowsï¼Œ**WSL2 æ˜¯æœ€ç®€å•çš„è™šæ‹Ÿæœºå¼è®¾ç½®**ï¼Œå…·æœ‰æœ€ä½³çš„å·¥å…·å…¼å®¹æ€§ã€‚å‚é˜… [Windows](/platforms/windows)ã€[VPS æ‰˜ç®¡](/vps)ã€‚
+å¦‚æžœä½ åœ¨è™šæ‹Ÿæœºä¸­è¿è¡Œ macOSï¼Œå‚é˜… [macOS VM](/platforms/macos-vm)ã€‚
 
-## 什么是 OpenClaw？
+## ä»€ä¹ˆæ˜¯ ï¼Ÿ
 
-### 用一段话描述 OpenClaw
+### ç”¨ä¸€æ®µè¯æè¿° 
 
-OpenClaw 是一个运行在你自己设备上的个人 AI 助手。它在你已经使用的消息平台上回复（WhatsApp、Telegram、Slack、Mattermost（插件）、Discord、Google Chat、Signal、iMessage、WebChat），还可以在支持的平台上进行语音和实时 Canvas。**Gateway 网关** 是常开的控制平面；助手是产品。
+ æ˜¯ä¸€ä¸ªè¿è¡Œåœ¨ä½ è‡ªå·±è®¾å¤‡ä¸Šçš„ä¸ªäºº AI åŠ©æ‰‹ã€‚å®ƒåœ¨ä½ å·²ç»ä½¿ç”¨çš„æ¶ˆæ¯å¹³å°ä¸Šå›žå¤ï¼ˆWhatsAppã€Telegramã€Slackã€Mattermostï¼ˆæ’ä»¶ï¼‰ã€Discordã€Google Chatã€Signalã€iMessageã€WebChatï¼‰ï¼Œè¿˜å¯ä»¥åœ¨æ”¯æŒçš„å¹³å°ä¸Šè¿›è¡Œè¯­éŸ³å’Œå®žæ—¶ Canvasã€‚**Gateway ç½‘å…³** æ˜¯å¸¸å¼€çš„æŽ§åˆ¶å¹³é¢ï¼›åŠ©æ‰‹æ˜¯äº§å“ã€‚
 
-### 价值主张是什么
+### ä»·å€¼ä¸»å¼ æ˜¯ä»€ä¹ˆ
 
-OpenClaw 不是“只是一个 Claude 包装器”。它是一个**本地优先的控制平面**，让你在**自己的硬件**上运行强大的助手，可从你已经使用的聊天应用访问，具有有状态会话、记忆和工具——无需将工作流程的控制权交给托管 SaaS。
+ ä¸æ˜¯â€œåªæ˜¯ä¸€ä¸ª Claude åŒ…è£…å™¨â€ã€‚å®ƒæ˜¯ä¸€ä¸ª**æœ¬åœ°ä¼˜å…ˆçš„æŽ§åˆ¶å¹³é¢**ï¼Œè®©ä½ åœ¨**è‡ªå·±çš„ç¡¬ä»¶**ä¸Šè¿è¡Œå¼ºå¤§çš„åŠ©æ‰‹ï¼Œå¯ä»Žä½ å·²ç»ä½¿ç”¨çš„èŠå¤©åº”ç”¨è®¿é—®ï¼Œå…·æœ‰æœ‰çŠ¶æ€ä¼šè¯ã€è®°å¿†å’Œå·¥å…·â€”â€”æ— éœ€å°†å·¥ä½œæµç¨‹çš„æŽ§åˆ¶æƒäº¤ç»™æ‰˜ç®¡ SaaSã€‚
 
-亮点：
+äº®ç‚¹ï¼š
 
-- **你的设备，你的数据：** 在任何你想要的地方运行 Gateway 网关（Mac、Linux、VPS），并将工作区 + 会话历史保持在本地。
-- **真实渠道，而非 Web 沙箱：** WhatsApp/Telegram/Slack/Discord/Signal/iMessage/等，加上支持平台上的移动语音和 Canvas。
-- **模型无关：** 使用 Anthropic、OpenAI、MiniMax、OpenRouter 等，支持按智能体路由和故障转移。
-- **纯本地选项：** 运行本地模型，让**所有数据都保留在你的设备上**。
-- **多智能体路由：** 按渠道、账户或任务分配不同的智能体，每个都有自己的工作区和默认值。
-- **开源且可编辑：** 无供应商锁定地检查、扩展和自托管。
+- **ä½ çš„è®¾å¤‡ï¼Œä½ çš„æ•°æ®ï¼š** åœ¨ä»»ä½•ä½ æƒ³è¦çš„åœ°æ–¹è¿è¡Œ Gateway ç½‘å…³ï¼ˆMacã€Linuxã€VPSï¼‰ï¼Œå¹¶å°†å·¥ä½œåŒº + ä¼šè¯åŽ†å²ä¿æŒåœ¨æœ¬åœ°ã€‚
+- **çœŸå®žæ¸ é“ï¼Œè€Œéž Web æ²™ç®±ï¼š** WhatsApp/Telegram/Slack/Discord/Signal/iMessage/ç­‰ï¼ŒåŠ ä¸Šæ”¯æŒå¹³å°ä¸Šçš„ç§»åŠ¨è¯­éŸ³å’Œ Canvasã€‚
+- **æ¨¡åž‹æ— å…³ï¼š** ä½¿ç”¨ Anthropicã€OpenAIã€MiniMaxã€OpenRouter ç­‰ï¼Œæ”¯æŒæŒ‰æ™ºèƒ½ä½“è·¯ç”±å’Œæ•…éšœè½¬ç§»ã€‚
+- **çº¯æœ¬åœ°é€‰é¡¹ï¼š** è¿è¡Œæœ¬åœ°æ¨¡åž‹ï¼Œè®©**æ‰€æœ‰æ•°æ®éƒ½ä¿ç•™åœ¨ä½ çš„è®¾å¤‡ä¸Š**ã€‚
+- **å¤šæ™ºèƒ½ä½“è·¯ç”±ï¼š** æŒ‰æ¸ é“ã€è´¦æˆ·æˆ–ä»»åŠ¡åˆ†é…ä¸åŒçš„æ™ºèƒ½ä½“ï¼Œæ¯ä¸ªéƒ½æœ‰è‡ªå·±çš„å·¥ä½œåŒºå’Œé»˜è®¤å€¼ã€‚
+- **å¼€æºä¸”å¯ç¼–è¾‘ï¼š** æ— ä¾›åº”å•†é”å®šåœ°æ£€æŸ¥ã€æ‰©å±•å’Œè‡ªæ‰˜ç®¡ã€‚
 
-文档：[Gateway 网关](/gateway)、[渠道](/channels)、[多智能体](/concepts/multi-agent)、
-[记忆](/concepts/memory)。
+æ–‡æ¡£ï¼š[Gateway ç½‘å…³](/gateway)ã€[æ¸ é“](/channels)ã€[å¤šæ™ºèƒ½ä½“](/concepts/multi-agent)ã€
+[è®°å¿†](/concepts/memory)ã€‚
 
-### 刚设置好，应该先做什么
+### åˆšè®¾ç½®å¥½ï¼Œåº”è¯¥å…ˆåšä»€ä¹ˆ
 
-好的入门项目：
+å¥½çš„å…¥é—¨é¡¹ç›®ï¼š
 
-- 建一个网站（WordPress、Shopify 或简单的静态站点）。
-- 做一个移动应用原型（大纲、界面、API 计划）。
-- 整理文件和文件夹（清理、命名、打标签）。
-- 连接 Gmail 并自动化摘要或跟进。
+- å»ºä¸€ä¸ªç½‘ç«™ï¼ˆWordPressã€Shopify æˆ–ç®€å•çš„é™æ€ç«™ç‚¹ï¼‰ã€‚
+- åšä¸€ä¸ªç§»åŠ¨åº”ç”¨åŽŸåž‹ï¼ˆå¤§çº²ã€ç•Œé¢ã€API è®¡åˆ’ï¼‰ã€‚
+- æ•´ç†æ–‡ä»¶å’Œæ–‡ä»¶å¤¹ï¼ˆæ¸…ç†ã€å‘½åã€æ‰“æ ‡ç­¾ï¼‰ã€‚
+- è¿žæŽ¥ Gmail å¹¶è‡ªåŠ¨åŒ–æ‘˜è¦æˆ–è·Ÿè¿›ã€‚
 
-它可以处理大型任务，但最好将其拆分为多个阶段，并使用子智能体进行并行工作。
+å®ƒå¯ä»¥å¤„ç†å¤§åž‹ä»»åŠ¡ï¼Œä½†æœ€å¥½å°†å…¶æ‹†åˆ†ä¸ºå¤šä¸ªé˜¶æ®µï¼Œå¹¶ä½¿ç”¨å­æ™ºèƒ½ä½“è¿›è¡Œå¹¶è¡Œå·¥ä½œã€‚
 
-### OpenClaw 日常最常用的五个场景是什么
+###  æ—¥å¸¸æœ€å¸¸ç”¨çš„äº”ä¸ªåœºæ™¯æ˜¯ä»€ä¹ˆ
 
-日常收益通常包括：
+æ—¥å¸¸æ”¶ç›Šé€šå¸¸åŒ…æ‹¬ï¼š
 
-- **个人简报：** 收件箱、日历和你关心的新闻摘要。
-- **研究和起草：** 快速研究、摘要以及邮件或文档的初稿。
-- **提醒和跟进：** 定时任务或心跳驱动的提醒和检查清单。
-- **浏览器自动化：** 填写表单、收集数据和重复性网页任务。
-- **跨设备协调：** 从手机发送任务，让 Gateway 网关在服务器上运行，然后在聊天中获取结果。
+- **ä¸ªäººç®€æŠ¥ï¼š** æ”¶ä»¶ç®±ã€æ—¥åŽ†å’Œä½ å…³å¿ƒçš„æ–°é—»æ‘˜è¦ã€‚
+- **ç ”ç©¶å’Œèµ·è‰ï¼š** å¿«é€Ÿç ”ç©¶ã€æ‘˜è¦ä»¥åŠé‚®ä»¶æˆ–æ–‡æ¡£çš„åˆç¨¿ã€‚
+- **æé†’å’Œè·Ÿè¿›ï¼š** å®šæ—¶ä»»åŠ¡æˆ–å¿ƒè·³é©±åŠ¨çš„æé†’å’Œæ£€æŸ¥æ¸…å•ã€‚
+- **æµè§ˆå™¨è‡ªåŠ¨åŒ–ï¼š** å¡«å†™è¡¨å•ã€æ”¶é›†æ•°æ®å’Œé‡å¤æ€§ç½‘é¡µä»»åŠ¡ã€‚
+- **è·¨è®¾å¤‡åè°ƒï¼š** ä»Žæ‰‹æœºå‘é€ä»»åŠ¡ï¼Œè®© Gateway ç½‘å…³åœ¨æœåŠ¡å™¨ä¸Šè¿è¡Œï¼Œç„¶åŽåœ¨èŠå¤©ä¸­èŽ·å–ç»“æžœã€‚
 
-### OpenClaw 能否帮助 SaaS 进行获客、外联、广告和博客
+###  èƒ½å¦å¸®åŠ© SaaS è¿›è¡ŒèŽ·å®¢ã€å¤–è”ã€å¹¿å‘Šå’Œåšå®¢
 
-可以用于**调研、筛选和起草**。它可以扫描网站、建立候选名单、总结潜在客户，并撰写外联或广告文案草稿。
+å¯ä»¥ç”¨äºŽ**è°ƒç ”ã€ç­›é€‰å’Œèµ·è‰**ã€‚å®ƒå¯ä»¥æ‰«æç½‘ç«™ã€å»ºç«‹å€™é€‰åå•ã€æ€»ç»“æ½œåœ¨å®¢æˆ·ï¼Œå¹¶æ’°å†™å¤–è”æˆ–å¹¿å‘Šæ–‡æ¡ˆè‰ç¨¿ã€‚
 
-对于**外联或广告投放**，请保持人工审核。避免垃圾邮件，遵守当地法律和平台政策，在发送之前审查所有内容。最安全的模式是让 OpenClaw 起草，由你批准。
+å¯¹äºŽ**å¤–è”æˆ–å¹¿å‘ŠæŠ•æ”¾**ï¼Œè¯·ä¿æŒäººå·¥å®¡æ ¸ã€‚é¿å…åžƒåœ¾é‚®ä»¶ï¼Œéµå®ˆå½“åœ°æ³•å¾‹å’Œå¹³å°æ”¿ç­–ï¼Œåœ¨å‘é€ä¹‹å‰å®¡æŸ¥æ‰€æœ‰å†…å®¹ã€‚æœ€å®‰å…¨çš„æ¨¡å¼æ˜¯è®©  èµ·è‰ï¼Œç”±ä½ æ‰¹å‡†ã€‚
 
-文档：[安全](/gateway/security)。
+æ–‡æ¡£ï¼š[å®‰å…¨](/gateway/security)ã€‚
 
-### 相比 Claude Code，在 Web 开发方面有什么优势
+### ç›¸æ¯” Claude Codeï¼Œåœ¨ Web å¼€å‘æ–¹é¢æœ‰ä»€ä¹ˆä¼˜åŠ¿
 
-OpenClaw 是一个**个人助手**和协调层，不是 IDE 替代品。使用 Claude Code 或 Codex 在仓库中进行最快的直接编码循环。当你需要持久记忆、跨设备访问和工具编排时，使用 OpenClaw。
+ æ˜¯ä¸€ä¸ª**ä¸ªäººåŠ©æ‰‹**å’Œåè°ƒå±‚ï¼Œä¸æ˜¯ IDE æ›¿ä»£å“ã€‚ä½¿ç”¨ Claude Code æˆ– Codex åœ¨ä»“åº“ä¸­è¿›è¡Œæœ€å¿«çš„ç›´æŽ¥ç¼–ç å¾ªçŽ¯ã€‚å½“ä½ éœ€è¦æŒä¹…è®°å¿†ã€è·¨è®¾å¤‡è®¿é—®å’Œå·¥å…·ç¼–æŽ’æ—¶ï¼Œä½¿ç”¨ ã€‚
 
-优势：
+ä¼˜åŠ¿ï¼š
 
-- 跨会话的**持久记忆 + 工作区**
-- **多平台访问**（WhatsApp、Telegram、TUI、WebChat）
-- **工具编排**（浏览器、文件、调度、钩子）
-- **常开 Gateway 网关**（在 VPS 上运行，从任何地方交互）
-- 用于本地浏览器/屏幕/摄像头/执行的**节点**
+- è·¨ä¼šè¯çš„**æŒä¹…è®°å¿† + å·¥ä½œåŒº**
+- **å¤šå¹³å°è®¿é—®**ï¼ˆWhatsAppã€Telegramã€TUIã€WebChatï¼‰
+- **å·¥å…·ç¼–æŽ’**ï¼ˆæµè§ˆå™¨ã€æ–‡ä»¶ã€è°ƒåº¦ã€é’©å­ï¼‰
+- **å¸¸å¼€ Gateway ç½‘å…³**ï¼ˆåœ¨ VPS ä¸Šè¿è¡Œï¼Œä»Žä»»ä½•åœ°æ–¹äº¤äº’ï¼‰
+- ç”¨äºŽæœ¬åœ°æµè§ˆå™¨/å±å¹•/æ‘„åƒå¤´/æ‰§è¡Œçš„**èŠ‚ç‚¹**
 
-展示：https://openclaw.ai/showcase
+å±•ç¤ºï¼šhttps://.ai/showcase
 
-## Skills 与自动化
+## Skills ä¸Žè‡ªåŠ¨åŒ–
 
-### 如何自定义 Skills 而不弄脏仓库
+### å¦‚ä½•è‡ªå®šä¹‰ Skills è€Œä¸å¼„è„ä»“åº“
 
-使用托管覆盖而不是编辑仓库副本。将你的更改放在 `~/.openclaw/skills/<name>/SKILL.md`（或通过 `~/.openclaw/openclaw.json` 中的 `skills.load.extraDirs` 添加文件夹）。优先级是 `<workspace>/skills` > `~/.openclaw/skills` > 内置，所以托管覆盖优先生效而不会修改 git。只有值得上游合并的编辑才应该放在仓库中并作为 PR 提交。
+ä½¿ç”¨æ‰˜ç®¡è¦†ç›–è€Œä¸æ˜¯ç¼–è¾‘ä»“åº“å‰¯æœ¬ã€‚å°†ä½ çš„æ›´æ”¹æ”¾åœ¨ `~/./skills/<name>/SKILL.md`ï¼ˆæˆ–é€šè¿‡ `~/./.json` ä¸­çš„ `skills.load.extraDirs` æ·»åŠ æ–‡ä»¶å¤¹ï¼‰ã€‚ä¼˜å…ˆçº§æ˜¯ `<workspace>/skills` > `~/./skills` > å†…ç½®ï¼Œæ‰€ä»¥æ‰˜ç®¡è¦†ç›–ä¼˜å…ˆç”Ÿæ•ˆè€Œä¸ä¼šä¿®æ”¹ gitã€‚åªæœ‰å€¼å¾—ä¸Šæ¸¸åˆå¹¶çš„ç¼–è¾‘æ‰åº”è¯¥æ”¾åœ¨ä»“åº“ä¸­å¹¶ä½œä¸º PR æäº¤ã€‚
 
-### 可以从自定义文件夹加载 Skills 吗
+### å¯ä»¥ä»Žè‡ªå®šä¹‰æ–‡ä»¶å¤¹åŠ è½½ Skills å—
 
-可以。通过 `~/.openclaw/openclaw.json` 中的 `skills.load.extraDirs` 添加额外目录（最低优先级）。默认优先级保持不变：`<workspace>/skills` → `~/.openclaw/skills` → 内置 → `skills.load.extraDirs`。`clawhub` 默认安装到 `./skills`，OpenClaw 将其视为 `<workspace>/skills`。
+å¯ä»¥ã€‚é€šè¿‡ `~/./.json` ä¸­çš„ `skills.load.extraDirs` æ·»åŠ é¢å¤–ç›®å½•ï¼ˆæœ€ä½Žä¼˜å…ˆçº§ï¼‰ã€‚é»˜è®¤ä¼˜å…ˆçº§ä¿æŒä¸å˜ï¼š`<workspace>/skills` â†’ `~/./skills` â†’ å†…ç½® â†’ `skills.load.extraDirs`ã€‚`clawhub` é»˜è®¤å®‰è£…åˆ° `./skills`ï¼Œ å°†å…¶è§†ä¸º `<workspace>/skills`ã€‚
 
-### 如何为不同任务使用不同模型
+### å¦‚ä½•ä¸ºä¸åŒä»»åŠ¡ä½¿ç”¨ä¸åŒæ¨¡åž‹
 
-目前支持的模式有：
+ç›®å‰æ”¯æŒçš„æ¨¡å¼æœ‰ï¼š
 
-- **定时任务**：隔离的任务可以为每个任务设置 `model` 覆盖。
-- **子智能体**：将任务路由到具有不同默认模型的独立智能体。
-- **按需切换**：使用 `/model` 随时切换当前会话模型。
+- **å®šæ—¶ä»»åŠ¡**ï¼šéš”ç¦»çš„ä»»åŠ¡å¯ä»¥ä¸ºæ¯ä¸ªä»»åŠ¡è®¾ç½® `model` è¦†ç›–ã€‚
+- **å­æ™ºèƒ½ä½“**ï¼šå°†ä»»åŠ¡è·¯ç”±åˆ°å…·æœ‰ä¸åŒé»˜è®¤æ¨¡åž‹çš„ç‹¬ç«‹æ™ºèƒ½ä½“ã€‚
+- **æŒ‰éœ€åˆ‡æ¢**ï¼šä½¿ç”¨ `/model` éšæ—¶åˆ‡æ¢å½“å‰ä¼šè¯æ¨¡åž‹ã€‚
 
-参阅[定时任务](/automation/cron-jobs)、[多智能体路由](/concepts/multi-agent)和[斜杠命令](/tools/slash-commands)。
+å‚é˜…[å®šæ—¶ä»»åŠ¡](/automation/cron-jobs)ã€[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)å’Œ[æ–œæ å‘½ä»¤](/tools/slash-commands)ã€‚
 
-### 机器人在执行繁重工作时卡住了，如何卸载任务
+### æœºå™¨äººåœ¨æ‰§è¡Œç¹é‡å·¥ä½œæ—¶å¡ä½äº†ï¼Œå¦‚ä½•å¸è½½ä»»åŠ¡
 
-使用**子智能体**处理长时间或并行任务。子智能体在自己的会话中运行，返回摘要，并保持你的主聊天响应。
+ä½¿ç”¨**å­æ™ºèƒ½ä½“**å¤„ç†é•¿æ—¶é—´æˆ–å¹¶è¡Œä»»åŠ¡ã€‚å­æ™ºèƒ½ä½“åœ¨è‡ªå·±çš„ä¼šè¯ä¸­è¿è¡Œï¼Œè¿”å›žæ‘˜è¦ï¼Œå¹¶ä¿æŒä½ çš„ä¸»èŠå¤©å“åº”ã€‚
 
-要求你的机器人“为这个任务生成一个子智能体”或使用 `/subagents`。
-在聊天中使用 `/status` 查看 Gateway 网关当前正在做什么（以及是否忙碌）。
+è¦æ±‚ä½ çš„æœºå™¨äººâ€œä¸ºè¿™ä¸ªä»»åŠ¡ç”Ÿæˆä¸€ä¸ªå­æ™ºèƒ½ä½“â€æˆ–ä½¿ç”¨ `/subagents`ã€‚
+åœ¨èŠå¤©ä¸­ä½¿ç”¨ `/status` æŸ¥çœ‹ Gateway ç½‘å…³å½“å‰æ­£åœ¨åšä»€ä¹ˆï¼ˆä»¥åŠæ˜¯å¦å¿™ç¢Œï¼‰ã€‚
 
-令牌提示：长任务和子智能体都消耗令牌。如果关注成本，通过 `agents.defaults.subagents.model` 为子智能体设置更便宜的模型。
+ä»¤ç‰Œæç¤ºï¼šé•¿ä»»åŠ¡å’Œå­æ™ºèƒ½ä½“éƒ½æ¶ˆè€—ä»¤ç‰Œã€‚å¦‚æžœå…³æ³¨æˆæœ¬ï¼Œé€šè¿‡ `agents.defaults.subagents.model` ä¸ºå­æ™ºèƒ½ä½“è®¾ç½®æ›´ä¾¿å®œçš„æ¨¡åž‹ã€‚
 
-文档：[子智能体](/tools/subagents)。
+æ–‡æ¡£ï¼š[å­æ™ºèƒ½ä½“](/tools/subagents)ã€‚
 
-### 定时任务或提醒没有触发，应该检查什么
+### å®šæ—¶ä»»åŠ¡æˆ–æé†’æ²¡æœ‰è§¦å‘ï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆ
 
-定时任务在 Gateway 网关进程内运行。如果 Gateway 网关没有持续运行，计划任务将不会运行。
+å®šæ—¶ä»»åŠ¡åœ¨ Gateway ç½‘å…³è¿›ç¨‹å†…è¿è¡Œã€‚å¦‚æžœ Gateway ç½‘å…³æ²¡æœ‰æŒç»­è¿è¡Œï¼Œè®¡åˆ’ä»»åŠ¡å°†ä¸ä¼šè¿è¡Œã€‚
 
-检查清单：
+æ£€æŸ¥æ¸…å•ï¼š
 
-- 确认 cron 已启用（`cron.enabled`）且未设置 `OPENCLAW_SKIP_CRON`。
-- 检查 Gateway 网关是否 24/7 运行（无休眠/重启）。
-- 验证任务的时区设置（`--tz` 与主机时区）。
+- ç¡®è®¤ cron å·²å¯ç”¨ï¼ˆ`cron.enabled`ï¼‰ä¸”æœªè®¾ç½® `_SKIP_CRON`ã€‚
+- æ£€æŸ¥ Gateway ç½‘å…³æ˜¯å¦ 24/7 è¿è¡Œï¼ˆæ— ä¼‘çœ /é‡å¯ï¼‰ã€‚
+- éªŒè¯ä»»åŠ¡çš„æ—¶åŒºè®¾ç½®ï¼ˆ`--tz` ä¸Žä¸»æœºæ—¶åŒºï¼‰ã€‚
 
-调试：
+è°ƒè¯•ï¼š
 
 ```bash
-openclaw cron run <jobId> --force
-openclaw cron runs --id <jobId> --limit 50
+ cron run <jobId> --force
+ cron runs --id <jobId> --limit 50
 ```
 
-文档：[定时任务](/automation/cron-jobs)、[定时任务 vs 心跳](/automation/cron-vs-heartbeat)。
+æ–‡æ¡£ï¼š[å®šæ—¶ä»»åŠ¡](/automation/cron-jobs)ã€[å®šæ—¶ä»»åŠ¡ vs å¿ƒè·³](/automation/cron-vs-heartbeat)ã€‚
 
-### 如何在 Linux 上安装 Skills
+### å¦‚ä½•åœ¨ Linux ä¸Šå®‰è£… Skills
 
-使用 **ClawHub**（CLI）或将 Skills 放入你的工作区。macOS Skills UI 在 Linux 上不可用。
-浏览 Skills：https://clawhub.com。
+ä½¿ç”¨ **ClawHub**ï¼ˆCLIï¼‰æˆ–å°† Skills æ”¾å…¥ä½ çš„å·¥ä½œåŒºã€‚macOS Skills UI åœ¨ Linux ä¸Šä¸å¯ç”¨ã€‚
+æµè§ˆ Skillsï¼šhttps://clawhub.comã€‚
 
-安装 ClawHub CLI（选择一个包管理器）：
+å®‰è£… ClawHub CLIï¼ˆé€‰æ‹©ä¸€ä¸ªåŒ…ç®¡ç†å™¨ï¼‰ï¼š
 
 ```bash
 npm i -g clawhub
@@ -995,214 +995,214 @@ npm i -g clawhub
 pnpm add -g clawhub
 ```
 
-### OpenClaw 能否按计划或在后台持续运行任务
+###  èƒ½å¦æŒ‰è®¡åˆ’æˆ–åœ¨åŽå°æŒç»­è¿è¡Œä»»åŠ¡
 
-可以。使用 Gateway 网关调度器：
+å¯ä»¥ã€‚ä½¿ç”¨ Gateway ç½‘å…³è°ƒåº¦å™¨ï¼š
 
-- **定时任务**用于计划或重复任务（跨重启持久化）。
-- **心跳**用于“主会话”定期检查。
-- **隔离任务**用于自主智能体发布摘要或投递到聊天。
+- **å®šæ—¶ä»»åŠ¡**ç”¨äºŽè®¡åˆ’æˆ–é‡å¤ä»»åŠ¡ï¼ˆè·¨é‡å¯æŒä¹…åŒ–ï¼‰ã€‚
+- **å¿ƒè·³**ç”¨äºŽâ€œä¸»ä¼šè¯â€å®šæœŸæ£€æŸ¥ã€‚
+- **éš”ç¦»ä»»åŠ¡**ç”¨äºŽè‡ªä¸»æ™ºèƒ½ä½“å‘å¸ƒæ‘˜è¦æˆ–æŠ•é€’åˆ°èŠå¤©ã€‚
 
-文档：[定时任务](/automation/cron-jobs)、[定时任务 vs 心跳](/automation/cron-vs-heartbeat)、
-[心跳](/gateway/heartbeat)。
+æ–‡æ¡£ï¼š[å®šæ—¶ä»»åŠ¡](/automation/cron-jobs)ã€[å®šæ—¶ä»»åŠ¡ vs å¿ƒè·³](/automation/cron-vs-heartbeat)ã€
+[å¿ƒè·³](/gateway/heartbeat)ã€‚
 
-**能否从 Linux 运行仅限 Apple/macOS 的 Skills**
+**èƒ½å¦ä»Ž Linux è¿è¡Œä»…é™ Apple/macOS çš„ Skills**
 
-不能直接运行。macOS Skills 受 `metadata.openclaw.os` 和所需二进制文件限制，Skills 只有在 **Gateway 网关主机**上符合条件时才会出现在系统提示中。在 Linux 上，`darwin` 专用 Skills（如 `apple-notes`、`apple-reminders`、`things-mac`）不会加载，除非你覆盖限制。
+ä¸èƒ½ç›´æŽ¥è¿è¡Œã€‚macOS Skills å— `metadata..os` å’Œæ‰€éœ€äºŒè¿›åˆ¶æ–‡ä»¶é™åˆ¶ï¼ŒSkills åªæœ‰åœ¨ **Gateway ç½‘å…³ä¸»æœº**ä¸Šç¬¦åˆæ¡ä»¶æ—¶æ‰ä¼šå‡ºçŽ°åœ¨ç³»ç»Ÿæç¤ºä¸­ã€‚åœ¨ Linux ä¸Šï¼Œ`darwin` ä¸“ç”¨ Skillsï¼ˆå¦‚ `apple-notes`ã€`apple-reminders`ã€`things-mac`ï¼‰ä¸ä¼šåŠ è½½ï¼Œé™¤éžä½ è¦†ç›–é™åˆ¶ã€‚
 
-你有三种支持的模式：
+ä½ æœ‰ä¸‰ç§æ”¯æŒçš„æ¨¡å¼ï¼š
 
-**方案 A - 在 Mac 上运行 Gateway 网关（最简单）。**
-在 macOS 二进制文件所在的地方运行 Gateway 网关，然后从 Linux 通过[远程模式](#how-do-i-run-openclaw-in-remote-mode-client-connects-to-a-gateway-elsewhere)或 Tailscale 连接。Skills 正常加载，因为 Gateway 网关主机是 macOS。
+**æ–¹æ¡ˆ A - åœ¨ Mac ä¸Šè¿è¡Œ Gateway ç½‘å…³ï¼ˆæœ€ç®€å•ï¼‰ã€‚**
+åœ¨ macOS äºŒè¿›åˆ¶æ–‡ä»¶æ‰€åœ¨çš„åœ°æ–¹è¿è¡Œ Gateway ç½‘å…³ï¼Œç„¶åŽä»Ž Linux é€šè¿‡[è¿œç¨‹æ¨¡å¼](#how-do-i-run--in-remote-mode-client-connects-to-a-gateway-elsewhere)æˆ– Tailscale è¿žæŽ¥ã€‚Skills æ­£å¸¸åŠ è½½ï¼Œå› ä¸º Gateway ç½‘å…³ä¸»æœºæ˜¯ macOSã€‚
 
-**方案 B - 使用 macOS 节点（无需 SSH）。**
-在 Linux 上运行 Gateway 网关，配对一个 macOS 节点（菜单栏应用），并在 Mac 上将**节点运行命令**设置为“始终询问”或“始终允许”。当所需二进制文件存在于节点上时，OpenClaw 可以将 macOS 专用 Skills 视为符合条件。智能体通过 `nodes` 工具运行这些 Skills。如果你选择“始终询问”，在提示中批准“始终允许”会将该命令添加到允许列表。
+**æ–¹æ¡ˆ B - ä½¿ç”¨ macOS èŠ‚ç‚¹ï¼ˆæ— éœ€ SSHï¼‰ã€‚**
+åœ¨ Linux ä¸Šè¿è¡Œ Gateway ç½‘å…³ï¼Œé…å¯¹ä¸€ä¸ª macOS èŠ‚ç‚¹ï¼ˆèœå•æ åº”ç”¨ï¼‰ï¼Œå¹¶åœ¨ Mac ä¸Šå°†**èŠ‚ç‚¹è¿è¡Œå‘½ä»¤**è®¾ç½®ä¸ºâ€œå§‹ç»ˆè¯¢é—®â€æˆ–â€œå§‹ç»ˆå…è®¸â€ã€‚å½“æ‰€éœ€äºŒè¿›åˆ¶æ–‡ä»¶å­˜åœ¨äºŽèŠ‚ç‚¹ä¸Šæ—¶ï¼Œ å¯ä»¥å°† macOS ä¸“ç”¨ Skills è§†ä¸ºç¬¦åˆæ¡ä»¶ã€‚æ™ºèƒ½ä½“é€šè¿‡ `nodes` å·¥å…·è¿è¡Œè¿™äº› Skillsã€‚å¦‚æžœä½ é€‰æ‹©â€œå§‹ç»ˆè¯¢é—®â€ï¼Œåœ¨æç¤ºä¸­æ‰¹å‡†â€œå§‹ç»ˆå…è®¸â€ä¼šå°†è¯¥å‘½ä»¤æ·»åŠ åˆ°å…è®¸åˆ—è¡¨ã€‚
 
-**方案 C - 通过 SSH 代理 macOS 二进制文件（高级）。**
-保持 Gateway 网关在 Linux 上，但使所需的 CLI 二进制文件解析为在 Mac 上运行的 SSH 包装器。然后覆盖 Skills 以允许 Linux 使其保持符合条件。
+**æ–¹æ¡ˆ C - é€šè¿‡ SSH ä»£ç† macOS äºŒè¿›åˆ¶æ–‡ä»¶ï¼ˆé«˜çº§ï¼‰ã€‚**
+ä¿æŒ Gateway ç½‘å…³åœ¨ Linux ä¸Šï¼Œä½†ä½¿æ‰€éœ€çš„ CLI äºŒè¿›åˆ¶æ–‡ä»¶è§£æžä¸ºåœ¨ Mac ä¸Šè¿è¡Œçš„ SSH åŒ…è£…å™¨ã€‚ç„¶åŽè¦†ç›– Skills ä»¥å…è®¸ Linux ä½¿å…¶ä¿æŒç¬¦åˆæ¡ä»¶ã€‚
 
-1. 为二进制文件创建 SSH 包装器（示例：`imsg`）：
+1. ä¸ºäºŒè¿›åˆ¶æ–‡ä»¶åˆ›å»º SSH åŒ…è£…å™¨ï¼ˆç¤ºä¾‹ï¼š`imsg`ï¼‰ï¼š
    ```bash
    #!/usr/bin/env bash
    set -euo pipefail
    exec ssh -T user@mac-host /opt/homebrew/bin/imsg "$@"
    ```
-2. 将包装器放在 Linux 主机的 `PATH` 上（例如 `~/bin/imsg`）。
-3. 覆盖 Skills 元数据（工作区或 `~/.openclaw/skills`）以允许 Linux：
+2. å°†åŒ…è£…å™¨æ”¾åœ¨ Linux ä¸»æœºçš„ `PATH` ä¸Šï¼ˆä¾‹å¦‚ `~/bin/imsg`ï¼‰ã€‚
+3. è¦†ç›– Skills å…ƒæ•°æ®ï¼ˆå·¥ä½œåŒºæˆ– `~/./skills`ï¼‰ä»¥å…è®¸ Linuxï¼š
    ```markdown
    ---
    name: imsg
    description: iMessage/SMS CLI for listing chats, history, watch, and sending.
-   metadata: { "openclaw": { "os": ["darwin", "linux"], "requires": { "bins": ["imsg"] } } }
+   metadata: { "": { "os": ["darwin", "linux"], "requires": { "bins": ["imsg"] } } }
    ---
    ```
-4. 开始新会话以刷新 Skills 快照。
+4. å¼€å§‹æ–°ä¼šè¯ä»¥åˆ·æ–° Skills å¿«ç…§ã€‚
 
-对于 iMessage，你也可以将 `channels.imessage.cliPath` 指向 SSH 包装器（OpenClaw 只需要 stdio）。参阅 [iMessage](/channels/imessage)。
+å¯¹äºŽ iMessageï¼Œä½ ä¹Ÿå¯ä»¥å°† `channels.imessage.cliPath` æŒ‡å‘ SSH åŒ…è£…å™¨ï¼ˆ åªéœ€è¦ stdioï¼‰ã€‚å‚é˜… [iMessage](/channels/imessage)ã€‚
 
-### 有 Notion 或 HeyGen 集成吗
+### æœ‰ Notion æˆ– HeyGen é›†æˆå—
 
-目前没有内置集成。
+ç›®å‰æ²¡æœ‰å†…ç½®é›†æˆã€‚
 
-选项：
+é€‰é¡¹ï¼š
 
-- **自定义 Skills / 插件：** 最适合可靠的 API 访问（Notion/HeyGen 都有 API）。
-- **浏览器自动化：** 无需编码但更慢且更脆弱。
+- **è‡ªå®šä¹‰ Skills / æ’ä»¶ï¼š** æœ€é€‚åˆå¯é çš„ API è®¿é—®ï¼ˆNotion/HeyGen éƒ½æœ‰ APIï¼‰ã€‚
+- **æµè§ˆå™¨è‡ªåŠ¨åŒ–ï¼š** æ— éœ€ç¼–ç ä½†æ›´æ…¢ä¸”æ›´è„†å¼±ã€‚
 
-如果你想按客户保留上下文（代理工作流），一个简单的模式是：
+å¦‚æžœä½ æƒ³æŒ‰å®¢æˆ·ä¿ç•™ä¸Šä¸‹æ–‡ï¼ˆä»£ç†å·¥ä½œæµï¼‰ï¼Œä¸€ä¸ªç®€å•çš„æ¨¡å¼æ˜¯ï¼š
 
-- 每个客户一个 Notion 页面（上下文 + 偏好 + 当前工作）。
-- 在会话开始时要求智能体获取该页面。
+- æ¯ä¸ªå®¢æˆ·ä¸€ä¸ª Notion é¡µé¢ï¼ˆä¸Šä¸‹æ–‡ + åå¥½ + å½“å‰å·¥ä½œï¼‰ã€‚
+- åœ¨ä¼šè¯å¼€å§‹æ—¶è¦æ±‚æ™ºèƒ½ä½“èŽ·å–è¯¥é¡µé¢ã€‚
 
-如果你想要原生集成，请提交功能请求或构建一个针对这些 API 的 Skills。
+å¦‚æžœä½ æƒ³è¦åŽŸç”Ÿé›†æˆï¼Œè¯·æäº¤åŠŸèƒ½è¯·æ±‚æˆ–æž„å»ºä¸€ä¸ªé’ˆå¯¹è¿™äº› API çš„ Skillsã€‚
 
-安装 Skills：
+å®‰è£… Skillsï¼š
 
 ```bash
 clawhub install <skill-slug>
 clawhub update --all
 ```
 
-ClawHub 安装到当前目录下的 `./skills`（或回退到你配置的 OpenClaw 工作区）；OpenClaw 在下一个会话中将其视为 `<workspace>/skills`。对于跨智能体共享的 Skills，将它们放在 `~/.openclaw/skills/<name>/SKILL.md`。某些 Skills 期望通过 Homebrew 安装二进制文件；在 Linux 上意味着 Linuxbrew（参阅上面的 Homebrew Linux 常见问题条目）。参阅[Skills](/tools/skills)和 [ClawHub](/tools/clawhub)。
+ClawHub å®‰è£…åˆ°å½“å‰ç›®å½•ä¸‹çš„ `./skills`ï¼ˆæˆ–å›žé€€åˆ°ä½ é…ç½®çš„  å·¥ä½œåŒºï¼‰ï¼› åœ¨ä¸‹ä¸€ä¸ªä¼šè¯ä¸­å°†å…¶è§†ä¸º `<workspace>/skills`ã€‚å¯¹äºŽè·¨æ™ºèƒ½ä½“å…±äº«çš„ Skillsï¼Œå°†å®ƒä»¬æ”¾åœ¨ `~/./skills/<name>/SKILL.md`ã€‚æŸäº› Skills æœŸæœ›é€šè¿‡ Homebrew å®‰è£…äºŒè¿›åˆ¶æ–‡ä»¶ï¼›åœ¨ Linux ä¸Šæ„å‘³ç€ Linuxbrewï¼ˆå‚é˜…ä¸Šé¢çš„ Homebrew Linux å¸¸è§é—®é¢˜æ¡ç›®ï¼‰ã€‚å‚é˜…[Skills](/tools/skills)å’Œ [ClawHub](/tools/clawhub)ã€‚
 
-### 如何安装用于浏览器接管的 Chrome 扩展
+### å¦‚ä½•å®‰è£…ç”¨äºŽæµè§ˆå™¨æŽ¥ç®¡çš„ Chrome æ‰©å±•
 
-使用内置安装程序，然后在 Chrome 中加载未打包的扩展：
+ä½¿ç”¨å†…ç½®å®‰è£…ç¨‹åºï¼Œç„¶åŽåœ¨ Chrome ä¸­åŠ è½½æœªæ‰“åŒ…çš„æ‰©å±•ï¼š
 
 ```bash
-openclaw browser extension install
-openclaw browser extension path
+ browser extension install
+ browser extension path
 ```
 
-然后 Chrome → `chrome://extensions` → 启用“开发者模式” → “加载已解压的扩展程序” → 选择该文件夹。
+ç„¶åŽ Chrome â†’ `chrome://extensions` â†’ å¯ç”¨â€œå¼€å‘è€…æ¨¡å¼â€ â†’ â€œåŠ è½½å·²è§£åŽ‹çš„æ‰©å±•ç¨‹åºâ€ â†’ é€‰æ‹©è¯¥æ–‡ä»¶å¤¹ã€‚
 
-完整指南（包括远程 Gateway 网关 + 安全注意事项）：[Chrome 扩展](/tools/chrome-extension)
+å®Œæ•´æŒ‡å—ï¼ˆåŒ…æ‹¬è¿œç¨‹ Gateway ç½‘å…³ + å®‰å…¨æ³¨æ„äº‹é¡¹ï¼‰ï¼š[Chrome æ‰©å±•](/tools/chrome-extension)
 
-如果 Gateway 网关运行在与 Chrome 同一台机器上（默认设置），你通常**不需要**额外配置。
-如果 Gateway 网关运行在其他地方，在运行浏览器的机器上运行一个节点主机，以便 Gateway 网关可以代理浏览器操作。
-你仍然需要在要控制的标签页上点击扩展按钮（它不会自动附加）。
+å¦‚æžœ Gateway ç½‘å…³è¿è¡Œåœ¨ä¸Ž Chrome åŒä¸€å°æœºå™¨ä¸Šï¼ˆé»˜è®¤è®¾ç½®ï¼‰ï¼Œä½ é€šå¸¸**ä¸éœ€è¦**é¢å¤–é…ç½®ã€‚
+å¦‚æžœ Gateway ç½‘å…³è¿è¡Œåœ¨å…¶ä»–åœ°æ–¹ï¼Œåœ¨è¿è¡Œæµè§ˆå™¨çš„æœºå™¨ä¸Šè¿è¡Œä¸€ä¸ªèŠ‚ç‚¹ä¸»æœºï¼Œä»¥ä¾¿ Gateway ç½‘å…³å¯ä»¥ä»£ç†æµè§ˆå™¨æ“ä½œã€‚
+ä½ ä»ç„¶éœ€è¦åœ¨è¦æŽ§åˆ¶çš„æ ‡ç­¾é¡µä¸Šç‚¹å‡»æ‰©å±•æŒ‰é’®ï¼ˆå®ƒä¸ä¼šè‡ªåŠ¨é™„åŠ ï¼‰ã€‚
 
-## 沙箱与记忆
+## æ²™ç®±ä¸Žè®°å¿†
 
-### 有专门的沙箱文档吗
+### æœ‰ä¸“é—¨çš„æ²™ç®±æ–‡æ¡£å—
 
-有。参阅[沙箱](/gateway/sandboxing)。对于 Docker 特定设置（完整 Gateway 网关在 Docker 中或沙箱镜像），参阅 [Docker](/install/docker)。
+æœ‰ã€‚å‚é˜…[æ²™ç®±](/gateway/sandboxing)ã€‚å¯¹äºŽ Docker ç‰¹å®šè®¾ç½®ï¼ˆå®Œæ•´ Gateway ç½‘å…³åœ¨ Docker ä¸­æˆ–æ²™ç®±é•œåƒï¼‰ï¼Œå‚é˜… [Docker](/install/docker)ã€‚
 
-**能否让私信保持私密，但群组用一个智能体公开沙箱隔离**
+**èƒ½å¦è®©ç§ä¿¡ä¿æŒç§å¯†ï¼Œä½†ç¾¤ç»„ç”¨ä¸€ä¸ªæ™ºèƒ½ä½“å…¬å¼€æ²™ç®±éš”ç¦»**
 
-可以——如果你的私密流量是**私信**而公开流量是**群组**。
+å¯ä»¥â€”â€”å¦‚æžœä½ çš„ç§å¯†æµé‡æ˜¯**ç§ä¿¡**è€Œå…¬å¼€æµé‡æ˜¯**ç¾¤ç»„**ã€‚
 
-使用 `agents.defaults.sandbox.mode: "non-main"`，这样群组/频道会话（非主键）在 Docker 中运行，而主私信会话保持在主机上。然后通过 `tools.sandbox.tools` 限制沙箱会话中可用的工具。
+ä½¿ç”¨ `agents.defaults.sandbox.mode: "non-main"`ï¼Œè¿™æ ·ç¾¤ç»„/é¢‘é“ä¼šè¯ï¼ˆéžä¸»é”®ï¼‰åœ¨ Docker ä¸­è¿è¡Œï¼Œè€Œä¸»ç§ä¿¡ä¼šè¯ä¿æŒåœ¨ä¸»æœºä¸Šã€‚ç„¶åŽé€šè¿‡ `tools.sandbox.tools` é™åˆ¶æ²™ç®±ä¼šè¯ä¸­å¯ç”¨çš„å·¥å…·ã€‚
 
-设置指南 + 示例配置：[群组：个人私信 + 公开群组](/concepts/groups#pattern-personal-dms-public-groups-single-agent)
+è®¾ç½®æŒ‡å— + ç¤ºä¾‹é…ç½®ï¼š[ç¾¤ç»„ï¼šä¸ªäººç§ä¿¡ + å…¬å¼€ç¾¤ç»„](/concepts/groups#pattern-personal-dms-public-groups-single-agent)
 
-关键配置参考：[Gateway 网关配置](/gateway/configuration#agentsdefaultssandbox)
+å…³é”®é…ç½®å‚è€ƒï¼š[Gateway ç½‘å…³é…ç½®](/gateway/configuration#agentsdefaultssandbox)
 
-### 如何将主机文件夹绑定到沙箱中
+### å¦‚ä½•å°†ä¸»æœºæ–‡ä»¶å¤¹ç»‘å®šåˆ°æ²™ç®±ä¸­
 
-将 `agents.defaults.sandbox.docker.binds` 设置为 `["host:path:mode"]`（例如 `"/home/user/src:/src:ro"`）。全局 + 按智能体的绑定会合并；当 `scope: "shared"` 时按智能体的绑定会被忽略。对于敏感内容使用 `:ro`，并记住绑定会绕过沙箱文件系统隔离。参阅[沙箱](/gateway/sandboxing#custom-bind-mounts)和[沙箱 vs 工具策略 vs 提权](/gateway/sandbox-vs-tool-policy-vs-elevated#bind-mounts-security-quick-check)了解示例和安全注意事项。
+å°† `agents.defaults.sandbox.docker.binds` è®¾ç½®ä¸º `["host:path:mode"]`ï¼ˆä¾‹å¦‚ `"/home/user/src:/src:ro"`ï¼‰ã€‚å…¨å±€ + æŒ‰æ™ºèƒ½ä½“çš„ç»‘å®šä¼šåˆå¹¶ï¼›å½“ `scope: "shared"` æ—¶æŒ‰æ™ºèƒ½ä½“çš„ç»‘å®šä¼šè¢«å¿½ç•¥ã€‚å¯¹äºŽæ•æ„Ÿå†…å®¹ä½¿ç”¨ `:ro`ï¼Œå¹¶è®°ä½ç»‘å®šä¼šç»•è¿‡æ²™ç®±æ–‡ä»¶ç³»ç»Ÿéš”ç¦»ã€‚å‚é˜…[æ²™ç®±](/gateway/sandboxing#custom-bind-mounts)å’Œ[æ²™ç®± vs å·¥å…·ç­–ç•¥ vs ææƒ](/gateway/sandbox-vs-tool-policy-vs-elevated#bind-mounts-security-quick-check)äº†è§£ç¤ºä¾‹å’Œå®‰å…¨æ³¨æ„äº‹é¡¹ã€‚
 
-### 记忆是如何工作的
+### è®°å¿†æ˜¯å¦‚ä½•å·¥ä½œçš„
 
-OpenClaw 记忆就是智能体工作区中的 Markdown 文件：
+ è®°å¿†å°±æ˜¯æ™ºèƒ½ä½“å·¥ä½œåŒºä¸­çš„ Markdown æ–‡ä»¶ï¼š
 
-- 每日笔记在 `memory/YYYY-MM-DD.md`
-- 精选的长期笔记在 `MEMORY.md`（仅限主/私密会话）
+- æ¯æ—¥ç¬”è®°åœ¨ `memory/YYYY-MM-DD.md`
+- ç²¾é€‰çš„é•¿æœŸç¬”è®°åœ¨ `MEMORY.md`ï¼ˆä»…é™ä¸»/ç§å¯†ä¼šè¯ï¼‰
 
-OpenClaw 还会运行**静默的预压缩记忆刷新**，以提醒模型在自动压缩之前写入持久笔记。这只在工作区可写时运行（只读沙箱会跳过）。参阅[记忆](/concepts/memory)。
+ è¿˜ä¼šè¿è¡Œ**é™é»˜çš„é¢„åŽ‹ç¼©è®°å¿†åˆ·æ–°**ï¼Œä»¥æé†’æ¨¡åž‹åœ¨è‡ªåŠ¨åŽ‹ç¼©ä¹‹å‰å†™å…¥æŒä¹…ç¬”è®°ã€‚è¿™åªåœ¨å·¥ä½œåŒºå¯å†™æ—¶è¿è¡Œï¼ˆåªè¯»æ²™ç®±ä¼šè·³è¿‡ï¼‰ã€‚å‚é˜…[è®°å¿†](/concepts/memory)ã€‚
 
-### 记忆总是遗忘，如何让它持久保存
+### è®°å¿†æ€»æ˜¯é—å¿˜ï¼Œå¦‚ä½•è®©å®ƒæŒä¹…ä¿å­˜
 
-要求机器人**将事实写入记忆**。长期笔记属于 `MEMORY.md`，短期上下文放入 `memory/YYYY-MM-DD.md`。
+è¦æ±‚æœºå™¨äºº**å°†äº‹å®žå†™å…¥è®°å¿†**ã€‚é•¿æœŸç¬”è®°å±žäºŽ `MEMORY.md`ï¼ŒçŸ­æœŸä¸Šä¸‹æ–‡æ”¾å…¥ `memory/YYYY-MM-DD.md`ã€‚
 
-这仍然是我们正在改进的领域。提醒模型存储记忆会有帮助；它会知道如何操作。如果它持续遗忘，验证 Gateway 网关每次运行时是否使用相同的工作区。
+è¿™ä»ç„¶æ˜¯æˆ‘ä»¬æ­£åœ¨æ”¹è¿›çš„é¢†åŸŸã€‚æé†’æ¨¡åž‹å­˜å‚¨è®°å¿†ä¼šæœ‰å¸®åŠ©ï¼›å®ƒä¼šçŸ¥é“å¦‚ä½•æ“ä½œã€‚å¦‚æžœå®ƒæŒç»­é—å¿˜ï¼ŒéªŒè¯ Gateway ç½‘å…³æ¯æ¬¡è¿è¡Œæ—¶æ˜¯å¦ä½¿ç”¨ç›¸åŒçš„å·¥ä½œåŒºã€‚
 
-文档：[记忆](/concepts/memory)、[智能体工作区](/concepts/agent-workspace)。
+æ–‡æ¡£ï¼š[è®°å¿†](/concepts/memory)ã€[æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)ã€‚
 
-### 语义记忆搜索需要 OpenAI API 密钥吗
+### è¯­ä¹‰è®°å¿†æœç´¢éœ€è¦ OpenAI API å¯†é’¥å—
 
-只有在使用 **OpenAI embeddings** 时才需要。Codex OAuth 覆盖 chat/completions 但**不**授予 embeddings 访问权限，因此**使用 Codex 登录（OAuth 或 Codex CLI 登录）**对语义记忆搜索没有帮助。OpenAI embeddings 仍然需要真正的 API 密钥（`OPENAI_API_KEY` 或 `models.providers.openai.apiKey`）。
+åªæœ‰åœ¨ä½¿ç”¨ **OpenAI embeddings** æ—¶æ‰éœ€è¦ã€‚Codex OAuth è¦†ç›– chat/completions ä½†**ä¸**æŽˆäºˆ embeddings è®¿é—®æƒé™ï¼Œå› æ­¤**ä½¿ç”¨ Codex ç™»å½•ï¼ˆOAuth æˆ– Codex CLI ç™»å½•ï¼‰**å¯¹è¯­ä¹‰è®°å¿†æœç´¢æ²¡æœ‰å¸®åŠ©ã€‚OpenAI embeddings ä»ç„¶éœ€è¦çœŸæ­£çš„ API å¯†é’¥ï¼ˆ`OPENAI_API_KEY` æˆ– `models.providers.openai.apiKey`ï¼‰ã€‚
 
-如果你没有明确设置提供商，OpenClaw 会在能解析 API 密钥（认证配置文件、`models.providers.*.apiKey` 或环境变量）时自动选择提供商。如果 OpenAI 密钥可解析则优先使用 OpenAI，否则如果 Gemini 密钥可解析则使用 Gemini。如果两个密钥都不可用，记忆搜索保持禁用直到你配置它。如果你配置了本地模型路径且存在，OpenClaw 优先使用 `local`。
+å¦‚æžœä½ æ²¡æœ‰æ˜Žç¡®è®¾ç½®æä¾›å•†ï¼Œ ä¼šåœ¨èƒ½è§£æž API å¯†é’¥ï¼ˆè®¤è¯é…ç½®æ–‡ä»¶ã€`models.providers.*.apiKey` æˆ–çŽ¯å¢ƒå˜é‡ï¼‰æ—¶è‡ªåŠ¨é€‰æ‹©æä¾›å•†ã€‚å¦‚æžœ OpenAI å¯†é’¥å¯è§£æžåˆ™ä¼˜å…ˆä½¿ç”¨ OpenAIï¼Œå¦åˆ™å¦‚æžœ Gemini å¯†é’¥å¯è§£æžåˆ™ä½¿ç”¨ Geminiã€‚å¦‚æžœä¸¤ä¸ªå¯†é’¥éƒ½ä¸å¯ç”¨ï¼Œè®°å¿†æœç´¢ä¿æŒç¦ç”¨ç›´åˆ°ä½ é…ç½®å®ƒã€‚å¦‚æžœä½ é…ç½®äº†æœ¬åœ°æ¨¡åž‹è·¯å¾„ä¸”å­˜åœ¨ï¼Œ ä¼˜å…ˆä½¿ç”¨ `local`ã€‚
 
-如果你更想保持本地运行，设置 `memorySearch.provider = "local"`（可选 `memorySearch.fallback = "none"`）。如果你想使用 Gemini embeddings，设置 `memorySearch.provider = "gemini"` 并提供 `GEMINI_API_KEY`（或 `memorySearch.remote.apiKey`）。我们支持 **OpenAI、Gemini 或本地** embedding 模型——参阅[记忆](/concepts/memory)了解设置详情。
+å¦‚æžœä½ æ›´æƒ³ä¿æŒæœ¬åœ°è¿è¡Œï¼Œè®¾ç½® `memorySearch.provider = "local"`ï¼ˆå¯é€‰ `memorySearch.fallback = "none"`ï¼‰ã€‚å¦‚æžœä½ æƒ³ä½¿ç”¨ Gemini embeddingsï¼Œè®¾ç½® `memorySearch.provider = "gemini"` å¹¶æä¾› `GEMINI_API_KEY`ï¼ˆæˆ– `memorySearch.remote.apiKey`ï¼‰ã€‚æˆ‘ä»¬æ”¯æŒ **OpenAIã€Gemini æˆ–æœ¬åœ°** embedding æ¨¡åž‹â€”â€”å‚é˜…[è®°å¿†](/concepts/memory)äº†è§£è®¾ç½®è¯¦æƒ…ã€‚
 
-### 记忆是否永久保留？有什么限制
+### è®°å¿†æ˜¯å¦æ°¸ä¹…ä¿ç•™ï¼Ÿæœ‰ä»€ä¹ˆé™åˆ¶
 
-记忆文件保存在磁盘上，持久存在直到你删除它们。限制是你的存储空间，而不是模型。**会话上下文**仍然受模型上下文窗口限制，所以长对话可能会压缩或截断。这就是记忆搜索存在的原因——它只将相关部分拉回上下文。
+è®°å¿†æ–‡ä»¶ä¿å­˜åœ¨ç£ç›˜ä¸Šï¼ŒæŒä¹…å­˜åœ¨ç›´åˆ°ä½ åˆ é™¤å®ƒä»¬ã€‚é™åˆ¶æ˜¯ä½ çš„å­˜å‚¨ç©ºé—´ï¼Œè€Œä¸æ˜¯æ¨¡åž‹ã€‚**ä¼šè¯ä¸Šä¸‹æ–‡**ä»ç„¶å—æ¨¡åž‹ä¸Šä¸‹æ–‡çª—å£é™åˆ¶ï¼Œæ‰€ä»¥é•¿å¯¹è¯å¯èƒ½ä¼šåŽ‹ç¼©æˆ–æˆªæ–­ã€‚è¿™å°±æ˜¯è®°å¿†æœç´¢å­˜åœ¨çš„åŽŸå› â€”â€”å®ƒåªå°†ç›¸å…³éƒ¨åˆ†æ‹‰å›žä¸Šä¸‹æ–‡ã€‚
 
-文档：[记忆](/concepts/memory)、[上下文](/concepts/context)。
+æ–‡æ¡£ï¼š[è®°å¿†](/concepts/memory)ã€[ä¸Šä¸‹æ–‡](/concepts/context)ã€‚
 
-## 磁盘上的文件位置
+## ç£ç›˜ä¸Šçš„æ–‡ä»¶ä½ç½®
 
-### OpenClaw 使用的所有数据都保存在本地吗
+###  ä½¿ç”¨çš„æ‰€æœ‰æ•°æ®éƒ½ä¿å­˜åœ¨æœ¬åœ°å—
 
-不是——**OpenClaw 的状态是本地的**，但**外部服务仍然会看到你发送给它们的内容**。
+ä¸æ˜¯â€”â€”** çš„çŠ¶æ€æ˜¯æœ¬åœ°çš„**ï¼Œä½†**å¤–éƒ¨æœåŠ¡ä»ç„¶ä¼šçœ‹åˆ°ä½ å‘é€ç»™å®ƒä»¬çš„å†…å®¹**ã€‚
 
-- **默认本地：** 会话、记忆文件、配置和工作区位于 Gateway 网关主机上（`~/.openclaw` + 你的工作区目录）。
-- **必然远程：** 你发送给模型提供商（Anthropic/OpenAI/等）的消息会发送到它们的 API，聊天平台（WhatsApp/Telegram/Slack/等）在它们的服务器上存储消息数据。
-- **你控制范围：** 使用本地模型可以将提示保留在你的机器上，但渠道流量仍然通过渠道的服务器。
+- **é»˜è®¤æœ¬åœ°ï¼š** ä¼šè¯ã€è®°å¿†æ–‡ä»¶ã€é…ç½®å’Œå·¥ä½œåŒºä½äºŽ Gateway ç½‘å…³ä¸»æœºä¸Šï¼ˆ`~/.` + ä½ çš„å·¥ä½œåŒºç›®å½•ï¼‰ã€‚
+- **å¿…ç„¶è¿œç¨‹ï¼š** ä½ å‘é€ç»™æ¨¡åž‹æä¾›å•†ï¼ˆAnthropic/OpenAI/ç­‰ï¼‰çš„æ¶ˆæ¯ä¼šå‘é€åˆ°å®ƒä»¬çš„ APIï¼ŒèŠå¤©å¹³å°ï¼ˆWhatsApp/Telegram/Slack/ç­‰ï¼‰åœ¨å®ƒä»¬çš„æœåŠ¡å™¨ä¸Šå­˜å‚¨æ¶ˆæ¯æ•°æ®ã€‚
+- **ä½ æŽ§åˆ¶èŒƒå›´ï¼š** ä½¿ç”¨æœ¬åœ°æ¨¡åž‹å¯ä»¥å°†æç¤ºä¿ç•™åœ¨ä½ çš„æœºå™¨ä¸Šï¼Œä½†æ¸ é“æµé‡ä»ç„¶é€šè¿‡æ¸ é“çš„æœåŠ¡å™¨ã€‚
 
-相关：[智能体工作区](/concepts/agent-workspace)、[记忆](/concepts/memory)。
+ç›¸å…³ï¼š[æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)ã€[è®°å¿†](/concepts/memory)ã€‚
 
-### OpenClaw 将数据存储在哪里
+###  å°†æ•°æ®å­˜å‚¨åœ¨å“ªé‡Œ
 
-所有内容位于 `$OPENCLAW_STATE_DIR`（默认：`~/.openclaw`）下：
+æ‰€æœ‰å†…å®¹ä½äºŽ `$_STATE_DIR`ï¼ˆé»˜è®¤ï¼š`~/.`ï¼‰ä¸‹ï¼š
 
-| 路径                                                            | 用途                                                 |
+| è·¯å¾„                                                            | ç”¨é€”                                                 |
 | --------------------------------------------------------------- | ---------------------------------------------------- |
-| `$OPENCLAW_STATE_DIR/openclaw.json`                             | 主配置（JSON5）                                      |
-| `$OPENCLAW_STATE_DIR/credentials/oauth.json`                    | 旧版 OAuth 导入（首次使用时复制到认证配置文件）      |
-| `$OPENCLAW_STATE_DIR/agents/<agentId>/agent/auth-profiles.json` | 认证配置文件（OAuth + API 密钥）                     |
-| `$OPENCLAW_STATE_DIR/agents/<agentId>/agent/auth.json`          | 运行时认证缓存（自动管理）                           |
-| `$OPENCLAW_STATE_DIR/credentials/`                              | 提供商状态（例如 `whatsapp/<accountId>/creds.json`） |
-| `$OPENCLAW_STATE_DIR/agents/`                                   | 按智能体的状态（agentDir + 会话）                    |
-| `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/`                | 对话历史和状态（按智能体）                           |
-| `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/sessions.json`   | 会话元数据（按智能体）                               |
+| `$_STATE_DIR/.json`                             | ä¸»é…ç½®ï¼ˆJSON5ï¼‰                                      |
+| `$_STATE_DIR/credentials/oauth.json`                    | æ—§ç‰ˆ OAuth å¯¼å…¥ï¼ˆé¦–æ¬¡ä½¿ç”¨æ—¶å¤åˆ¶åˆ°è®¤è¯é…ç½®æ–‡ä»¶ï¼‰      |
+| `$_STATE_DIR/agents/<agentId>/agent/auth-profiles.json` | è®¤è¯é…ç½®æ–‡ä»¶ï¼ˆOAuth + API å¯†é’¥ï¼‰                     |
+| `$_STATE_DIR/agents/<agentId>/agent/auth.json`          | è¿è¡Œæ—¶è®¤è¯ç¼“å­˜ï¼ˆè‡ªåŠ¨ç®¡ç†ï¼‰                           |
+| `$_STATE_DIR/credentials/`                              | æä¾›å•†çŠ¶æ€ï¼ˆä¾‹å¦‚ `whatsapp/<accountId>/creds.json`ï¼‰ |
+| `$_STATE_DIR/agents/`                                   | æŒ‰æ™ºèƒ½ä½“çš„çŠ¶æ€ï¼ˆagentDir + ä¼šè¯ï¼‰                    |
+| `$_STATE_DIR/agents/<agentId>/sessions/`                | å¯¹è¯åŽ†å²å’ŒçŠ¶æ€ï¼ˆæŒ‰æ™ºèƒ½ä½“ï¼‰                           |
+| `$_STATE_DIR/agents/<agentId>/sessions/sessions.json`   | ä¼šè¯å…ƒæ•°æ®ï¼ˆæŒ‰æ™ºèƒ½ä½“ï¼‰                               |
 
-旧版单智能体路径：`~/.openclaw/agent/*`（通过 `openclaw doctor` 迁移）。
+æ—§ç‰ˆå•æ™ºèƒ½ä½“è·¯å¾„ï¼š`~/./agent/*`ï¼ˆé€šè¿‡ ` doctor` è¿ç§»ï¼‰ã€‚
 
-你的**工作区**（AGENTS.md、记忆文件、Skills 等）是独立的，通过 `agents.defaults.workspace` 配置（默认：`~/.openclaw/workspace`）。
+ä½ çš„**å·¥ä½œåŒº**ï¼ˆAGENTS.mdã€è®°å¿†æ–‡ä»¶ã€Skills ç­‰ï¼‰æ˜¯ç‹¬ç«‹çš„ï¼Œé€šè¿‡ `agents.defaults.workspace` é…ç½®ï¼ˆé»˜è®¤ï¼š`~/./workspace`ï¼‰ã€‚
 
-### AGENTS.md / SOUL.md / USER.md / MEMORY.md 应该放在哪里
+### AGENTS.md / SOUL.md / USER.md / MEMORY.md åº”è¯¥æ”¾åœ¨å“ªé‡Œ
 
-这些文件位于**智能体工作区**中，而不是 `~/.openclaw`。
+è¿™äº›æ–‡ä»¶ä½äºŽ**æ™ºèƒ½ä½“å·¥ä½œåŒº**ä¸­ï¼Œè€Œä¸æ˜¯ `~/.`ã€‚
 
-- **工作区（按智能体）**：`AGENTS.md`、`SOUL.md`、`IDENTITY.md`、`USER.md`、
-  `MEMORY.md`（或 `memory.md`）、`memory/YYYY-MM-DD.md`、可选的 `HEARTBEAT.md`。
-- **状态目录（`~/.openclaw`）**：配置、凭据、认证配置文件、会话、日志和共享 Skills（`~/.openclaw/skills`）。
+- **å·¥ä½œåŒºï¼ˆæŒ‰æ™ºèƒ½ä½“ï¼‰**ï¼š`AGENTS.md`ã€`SOUL.md`ã€`IDENTITY.md`ã€`USER.md`ã€
+  `MEMORY.md`ï¼ˆæˆ– `memory.md`ï¼‰ã€`memory/YYYY-MM-DD.md`ã€å¯é€‰çš„ `HEARTBEAT.md`ã€‚
+- **çŠ¶æ€ç›®å½•ï¼ˆ`~/.`ï¼‰**ï¼šé…ç½®ã€å‡­æ®ã€è®¤è¯é…ç½®æ–‡ä»¶ã€ä¼šè¯ã€æ—¥å¿—å’Œå…±äº« Skillsï¼ˆ`~/./skills`ï¼‰ã€‚
 
-默认工作区是 `~/.openclaw/workspace`，可通过以下方式配置：
+é»˜è®¤å·¥ä½œåŒºæ˜¯ `~/./workspace`ï¼Œå¯é€šè¿‡ä»¥ä¸‹æ–¹å¼é…ç½®ï¼š
 
 ```json5
 {
-  agents: { defaults: { workspace: "~/.openclaw/workspace" } },
+  agents: { defaults: { workspace: "~/./workspace" } },
 }
 ```
 
-如果机器人在重启后“忘记”了内容，确认 Gateway 网关每次启动时都使用相同的工作区（记住：远程模式使用 **Gateway 网关主机的**工作区，而不是你本地笔记本的）。
+å¦‚æžœæœºå™¨äººåœ¨é‡å¯åŽâ€œå¿˜è®°â€äº†å†…å®¹ï¼Œç¡®è®¤ Gateway ç½‘å…³æ¯æ¬¡å¯åŠ¨æ—¶éƒ½ä½¿ç”¨ç›¸åŒçš„å·¥ä½œåŒºï¼ˆè®°ä½ï¼šè¿œç¨‹æ¨¡å¼ä½¿ç”¨ **Gateway ç½‘å…³ä¸»æœºçš„**å·¥ä½œåŒºï¼Œè€Œä¸æ˜¯ä½ æœ¬åœ°ç¬”è®°æœ¬çš„ï¼‰ã€‚
 
-提示：如果你想要一个持久的行为或偏好，要求机器人**将其写入 AGENTS.md 或 MEMORY.md**，而不是依赖聊天历史。
+æç¤ºï¼šå¦‚æžœä½ æƒ³è¦ä¸€ä¸ªæŒä¹…çš„è¡Œä¸ºæˆ–åå¥½ï¼Œè¦æ±‚æœºå™¨äºº**å°†å…¶å†™å…¥ AGENTS.md æˆ– MEMORY.md**ï¼Œè€Œä¸æ˜¯ä¾èµ–èŠå¤©åŽ†å²ã€‚
 
-参阅[智能体工作区](/concepts/agent-workspace)和[记忆](/concepts/memory)。
+å‚é˜…[æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)å’Œ[è®°å¿†](/concepts/memory)ã€‚
 
-### 推荐的备份策略是什么
+### æŽ¨èçš„å¤‡ä»½ç­–ç•¥æ˜¯ä»€ä¹ˆ
 
-将你的**智能体工作区**放入一个**私有** git 仓库，并备份到某个私有位置（例如 GitHub 私有仓库）。这会捕获记忆 + AGENTS/SOUL/USER 文件，让你以后可以恢复助手的“思维”。
+å°†ä½ çš„**æ™ºèƒ½ä½“å·¥ä½œåŒº**æ”¾å…¥ä¸€ä¸ª**ç§æœ‰** git ä»“åº“ï¼Œå¹¶å¤‡ä»½åˆ°æŸä¸ªç§æœ‰ä½ç½®ï¼ˆä¾‹å¦‚ GitHub ç§æœ‰ä»“åº“ï¼‰ã€‚è¿™ä¼šæ•èŽ·è®°å¿† + AGENTS/SOUL/USER æ–‡ä»¶ï¼Œè®©ä½ ä»¥åŽå¯ä»¥æ¢å¤åŠ©æ‰‹çš„â€œæ€ç»´â€ã€‚
 
-**不要**提交 `~/.openclaw` 下的任何内容（凭据、会话、令牌）。如果你需要完整恢复，将工作区和状态目录分别备份（参阅上面的迁移问题）。
+**ä¸è¦**æäº¤ `~/.` ä¸‹çš„ä»»ä½•å†…å®¹ï¼ˆå‡­æ®ã€ä¼šè¯ã€ä»¤ç‰Œï¼‰ã€‚å¦‚æžœä½ éœ€è¦å®Œæ•´æ¢å¤ï¼Œå°†å·¥ä½œåŒºå’ŒçŠ¶æ€ç›®å½•åˆ†åˆ«å¤‡ä»½ï¼ˆå‚é˜…ä¸Šé¢çš„è¿ç§»é—®é¢˜ï¼‰ã€‚
 
-文档：[智能体工作区](/concepts/agent-workspace)。
+æ–‡æ¡£ï¼š[æ™ºèƒ½ä½“å·¥ä½œåŒº](/concepts/agent-workspace)ã€‚
 
-### 如何完全卸载 OpenClaw
+### å¦‚ä½•å®Œå…¨å¸è½½ 
 
-参阅专门指南：[卸载](/install/uninstall)。
+å‚é˜…ä¸“é—¨æŒ‡å—ï¼š[å¸è½½](/install/uninstall)ã€‚
 
-### 智能体可以在工作区外工作吗
+### æ™ºèƒ½ä½“å¯ä»¥åœ¨å·¥ä½œåŒºå¤–å·¥ä½œå—
 
-可以。工作区是**默认 cwd** 和记忆锚点，不是硬沙箱。相对路径在工作区内解析，但绝对路径可以访问其他主机位置，除非启用了沙箱。如果你需要隔离，使用 [`agents.defaults.sandbox`](/gateway/sandboxing) 或按智能体的沙箱设置。如果你希望某个仓库作为默认工作目录，将该智能体的 `workspace` 指向仓库根目录。OpenClaw 仓库只是源代码；除非你有意要让智能体在其中工作，否则保持工作区独立。
+å¯ä»¥ã€‚å·¥ä½œåŒºæ˜¯**é»˜è®¤ cwd** å’Œè®°å¿†é”šç‚¹ï¼Œä¸æ˜¯ç¡¬æ²™ç®±ã€‚ç›¸å¯¹è·¯å¾„åœ¨å·¥ä½œåŒºå†…è§£æžï¼Œä½†ç»å¯¹è·¯å¾„å¯ä»¥è®¿é—®å…¶ä»–ä¸»æœºä½ç½®ï¼Œé™¤éžå¯ç”¨äº†æ²™ç®±ã€‚å¦‚æžœä½ éœ€è¦éš”ç¦»ï¼Œä½¿ç”¨ [`agents.defaults.sandbox`](/gateway/sandboxing) æˆ–æŒ‰æ™ºèƒ½ä½“çš„æ²™ç®±è®¾ç½®ã€‚å¦‚æžœä½ å¸Œæœ›æŸä¸ªä»“åº“ä½œä¸ºé»˜è®¤å·¥ä½œç›®å½•ï¼Œå°†è¯¥æ™ºèƒ½ä½“çš„ `workspace` æŒ‡å‘ä»“åº“æ ¹ç›®å½•ã€‚ ä»“åº“åªæ˜¯æºä»£ç ï¼›é™¤éžä½ æœ‰æ„è¦è®©æ™ºèƒ½ä½“åœ¨å…¶ä¸­å·¥ä½œï¼Œå¦åˆ™ä¿æŒå·¥ä½œåŒºç‹¬ç«‹ã€‚
 
-示例（仓库作为默认 cwd）：
+ç¤ºä¾‹ï¼ˆä»“åº“ä½œä¸ºé»˜è®¤ cwdï¼‰ï¼š
 
 ```json5
 {
@@ -1214,25 +1214,25 @@ OpenClaw 还会运行**静默的预压缩记忆刷新**，以提醒模型在自�
 }
 ```
 
-### 我处于远程模式——会话存储在哪里
+### æˆ‘å¤„äºŽè¿œç¨‹æ¨¡å¼â€”â€”ä¼šè¯å­˜å‚¨åœ¨å“ªé‡Œ
 
-会话状态归 **Gateway 网关主机**所有。如果你处于远程模式，你关心的会话存储在远程机器上，而不是你的本地笔记本上。参阅[会话管理](/concepts/session)。
+ä¼šè¯çŠ¶æ€å½’ **Gateway ç½‘å…³ä¸»æœº**æ‰€æœ‰ã€‚å¦‚æžœä½ å¤„äºŽè¿œç¨‹æ¨¡å¼ï¼Œä½ å…³å¿ƒçš„ä¼šè¯å­˜å‚¨åœ¨è¿œç¨‹æœºå™¨ä¸Šï¼Œè€Œä¸æ˜¯ä½ çš„æœ¬åœ°ç¬”è®°æœ¬ä¸Šã€‚å‚é˜…[ä¼šè¯ç®¡ç†](/concepts/session)ã€‚
 
-## 配置基础
+## é…ç½®åŸºç¡€
 
-### 配置文件是什么格式？在哪里
+### é…ç½®æ–‡ä»¶æ˜¯ä»€ä¹ˆæ ¼å¼ï¼Ÿåœ¨å“ªé‡Œ
 
-OpenClaw 从 `$OPENCLAW_CONFIG_PATH`（默认：`~/.openclaw/openclaw.json`）读取可选的 **JSON5** 配置：
+ ä»Ž `$_CONFIG_PATH`ï¼ˆé»˜è®¤ï¼š`~/./.json`ï¼‰è¯»å–å¯é€‰çš„ **JSON5** é…ç½®ï¼š
 
 ```
-$OPENCLAW_CONFIG_PATH
+$_CONFIG_PATH
 ```
 
-如果文件不存在，使用安全的默认值（包括默认工作区 `~/.openclaw/workspace`）。
+å¦‚æžœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œä½¿ç”¨å®‰å…¨çš„é»˜è®¤å€¼ï¼ˆåŒ…æ‹¬é»˜è®¤å·¥ä½œåŒº `~/./workspace`ï¼‰ã€‚
 
-### 我设置了 gateway.bind: "lan"（或 "tailnet"），现在什么都监听不了 / UI 显示未授权
+### æˆ‘è®¾ç½®äº† gateway.bind: "lan"ï¼ˆæˆ– "tailnet"ï¼‰ï¼ŒçŽ°åœ¨ä»€ä¹ˆéƒ½ç›‘å¬ä¸äº† / UI æ˜¾ç¤ºæœªæŽˆæƒ
 
-非 local loopback 绑定**需要认证**。配置 `gateway.auth.mode` + `gateway.auth.token`（或使用 `OPENCLAW_GATEWAY_TOKEN`）。
+éž local loopback ç»‘å®š**éœ€è¦è®¤è¯**ã€‚é…ç½® `gateway.auth.mode` + `gateway.auth.token`ï¼ˆæˆ–ä½¿ç”¨ `_GATEWAY_TOKEN`ï¼‰ã€‚
 
 ```json5
 {
@@ -1246,27 +1246,27 @@ $OPENCLAW_CONFIG_PATH
 }
 ```
 
-注意：
+æ³¨æ„ï¼š
 
-- `gateway.remote.token` 仅用于**远程 CLI 调用**；它不启用本地 Gateway 网关认证。
-- 控制 UI 通过 `connect.params.auth.token`（存储在应用/UI 设置中）进行认证。避免将令牌放在 URL 中。
+- `gateway.remote.token` ä»…ç”¨äºŽ**è¿œç¨‹ CLI è°ƒç”¨**ï¼›å®ƒä¸å¯ç”¨æœ¬åœ° Gateway ç½‘å…³è®¤è¯ã€‚
+- æŽ§åˆ¶ UI é€šè¿‡ `connect.params.auth.token`ï¼ˆå­˜å‚¨åœ¨åº”ç”¨/UI è®¾ç½®ä¸­ï¼‰è¿›è¡Œè®¤è¯ã€‚é¿å…å°†ä»¤ç‰Œæ”¾åœ¨ URL ä¸­ã€‚
 
-### 为什么现在在 localhost 也需要令牌
+### ä¸ºä»€ä¹ˆçŽ°åœ¨åœ¨ localhost ä¹Ÿéœ€è¦ä»¤ç‰Œ
 
-向导默认生成 Gateway 网关令牌（即使在 local loopback 上），因此**本地 WS 客户端必须认证**。这阻止了其他本地进程调用 Gateway 网关。在控制 UI 设置（或你的客户端配置）中粘贴令牌以连接。
+å‘å¯¼é»˜è®¤ç”Ÿæˆ Gateway ç½‘å…³ä»¤ç‰Œï¼ˆå³ä½¿åœ¨ local loopback ä¸Šï¼‰ï¼Œå› æ­¤**æœ¬åœ° WS å®¢æˆ·ç«¯å¿…é¡»è®¤è¯**ã€‚è¿™é˜»æ­¢äº†å…¶ä»–æœ¬åœ°è¿›ç¨‹è°ƒç”¨ Gateway ç½‘å…³ã€‚åœ¨æŽ§åˆ¶ UI è®¾ç½®ï¼ˆæˆ–ä½ çš„å®¢æˆ·ç«¯é…ç½®ï¼‰ä¸­ç²˜è´´ä»¤ç‰Œä»¥è¿žæŽ¥ã€‚
 
-如果你**确实**想要开放 local loopback，从配置中移除 `gateway.auth`。Doctor 可以随时为你生成令牌：`openclaw doctor --generate-gateway-token`。
+å¦‚æžœä½ **ç¡®å®ž**æƒ³è¦å¼€æ”¾ local loopbackï¼Œä»Žé…ç½®ä¸­ç§»é™¤ `gateway.auth`ã€‚Doctor å¯ä»¥éšæ—¶ä¸ºä½ ç”Ÿæˆä»¤ç‰Œï¼š` doctor --generate-gateway-token`ã€‚
 
-### 更改配置后需要重启吗
+### æ›´æ”¹é…ç½®åŽéœ€è¦é‡å¯å—
 
-Gateway 网关监视配置文件并支持热重载：
+Gateway ç½‘å…³ç›‘è§†é…ç½®æ–‡ä»¶å¹¶æ”¯æŒçƒ­é‡è½½ï¼š
 
-- `gateway.reload.mode: "hybrid"`（默认）：安全更改热应用，关键更改重启
-- 也支持 `hot`、`restart`、`off`
+- `gateway.reload.mode: "hybrid"`ï¼ˆé»˜è®¤ï¼‰ï¼šå®‰å…¨æ›´æ”¹çƒ­åº”ç”¨ï¼Œå…³é”®æ›´æ”¹é‡å¯
+- ä¹Ÿæ”¯æŒ `hot`ã€`restart`ã€`off`
 
-### 如何启用网络搜索（和网页抓取）
+### å¦‚ä½•å¯ç”¨ç½‘ç»œæœç´¢ï¼ˆå’Œç½‘é¡µæŠ“å–ï¼‰
 
-`web_fetch` 无需 API 密钥即可工作。`web_search` 需要 Brave Search API 密钥。**推荐：** 运行 `openclaw configure --section web` 将其存储在 `tools.web.search.apiKey` 中。环境变量替代方案：为 Gateway 网关进程设置 `BRAVE_API_KEY`。
+`web_fetch` æ— éœ€ API å¯†é’¥å³å¯å·¥ä½œã€‚`web_search` éœ€è¦ Brave Search API å¯†é’¥ã€‚**æŽ¨èï¼š** è¿è¡Œ ` configure --section web` å°†å…¶å­˜å‚¨åœ¨ `tools.web.search.apiKey` ä¸­ã€‚çŽ¯å¢ƒå˜é‡æ›¿ä»£æ–¹æ¡ˆï¼šä¸º Gateway ç½‘å…³è¿›ç¨‹è®¾ç½® `BRAVE_API_KEY`ã€‚
 
 ```json5
 {
@@ -1285,47 +1285,47 @@ Gateway 网关监视配置文件并支持热重载：
 }
 ```
 
-注意：
+æ³¨æ„ï¼š
 
-- 如果你使用允许列表，添加 `web_search`/`web_fetch` 或 `group:web`。
-- `web_fetch` 默认启用（除非明确禁用）。
-- 守护进程从 `~/.openclaw/.env`（或服务环境）读取环境变量。
+- å¦‚æžœä½ ä½¿ç”¨å…è®¸åˆ—è¡¨ï¼Œæ·»åŠ  `web_search`/`web_fetch` æˆ– `group:web`ã€‚
+- `web_fetch` é»˜è®¤å¯ç”¨ï¼ˆé™¤éžæ˜Žç¡®ç¦ç”¨ï¼‰ã€‚
+- å®ˆæŠ¤è¿›ç¨‹ä»Ž `~/./.env`ï¼ˆæˆ–æœåŠ¡çŽ¯å¢ƒï¼‰è¯»å–çŽ¯å¢ƒå˜é‡ã€‚
 
-文档：[Web 工具](/tools/web)。
+æ–‡æ¡£ï¼š[Web å·¥å…·](/tools/web)ã€‚
 
-### config.apply 清空了我的配置，如何恢复和避免
+### config.apply æ¸…ç©ºäº†æˆ‘çš„é…ç½®ï¼Œå¦‚ä½•æ¢å¤å’Œé¿å…
 
-`config.apply` 替换**整个配置**。如果你发送部分对象，其他所有内容都会被移除。
+`config.apply` æ›¿æ¢**æ•´ä¸ªé…ç½®**ã€‚å¦‚æžœä½ å‘é€éƒ¨åˆ†å¯¹è±¡ï¼Œå…¶ä»–æ‰€æœ‰å†…å®¹éƒ½ä¼šè¢«ç§»é™¤ã€‚
 
-恢复：
+æ¢å¤ï¼š
 
-- 从备份恢复（git 或复制的 `~/.openclaw/openclaw.json`）。
-- 如果没有备份，重新运行 `openclaw doctor` 并重新配置渠道/模型。
-- 如果这是意外情况，提交 bug 并附上你最后已知的配置或任何备份。
-- 本地编码智能体通常可以从日志或历史中重建工作配置。
+- ä»Žå¤‡ä»½æ¢å¤ï¼ˆgit æˆ–å¤åˆ¶çš„ `~/./.json`ï¼‰ã€‚
+- å¦‚æžœæ²¡æœ‰å¤‡ä»½ï¼Œé‡æ–°è¿è¡Œ ` doctor` å¹¶é‡æ–°é…ç½®æ¸ é“/æ¨¡åž‹ã€‚
+- å¦‚æžœè¿™æ˜¯æ„å¤–æƒ…å†µï¼Œæäº¤ bug å¹¶é™„ä¸Šä½ æœ€åŽå·²çŸ¥çš„é…ç½®æˆ–ä»»ä½•å¤‡ä»½ã€‚
+- æœ¬åœ°ç¼–ç æ™ºèƒ½ä½“é€šå¸¸å¯ä»¥ä»Žæ—¥å¿—æˆ–åŽ†å²ä¸­é‡å»ºå·¥ä½œé…ç½®ã€‚
 
-避免方法：
+é¿å…æ–¹æ³•ï¼š
 
-- 对小更改使用 `openclaw config set`。
-- 对交互式编辑使用 `openclaw configure`。
+- å¯¹å°æ›´æ”¹ä½¿ç”¨ ` config set`ã€‚
+- å¯¹äº¤äº’å¼ç¼–è¾‘ä½¿ç”¨ ` configure`ã€‚
 
-文档：[Config](/cli/config)、[Configure](/cli/configure)、[Doctor](/gateway/doctor)。
+æ–‡æ¡£ï¼š[Config](/cli/config)ã€[Configure](/cli/configure)ã€[Doctor](/gateway/doctor)ã€‚
 
-### 如何运行一个中心 Gateway 网关配合跨设备的专用工作节点
+### å¦‚ä½•è¿è¡Œä¸€ä¸ªä¸­å¿ƒ Gateway ç½‘å…³é…åˆè·¨è®¾å¤‡çš„ä¸“ç”¨å·¥ä½œèŠ‚ç‚¹
 
-常见模式是**一个 Gateway 网关**（例如 Raspberry Pi）加上**节点**和**智能体**：
+å¸¸è§æ¨¡å¼æ˜¯**ä¸€ä¸ª Gateway ç½‘å…³**ï¼ˆä¾‹å¦‚ Raspberry Piï¼‰åŠ ä¸Š**èŠ‚ç‚¹**å’Œ**æ™ºèƒ½ä½“**ï¼š
 
-- **Gateway 网关（中心）：** 拥有渠道（Signal/WhatsApp）、路由和会话。
-- **节点（设备）：** Mac/iOS/Android 作为外围设备连接，暴露本地工具（`system.run`、`canvas`、`camera`）。
-- **智能体（工作者）：** 用于特殊角色的独立大脑/工作区（例如“Hetzner 运维”、“个人数据”）。
-- **子智能体：** 需要并行处理时从主智能体生成后台工作。
-- **TUI：** 连接到 Gateway 网关并切换智能体/会话。
+- **Gateway ç½‘å…³ï¼ˆä¸­å¿ƒï¼‰ï¼š** æ‹¥æœ‰æ¸ é“ï¼ˆSignal/WhatsAppï¼‰ã€è·¯ç”±å’Œä¼šè¯ã€‚
+- **èŠ‚ç‚¹ï¼ˆè®¾å¤‡ï¼‰ï¼š** Mac/iOS/Android ä½œä¸ºå¤–å›´è®¾å¤‡è¿žæŽ¥ï¼Œæš´éœ²æœ¬åœ°å·¥å…·ï¼ˆ`system.run`ã€`canvas`ã€`camera`ï¼‰ã€‚
+- **æ™ºèƒ½ä½“ï¼ˆå·¥ä½œè€…ï¼‰ï¼š** ç”¨äºŽç‰¹æ®Šè§’è‰²çš„ç‹¬ç«‹å¤§è„‘/å·¥ä½œåŒºï¼ˆä¾‹å¦‚â€œHetzner è¿ç»´â€ã€â€œä¸ªäººæ•°æ®â€ï¼‰ã€‚
+- **å­æ™ºèƒ½ä½“ï¼š** éœ€è¦å¹¶è¡Œå¤„ç†æ—¶ä»Žä¸»æ™ºèƒ½ä½“ç”ŸæˆåŽå°å·¥ä½œã€‚
+- **TUIï¼š** è¿žæŽ¥åˆ° Gateway ç½‘å…³å¹¶åˆ‡æ¢æ™ºèƒ½ä½“/ä¼šè¯ã€‚
 
-文档：[节点](/nodes)、[远程访问](/gateway/remote)、[多智能体路由](/concepts/multi-agent)、[子智能体](/tools/subagents)、[TUI](/tui)。
+æ–‡æ¡£ï¼š[èŠ‚ç‚¹](/nodes)ã€[è¿œç¨‹è®¿é—®](/gateway/remote)ã€[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)ã€[å­æ™ºèƒ½ä½“](/tools/subagents)ã€[TUI](/tui)ã€‚
 
-### OpenClaw 浏览器可以无头运行吗
+###  æµè§ˆå™¨å¯ä»¥æ— å¤´è¿è¡Œå—
 
-可以。这是一个配置选项：
+å¯ä»¥ã€‚è¿™æ˜¯ä¸€ä¸ªé…ç½®é€‰é¡¹ï¼š
 
 ```json5
 {
@@ -1338,185 +1338,185 @@ Gateway 网关监视配置文件并支持热重载：
 }
 ```
 
-默认为 `false`（有头）。无头模式在某些网站上更容易触发反机器人检测。参阅[浏览器](/tools/browser)。
+é»˜è®¤ä¸º `false`ï¼ˆæœ‰å¤´ï¼‰ã€‚æ— å¤´æ¨¡å¼åœ¨æŸäº›ç½‘ç«™ä¸Šæ›´å®¹æ˜“è§¦å‘åæœºå™¨äººæ£€æµ‹ã€‚å‚é˜…[æµè§ˆå™¨](/tools/browser)ã€‚
 
-无头模式使用**相同的 Chromium 引擎**，适用于大多数自动化（表单、点击、抓取、登录）。主要区别：
+æ— å¤´æ¨¡å¼ä½¿ç”¨**ç›¸åŒçš„ Chromium å¼•æ“Ž**ï¼Œé€‚ç”¨äºŽå¤§å¤šæ•°è‡ªåŠ¨åŒ–ï¼ˆè¡¨å•ã€ç‚¹å‡»ã€æŠ“å–ã€ç™»å½•ï¼‰ã€‚ä¸»è¦åŒºåˆ«ï¼š
 
-- 没有可见的浏览器窗口（如果需要视觉效果使用截图）。
-- 某些网站在无头模式下对自动化更严格（验证码、反机器人）。例如，X/Twitter 经常阻止无头会话。
+- æ²¡æœ‰å¯è§çš„æµè§ˆå™¨çª—å£ï¼ˆå¦‚æžœéœ€è¦è§†è§‰æ•ˆæžœä½¿ç”¨æˆªå›¾ï¼‰ã€‚
+- æŸäº›ç½‘ç«™åœ¨æ— å¤´æ¨¡å¼ä¸‹å¯¹è‡ªåŠ¨åŒ–æ›´ä¸¥æ ¼ï¼ˆéªŒè¯ç ã€åæœºå™¨äººï¼‰ã€‚ä¾‹å¦‚ï¼ŒX/Twitter ç»å¸¸é˜»æ­¢æ— å¤´ä¼šè¯ã€‚
 
-### 如何使用 Brave 进行浏览器控制
+### å¦‚ä½•ä½¿ç”¨ Brave è¿›è¡Œæµè§ˆå™¨æŽ§åˆ¶
 
-将 `browser.executablePath` 设置为你的 Brave 二进制文件（或任何基于 Chromium 的浏览器）并重启 Gateway 网关。
-参阅[浏览器](/tools/browser#use-brave-or-another-chromium-based-browser)中的完整配置示例。
+å°† `browser.executablePath` è®¾ç½®ä¸ºä½ çš„ Brave äºŒè¿›åˆ¶æ–‡ä»¶ï¼ˆæˆ–ä»»ä½•åŸºäºŽ Chromium çš„æµè§ˆå™¨ï¼‰å¹¶é‡å¯ Gateway ç½‘å…³ã€‚
+å‚é˜…[æµè§ˆå™¨](/tools/browser#use-brave-or-another-chromium-based-browser)ä¸­çš„å®Œæ•´é…ç½®ç¤ºä¾‹ã€‚
 
-## 远程 Gateway 网关与节点
+## è¿œç¨‹ Gateway ç½‘å…³ä¸ŽèŠ‚ç‚¹
 
-### 命令如何在 Telegram、Gateway 网关和节点之间传播
+### å‘½ä»¤å¦‚ä½•åœ¨ Telegramã€Gateway ç½‘å…³å’ŒèŠ‚ç‚¹ä¹‹é—´ä¼ æ’­
 
-Telegram 消息由 **Gateway 网关** 处理。Gateway 网关运行智能体，只有在需要节点工具时才通过 **Gateway 网关 WebSocket** 调用节点：
+Telegram æ¶ˆæ¯ç”± **Gateway ç½‘å…³** å¤„ç†ã€‚Gateway ç½‘å…³è¿è¡Œæ™ºèƒ½ä½“ï¼Œåªæœ‰åœ¨éœ€è¦èŠ‚ç‚¹å·¥å…·æ—¶æ‰é€šè¿‡ **Gateway ç½‘å…³ WebSocket** è°ƒç”¨èŠ‚ç‚¹ï¼š
 
-Telegram → Gateway 网关 → 智能体 → `node.*` → 节点 → Gateway 网关 → Telegram
+Telegram â†’ Gateway ç½‘å…³ â†’ æ™ºèƒ½ä½“ â†’ `node.*` â†’ èŠ‚ç‚¹ â†’ Gateway ç½‘å…³ â†’ Telegram
 
-节点不会看到入站提供商流量；它们只接收节点 RPC 调用。
+èŠ‚ç‚¹ä¸ä¼šçœ‹åˆ°å…¥ç«™æä¾›å•†æµé‡ï¼›å®ƒä»¬åªæŽ¥æ”¶èŠ‚ç‚¹ RPC è°ƒç”¨ã€‚
 
-### 如果 Gateway 网关托管在远程，我的智能体如何访问我的电脑
+### å¦‚æžœ Gateway ç½‘å…³æ‰˜ç®¡åœ¨è¿œç¨‹ï¼Œæˆ‘çš„æ™ºèƒ½ä½“å¦‚ä½•è®¿é—®æˆ‘çš„ç”µè„‘
 
-简短回答：**将你的电脑配对为节点**。Gateway 网关运行在其他地方，但它可以通过 Gateway 网关 WebSocket 在你的本地机器上调用 `node.*` 工具（屏幕、摄像头、系统）。
+ç®€çŸ­å›žç­”ï¼š**å°†ä½ çš„ç”µè„‘é…å¯¹ä¸ºèŠ‚ç‚¹**ã€‚Gateway ç½‘å…³è¿è¡Œåœ¨å…¶ä»–åœ°æ–¹ï¼Œä½†å®ƒå¯ä»¥é€šè¿‡ Gateway ç½‘å…³ WebSocket åœ¨ä½ çš„æœ¬åœ°æœºå™¨ä¸Šè°ƒç”¨ `node.*` å·¥å…·ï¼ˆå±å¹•ã€æ‘„åƒå¤´ã€ç³»ç»Ÿï¼‰ã€‚
 
-典型设置：
+å…¸åž‹è®¾ç½®ï¼š
 
-1. 在常开主机（VPS/家庭服务器）上运行 Gateway 网关。
-2. 将 Gateway 网关主机和你的电脑放在同一个 tailnet 上。
-3. 确保 Gateway 网关 WS 可达（tailnet 绑定或 SSH 隧道）。
-4. 在本地打开 macOS 应用并以**远程 over SSH** 模式连接（或直接 tailnet），使其可以注册为节点。
-5. 在 Gateway 网关上批准节点：
+1. åœ¨å¸¸å¼€ä¸»æœºï¼ˆVPS/å®¶åº­æœåŠ¡å™¨ï¼‰ä¸Šè¿è¡Œ Gateway ç½‘å…³ã€‚
+2. å°† Gateway ç½‘å…³ä¸»æœºå’Œä½ çš„ç”µè„‘æ”¾åœ¨åŒä¸€ä¸ª tailnet ä¸Šã€‚
+3. ç¡®ä¿ Gateway ç½‘å…³ WS å¯è¾¾ï¼ˆtailnet ç»‘å®šæˆ– SSH éš§é“ï¼‰ã€‚
+4. åœ¨æœ¬åœ°æ‰“å¼€ macOS åº”ç”¨å¹¶ä»¥**è¿œç¨‹ over SSH** æ¨¡å¼è¿žæŽ¥ï¼ˆæˆ–ç›´æŽ¥ tailnetï¼‰ï¼Œä½¿å…¶å¯ä»¥æ³¨å†Œä¸ºèŠ‚ç‚¹ã€‚
+5. åœ¨ Gateway ç½‘å…³ä¸Šæ‰¹å‡†èŠ‚ç‚¹ï¼š
    ```bash
-   openclaw nodes pending
-   openclaw nodes approve <requestId>
+    nodes pending
+    nodes approve <requestId>
    ```
 
-不需要单独的 TCP 桥接；节点通过 Gateway 网关 WebSocket 连接。
+ä¸éœ€è¦å•ç‹¬çš„ TCP æ¡¥æŽ¥ï¼›èŠ‚ç‚¹é€šè¿‡ Gateway ç½‘å…³ WebSocket è¿žæŽ¥ã€‚
 
-安全提醒：配对 macOS 节点允许在该机器上执行 `system.run`。只配对你信任的设备，并查阅[安全](/gateway/security)。
+å®‰å…¨æé†’ï¼šé…å¯¹ macOS èŠ‚ç‚¹å…è®¸åœ¨è¯¥æœºå™¨ä¸Šæ‰§è¡Œ `system.run`ã€‚åªé…å¯¹ä½ ä¿¡ä»»çš„è®¾å¤‡ï¼Œå¹¶æŸ¥é˜…[å®‰å…¨](/gateway/security)ã€‚
 
-文档：[节点](/nodes)、[Gateway 网关协议](/gateway/protocol)、[macOS 远程模式](/platforms/mac/remote)、[安全](/gateway/security)。
+æ–‡æ¡£ï¼š[èŠ‚ç‚¹](/nodes)ã€[Gateway ç½‘å…³åè®®](/gateway/protocol)ã€[macOS è¿œç¨‹æ¨¡å¼](/platforms/mac/remote)ã€[å®‰å…¨](/gateway/security)ã€‚
 
-### Tailscale 已连接但收不到回复，怎么办
+### Tailscale å·²è¿žæŽ¥ä½†æ”¶ä¸åˆ°å›žå¤ï¼Œæ€Žä¹ˆåŠž
 
-检查基础项：
+æ£€æŸ¥åŸºç¡€é¡¹ï¼š
 
-- Gateway 网关正在运行：`openclaw gateway status`
-- Gateway 网关健康：`openclaw status`
-- 渠道健康：`openclaw channels status`
+- Gateway ç½‘å…³æ­£åœ¨è¿è¡Œï¼š` gateway status`
+- Gateway ç½‘å…³å¥åº·ï¼š` status`
+- æ¸ é“å¥åº·ï¼š` channels status`
 
-然后验证认证和路由：
+ç„¶åŽéªŒè¯è®¤è¯å’Œè·¯ç”±ï¼š
 
-- 如果你使用 Tailscale Serve，确保 `gateway.auth.allowTailscale` 设置正确。
-- 如果你通过 SSH 隧道连接，确认本地隧道已启动并指向正确端口。
-- 确认你的允许列表（私信或群组）包含你的账户。
+- å¦‚æžœä½ ä½¿ç”¨ Tailscale Serveï¼Œç¡®ä¿ `gateway.auth.allowTailscale` è®¾ç½®æ­£ç¡®ã€‚
+- å¦‚æžœä½ é€šè¿‡ SSH éš§é“è¿žæŽ¥ï¼Œç¡®è®¤æœ¬åœ°éš§é“å·²å¯åŠ¨å¹¶æŒ‡å‘æ­£ç¡®ç«¯å£ã€‚
+- ç¡®è®¤ä½ çš„å…è®¸åˆ—è¡¨ï¼ˆç§ä¿¡æˆ–ç¾¤ç»„ï¼‰åŒ…å«ä½ çš„è´¦æˆ·ã€‚
 
-文档：[Tailscale](/gateway/tailscale)、[远程访问](/gateway/remote)、[渠道](/channels)。
+æ–‡æ¡£ï¼š[Tailscale](/gateway/tailscale)ã€[è¿œç¨‹è®¿é—®](/gateway/remote)ã€[æ¸ é“](/channels)ã€‚
 
-### 两个 OpenClaw 实例（本地 + VPS）可以互相通信吗
+### ä¸¤ä¸ª  å®žä¾‹ï¼ˆæœ¬åœ° + VPSï¼‰å¯ä»¥äº’ç›¸é€šä¿¡å—
 
-可以。没有内置的“机器人对机器人”桥接，但你可以通过几种可靠的方式实现：
+å¯ä»¥ã€‚æ²¡æœ‰å†…ç½®çš„â€œæœºå™¨äººå¯¹æœºå™¨äººâ€æ¡¥æŽ¥ï¼Œä½†ä½ å¯ä»¥é€šè¿‡å‡ ç§å¯é çš„æ–¹å¼å®žçŽ°ï¼š
 
-**最简单：** 使用两个机器人都能访问的普通聊天渠道（Telegram/Slack/WhatsApp）。让机器人 A 给机器人 B 发消息，然后让机器人 B 正常回复。
+**æœ€ç®€å•ï¼š** ä½¿ç”¨ä¸¤ä¸ªæœºå™¨äººéƒ½èƒ½è®¿é—®çš„æ™®é€šèŠå¤©æ¸ é“ï¼ˆTelegram/Slack/WhatsAppï¼‰ã€‚è®©æœºå™¨äºº A ç»™æœºå™¨äºº B å‘æ¶ˆæ¯ï¼Œç„¶åŽè®©æœºå™¨äºº B æ­£å¸¸å›žå¤ã€‚
 
-**CLI 桥接（通用）：** 运行一个脚本调用另一个 Gateway 网关，使用 `openclaw agent --message ... --deliver`，定向到另一个机器人监听的聊天。如果一个机器人在远程 VPS 上，通过 SSH/Tailscale 将你的 CLI 指向该远程 Gateway 网关（参阅[远程访问](/gateway/remote)）。
+**CLI æ¡¥æŽ¥ï¼ˆé€šç”¨ï¼‰ï¼š** è¿è¡Œä¸€ä¸ªè„šæœ¬è°ƒç”¨å¦ä¸€ä¸ª Gateway ç½‘å…³ï¼Œä½¿ç”¨ ` agent --message ... --deliver`ï¼Œå®šå‘åˆ°å¦ä¸€ä¸ªæœºå™¨äººç›‘å¬çš„èŠå¤©ã€‚å¦‚æžœä¸€ä¸ªæœºå™¨äººåœ¨è¿œç¨‹ VPS ä¸Šï¼Œé€šè¿‡ SSH/Tailscale å°†ä½ çš„ CLI æŒ‡å‘è¯¥è¿œç¨‹ Gateway ç½‘å…³ï¼ˆå‚é˜…[è¿œç¨‹è®¿é—®](/gateway/remote)ï¼‰ã€‚
 
-示例模式（从能到达目标 Gateway 网关的机器上运行）：
+ç¤ºä¾‹æ¨¡å¼ï¼ˆä»Žèƒ½åˆ°è¾¾ç›®æ ‡ Gateway ç½‘å…³çš„æœºå™¨ä¸Šè¿è¡Œï¼‰ï¼š
 
 ```bash
-openclaw agent --message "Hello from local bot" --deliver --channel telegram --reply-to <chat-id>
+ agent --message "Hello from local bot" --deliver --channel telegram --reply-to <chat-id>
 ```
 
-提示：添加护栏防止两个机器人无限循环（仅提及、渠道允许列表或“不回复机器人消息”规则）。
+æç¤ºï¼šæ·»åŠ æŠ¤æ é˜²æ­¢ä¸¤ä¸ªæœºå™¨äººæ— é™å¾ªçŽ¯ï¼ˆä»…æåŠã€æ¸ é“å…è®¸åˆ—è¡¨æˆ–â€œä¸å›žå¤æœºå™¨äººæ¶ˆæ¯â€è§„åˆ™ï¼‰ã€‚
 
-文档：[远程访问](/gateway/remote)、[Agent CLI](/cli/agent)、[Agent send](/tools/agent-send)。
+æ–‡æ¡£ï¼š[è¿œç¨‹è®¿é—®](/gateway/remote)ã€[Agent CLI](/cli/agent)ã€[Agent send](/tools/agent-send)ã€‚
 
-### 多个智能体需要独立的 VPS 吗
+### å¤šä¸ªæ™ºèƒ½ä½“éœ€è¦ç‹¬ç«‹çš„ VPS å—
 
-不需要。一个 Gateway 网关可以托管多个智能体，每个都有自己的工作区、模型默认值和路由。这是正常设置，比每个智能体一个 VPS 便宜且简单得多。
+ä¸éœ€è¦ã€‚ä¸€ä¸ª Gateway ç½‘å…³å¯ä»¥æ‰˜ç®¡å¤šä¸ªæ™ºèƒ½ä½“ï¼Œæ¯ä¸ªéƒ½æœ‰è‡ªå·±çš„å·¥ä½œåŒºã€æ¨¡åž‹é»˜è®¤å€¼å’Œè·¯ç”±ã€‚è¿™æ˜¯æ­£å¸¸è®¾ç½®ï¼Œæ¯”æ¯ä¸ªæ™ºèƒ½ä½“ä¸€ä¸ª VPS ä¾¿å®œä¸”ç®€å•å¾—å¤šã€‚
 
-只有在需要硬隔离（安全边界）或非常不同的配置（你不想共享）时才使用独立的 VPS。否则保持一个 Gateway 网关并使用多个智能体或子智能体。
+åªæœ‰åœ¨éœ€è¦ç¡¬éš”ç¦»ï¼ˆå®‰å…¨è¾¹ç•Œï¼‰æˆ–éžå¸¸ä¸åŒçš„é…ç½®ï¼ˆä½ ä¸æƒ³å…±äº«ï¼‰æ—¶æ‰ä½¿ç”¨ç‹¬ç«‹çš„ VPSã€‚å¦åˆ™ä¿æŒä¸€ä¸ª Gateway ç½‘å…³å¹¶ä½¿ç”¨å¤šä¸ªæ™ºèƒ½ä½“æˆ–å­æ™ºèƒ½ä½“ã€‚
 
-### 在个人笔记本电脑上使用节点而不是从 VPS SSH 有什么好处
+### åœ¨ä¸ªäººç¬”è®°æœ¬ç”µè„‘ä¸Šä½¿ç”¨èŠ‚ç‚¹è€Œä¸æ˜¯ä»Ž VPS SSH æœ‰ä»€ä¹ˆå¥½å¤„
 
-有——节点是从远程 Gateway 网关到达你笔记本的首选方式，它们解锁的不仅仅是 shell 访问。Gateway 网关运行在 macOS/Linux（Windows 通过 WSL2）上且是轻量级的（小型 VPS 或 Raspberry Pi 级别的设备就够用；4 GB RAM 足够），所以常见设置是一个常开主机加上你的笔记本作为节点。
+æœ‰â€”â€”èŠ‚ç‚¹æ˜¯ä»Žè¿œç¨‹ Gateway ç½‘å…³åˆ°è¾¾ä½ ç¬”è®°æœ¬çš„é¦–é€‰æ–¹å¼ï¼Œå®ƒä»¬è§£é”çš„ä¸ä»…ä»…æ˜¯ shell è®¿é—®ã€‚Gateway ç½‘å…³è¿è¡Œåœ¨ macOS/Linuxï¼ˆWindows é€šè¿‡ WSL2ï¼‰ä¸Šä¸”æ˜¯è½»é‡çº§çš„ï¼ˆå°åž‹ VPS æˆ– Raspberry Pi çº§åˆ«çš„è®¾å¤‡å°±å¤Ÿç”¨ï¼›4 GB RAM è¶³å¤Ÿï¼‰ï¼Œæ‰€ä»¥å¸¸è§è®¾ç½®æ˜¯ä¸€ä¸ªå¸¸å¼€ä¸»æœºåŠ ä¸Šä½ çš„ç¬”è®°æœ¬ä½œä¸ºèŠ‚ç‚¹ã€‚
 
-- **无需入站 SSH。** 节点向 Gateway 网关 WebSocket 发起出站连接并使用设备配对。
-- **更安全的执行控制。** `system.run` 受该笔记本上节点允许列表/审批的限制。
-- **更多设备工具。** 节点除了 `system.run` 还暴露 `canvas`、`camera` 和 `screen`。
-- **本地浏览器自动化。** 将 Gateway 网关保持在 VPS 上，但在本地运行 Chrome 并通过 Chrome 扩展 + 笔记本上的节点主机中继控制。
+- **æ— éœ€å…¥ç«™ SSHã€‚** èŠ‚ç‚¹å‘ Gateway ç½‘å…³ WebSocket å‘èµ·å‡ºç«™è¿žæŽ¥å¹¶ä½¿ç”¨è®¾å¤‡é…å¯¹ã€‚
+- **æ›´å®‰å…¨çš„æ‰§è¡ŒæŽ§åˆ¶ã€‚** `system.run` å—è¯¥ç¬”è®°æœ¬ä¸ŠèŠ‚ç‚¹å…è®¸åˆ—è¡¨/å®¡æ‰¹çš„é™åˆ¶ã€‚
+- **æ›´å¤šè®¾å¤‡å·¥å…·ã€‚** èŠ‚ç‚¹é™¤äº† `system.run` è¿˜æš´éœ² `canvas`ã€`camera` å’Œ `screen`ã€‚
+- **æœ¬åœ°æµè§ˆå™¨è‡ªåŠ¨åŒ–ã€‚** å°† Gateway ç½‘å…³ä¿æŒåœ¨ VPS ä¸Šï¼Œä½†åœ¨æœ¬åœ°è¿è¡Œ Chrome å¹¶é€šè¿‡ Chrome æ‰©å±• + ç¬”è®°æœ¬ä¸Šçš„èŠ‚ç‚¹ä¸»æœºä¸­ç»§æŽ§åˆ¶ã€‚
 
-SSH 对临时 shell 访问很好，但节点对于持续的智能体工作流和设备自动化更简单。
+SSH å¯¹ä¸´æ—¶ shell è®¿é—®å¾ˆå¥½ï¼Œä½†èŠ‚ç‚¹å¯¹äºŽæŒç»­çš„æ™ºèƒ½ä½“å·¥ä½œæµå’Œè®¾å¤‡è‡ªåŠ¨åŒ–æ›´ç®€å•ã€‚
 
-文档：[节点](/nodes)、[节点 CLI](/cli/nodes)、[Chrome 扩展](/tools/chrome-extension)。
+æ–‡æ¡£ï¼š[èŠ‚ç‚¹](/nodes)ã€[èŠ‚ç‚¹ CLI](/cli/nodes)ã€[Chrome æ‰©å±•](/tools/chrome-extension)ã€‚
 
-### 应该在第二台笔记本上安装还是只添加一个节点
+### åº”è¯¥åœ¨ç¬¬äºŒå°ç¬”è®°æœ¬ä¸Šå®‰è£…è¿˜æ˜¯åªæ·»åŠ ä¸€ä¸ªèŠ‚ç‚¹
 
-如果你只需要第二台笔记本上的**本地工具**（屏幕/摄像头/执行），将其添加为**节点**。这保持单一 Gateway 网关并避免重复配置。本地节点工具目前仅限 macOS，但我们计划扩展到其他操作系统。
+å¦‚æžœä½ åªéœ€è¦ç¬¬äºŒå°ç¬”è®°æœ¬ä¸Šçš„**æœ¬åœ°å·¥å…·**ï¼ˆå±å¹•/æ‘„åƒå¤´/æ‰§è¡Œï¼‰ï¼Œå°†å…¶æ·»åŠ ä¸º**èŠ‚ç‚¹**ã€‚è¿™ä¿æŒå•ä¸€ Gateway ç½‘å…³å¹¶é¿å…é‡å¤é…ç½®ã€‚æœ¬åœ°èŠ‚ç‚¹å·¥å…·ç›®å‰ä»…é™ macOSï¼Œä½†æˆ‘ä»¬è®¡åˆ’æ‰©å±•åˆ°å…¶ä»–æ“ä½œç³»ç»Ÿã€‚
 
-只有在需要**硬隔离**或两个完全独立的机器人时才安装第二个 Gateway 网关。
+åªæœ‰åœ¨éœ€è¦**ç¡¬éš”ç¦»**æˆ–ä¸¤ä¸ªå®Œå…¨ç‹¬ç«‹çš„æœºå™¨äººæ—¶æ‰å®‰è£…ç¬¬äºŒä¸ª Gateway ç½‘å…³ã€‚
 
-文档：[节点](/nodes)、[节点 CLI](/cli/nodes)、[多 Gateway 网关](/gateway/multiple-gateways)。
+æ–‡æ¡£ï¼š[èŠ‚ç‚¹](/nodes)ã€[èŠ‚ç‚¹ CLI](/cli/nodes)ã€[å¤š Gateway ç½‘å…³](/gateway/multiple-gateways)ã€‚
 
-### 节点会运行 Gateway 网关服务吗
+### èŠ‚ç‚¹ä¼šè¿è¡Œ Gateway ç½‘å…³æœåŠ¡å—
 
-不会。每台主机上应该只运行**一个 Gateway 网关**，除非你有意运行隔离的配置文件（参阅[多 Gateway 网关](/gateway/multiple-gateways)）。节点是连接到 Gateway 网关的外围设备（iOS/Android 节点，或 macOS 菜单栏应用的“节点模式”）。对于无头节点主机和 CLI 控制，参阅[节点主机 CLI](/cli/node)。
+ä¸ä¼šã€‚æ¯å°ä¸»æœºä¸Šåº”è¯¥åªè¿è¡Œ**ä¸€ä¸ª Gateway ç½‘å…³**ï¼Œé™¤éžä½ æœ‰æ„è¿è¡Œéš”ç¦»çš„é…ç½®æ–‡ä»¶ï¼ˆå‚é˜…[å¤š Gateway ç½‘å…³](/gateway/multiple-gateways)ï¼‰ã€‚èŠ‚ç‚¹æ˜¯è¿žæŽ¥åˆ° Gateway ç½‘å…³çš„å¤–å›´è®¾å¤‡ï¼ˆiOS/Android èŠ‚ç‚¹ï¼Œæˆ– macOS èœå•æ åº”ç”¨çš„â€œèŠ‚ç‚¹æ¨¡å¼â€ï¼‰ã€‚å¯¹äºŽæ— å¤´èŠ‚ç‚¹ä¸»æœºå’Œ CLI æŽ§åˆ¶ï¼Œå‚é˜…[èŠ‚ç‚¹ä¸»æœº CLI](/cli/node)ã€‚
 
-`gateway`、`discovery` 和 `canvasHost` 的更改需要完全重启。
+`gateway`ã€`discovery` å’Œ `canvasHost` çš„æ›´æ”¹éœ€è¦å®Œå…¨é‡å¯ã€‚
 
-### 有 API / RPC 方式来应用配置吗
+### æœ‰ API / RPC æ–¹å¼æ¥åº”ç”¨é…ç½®å—
 
-有。`config.apply` 验证 + 写入完整配置，并在操作过程中重启 Gateway 网关。
+æœ‰ã€‚`config.apply` éªŒè¯ + å†™å…¥å®Œæ•´é…ç½®ï¼Œå¹¶åœ¨æ“ä½œè¿‡ç¨‹ä¸­é‡å¯ Gateway ç½‘å…³ã€‚
 
-### 首次安装的最小“合理”配置是什么
+### é¦–æ¬¡å®‰è£…çš„æœ€å°â€œåˆç†â€é…ç½®æ˜¯ä»€ä¹ˆ
 
 ```json5
 {
-  agents: { defaults: { workspace: "~/.openclaw/workspace" } },
+  agents: { defaults: { workspace: "~/./workspace" } },
   channels: { whatsapp: { allowFrom: ["+15555550123"] } },
 }
 ```
 
-这设置了你的工作区并限制谁可以触发机器人。
+è¿™è®¾ç½®äº†ä½ çš„å·¥ä½œåŒºå¹¶é™åˆ¶è°å¯ä»¥è§¦å‘æœºå™¨äººã€‚
 
-### 如何在 VPS 上设置 Tailscale 并从 Mac 连接
+### å¦‚ä½•åœ¨ VPS ä¸Šè®¾ç½® Tailscale å¹¶ä»Ž Mac è¿žæŽ¥
 
-最简步骤：
+æœ€ç®€æ­¥éª¤ï¼š
 
-1. **在 VPS 上安装并登录**
+1. **åœ¨ VPS ä¸Šå®‰è£…å¹¶ç™»å½•**
    ```bash
    curl -fsSL https://tailscale.com/install.sh | sh
    sudo tailscale up
    ```
-2. **在 Mac 上安装并登录**
-   - 使用 Tailscale 应用并登录到同一个 tailnet。
-3. **启用 MagicDNS（推荐）**
-   - 在 Tailscale 管理控制台中启用 MagicDNS，这样 VPS 有一个稳定的名称。
-4. **使用 tailnet 主机名**
-   - SSH：`ssh user@your-vps.tailnet-xxxx.ts.net`
-   - Gateway 网关 WS：`ws://your-vps.tailnet-xxxx.ts.net:18789`
+2. **åœ¨ Mac ä¸Šå®‰è£…å¹¶ç™»å½•**
+   - ä½¿ç”¨ Tailscale åº”ç”¨å¹¶ç™»å½•åˆ°åŒä¸€ä¸ª tailnetã€‚
+3. **å¯ç”¨ MagicDNSï¼ˆæŽ¨èï¼‰**
+   - åœ¨ Tailscale ç®¡ç†æŽ§åˆ¶å°ä¸­å¯ç”¨ MagicDNSï¼Œè¿™æ · VPS æœ‰ä¸€ä¸ªç¨³å®šçš„åç§°ã€‚
+4. **ä½¿ç”¨ tailnet ä¸»æœºå**
+   - SSHï¼š`ssh user@your-vps.tailnet-xxxx.ts.net`
+   - Gateway ç½‘å…³ WSï¼š`ws://your-vps.tailnet-xxxx.ts.net:18789`
 
-如果你想要无 SSH 的控制 UI，在 VPS 上使用 Tailscale Serve：
+å¦‚æžœä½ æƒ³è¦æ—  SSH çš„æŽ§åˆ¶ UIï¼Œåœ¨ VPS ä¸Šä½¿ç”¨ Tailscale Serveï¼š
 
 ```bash
-openclaw gateway --tailscale serve
+ gateway --tailscale serve
 ```
 
-这保持 Gateway 网关绑定到 local loopback 并通过 Tailscale 暴露 HTTPS。参阅 [Tailscale](/gateway/tailscale)。
+è¿™ä¿æŒ Gateway ç½‘å…³ç»‘å®šåˆ° local loopback å¹¶é€šè¿‡ Tailscale æš´éœ² HTTPSã€‚å‚é˜… [Tailscale](/gateway/tailscale)ã€‚
 
-### 如何将 Mac 节点连接到远程 Gateway 网关（Tailscale Serve）
+### å¦‚ä½•å°† Mac èŠ‚ç‚¹è¿žæŽ¥åˆ°è¿œç¨‹ Gateway ç½‘å…³ï¼ˆTailscale Serveï¼‰
 
-Serve 暴露 **Gateway 网关控制 UI + WS**。节点通过同一个 Gateway 网关 WS 端点连接。
+Serve æš´éœ² **Gateway ç½‘å…³æŽ§åˆ¶ UI + WS**ã€‚èŠ‚ç‚¹é€šè¿‡åŒä¸€ä¸ª Gateway ç½‘å…³ WS ç«¯ç‚¹è¿žæŽ¥ã€‚
 
-推荐设置：
+æŽ¨èè®¾ç½®ï¼š
 
-1. **确保 VPS + Mac 在同一个 tailnet 上**。
-2. **使用 macOS 应用的远程模式**（SSH 目标可以是 tailnet 主机名）。应用会隧道 Gateway 网关端口并作为节点连接。
-3. **在 Gateway 网关上批准节点**：
+1. **ç¡®ä¿ VPS + Mac åœ¨åŒä¸€ä¸ª tailnet ä¸Š**ã€‚
+2. **ä½¿ç”¨ macOS åº”ç”¨çš„è¿œç¨‹æ¨¡å¼**ï¼ˆSSH ç›®æ ‡å¯ä»¥æ˜¯ tailnet ä¸»æœºåï¼‰ã€‚åº”ç”¨ä¼šéš§é“ Gateway ç½‘å…³ç«¯å£å¹¶ä½œä¸ºèŠ‚ç‚¹è¿žæŽ¥ã€‚
+3. **åœ¨ Gateway ç½‘å…³ä¸Šæ‰¹å‡†èŠ‚ç‚¹**ï¼š
    ```bash
-   openclaw nodes pending
-   openclaw nodes approve <requestId>
+    nodes pending
+    nodes approve <requestId>
    ```
 
-文档：[Gateway 网关协议](/gateway/protocol)、[发现](/gateway/discovery)、[macOS 远程模式](/platforms/mac/remote)。
+æ–‡æ¡£ï¼š[Gateway ç½‘å…³åè®®](/gateway/protocol)ã€[å‘çŽ°](/gateway/discovery)ã€[macOS è¿œç¨‹æ¨¡å¼](/platforms/mac/remote)ã€‚
 
-## 环境变量和 .env 加载
+## çŽ¯å¢ƒå˜é‡å’Œ .env åŠ è½½
 
-### OpenClaw 如何加载环境变量
+###  å¦‚ä½•åŠ è½½çŽ¯å¢ƒå˜é‡
 
-OpenClaw 从父进程（shell、launchd/systemd、CI 等）读取环境变量，并额外加载：
+ ä»Žçˆ¶è¿›ç¨‹ï¼ˆshellã€launchd/systemdã€CI ç­‰ï¼‰è¯»å–çŽ¯å¢ƒå˜é‡ï¼Œå¹¶é¢å¤–åŠ è½½ï¼š
 
-- 当前工作目录下的 `.env`
-- `~/.openclaw/.env`（即 `$OPENCLAW_STATE_DIR/.env`）的全局回退 `.env`
+- å½“å‰å·¥ä½œç›®å½•ä¸‹çš„ `.env`
+- `~/./.env`ï¼ˆå³ `$_STATE_DIR/.env`ï¼‰çš„å…¨å±€å›žé€€ `.env`
 
-两个 `.env` 文件都不会覆盖已有的环境变量。
+ä¸¤ä¸ª `.env` æ–‡ä»¶éƒ½ä¸ä¼šè¦†ç›–å·²æœ‰çš„çŽ¯å¢ƒå˜é‡ã€‚
 
-你也可以在配置中定义内联环境变量（仅在进程环境中缺失时应用）：
+ä½ ä¹Ÿå¯ä»¥åœ¨é…ç½®ä¸­å®šä¹‰å†…è”çŽ¯å¢ƒå˜é‡ï¼ˆä»…åœ¨è¿›ç¨‹çŽ¯å¢ƒä¸­ç¼ºå¤±æ—¶åº”ç”¨ï¼‰ï¼š
 
 ```json5
 {
@@ -1527,14 +1527,14 @@ OpenClaw 从父进程（shell、launchd/systemd、CI 等）读取环境变量，
 }
 ```
 
-参阅 [/environment](/environment) 了解优先级和来源详情。
+å‚é˜… [/environment](/environment) äº†è§£ä¼˜å…ˆçº§å’Œæ¥æºè¯¦æƒ…ã€‚
 
-### 我通过服务启动了 Gateway 网关，但环境变量消失了，怎么办
+### æˆ‘é€šè¿‡æœåŠ¡å¯åŠ¨äº† Gateway ç½‘å…³ï¼Œä½†çŽ¯å¢ƒå˜é‡æ¶ˆå¤±äº†ï¼Œæ€Žä¹ˆåŠž
 
-两个常见修复方法：
+ä¸¤ä¸ªå¸¸è§ä¿®å¤æ–¹æ³•ï¼š
 
-1. 将缺失的密钥放在 `~/.openclaw/.env` 中，这样即使服务不继承你的 shell 环境也能被获取。
-2. 启用 shell 导入（可选的便利功能）：
+1. å°†ç¼ºå¤±çš„å¯†é’¥æ”¾åœ¨ `~/./.env` ä¸­ï¼Œè¿™æ ·å³ä½¿æœåŠ¡ä¸ç»§æ‰¿ä½ çš„ shell çŽ¯å¢ƒä¹Ÿèƒ½è¢«èŽ·å–ã€‚
+2. å¯ç”¨ shell å¯¼å…¥ï¼ˆå¯é€‰çš„ä¾¿åˆ©åŠŸèƒ½ï¼‰ï¼š
 
 ```json5
 {
@@ -1547,40 +1547,40 @@ OpenClaw 从父进程（shell、launchd/systemd、CI 等）读取环境变量，
 }
 ```
 
-这会运行你的登录 shell 并仅导入缺失的预期键名（从不覆盖）。环境变量等效项：
-`OPENCLAW_LOAD_SHELL_ENV=1`、`OPENCLAW_SHELL_ENV_TIMEOUT_MS=15000`。
+è¿™ä¼šè¿è¡Œä½ çš„ç™»å½• shell å¹¶ä»…å¯¼å…¥ç¼ºå¤±çš„é¢„æœŸé”®åï¼ˆä»Žä¸è¦†ç›–ï¼‰ã€‚çŽ¯å¢ƒå˜é‡ç­‰æ•ˆé¡¹ï¼š
+`_LOAD_SHELL_ENV=1`ã€`_SHELL_ENV_TIMEOUT_MS=15000`ã€‚
 
-### 我设置了 COPILOT_GITHUB_TOKEN，但 models status 显示"Shell env: off"，为什么
+### æˆ‘è®¾ç½®äº† COPILOT_GITHUB_TOKENï¼Œä½† models status æ˜¾ç¤º"Shell env: off"ï¼Œä¸ºä»€ä¹ˆ
 
-`openclaw models status` 报告的是 **shell 环境导入**是否启用。"Shell env: off"**不**意味着你的环境变量缺失——它只意味着 OpenClaw 不会自动加载你的登录 shell。
+` models status` æŠ¥å‘Šçš„æ˜¯ **shell çŽ¯å¢ƒå¯¼å…¥**æ˜¯å¦å¯ç”¨ã€‚"Shell env: off"**ä¸**æ„å‘³ç€ä½ çš„çŽ¯å¢ƒå˜é‡ç¼ºå¤±â€”â€”å®ƒåªæ„å‘³ç€  ä¸ä¼šè‡ªåŠ¨åŠ è½½ä½ çš„ç™»å½• shellã€‚
 
-如果 Gateway 网关作为服务（launchd/systemd）运行，它不会继承你的 shell 环境。通过以下方式之一修复：
+å¦‚æžœ Gateway ç½‘å…³ä½œä¸ºæœåŠ¡ï¼ˆlaunchd/systemdï¼‰è¿è¡Œï¼Œå®ƒä¸ä¼šç»§æ‰¿ä½ çš„ shell çŽ¯å¢ƒã€‚é€šè¿‡ä»¥ä¸‹æ–¹å¼ä¹‹ä¸€ä¿®å¤ï¼š
 
-1. 将令牌放在 `~/.openclaw/.env` 中：
+1. å°†ä»¤ç‰Œæ”¾åœ¨ `~/./.env` ä¸­ï¼š
    ```
    COPILOT_GITHUB_TOKEN=...
    ```
-2. 或启用 shell 导入（`env.shellEnv.enabled: true`）。
-3. 或将其添加到配置的 `env` 块中（仅在缺失时应用）。
+2. æˆ–å¯ç”¨ shell å¯¼å…¥ï¼ˆ`env.shellEnv.enabled: true`ï¼‰ã€‚
+3. æˆ–å°†å…¶æ·»åŠ åˆ°é…ç½®çš„ `env` å—ä¸­ï¼ˆä»…åœ¨ç¼ºå¤±æ—¶åº”ç”¨ï¼‰ã€‚
 
-然后重启 Gateway 网关并重新检查：
+ç„¶åŽé‡å¯ Gateway ç½‘å…³å¹¶é‡æ–°æ£€æŸ¥ï¼š
 
 ```bash
-openclaw models status
+ models status
 ```
 
-Copilot 令牌从 `COPILOT_GITHUB_TOKEN` 读取（也支持 `GH_TOKEN` / `GITHUB_TOKEN`）。
-参阅 [/concepts/model-providers](/concepts/model-providers) 和 [/environment](/environment)。
+Copilot ä»¤ç‰Œä»Ž `COPILOT_GITHUB_TOKEN` è¯»å–ï¼ˆä¹Ÿæ”¯æŒ `GH_TOKEN` / `GITHUB_TOKEN`ï¼‰ã€‚
+å‚é˜… [/concepts/model-providers](/concepts/model-providers) å’Œ [/environment](/environment)ã€‚
 
-## 会话与多聊天
+## ä¼šè¯ä¸Žå¤šèŠå¤©
 
-### 如何开始一个新对话
+### å¦‚ä½•å¼€å§‹ä¸€ä¸ªæ–°å¯¹è¯
 
-发送 `/new` 或 `/reset` 作为独立消息。参阅[会话管理](/concepts/session)。
+å‘é€ `/new` æˆ– `/reset` ä½œä¸ºç‹¬ç«‹æ¶ˆæ¯ã€‚å‚é˜…[ä¼šè¯ç®¡ç†](/concepts/session)ã€‚
 
-### 如果我从不发送 /new，会话会自动重置吗
+### å¦‚æžœæˆ‘ä»Žä¸å‘é€ /newï¼Œä¼šè¯ä¼šè‡ªåŠ¨é‡ç½®å—
 
-会。会话在 `session.idleMinutes`（默认 **60**）后过期。**下一条**消息会为该聊天键开始一个新的会话 ID。这不会删除记录——只是开始一个新会话。
+ä¼šã€‚ä¼šè¯åœ¨ `session.idleMinutes`ï¼ˆé»˜è®¤ **60**ï¼‰åŽè¿‡æœŸã€‚**ä¸‹ä¸€æ¡**æ¶ˆæ¯ä¼šä¸ºè¯¥èŠå¤©é”®å¼€å§‹ä¸€ä¸ªæ–°çš„ä¼šè¯ IDã€‚è¿™ä¸ä¼šåˆ é™¤è®°å½•â€”â€”åªæ˜¯å¼€å§‹ä¸€ä¸ªæ–°ä¼šè¯ã€‚
 
 ```json5
 {
@@ -1590,109 +1590,109 @@ Copilot 令牌从 `COPILOT_GITHUB_TOKEN` 读取（也支持 `GH_TOKEN` / `GITHUB
 }
 ```
 
-### 能否创建一个 OpenClaw 实例团队——一个 CEO 和多个智能体
+### èƒ½å¦åˆ›å»ºä¸€ä¸ª  å®žä¾‹å›¢é˜Ÿâ€”â€”ä¸€ä¸ª CEO å’Œå¤šä¸ªæ™ºèƒ½ä½“
 
-可以，通过**多智能体路由**和**子智能体**。你可以创建一个协调器智能体和多个工作者智能体，每个都有自己的工作区和模型。
+å¯ä»¥ï¼Œé€šè¿‡**å¤šæ™ºèƒ½ä½“è·¯ç”±**å’Œ**å­æ™ºèƒ½ä½“**ã€‚ä½ å¯ä»¥åˆ›å»ºä¸€ä¸ªåè°ƒå™¨æ™ºèƒ½ä½“å’Œå¤šä¸ªå·¥ä½œè€…æ™ºèƒ½ä½“ï¼Œæ¯ä¸ªéƒ½æœ‰è‡ªå·±çš„å·¥ä½œåŒºå’Œæ¨¡åž‹ã€‚
 
-话虽如此，最好将其视为一个**有趣的实验**。它消耗大量令牌，通常不如使用一个机器人配合不同会话的效率高。我们设想的典型模型是一个你与之对话的机器人，用不同的会话进行并行工作。该机器人也可以在需要时生成子智能体。
+è¯è™½å¦‚æ­¤ï¼Œæœ€å¥½å°†å…¶è§†ä¸ºä¸€ä¸ª**æœ‰è¶£çš„å®žéªŒ**ã€‚å®ƒæ¶ˆè€—å¤§é‡ä»¤ç‰Œï¼Œé€šå¸¸ä¸å¦‚ä½¿ç”¨ä¸€ä¸ªæœºå™¨äººé…åˆä¸åŒä¼šè¯çš„æ•ˆçŽ‡é«˜ã€‚æˆ‘ä»¬è®¾æƒ³çš„å…¸åž‹æ¨¡åž‹æ˜¯ä¸€ä¸ªä½ ä¸Žä¹‹å¯¹è¯çš„æœºå™¨äººï¼Œç”¨ä¸åŒçš„ä¼šè¯è¿›è¡Œå¹¶è¡Œå·¥ä½œã€‚è¯¥æœºå™¨äººä¹Ÿå¯ä»¥åœ¨éœ€è¦æ—¶ç”Ÿæˆå­æ™ºèƒ½ä½“ã€‚
 
-文档：[多智能体路由](/concepts/multi-agent)、[子智能体](/tools/subagents)、[智能体 CLI](/cli/agents)。
+æ–‡æ¡£ï¼š[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)ã€[å­æ™ºèƒ½ä½“](/tools/subagents)ã€[æ™ºèƒ½ä½“ CLI](/cli/agents)ã€‚
 
-### 为什么上下文在任务中途被截断了？如何防止
+### ä¸ºä»€ä¹ˆä¸Šä¸‹æ–‡åœ¨ä»»åŠ¡ä¸­é€”è¢«æˆªæ–­äº†ï¼Ÿå¦‚ä½•é˜²æ­¢
 
-会话上下文受模型窗口限制。长对话、大量工具输出或许多文件可能触发压缩或截断。
+ä¼šè¯ä¸Šä¸‹æ–‡å—æ¨¡åž‹çª—å£é™åˆ¶ã€‚é•¿å¯¹è¯ã€å¤§é‡å·¥å…·è¾“å‡ºæˆ–è®¸å¤šæ–‡ä»¶å¯èƒ½è§¦å‘åŽ‹ç¼©æˆ–æˆªæ–­ã€‚
 
-有帮助的做法：
+æœ‰å¸®åŠ©çš„åšæ³•ï¼š
 
-- 要求机器人总结当前状态并写入文件。
-- 在长任务之前使用 `/compact`，切换话题时使用 `/new`。
-- 将重要上下文保存在工作区中，要求机器人读取。
-- 对长时间或并行工作使用子智能体，这样主聊天保持较小。
-- 如果这种情况经常发生，选择具有更大上下文窗口的模型。
+- è¦æ±‚æœºå™¨äººæ€»ç»“å½“å‰çŠ¶æ€å¹¶å†™å…¥æ–‡ä»¶ã€‚
+- åœ¨é•¿ä»»åŠ¡ä¹‹å‰ä½¿ç”¨ `/compact`ï¼Œåˆ‡æ¢è¯é¢˜æ—¶ä½¿ç”¨ `/new`ã€‚
+- å°†é‡è¦ä¸Šä¸‹æ–‡ä¿å­˜åœ¨å·¥ä½œåŒºä¸­ï¼Œè¦æ±‚æœºå™¨äººè¯»å–ã€‚
+- å¯¹é•¿æ—¶é—´æˆ–å¹¶è¡Œå·¥ä½œä½¿ç”¨å­æ™ºèƒ½ä½“ï¼Œè¿™æ ·ä¸»èŠå¤©ä¿æŒè¾ƒå°ã€‚
+- å¦‚æžœè¿™ç§æƒ…å†µç»å¸¸å‘ç”Ÿï¼Œé€‰æ‹©å…·æœ‰æ›´å¤§ä¸Šä¸‹æ–‡çª—å£çš„æ¨¡åž‹ã€‚
 
-### 如何完全重置 OpenClaw 但保留安装
+### å¦‚ä½•å®Œå…¨é‡ç½®  ä½†ä¿ç•™å®‰è£…
 
-使用重置命令：
-
-```bash
-openclaw reset
-```
-
-非交互式完整重置：
+ä½¿ç”¨é‡ç½®å‘½ä»¤ï¼š
 
 ```bash
-openclaw reset --scope full --yes --non-interactive
+ reset
 ```
 
-然后重新运行新手引导：
+éžäº¤äº’å¼å®Œæ•´é‡ç½®ï¼š
 
 ```bash
-openclaw onboard --install-daemon
+ reset --scope full --yes --non-interactive
 ```
 
-注意：
+ç„¶åŽé‡æ–°è¿è¡Œæ–°æ‰‹å¼•å¯¼ï¼š
 
-- 新手引导向导在看到现有配置时也提供**重置**选项。参阅[向导](/start/wizard)。
-- 如果你使用了配置文件（`--profile` / `OPENCLAW_PROFILE`），重置每个状态目录（默认为 `~/.openclaw-<profile>`）。
-- 开发重置：`openclaw gateway --dev --reset`（仅限开发；清除开发配置 + 凭据 + 会话 + 工作区）。
+```bash
+ onboard --install-daemon
+```
 
-### 我遇到了 context too large 错误——如何重置或压缩
+æ³¨æ„ï¼š
 
-使用以下方式之一：
+- æ–°æ‰‹å¼•å¯¼å‘å¯¼åœ¨çœ‹åˆ°çŽ°æœ‰é…ç½®æ—¶ä¹Ÿæä¾›**é‡ç½®**é€‰é¡¹ã€‚å‚é˜…[å‘å¯¼](/start/wizard)ã€‚
+- å¦‚æžœä½ ä½¿ç”¨äº†é…ç½®æ–‡ä»¶ï¼ˆ`--profile` / `_PROFILE`ï¼‰ï¼Œé‡ç½®æ¯ä¸ªçŠ¶æ€ç›®å½•ï¼ˆé»˜è®¤ä¸º `~/.-<profile>`ï¼‰ã€‚
+- å¼€å‘é‡ç½®ï¼š` gateway --dev --reset`ï¼ˆä»…é™å¼€å‘ï¼›æ¸…é™¤å¼€å‘é…ç½® + å‡­æ® + ä¼šè¯ + å·¥ä½œåŒºï¼‰ã€‚
 
-- **压缩**（保留对话但总结较早的轮次）：
+### æˆ‘é‡åˆ°äº† context too large é”™è¯¯â€”â€”å¦‚ä½•é‡ç½®æˆ–åŽ‹ç¼©
+
+ä½¿ç”¨ä»¥ä¸‹æ–¹å¼ä¹‹ä¸€ï¼š
+
+- **åŽ‹ç¼©**ï¼ˆä¿ç•™å¯¹è¯ä½†æ€»ç»“è¾ƒæ—©çš„è½®æ¬¡ï¼‰ï¼š
 
   ```
   /compact
   ```
 
-  或 `/compact <instructions>` 来引导总结。
+  æˆ– `/compact <instructions>` æ¥å¼•å¯¼æ€»ç»“ã€‚
 
-- **重置**（为同一聊天键开始新的会话 ID）：
+- **é‡ç½®**ï¼ˆä¸ºåŒä¸€èŠå¤©é”®å¼€å§‹æ–°çš„ä¼šè¯ IDï¼‰ï¼š
   ```
   /new
   /reset
   ```
 
-如果持续出现：
+å¦‚æžœæŒç»­å‡ºçŽ°ï¼š
 
-- 启用或调整**会话修剪**（`agents.defaults.contextPruning`）以裁剪旧的工具输出。
-- 使用具有更大上下文窗口的模型。
+- å¯ç”¨æˆ–è°ƒæ•´**ä¼šè¯ä¿®å‰ª**ï¼ˆ`agents.defaults.contextPruning`ï¼‰ä»¥è£å‰ªæ—§çš„å·¥å…·è¾“å‡ºã€‚
+- ä½¿ç”¨å…·æœ‰æ›´å¤§ä¸Šä¸‹æ–‡çª—å£çš„æ¨¡åž‹ã€‚
 
-文档：[压缩](/concepts/compaction)、[会话修剪](/concepts/session-pruning)、[会话管理](/concepts/session)。
+æ–‡æ¡£ï¼š[åŽ‹ç¼©](/concepts/compaction)ã€[ä¼šè¯ä¿®å‰ª](/concepts/session-pruning)ã€[ä¼šè¯ç®¡ç†](/concepts/session)ã€‚
 
-### 为什么我看到 LLM request rejected: messages.N.content.X.tool_use.input: Field required
+### ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ° LLM request rejected: messages.N.content.X.tool_use.input: Field required
 
-这是一个提供商验证错误：模型发出了一个没有必需 `input` 的 `tool_use` 块。通常意味着会话历史已过时或损坏（通常在长线程或工具/模式变更后发生）。
+è¿™æ˜¯ä¸€ä¸ªæä¾›å•†éªŒè¯é”™è¯¯ï¼šæ¨¡åž‹å‘å‡ºäº†ä¸€ä¸ªæ²¡æœ‰å¿…éœ€ `input` çš„ `tool_use` å—ã€‚é€šå¸¸æ„å‘³ç€ä¼šè¯åŽ†å²å·²è¿‡æ—¶æˆ–æŸåï¼ˆé€šå¸¸åœ¨é•¿çº¿ç¨‹æˆ–å·¥å…·/æ¨¡å¼å˜æ›´åŽå‘ç”Ÿï¼‰ã€‚
 
-修复：使用 `/new`（独立消息）开始新会话。
+ä¿®å¤ï¼šä½¿ç”¨ `/new`ï¼ˆç‹¬ç«‹æ¶ˆæ¯ï¼‰å¼€å§‹æ–°ä¼šè¯ã€‚
 
-### 为什么每 30 分钟收到一次心跳消息
+### ä¸ºä»€ä¹ˆæ¯ 30 åˆ†é’Ÿæ”¶åˆ°ä¸€æ¬¡å¿ƒè·³æ¶ˆæ¯
 
-心跳默认每 **30 分钟**运行一次。调整或禁用：
+å¿ƒè·³é»˜è®¤æ¯ **30 åˆ†é’Ÿ**è¿è¡Œä¸€æ¬¡ã€‚è°ƒæ•´æˆ–ç¦ç”¨ï¼š
 
 ```json5
 {
   agents: {
     defaults: {
       heartbeat: {
-        every: "2h", // 或 "0m" 禁用
+        every: "2h", // æˆ– "0m" ç¦ç”¨
       },
     },
   },
 }
 ```
 
-如果 `HEARTBEAT.md` 存在但实际上为空（只有空行和 markdown 标题如 `# Heading`），OpenClaw 会跳过心跳运行以节省 API 调用。如果文件不存在，心跳仍然运行，由模型决定做什么。
+å¦‚æžœ `HEARTBEAT.md` å­˜åœ¨ä½†å®žé™…ä¸Šä¸ºç©ºï¼ˆåªæœ‰ç©ºè¡Œå’Œ markdown æ ‡é¢˜å¦‚ `# Heading`ï¼‰ï¼Œ ä¼šè·³è¿‡å¿ƒè·³è¿è¡Œä»¥èŠ‚çœ API è°ƒç”¨ã€‚å¦‚æžœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œå¿ƒè·³ä»ç„¶è¿è¡Œï¼Œç”±æ¨¡åž‹å†³å®šåšä»€ä¹ˆã€‚
 
-按智能体覆盖使用 `agents.list[].heartbeat`。文档：[心跳](/gateway/heartbeat)。
+æŒ‰æ™ºèƒ½ä½“è¦†ç›–ä½¿ç”¨ `agents.list[].heartbeat`ã€‚æ–‡æ¡£ï¼š[å¿ƒè·³](/gateway/heartbeat)ã€‚
 
-### 需要在 WhatsApp 群组中添加“机器人账号”吗
+### éœ€è¦åœ¨ WhatsApp ç¾¤ç»„ä¸­æ·»åŠ â€œæœºå™¨äººè´¦å·â€å—
 
-不需要。OpenClaw 运行在**你自己的账户**上，所以如果你在群组中，OpenClaw 就能看到它。
-默认情况下，群组回复被阻止，直到你允许发送者（`groupPolicy: "allowlist"`）。
+ä¸éœ€è¦ã€‚ è¿è¡Œåœ¨**ä½ è‡ªå·±çš„è´¦æˆ·**ä¸Šï¼Œæ‰€ä»¥å¦‚æžœä½ åœ¨ç¾¤ç»„ä¸­ï¼Œ å°±èƒ½çœ‹åˆ°å®ƒã€‚
+é»˜è®¤æƒ…å†µä¸‹ï¼Œç¾¤ç»„å›žå¤è¢«é˜»æ­¢ï¼Œç›´åˆ°ä½ å…è®¸å‘é€è€…ï¼ˆ`groupPolicy: "allowlist"`ï¼‰ã€‚
 
-如果你只想**你自己**能触发群组回复：
+å¦‚æžœä½ åªæƒ³**ä½ è‡ªå·±**èƒ½è§¦å‘ç¾¤ç»„å›žå¤ï¼š
 
 ```json5
 {
@@ -1705,129 +1705,129 @@ openclaw onboard --install-daemon
 }
 ```
 
-### 如何获取 WhatsApp 群组的 JID
+### å¦‚ä½•èŽ·å– WhatsApp ç¾¤ç»„çš„ JID
 
-方法 1（最快）：跟踪日志并在群组中发送测试消息：
-
-```bash
-openclaw logs --follow --json
-```
-
-查找以 `@g.us` 结尾的 `chatId`（或 `from`），如：
-`1234567890-1234567890@g.us`。
-
-方法 2（如果已配置/加入允许列表）：从配置中列出群组：
+æ–¹æ³• 1ï¼ˆæœ€å¿«ï¼‰ï¼šè·Ÿè¸ªæ—¥å¿—å¹¶åœ¨ç¾¤ç»„ä¸­å‘é€æµ‹è¯•æ¶ˆæ¯ï¼š
 
 ```bash
-openclaw directory groups list --channel whatsapp
+ logs --follow --json
 ```
 
-文档：[WhatsApp](/channels/whatsapp)、[目录](/cli/directory)、[日志](/cli/logs)。
+æŸ¥æ‰¾ä»¥ `@g.us` ç»“å°¾çš„ `chatId`ï¼ˆæˆ– `from`ï¼‰ï¼Œå¦‚ï¼š
+`1234567890-1234567890@g.us`ã€‚
 
-### 为什么 OpenClaw 不在群组中回复
+æ–¹æ³• 2ï¼ˆå¦‚æžœå·²é…ç½®/åŠ å…¥å…è®¸åˆ—è¡¨ï¼‰ï¼šä»Žé…ç½®ä¸­åˆ—å‡ºç¾¤ç»„ï¼š
 
-两个常见原因：
+```bash
+ directory groups list --channel whatsapp
+```
 
-- 提及限制已开启（默认）。你必须 @提及机器人（或匹配 `mentionPatterns`）。
-- 你配置了 `channels.whatsapp.groups` 但没有 `"*"` 且该群组未加入允许列表。
+æ–‡æ¡£ï¼š[WhatsApp](/channels/whatsapp)ã€[ç›®å½•](/cli/directory)ã€[æ—¥å¿—](/cli/logs)ã€‚
 
-参阅[群组](/concepts/groups)和[群组消息](/concepts/group-messages)。
+### ä¸ºä»€ä¹ˆ  ä¸åœ¨ç¾¤ç»„ä¸­å›žå¤
 
-### 群组/线程与私聊共享上下文吗
+ä¸¤ä¸ªå¸¸è§åŽŸå› ï¼š
 
-直接聊天默认折叠到主会话。群组/频道有自己的会话键，Telegram 话题 / Discord 线程是独立的会话。参阅[群组](/concepts/groups)和[群组消息](/concepts/group-messages)。
+- æåŠé™åˆ¶å·²å¼€å¯ï¼ˆé»˜è®¤ï¼‰ã€‚ä½ å¿…é¡» @æåŠæœºå™¨äººï¼ˆæˆ–åŒ¹é… `mentionPatterns`ï¼‰ã€‚
+- ä½ é…ç½®äº† `channels.whatsapp.groups` ä½†æ²¡æœ‰ `"*"` ä¸”è¯¥ç¾¤ç»„æœªåŠ å…¥å…è®¸åˆ—è¡¨ã€‚
 
-### 可以创建多少个工作区和智能体
+å‚é˜…[ç¾¤ç»„](/concepts/groups)å’Œ[ç¾¤ç»„æ¶ˆæ¯](/concepts/group-messages)ã€‚
 
-没有硬性限制。几十个（甚至几百个）都没问题，但请注意：
+### ç¾¤ç»„/çº¿ç¨‹ä¸Žç§èŠå…±äº«ä¸Šä¸‹æ–‡å—
 
-- **磁盘增长：** 会话 + 记录位于 `~/.openclaw/agents/<agentId>/sessions/` 下。
-- **令牌成本：** 更多智能体意味着更多并发模型使用。
-- **运维开销：** 按智能体的认证配置文件、工作区和渠道路由。
+ç›´æŽ¥èŠå¤©é»˜è®¤æŠ˜å åˆ°ä¸»ä¼šè¯ã€‚ç¾¤ç»„/é¢‘é“æœ‰è‡ªå·±çš„ä¼šè¯é”®ï¼ŒTelegram è¯é¢˜ / Discord çº¿ç¨‹æ˜¯ç‹¬ç«‹çš„ä¼šè¯ã€‚å‚é˜…[ç¾¤ç»„](/concepts/groups)å’Œ[ç¾¤ç»„æ¶ˆæ¯](/concepts/group-messages)ã€‚
 
-提示：
+### å¯ä»¥åˆ›å»ºå¤šå°‘ä¸ªå·¥ä½œåŒºå’Œæ™ºèƒ½ä½“
 
-- 每个智能体保持一个**活跃**工作区（`agents.defaults.workspace`）。
-- 如果磁盘增长，修剪旧会话（删除 JSONL 或存储条目）。
-- 使用 `openclaw doctor` 发现无用的工作区和配置文件不匹配。
+æ²¡æœ‰ç¡¬æ€§é™åˆ¶ã€‚å‡ åä¸ªï¼ˆç”šè‡³å‡ ç™¾ä¸ªï¼‰éƒ½æ²¡é—®é¢˜ï¼Œä½†è¯·æ³¨æ„ï¼š
 
-### 可以同时运行多个机器人或聊天（Slack）吗？应该如何设置
+- **ç£ç›˜å¢žé•¿ï¼š** ä¼šè¯ + è®°å½•ä½äºŽ `~/./agents/<agentId>/sessions/` ä¸‹ã€‚
+- **ä»¤ç‰Œæˆæœ¬ï¼š** æ›´å¤šæ™ºèƒ½ä½“æ„å‘³ç€æ›´å¤šå¹¶å‘æ¨¡åž‹ä½¿ç”¨ã€‚
+- **è¿ç»´å¼€é”€ï¼š** æŒ‰æ™ºèƒ½ä½“çš„è®¤è¯é…ç½®æ–‡ä»¶ã€å·¥ä½œåŒºå’Œæ¸ é“è·¯ç”±ã€‚
 
-可以。使用**多智能体路由**运行多个隔离的智能体，并按渠道/账户/对等方路由入站消息。Slack 作为渠道受支持，可以绑定到特定智能体。
+æç¤ºï¼š
 
-浏览器访问功能强大，但不是“能做人类能做的一切”——反机器人、验证码和 MFA 仍然可以阻止自动化。为了最可靠的浏览器控制，在运行浏览器的机器上使用 Chrome 扩展中继（Gateway 网关可以在任何地方）。
+- æ¯ä¸ªæ™ºèƒ½ä½“ä¿æŒä¸€ä¸ª**æ´»è·ƒ**å·¥ä½œåŒºï¼ˆ`agents.defaults.workspace`ï¼‰ã€‚
+- å¦‚æžœç£ç›˜å¢žé•¿ï¼Œä¿®å‰ªæ—§ä¼šè¯ï¼ˆåˆ é™¤ JSONL æˆ–å­˜å‚¨æ¡ç›®ï¼‰ã€‚
+- ä½¿ç”¨ ` doctor` å‘çŽ°æ— ç”¨çš„å·¥ä½œåŒºå’Œé…ç½®æ–‡ä»¶ä¸åŒ¹é…ã€‚
 
-最佳实践设置：
+### å¯ä»¥åŒæ—¶è¿è¡Œå¤šä¸ªæœºå™¨äººæˆ–èŠå¤©ï¼ˆSlackï¼‰å—ï¼Ÿåº”è¯¥å¦‚ä½•è®¾ç½®
 
-- 常开 Gateway 网关主机（VPS/Mac mini）。
-- 每个角色一个智能体（绑定）。
-- Slack 渠道绑定到这些智能体。
-- 需要时通过扩展中继（或节点）使用本地浏览器。
+å¯ä»¥ã€‚ä½¿ç”¨**å¤šæ™ºèƒ½ä½“è·¯ç”±**è¿è¡Œå¤šä¸ªéš”ç¦»çš„æ™ºèƒ½ä½“ï¼Œå¹¶æŒ‰æ¸ é“/è´¦æˆ·/å¯¹ç­‰æ–¹è·¯ç”±å…¥ç«™æ¶ˆæ¯ã€‚Slack ä½œä¸ºæ¸ é“å—æ”¯æŒï¼Œå¯ä»¥ç»‘å®šåˆ°ç‰¹å®šæ™ºèƒ½ä½“ã€‚
 
-文档：[多智能体路由](/concepts/multi-agent)、[Slack](/channels/slack)、
-[浏览器](/tools/browser)、[Chrome 扩展](/tools/chrome-extension)、[节点](/nodes)。
+æµè§ˆå™¨è®¿é—®åŠŸèƒ½å¼ºå¤§ï¼Œä½†ä¸æ˜¯â€œèƒ½åšäººç±»èƒ½åšçš„ä¸€åˆ‡â€â€”â€”åæœºå™¨äººã€éªŒè¯ç å’Œ MFA ä»ç„¶å¯ä»¥é˜»æ­¢è‡ªåŠ¨åŒ–ã€‚ä¸ºäº†æœ€å¯é çš„æµè§ˆå™¨æŽ§åˆ¶ï¼Œåœ¨è¿è¡Œæµè§ˆå™¨çš„æœºå™¨ä¸Šä½¿ç”¨ Chrome æ‰©å±•ä¸­ç»§ï¼ˆGateway ç½‘å…³å¯ä»¥åœ¨ä»»ä½•åœ°æ–¹ï¼‰ã€‚
 
-## 模型：默认值、选择、别名、切换
+æœ€ä½³å®žè·µè®¾ç½®ï¼š
 
-### 什么是“默认模型”
+- å¸¸å¼€ Gateway ç½‘å…³ä¸»æœºï¼ˆVPS/Mac miniï¼‰ã€‚
+- æ¯ä¸ªè§’è‰²ä¸€ä¸ªæ™ºèƒ½ä½“ï¼ˆç»‘å®šï¼‰ã€‚
+- Slack æ¸ é“ç»‘å®šåˆ°è¿™äº›æ™ºèƒ½ä½“ã€‚
+- éœ€è¦æ—¶é€šè¿‡æ‰©å±•ä¸­ç»§ï¼ˆæˆ–èŠ‚ç‚¹ï¼‰ä½¿ç”¨æœ¬åœ°æµè§ˆå™¨ã€‚
 
-OpenClaw 的默认模型是你设置的：
+æ–‡æ¡£ï¼š[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)ã€[Slack](/channels/slack)ã€
+[æµè§ˆå™¨](/tools/browser)ã€[Chrome æ‰©å±•](/tools/chrome-extension)ã€[èŠ‚ç‚¹](/nodes)ã€‚
+
+## æ¨¡åž‹ï¼šé»˜è®¤å€¼ã€é€‰æ‹©ã€åˆ«åã€åˆ‡æ¢
+
+### ä»€ä¹ˆæ˜¯â€œé»˜è®¤æ¨¡åž‹â€
+
+ çš„é»˜è®¤æ¨¡åž‹æ˜¯ä½ è®¾ç½®çš„ï¼š
 
 ```
 agents.defaults.model.primary
 ```
 
-模型以 `provider/model` 引用（示例：`anthropic/claude-opus-4-5`）。如果你省略提供商，OpenClaw 目前假设 `anthropic` 作为临时弃用回退——但你仍然应该**明确**设置 `provider/model`。
+æ¨¡åž‹ä»¥ `provider/model` å¼•ç”¨ï¼ˆç¤ºä¾‹ï¼š`anthropic/claude-opus-4-5`ï¼‰ã€‚å¦‚æžœä½ çœç•¥æä¾›å•†ï¼Œ ç›®å‰å‡è®¾ `anthropic` ä½œä¸ºä¸´æ—¶å¼ƒç”¨å›žé€€â€”â€”ä½†ä½ ä»ç„¶åº”è¯¥**æ˜Žç¡®**è®¾ç½® `provider/model`ã€‚
 
-### 推荐什么模型
+### æŽ¨èä»€ä¹ˆæ¨¡åž‹
 
-**推荐默认：** `anthropic/claude-opus-4-5`。
-**好的替代：** `anthropic/claude-sonnet-4-5`。
-**可靠（个性较少）：** `openai/gpt-5.2`——几乎和 Opus 一样好，只是个性较少。
-**经济：** `zai/glm-4.7`。
+**æŽ¨èé»˜è®¤ï¼š** `anthropic/claude-opus-4-5`ã€‚
+**å¥½çš„æ›¿ä»£ï¼š** `anthropic/claude-sonnet-4-5`ã€‚
+**å¯é ï¼ˆä¸ªæ€§è¾ƒå°‘ï¼‰ï¼š** `openai/gpt-5.2`â€”â€”å‡ ä¹Žå’Œ Opus ä¸€æ ·å¥½ï¼Œåªæ˜¯ä¸ªæ€§è¾ƒå°‘ã€‚
+**ç»æµŽï¼š** `zai/glm-4.7`ã€‚
 
-MiniMax M2.1 有自己的文档：[MiniMax](/providers/minimax) 和
-[本地模型](/gateway/local-models)。
+MiniMax M2.1 æœ‰è‡ªå·±çš„æ–‡æ¡£ï¼š[MiniMax](/providers/minimax) å’Œ
+[æœ¬åœ°æ¨¡åž‹](/gateway/local-models)ã€‚
 
-经验法则：高风险工作使用你能负担的**最好的模型**，日常聊天或摘要使用更便宜的模型。你可以按智能体路由模型并使用子智能体并行处理长任务（每个子智能体消耗令牌）。参阅[模型](/concepts/models)和[子智能体](/tools/subagents)。
+ç»éªŒæ³•åˆ™ï¼šé«˜é£Žé™©å·¥ä½œä½¿ç”¨ä½ èƒ½è´Ÿæ‹…çš„**æœ€å¥½çš„æ¨¡åž‹**ï¼Œæ—¥å¸¸èŠå¤©æˆ–æ‘˜è¦ä½¿ç”¨æ›´ä¾¿å®œçš„æ¨¡åž‹ã€‚ä½ å¯ä»¥æŒ‰æ™ºèƒ½ä½“è·¯ç”±æ¨¡åž‹å¹¶ä½¿ç”¨å­æ™ºèƒ½ä½“å¹¶è¡Œå¤„ç†é•¿ä»»åŠ¡ï¼ˆæ¯ä¸ªå­æ™ºèƒ½ä½“æ¶ˆè€—ä»¤ç‰Œï¼‰ã€‚å‚é˜…[æ¨¡åž‹](/concepts/models)å’Œ[å­æ™ºèƒ½ä½“](/tools/subagents)ã€‚
 
-重要警告：较弱/过度量化的模型更容易受到提示注入和不安全行为的影响。参阅[安全](/gateway/security)。
+é‡è¦è­¦å‘Šï¼šè¾ƒå¼±/è¿‡åº¦é‡åŒ–çš„æ¨¡åž‹æ›´å®¹æ˜“å—åˆ°æç¤ºæ³¨å…¥å’Œä¸å®‰å…¨è¡Œä¸ºçš„å½±å“ã€‚å‚é˜…[å®‰å…¨](/gateway/security)ã€‚
 
-更多上下文：[模型](/concepts/models)。
+æ›´å¤šä¸Šä¸‹æ–‡ï¼š[æ¨¡åž‹](/concepts/models)ã€‚
 
-### 可以使用自托管模型（llama.cpp、vLLM、Ollama）吗
+### å¯ä»¥ä½¿ç”¨è‡ªæ‰˜ç®¡æ¨¡åž‹ï¼ˆllama.cppã€vLLMã€Ollamaï¼‰å—
 
-可以。如果你的本地服务器暴露了兼容 OpenAI 的 API，你可以将自定义提供商指向它。Ollama 直接支持，是最简单的路径。
+å¯ä»¥ã€‚å¦‚æžœä½ çš„æœ¬åœ°æœåŠ¡å™¨æš´éœ²äº†å…¼å®¹ OpenAI çš„ APIï¼Œä½ å¯ä»¥å°†è‡ªå®šä¹‰æä¾›å•†æŒ‡å‘å®ƒã€‚Ollama ç›´æŽ¥æ”¯æŒï¼Œæ˜¯æœ€ç®€å•çš„è·¯å¾„ã€‚
 
-安全说明：较小或大幅量化的模型更容易受到提示注入的影响。我们强烈建议对任何可以使用工具的机器人使用**大型模型**。如果你仍然想使用小模型，启用沙箱和严格的工具允许列表。
+å®‰å…¨è¯´æ˜Žï¼šè¾ƒå°æˆ–å¤§å¹…é‡åŒ–çš„æ¨¡åž‹æ›´å®¹æ˜“å—åˆ°æç¤ºæ³¨å…¥çš„å½±å“ã€‚æˆ‘ä»¬å¼ºçƒˆå»ºè®®å¯¹ä»»ä½•å¯ä»¥ä½¿ç”¨å·¥å…·çš„æœºå™¨äººä½¿ç”¨**å¤§åž‹æ¨¡åž‹**ã€‚å¦‚æžœä½ ä»ç„¶æƒ³ä½¿ç”¨å°æ¨¡åž‹ï¼Œå¯ç”¨æ²™ç®±å’Œä¸¥æ ¼çš„å·¥å…·å…è®¸åˆ—è¡¨ã€‚
 
-文档：[Ollama](/providers/ollama)、[本地模型](/gateway/local-models)、
-[模型提供商](/concepts/model-providers)、[安全](/gateway/security)、
-[沙箱](/gateway/sandboxing)。
+æ–‡æ¡£ï¼š[Ollama](/providers/ollama)ã€[æœ¬åœ°æ¨¡åž‹](/gateway/local-models)ã€
+[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)ã€[å®‰å…¨](/gateway/security)ã€
+[æ²™ç®±](/gateway/sandboxing)ã€‚
 
-### 如何在不清空配置的情况下切换模型
+### å¦‚ä½•åœ¨ä¸æ¸…ç©ºé…ç½®çš„æƒ…å†µä¸‹åˆ‡æ¢æ¨¡åž‹
 
-使用**模型命令**或只编辑**模型**字段。避免完整配置替换。
+ä½¿ç”¨**æ¨¡åž‹å‘½ä»¤**æˆ–åªç¼–è¾‘**æ¨¡åž‹**å­—æ®µã€‚é¿å…å®Œæ•´é…ç½®æ›¿æ¢ã€‚
 
-安全选项：
+å®‰å…¨é€‰é¡¹ï¼š
 
-- 聊天中的 `/model`（快速，按会话）
-- `openclaw models set ...`（只更新模型配置）
-- `openclaw configure --section models`（交互式）
-- 编辑 `~/.openclaw/openclaw.json` 中的 `agents.defaults.model`
+- èŠå¤©ä¸­çš„ `/model`ï¼ˆå¿«é€Ÿï¼ŒæŒ‰ä¼šè¯ï¼‰
+- ` models set ...`ï¼ˆåªæ›´æ–°æ¨¡åž‹é…ç½®ï¼‰
+- ` configure --section models`ï¼ˆäº¤äº’å¼ï¼‰
+- ç¼–è¾‘ `~/./.json` ä¸­çš„ `agents.defaults.model`
 
-避免使用部分对象执行 `config.apply`，除非你打算替换整个配置。如果你确实覆盖了配置，从备份恢复或重新运行 `openclaw doctor` 来修复。
+é¿å…ä½¿ç”¨éƒ¨åˆ†å¯¹è±¡æ‰§è¡Œ `config.apply`ï¼Œé™¤éžä½ æ‰“ç®—æ›¿æ¢æ•´ä¸ªé…ç½®ã€‚å¦‚æžœä½ ç¡®å®žè¦†ç›–äº†é…ç½®ï¼Œä»Žå¤‡ä»½æ¢å¤æˆ–é‡æ–°è¿è¡Œ ` doctor` æ¥ä¿®å¤ã€‚
 
-文档：[模型](/concepts/models)、[Configure](/cli/configure)、[Config](/cli/config)、[Doctor](/gateway/doctor)。
+æ–‡æ¡£ï¼š[æ¨¡åž‹](/concepts/models)ã€[Configure](/cli/configure)ã€[Config](/cli/config)ã€[Doctor](/gateway/doctor)ã€‚
 
-### OpenClaw、Flawd 和 Krill 使用什么模型
+### ã€Flawd å’Œ Krill ä½¿ç”¨ä»€ä¹ˆæ¨¡åž‹
 
-- **OpenClaw + Flawd：** Anthropic Opus（`anthropic/claude-opus-4-5`）——参阅 [Anthropic](/providers/anthropic)。
-- **Krill：** MiniMax M2.1（`minimax/MiniMax-M2.1`）——参阅 [MiniMax](/providers/minimax)。
+- ** + Flawdï¼š** Anthropic Opusï¼ˆ`anthropic/claude-opus-4-5`ï¼‰â€”â€”å‚é˜… [Anthropic](/providers/anthropic)ã€‚
+- **Krillï¼š** MiniMax M2.1ï¼ˆ`minimax/MiniMax-M2.1`ï¼‰â€”â€”å‚é˜… [MiniMax](/providers/minimax)ã€‚
 
-### 如何在运行中切换模型（无需重启）
+### å¦‚ä½•åœ¨è¿è¡Œä¸­åˆ‡æ¢æ¨¡åž‹ï¼ˆæ— éœ€é‡å¯ï¼‰
 
-使用 `/model` 命令作为独立消息：
+ä½¿ç”¨ `/model` å‘½ä»¤ä½œä¸ºç‹¬ç«‹æ¶ˆæ¯ï¼š
 
 ```
 /model sonnet
@@ -1839,77 +1839,77 @@ MiniMax M2.1 有自己的文档：[MiniMax](/providers/minimax) 和
 /model gemini-flash
 ```
 
-你可以使用 `/model`、`/model list` 或 `/model status` 列出可用模型。
+ä½ å¯ä»¥ä½¿ç”¨ `/model`ã€`/model list` æˆ– `/model status` åˆ—å‡ºå¯ç”¨æ¨¡åž‹ã€‚
 
-`/model`（和 `/model list`）显示紧凑的编号选择器。按编号选择：
+`/model`ï¼ˆå’Œ `/model list`ï¼‰æ˜¾ç¤ºç´§å‡‘çš„ç¼–å·é€‰æ‹©å™¨ã€‚æŒ‰ç¼–å·é€‰æ‹©ï¼š
 
 ```
 /model 3
 ```
 
-你也可以为提供商强制指定特定的认证配置文件（按会话）：
+ä½ ä¹Ÿå¯ä»¥ä¸ºæä¾›å•†å¼ºåˆ¶æŒ‡å®šç‰¹å®šçš„è®¤è¯é…ç½®æ–‡ä»¶ï¼ˆæŒ‰ä¼šè¯ï¼‰ï¼š
 
 ```
 /model opus@anthropic:default
 /model opus@anthropic:work
 ```
 
-提示：`/model status` 显示哪个智能体是活跃的、正在使用哪个 `auth-profiles.json` 文件，以及接下来将尝试哪个认证配置文件。
-它还显示配置的提供商端点（`baseUrl`）和 API 模式（`api`）（如果可用）。
+æç¤ºï¼š`/model status` æ˜¾ç¤ºå“ªä¸ªæ™ºèƒ½ä½“æ˜¯æ´»è·ƒçš„ã€æ­£åœ¨ä½¿ç”¨å“ªä¸ª `auth-profiles.json` æ–‡ä»¶ï¼Œä»¥åŠæŽ¥ä¸‹æ¥å°†å°è¯•å“ªä¸ªè®¤è¯é…ç½®æ–‡ä»¶ã€‚
+å®ƒè¿˜æ˜¾ç¤ºé…ç½®çš„æä¾›å•†ç«¯ç‚¹ï¼ˆ`baseUrl`ï¼‰å’Œ API æ¨¡å¼ï¼ˆ`api`ï¼‰ï¼ˆå¦‚æžœå¯ç”¨ï¼‰ã€‚
 
-**如何取消用 @profile 设置的配置文件固定**
+**å¦‚ä½•å–æ¶ˆç”¨ @profile è®¾ç½®çš„é…ç½®æ–‡ä»¶å›ºå®š**
 
-重新运行 `/model` 但**不带** `@profile` 后缀：
+é‡æ–°è¿è¡Œ `/model` ä½†**ä¸å¸¦** `@profile` åŽç¼€ï¼š
 
 ```
 /model anthropic/claude-opus-4-5
 ```
 
-如果你想返回默认值，从 `/model` 中选择（或发送 `/model <default provider/model>`）。
-使用 `/model status` 确认哪个认证配置文件是活跃的。
+å¦‚æžœä½ æƒ³è¿”å›žé»˜è®¤å€¼ï¼Œä»Ž `/model` ä¸­é€‰æ‹©ï¼ˆæˆ–å‘é€ `/model <default provider/model>`ï¼‰ã€‚
+ä½¿ç”¨ `/model status` ç¡®è®¤å“ªä¸ªè®¤è¯é…ç½®æ–‡ä»¶æ˜¯æ´»è·ƒçš„ã€‚
 
-### 能否日常任务用 GPT 5.2，编程用 Codex 5.2
+### èƒ½å¦æ—¥å¸¸ä»»åŠ¡ç”¨ GPT 5.2ï¼Œç¼–ç¨‹ç”¨ Codex 5.2
 
-可以。设置一个为默认并按需切换：
+å¯ä»¥ã€‚è®¾ç½®ä¸€ä¸ªä¸ºé»˜è®¤å¹¶æŒ‰éœ€åˆ‡æ¢ï¼š
 
-- **快速切换（按会话）：** 日常任务用 `/model gpt-5.2`，编程用 `/model gpt-5.2-codex`。
-- **默认 + 切换：** 将 `agents.defaults.model.primary` 设置为 `openai-codex/gpt-5.2`，然后编程时切换到 `openai-codex/gpt-5.2-codex`（或反过来）。
-- **子智能体：** 将编程任务路由到具有不同默认模型的子智能体。
+- **å¿«é€Ÿåˆ‡æ¢ï¼ˆæŒ‰ä¼šè¯ï¼‰ï¼š** æ—¥å¸¸ä»»åŠ¡ç”¨ `/model gpt-5.2`ï¼Œç¼–ç¨‹ç”¨ `/model gpt-5.2-codex`ã€‚
+- **é»˜è®¤ + åˆ‡æ¢ï¼š** å°† `agents.defaults.model.primary` è®¾ç½®ä¸º `openai-codex/gpt-5.2`ï¼Œç„¶åŽç¼–ç¨‹æ—¶åˆ‡æ¢åˆ° `openai-codex/gpt-5.2-codex`ï¼ˆæˆ–åè¿‡æ¥ï¼‰ã€‚
+- **å­æ™ºèƒ½ä½“ï¼š** å°†ç¼–ç¨‹ä»»åŠ¡è·¯ç”±åˆ°å…·æœ‰ä¸åŒé»˜è®¤æ¨¡åž‹çš„å­æ™ºèƒ½ä½“ã€‚
 
-参阅[模型](/concepts/models)和[斜杠命令](/tools/slash-commands)。
+å‚é˜…[æ¨¡åž‹](/concepts/models)å’Œ[æ–œæ å‘½ä»¤](/tools/slash-commands)ã€‚
 
-### 为什么我看到"Model … is not allowed"然后没有回复
+### ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ°"Model â€¦ is not allowed"ç„¶åŽæ²¡æœ‰å›žå¤
 
-如果设置了 `agents.defaults.models`，它成为 `/model` 和任何会话覆盖的**允许列表**。选择不在该列表中的模型会返回：
+å¦‚æžœè®¾ç½®äº† `agents.defaults.models`ï¼Œå®ƒæˆä¸º `/model` å’Œä»»ä½•ä¼šè¯è¦†ç›–çš„**å…è®¸åˆ—è¡¨**ã€‚é€‰æ‹©ä¸åœ¨è¯¥åˆ—è¡¨ä¸­çš„æ¨¡åž‹ä¼šè¿”å›žï¼š
 
 ```
 Model "provider/model" is not allowed. Use /model to list available models.
 ```
 
-该错误**代替**正常回复返回。修复：将模型添加到 `agents.defaults.models`，移除允许列表，或从 `/model list` 中选择一个模型。
+è¯¥é”™è¯¯**ä»£æ›¿**æ­£å¸¸å›žå¤è¿”å›žã€‚ä¿®å¤ï¼šå°†æ¨¡åž‹æ·»åŠ åˆ° `agents.defaults.models`ï¼Œç§»é™¤å…è®¸åˆ—è¡¨ï¼Œæˆ–ä»Ž `/model list` ä¸­é€‰æ‹©ä¸€ä¸ªæ¨¡åž‹ã€‚
 
-### 为什么我看到"Unknown model: minimax/MiniMax-M2.1"
+### ä¸ºä»€ä¹ˆæˆ‘çœ‹åˆ°"Unknown model: minimax/MiniMax-M2.1"
 
-这意味着**提供商未配置**（未找到 MiniMax 提供商配置或认证配置文件），因此模型无法解析。此检测的修复在 **2026.1.12**（撰写本文时尚未发布）中。
+è¿™æ„å‘³ç€**æä¾›å•†æœªé…ç½®**ï¼ˆæœªæ‰¾åˆ° MiniMax æä¾›å•†é…ç½®æˆ–è®¤è¯é…ç½®æ–‡ä»¶ï¼‰ï¼Œå› æ­¤æ¨¡åž‹æ— æ³•è§£æžã€‚æ­¤æ£€æµ‹çš„ä¿®å¤åœ¨ **2026.1.12**ï¼ˆæ’°å†™æœ¬æ–‡æ—¶å°šæœªå‘å¸ƒï¼‰ä¸­ã€‚
 
-修复清单：
+ä¿®å¤æ¸…å•ï¼š
 
-1. 升级到 **2026.1.12**（或从源码 `main` 运行），然后重启 Gateway 网关。
-2. 确保 MiniMax 已配置（向导或 JSON），或者 MiniMax API 密钥存在于环境/认证配置文件中以便提供商可以被注入。
-3. 使用精确的模型 ID（区分大小写）：`minimax/MiniMax-M2.1` 或 `minimax/MiniMax-M2.1-lightning`。
-4. 运行：
+1. å‡çº§åˆ° **2026.1.12**ï¼ˆæˆ–ä»Žæºç  `main` è¿è¡Œï¼‰ï¼Œç„¶åŽé‡å¯ Gateway ç½‘å…³ã€‚
+2. ç¡®ä¿ MiniMax å·²é…ç½®ï¼ˆå‘å¯¼æˆ– JSONï¼‰ï¼Œæˆ–è€… MiniMax API å¯†é’¥å­˜åœ¨äºŽçŽ¯å¢ƒ/è®¤è¯é…ç½®æ–‡ä»¶ä¸­ä»¥ä¾¿æä¾›å•†å¯ä»¥è¢«æ³¨å…¥ã€‚
+3. ä½¿ç”¨ç²¾ç¡®çš„æ¨¡åž‹ IDï¼ˆåŒºåˆ†å¤§å°å†™ï¼‰ï¼š`minimax/MiniMax-M2.1` æˆ– `minimax/MiniMax-M2.1-lightning`ã€‚
+4. è¿è¡Œï¼š
    ```bash
-   openclaw models list
+    models list
    ```
-   并从列表中选择（或在聊天中使用 `/model list`）。
+   å¹¶ä»Žåˆ—è¡¨ä¸­é€‰æ‹©ï¼ˆæˆ–åœ¨èŠå¤©ä¸­ä½¿ç”¨ `/model list`ï¼‰ã€‚
 
-参阅 [MiniMax](/providers/minimax) 和[模型](/concepts/models)。
+å‚é˜… [MiniMax](/providers/minimax) å’Œ[æ¨¡åž‹](/concepts/models)ã€‚
 
-### 能否将 MiniMax 设为默认，复杂任务用 OpenAI
+### èƒ½å¦å°† MiniMax è®¾ä¸ºé»˜è®¤ï¼Œå¤æ‚ä»»åŠ¡ç”¨ OpenAI
 
-可以。使用 **MiniMax 作为默认**，需要时**按会话**切换模型。故障转移用于**错误**，而非“困难任务”，所以使用 `/model` 或单独的智能体。
+å¯ä»¥ã€‚ä½¿ç”¨ **MiniMax ä½œä¸ºé»˜è®¤**ï¼Œéœ€è¦æ—¶**æŒ‰ä¼šè¯**åˆ‡æ¢æ¨¡åž‹ã€‚æ•…éšœè½¬ç§»ç”¨äºŽ**é”™è¯¯**ï¼Œè€Œéžâ€œå›°éš¾ä»»åŠ¡â€ï¼Œæ‰€ä»¥ä½¿ç”¨ `/model` æˆ–å•ç‹¬çš„æ™ºèƒ½ä½“ã€‚
 
-**方案 A：按会话切换**
+**æ–¹æ¡ˆ Aï¼šæŒ‰ä¼šè¯åˆ‡æ¢**
 
 ```json5
 {
@@ -1926,36 +1926,36 @@ Model "provider/model" is not allowed. Use /model to list available models.
 }
 ```
 
-然后：
+ç„¶åŽï¼š
 
 ```
 /model gpt
 ```
 
-**方案 B：分离智能体**
+**æ–¹æ¡ˆ Bï¼šåˆ†ç¦»æ™ºèƒ½ä½“**
 
-- 智能体 A 默认：MiniMax
-- 智能体 B 默认：OpenAI
-- 按智能体路由或使用 `/agent` 切换
+- æ™ºèƒ½ä½“ A é»˜è®¤ï¼šMiniMax
+- æ™ºèƒ½ä½“ B é»˜è®¤ï¼šOpenAI
+- æŒ‰æ™ºèƒ½ä½“è·¯ç”±æˆ–ä½¿ç”¨ `/agent` åˆ‡æ¢
 
-文档：[模型](/concepts/models)、[多智能体路由](/concepts/multi-agent)、[MiniMax](/providers/minimax)、[OpenAI](/providers/openai)。
+æ–‡æ¡£ï¼š[æ¨¡åž‹](/concepts/models)ã€[å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)ã€[MiniMax](/providers/minimax)ã€[OpenAI](/providers/openai)ã€‚
 
-### opus / sonnet / gpt 是内置快捷方式吗
+### opus / sonnet / gpt æ˜¯å†…ç½®å¿«æ·æ–¹å¼å—
 
-是的。OpenClaw 内置了一些默认简写（仅在模型存在于 `agents.defaults.models` 中时应用）：
+æ˜¯çš„ã€‚ å†…ç½®äº†ä¸€äº›é»˜è®¤ç®€å†™ï¼ˆä»…åœ¨æ¨¡åž‹å­˜åœ¨äºŽ `agents.defaults.models` ä¸­æ—¶åº”ç”¨ï¼‰ï¼š
 
-- `opus` → `anthropic/claude-opus-4-5`
-- `sonnet` → `anthropic/claude-sonnet-4-5`
-- `gpt` → `openai/gpt-5.2`
-- `gpt-mini` → `openai/gpt-5-mini`
-- `gemini` → `google/gemini-3-pro-preview`
-- `gemini-flash` → `google/gemini-3-flash-preview`
+- `opus` â†’ `anthropic/claude-opus-4-5`
+- `sonnet` â†’ `anthropic/claude-sonnet-4-5`
+- `gpt` â†’ `openai/gpt-5.2`
+- `gpt-mini` â†’ `openai/gpt-5-mini`
+- `gemini` â†’ `google/gemini-3-pro-preview`
+- `gemini-flash` â†’ `google/gemini-3-flash-preview`
 
-如果你设置了同名的自定义别名，你的值优先。
+å¦‚æžœä½ è®¾ç½®äº†åŒåçš„è‡ªå®šä¹‰åˆ«åï¼Œä½ çš„å€¼ä¼˜å…ˆã€‚
 
-### 如何定义/覆盖模型快捷方式（别名）
+### å¦‚ä½•å®šä¹‰/è¦†ç›–æ¨¡åž‹å¿«æ·æ–¹å¼ï¼ˆåˆ«åï¼‰
 
-别名来自 `agents.defaults.models.<modelId>.alias`。示例：
+åˆ«åæ¥è‡ª `agents.defaults.models.<modelId>.alias`ã€‚ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -1972,11 +1972,11 @@ Model "provider/model" is not allowed. Use /model to list available models.
 }
 ```
 
-然后 `/model sonnet`（或支持时的 `/<alias>`）解析为该模型 ID。
+ç„¶åŽ `/model sonnet`ï¼ˆæˆ–æ”¯æŒæ—¶çš„ `/<alias>`ï¼‰è§£æžä¸ºè¯¥æ¨¡åž‹ IDã€‚
 
-### 如何添加其他提供商（如 OpenRouter 或 Z.AI）的模型
+### å¦‚ä½•æ·»åŠ å…¶ä»–æä¾›å•†ï¼ˆå¦‚ OpenRouter æˆ– Z.AIï¼‰çš„æ¨¡åž‹
 
-OpenRouter（按令牌付费；多种模型）：
+OpenRouterï¼ˆæŒ‰ä»¤ç‰Œä»˜è´¹ï¼›å¤šç§æ¨¡åž‹ï¼‰ï¼š
 
 ```json5
 {
@@ -1990,7 +1990,7 @@ OpenRouter（按令牌付费；多种模型）：
 }
 ```
 
-Z.AI（GLM 模型）：
+Z.AIï¼ˆGLM æ¨¡åž‹ï¼‰ï¼š
 
 ```json5
 {
@@ -2004,182 +2004,182 @@ Z.AI（GLM 模型）：
 }
 ```
 
-如果你引用了 provider/model 但缺少所需的提供商密钥，你会收到运行时认证错误（例如 `No API key found for provider "zai"`）。
+å¦‚æžœä½ å¼•ç”¨äº† provider/model ä½†ç¼ºå°‘æ‰€éœ€çš„æä¾›å•†å¯†é’¥ï¼Œä½ ä¼šæ”¶åˆ°è¿è¡Œæ—¶è®¤è¯é”™è¯¯ï¼ˆä¾‹å¦‚ `No API key found for provider "zai"`ï¼‰ã€‚
 
-**添加新智能体后提示 No API key found for provider**
+**æ·»åŠ æ–°æ™ºèƒ½ä½“åŽæç¤º No API key found for provider**
 
-这通常意味着**新智能体**的认证存储为空。认证是按智能体的，存储在：
+è¿™é€šå¸¸æ„å‘³ç€**æ–°æ™ºèƒ½ä½“**çš„è®¤è¯å­˜å‚¨ä¸ºç©ºã€‚è®¤è¯æ˜¯æŒ‰æ™ºèƒ½ä½“çš„ï¼Œå­˜å‚¨åœ¨ï¼š
 
 ```
-~/.openclaw/agents/<agentId>/agent/auth-profiles.json
+~/./agents/<agentId>/agent/auth-profiles.json
 ```
 
-修复选项：
+ä¿®å¤é€‰é¡¹ï¼š
 
-- 运行 `openclaw agents add <id>` 并在向导中配置认证。
-- 或从主智能体的 `agentDir` 复制 `auth-profiles.json` 到新智能体的 `agentDir`。
+- è¿è¡Œ ` agents add <id>` å¹¶åœ¨å‘å¯¼ä¸­é…ç½®è®¤è¯ã€‚
+- æˆ–ä»Žä¸»æ™ºèƒ½ä½“çš„ `agentDir` å¤åˆ¶ `auth-profiles.json` åˆ°æ–°æ™ºèƒ½ä½“çš„ `agentDir`ã€‚
 
-**不要**在智能体之间重用 `agentDir`；这会导致认证/会话冲突。
+**ä¸è¦**åœ¨æ™ºèƒ½ä½“ä¹‹é—´é‡ç”¨ `agentDir`ï¼›è¿™ä¼šå¯¼è‡´è®¤è¯/ä¼šè¯å†²çªã€‚
 
-## 模型故障转移与"All models failed"
+## æ¨¡åž‹æ•…éšœè½¬ç§»ä¸Ž"All models failed"
 
-### 故障转移是如何工作的
+### æ•…éšœè½¬ç§»æ˜¯å¦‚ä½•å·¥ä½œçš„
 
-故障转移分两个阶段：
+æ•…éšœè½¬ç§»åˆ†ä¸¤ä¸ªé˜¶æ®µï¼š
 
-1. 同一提供商内的**认证配置文件轮换**。
-2. **模型回退**到 `agents.defaults.model.fallbacks` 中的下一个模型。
+1. åŒä¸€æä¾›å•†å†…çš„**è®¤è¯é…ç½®æ–‡ä»¶è½®æ¢**ã€‚
+2. **æ¨¡åž‹å›žé€€**åˆ° `agents.defaults.model.fallbacks` ä¸­çš„ä¸‹ä¸€ä¸ªæ¨¡åž‹ã€‚
 
-冷却期适用于失败的配置文件（指数退避），因此 OpenClaw 即使在提供商被限速或临时失败时也能继续响应。
+å†·å´æœŸé€‚ç”¨äºŽå¤±è´¥çš„é…ç½®æ–‡ä»¶ï¼ˆæŒ‡æ•°é€€é¿ï¼‰ï¼Œå› æ­¤  å³ä½¿åœ¨æä¾›å•†è¢«é™é€Ÿæˆ–ä¸´æ—¶å¤±è´¥æ—¶ä¹Ÿèƒ½ç»§ç»­å“åº”ã€‚
 
-### 这个错误是什么意思
+### è¿™ä¸ªé”™è¯¯æ˜¯ä»€ä¹ˆæ„æ€
 
 ```
 No credentials found for profile "anthropic:default"
 ```
 
-这意味着系统尝试使用认证配置文件 ID `anthropic:default`，但在预期的认证存储中找不到它的凭据。
+è¿™æ„å‘³ç€ç³»ç»Ÿå°è¯•ä½¿ç”¨è®¤è¯é…ç½®æ–‡ä»¶ ID `anthropic:default`ï¼Œä½†åœ¨é¢„æœŸçš„è®¤è¯å­˜å‚¨ä¸­æ‰¾ä¸åˆ°å®ƒçš„å‡­æ®ã€‚
 
-### No credentials found for profile "anthropic:default" 的修复清单
+### No credentials found for profile "anthropic:default" çš„ä¿®å¤æ¸…å•
 
-- **确认认证配置文件的位置**（新路径 vs 旧路径）
-  - 当前：`~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
-  - 旧版：`~/.openclaw/agent/*`（通过 `openclaw doctor` 迁移）
-- **确认环境变量被 Gateway 网关加载**
-  - 如果你在 shell 中设置了 `ANTHROPIC_API_KEY` 但通过 systemd/launchd 运行 Gateway 网关，它可能不会继承。将其放在 `~/.openclaw/.env` 中或启用 `env.shellEnv`。
-- **确保你编辑的是正确的智能体**
-  - 多智能体设置意味着可能有多个 `auth-profiles.json` 文件。
-- **完整性检查模型/认证状态**
-  - 使用 `openclaw models status` 查看已配置的模型以及提供商是否已认证。
+- **ç¡®è®¤è®¤è¯é…ç½®æ–‡ä»¶çš„ä½ç½®**ï¼ˆæ–°è·¯å¾„ vs æ—§è·¯å¾„ï¼‰
+  - å½“å‰ï¼š`~/./agents/<agentId>/agent/auth-profiles.json`
+  - æ—§ç‰ˆï¼š`~/./agent/*`ï¼ˆé€šè¿‡ ` doctor` è¿ç§»ï¼‰
+- **ç¡®è®¤çŽ¯å¢ƒå˜é‡è¢« Gateway ç½‘å…³åŠ è½½**
+  - å¦‚æžœä½ åœ¨ shell ä¸­è®¾ç½®äº† `ANTHROPIC_API_KEY` ä½†é€šè¿‡ systemd/launchd è¿è¡Œ Gateway ç½‘å…³ï¼Œå®ƒå¯èƒ½ä¸ä¼šç»§æ‰¿ã€‚å°†å…¶æ”¾åœ¨ `~/./.env` ä¸­æˆ–å¯ç”¨ `env.shellEnv`ã€‚
+- **ç¡®ä¿ä½ ç¼–è¾‘çš„æ˜¯æ­£ç¡®çš„æ™ºèƒ½ä½“**
+  - å¤šæ™ºèƒ½ä½“è®¾ç½®æ„å‘³ç€å¯èƒ½æœ‰å¤šä¸ª `auth-profiles.json` æ–‡ä»¶ã€‚
+- **å®Œæ•´æ€§æ£€æŸ¥æ¨¡åž‹/è®¤è¯çŠ¶æ€**
+  - ä½¿ç”¨ ` models status` æŸ¥çœ‹å·²é…ç½®çš„æ¨¡åž‹ä»¥åŠæä¾›å•†æ˜¯å¦å·²è®¤è¯ã€‚
 
-**No credentials found for profile "anthropic" 的修复清单**
+**No credentials found for profile "anthropic" çš„ä¿®å¤æ¸…å•**
 
-这意味着运行固定到 Anthropic 认证配置文件，但 Gateway 网关在其认证存储中找不到它。
+è¿™æ„å‘³ç€è¿è¡Œå›ºå®šåˆ° Anthropic è®¤è¯é…ç½®æ–‡ä»¶ï¼Œä½† Gateway ç½‘å…³åœ¨å…¶è®¤è¯å­˜å‚¨ä¸­æ‰¾ä¸åˆ°å®ƒã€‚
 
-- **使用 setup-token**
-  - 运行 `claude setup-token`，然后用 `openclaw models auth setup-token --provider anthropic` 粘贴。
-  - 如果令牌在另一台机器上创建，使用 `openclaw models auth paste-token --provider anthropic`。
-- **如果你想使用 API 密钥**
-  - 在 **Gateway 网关主机**上将 `ANTHROPIC_API_KEY` 放入 `~/.openclaw/.env`。
-  - 清除任何强制缺失配置文件的固定顺序：
+- **ä½¿ç”¨ setup-token**
+  - è¿è¡Œ `claude setup-token`ï¼Œç„¶åŽç”¨ ` models auth setup-token --provider anthropic` ç²˜è´´ã€‚
+  - å¦‚æžœä»¤ç‰Œåœ¨å¦ä¸€å°æœºå™¨ä¸Šåˆ›å»ºï¼Œä½¿ç”¨ ` models auth paste-token --provider anthropic`ã€‚
+- **å¦‚æžœä½ æƒ³ä½¿ç”¨ API å¯†é’¥**
+  - åœ¨ **Gateway ç½‘å…³ä¸»æœº**ä¸Šå°† `ANTHROPIC_API_KEY` æ”¾å…¥ `~/./.env`ã€‚
+  - æ¸…é™¤ä»»ä½•å¼ºåˆ¶ç¼ºå¤±é…ç½®æ–‡ä»¶çš„å›ºå®šé¡ºåºï¼š
     ```bash
-    openclaw models auth order clear --provider anthropic
+     models auth order clear --provider anthropic
     ```
-- **确认你在 Gateway 网关主机上运行命令**
-  - 在远程模式下，认证配置文件位于 Gateway 网关机器上，而不是你的笔记本上。
+- **ç¡®è®¤ä½ åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œå‘½ä»¤**
+  - åœ¨è¿œç¨‹æ¨¡å¼ä¸‹ï¼Œè®¤è¯é…ç½®æ–‡ä»¶ä½äºŽ Gateway ç½‘å…³æœºå™¨ä¸Šï¼Œè€Œä¸æ˜¯ä½ çš„ç¬”è®°æœ¬ä¸Šã€‚
 
-### 为什么还尝试了 Google Gemini 并且失败了
+### ä¸ºä»€ä¹ˆè¿˜å°è¯•äº† Google Gemini å¹¶ä¸”å¤±è´¥äº†
 
-如果你的模型配置包含 Google Gemini 作为回退（或你切换到了 Gemini 简写），OpenClaw 会在模型回退期间尝试它。如果你没有配置 Google 凭据，你会看到 `No API key found for provider "google"`。
+å¦‚æžœä½ çš„æ¨¡åž‹é…ç½®åŒ…å« Google Gemini ä½œä¸ºå›žé€€ï¼ˆæˆ–ä½ åˆ‡æ¢åˆ°äº† Gemini ç®€å†™ï¼‰ï¼Œ ä¼šåœ¨æ¨¡åž‹å›žé€€æœŸé—´å°è¯•å®ƒã€‚å¦‚æžœä½ æ²¡æœ‰é…ç½® Google å‡­æ®ï¼Œä½ ä¼šçœ‹åˆ° `No API key found for provider "google"`ã€‚
 
-修复：提供 Google 认证，或从 `agents.defaults.model.fallbacks` / 别名中移除/避免 Google 模型，这样回退不会路由到那里。
+ä¿®å¤ï¼šæä¾› Google è®¤è¯ï¼Œæˆ–ä»Ž `agents.defaults.model.fallbacks` / åˆ«åä¸­ç§»é™¤/é¿å… Google æ¨¡åž‹ï¼Œè¿™æ ·å›žé€€ä¸ä¼šè·¯ç”±åˆ°é‚£é‡Œã€‚
 
 **LLM request rejected message thinking signature required google antigravity**
 
-原因：会话历史包含**没有签名的 thinking 块**（通常来自中止/部分流）。Google Antigravity 要求 thinking 块有签名。
+åŽŸå› ï¼šä¼šè¯åŽ†å²åŒ…å«**æ²¡æœ‰ç­¾åçš„ thinking å—**ï¼ˆé€šå¸¸æ¥è‡ªä¸­æ­¢/éƒ¨åˆ†æµï¼‰ã€‚Google Antigravity è¦æ±‚ thinking å—æœ‰ç­¾åã€‚
 
-修复：OpenClaw 现在为 Google Antigravity Claude 剥离未签名的 thinking 块。如果仍然出现，开始**新会话**或为该智能体设置 `/thinking off`。
+ä¿®å¤ï¼š çŽ°åœ¨ä¸º Google Antigravity Claude å‰¥ç¦»æœªç­¾åçš„ thinking å—ã€‚å¦‚æžœä»ç„¶å‡ºçŽ°ï¼Œå¼€å§‹**æ–°ä¼šè¯**æˆ–ä¸ºè¯¥æ™ºèƒ½ä½“è®¾ç½® `/thinking off`ã€‚
 
-## 认证配置文件：概念和管理方式
+## è®¤è¯é…ç½®æ–‡ä»¶ï¼šæ¦‚å¿µå’Œç®¡ç†æ–¹å¼
 
-相关：[/concepts/oauth](/concepts/oauth)（OAuth 流程、令牌存储、多账户模式）
+ç›¸å…³ï¼š[/concepts/oauth](/concepts/oauth)ï¼ˆOAuth æµç¨‹ã€ä»¤ç‰Œå­˜å‚¨ã€å¤šè´¦æˆ·æ¨¡å¼ï¼‰
 
-### 什么是认证配置文件
+### ä»€ä¹ˆæ˜¯è®¤è¯é…ç½®æ–‡ä»¶
 
-认证配置文件是绑定到提供商的命名凭据记录（OAuth 或 API 密钥）。配置文件位于：
+è®¤è¯é…ç½®æ–‡ä»¶æ˜¯ç»‘å®šåˆ°æä¾›å•†çš„å‘½åå‡­æ®è®°å½•ï¼ˆOAuth æˆ– API å¯†é’¥ï¼‰ã€‚é…ç½®æ–‡ä»¶ä½äºŽï¼š
 
 ```
-~/.openclaw/agents/<agentId>/agent/auth-profiles.json
+~/./agents/<agentId>/agent/auth-profiles.json
 ```
 
-### 典型的配置文件 ID 有哪些
+### å…¸åž‹çš„é…ç½®æ–‡ä»¶ ID æœ‰å“ªäº›
 
-OpenClaw 使用提供商前缀的 ID，如：
+ ä½¿ç”¨æä¾›å•†å‰ç¼€çš„ IDï¼Œå¦‚ï¼š
 
-- `anthropic:default`（没有邮箱身份时常见）
-- `anthropic:<email>`（用于 OAuth 身份）
-- 你自定义的 ID（例如 `anthropic:work`）
+- `anthropic:default`ï¼ˆæ²¡æœ‰é‚®ç®±èº«ä»½æ—¶å¸¸è§ï¼‰
+- `anthropic:<email>`ï¼ˆç”¨äºŽ OAuth èº«ä»½ï¼‰
+- ä½ è‡ªå®šä¹‰çš„ IDï¼ˆä¾‹å¦‚ `anthropic:work`ï¼‰
 
-### 可以控制首先尝试哪个认证配置文件吗
+### å¯ä»¥æŽ§åˆ¶é¦–å…ˆå°è¯•å“ªä¸ªè®¤è¯é…ç½®æ–‡ä»¶å—
 
-可以。配置支持配置文件的可选元数据和按提供商的排序（`auth.order.<provider>`）。这**不**存储密钥；它将 ID 映射到 provider/mode 并设置轮换顺序。
+å¯ä»¥ã€‚é…ç½®æ”¯æŒé…ç½®æ–‡ä»¶çš„å¯é€‰å…ƒæ•°æ®å’ŒæŒ‰æä¾›å•†çš„æŽ’åºï¼ˆ`auth.order.<provider>`ï¼‰ã€‚è¿™**ä¸**å­˜å‚¨å¯†é’¥ï¼›å®ƒå°† ID æ˜ å°„åˆ° provider/mode å¹¶è®¾ç½®è½®æ¢é¡ºåºã€‚
 
-如果某个配置文件处于短期**冷却**（速率限制/超时/认证失败）或较长的**禁用**状态（计费/额度不足），OpenClaw 可能会临时跳过它。要检查这一点，运行 `openclaw models status --json` 并查看 `auth.unusableProfiles`。调优：`auth.cooldowns.billingBackoffHours*`。
+å¦‚æžœæŸä¸ªé…ç½®æ–‡ä»¶å¤„äºŽçŸ­æœŸ**å†·å´**ï¼ˆé€ŸçŽ‡é™åˆ¶/è¶…æ—¶/è®¤è¯å¤±è´¥ï¼‰æˆ–è¾ƒé•¿çš„**ç¦ç”¨**çŠ¶æ€ï¼ˆè®¡è´¹/é¢åº¦ä¸è¶³ï¼‰ï¼Œ å¯èƒ½ä¼šä¸´æ—¶è·³è¿‡å®ƒã€‚è¦æ£€æŸ¥è¿™ä¸€ç‚¹ï¼Œè¿è¡Œ ` models status --json` å¹¶æŸ¥çœ‹ `auth.unusableProfiles`ã€‚è°ƒä¼˜ï¼š`auth.cooldowns.billingBackoffHours*`ã€‚
 
-你也可以通过 CLI 设置**按智能体**的顺序覆盖（存储在该智能体的 `auth-profiles.json` 中）：
+ä½ ä¹Ÿå¯ä»¥é€šè¿‡ CLI è®¾ç½®**æŒ‰æ™ºèƒ½ä½“**çš„é¡ºåºè¦†ç›–ï¼ˆå­˜å‚¨åœ¨è¯¥æ™ºèƒ½ä½“çš„ `auth-profiles.json` ä¸­ï¼‰ï¼š
 
 ```bash
-# 默认为配置的默认智能体（省略 --agent）
-openclaw models auth order get --provider anthropic
+# é»˜è®¤ä¸ºé…ç½®çš„é»˜è®¤æ™ºèƒ½ä½“ï¼ˆçœç•¥ --agentï¼‰
+ models auth order get --provider anthropic
 
-# 将轮换锁定到单个配置文件（只尝试这一个）
-openclaw models auth order set --provider anthropic anthropic:default
+# å°†è½®æ¢é”å®šåˆ°å•ä¸ªé…ç½®æ–‡ä»¶ï¼ˆåªå°è¯•è¿™ä¸€ä¸ªï¼‰
+ models auth order set --provider anthropic anthropic:default
 
-# 或设置明确的顺序（提供商内回退）
-openclaw models auth order set --provider anthropic anthropic:work anthropic:default
+# æˆ–è®¾ç½®æ˜Žç¡®çš„é¡ºåºï¼ˆæä¾›å•†å†…å›žé€€ï¼‰
+ models auth order set --provider anthropic anthropic:work anthropic:default
 
-# 清除覆盖（回退到配置 auth.order / 轮换）
-openclaw models auth order clear --provider anthropic
+# æ¸…é™¤è¦†ç›–ï¼ˆå›žé€€åˆ°é…ç½® auth.order / è½®æ¢ï¼‰
+ models auth order clear --provider anthropic
 ```
 
-要针对特定智能体：
+è¦é’ˆå¯¹ç‰¹å®šæ™ºèƒ½ä½“ï¼š
 
 ```bash
-openclaw models auth order set --provider anthropic --agent main anthropic:default
+ models auth order set --provider anthropic --agent main anthropic:default
 ```
 
-### OAuth 与 API 密钥：有什么区别
+### OAuth ä¸Ž API å¯†é’¥ï¼šæœ‰ä»€ä¹ˆåŒºåˆ«
 
-OpenClaw 两者都支持：
+ ä¸¤è€…éƒ½æ”¯æŒï¼š
 
-- **OAuth** 通常利用订阅访问（如适用）。
-- **API 密钥** 使用按令牌付费的计费。
+- **OAuth** é€šå¸¸åˆ©ç”¨è®¢é˜…è®¿é—®ï¼ˆå¦‚é€‚ç”¨ï¼‰ã€‚
+- **API å¯†é’¥** ä½¿ç”¨æŒ‰ä»¤ç‰Œä»˜è´¹çš„è®¡è´¹ã€‚
 
-向导明确支持 Anthropic setup-token 和 OpenAI Codex OAuth，也可以为你存储 API 密钥。
+å‘å¯¼æ˜Žç¡®æ”¯æŒ Anthropic setup-token å’Œ OpenAI Codex OAuthï¼Œä¹Ÿå¯ä»¥ä¸ºä½ å­˜å‚¨ API å¯†é’¥ã€‚
 
-## Gateway 网关：端口、“已在运行”和远程模式
+## Gateway ç½‘å…³ï¼šç«¯å£ã€â€œå·²åœ¨è¿è¡Œâ€å’Œè¿œç¨‹æ¨¡å¼
 
-### Gateway 网关使用什么端口
+### Gateway ç½‘å…³ä½¿ç”¨ä»€ä¹ˆç«¯å£
 
-`gateway.port` 控制用于 WebSocket + HTTP（控制 UI、钩子等）的单个复用端口。
+`gateway.port` æŽ§åˆ¶ç”¨äºŽ WebSocket + HTTPï¼ˆæŽ§åˆ¶ UIã€é’©å­ç­‰ï¼‰çš„å•ä¸ªå¤ç”¨ç«¯å£ã€‚
 
-优先级：
+ä¼˜å…ˆçº§ï¼š
 
 ```
---port > OPENCLAW_GATEWAY_PORT > gateway.port > 默认 18789
+--port > _GATEWAY_PORT > gateway.port > é»˜è®¤ 18789
 ```
 
-### 为什么 openclaw gateway status 显示 Runtime: running 但 RPC probe: failed
+### ä¸ºä»€ä¹ˆ  gateway status æ˜¾ç¤º Runtime: running ä½† RPC probe: failed
 
-因为"running"是 **supervisor** 的视角（launchd/systemd/schtasks）。RPC 探测是 CLI 实际连接到 Gateway 网关 WebSocket 并调用 `status`。
+å› ä¸º"running"æ˜¯ **supervisor** çš„è§†è§’ï¼ˆlaunchd/systemd/schtasksï¼‰ã€‚RPC æŽ¢æµ‹æ˜¯ CLI å®žé™…è¿žæŽ¥åˆ° Gateway ç½‘å…³ WebSocket å¹¶è°ƒç”¨ `status`ã€‚
 
-使用 `openclaw gateway status` 并关注这些行：
+ä½¿ç”¨ ` gateway status` å¹¶å…³æ³¨è¿™äº›è¡Œï¼š
 
-- `Probe target:`（探测实际使用的 URL）
-- `Listening:`（端口上实际绑定的内容）
-- `Last gateway error:`（进程存活但端口未监听时的常见根因）
+- `Probe target:`ï¼ˆæŽ¢æµ‹å®žé™…ä½¿ç”¨çš„ URLï¼‰
+- `Listening:`ï¼ˆç«¯å£ä¸Šå®žé™…ç»‘å®šçš„å†…å®¹ï¼‰
+- `Last gateway error:`ï¼ˆè¿›ç¨‹å­˜æ´»ä½†ç«¯å£æœªç›‘å¬æ—¶çš„å¸¸è§æ ¹å› ï¼‰
 
-### 为什么 openclaw gateway status 显示 Config (cli) 和 Config (service) 不同
+### ä¸ºä»€ä¹ˆ  gateway status æ˜¾ç¤º Config (cli) å’Œ Config (service) ä¸åŒ
 
-你正在编辑一个配置文件，而服务运行的是另一个（通常是 `--profile` / `OPENCLAW_STATE_DIR` 不匹配）。
+ä½ æ­£åœ¨ç¼–è¾‘ä¸€ä¸ªé…ç½®æ–‡ä»¶ï¼Œè€ŒæœåŠ¡è¿è¡Œçš„æ˜¯å¦ä¸€ä¸ªï¼ˆé€šå¸¸æ˜¯ `--profile` / `_STATE_DIR` ä¸åŒ¹é…ï¼‰ã€‚
 
-修复：
+ä¿®å¤ï¼š
 
 ```bash
-openclaw gateway install --force
+ gateway install --force
 ```
 
-从你希望服务使用的相同 `--profile` / 环境运行该命令。
+ä»Žä½ å¸Œæœ›æœåŠ¡ä½¿ç”¨çš„ç›¸åŒ `--profile` / çŽ¯å¢ƒè¿è¡Œè¯¥å‘½ä»¤ã€‚
 
-### "another gateway instance is already listening"是什么意思
+### "another gateway instance is already listening"æ˜¯ä»€ä¹ˆæ„æ€
 
-OpenClaw 通过在启动时立即绑定 WebSocket 监听器来强制运行时锁（默认 `ws://127.0.0.1:18789`）。如果绑定因 `EADDRINUSE` 失败，它会抛出 `GatewayLockError` 表示另一个实例已在监听。
+ é€šè¿‡åœ¨å¯åŠ¨æ—¶ç«‹å³ç»‘å®š WebSocket ç›‘å¬å™¨æ¥å¼ºåˆ¶è¿è¡Œæ—¶é”ï¼ˆé»˜è®¤ `ws://127.0.0.1:18789`ï¼‰ã€‚å¦‚æžœç»‘å®šå›  `EADDRINUSE` å¤±è´¥ï¼Œå®ƒä¼šæŠ›å‡º `GatewayLockError` è¡¨ç¤ºå¦ä¸€ä¸ªå®žä¾‹å·²åœ¨ç›‘å¬ã€‚
 
-修复：停止另一个实例，释放端口，或使用 `openclaw gateway --port <port>` 运行。
+ä¿®å¤ï¼šåœæ­¢å¦ä¸€ä¸ªå®žä¾‹ï¼Œé‡Šæ”¾ç«¯å£ï¼Œæˆ–ä½¿ç”¨ ` gateway --port <port>` è¿è¡Œã€‚
 
-### 如何以远程模式运行 OpenClaw（客户端连接到其他位置的 Gateway 网关）
+### å¦‚ä½•ä»¥è¿œç¨‹æ¨¡å¼è¿è¡Œ ï¼ˆå®¢æˆ·ç«¯è¿žæŽ¥åˆ°å…¶ä»–ä½ç½®çš„ Gateway ç½‘å…³ï¼‰
 
-设置 `gateway.mode: "remote"` 并指向远程 WebSocket URL，可选带令牌/密码：
+è®¾ç½® `gateway.mode: "remote"` å¹¶æŒ‡å‘è¿œç¨‹ WebSocket URLï¼Œå¯é€‰å¸¦ä»¤ç‰Œ/å¯†ç ï¼š
 
 ```json5
 {
@@ -2194,370 +2194,370 @@ OpenClaw 通过在启动时立即绑定 WebSocket 监听器来强制运行时锁
 }
 ```
 
-注意：
+æ³¨æ„ï¼š
 
-- `openclaw gateway` 仅在 `gateway.mode` 为 `local` 时启动（或你传递覆盖标志）。
-- macOS 应用监视配置文件，当这些值更改时实时切换模式。
+- ` gateway` ä»…åœ¨ `gateway.mode` ä¸º `local` æ—¶å¯åŠ¨ï¼ˆæˆ–ä½ ä¼ é€’è¦†ç›–æ ‡å¿—ï¼‰ã€‚
+- macOS åº”ç”¨ç›‘è§†é…ç½®æ–‡ä»¶ï¼Œå½“è¿™äº›å€¼æ›´æ”¹æ—¶å®žæ—¶åˆ‡æ¢æ¨¡å¼ã€‚
 
-### 控制 UI 显示"unauthorized"或持续重连，怎么办
+### æŽ§åˆ¶ UI æ˜¾ç¤º"unauthorized"æˆ–æŒç»­é‡è¿žï¼Œæ€Žä¹ˆåŠž
 
-你的 Gateway 网关运行时启用了认证（`gateway.auth.*`），但 UI 没有发送匹配的令牌/密码。
+ä½ çš„ Gateway ç½‘å…³è¿è¡Œæ—¶å¯ç”¨äº†è®¤è¯ï¼ˆ`gateway.auth.*`ï¼‰ï¼Œä½† UI æ²¡æœ‰å‘é€åŒ¹é…çš„ä»¤ç‰Œ/å¯†ç ã€‚
 
-事实（来自代码）：
+äº‹å®žï¼ˆæ¥è‡ªä»£ç ï¼‰ï¼š
 
-- 控制 UI 将令牌存储在浏览器 localStorage 键 `openclaw.control.settings.v1` 中。
-- UI 可以导入一次 `?token=...`（和/或 `?password=...`），然后从 URL 中剥离。
+- æŽ§åˆ¶ UI å°†ä»¤ç‰Œå­˜å‚¨åœ¨æµè§ˆå™¨ localStorage é”® `.control.settings.v1` ä¸­ã€‚
+- UI å¯ä»¥å¯¼å…¥ä¸€æ¬¡ `?token=...`ï¼ˆå’Œ/æˆ– `?password=...`ï¼‰ï¼Œç„¶åŽä»Ž URL ä¸­å‰¥ç¦»ã€‚
 
-修复：
+ä¿®å¤ï¼š
 
-- 最快：`openclaw dashboard`（打印 + 复制带令牌的链接，尝试打开；如果无头则显示 SSH 提示）。
-- 如果你还没有令牌：`openclaw doctor --generate-gateway-token`。
-- 如果是远程，先建隧道：`ssh -N -L 18789:127.0.0.1:18789 user@host` 然后打开 `http://127.0.0.1:18789/?token=...`。
-- 在 Gateway 网关主机上设置 `gateway.auth.token`（或 `OPENCLAW_GATEWAY_TOKEN`）。
-- 在控制 UI 设置中粘贴相同的令牌（或使用一次性 `?token=...` 链接刷新）。
-- 仍然卡住？运行 `openclaw status --all` 并按[故障排除](/gateway/troubleshooting)操作。参阅[仪表板](/web/dashboard)了解认证详情。
+- æœ€å¿«ï¼š` dashboard`ï¼ˆæ‰“å° + å¤åˆ¶å¸¦ä»¤ç‰Œçš„é“¾æŽ¥ï¼Œå°è¯•æ‰“å¼€ï¼›å¦‚æžœæ— å¤´åˆ™æ˜¾ç¤º SSH æç¤ºï¼‰ã€‚
+- å¦‚æžœä½ è¿˜æ²¡æœ‰ä»¤ç‰Œï¼š` doctor --generate-gateway-token`ã€‚
+- å¦‚æžœæ˜¯è¿œç¨‹ï¼Œå…ˆå»ºéš§é“ï¼š`ssh -N -L 18789:127.0.0.1:18789 user@host` ç„¶åŽæ‰“å¼€ `http://127.0.0.1:18789/?token=...`ã€‚
+- åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè®¾ç½® `gateway.auth.token`ï¼ˆæˆ– `_GATEWAY_TOKEN`ï¼‰ã€‚
+- åœ¨æŽ§åˆ¶ UI è®¾ç½®ä¸­ç²˜è´´ç›¸åŒçš„ä»¤ç‰Œï¼ˆæˆ–ä½¿ç”¨ä¸€æ¬¡æ€§ `?token=...` é“¾æŽ¥åˆ·æ–°ï¼‰ã€‚
+- ä»ç„¶å¡ä½ï¼Ÿè¿è¡Œ ` status --all` å¹¶æŒ‰[æ•…éšœæŽ’é™¤](/gateway/troubleshooting)æ“ä½œã€‚å‚é˜…[ä»ªè¡¨æ¿](/web/dashboard)äº†è§£è®¤è¯è¯¦æƒ…ã€‚
 
-### 我设置了 gateway.bind: "tailnet" 但无法绑定 / 什么都没监听
+### æˆ‘è®¾ç½®äº† gateway.bind: "tailnet" ä½†æ— æ³•ç»‘å®š / ä»€ä¹ˆéƒ½æ²¡ç›‘å¬
 
-`tailnet` 绑定从你的网络接口中选择 Tailscale IP（100.64.0.0/10）。如果机器没有在 Tailscale 上（或接口已关闭），就没有可绑定的地址。
+`tailnet` ç»‘å®šä»Žä½ çš„ç½‘ç»œæŽ¥å£ä¸­é€‰æ‹© Tailscale IPï¼ˆ100.64.0.0/10ï¼‰ã€‚å¦‚æžœæœºå™¨æ²¡æœ‰åœ¨ Tailscale ä¸Šï¼ˆæˆ–æŽ¥å£å·²å…³é—­ï¼‰ï¼Œå°±æ²¡æœ‰å¯ç»‘å®šçš„åœ°å€ã€‚
 
-修复：
+ä¿®å¤ï¼š
 
-- 在该主机上启动 Tailscale（使其拥有 100.x 地址），或
-- 切换到 `gateway.bind: "loopback"` / `"lan"`。
+- åœ¨è¯¥ä¸»æœºä¸Šå¯åŠ¨ Tailscaleï¼ˆä½¿å…¶æ‹¥æœ‰ 100.x åœ°å€ï¼‰ï¼Œæˆ–
+- åˆ‡æ¢åˆ° `gateway.bind: "loopback"` / `"lan"`ã€‚
 
-注意：`tailnet` 是明确的。`auto` 优先 local loopback；当你想要仅 tailnet 绑定时使用 `gateway.bind: "tailnet"`。
+æ³¨æ„ï¼š`tailnet` æ˜¯æ˜Žç¡®çš„ã€‚`auto` ä¼˜å…ˆ local loopbackï¼›å½“ä½ æƒ³è¦ä»… tailnet ç»‘å®šæ—¶ä½¿ç”¨ `gateway.bind: "tailnet"`ã€‚
 
-### 可以在同一主机上运行多个 Gateway 网关吗
+### å¯ä»¥åœ¨åŒä¸€ä¸»æœºä¸Šè¿è¡Œå¤šä¸ª Gateway ç½‘å…³å—
 
-通常不需要——一个 Gateway 网关可以运行多个消息渠道和智能体。仅在需要冗余（例如救援机器人）或硬隔离时使用多个 Gateway 网关。
+é€šå¸¸ä¸éœ€è¦â€”â€”ä¸€ä¸ª Gateway ç½‘å…³å¯ä»¥è¿è¡Œå¤šä¸ªæ¶ˆæ¯æ¸ é“å’Œæ™ºèƒ½ä½“ã€‚ä»…åœ¨éœ€è¦å†—ä½™ï¼ˆä¾‹å¦‚æ•‘æ´æœºå™¨äººï¼‰æˆ–ç¡¬éš”ç¦»æ—¶ä½¿ç”¨å¤šä¸ª Gateway ç½‘å…³ã€‚
 
-可以，但你必须隔离：
+å¯ä»¥ï¼Œä½†ä½ å¿…é¡»éš”ç¦»ï¼š
 
-- `OPENCLAW_CONFIG_PATH`（每实例配置）
-- `OPENCLAW_STATE_DIR`（每实例状态）
-- `agents.defaults.workspace`（工作区隔离）
-- `gateway.port`（唯一端口）
+- `_CONFIG_PATH`ï¼ˆæ¯å®žä¾‹é…ç½®ï¼‰
+- `_STATE_DIR`ï¼ˆæ¯å®žä¾‹çŠ¶æ€ï¼‰
+- `agents.defaults.workspace`ï¼ˆå·¥ä½œåŒºéš”ç¦»ï¼‰
+- `gateway.port`ï¼ˆå”¯ä¸€ç«¯å£ï¼‰
 
-快速设置（推荐）：
+å¿«é€Ÿè®¾ç½®ï¼ˆæŽ¨èï¼‰ï¼š
 
-- 每实例使用 `openclaw --profile <name> …`（自动创建 `~/.openclaw-<name>`）。
-- 在每个配置文件配置中设置唯一的 `gateway.port`（或手动运行时传 `--port`）。
-- 安装每配置文件的服务：`openclaw --profile <name> gateway install`。
+- æ¯å®žä¾‹ä½¿ç”¨ ` --profile <name> â€¦`ï¼ˆè‡ªåŠ¨åˆ›å»º `~/.-<name>`ï¼‰ã€‚
+- åœ¨æ¯ä¸ªé…ç½®æ–‡ä»¶é…ç½®ä¸­è®¾ç½®å”¯ä¸€çš„ `gateway.port`ï¼ˆæˆ–æ‰‹åŠ¨è¿è¡Œæ—¶ä¼  `--port`ï¼‰ã€‚
+- å®‰è£…æ¯é…ç½®æ–‡ä»¶çš„æœåŠ¡ï¼š` --profile <name> gateway install`ã€‚
 
-配置文件还会为服务名称添加后缀（`bot.molt.<profile>`；旧版 `com.openclaw.*`、`openclaw-gateway-<profile>.service`、`OpenClaw Gateway 网关 (<profile>)`）。
-完整指南：[多 Gateway 网关](/gateway/multiple-gateways)。
+é…ç½®æ–‡ä»¶è¿˜ä¼šä¸ºæœåŠ¡åç§°æ·»åŠ åŽç¼€ï¼ˆ`bot.molt.<profile>`ï¼›æ—§ç‰ˆ `com..*`ã€`-gateway-<profile>.service`ã€` Gateway ç½‘å…³ (<profile>)`ï¼‰ã€‚
+å®Œæ•´æŒ‡å—ï¼š[å¤š Gateway ç½‘å…³](/gateway/multiple-gateways)ã€‚
 
-### "invalid handshake" / code 1008 是什么意思
+### "invalid handshake" / code 1008 æ˜¯ä»€ä¹ˆæ„æ€
 
-Gateway 网关是一个 **WebSocket 服务器**，它期望第一条消息是 `connect` 帧。如果收到其他内容，它会以 **code 1008**（策略违规）关闭连接。
+Gateway ç½‘å…³æ˜¯ä¸€ä¸ª **WebSocket æœåŠ¡å™¨**ï¼Œå®ƒæœŸæœ›ç¬¬ä¸€æ¡æ¶ˆæ¯æ˜¯ `connect` å¸§ã€‚å¦‚æžœæ”¶åˆ°å…¶ä»–å†…å®¹ï¼Œå®ƒä¼šä»¥ **code 1008**ï¼ˆç­–ç•¥è¿è§„ï¼‰å…³é—­è¿žæŽ¥ã€‚
 
-常见原因：
+å¸¸è§åŽŸå› ï¼š
 
-- 你在浏览器中打开了 **HTTP** URL（`http://...`）而不是 WS 客户端。
-- 你使用了错误的端口或路径。
-- 代理或隧道剥离了认证头或发送了非 Gateway 网关请求。
+- ä½ åœ¨æµè§ˆå™¨ä¸­æ‰“å¼€äº† **HTTP** URLï¼ˆ`http://...`ï¼‰è€Œä¸æ˜¯ WS å®¢æˆ·ç«¯ã€‚
+- ä½ ä½¿ç”¨äº†é”™è¯¯çš„ç«¯å£æˆ–è·¯å¾„ã€‚
+- ä»£ç†æˆ–éš§é“å‰¥ç¦»äº†è®¤è¯å¤´æˆ–å‘é€äº†éž Gateway ç½‘å…³è¯·æ±‚ã€‚
 
-快速修复：
+å¿«é€Ÿä¿®å¤ï¼š
 
-1. 使用 WS URL：`ws://<host>:18789`（或 `wss://...` 如果 HTTPS）。
-2. 不要在普通浏览器标签页中打开 WS 端口。
-3. 如果认证已启用，在 `connect` 帧中包含令牌/密码。
+1. ä½¿ç”¨ WS URLï¼š`ws://<host>:18789`ï¼ˆæˆ– `wss://...` å¦‚æžœ HTTPSï¼‰ã€‚
+2. ä¸è¦åœ¨æ™®é€šæµè§ˆå™¨æ ‡ç­¾é¡µä¸­æ‰“å¼€ WS ç«¯å£ã€‚
+3. å¦‚æžœè®¤è¯å·²å¯ç”¨ï¼Œåœ¨ `connect` å¸§ä¸­åŒ…å«ä»¤ç‰Œ/å¯†ç ã€‚
 
-如果你使用 CLI 或 TUI，URL 应该类似：
-
-```
-openclaw tui --url ws://<host>:18789 --token <token>
-```
-
-协议详情：[Gateway 网关协议](/gateway/protocol)。
-
-## 日志与调试
-
-### 日志在哪里
-
-文件日志（结构化）：
+å¦‚æžœä½ ä½¿ç”¨ CLI æˆ– TUIï¼ŒURL åº”è¯¥ç±»ä¼¼ï¼š
 
 ```
-/tmp/openclaw/openclaw-YYYY-MM-DD.log
+ tui --url ws://<host>:18789 --token <token>
 ```
 
-你可以通过 `logging.file` 设置稳定路径。文件日志级别由 `logging.level` 控制。控制台详细度由 `--verbose` 和 `logging.consoleLevel` 控制。
+åè®®è¯¦æƒ…ï¼š[Gateway ç½‘å…³åè®®](/gateway/protocol)ã€‚
 
-最快的日志跟踪：
+## æ—¥å¿—ä¸Žè°ƒè¯•
+
+### æ—¥å¿—åœ¨å“ªé‡Œ
+
+æ–‡ä»¶æ—¥å¿—ï¼ˆç»“æž„åŒ–ï¼‰ï¼š
+
+```
+/tmp//-YYYY-MM-DD.log
+```
+
+ä½ å¯ä»¥é€šè¿‡ `logging.file` è®¾ç½®ç¨³å®šè·¯å¾„ã€‚æ–‡ä»¶æ—¥å¿—çº§åˆ«ç”± `logging.level` æŽ§åˆ¶ã€‚æŽ§åˆ¶å°è¯¦ç»†åº¦ç”± `--verbose` å’Œ `logging.consoleLevel` æŽ§åˆ¶ã€‚
+
+æœ€å¿«çš„æ—¥å¿—è·Ÿè¸ªï¼š
 
 ```bash
-openclaw logs --follow
+ logs --follow
 ```
 
-服务/supervisor 日志（当 Gateway 网关通过 launchd/systemd 运行时）：
+æœåŠ¡/supervisor æ—¥å¿—ï¼ˆå½“ Gateway ç½‘å…³é€šè¿‡ launchd/systemd è¿è¡Œæ—¶ï¼‰ï¼š
 
-- macOS：`$OPENCLAW_STATE_DIR/logs/gateway.log` 和 `gateway.err.log`（默认：`~/.openclaw/logs/...`；配置文件使用 `~/.openclaw-<profile>/logs/...`）
-- Linux：`journalctl --user -u openclaw-gateway[-<profile>].service -n 200 --no-pager`
-- Windows：`schtasks /Query /TN "OpenClaw Gateway 网关 (<profile>)" /V /FO LIST`
+- macOSï¼š`$_STATE_DIR/logs/gateway.log` å’Œ `gateway.err.log`ï¼ˆé»˜è®¤ï¼š`~/./logs/...`ï¼›é…ç½®æ–‡ä»¶ä½¿ç”¨ `~/.-<profile>/logs/...`ï¼‰
+- Linuxï¼š`journalctl --user -u -gateway[-<profile>].service -n 200 --no-pager`
+- Windowsï¼š`schtasks /Query /TN " Gateway ç½‘å…³ (<profile>)" /V /FO LIST`
 
-参阅[故障排除](/gateway/troubleshooting#log-locations)了解更多。
+å‚é˜…[æ•…éšœæŽ’é™¤](/gateway/troubleshooting#log-locations)äº†è§£æ›´å¤šã€‚
 
-### 如何启动/停止/重启 Gateway 网关服务
+### å¦‚ä½•å¯åŠ¨/åœæ­¢/é‡å¯ Gateway ç½‘å…³æœåŠ¡
 
-使用 Gateway 网关辅助命令：
+ä½¿ç”¨ Gateway ç½‘å…³è¾…åŠ©å‘½ä»¤ï¼š
 
 ```bash
-openclaw gateway status
-openclaw gateway restart
+ gateway status
+ gateway restart
 ```
 
-如果你手动运行 Gateway 网关，`openclaw gateway --force` 可以回收端口。参阅 [Gateway 网关](/gateway)。
+å¦‚æžœä½ æ‰‹åŠ¨è¿è¡Œ Gateway ç½‘å…³ï¼Œ` gateway --force` å¯ä»¥å›žæ”¶ç«¯å£ã€‚å‚é˜… [Gateway ç½‘å…³](/gateway)ã€‚
 
-### 我在 Windows 上关闭了终端——如何重启 OpenClaw
+### æˆ‘åœ¨ Windows ä¸Šå…³é—­äº†ç»ˆç«¯â€”â€”å¦‚ä½•é‡å¯ 
 
-有**两种 Windows 安装模式**：
+æœ‰**ä¸¤ç§ Windows å®‰è£…æ¨¡å¼**ï¼š
 
-**1) WSL2（推荐）：** Gateway 网关运行在 Linux 内部。
+**1) WSL2ï¼ˆæŽ¨èï¼‰ï¼š** Gateway ç½‘å…³è¿è¡Œåœ¨ Linux å†…éƒ¨ã€‚
 
-打开 PowerShell，进入 WSL，然后重启：
+æ‰“å¼€ PowerShellï¼Œè¿›å…¥ WSLï¼Œç„¶åŽé‡å¯ï¼š
 
 ```powershell
 wsl
-openclaw gateway status
-openclaw gateway restart
+ gateway status
+ gateway restart
 ```
 
-如果你从未安装服务，在前台启动：
+å¦‚æžœä½ ä»Žæœªå®‰è£…æœåŠ¡ï¼Œåœ¨å‰å°å¯åŠ¨ï¼š
 
 ```bash
-openclaw gateway run
+ gateway run
 ```
 
-**2) 原生 Windows（不推荐）：** Gateway 网关直接在 Windows 中运行。
+**2) åŽŸç”Ÿ Windowsï¼ˆä¸æŽ¨èï¼‰ï¼š** Gateway ç½‘å…³ç›´æŽ¥åœ¨ Windows ä¸­è¿è¡Œã€‚
 
-打开 PowerShell 并运行：
+æ‰“å¼€ PowerShell å¹¶è¿è¡Œï¼š
 
 ```powershell
-openclaw gateway status
-openclaw gateway restart
+ gateway status
+ gateway restart
 ```
 
-如果你手动运行（无服务），使用：
+å¦‚æžœä½ æ‰‹åŠ¨è¿è¡Œï¼ˆæ— æœåŠ¡ï¼‰ï¼Œä½¿ç”¨ï¼š
 
 ```powershell
-openclaw gateway run
+ gateway run
 ```
 
-文档：[Windows (WSL2)](/platforms/windows)、[Gateway 网关服务运维手册](/gateway)。
+æ–‡æ¡£ï¼š[Windows (WSL2)](/platforms/windows)ã€[Gateway ç½‘å…³æœåŠ¡è¿ç»´æ‰‹å†Œ](/gateway)ã€‚
 
-### Gateway 网关已启动但回复始终不到达，应该检查什么
+### Gateway ç½‘å…³å·²å¯åŠ¨ä½†å›žå¤å§‹ç»ˆä¸åˆ°è¾¾ï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆ
 
-从快速健康扫描开始：
+ä»Žå¿«é€Ÿå¥åº·æ‰«æå¼€å§‹ï¼š
 
 ```bash
-openclaw status
-openclaw models status
-openclaw channels status
-openclaw logs --follow
+ status
+ models status
+ channels status
+ logs --follow
 ```
 
-常见原因：
+å¸¸è§åŽŸå› ï¼š
 
-- 模型认证未在 **Gateway 网关主机**上加载（检查 `models status`）。
-- 渠道配对/允许列表阻止回复（检查渠道配置 + 日志）。
-- WebChat/仪表板打开但没有正确的令牌。
+- æ¨¡åž‹è®¤è¯æœªåœ¨ **Gateway ç½‘å…³ä¸»æœº**ä¸ŠåŠ è½½ï¼ˆæ£€æŸ¥ `models status`ï¼‰ã€‚
+- æ¸ é“é…å¯¹/å…è®¸åˆ—è¡¨é˜»æ­¢å›žå¤ï¼ˆæ£€æŸ¥æ¸ é“é…ç½® + æ—¥å¿—ï¼‰ã€‚
+- WebChat/ä»ªè¡¨æ¿æ‰“å¼€ä½†æ²¡æœ‰æ­£ç¡®çš„ä»¤ç‰Œã€‚
 
-如果你在远程，确认隧道/Tailscale 连接正常且 Gateway 网关 WebSocket 可达。
+å¦‚æžœä½ åœ¨è¿œç¨‹ï¼Œç¡®è®¤éš§é“/Tailscale è¿žæŽ¥æ­£å¸¸ä¸” Gateway ç½‘å…³ WebSocket å¯è¾¾ã€‚
 
-文档：[渠道](/channels)、[故障排除](/gateway/troubleshooting)、[远程访问](/gateway/remote)。
+æ–‡æ¡£ï¼š[æ¸ é“](/channels)ã€[æ•…éšœæŽ’é™¤](/gateway/troubleshooting)ã€[è¿œç¨‹è®¿é—®](/gateway/remote)ã€‚
 
-### "Disconnected from gateway: no reason"——怎么办
+### "Disconnected from gateway: no reason"â€”â€”æ€Žä¹ˆåŠž
 
-这通常意味着 UI 丢失了 WebSocket 连接。检查：
+è¿™é€šå¸¸æ„å‘³ç€ UI ä¸¢å¤±äº† WebSocket è¿žæŽ¥ã€‚æ£€æŸ¥ï¼š
 
-1. Gateway 网关在运行吗？`openclaw gateway status`
-2. Gateway 网关健康吗？`openclaw status`
-3. UI 有正确的令牌吗？`openclaw dashboard`
-4. 如果是远程，隧道/Tailscale 链接正常吗？
+1. Gateway ç½‘å…³åœ¨è¿è¡Œå—ï¼Ÿ` gateway status`
+2. Gateway ç½‘å…³å¥åº·å—ï¼Ÿ` status`
+3. UI æœ‰æ­£ç¡®çš„ä»¤ç‰Œå—ï¼Ÿ` dashboard`
+4. å¦‚æžœæ˜¯è¿œç¨‹ï¼Œéš§é“/Tailscale é“¾æŽ¥æ­£å¸¸å—ï¼Ÿ
 
-然后跟踪日志：
+ç„¶åŽè·Ÿè¸ªæ—¥å¿—ï¼š
 
 ```bash
-openclaw logs --follow
+ logs --follow
 ```
 
-文档：[仪表板](/web/dashboard)、[远程访问](/gateway/remote)、[故障排除](/gateway/troubleshooting)。
+æ–‡æ¡£ï¼š[ä»ªè¡¨æ¿](/web/dashboard)ã€[è¿œç¨‹è®¿é—®](/gateway/remote)ã€[æ•…éšœæŽ’é™¤](/gateway/troubleshooting)ã€‚
 
-### Telegram setMyCommands 因网络错误失败，应该检查什么
+### Telegram setMyCommands å› ç½‘ç»œé”™è¯¯å¤±è´¥ï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆ
 
-从日志和渠道状态开始：
+ä»Žæ—¥å¿—å’Œæ¸ é“çŠ¶æ€å¼€å§‹ï¼š
 
 ```bash
-openclaw channels status
-openclaw channels logs --channel telegram
+ channels status
+ channels logs --channel telegram
 ```
 
-如果你在 VPS 上或代理后面，确认出站 HTTPS 被允许且 DNS 正常工作。
-如果 Gateway 网关在远程，确保你在 Gateway 网关主机上查看日志。
+å¦‚æžœä½ åœ¨ VPS ä¸Šæˆ–ä»£ç†åŽé¢ï¼Œç¡®è®¤å‡ºç«™ HTTPS è¢«å…è®¸ä¸” DNS æ­£å¸¸å·¥ä½œã€‚
+å¦‚æžœ Gateway ç½‘å…³åœ¨è¿œç¨‹ï¼Œç¡®ä¿ä½ åœ¨ Gateway ç½‘å…³ä¸»æœºä¸ŠæŸ¥çœ‹æ—¥å¿—ã€‚
 
-文档：[Telegram](/channels/telegram)、[渠道故障排除](/channels/troubleshooting)。
+æ–‡æ¡£ï¼š[Telegram](/channels/telegram)ã€[æ¸ é“æ•…éšœæŽ’é™¤](/channels/troubleshooting)ã€‚
 
-### TUI 没有输出，应该检查什么
+### TUI æ²¡æœ‰è¾“å‡ºï¼Œåº”è¯¥æ£€æŸ¥ä»€ä¹ˆ
 
-首先确认 Gateway 网关可达且智能体可以运行：
+é¦–å…ˆç¡®è®¤ Gateway ç½‘å…³å¯è¾¾ä¸”æ™ºèƒ½ä½“å¯ä»¥è¿è¡Œï¼š
 
 ```bash
-openclaw status
-openclaw models status
-openclaw logs --follow
+ status
+ models status
+ logs --follow
 ```
 
-在 TUI 中，使用 `/status` 查看当前状态。如果你期望在聊天渠道中收到回复，确保投递已启用（`/deliver on`）。
+åœ¨ TUI ä¸­ï¼Œä½¿ç”¨ `/status` æŸ¥çœ‹å½“å‰çŠ¶æ€ã€‚å¦‚æžœä½ æœŸæœ›åœ¨èŠå¤©æ¸ é“ä¸­æ”¶åˆ°å›žå¤ï¼Œç¡®ä¿æŠ•é€’å·²å¯ç”¨ï¼ˆ`/deliver on`ï¼‰ã€‚
 
-文档：[TUI](/tui)、[斜杠命令](/tools/slash-commands)。
+æ–‡æ¡£ï¼š[TUI](/tui)ã€[æ–œæ å‘½ä»¤](/tools/slash-commands)ã€‚
 
-### 如何完全停止然后启动 Gateway 网关如果你安装了服务：
+### å¦‚ä½•å®Œå…¨åœæ­¢ç„¶åŽå¯åŠ¨ Gateway ç½‘å…³å¦‚æžœä½ å®‰è£…äº†æœåŠ¡ï¼š
 
 ```bash
-openclaw gateway stop
-openclaw gateway start
+ gateway stop
+ gateway start
 ```
 
-这会停止/启动**受监管的服务**（macOS 上的 launchd，Linux 上的 systemd）。
-当 Gateway 网关作为守护进程在后台运行时使用此命令。
+è¿™ä¼šåœæ­¢/å¯åŠ¨**å—ç›‘ç®¡çš„æœåŠ¡**ï¼ˆmacOS ä¸Šçš„ launchdï¼ŒLinux ä¸Šçš„ systemdï¼‰ã€‚
+å½“ Gateway ç½‘å…³ä½œä¸ºå®ˆæŠ¤è¿›ç¨‹åœ¨åŽå°è¿è¡Œæ—¶ä½¿ç”¨æ­¤å‘½ä»¤ã€‚
 
-如果你在前台运行，用 Ctrl‑C 停止，然后：
+å¦‚æžœä½ åœ¨å‰å°è¿è¡Œï¼Œç”¨ Ctrlâ€‘C åœæ­¢ï¼Œç„¶åŽï¼š
 
 ```bash
-openclaw gateway run
+ gateway run
 ```
 
-文档：[Gateway 网关服务运维手册](/gateway)。
+æ–‡æ¡£ï¼š[Gateway ç½‘å…³æœåŠ¡è¿ç»´æ‰‹å†Œ](/gateway)ã€‚
 
-### 通俗解释：openclaw gateway restart 与 openclaw gateway
+### é€šä¿—è§£é‡Šï¼š gateway restart ä¸Ž  gateway
 
-- `openclaw gateway restart`：重启**后台服务**（launchd/systemd）。
-- `openclaw gateway`：在这个终端会话中**前台**运行 Gateway 网关。
+- ` gateway restart`ï¼šé‡å¯**åŽå°æœåŠ¡**ï¼ˆlaunchd/systemdï¼‰ã€‚
+- ` gateway`ï¼šåœ¨è¿™ä¸ªç»ˆç«¯ä¼šè¯ä¸­**å‰å°**è¿è¡Œ Gateway ç½‘å…³ã€‚
 
-如果你安装了服务，使用 Gateway 网关命令。想要一次性前台运行时使用 `openclaw gateway`。
+å¦‚æžœä½ å®‰è£…äº†æœåŠ¡ï¼Œä½¿ç”¨ Gateway ç½‘å…³å‘½ä»¤ã€‚æƒ³è¦ä¸€æ¬¡æ€§å‰å°è¿è¡Œæ—¶ä½¿ç”¨ ` gateway`ã€‚
 
-### 出现故障时获取更多详情的最快方法是什么
+### å‡ºçŽ°æ•…éšœæ—¶èŽ·å–æ›´å¤šè¯¦æƒ…çš„æœ€å¿«æ–¹æ³•æ˜¯ä»€ä¹ˆ
 
-使用 `--verbose` 启动 Gateway 网关以获取更多控制台详情。然后检查日志文件中的渠道认证、模型路由和 RPC 错误。
+ä½¿ç”¨ `--verbose` å¯åŠ¨ Gateway ç½‘å…³ä»¥èŽ·å–æ›´å¤šæŽ§åˆ¶å°è¯¦æƒ…ã€‚ç„¶åŽæ£€æŸ¥æ—¥å¿—æ–‡ä»¶ä¸­çš„æ¸ é“è®¤è¯ã€æ¨¡åž‹è·¯ç”±å’Œ RPC é”™è¯¯ã€‚
 
-## 媒体与附件
+## åª’ä½“ä¸Žé™„ä»¶
 
-### 我的 Skills 生成了图片/PDF，但什么都没发送
+### æˆ‘çš„ Skills ç”Ÿæˆäº†å›¾ç‰‡/PDFï¼Œä½†ä»€ä¹ˆéƒ½æ²¡å‘é€
 
-智能体的出站附件必须包含 `MEDIA:<path-or-url>` 行（独占一行）。参阅 [OpenClaw 助手设置](/start/openclaw)和 [Agent send](/tools/agent-send)。
+æ™ºèƒ½ä½“çš„å‡ºç«™é™„ä»¶å¿…é¡»åŒ…å« `MEDIA:<path-or-url>` è¡Œï¼ˆç‹¬å ä¸€è¡Œï¼‰ã€‚å‚é˜… [ åŠ©æ‰‹è®¾ç½®](/start/)å’Œ [Agent send](/tools/agent-send)ã€‚
 
-CLI 发送：
+CLI å‘é€ï¼š
 
 ```bash
-openclaw message send --target +15555550123 --message "Here you go" --media /path/to/file.png
+ message send --target +15555550123 --message "Here you go" --media /path/to/file.png
 ```
 
-还要检查：
+è¿˜è¦æ£€æŸ¥ï¼š
 
-- 目标渠道支持出站媒体且未被允许列表阻止。
-- 文件在提供商的大小限制内（图片会调整到最大 2048px）。
+- ç›®æ ‡æ¸ é“æ”¯æŒå‡ºç«™åª’ä½“ä¸”æœªè¢«å…è®¸åˆ—è¡¨é˜»æ­¢ã€‚
+- æ–‡ä»¶åœ¨æä¾›å•†çš„å¤§å°é™åˆ¶å†…ï¼ˆå›¾ç‰‡ä¼šè°ƒæ•´åˆ°æœ€å¤§ 2048pxï¼‰ã€‚
 
-参阅[图片](/nodes/images)。
+å‚é˜…[å›¾ç‰‡](/nodes/images)ã€‚
 
-## 安全与访问控制
+## å®‰å…¨ä¸Žè®¿é—®æŽ§åˆ¶
 
-### 将 OpenClaw 暴露给入站私信安全吗
+### å°†  æš´éœ²ç»™å…¥ç«™ç§ä¿¡å®‰å…¨å—
 
-将入站私信视为不可信输入。默认设计旨在降低风险：
+å°†å…¥ç«™ç§ä¿¡è§†ä¸ºä¸å¯ä¿¡è¾“å…¥ã€‚é»˜è®¤è®¾è®¡æ—¨åœ¨é™ä½Žé£Žé™©ï¼š
 
-- 支持私信的渠道上的默认行为是**配对**：
-  - 未知发送者会收到配对码；机器人不处理他们的消息。
-  - 批准方式：`openclaw pairing approve <channel> <code>`
-  - 每个渠道的待处理请求上限为 **3 个**；如果没收到代码，检查 `openclaw pairing list <channel>`。
-- 公开开放私信需要明确选择加入（`dmPolicy: "open"` 且允许列表 `"*"`）。
+- æ”¯æŒç§ä¿¡çš„æ¸ é“ä¸Šçš„é»˜è®¤è¡Œä¸ºæ˜¯**é…å¯¹**ï¼š
+  - æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼›æœºå™¨äººä¸å¤„ç†ä»–ä»¬çš„æ¶ˆæ¯ã€‚
+  - æ‰¹å‡†æ–¹å¼ï¼š` pairing approve <channel> <code>`
+  - æ¯ä¸ªæ¸ é“çš„å¾…å¤„ç†è¯·æ±‚ä¸Šé™ä¸º **3 ä¸ª**ï¼›å¦‚æžœæ²¡æ”¶åˆ°ä»£ç ï¼Œæ£€æŸ¥ ` pairing list <channel>`ã€‚
+- å…¬å¼€å¼€æ”¾ç§ä¿¡éœ€è¦æ˜Žç¡®é€‰æ‹©åŠ å…¥ï¼ˆ`dmPolicy: "open"` ä¸”å…è®¸åˆ—è¡¨ `"*"`ï¼‰ã€‚
 
-运行 `openclaw doctor` 以发现有风险的私信策略。
+è¿è¡Œ ` doctor` ä»¥å‘çŽ°æœ‰é£Žé™©çš„ç§ä¿¡ç­–ç•¥ã€‚
 
-### 提示注入只对公开机器人有影响吗
+### æç¤ºæ³¨å…¥åªå¯¹å…¬å¼€æœºå™¨äººæœ‰å½±å“å—
 
-不是。提示注入是关于**不可信内容**，不仅仅是谁能给机器人发私信。如果你的助手读取外部内容（网络搜索/抓取、浏览器页面、邮件、文档、附件、粘贴的日志），这些内容可能包含试图劫持模型的指令。即使**你是唯一的发送者**，这也可能发生。
+ä¸æ˜¯ã€‚æç¤ºæ³¨å…¥æ˜¯å…³äºŽ**ä¸å¯ä¿¡å†…å®¹**ï¼Œä¸ä»…ä»…æ˜¯è°èƒ½ç»™æœºå™¨äººå‘ç§ä¿¡ã€‚å¦‚æžœä½ çš„åŠ©æ‰‹è¯»å–å¤–éƒ¨å†…å®¹ï¼ˆç½‘ç»œæœç´¢/æŠ“å–ã€æµè§ˆå™¨é¡µé¢ã€é‚®ä»¶ã€æ–‡æ¡£ã€é™„ä»¶ã€ç²˜è´´çš„æ—¥å¿—ï¼‰ï¼Œè¿™äº›å†…å®¹å¯èƒ½åŒ…å«è¯•å›¾åŠ«æŒæ¨¡åž‹çš„æŒ‡ä»¤ã€‚å³ä½¿**ä½ æ˜¯å”¯ä¸€çš„å‘é€è€…**ï¼Œè¿™ä¹Ÿå¯èƒ½å‘ç”Ÿã€‚
 
-最大的风险是在启用工具时：模型可能被诱导泄露上下文或代表你调用工具。通过以下方式减少影响范围：
+æœ€å¤§çš„é£Žé™©æ˜¯åœ¨å¯ç”¨å·¥å…·æ—¶ï¼šæ¨¡åž‹å¯èƒ½è¢«è¯±å¯¼æ³„éœ²ä¸Šä¸‹æ–‡æˆ–ä»£è¡¨ä½ è°ƒç”¨å·¥å…·ã€‚é€šè¿‡ä»¥ä¸‹æ–¹å¼å‡å°‘å½±å“èŒƒå›´ï¼š
 
-- 使用只读或禁用工具的“阅读器”智能体来总结不可信内容
-- 对启用工具的智能体关闭 `web_search` / `web_fetch` / `browser`
-- 沙箱隔离和严格的工具允许列表
+- ä½¿ç”¨åªè¯»æˆ–ç¦ç”¨å·¥å…·çš„â€œé˜…è¯»å™¨â€æ™ºèƒ½ä½“æ¥æ€»ç»“ä¸å¯ä¿¡å†…å®¹
+- å¯¹å¯ç”¨å·¥å…·çš„æ™ºèƒ½ä½“å…³é—­ `web_search` / `web_fetch` / `browser`
+- æ²™ç®±éš”ç¦»å’Œä¸¥æ ¼çš„å·¥å…·å…è®¸åˆ—è¡¨
 
-详情：[安全](/gateway/security)。
+è¯¦æƒ…ï¼š[å®‰å…¨](/gateway/security)ã€‚
 
-### 我的机器人应该有自己的邮箱、GitHub 账户或电话号码吗
+### æˆ‘çš„æœºå™¨äººåº”è¯¥æœ‰è‡ªå·±çš„é‚®ç®±ã€GitHub è´¦æˆ·æˆ–ç”µè¯å·ç å—
 
-是的，对于大多数设置来说。用独立的账户和电话号码隔离机器人可以在出问题时减少影响范围。这也使得轮换凭据或撤销访问更容易，而不影响你的个人账户。
+æ˜¯çš„ï¼Œå¯¹äºŽå¤§å¤šæ•°è®¾ç½®æ¥è¯´ã€‚ç”¨ç‹¬ç«‹çš„è´¦æˆ·å’Œç”µè¯å·ç éš”ç¦»æœºå™¨äººå¯ä»¥åœ¨å‡ºé—®é¢˜æ—¶å‡å°‘å½±å“èŒƒå›´ã€‚è¿™ä¹Ÿä½¿å¾—è½®æ¢å‡­æ®æˆ–æ’¤é”€è®¿é—®æ›´å®¹æ˜“ï¼Œè€Œä¸å½±å“ä½ çš„ä¸ªäººè´¦æˆ·ã€‚
 
-从小处开始。只授予你实际需要的工具和账户的访问权限，以后需要时再扩展。
+ä»Žå°å¤„å¼€å§‹ã€‚åªæŽˆäºˆä½ å®žé™…éœ€è¦çš„å·¥å…·å’Œè´¦æˆ·çš„è®¿é—®æƒé™ï¼Œä»¥åŽéœ€è¦æ—¶å†æ‰©å±•ã€‚
 
-文档：[安全](/gateway/security)、[配对](/start/pairing)。
+æ–‡æ¡£ï¼š[å®‰å…¨](/gateway/security)ã€[é…å¯¹](/start/pairing)ã€‚
 
-### 我能让它自主管理我的短信吗？这安全吗
+### æˆ‘èƒ½è®©å®ƒè‡ªä¸»ç®¡ç†æˆ‘çš„çŸ­ä¿¡å—ï¼Ÿè¿™å®‰å…¨å—
 
-我们**不建议**完全自主管理你的个人消息。最安全的模式是：
+æˆ‘ä»¬**ä¸å»ºè®®**å®Œå…¨è‡ªä¸»ç®¡ç†ä½ çš„ä¸ªäººæ¶ˆæ¯ã€‚æœ€å®‰å…¨çš„æ¨¡å¼æ˜¯ï¼š
 
-- 将私信保持在**配对模式**或严格的允许列表中。
-- 如果你希望它代表你发消息，使用**独立的号码或账户**。
-- 让它起草，然后**发送前批准**。
+- å°†ç§ä¿¡ä¿æŒåœ¨**é…å¯¹æ¨¡å¼**æˆ–ä¸¥æ ¼çš„å…è®¸åˆ—è¡¨ä¸­ã€‚
+- å¦‚æžœä½ å¸Œæœ›å®ƒä»£è¡¨ä½ å‘æ¶ˆæ¯ï¼Œä½¿ç”¨**ç‹¬ç«‹çš„å·ç æˆ–è´¦æˆ·**ã€‚
+- è®©å®ƒèµ·è‰ï¼Œç„¶åŽ**å‘é€å‰æ‰¹å‡†**ã€‚
 
-如果你想实验，在专用账户上进行并保持隔离。参阅[安全](/gateway/security)。
+å¦‚æžœä½ æƒ³å®žéªŒï¼Œåœ¨ä¸“ç”¨è´¦æˆ·ä¸Šè¿›è¡Œå¹¶ä¿æŒéš”ç¦»ã€‚å‚é˜…[å®‰å…¨](/gateway/security)ã€‚
 
-### 个人助理任务可以使用更便宜的模型吗
+### ä¸ªäººåŠ©ç†ä»»åŠ¡å¯ä»¥ä½¿ç”¨æ›´ä¾¿å®œçš„æ¨¡åž‹å—
 
-可以，**如果**智能体仅用于聊天且输入是可信的。较小的模型更容易受到指令劫持，因此避免将它们用于启用工具的智能体或读取不可信内容时。如果你必须使用较小的模型，锁定工具并在沙箱中运行。参阅[安全](/gateway/security)。
+å¯ä»¥ï¼Œ**å¦‚æžœ**æ™ºèƒ½ä½“ä»…ç”¨äºŽèŠå¤©ä¸”è¾“å…¥æ˜¯å¯ä¿¡çš„ã€‚è¾ƒå°çš„æ¨¡åž‹æ›´å®¹æ˜“å—åˆ°æŒ‡ä»¤åŠ«æŒï¼Œå› æ­¤é¿å…å°†å®ƒä»¬ç”¨äºŽå¯ç”¨å·¥å…·çš„æ™ºèƒ½ä½“æˆ–è¯»å–ä¸å¯ä¿¡å†…å®¹æ—¶ã€‚å¦‚æžœä½ å¿…é¡»ä½¿ç”¨è¾ƒå°çš„æ¨¡åž‹ï¼Œé”å®šå·¥å…·å¹¶åœ¨æ²™ç®±ä¸­è¿è¡Œã€‚å‚é˜…[å®‰å…¨](/gateway/security)ã€‚
 
-### 我在 Telegram 中运行了 /start 但没收到配对码
+### æˆ‘åœ¨ Telegram ä¸­è¿è¡Œäº† /start ä½†æ²¡æ”¶åˆ°é…å¯¹ç 
 
-配对码**仅在**未知发送者向机器人发消息且 `dmPolicy: "pairing"` 启用时发送。`/start` 本身不会生成代码。
+é…å¯¹ç **ä»…åœ¨**æœªçŸ¥å‘é€è€…å‘æœºå™¨äººå‘æ¶ˆæ¯ä¸” `dmPolicy: "pairing"` å¯ç”¨æ—¶å‘é€ã€‚`/start` æœ¬èº«ä¸ä¼šç”Ÿæˆä»£ç ã€‚
 
-检查待处理请求：
+æ£€æŸ¥å¾…å¤„ç†è¯·æ±‚ï¼š
 
 ```bash
-openclaw pairing list telegram
+ pairing list telegram
 ```
 
-如果你想立即获得访问权限，将你的发送者 ID 加入允许列表或为该账户设置 `dmPolicy: "open"`。
+å¦‚æžœä½ æƒ³ç«‹å³èŽ·å¾—è®¿é—®æƒé™ï¼Œå°†ä½ çš„å‘é€è€… ID åŠ å…¥å…è®¸åˆ—è¡¨æˆ–ä¸ºè¯¥è´¦æˆ·è®¾ç½® `dmPolicy: "open"`ã€‚
 
-### WhatsApp：会给我的联系人发消息吗？配对如何工作
+### WhatsAppï¼šä¼šç»™æˆ‘çš„è”ç³»äººå‘æ¶ˆæ¯å—ï¼Ÿé…å¯¹å¦‚ä½•å·¥ä½œ
 
-不会。WhatsApp 的默认私信策略是**配对**。未知发送者只会收到配对码，他们的消息**不会被处理**。OpenClaw 只回复它收到的聊天或你明确触发的发送。
+ä¸ä¼šã€‚WhatsApp çš„é»˜è®¤ç§ä¿¡ç­–ç•¥æ˜¯**é…å¯¹**ã€‚æœªçŸ¥å‘é€è€…åªä¼šæ”¶åˆ°é…å¯¹ç ï¼Œä»–ä»¬çš„æ¶ˆæ¯**ä¸ä¼šè¢«å¤„ç†**ã€‚ åªå›žå¤å®ƒæ”¶åˆ°çš„èŠå¤©æˆ–ä½ æ˜Žç¡®è§¦å‘çš„å‘é€ã€‚
 
-批准配对：
+æ‰¹å‡†é…å¯¹ï¼š
 
 ```bash
-openclaw pairing approve whatsapp <code>
+ pairing approve whatsapp <code>
 ```
 
-列出待处理请求：
+åˆ—å‡ºå¾…å¤„ç†è¯·æ±‚ï¼š
 
 ```bash
-openclaw pairing list whatsapp
+ pairing list whatsapp
 ```
 
-向导电话号码提示：它用于设置你的**允许列表/所有者**，以便你自己的私信被允许。它不用于自动发送。如果你在个人 WhatsApp 号码上运行，使用该号码并启用 `channels.whatsapp.selfChatMode`。
+å‘å¯¼ç”µè¯å·ç æç¤ºï¼šå®ƒç”¨äºŽè®¾ç½®ä½ çš„**å…è®¸åˆ—è¡¨/æ‰€æœ‰è€…**ï¼Œä»¥ä¾¿ä½ è‡ªå·±çš„ç§ä¿¡è¢«å…è®¸ã€‚å®ƒä¸ç”¨äºŽè‡ªåŠ¨å‘é€ã€‚å¦‚æžœä½ åœ¨ä¸ªäºº WhatsApp å·ç ä¸Šè¿è¡Œï¼Œä½¿ç”¨è¯¥å·ç å¹¶å¯ç”¨ `channels.whatsapp.selfChatMode`ã€‚
 
-## 聊天命令、中止任务和“停不下来”
+## èŠå¤©å‘½ä»¤ã€ä¸­æ­¢ä»»åŠ¡å’Œâ€œåœä¸ä¸‹æ¥â€
 
-### 如何阻止内部系统消息显示在聊天中
+### å¦‚ä½•é˜»æ­¢å†…éƒ¨ç³»ç»Ÿæ¶ˆæ¯æ˜¾ç¤ºåœ¨èŠå¤©ä¸­
 
-大多数内部或工具消息只在该会话启用了 **verbose** 或 **reasoning** 时才出现。
+å¤§å¤šæ•°å†…éƒ¨æˆ–å·¥å…·æ¶ˆæ¯åªåœ¨è¯¥ä¼šè¯å¯ç”¨äº† **verbose** æˆ– **reasoning** æ—¶æ‰å‡ºçŽ°ã€‚
 
-在你看到它的聊天中修复：
+åœ¨ä½ çœ‹åˆ°å®ƒçš„èŠå¤©ä¸­ä¿®å¤ï¼š
 
 ```
 /verbose off
 /reasoning off
 ```
 
-如果仍然嘈杂，检查控制 UI 中的会话设置并将 verbose 设为**继承**。同时确认你没有使用在配置中将 `verboseDefault` 设为 `on` 的机器人配置文件。
+å¦‚æžœä»ç„¶å˜ˆæ‚ï¼Œæ£€æŸ¥æŽ§åˆ¶ UI ä¸­çš„ä¼šè¯è®¾ç½®å¹¶å°† verbose è®¾ä¸º**ç»§æ‰¿**ã€‚åŒæ—¶ç¡®è®¤ä½ æ²¡æœ‰ä½¿ç”¨åœ¨é…ç½®ä¸­å°† `verboseDefault` è®¾ä¸º `on` çš„æœºå™¨äººé…ç½®æ–‡ä»¶ã€‚
 
-文档：[思考和详细输出](/tools/thinking)、[安全](/gateway/security#reasoning--verbose-output-in-groups)。
+æ–‡æ¡£ï¼š[æ€è€ƒå’Œè¯¦ç»†è¾“å‡º](/tools/thinking)ã€[å®‰å…¨](/gateway/security#reasoning--verbose-output-in-groups)ã€‚
 
-### 如何停止/取消正在运行的任务
+### å¦‚ä½•åœæ­¢/å–æ¶ˆæ­£åœ¨è¿è¡Œçš„ä»»åŠ¡
 
-发送以下任一内容作为**独立消息**（不带斜杠）：
+å‘é€ä»¥ä¸‹ä»»ä¸€å†…å®¹ä½œä¸º**ç‹¬ç«‹æ¶ˆæ¯**ï¼ˆä¸å¸¦æ–œæ ï¼‰ï¼š
 
 ```
 stop
@@ -2568,23 +2568,23 @@ exit
 interrupt
 ```
 
-这些是中止触发器（不是斜杠命令）。
+è¿™äº›æ˜¯ä¸­æ­¢è§¦å‘å™¨ï¼ˆä¸æ˜¯æ–œæ å‘½ä»¤ï¼‰ã€‚
 
-对于后台进程（来自 exec 工具），你可以要求智能体运行：
+å¯¹äºŽåŽå°è¿›ç¨‹ï¼ˆæ¥è‡ª exec å·¥å…·ï¼‰ï¼Œä½ å¯ä»¥è¦æ±‚æ™ºèƒ½ä½“è¿è¡Œï¼š
 
 ```
 process action:kill sessionId:XXX
 ```
 
-斜杠命令概览：参阅[斜杠命令](/tools/slash-commands)。
+æ–œæ å‘½ä»¤æ¦‚è§ˆï¼šå‚é˜…[æ–œæ å‘½ä»¤](/tools/slash-commands)ã€‚
 
-大多数命令必须作为以 `/` 开头的**独立**消息发送，但一些快捷方式（如 `/status`）对允许列表中的发送者也支持内联使用。
+å¤§å¤šæ•°å‘½ä»¤å¿…é¡»ä½œä¸ºä»¥ `/` å¼€å¤´çš„**ç‹¬ç«‹**æ¶ˆæ¯å‘é€ï¼Œä½†ä¸€äº›å¿«æ·æ–¹å¼ï¼ˆå¦‚ `/status`ï¼‰å¯¹å…è®¸åˆ—è¡¨ä¸­çš„å‘é€è€…ä¹Ÿæ”¯æŒå†…è”ä½¿ç”¨ã€‚
 
-### 如何从 Telegram 发送 Discord 消息？（"Cross-context messaging denied"）
+### å¦‚ä½•ä»Ž Telegram å‘é€ Discord æ¶ˆæ¯ï¼Ÿï¼ˆ"Cross-context messaging denied"ï¼‰
 
-OpenClaw 默认阻止**跨提供商**消息。如果工具调用绑定到 Telegram，除非你明确允许，否则不会发送到 Discord。
+ é»˜è®¤é˜»æ­¢**è·¨æä¾›å•†**æ¶ˆæ¯ã€‚å¦‚æžœå·¥å…·è°ƒç”¨ç»‘å®šåˆ° Telegramï¼Œé™¤éžä½ æ˜Žç¡®å…è®¸ï¼Œå¦åˆ™ä¸ä¼šå‘é€åˆ° Discordã€‚
 
-为智能体启用跨提供商消息：
+ä¸ºæ™ºèƒ½ä½“å¯ç”¨è·¨æä¾›å•†æ¶ˆæ¯ï¼š
 
 ```json5
 {
@@ -2603,26 +2603,27 @@ OpenClaw 默认阻止**跨提供商**消息。如果工具调用绑定到 Telegr
 }
 ```
 
-编辑配置后重启 Gateway 网关。如果你只想为单个智能体设置，将其放在 `agents.list[].tools.message` 下。
+ç¼–è¾‘é…ç½®åŽé‡å¯ Gateway ç½‘å…³ã€‚å¦‚æžœä½ åªæƒ³ä¸ºå•ä¸ªæ™ºèƒ½ä½“è®¾ç½®ï¼Œå°†å…¶æ”¾åœ¨ `agents.list[].tools.message` ä¸‹ã€‚
 
-### 为什么感觉机器人“忽略”了快速连发的消息
+### ä¸ºä»€ä¹ˆæ„Ÿè§‰æœºå™¨äººâ€œå¿½ç•¥â€äº†å¿«é€Ÿè¿žå‘çš„æ¶ˆæ¯
 
-队列模式控制新消息如何与正在进行的运行交互。使用 `/queue` 更改模式：
+é˜Ÿåˆ—æ¨¡å¼æŽ§åˆ¶æ–°æ¶ˆæ¯å¦‚ä½•ä¸Žæ­£åœ¨è¿›è¡Œçš„è¿è¡Œäº¤äº’ã€‚ä½¿ç”¨ `/queue` æ›´æ”¹æ¨¡å¼ï¼š
 
-- `steer` - 新消息重定向当前任务
-- `followup` - 逐条处理消息
-- `collect` - 批量消息并回复一次（默认）
-- `steer-backlog` - 立即转向，然后处理积压
-- `interrupt` - 中止当前运行并重新开始
+- `steer` - æ–°æ¶ˆæ¯é‡å®šå‘å½“å‰ä»»åŠ¡
+- `followup` - é€æ¡å¤„ç†æ¶ˆæ¯
+- `collect` - æ‰¹é‡æ¶ˆæ¯å¹¶å›žå¤ä¸€æ¬¡ï¼ˆé»˜è®¤ï¼‰
+- `steer-backlog` - ç«‹å³è½¬å‘ï¼Œç„¶åŽå¤„ç†ç§¯åŽ‹
+- `interrupt` - ä¸­æ­¢å½“å‰è¿è¡Œå¹¶é‡æ–°å¼€å§‹
 
-你可以为 followup 模式添加选项如 `debounce:2s cap:25 drop:summarize`。
+ä½ å¯ä»¥ä¸º followup æ¨¡å¼æ·»åŠ é€‰é¡¹å¦‚ `debounce:2s cap:25 drop:summarize`ã€‚
 
-## 从截图/聊天记录中准确回答问题
+## ä»Žæˆªå›¾/èŠå¤©è®°å½•ä¸­å‡†ç¡®å›žç­”é—®é¢˜
 
-**问：“使用 API 密钥时 Anthropic 的默认模型是什么？”**
+**é—®ï¼šâ€œä½¿ç”¨ API å¯†é’¥æ—¶ Anthropic çš„é»˜è®¤æ¨¡åž‹æ˜¯ä»€ä¹ˆï¼Ÿâ€**
 
-**答：** 在 OpenClaw 中，凭据和模型选择是分开的。设置 `ANTHROPIC_API_KEY`（或在认证配置文件中存储 Anthropic API 密钥）启用认证，但实际的默认模型是你在 `agents.defaults.model.primary` 中配置的（例如 `anthropic/claude-sonnet-4-5` 或 `anthropic/claude-opus-4-5`）。如果你看到 `No credentials found for profile "anthropic:default"`，意味着 Gateway 网关在正在运行的智能体的预期 `auth-profiles.json` 中找不到 Anthropic 凭据。
+**ç­”ï¼š** åœ¨  ä¸­ï¼Œå‡­æ®å’Œæ¨¡åž‹é€‰æ‹©æ˜¯åˆ†å¼€çš„ã€‚è®¾ç½® `ANTHROPIC_API_KEY`ï¼ˆæˆ–åœ¨è®¤è¯é…ç½®æ–‡ä»¶ä¸­å­˜å‚¨ Anthropic API å¯†é’¥ï¼‰å¯ç”¨è®¤è¯ï¼Œä½†å®žé™…çš„é»˜è®¤æ¨¡åž‹æ˜¯ä½ åœ¨ `agents.defaults.model.primary` ä¸­é…ç½®çš„ï¼ˆä¾‹å¦‚ `anthropic/claude-sonnet-4-5` æˆ– `anthropic/claude-opus-4-5`ï¼‰ã€‚å¦‚æžœä½ çœ‹åˆ° `No credentials found for profile "anthropic:default"`ï¼Œæ„å‘³ç€ Gateway ç½‘å…³åœ¨æ­£åœ¨è¿è¡Œçš„æ™ºèƒ½ä½“çš„é¢„æœŸ `auth-profiles.json` ä¸­æ‰¾ä¸åˆ° Anthropic å‡­æ®ã€‚
 
 ---
 
-仍然卡住？在 [Discord](https://discord.com/invite/clawd) 中提问或发起 [GitHub 讨论](https://github.com/openclaw/openclaw/discussions)。
+ä»ç„¶å¡ä½ï¼Ÿåœ¨ [Discord](https://discord.com/invite/clawd) ä¸­æé—®æˆ–å‘èµ· [GitHub è®¨è®º](https://github.com///discussions)ã€‚
+

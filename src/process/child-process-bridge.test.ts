@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import net from "node:net";
 import path from "node:path";
 import process from "node:process";
@@ -115,3 +115,4 @@ describe("attachChildProcessBridge", () => {
     expect(await canConnect(port)).toBe(false);
   }, 20_000);
 });
+

@@ -1,4 +1,4 @@
-import type { loadConfig } from "../../config/config.js";
+﻿import type { loadConfig } from "../../config/config.js";
 import {
   evaluateSessionFreshness,
   loadSessionStore,
@@ -67,3 +67,4 @@ export function getSessionSnapshot(
     idleExpiresAt: freshness.idleExpiresAt,
   };
 }
+

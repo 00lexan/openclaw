@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { ExecApprovalManager } from "../exec-approval-manager.js";
 import { validateExecApprovalRequestParams } from "../protocol/index.js";
 import { createExecApprovalHandlers } from "./exec-approval.js";
@@ -274,3 +274,4 @@ describe("exec approval handlers", () => {
     await requestPromise;
   });
 });
+

@@ -1,4 +1,4 @@
-/* Split View Layout */
+﻿/* Split View Layout */
 .chat-split-container {
   display: flex;
   gap: 0;
@@ -115,3 +115,4 @@
     border-left: none;
   }
 }
+

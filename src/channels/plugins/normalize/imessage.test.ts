@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizeIMessageMessagingTarget } from "./imessage.js";
 
 describe("imessage target normalization", () => {
@@ -12,3 +12,4 @@ describe("imessage target normalization", () => {
     expect(normalizeIMessageMessagingTarget("auto:ChatIdentifier:foo")).toBe("chat_identifier:foo");
   });
 });
+

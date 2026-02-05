@@ -1,4 +1,4 @@
-import type { WizardSession } from "../wizard/session.js";
+﻿import type { WizardSession } from "../wizard/session.js";
 
 export function createWizardSessionTracker() {
   const wizardSessions = new Map<string, WizardSession>();
@@ -25,3 +25,4 @@ export function createWizardSessionTracker() {
 
   return { wizardSessions, findRunningWizard, purgeWizardSession };
 }
+

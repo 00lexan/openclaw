@@ -1,4 +1,4 @@
-import { getFileExtension } from "./mime.js";
+﻿import { getFileExtension } from "./mime.js";
 
 const VOICE_AUDIO_EXTENSIONS = new Set([".oga", ".ogg", ".opus"]);
 
@@ -20,3 +20,4 @@ export function isVoiceCompatibleAudio(opts: {
   }
   return VOICE_AUDIO_EXTENSIONS.has(ext);
 }
+

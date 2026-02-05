@@ -1,4 +1,4 @@
-export type SlackFile = {
+﻿export type SlackFile = {
   id?: string;
   name?: string;
   mimetype?: string;
@@ -36,3 +36,4 @@ export type SlackAppMentionEvent = {
   channel: string;
   channel_type?: "im" | "mpim" | "channel" | "group";
 };
+

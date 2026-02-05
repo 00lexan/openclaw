@@ -1,4 +1,4 @@
-import { loadSkillsFromDir } from "@mariozechner/pi-coding-agent";
+﻿import { loadSkillsFromDir } from "@mariozechner/pi-coding-agent";
 import { createSubsystemLogger } from "../../logging/subsystem.js";
 import { resolveBundledSkillsDir, type BundledSkillsResolveOptions } from "./bundled-dir.js";
 
@@ -24,7 +24,7 @@ export function resolveBundledSkillsContext(
     }
     return { dir, names };
   }
-  const result = loadSkillsFromDir({ dir, source: "openclaw-bundled" });
+  const result = loadSkillsFromDir({ dir, source: "-bundled" });
   for (const skill of result.skills) {
     if (skill.name.trim()) {
       names.add(skill.name);
@@ -32,3 +32,4 @@ export function resolveBundledSkillsContext(
   }
   return { dir, names };
 }
+

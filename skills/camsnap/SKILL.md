@@ -1,12 +1,12 @@
----
+﻿---
 name: camsnap
 description: Capture frames or clips from RTSP/ONVIF cameras.
 homepage: https://camsnap.ai
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "📸",
+        "emoji": "ðŸ“¸",
         "requires": { "bins": ["camsnap"] },
         "install":
           [
@@ -43,3 +43,4 @@ Notes
 
 - Requires `ffmpeg` on PATH.
 - Prefer a short test capture before longer clips.
+

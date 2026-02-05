@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { ConfigUiHints } from "../types.ts";
 import { icons } from "../icons.ts";
 import { renderNode } from "./config-form.node.ts";
@@ -500,3 +500,4 @@ export function renderConfigForm(props: ConfigFormProps) {
     </div>
   `;
 }
+

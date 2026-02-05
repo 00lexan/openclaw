@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import type { ChannelAgentTool } from "../types.js";
 
 export function createWhatsAppLoginTool(): ChannelAgentTool {
@@ -58,7 +58,7 @@ export function createWhatsAppLoginTool(): ChannelAgentTool {
       const text = [
         result.message,
         "",
-        "Open WhatsApp → Linked Devices and scan:",
+        "Open WhatsApp â†’ Linked Devices and scan:",
         "",
         `![whatsapp-qr](${result.qrDataUrl})`,
       ].join("\n");
@@ -69,3 +69,4 @@ export function createWhatsAppLoginTool(): ChannelAgentTool {
     },
   };
 }
+

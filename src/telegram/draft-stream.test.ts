@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createTelegramDraftStream } from "./draft-stream.js";
 
 describe("createTelegramDraftStream", () => {
@@ -51,3 +51,4 @@ describe("createTelegramDraftStream", () => {
     });
   });
 });
+

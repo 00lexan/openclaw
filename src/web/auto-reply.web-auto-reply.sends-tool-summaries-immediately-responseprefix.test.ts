@@ -1,4 +1,4 @@
-import "./test-helpers.js";
+﻿import "./test-helpers.js";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -46,7 +46,7 @@ const rmDirWithRetries = async (dir: string): Promise<void> => {
 beforeEach(async () => {
   resetInboundDedupe();
   previousHome = process.env.HOME;
-  tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-web-home-"));
+  tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "-web-home-"));
   process.env.HOME = tempHome;
 });
 
@@ -61,7 +61,7 @@ afterEach(async () => {
 const _makeSessionStore = async (
   entries: Record<string, unknown> = {},
 ): Promise<{ storePath: string; cleanup: () => Promise<void> }> => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-session-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "-session-"));
   const storePath = path.join(dir, "sessions.json");
   await fs.writeFile(storePath, JSON.stringify(entries));
   const cleanup = async () => {
@@ -110,7 +110,7 @@ describe("web auto-reply", () => {
       channels: { whatsapp: { allowFrom: ["*"] } },
       messages: {
         messagePrefix: undefined,
-        responsePrefix: "🦞",
+        responsePrefix: "ðŸ¦ž",
       },
     }));
 
@@ -141,7 +141,7 @@ describe("web auto-reply", () => {
     });
 
     const replies = reply.mock.calls.map((call) => call[0]);
-    expect(replies).toEqual(["🦞 final"]);
+    expect(replies).toEqual(["ðŸ¦ž final"]);
     resetLoadConfigMock();
   });
   it("uses identity.name for messagePrefix when set", async () => {
@@ -151,11 +151,11 @@ describe("web auto-reply", () => {
           {
             id: "main",
             default: true,
-            identity: { name: "Mainbot", emoji: "🦞", theme: "space lobster" },
+            identity: { name: "Mainbot", emoji: "ðŸ¦ž", theme: "space lobster" },
           },
           {
             id: "rich",
-            identity: { name: "Richbot", emoji: "🦁", theme: "lion bot" },
+            identity: { name: "Richbot", emoji: "ðŸ¦", theme: "lion bot" },
           },
         ],
       },
@@ -200,7 +200,7 @@ describe("web auto-reply", () => {
     expect(resolver).toHaveBeenCalled();
     const resolverArg = resolver.mock.calls[0][0];
     expect(resolverArg.Body).toContain("[Richbot]");
-    expect(resolverArg.Body).not.toContain("[openclaw]");
+    expect(resolverArg.Body).not.toContain("[]");
     resetLoadConfigMock();
   });
   it("does not derive responsePrefix from identity.name when unset", async () => {
@@ -210,11 +210,11 @@ describe("web auto-reply", () => {
           {
             id: "main",
             default: true,
-            identity: { name: "Mainbot", emoji: "🦞", theme: "space lobster" },
+            identity: { name: "Mainbot", emoji: "ðŸ¦ž", theme: "space lobster" },
           },
           {
             id: "rich",
-            identity: { name: "Richbot", emoji: "🦁", theme: "lion bot" },
+            identity: { name: "Richbot", emoji: "ðŸ¦", theme: "lion bot" },
           },
         ],
       },
@@ -260,3 +260,4 @@ describe("web auto-reply", () => {
     resetLoadConfigMock();
   });
 });
+

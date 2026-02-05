@@ -1,4 +1,4 @@
-export type NodeSendEventFn = (opts: {
+﻿export type NodeSendEventFn = (opts: {
   nodeId: string;
   event: string;
   payloadJSON?: string | null;
@@ -162,3 +162,4 @@ export function createNodeSubscriptionManager(): NodeSubscriptionManager {
     clear,
   };
 }
+

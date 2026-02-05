@@ -1,10 +1,10 @@
----
+﻿---
 read_when:
-  - 构建或调试节点客户端（iOS/Android/macOS 节点模式）
-  - 调查配对或 bridge 认证失败
-  - 审计 Gateway 网关暴露的节点接口
-summary: Bridge 协议（旧版节点）：TCP JSONL、配对、作用域 RPC
-title: Bridge 协议
+  - æž„å»ºæˆ–è°ƒè¯•èŠ‚ç‚¹å®¢æˆ·ç«¯ï¼ˆiOS/Android/macOS èŠ‚ç‚¹æ¨¡å¼ï¼‰
+  - è°ƒæŸ¥é…å¯¹æˆ– bridge è®¤è¯å¤±è´¥
+  - å®¡è®¡ Gateway ç½‘å…³æš´éœ²çš„èŠ‚ç‚¹æŽ¥å£
+summary: Bridge åè®®ï¼ˆæ—§ç‰ˆèŠ‚ç‚¹ï¼‰ï¼šTCP JSONLã€é…å¯¹ã€ä½œç”¨åŸŸ RPC
+title: Bridge åè®®
 x-i18n:
   generated_at: "2026-02-03T07:47:42Z"
   model: claude-opus-4-5
@@ -14,73 +14,74 @@ x-i18n:
   workflow: 15
 ---
 
-# Bridge 协议（旧版节点传输）
+# Bridge åè®®ï¼ˆæ—§ç‰ˆèŠ‚ç‚¹ä¼ è¾“ï¼‰
 
-Bridge 协议是一个**旧版**节点传输（TCP JSONL）。新的节点客户端应该使用统一的 Gateway 网关 WebSocket 协议。
+Bridge åè®®æ˜¯ä¸€ä¸ª**æ—§ç‰ˆ**èŠ‚ç‚¹ä¼ è¾“ï¼ˆTCP JSONLï¼‰ã€‚æ–°çš„èŠ‚ç‚¹å®¢æˆ·ç«¯åº”è¯¥ä½¿ç”¨ç»Ÿä¸€çš„ Gateway ç½‘å…³ WebSocket åè®®ã€‚
 
-如果你正在构建操作者或节点客户端，请使用 [Gateway 网关协议](/gateway/protocol)。
+å¦‚æžœä½ æ­£åœ¨æž„å»ºæ“ä½œè€…æˆ–èŠ‚ç‚¹å®¢æˆ·ç«¯ï¼Œè¯·ä½¿ç”¨ [Gateway ç½‘å…³åè®®](/gateway/protocol)ã€‚
 
-**注意：** 当前的 OpenClaw 构建不再包含 TCP bridge 监听器；本文档仅作历史参考保留。
-旧版 `bridge.*` 配置键不再是配置模式的一部分。
+**æ³¨æ„ï¼š** å½“å‰çš„  æž„å»ºä¸å†åŒ…å« TCP bridge ç›‘å¬å™¨ï¼›æœ¬æ–‡æ¡£ä»…ä½œåŽ†å²å‚è€ƒä¿ç•™ã€‚
+æ—§ç‰ˆ `bridge.*` é…ç½®é”®ä¸å†æ˜¯é…ç½®æ¨¡å¼çš„ä¸€éƒ¨åˆ†ã€‚
 
-## 为什么我们有两种协议
+## ä¸ºä»€ä¹ˆæˆ‘ä»¬æœ‰ä¸¤ç§åè®®
 
-- **安全边界**：bridge 暴露一个小的允许列表，而不是完整的 Gateway 网关 API 接口。
-- **配对 + 节点身份**：节点准入由 Gateway 网关管理，并与每节点令牌绑定。
-- **设备发现用户体验**：节点可以通过局域网上的 Bonjour 发现 Gateway 网关，或通过 tailnet 直接连接。
-- **Loopback WS**：完整的 WS 控制平面保持本地，除非通过 SSH 隧道。
+- **å®‰å…¨è¾¹ç•Œ**ï¼šbridge æš´éœ²ä¸€ä¸ªå°çš„å…è®¸åˆ—è¡¨ï¼Œè€Œä¸æ˜¯å®Œæ•´çš„ Gateway ç½‘å…³ API æŽ¥å£ã€‚
+- **é…å¯¹ + èŠ‚ç‚¹èº«ä»½**ï¼šèŠ‚ç‚¹å‡†å…¥ç”± Gateway ç½‘å…³ç®¡ç†ï¼Œå¹¶ä¸Žæ¯èŠ‚ç‚¹ä»¤ç‰Œç»‘å®šã€‚
+- **è®¾å¤‡å‘çŽ°ç”¨æˆ·ä½“éªŒ**ï¼šèŠ‚ç‚¹å¯ä»¥é€šè¿‡å±€åŸŸç½‘ä¸Šçš„ Bonjour å‘çŽ° Gateway ç½‘å…³ï¼Œæˆ–é€šè¿‡ tailnet ç›´æŽ¥è¿žæŽ¥ã€‚
+- **Loopback WS**ï¼šå®Œæ•´çš„ WS æŽ§åˆ¶å¹³é¢ä¿æŒæœ¬åœ°ï¼Œé™¤éžé€šè¿‡ SSH éš§é“ã€‚
 
-## 传输
+## ä¼ è¾“
 
-- TCP，每行一个 JSON 对象（JSONL）。
-- 可选 TLS（当 `bridge.tls.enabled` 为 true 时）。
-- 旧版默认监听端口为 `18790`（当前构建不启动 TCP bridge）。
+- TCPï¼Œæ¯è¡Œä¸€ä¸ª JSON å¯¹è±¡ï¼ˆJSONLï¼‰ã€‚
+- å¯é€‰ TLSï¼ˆå½“ `bridge.tls.enabled` ä¸º true æ—¶ï¼‰ã€‚
+- æ—§ç‰ˆé»˜è®¤ç›‘å¬ç«¯å£ä¸º `18790`ï¼ˆå½“å‰æž„å»ºä¸å¯åŠ¨ TCP bridgeï¼‰ã€‚
 
-当 TLS 启用时，设备发现 TXT 记录包含 `bridgeTls=1` 加上 `bridgeTlsSha256`，以便节点可以固定证书。
+å½“ TLS å¯ç”¨æ—¶ï¼Œè®¾å¤‡å‘çŽ° TXT è®°å½•åŒ…å« `bridgeTls=1` åŠ ä¸Š `bridgeTlsSha256`ï¼Œä»¥ä¾¿èŠ‚ç‚¹å¯ä»¥å›ºå®šè¯ä¹¦ã€‚
 
-## 握手 + 配对
+## æ¡æ‰‹ + é…å¯¹
 
-1. 客户端发送带有节点元数据 + 令牌（如果已配对）的 `hello`。
-2. 如果未配对，Gateway 网关回复 `error`（`NOT_PAIRED`/`UNAUTHORIZED`）。
-3. 客户端发送 `pair-request`。
-4. Gateway 网关等待批准，然后发送 `pair-ok` 和 `hello-ok`。
+1. å®¢æˆ·ç«¯å‘é€å¸¦æœ‰èŠ‚ç‚¹å…ƒæ•°æ® + ä»¤ç‰Œï¼ˆå¦‚æžœå·²é…å¯¹ï¼‰çš„ `hello`ã€‚
+2. å¦‚æžœæœªé…å¯¹ï¼ŒGateway ç½‘å…³å›žå¤ `error`ï¼ˆ`NOT_PAIRED`/`UNAUTHORIZED`ï¼‰ã€‚
+3. å®¢æˆ·ç«¯å‘é€ `pair-request`ã€‚
+4. Gateway ç½‘å…³ç­‰å¾…æ‰¹å‡†ï¼Œç„¶åŽå‘é€ `pair-ok` å’Œ `hello-ok`ã€‚
 
-`hello-ok` 返回 `serverName`，可能包含 `canvasHostUrl`。
+`hello-ok` è¿”å›ž `serverName`ï¼Œå¯èƒ½åŒ…å« `canvasHostUrl`ã€‚
 
-## 帧
+## å¸§
 
-客户端 → Gateway 网关：
+å®¢æˆ·ç«¯ â†’ Gateway ç½‘å…³ï¼š
 
-- `req` / `res`：作用域 Gateway 网关 RPC（chat、sessions、config、health、voicewake、skills.bins）
-- `event`：节点信号（语音转录、智能体请求、聊天订阅、exec 生命周期）
+- `req` / `res`ï¼šä½œç”¨åŸŸ Gateway ç½‘å…³ RPCï¼ˆchatã€sessionsã€configã€healthã€voicewakeã€skills.binsï¼‰
+- `event`ï¼šèŠ‚ç‚¹ä¿¡å·ï¼ˆè¯­éŸ³è½¬å½•ã€æ™ºèƒ½ä½“è¯·æ±‚ã€èŠå¤©è®¢é˜…ã€exec ç”Ÿå‘½å‘¨æœŸï¼‰
 
-Gateway 网关 → 客户端：
+Gateway ç½‘å…³ â†’ å®¢æˆ·ç«¯ï¼š
 
-- `invoke` / `invoke-res`：节点命令（`canvas.*`、`camera.*`、`screen.record`、`location.get`、`sms.send`）
-- `event`：已订阅会话的聊天更新
-- `ping` / `pong`：保活
+- `invoke` / `invoke-res`ï¼šèŠ‚ç‚¹å‘½ä»¤ï¼ˆ`canvas.*`ã€`camera.*`ã€`screen.record`ã€`location.get`ã€`sms.send`ï¼‰
+- `event`ï¼šå·²è®¢é˜…ä¼šè¯çš„èŠå¤©æ›´æ–°
+- `ping` / `pong`ï¼šä¿æ´»
 
-旧版允许列表强制执行位于 `src/gateway/server-bridge.ts`（已移除）。
+æ—§ç‰ˆå…è®¸åˆ—è¡¨å¼ºåˆ¶æ‰§è¡Œä½äºŽ `src/gateway/server-bridge.ts`ï¼ˆå·²ç§»é™¤ï¼‰ã€‚
 
-## Exec 生命周期事件
+## Exec ç”Ÿå‘½å‘¨æœŸäº‹ä»¶
 
-节点可以发出 `exec.finished` 或 `exec.denied` 事件来表面化 system.run 活动。
-这些被映射到 Gateway 网关中的系统事件。（旧版节点可能仍会发出 `exec.started`。）
+èŠ‚ç‚¹å¯ä»¥å‘å‡º `exec.finished` æˆ– `exec.denied` äº‹ä»¶æ¥è¡¨é¢åŒ– system.run æ´»åŠ¨ã€‚
+è¿™äº›è¢«æ˜ å°„åˆ° Gateway ç½‘å…³ä¸­çš„ç³»ç»Ÿäº‹ä»¶ã€‚ï¼ˆæ—§ç‰ˆèŠ‚ç‚¹å¯èƒ½ä»ä¼šå‘å‡º `exec.started`ã€‚ï¼‰
 
-Payload 字段（除非注明，否则都是可选的）：
+Payload å­—æ®µï¼ˆé™¤éžæ³¨æ˜Žï¼Œå¦åˆ™éƒ½æ˜¯å¯é€‰çš„ï¼‰ï¼š
 
-- `sessionKey`（必需）：接收系统事件的智能体会话。
-- `runId`：用于分组的唯一 exec id。
-- `command`：原始或格式化的命令字符串。
-- `exitCode`、`timedOut`、`success`、`output`：完成详情（仅限 finished）。
-- `reason`：拒绝原因（仅限 denied）。
+- `sessionKey`ï¼ˆå¿…éœ€ï¼‰ï¼šæŽ¥æ”¶ç³»ç»Ÿäº‹ä»¶çš„æ™ºèƒ½ä½“ä¼šè¯ã€‚
+- `runId`ï¼šç”¨äºŽåˆ†ç»„çš„å”¯ä¸€ exec idã€‚
+- `command`ï¼šåŽŸå§‹æˆ–æ ¼å¼åŒ–çš„å‘½ä»¤å­—ç¬¦ä¸²ã€‚
+- `exitCode`ã€`timedOut`ã€`success`ã€`output`ï¼šå®Œæˆè¯¦æƒ…ï¼ˆä»…é™ finishedï¼‰ã€‚
+- `reason`ï¼šæ‹’ç»åŽŸå› ï¼ˆä»…é™ deniedï¼‰ã€‚
 
-## Tailnet 使用
+## Tailnet ä½¿ç”¨
 
-- 将 bridge 绑定到 tailnet IP：在 `~/.openclaw/openclaw.json` 中设置 `bridge.bind: "tailnet"`。
-- 客户端通过 MagicDNS 名称或 tailnet IP 连接。
-- Bonjour **不**跨网络；需要时使用手动主机/端口或广域 DNS‑SD。
+- å°† bridge ç»‘å®šåˆ° tailnet IPï¼šåœ¨ `~/./.json` ä¸­è®¾ç½® `bridge.bind: "tailnet"`ã€‚
+- å®¢æˆ·ç«¯é€šè¿‡ MagicDNS åç§°æˆ– tailnet IP è¿žæŽ¥ã€‚
+- Bonjour **ä¸**è·¨ç½‘ç»œï¼›éœ€è¦æ—¶ä½¿ç”¨æ‰‹åŠ¨ä¸»æœº/ç«¯å£æˆ–å¹¿åŸŸ DNSâ€‘SDã€‚
 
-## 版本控制
+## ç‰ˆæœ¬æŽ§åˆ¶
 
-Bridge 目前是**隐式 v1**（无最小/最大协商）。预期向后兼容；在任何破坏性变更之前添加 bridge 协议版本字段。
+Bridge ç›®å‰æ˜¯**éšå¼ v1**ï¼ˆæ— æœ€å°/æœ€å¤§åå•†ï¼‰ã€‚é¢„æœŸå‘åŽå…¼å®¹ï¼›åœ¨ä»»ä½•ç ´åæ€§å˜æ›´ä¹‹å‰æ·»åŠ  bridge åè®®ç‰ˆæœ¬å­—æ®µã€‚
+

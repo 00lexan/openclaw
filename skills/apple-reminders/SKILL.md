@@ -1,12 +1,12 @@
----
+﻿---
 name: apple-reminders
 description: Manage Apple Reminders via the `remindctl` CLI on macOS (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output.
 homepage: https://github.com/steipete/remindctl
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "⏰",
+        "emoji": "â°",
         "os": ["darwin"],
         "requires": { "bins": ["remindctl"] },
         "install":
@@ -92,5 +92,6 @@ Accepted by `--due` and date filters:
 Notes
 
 - macOS-only.
-- If access is denied, enable Terminal/remindctl in System Settings → Privacy & Security → Reminders.
+- If access is denied, enable Terminal/remindctl in System Settings â†’ Privacy & Security â†’ Reminders.
 - If running over SSH, grant access on the Mac that runs the command.
+

@@ -1,4 +1,4 @@
-import type { WebClient } from "@slack/web-api";
+﻿import type { WebClient } from "@slack/web-api";
 import { createSlackWebClient } from "./client.js";
 
 export type SlackScopesResult = {
@@ -117,3 +117,4 @@ export async function fetchSlackScopes(
     error: errors.length > 0 ? errors.join(" | ") : "no scopes returned",
   };
 }
+

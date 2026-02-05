@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你使用 `openclaw browser` 并想要常见任务的示例
-  - 你想通过 node host 控制在另一台机器上运行的浏览器
-  - 你想使用 Chrome 扩展中继（通过工具栏按钮附加/分离）
-summary: "`openclaw browser` 的 CLI 参考（配置文件、标签页、操作、扩展中继）"
+  - ä½ ä½¿ç”¨ ` browser` å¹¶æƒ³è¦å¸¸è§ä»»åŠ¡çš„ç¤ºä¾‹
+  - ä½ æƒ³é€šè¿‡ node host æŽ§åˆ¶åœ¨å¦ä¸€å°æœºå™¨ä¸Šè¿è¡Œçš„æµè§ˆå™¨
+  - ä½ æƒ³ä½¿ç”¨ Chrome æ‰©å±•ä¸­ç»§ï¼ˆé€šè¿‡å·¥å…·æ æŒ‰é’®é™„åŠ /åˆ†ç¦»ï¼‰
+summary: "` browser` çš„ CLI å‚è€ƒï¼ˆé…ç½®æ–‡ä»¶ã€æ ‡ç­¾é¡µã€æ“ä½œã€æ‰©å±•ä¸­ç»§ï¼‰"
 title: browser
 x-i18n:
   generated_at: "2026-02-03T07:44:49Z"
@@ -14,101 +14,102 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw browser`
+# ` browser`
 
-管理 OpenClaw 的浏览器控制服务器并运行浏览器操作（标签页、快照、截图、导航、点击、输入）。
+ç®¡ç†  çš„æµè§ˆå™¨æŽ§åˆ¶æœåŠ¡å™¨å¹¶è¿è¡Œæµè§ˆå™¨æ“ä½œï¼ˆæ ‡ç­¾é¡µã€å¿«ç…§ã€æˆªå›¾ã€å¯¼èˆªã€ç‚¹å‡»ã€è¾“å…¥ï¼‰ã€‚
 
-相关：
+ç›¸å…³ï¼š
 
-- 浏览器工具 + API：[浏览器工具](/tools/browser)
-- Chrome 扩展中继：[Chrome 扩展](/tools/chrome-extension)
+- æµè§ˆå™¨å·¥å…· + APIï¼š[æµè§ˆå™¨å·¥å…·](/tools/browser)
+- Chrome æ‰©å±•ä¸­ç»§ï¼š[Chrome æ‰©å±•](/tools/chrome-extension)
 
-## 通用标志
+## é€šç”¨æ ‡å¿—
 
-- `--url <gatewayWsUrl>`：Gateway 网关 WebSocket URL（默认从配置获取）。
-- `--token <token>`：Gateway 网关令牌（如果需要）。
-- `--timeout <ms>`：请求超时（毫秒）。
-- `--browser-profile <name>`：选择浏览器配置文件（默认从配置获取）。
-- `--json`：机器可读输出（在支持的地方）。
+- `--url <gatewayWsUrl>`ï¼šGateway ç½‘å…³ WebSocket URLï¼ˆé»˜è®¤ä»Žé…ç½®èŽ·å–ï¼‰ã€‚
+- `--token <token>`ï¼šGateway ç½‘å…³ä»¤ç‰Œï¼ˆå¦‚æžœéœ€è¦ï¼‰ã€‚
+- `--timeout <ms>`ï¼šè¯·æ±‚è¶…æ—¶ï¼ˆæ¯«ç§’ï¼‰ã€‚
+- `--browser-profile <name>`ï¼šé€‰æ‹©æµè§ˆå™¨é…ç½®æ–‡ä»¶ï¼ˆé»˜è®¤ä»Žé…ç½®èŽ·å–ï¼‰ã€‚
+- `--json`ï¼šæœºå™¨å¯è¯»è¾“å‡ºï¼ˆåœ¨æ”¯æŒçš„åœ°æ–¹ï¼‰ã€‚
 
-## 快速开始（本地）
-
-```bash
-openclaw browser --browser-profile chrome tabs
-openclaw browser --browser-profile openclaw start
-openclaw browser --browser-profile openclaw open https://example.com
-openclaw browser --browser-profile openclaw snapshot
-```
-
-## 配置文件
-
-配置文件是命名的浏览器路由配置。实际上：
-
-- `openclaw`：启动/附加到专用的 OpenClaw 管理的 Chrome 实例（隔离的用户数据目录）。
-- `chrome`：通过 Chrome 扩展中继控制你现有的 Chrome 标签页。
+## å¿«é€Ÿå¼€å§‹ï¼ˆæœ¬åœ°ï¼‰
 
 ```bash
-openclaw browser profiles
-openclaw browser create-profile --name work --color "#FF5A36"
-openclaw browser delete-profile --name work
+ browser --browser-profile chrome tabs
+ browser --browser-profile  start
+ browser --browser-profile  open https://example.com
+ browser --browser-profile  snapshot
 ```
 
-使用特定配置文件：
+## é…ç½®æ–‡ä»¶
+
+é…ç½®æ–‡ä»¶æ˜¯å‘½åçš„æµè§ˆå™¨è·¯ç”±é…ç½®ã€‚å®žé™…ä¸Šï¼š
+
+- ``ï¼šå¯åŠ¨/é™„åŠ åˆ°ä¸“ç”¨çš„  ç®¡ç†çš„ Chrome å®žä¾‹ï¼ˆéš”ç¦»çš„ç”¨æˆ·æ•°æ®ç›®å½•ï¼‰ã€‚
+- `chrome`ï¼šé€šè¿‡ Chrome æ‰©å±•ä¸­ç»§æŽ§åˆ¶ä½ çŽ°æœ‰çš„ Chrome æ ‡ç­¾é¡µã€‚
 
 ```bash
-openclaw browser --browser-profile work tabs
+ browser profiles
+ browser create-profile --name work --color "#FF5A36"
+ browser delete-profile --name work
 ```
 
-## 标签页
+ä½¿ç”¨ç‰¹å®šé…ç½®æ–‡ä»¶ï¼š
 
 ```bash
-openclaw browser tabs
-openclaw browser open https://docs.openclaw.ai
-openclaw browser focus <targetId>
-openclaw browser close <targetId>
+ browser --browser-profile work tabs
 ```
 
-## 快照 / 截图 / 操作
-
-快照：
+## æ ‡ç­¾é¡µ
 
 ```bash
-openclaw browser snapshot
+ browser tabs
+ browser open https://docs..ai
+ browser focus <targetId>
+ browser close <targetId>
 ```
 
-截图：
+## å¿«ç…§ / æˆªå›¾ / æ“ä½œ
+
+å¿«ç…§ï¼š
 
 ```bash
-openclaw browser screenshot
+ browser snapshot
 ```
 
-导航/点击/输入（基于 ref 的 UI 自动化）：
+æˆªå›¾ï¼š
 
 ```bash
-openclaw browser navigate https://example.com
-openclaw browser click <ref>
-openclaw browser type <ref> "hello"
+ browser screenshot
 ```
 
-## Chrome 扩展中继（通过工具栏按钮附加）
-
-此模式让智能体控制你手动附加的现有 Chrome 标签页（不会自动附加）。
-
-将未打包的扩展安装到稳定路径：
+å¯¼èˆª/ç‚¹å‡»/è¾“å…¥ï¼ˆåŸºäºŽ ref çš„ UI è‡ªåŠ¨åŒ–ï¼‰ï¼š
 
 ```bash
-openclaw browser extension install
-openclaw browser extension path
+ browser navigate https://example.com
+ browser click <ref>
+ browser type <ref> "hello"
 ```
 
-然后 Chrome → `chrome://extensions` → 启用"开发者模式" → "加载已解压的扩展程序" → 选择打印的文件夹。
+## Chrome æ‰©å±•ä¸­ç»§ï¼ˆé€šè¿‡å·¥å…·æ æŒ‰é’®é™„åŠ ï¼‰
 
-完整指南：[Chrome 扩展](/tools/chrome-extension)
+æ­¤æ¨¡å¼è®©æ™ºèƒ½ä½“æŽ§åˆ¶ä½ æ‰‹åŠ¨é™„åŠ çš„çŽ°æœ‰ Chrome æ ‡ç­¾é¡µï¼ˆä¸ä¼šè‡ªåŠ¨é™„åŠ ï¼‰ã€‚
 
-## 远程浏览器控制（node host 代理）
+å°†æœªæ‰“åŒ…çš„æ‰©å±•å®‰è£…åˆ°ç¨³å®šè·¯å¾„ï¼š
 
-如果 Gateway 网关与浏览器运行在不同的机器上，在有 Chrome/Brave/Edge/Chromium 的机器上运行 **node host**。Gateway 网关会将浏览器操作代理到该节点（无需单独的浏览器控制服务器）。
+```bash
+ browser extension install
+ browser extension path
+```
 
-使用 `gateway.nodes.browser.mode` 控制自动路由，使用 `gateway.nodes.browser.node` 在连接多个节点时固定特定节点。
+ç„¶åŽ Chrome â†’ `chrome://extensions` â†’ å¯ç”¨"å¼€å‘è€…æ¨¡å¼" â†’ "åŠ è½½å·²è§£åŽ‹çš„æ‰©å±•ç¨‹åº" â†’ é€‰æ‹©æ‰“å°çš„æ–‡ä»¶å¤¹ã€‚
 
-安全 + 远程设置：[浏览器工具](/tools/browser)、[远程访问](/gateway/remote)、[Tailscale](/gateway/tailscale)、[安全](/gateway/security)
+å®Œæ•´æŒ‡å—ï¼š[Chrome æ‰©å±•](/tools/chrome-extension)
+
+## è¿œç¨‹æµè§ˆå™¨æŽ§åˆ¶ï¼ˆnode host ä»£ç†ï¼‰
+
+å¦‚æžœ Gateway ç½‘å…³ä¸Žæµè§ˆå™¨è¿è¡Œåœ¨ä¸åŒçš„æœºå™¨ä¸Šï¼Œåœ¨æœ‰ Chrome/Brave/Edge/Chromium çš„æœºå™¨ä¸Šè¿è¡Œ **node host**ã€‚Gateway ç½‘å…³ä¼šå°†æµè§ˆå™¨æ“ä½œä»£ç†åˆ°è¯¥èŠ‚ç‚¹ï¼ˆæ— éœ€å•ç‹¬çš„æµè§ˆå™¨æŽ§åˆ¶æœåŠ¡å™¨ï¼‰ã€‚
+
+ä½¿ç”¨ `gateway.nodes.browser.mode` æŽ§åˆ¶è‡ªåŠ¨è·¯ç”±ï¼Œä½¿ç”¨ `gateway.nodes.browser.node` åœ¨è¿žæŽ¥å¤šä¸ªèŠ‚ç‚¹æ—¶å›ºå®šç‰¹å®šèŠ‚ç‚¹ã€‚
+
+å®‰å…¨ + è¿œç¨‹è®¾ç½®ï¼š[æµè§ˆå™¨å·¥å…·](/tools/browser)ã€[è¿œç¨‹è®¿é—®](/gateway/remote)ã€[Tailscale](/gateway/tailscale)ã€[å®‰å…¨](/gateway/security)
+

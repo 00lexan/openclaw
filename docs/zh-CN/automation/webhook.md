@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 添加或更改 webhook 端点
-  - 将外部系统接入 OpenClaw
-summary: 用于唤醒和隔离智能体运行的 Webhook 入口
+  - æ·»åŠ æˆ–æ›´æ”¹ webhook ç«¯ç‚¹
+  - å°†å¤–éƒ¨ç³»ç»ŸæŽ¥å…¥ 
+summary: ç”¨äºŽå”¤é†’å’Œéš”ç¦»æ™ºèƒ½ä½“è¿è¡Œçš„ Webhook å…¥å£
 title: Webhooks
 x-i18n:
   generated_at: "2026-02-03T07:43:23Z"
@@ -15,9 +15,9 @@ x-i18n:
 
 # Webhooks
 
-Gateway 网关可以暴露一个小型 HTTP webhook 端点用于外部触发。
+Gateway ç½‘å…³å¯ä»¥æš´éœ²ä¸€ä¸ªå°åž‹ HTTP webhook ç«¯ç‚¹ç”¨äºŽå¤–éƒ¨è§¦å‘ã€‚
 
-## 启用
+## å¯ç”¨
 
 ```json5
 {
@@ -29,40 +29,40 @@ Gateway 网关可以暴露一个小型 HTTP webhook 端点用于外部触发。
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 当 `hooks.enabled=true` 时，`hooks.token` 为必填项。
-- `hooks.path` 默认为 `/hooks`。
+- å½“ `hooks.enabled=true` æ—¶ï¼Œ`hooks.token` ä¸ºå¿…å¡«é¡¹ã€‚
+- `hooks.path` é»˜è®¤ä¸º `/hooks`ã€‚
 
-## 认证
+## è®¤è¯
 
-每个请求必须包含 hook 令牌。推荐使用请求头：
+æ¯ä¸ªè¯·æ±‚å¿…é¡»åŒ…å« hook ä»¤ç‰Œã€‚æŽ¨èä½¿ç”¨è¯·æ±‚å¤´ï¼š
 
-- `Authorization: Bearer <token>`（推荐）
-- `x-openclaw-token: <token>`
-- `?token=<token>`（已弃用；会记录警告日志，将在未来的主要版本中移除）
+- `Authorization: Bearer <token>`ï¼ˆæŽ¨èï¼‰
+- `x--token: <token>`
+- `?token=<token>`ï¼ˆå·²å¼ƒç”¨ï¼›ä¼šè®°å½•è­¦å‘Šæ—¥å¿—ï¼Œå°†åœ¨æœªæ¥çš„ä¸»è¦ç‰ˆæœ¬ä¸­ç§»é™¤ï¼‰
 
-## 端点
+## ç«¯ç‚¹
 
 ### `POST /hooks/wake`
 
-请求体：
+è¯·æ±‚ä½“ï¼š
 
 ```json
 { "text": "System line", "mode": "now" }
 ```
 
-- `text` **必填**（字符串）：事件描述（例如"收到新邮件"）。
-- `mode` 可选（`now` | `next-heartbeat`）：是否立即触发心跳（默认 `now`）或等待下一次定期检查。
+- `text` **å¿…å¡«**ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šäº‹ä»¶æè¿°ï¼ˆä¾‹å¦‚"æ”¶åˆ°æ–°é‚®ä»¶"ï¼‰ã€‚
+- `mode` å¯é€‰ï¼ˆ`now` | `next-heartbeat`ï¼‰ï¼šæ˜¯å¦ç«‹å³è§¦å‘å¿ƒè·³ï¼ˆé»˜è®¤ `now`ï¼‰æˆ–ç­‰å¾…ä¸‹ä¸€æ¬¡å®šæœŸæ£€æŸ¥ã€‚
 
-效果：
+æ•ˆæžœï¼š
 
-- 为**主**会话加入一个系统事件队列
-- 如果 `mode=now`，则立即触发心跳
+- ä¸º**ä¸»**ä¼šè¯åŠ å…¥ä¸€ä¸ªç³»ç»Ÿäº‹ä»¶é˜Ÿåˆ—
+- å¦‚æžœ `mode=now`ï¼Œåˆ™ç«‹å³è§¦å‘å¿ƒè·³
 
 ### `POST /hooks/agent`
 
-请求体：
+è¯·æ±‚ä½“ï¼š
 
 ```json
 {
@@ -79,47 +79,47 @@ Gateway 网关可以暴露一个小型 HTTP webhook 端点用于外部触发。
 }
 ```
 
-- `message` **必填**（字符串）：智能体要处理的提示或消息。
-- `name` 可选（字符串）：hook 的可读名称（例如"GitHub"），用作会话摘要的前缀。
-- `sessionKey` 可选（字符串）：用于标识智能体会话的键。默认为随机的 `hook:<uuid>`。使用一致的键可以在 hook 上下文中进行多轮对话。
-- `wakeMode` 可选（`now` | `next-heartbeat`）：是否立即触发心跳（默认 `now`）或等待下一次定期检查。
-- `deliver` 可选（布尔值）：如果为 `true`，智能体的响应将发送到消息渠道。默认为 `true`。仅为心跳确认的响应会自动跳过。
-- `channel` 可选（字符串）：用于投递的消息渠道。可选值：`last`、`whatsapp`、`telegram`、`discord`、`slack`、`mattermost`（插件）、`signal`、`imessage`、`msteams`。默认为 `last`。
-- `to` 可选（字符串）：渠道的接收者标识符（例如 WhatsApp/Signal 的电话号码、Telegram 的聊天 ID、Discord/Slack/Mattermost（插件）的频道 ID、MS Teams 的会话 ID）。默认为主会话中的最后一个接收者。
-- `model` 可选（字符串）：模型覆盖（例如 `anthropic/claude-3-5-sonnet` 或别名）。如果有限制，必须在允许的模型列表中。
-- `thinking` 可选（字符串）：思考级别覆盖（例如 `low`、`medium`、`high`）。
-- `timeoutSeconds` 可选（数字）：智能体运行的最大持续时间（秒）。
+- `message` **å¿…å¡«**ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šæ™ºèƒ½ä½“è¦å¤„ç†çš„æç¤ºæˆ–æ¶ˆæ¯ã€‚
+- `name` å¯é€‰ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šhook çš„å¯è¯»åç§°ï¼ˆä¾‹å¦‚"GitHub"ï¼‰ï¼Œç”¨ä½œä¼šè¯æ‘˜è¦çš„å‰ç¼€ã€‚
+- `sessionKey` å¯é€‰ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šç”¨äºŽæ ‡è¯†æ™ºèƒ½ä½“ä¼šè¯çš„é”®ã€‚é»˜è®¤ä¸ºéšæœºçš„ `hook:<uuid>`ã€‚ä½¿ç”¨ä¸€è‡´çš„é”®å¯ä»¥åœ¨ hook ä¸Šä¸‹æ–‡ä¸­è¿›è¡Œå¤šè½®å¯¹è¯ã€‚
+- `wakeMode` å¯é€‰ï¼ˆ`now` | `next-heartbeat`ï¼‰ï¼šæ˜¯å¦ç«‹å³è§¦å‘å¿ƒè·³ï¼ˆé»˜è®¤ `now`ï¼‰æˆ–ç­‰å¾…ä¸‹ä¸€æ¬¡å®šæœŸæ£€æŸ¥ã€‚
+- `deliver` å¯é€‰ï¼ˆå¸ƒå°”å€¼ï¼‰ï¼šå¦‚æžœä¸º `true`ï¼Œæ™ºèƒ½ä½“çš„å“åº”å°†å‘é€åˆ°æ¶ˆæ¯æ¸ é“ã€‚é»˜è®¤ä¸º `true`ã€‚ä»…ä¸ºå¿ƒè·³ç¡®è®¤çš„å“åº”ä¼šè‡ªåŠ¨è·³è¿‡ã€‚
+- `channel` å¯é€‰ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šç”¨äºŽæŠ•é€’çš„æ¶ˆæ¯æ¸ é“ã€‚å¯é€‰å€¼ï¼š`last`ã€`whatsapp`ã€`telegram`ã€`discord`ã€`slack`ã€`mattermost`ï¼ˆæ’ä»¶ï¼‰ã€`signal`ã€`imessage`ã€`msteams`ã€‚é»˜è®¤ä¸º `last`ã€‚
+- `to` å¯é€‰ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šæ¸ é“çš„æŽ¥æ”¶è€…æ ‡è¯†ç¬¦ï¼ˆä¾‹å¦‚ WhatsApp/Signal çš„ç”µè¯å·ç ã€Telegram çš„èŠå¤© IDã€Discord/Slack/Mattermostï¼ˆæ’ä»¶ï¼‰çš„é¢‘é“ IDã€MS Teams çš„ä¼šè¯ IDï¼‰ã€‚é»˜è®¤ä¸ºä¸»ä¼šè¯ä¸­çš„æœ€åŽä¸€ä¸ªæŽ¥æ”¶è€…ã€‚
+- `model` å¯é€‰ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šæ¨¡åž‹è¦†ç›–ï¼ˆä¾‹å¦‚ `anthropic/claude-3-5-sonnet` æˆ–åˆ«åï¼‰ã€‚å¦‚æžœæœ‰é™åˆ¶ï¼Œå¿…é¡»åœ¨å…è®¸çš„æ¨¡åž‹åˆ—è¡¨ä¸­ã€‚
+- `thinking` å¯é€‰ï¼ˆå­—ç¬¦ä¸²ï¼‰ï¼šæ€è€ƒçº§åˆ«è¦†ç›–ï¼ˆä¾‹å¦‚ `low`ã€`medium`ã€`high`ï¼‰ã€‚
+- `timeoutSeconds` å¯é€‰ï¼ˆæ•°å­—ï¼‰ï¼šæ™ºèƒ½ä½“è¿è¡Œçš„æœ€å¤§æŒç»­æ—¶é—´ï¼ˆç§’ï¼‰ã€‚
 
-效果：
+æ•ˆæžœï¼š
 
-- 运行一个**隔离的**智能体回合（独立的会话键）
-- 始终在**主**会话中发布摘要
-- 如果 `wakeMode=now`，则立即触发心跳
+- è¿è¡Œä¸€ä¸ª**éš”ç¦»çš„**æ™ºèƒ½ä½“å›žåˆï¼ˆç‹¬ç«‹çš„ä¼šè¯é”®ï¼‰
+- å§‹ç»ˆåœ¨**ä¸»**ä¼šè¯ä¸­å‘å¸ƒæ‘˜è¦
+- å¦‚æžœ `wakeMode=now`ï¼Œåˆ™ç«‹å³è§¦å‘å¿ƒè·³
 
-### `POST /hooks/<name>`（映射）
+### `POST /hooks/<name>`ï¼ˆæ˜ å°„ï¼‰
 
-自定义 hook 名称通过 `hooks.mappings` 解析（见配置）。映射可以将任意请求体转换为 `wake` 或 `agent` 操作，支持可选的模板或代码转换。
+è‡ªå®šä¹‰ hook åç§°é€šè¿‡ `hooks.mappings` è§£æžï¼ˆè§é…ç½®ï¼‰ã€‚æ˜ å°„å¯ä»¥å°†ä»»æ„è¯·æ±‚ä½“è½¬æ¢ä¸º `wake` æˆ– `agent` æ“ä½œï¼Œæ”¯æŒå¯é€‰çš„æ¨¡æ¿æˆ–ä»£ç è½¬æ¢ã€‚
 
-映射选项（摘要）：
+æ˜ å°„é€‰é¡¹ï¼ˆæ‘˜è¦ï¼‰ï¼š
 
-- `hooks.presets: ["gmail"]` 启用内置的 Gmail 映射。
-- `hooks.mappings` 允许你在配置中定义 `match`、`action` 和模板。
-- `hooks.transformsDir` + `transform.module` 加载 JS/TS 模块用于自定义逻辑。
-- 使用 `match.source` 保持通用的接收端点（基于请求体的路由）。
-- TS 转换需要 TS 加载器（例如 `bun` 或 `tsx`）或运行时预编译的 `.js`。
-- 在映射上设置 `deliver: true` + `channel`/`to` 可将回复路由到聊天界面（`channel` 默认为 `last`，回退到 WhatsApp）。
-- `allowUnsafeExternalContent: true` 禁用该 hook 的外部内容安全包装（危险；仅用于受信任的内部来源）。
-- `openclaw webhooks gmail setup` 为 `openclaw webhooks gmail run` 写入 `hooks.gmail` 配置。完整的 Gmail 监听流程请参阅 [Gmail Pub/Sub](/automation/gmail-pubsub)。
+- `hooks.presets: ["gmail"]` å¯ç”¨å†…ç½®çš„ Gmail æ˜ å°„ã€‚
+- `hooks.mappings` å…è®¸ä½ åœ¨é…ç½®ä¸­å®šä¹‰ `match`ã€`action` å’Œæ¨¡æ¿ã€‚
+- `hooks.transformsDir` + `transform.module` åŠ è½½ JS/TS æ¨¡å—ç”¨äºŽè‡ªå®šä¹‰é€»è¾‘ã€‚
+- ä½¿ç”¨ `match.source` ä¿æŒé€šç”¨çš„æŽ¥æ”¶ç«¯ç‚¹ï¼ˆåŸºäºŽè¯·æ±‚ä½“çš„è·¯ç”±ï¼‰ã€‚
+- TS è½¬æ¢éœ€è¦ TS åŠ è½½å™¨ï¼ˆä¾‹å¦‚ `bun` æˆ– `tsx`ï¼‰æˆ–è¿è¡Œæ—¶é¢„ç¼–è¯‘çš„ `.js`ã€‚
+- åœ¨æ˜ å°„ä¸Šè®¾ç½® `deliver: true` + `channel`/`to` å¯å°†å›žå¤è·¯ç”±åˆ°èŠå¤©ç•Œé¢ï¼ˆ`channel` é»˜è®¤ä¸º `last`ï¼Œå›žé€€åˆ° WhatsAppï¼‰ã€‚
+- `allowUnsafeExternalContent: true` ç¦ç”¨è¯¥ hook çš„å¤–éƒ¨å†…å®¹å®‰å…¨åŒ…è£…ï¼ˆå±é™©ï¼›ä»…ç”¨äºŽå—ä¿¡ä»»çš„å†…éƒ¨æ¥æºï¼‰ã€‚
+- ` webhooks gmail setup` ä¸º ` webhooks gmail run` å†™å…¥ `hooks.gmail` é…ç½®ã€‚å®Œæ•´çš„ Gmail ç›‘å¬æµç¨‹è¯·å‚é˜… [Gmail Pub/Sub](/automation/gmail-pubsub)ã€‚
 
-## 响应
+## å“åº”
 
-- `200` 用于 `/hooks/wake`
-- `202` 用于 `/hooks/agent`（异步运行已启动）
-- `401` 认证失败
-- `400` 请求体无效
-- `413` 请求体过大
+- `200` ç”¨äºŽ `/hooks/wake`
+- `202` ç”¨äºŽ `/hooks/agent`ï¼ˆå¼‚æ­¥è¿è¡Œå·²å¯åŠ¨ï¼‰
+- `401` è®¤è¯å¤±è´¥
+- `400` è¯·æ±‚ä½“æ— æ•ˆ
+- `413` è¯·æ±‚ä½“è¿‡å¤§
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
 curl -X POST http://127.0.0.1:18789/hooks/wake \
@@ -130,23 +130,23 @@ curl -X POST http://127.0.0.1:18789/hooks/wake \
 
 ```bash
 curl -X POST http://127.0.0.1:18789/hooks/agent \
-  -H 'x-openclaw-token: SECRET' \
+  -H 'x--token: SECRET' \
   -H 'Content-Type: application/json' \
   -d '{"message":"Summarize inbox","name":"Email","wakeMode":"next-heartbeat"}'
 ```
 
-### 使用不同的模型
+### ä½¿ç”¨ä¸åŒçš„æ¨¡åž‹
 
-在智能体请求体（或映射）中添加 `model` 以覆盖该次运行的模型：
+åœ¨æ™ºèƒ½ä½“è¯·æ±‚ä½“ï¼ˆæˆ–æ˜ å°„ï¼‰ä¸­æ·»åŠ  `model` ä»¥è¦†ç›–è¯¥æ¬¡è¿è¡Œçš„æ¨¡åž‹ï¼š
 
 ```bash
 curl -X POST http://127.0.0.1:18789/hooks/agent \
-  -H 'x-openclaw-token: SECRET' \
+  -H 'x--token: SECRET' \
   -H 'Content-Type: application/json' \
   -d '{"message":"Summarize inbox","name":"Email","model":"openai/gpt-5.2-mini"}'
 ```
 
-如果你启用了 `agents.defaults.models` 限制，请确保覆盖的模型包含在其中。
+å¦‚æžœä½ å¯ç”¨äº† `agents.defaults.models` é™åˆ¶ï¼Œè¯·ç¡®ä¿è¦†ç›–çš„æ¨¡åž‹åŒ…å«åœ¨å…¶ä¸­ã€‚
 
 ```bash
 curl -X POST http://127.0.0.1:18789/hooks/gmail \
@@ -155,9 +155,10 @@ curl -X POST http://127.0.0.1:18789/hooks/gmail \
   -d '{"source":"gmail","messages":[{"from":"Ada","subject":"Hello","snippet":"Hi"}]}'
 ```
 
-## 安全
+## å®‰å…¨
 
-- 将 hook 端点保持在 loopback、tailnet 或受信任的反向代理之后。
-- 使用专用的 hook 令牌；不要复用 Gateway 网关认证令牌。
-- 避免在 webhook 日志中包含敏感的原始请求体。
-- Hook 请求体默认被视为不受信任并使用安全边界包装。如果你必须为特定 hook 禁用此功能，请在该 hook 的映射中设置 `allowUnsafeExternalContent: true`（危险）。
+- å°† hook ç«¯ç‚¹ä¿æŒåœ¨ loopbackã€tailnet æˆ–å—ä¿¡ä»»çš„åå‘ä»£ç†ä¹‹åŽã€‚
+- ä½¿ç”¨ä¸“ç”¨çš„ hook ä»¤ç‰Œï¼›ä¸è¦å¤ç”¨ Gateway ç½‘å…³è®¤è¯ä»¤ç‰Œã€‚
+- é¿å…åœ¨ webhook æ—¥å¿—ä¸­åŒ…å«æ•æ„Ÿçš„åŽŸå§‹è¯·æ±‚ä½“ã€‚
+- Hook è¯·æ±‚ä½“é»˜è®¤è¢«è§†ä¸ºä¸å—ä¿¡ä»»å¹¶ä½¿ç”¨å®‰å…¨è¾¹ç•ŒåŒ…è£…ã€‚å¦‚æžœä½ å¿…é¡»ä¸ºç‰¹å®š hook ç¦ç”¨æ­¤åŠŸèƒ½ï¼Œè¯·åœ¨è¯¥ hook çš„æ˜ å°„ä¸­è®¾ç½® `allowUnsafeExternalContent: true`ï¼ˆå±é™©ï¼‰ã€‚
+

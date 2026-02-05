@@ -1,4 +1,4 @@
-export type MemorySource = "memory" | "sessions";
+﻿export type MemorySource = "memory" | "sessions";
 
 export type MemorySearchResult = {
   path: string;
@@ -78,3 +78,4 @@ export interface MemorySearchManager {
   probeVectorAvailability(): Promise<boolean>;
   close?(): Promise<void>;
 }
+

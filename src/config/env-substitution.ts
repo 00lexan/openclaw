@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Environment variable substitution for config values.
  *
  * Supports `${VAR_NAME}` syntax in string values, substituted at config load time.
@@ -132,3 +132,4 @@ function substituteAny(value: unknown, env: NodeJS.ProcessEnv, path: string): un
 export function resolveConfigEnvVars(obj: unknown, env: NodeJS.ProcessEnv = process.env): unknown {
   return substituteAny(obj, env, "");
 }
+

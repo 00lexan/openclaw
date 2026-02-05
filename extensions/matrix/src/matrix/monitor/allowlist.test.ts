@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizeMatrixAllowList, resolveMatrixAllowListMatch } from "./allowlist.js";
 
 describe("resolveMatrixAllowListMatch", () => {
@@ -43,3 +43,4 @@ describe("resolveMatrixAllowListMatch", () => {
     expect(match.matchSource).toBe("wildcard");
   });
 });
+

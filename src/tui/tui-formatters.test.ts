@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   extractContentFromMessage,
   extractTextFromMessage,
@@ -106,3 +106,4 @@ describe("isCommandMessage", () => {
     expect(isCommandMessage({})).toBe(false);
   });
 });
+

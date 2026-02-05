@@ -1,4 +1,4 @@
-import type { MSTeamsAttachmentLike } from "./types.js";
+﻿import type { MSTeamsAttachmentLike } from "./types.js";
 
 type InlineImageCandidate =
   | {
@@ -289,3 +289,4 @@ export function isUrlAllowed(url: string, allowlist: string[]): boolean {
     return false;
   }
 }
+

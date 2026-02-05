@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isMainModule } from "./is-main.js";
 
 describe("isMainModule", () => {
@@ -27,7 +27,7 @@ describe("isMainModule", () => {
   it("returns false when running under PM2 but this module is imported", () => {
     expect(
       isMainModule({
-        currentFile: "/repo/node_modules/openclaw/dist/index.js",
+        currentFile: "/repo/node_modules//dist/index.js",
         argv: ["node", "/repo/app.js"],
         cwd: "/repo",
         env: { pm_exec_path: "/repo/app.js", pm_id: "0" },
@@ -35,3 +35,4 @@ describe("isMainModule", () => {
     ).toBe(false);
   });
 });
+

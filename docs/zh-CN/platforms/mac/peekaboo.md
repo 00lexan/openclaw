@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 在 OpenClaw.app 中托管 PeekabooBridge
-  - 通过 Swift Package Manager 集成 Peekaboo
-  - 更改 PeekabooBridge 协议/路径
-summary: 用于 macOS UI 自动化的 PeekabooBridge 集成
+  - åœ¨ .app ä¸­æ‰˜ç®¡ PeekabooBridge
+  - é€šè¿‡ Swift Package Manager é›†æˆ Peekaboo
+  - æ›´æ”¹ PeekabooBridge åè®®/è·¯å¾„
+summary: ç”¨äºŽ macOS UI è‡ªåŠ¨åŒ–çš„ PeekabooBridge é›†æˆ
 title: Peekaboo Bridge
 x-i18n:
   generated_at: "2026-02-01T21:32:57Z"
@@ -14,49 +14,50 @@ x-i18n:
   workflow: 15
 ---
 
-# Peekaboo Bridge（macOS UI 自动化）
+# Peekaboo Bridgeï¼ˆmacOS UI è‡ªåŠ¨åŒ–ï¼‰
 
-OpenClaw 可以将 **PeekabooBridge** 作为本地的、权限感知的 UI 自动化代理进行托管。这使得 `peekaboo` CLI 能够驱动 UI 自动化，同时复用 macOS 应用的 TCC 权限。
+ å¯ä»¥å°† **PeekabooBridge** ä½œä¸ºæœ¬åœ°çš„ã€æƒé™æ„ŸçŸ¥çš„ UI è‡ªåŠ¨åŒ–ä»£ç†è¿›è¡Œæ‰˜ç®¡ã€‚è¿™ä½¿å¾— `peekaboo` CLI èƒ½å¤Ÿé©±åŠ¨ UI è‡ªåŠ¨åŒ–ï¼ŒåŒæ—¶å¤ç”¨ macOS åº”ç”¨çš„ TCC æƒé™ã€‚
 
-## 这是什么（以及不是什么）
+## è¿™æ˜¯ä»€ä¹ˆï¼ˆä»¥åŠä¸æ˜¯ä»€ä¹ˆï¼‰
 
-- **宿主**：OpenClaw.app 可以作为 PeekabooBridge 宿主。
-- **客户端**：使用 `peekaboo` CLI（无需单独的 `openclaw ui ...` 界面）。
-- **界面**：视觉叠加层保留在 Peekaboo.app 中；OpenClaw 只是一个轻量代理宿主。
+- **å®¿ä¸»**ï¼š.app å¯ä»¥ä½œä¸º PeekabooBridge å®¿ä¸»ã€‚
+- **å®¢æˆ·ç«¯**ï¼šä½¿ç”¨ `peekaboo` CLIï¼ˆæ— éœ€å•ç‹¬çš„ ` ui ...` ç•Œé¢ï¼‰ã€‚
+- **ç•Œé¢**ï¼šè§†è§‰å åŠ å±‚ä¿ç•™åœ¨ Peekaboo.app ä¸­ï¼› åªæ˜¯ä¸€ä¸ªè½»é‡ä»£ç†å®¿ä¸»ã€‚
 
-## 启用桥接
+## å¯ç”¨æ¡¥æŽ¥
 
-在 macOS 应用中：
+åœ¨ macOS åº”ç”¨ä¸­ï¼š
 
-- 设置 → **启用 Peekaboo Bridge**
+- è®¾ç½® â†’ **å¯ç”¨ Peekaboo Bridge**
 
-启用后，OpenClaw 会启动一个本地 UNIX 套接字服务器。如果禁用，宿主会停止，`peekaboo` 将回退到其他可用宿主。
+å¯ç”¨åŽï¼Œ ä¼šå¯åŠ¨ä¸€ä¸ªæœ¬åœ° UNIX å¥—æŽ¥å­—æœåŠ¡å™¨ã€‚å¦‚æžœç¦ç”¨ï¼Œå®¿ä¸»ä¼šåœæ­¢ï¼Œ`peekaboo` å°†å›žé€€åˆ°å…¶ä»–å¯ç”¨å®¿ä¸»ã€‚
 
-## 客户端发现顺序
+## å®¢æˆ·ç«¯å‘çŽ°é¡ºåº
 
-Peekaboo 客户端通常按以下顺序尝试宿主：
+Peekaboo å®¢æˆ·ç«¯é€šå¸¸æŒ‰ä»¥ä¸‹é¡ºåºå°è¯•å®¿ä¸»ï¼š
 
-1. Peekaboo.app（完整用户体验）
-2. Claude.app（如已安装）
-3. OpenClaw.app（轻量代理）
+1. Peekaboo.appï¼ˆå®Œæ•´ç”¨æˆ·ä½“éªŒï¼‰
+2. Claude.appï¼ˆå¦‚å·²å®‰è£…ï¼‰
+3. .appï¼ˆè½»é‡ä»£ç†ï¼‰
 
-使用 `peekaboo bridge status --verbose` 查看当前活跃的宿主及使用的套接字路径。你可以通过以下方式覆盖：
+ä½¿ç”¨ `peekaboo bridge status --verbose` æŸ¥çœ‹å½“å‰æ´»è·ƒçš„å®¿ä¸»åŠä½¿ç”¨çš„å¥—æŽ¥å­—è·¯å¾„ã€‚ä½ å¯ä»¥é€šè¿‡ä»¥ä¸‹æ–¹å¼è¦†ç›–ï¼š
 
 ```bash
 export PEEKABOO_BRIDGE_SOCKET=/path/to/bridge.sock
 ```
 
-## 安全与权限
+## å®‰å…¨ä¸Žæƒé™
 
-- 桥接会验证**调用方的代码签名**；强制执行 TeamID 白名单（Peekaboo 宿主 TeamID + OpenClaw 应用 TeamID）。
-- 请求在约 10 秒后超时。
-- 如果缺少所需权限，桥接会返回清晰的错误信息，而不是启动系统设置。
+- æ¡¥æŽ¥ä¼šéªŒè¯**è°ƒç”¨æ–¹çš„ä»£ç ç­¾å**ï¼›å¼ºåˆ¶æ‰§è¡Œ TeamID ç™½åå•ï¼ˆPeekaboo å®¿ä¸» TeamID +  åº”ç”¨ TeamIDï¼‰ã€‚
+- è¯·æ±‚åœ¨çº¦ 10 ç§’åŽè¶…æ—¶ã€‚
+- å¦‚æžœç¼ºå°‘æ‰€éœ€æƒé™ï¼Œæ¡¥æŽ¥ä¼šè¿”å›žæ¸…æ™°çš„é”™è¯¯ä¿¡æ¯ï¼Œè€Œä¸æ˜¯å¯åŠ¨ç³»ç»Ÿè®¾ç½®ã€‚
 
-## 快照行为（自动化）
+## å¿«ç…§è¡Œä¸ºï¼ˆè‡ªåŠ¨åŒ–ï¼‰
 
-快照存储在内存中，并在短暂窗口期后自动过期。如果需要更长的保留时间，请从客户端重新捕获。
+å¿«ç…§å­˜å‚¨åœ¨å†…å­˜ä¸­ï¼Œå¹¶åœ¨çŸ­æš‚çª—å£æœŸåŽè‡ªåŠ¨è¿‡æœŸã€‚å¦‚æžœéœ€è¦æ›´é•¿çš„ä¿ç•™æ—¶é—´ï¼Œè¯·ä»Žå®¢æˆ·ç«¯é‡æ–°æ•èŽ·ã€‚
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-- 如果 `peekaboo` 报告"bridge client is not authorized"，请确保客户端已正确签名，或仅在**调试**模式下使用 `PEEKABOO_ALLOW_UNSIGNED_SOCKET_CLIENTS=1` 运行宿主。
-- 如果未找到宿主，请打开其中一个宿主应用（Peekaboo.app 或 OpenClaw.app）并确认已授予权限。
+- å¦‚æžœ `peekaboo` æŠ¥å‘Š"bridge client is not authorized"ï¼Œè¯·ç¡®ä¿å®¢æˆ·ç«¯å·²æ­£ç¡®ç­¾åï¼Œæˆ–ä»…åœ¨**è°ƒè¯•**æ¨¡å¼ä¸‹ä½¿ç”¨ `PEEKABOO_ALLOW_UNSIGNED_SOCKET_CLIENTS=1` è¿è¡Œå®¿ä¸»ã€‚
+- å¦‚æžœæœªæ‰¾åˆ°å®¿ä¸»ï¼Œè¯·æ‰“å¼€å…¶ä¸­ä¸€ä¸ªå®¿ä¸»åº”ç”¨ï¼ˆPeekaboo.app æˆ– .appï¼‰å¹¶ç¡®è®¤å·²æŽˆäºˆæƒé™ã€‚
+

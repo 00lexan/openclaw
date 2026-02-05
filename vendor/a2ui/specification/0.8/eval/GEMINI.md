@@ -1,4 +1,4 @@
-# A2UI Protocol Message Validation Logic
+﻿# A2UI Protocol Message Validation Logic
 
 This document outlines the validation rules implemented in the `validateSchema` function. The purpose of this validator is to check for constraints that are not easily expressed in the JSON schema itself, such as conditional requirements and reference integrity.
 
@@ -74,3 +74,4 @@ For each component in the `components` array, the following rules apply:
 
 - **Required**: Must have a `delete` property set to `true`.
 - No other properties are allowed.
+

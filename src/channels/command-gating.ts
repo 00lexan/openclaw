@@ -1,4 +1,4 @@
-export type CommandAuthorizer = {
+﻿export type CommandAuthorizer = {
   configured: boolean;
   allowed: boolean;
 };
@@ -43,3 +43,4 @@ export function resolveControlCommandGate(params: {
   const shouldBlock = params.allowTextCommands && params.hasControlCommand && !commandAuthorized;
   return { commandAuthorized, shouldBlock };
 }
+

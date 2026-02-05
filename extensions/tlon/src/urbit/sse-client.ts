@@ -1,4 +1,4 @@
-import { Readable } from "node:stream";
+﻿import { Readable } from "node:stream";
 
 export type UrbitSseLogger = {
   log?: (message: string) => void;
@@ -393,3 +393,4 @@ export class UrbitSSEClient {
     }
   }
 }
+

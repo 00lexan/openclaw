@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   resolveOutboundTarget: vi.fn(() => ({ ok: true as const, to: "+1999" })),
@@ -12,7 +12,7 @@ vi.mock("./targets.js", async () => {
   };
 });
 
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import { resolveAgentDeliveryPlan, resolveAgentOutboundTarget } from "./agent-delivery.js";
 
 describe("agent delivery helpers", () => {
@@ -45,7 +45,7 @@ describe("agent delivery helpers", () => {
     });
 
     const resolved = resolveAgentOutboundTarget({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as Config,
       plan,
       targetMode: "implicit",
     });
@@ -68,7 +68,7 @@ describe("agent delivery helpers", () => {
 
     mocks.resolveOutboundTarget.mockClear();
     const resolved = resolveAgentOutboundTarget({
-      cfg: {} as OpenClawConfig,
+      cfg: {} as Config,
       plan,
       targetMode: "explicit",
       validateExplicitTarget: false,
@@ -78,3 +78,4 @@ describe("agent delivery helpers", () => {
     expect(resolved.resolvedTo).toBe("+1555");
   });
 });
+

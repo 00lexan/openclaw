@@ -1,4 +1,4 @@
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk";
+﻿import { emptyPluginConfigSchema } from "/plugin-sdk";
 import { loginQwenPortalOAuth } from "./oauth.js";
 
 const PROVIDER_ID = "qwen-portal";
@@ -49,7 +49,7 @@ const qwenPortalPlugin = {
           hint: "Device code login",
           kind: "device_code",
           run: async (ctx) => {
-            const progress = ctx.prompter.progress("Starting Qwen OAuth…");
+            const progress = ctx.prompter.progress("Starting Qwen OAuthâ€¦");
             try {
               const result = await loginQwenPortalOAuth({
                 openUrl: ctx.openUrl,
@@ -128,3 +128,4 @@ const qwenPortalPlugin = {
 };
 
 export default qwenPortalPlugin;
+

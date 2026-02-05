@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, afterEach } from "vitest";
+﻿import { describe, expect, it, vi, afterEach } from "vitest";
 import { refreshQwenPortalCredentials } from "./qwen-portal-oauth.js";
 
 const originalFetch = globalThis.fetch;
@@ -75,3 +75,4 @@ describe("refreshQwenPortalCredentials", () => {
     ).rejects.toThrow("Qwen OAuth refresh token expired or invalid");
   });
 });
+

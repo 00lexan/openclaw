@@ -1,7 +1,7 @@
----
+﻿---
 read_when: Changing onboarding wizard steps or config schema endpoints
-summary: 新手引导向导和配置模式的 RPC 协议说明
-title: 新手引导和配置协议
+summary: æ–°æ‰‹å¼•å¯¼å‘å¯¼å’Œé…ç½®æ¨¡å¼çš„ RPC åè®®è¯´æ˜Ž
+title: æ–°æ‰‹å¼•å¯¼å’Œé…ç½®åè®®
 x-i18n:
   generated_at: "2026-02-03T07:47:10Z"
   model: claude-opus-4-5
@@ -11,37 +11,38 @@ x-i18n:
   workflow: 15
 ---
 
-# 新手引导 + 配置协议
+# æ–°æ‰‹å¼•å¯¼ + é…ç½®åè®®
 
-目的：CLI、macOS 应用和 Web UI 之间共享的新手引导 + 配置界面。
+ç›®çš„ï¼šCLIã€macOS åº”ç”¨å’Œ Web UI ä¹‹é—´å…±äº«çš„æ–°æ‰‹å¼•å¯¼ + é…ç½®ç•Œé¢ã€‚
 
-## 组件
+## ç»„ä»¶
 
-- 向导引擎（共享会话 + 提示 + 新手引导状态）。
-- CLI 新手引导使用与 UI 客户端相同的向导流程。
-- Gateway 网关 RPC 公开向导 + 配置模式端点。
-- macOS 新手引导使用向导步骤模型。
-- Web UI 从 JSON Schema + UI 提示渲染配置表单。
+- å‘å¯¼å¼•æ“Žï¼ˆå…±äº«ä¼šè¯ + æç¤º + æ–°æ‰‹å¼•å¯¼çŠ¶æ€ï¼‰ã€‚
+- CLI æ–°æ‰‹å¼•å¯¼ä½¿ç”¨ä¸Ž UI å®¢æˆ·ç«¯ç›¸åŒçš„å‘å¯¼æµç¨‹ã€‚
+- Gateway ç½‘å…³ RPC å…¬å¼€å‘å¯¼ + é…ç½®æ¨¡å¼ç«¯ç‚¹ã€‚
+- macOS æ–°æ‰‹å¼•å¯¼ä½¿ç”¨å‘å¯¼æ­¥éª¤æ¨¡åž‹ã€‚
+- Web UI ä»Ž JSON Schema + UI æç¤ºæ¸²æŸ“é…ç½®è¡¨å•ã€‚
 
-## Gateway 网关 RPC
+## Gateway ç½‘å…³ RPC
 
-- `wizard.start` 参数：`{ mode?: "local"|"remote", workspace?: string }`
-- `wizard.next` 参数：`{ sessionId, answer?: { stepId, value? } }`
-- `wizard.cancel` 参数：`{ sessionId }`
-- `wizard.status` 参数：`{ sessionId }`
-- `config.schema` 参数：`{}`
+- `wizard.start` å‚æ•°ï¼š`{ mode?: "local"|"remote", workspace?: string }`
+- `wizard.next` å‚æ•°ï¼š`{ sessionId, answer?: { stepId, value? } }`
+- `wizard.cancel` å‚æ•°ï¼š`{ sessionId }`
+- `wizard.status` å‚æ•°ï¼š`{ sessionId }`
+- `config.schema` å‚æ•°ï¼š`{}`
 
-响应（结构）
+å“åº”ï¼ˆç»“æž„ï¼‰
 
-- 向导：`{ sessionId, done, step?, status?, error? }`
-- 配置模式：`{ schema, uiHints, version, generatedAt }`
+- å‘å¯¼ï¼š`{ sessionId, done, step?, status?, error? }`
+- é…ç½®æ¨¡å¼ï¼š`{ schema, uiHints, version, generatedAt }`
 
-## UI 提示
+## UI æç¤º
 
-- `uiHints` 按路径键入；可选元数据（label/help/group/order/advanced/sensitive/placeholder）。
-- 敏感字段渲染为密码输入；无脱敏层。
-- 不支持的模式节点回退到原始 JSON 编辑器。
+- `uiHints` æŒ‰è·¯å¾„é”®å…¥ï¼›å¯é€‰å…ƒæ•°æ®ï¼ˆlabel/help/group/order/advanced/sensitive/placeholderï¼‰ã€‚
+- æ•æ„Ÿå­—æ®µæ¸²æŸ“ä¸ºå¯†ç è¾“å…¥ï¼›æ— è„±æ•å±‚ã€‚
+- ä¸æ”¯æŒçš„æ¨¡å¼èŠ‚ç‚¹å›žé€€åˆ°åŽŸå§‹ JSON ç¼–è¾‘å™¨ã€‚
 
-## 注意
+## æ³¨æ„
 
-- 本文档是跟踪新手引导/配置协议重构的唯一位置。
+- æœ¬æ–‡æ¡£æ˜¯è·Ÿè¸ªæ–°æ‰‹å¼•å¯¼/é…ç½®åè®®é‡æž„çš„å”¯ä¸€ä½ç½®ã€‚
+

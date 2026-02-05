@@ -1,4 +1,4 @@
-import type { InboundDebounceByProvider } from "../../../config/types.messages.js";
+﻿import type { InboundDebounceByProvider } from "../../../config/types.messages.js";
 import type { QueueMode, QueueSettings, ResolveQueueSettingsParams } from "./types.js";
 import { getChannelPlugin } from "../../../channels/plugins/index.js";
 import { normalizeQueueDropPolicy, normalizeQueueMode } from "./normalize.js";
@@ -66,3 +66,4 @@ export function resolveQueueSettings(params: ResolveQueueSettingsParams): QueueS
     dropPolicy: dropRaw,
   };
 }
+

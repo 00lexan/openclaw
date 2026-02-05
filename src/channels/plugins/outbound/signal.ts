@@ -1,4 +1,4 @@
-import type { ChannelOutboundAdapter } from "../types.js";
+﻿import type { ChannelOutboundAdapter } from "../types.js";
 import { chunkText } from "../../../auto-reply/chunk.js";
 import { sendMessageSignal } from "../../../signal/send.js";
 import { resolveChannelMediaMaxBytes } from "../media-limits.js";
@@ -38,3 +38,4 @@ export const signalOutbound: ChannelOutboundAdapter = {
     return { channel: "signal", ...result };
   },
 };
+

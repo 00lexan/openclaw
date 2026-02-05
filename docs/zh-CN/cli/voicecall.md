@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 使用语音通话插件并想了解 CLI 入口
-  - 想要 `voicecall call|continue|status|tail|expose` 的快速示例
-summary: 语音通话插件命令的 `openclaw voicecall` CLI 参考
+  - ä½¿ç”¨è¯­éŸ³é€šè¯æ’ä»¶å¹¶æƒ³äº†è§£ CLI å…¥å£
+  - æƒ³è¦ `voicecall call|continue|status|tail|expose` çš„å¿«é€Ÿç¤ºä¾‹
+summary: è¯­éŸ³é€šè¯æ’ä»¶å‘½ä»¤çš„ ` voicecall` CLI å‚è€ƒ
 title: voicecall
 x-i18n:
   generated_at: "2026-02-01T20:21:37Z"
@@ -13,29 +13,30 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw voicecall`
+# ` voicecall`
 
-`voicecall` 是一个由插件提供的命令。只有在安装并启用了语音通话插件时才会出现。
+`voicecall` æ˜¯ä¸€ä¸ªç”±æ’ä»¶æä¾›çš„å‘½ä»¤ã€‚åªæœ‰åœ¨å®‰è£…å¹¶å¯ç”¨äº†è¯­éŸ³é€šè¯æ’ä»¶æ—¶æ‰ä¼šå‡ºçŽ°ã€‚
 
-主要文档：
+ä¸»è¦æ–‡æ¡£ï¼š
 
-- 语音通话插件：[语音通话](/plugins/voice-call)
+- è¯­éŸ³é€šè¯æ’ä»¶ï¼š[è¯­éŸ³é€šè¯](/plugins/voice-call)
 
-## 常用命令
-
-```bash
-openclaw voicecall status --call-id <id>
-openclaw voicecall call --to "+15555550123" --message "Hello" --mode notify
-openclaw voicecall continue --call-id <id> --message "Any questions?"
-openclaw voicecall end --call-id <id>
-```
-
-## 暴露 Webhook（Tailscale）
+## å¸¸ç”¨å‘½ä»¤
 
 ```bash
-openclaw voicecall expose --mode serve
-openclaw voicecall expose --mode funnel
-openclaw voicecall unexpose
+ voicecall status --call-id <id>
+ voicecall call --to "+15555550123" --message "Hello" --mode notify
+ voicecall continue --call-id <id> --message "Any questions?"
+ voicecall end --call-id <id>
 ```
 
-安全提示：仅将 webhook 端点暴露给你信任的网络。尽可能优先使用 Tailscale Serve 而非 Funnel。
+## æš´éœ² Webhookï¼ˆTailscaleï¼‰
+
+```bash
+ voicecall expose --mode serve
+ voicecall expose --mode funnel
+ voicecall unexpose
+```
+
+å®‰å…¨æç¤ºï¼šä»…å°† webhook ç«¯ç‚¹æš´éœ²ç»™ä½ ä¿¡ä»»çš„ç½‘ç»œã€‚å°½å¯èƒ½ä¼˜å…ˆä½¿ç”¨ Tailscale Serve è€Œéž Funnelã€‚
+

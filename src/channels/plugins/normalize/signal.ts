@@ -1,4 +1,4 @@
-export function normalizeSignalMessagingTarget(raw: string): string | undefined {
+﻿export function normalizeSignalMessagingTarget(raw: string): string | undefined {
   const trimmed = raw.trim();
   if (!trimmed) {
     return undefined;
@@ -58,3 +58,4 @@ export function looksLikeSignalTargetId(raw: string): boolean {
   }
   return /^\+?\d{3,}$/.test(trimmed);
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { createDedupeCache } from "./dedupe.js";
 
 describe("createDedupeCache", () => {
@@ -31,3 +31,4 @@ describe("createDedupeCache", () => {
     expect(cache.size()).toBe(2);
   });
 });
+

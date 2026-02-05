@@ -1,4 +1,4 @@
-import JSON5 from "json5";
+﻿import JSON5 from "json5";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
@@ -34,7 +34,7 @@ function isSessionStoreRecord(value: unknown): value is Record<string, SessionEn
 
 function getSessionStoreTtl(): number {
   return resolveCacheTtlMs({
-    envValue: process.env.OPENCLAW_SESSION_CACHE_TTL_MS,
+    envValue: process.env._SESSION_CACHE_TTL_MS,
     defaultTtlMs: DEFAULT_SESSION_STORE_TTL_MS,
   });
 }
@@ -137,7 +137,7 @@ export function loadSessionStore(
     // ignore missing/invalid store; we'll recreate it
   }
 
-  // Best-effort migration: message provider → channel naming.
+  // Best-effort migration: message provider â†’ channel naming.
   for (const entry of Object.values(store)) {
     if (!entry || typeof entry !== "object") {
       continue;
@@ -152,7 +152,7 @@ export function loadSessionStore(
       delete rec.lastProvider;
     }
 
-    // Best-effort migration: legacy `room` field → `groupChannel` (keep value, prune old key).
+    // Best-effort migration: legacy `room` field â†’ `groupChannel` (keep value, prune old key).
     if (typeof rec.groupChannel !== "string" && typeof rec.room === "string") {
       rec.groupChannel = rec.room;
       delete rec.room;
@@ -464,3 +464,4 @@ export async function updateLastRoute(params: {
     return next;
   });
 }
+

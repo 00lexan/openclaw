@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createPinnedLookup, resolvePinnedHostname } from "./ssrf.js";
 
 describe("ssrf pinning", () => {
@@ -69,3 +69,4 @@ describe("ssrf pinning", () => {
     expect(result.address).toBe("1.2.3.4");
   });
 });
+

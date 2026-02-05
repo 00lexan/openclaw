@@ -1,4 +1,4 @@
-import type { ChannelAccountSnapshot, ChannelStatusIssue } from "../types.js";
+﻿import type { ChannelAccountSnapshot, ChannelStatusIssue } from "../types.js";
 import { appendMatchMetadata, asString, isRecord } from "./shared.js";
 
 type TelegramAccountStatus = {
@@ -95,7 +95,7 @@ export function collectTelegramStatusIssues(
         kind: "config",
         message:
           "Config allows unmentioned group messages (requireMention=false). Telegram Bot API privacy mode will block most group messages unless disabled.",
-        fix: "In BotFather run /setprivacy → Disable for this bot (then restart the gateway).",
+        fix: "In BotFather run /setprivacy â†’ Disable for this bot (then restart the gateway).",
       });
     }
 
@@ -140,3 +140,4 @@ export function collectTelegramStatusIssues(
   }
   return issues;
 }
+

@@ -1,4 +1,4 @@
-import type { AnyAgentTool } from "./tools/common.js";
+﻿import type { AnyAgentTool } from "./tools/common.js";
 
 export type ToolProfileId = "minimal" | "coding" | "messaging" | "full";
 
@@ -36,8 +36,8 @@ export const TOOL_GROUPS: Record<string, string[]> = {
   "group:messaging": ["message"],
   // Nodes + device tools
   "group:nodes": ["nodes"],
-  // All OpenClaw native tools (excludes provider plugins).
-  "group:openclaw": [
+  // All  native tools (excludes provider plugins).
+  "group:": [
     "browser",
     "canvas",
     "nodes",
@@ -289,3 +289,4 @@ export function resolveToolProfilePolicy(profile?: string): ToolProfilePolicy | 
     deny: resolved.deny ? [...resolved.deny] : undefined,
   };
 }
+

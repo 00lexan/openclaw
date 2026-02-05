@@ -1,4 +1,4 @@
-import { Command } from "commander";
+﻿import { Command } from "commander";
 import { describe, expect, it, vi } from "vitest";
 
 const callGatewayFromCli = vi.fn(async (method: string, _opts: unknown, params?: unknown) => {
@@ -140,3 +140,4 @@ describe("exec approvals CLI", () => {
     );
   });
 });
+

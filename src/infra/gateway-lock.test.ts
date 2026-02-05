@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+﻿import { createHash } from "node:crypto";
 import fsSync from "node:fs";
 import fs from "node:fs/promises";
 import os from "node:os";
@@ -8,15 +8,15 @@ import { resolveConfigPath, resolveGatewayLockDir, resolveStateDir } from "../co
 import { acquireGatewayLock, GatewayLockError } from "./gateway-lock.js";
 
 async function makeEnv() {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-gateway-lock-"));
-  const configPath = path.join(dir, "openclaw.json");
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "-gateway-lock-"));
+  const configPath = path.join(dir, ".json");
   await fs.writeFile(configPath, "{}", "utf8");
   await fs.mkdir(resolveGatewayLockDir(), { recursive: true });
   return {
     env: {
       ...process.env,
-      OPENCLAW_STATE_DIR: dir,
-      OPENCLAW_CONFIG_PATH: configPath,
+      _STATE_DIR: dir,
+      _CONFIG_PATH: configPath,
     },
     cleanup: async () => {
       await fs.rm(dir, { recursive: true, force: true });
@@ -185,3 +185,4 @@ describe("gateway lock", () => {
     await cleanup();
   });
 });
+

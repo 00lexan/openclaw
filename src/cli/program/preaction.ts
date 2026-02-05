@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { setVerbose } from "../../globals.js";
 import { isTruthyEnvValue } from "../../infra/env.js";
 import { defaultRuntime } from "../../runtime.js";
@@ -33,7 +33,7 @@ export function registerPreActionHooks(program: Command, programVersion: string)
     }
     const commandPath = getCommandPath(argv, 2);
     const hideBanner =
-      isTruthyEnvValue(process.env.OPENCLAW_HIDE_BANNER) ||
+      isTruthyEnvValue(process.env._HIDE_BANNER) ||
       commandPath[0] === "update" ||
       commandPath[0] === "completion" ||
       (commandPath[0] === "plugins" && commandPath[1] === "update");
@@ -55,3 +55,4 @@ export function registerPreActionHooks(program: Command, programVersion: string)
     }
   });
 }
+

@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Project origin, contributors, and license."
 read_when:
   - You want the project backstory or contributor credits
@@ -7,7 +7,7 @@ title: "Credits"
 
 ## The name
 
-OpenClaw = CLAW + TARDIS, because every space lobster needs a time and space machine.
+ = CLAW + TARDIS, because every space lobster needs a time and space machine.
 
 ## Credits
 
@@ -25,3 +25,4 @@ OpenClaw = CLAW + TARDIS, because every space lobster needs a time and space mac
 MIT - Free as a lobster in the ocean.
 
 > "We are all just playing with our own prompts." (An AI, probably high on tokens)
+

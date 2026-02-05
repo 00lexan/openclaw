@@ -1,4 +1,4 @@
-export type TelegramTarget = {
+﻿export type TelegramTarget = {
   chatId: string;
   messageThreadId?: number;
 };
@@ -54,3 +54,4 @@ export function parseTelegramTarget(to: string): TelegramTarget {
 
   return { chatId: normalized };
 }
+

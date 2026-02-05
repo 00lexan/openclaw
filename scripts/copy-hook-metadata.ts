@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+﻿#!/usr/bin/env tsx
 /**
  * Copy HOOK.md files from src/hooks/bundled to dist/hooks/bundled
  */
@@ -53,3 +53,4 @@ function copyHookMetadata() {
 }
 
 copyHookMetadata();
+

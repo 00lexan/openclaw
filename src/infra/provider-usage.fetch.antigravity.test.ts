@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { fetchAntigravityUsage } from "./provider-usage.fetch.antigravity.js";
 
 const makeResponse = (status: number, body: unknown): Response => {
@@ -576,3 +576,4 @@ describe("fetchAntigravityUsage", () => {
     expect(snapshot.error).toBeUndefined();
   });
 });
+

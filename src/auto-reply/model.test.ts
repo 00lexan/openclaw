@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { extractModelDirective } from "./model.js";
 
 describe("extractModelDirective", () => {
@@ -151,3 +151,4 @@ describe("extractModelDirective", () => {
     });
   });
 });
+

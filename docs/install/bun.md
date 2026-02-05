@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Bun workflow (experimental): installs and gotchas vs pnpm"
 read_when:
   - You want the fastest local dev loop (bun + watch)
@@ -11,11 +11,11 @@ title: "Bun (Experimental)"
 Goal: run this repo with **Bun** (optional, not recommended for WhatsApp/Telegram)
 without diverging from pnpm workflows.
 
-⚠️ **Not recommended for Gateway runtime** (WhatsApp/Telegram bugs). Use Node for production.
+âš ï¸ **Not recommended for Gateway runtime** (WhatsApp/Telegram bugs). Use Node for production.
 
 ## Status
 
-- Bun is an optional local runtime for running TypeScript directly (`bun run …`, `bun --watch …`).
+- Bun is an optional local runtime for running TypeScript directly (`bun run â€¦`, `bun --watch â€¦`).
 - `pnpm` is the default for builds and remains fully supported (and used by some docs tooling).
 - Bun cannot use `pnpm-lock.yaml` and will ignore it.
 
@@ -27,7 +27,7 @@ Default:
 bun install
 ```
 
-Note: `bun.lock`/`bun.lockb` are gitignored, so there’s no repo churn either way. If you want _no lockfile writes_:
+Note: `bun.lock`/`bun.lockb` are gitignored, so thereâ€™s no repo churn either way. If you want _no lockfile writes_:
 
 ```sh
 bun install --no-save
@@ -57,3 +57,4 @@ bun pm trust @whiskeysockets/baileys protobufjs
 ## Caveats
 
 - Some scripts still hardcode pnpm (e.g. `docs:build`, `ui:*`, `protocol:check`). Run those via pnpm for now.
+

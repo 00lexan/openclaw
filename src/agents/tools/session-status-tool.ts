@@ -1,5 +1,5 @@
-import { Type } from "@sinclair/typebox";
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import { Type } from "@sinclair/typebox";
+import type { Config } from "../../config/config.js";
 import type { AnyAgentTool } from "./common.js";
 import { normalizeGroupActivation } from "../../auto-reply/group-activation.js";
 import { getFollowupQueueDepth, resolveQueueSettings } from "../../auto-reply/reply/queue.js";
@@ -61,12 +61,12 @@ function formatApiKeySnippet(apiKey: string): string {
   const edge = compact.length >= 12 ? 6 : 4;
   const head = compact.slice(0, edge);
   const tail = compact.slice(-edge);
-  return `${head}…${tail}`;
+  return `${head}â€¦${tail}`;
 }
 
 function resolveModelAuthLabel(params: {
   provider?: string;
-  cfg: OpenClawConfig;
+  cfg: Config;
   sessionEntry?: SessionEntry;
   agentDir?: string;
 }): string | undefined {
@@ -164,7 +164,7 @@ function resolveSessionEntry(params: {
 }
 
 function resolveSessionKeyFromSessionId(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   sessionId: string;
   agentId?: string;
 }): string | null {
@@ -186,7 +186,7 @@ function resolveSessionKeyFromSessionId(params: {
 }
 
 async function resolveModelOverride(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   raw: string;
   sessionEntry?: SessionEntry;
   agentId: string;
@@ -250,13 +250,13 @@ async function resolveModelOverride(params: {
 
 export function createSessionStatusTool(opts?: {
   agentSessionKey?: string;
-  config?: OpenClawConfig;
+  config?: Config;
 }): AnyAgentTool {
   return {
     label: "Session Status",
     name: "session_status",
     description:
-      "Show a /status-equivalent session status card (usage + time + cost when available). Use for model-use questions (📊 session_status). Optional: set per-session model override (model=default resets overrides).",
+      "Show a /status-equivalent session status card (usage + time + cost when available). Use for model-use questions (ðŸ“Š session_status). Optional: set per-session model override (model=default resets overrides).",
     parameters: SessionStatusToolSchema,
     execute: async (_toolCallId, args) => {
       const params = args as Record<string, unknown>;
@@ -389,7 +389,7 @@ export function createSessionStatusTool(opts?: {
               includeResets: true,
             });
             if (formatted && !formatted.startsWith("error:")) {
-              usageLine = `📊 Usage: ${formatted}`;
+              usageLine = `ðŸ“Š Usage: ${formatted}`;
             }
           }
         } catch {
@@ -421,8 +421,8 @@ export function createSessionStatusTool(opts?: {
       const userTimeFormat = resolveUserTimeFormat(cfg.agents?.defaults?.timeFormat);
       const userTime = formatUserTime(new Date(), userTimezone, userTimeFormat);
       const timeLine = userTime
-        ? `🕒 Time: ${userTime} (${userTimezone})`
-        : `🕒 Time zone: ${userTimezone}`;
+        ? `ðŸ•’ Time: ${userTime} (${userTimezone})`
+        : `ðŸ•’ Time zone: ${userTimezone}`;
 
       const agentDefaults = cfg.agents?.defaults ?? {};
       const defaultLabel = `${configured.provider}/${configured.model}`;
@@ -470,3 +470,4 @@ export function createSessionStatusTool(opts?: {
     },
   };
 }
+

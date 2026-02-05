@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Message normalization utilities for chat rendering.
  */
 
@@ -88,3 +88,4 @@ export function isToolResultMessage(message: unknown): boolean {
   const role = typeof m.role === "string" ? m.role.toLowerCase() : "";
   return role === "toolresult" || role === "tool_result";
 }
+

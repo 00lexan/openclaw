@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Plugin Command Handler
  *
  * Handles commands registered by plugins, bypassing the LLM agent.
@@ -45,3 +45,4 @@ export const handlePluginCommand: CommandHandler = async (
     reply: result,
   };
 };
+

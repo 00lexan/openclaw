@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import { getTailscaleDnsName } from "./webhook.js";
 
 /**
@@ -312,3 +312,4 @@ export async function startTunnel(config: TunnelConfig): Promise<TunnelResult | 
       return null;
   }
 }
+

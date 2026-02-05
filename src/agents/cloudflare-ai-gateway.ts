@@ -1,4 +1,4 @@
-import type { ModelDefinitionConfig } from "../config/types.js";
+﻿import type { ModelDefinitionConfig } from "../config/types.js";
 
 export const CLOUDFLARE_AI_GATEWAY_PROVIDER_ID = "cloudflare-ai-gateway";
 export const CLOUDFLARE_AI_GATEWAY_DEFAULT_MODEL_ID = "claude-sonnet-4-5";
@@ -42,3 +42,4 @@ export function resolveCloudflareAiGatewayBaseUrl(params: {
   }
   return `https://gateway.ai.cloudflare.com/v1/${accountId}/${gatewayId}/anthropic`;
 }
+

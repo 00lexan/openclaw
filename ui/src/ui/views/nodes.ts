@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type {
   DevicePairingList,
   DeviceTokenSummary,
@@ -63,7 +63,7 @@ export function renderNodes(props: NodesProps) {
           <div class="card-sub">Paired devices and live links.</div>
         </div>
         <button class="btn" ?disabled=${props.loading} @click=${props.onRefresh}>
-          ${props.loading ? "Loading…" : "Refresh"}
+          ${props.loading ? "Loadingâ€¦" : "Refresh"}
         </button>
       </div>
       <div class="list" style="margin-top: 16px;">
@@ -91,7 +91,7 @@ function renderDevices(props: NodesProps) {
           <div class="card-sub">Pairing requests + role tokens.</div>
         </div>
         <button class="btn" ?disabled=${props.devicesLoading} @click=${props.onDevicesRefresh}>
-          ${props.devicesLoading ? "Loading…" : "Refresh"}
+          ${props.devicesLoading ? "Loadingâ€¦" : "Refresh"}
         </button>
       </div>
       ${
@@ -132,15 +132,15 @@ function renderPendingDevice(req: PendingDevice, props: NodesProps) {
   const name = req.displayName?.trim() || req.deviceId;
   const age = typeof req.ts === "number" ? formatAgo(req.ts) : "n/a";
   const role = req.role?.trim() ? `role: ${req.role}` : "role: -";
-  const repair = req.isRepair ? " · repair" : "";
-  const ip = req.remoteIp ? ` · ${req.remoteIp}` : "";
+  const repair = req.isRepair ? " Â· repair" : "";
+  const ip = req.remoteIp ? ` Â· ${req.remoteIp}` : "";
   return html`
     <div class="list-item">
       <div class="list-main">
         <div class="list-title">${name}</div>
         <div class="list-sub">${req.deviceId}${ip}</div>
         <div class="muted" style="margin-top: 6px;">
-          ${role} · requested ${age}${repair}
+          ${role} Â· requested ${age}${repair}
         </div>
       </div>
       <div class="list-meta">
@@ -159,7 +159,7 @@ function renderPendingDevice(req: PendingDevice, props: NodesProps) {
 
 function renderPairedDevice(device: PairedDevice, props: NodesProps) {
   const name = device.displayName?.trim() || device.deviceId;
-  const ip = device.remoteIp ? ` · ${device.remoteIp}` : "";
+  const ip = device.remoteIp ? ` Â· ${device.remoteIp}` : "";
   const roles = `roles: ${formatList(device.roles)}`;
   const scopes = `scopes: ${formatList(device.scopes)}`;
   const tokens = Array.isArray(device.tokens) ? device.tokens : [];
@@ -168,7 +168,7 @@ function renderPairedDevice(device: PairedDevice, props: NodesProps) {
       <div class="list-main">
         <div class="list-title">${name}</div>
         <div class="list-sub">${device.deviceId}${ip}</div>
-        <div class="muted" style="margin-top: 6px;">${roles} · ${scopes}</div>
+        <div class="muted" style="margin-top: 6px;">${roles} Â· ${scopes}</div>
         ${
           tokens.length === 0
             ? html`
@@ -192,7 +192,7 @@ function renderTokenRow(deviceId: string, token: DeviceTokenSummary, props: Node
   const when = formatAgo(token.rotatedAtMs ?? token.createdAtMs ?? token.lastUsedAtMs ?? null);
   return html`
     <div class="row" style="justify-content: space-between; gap: 8px;">
-      <div class="list-sub">${token.role} · ${status} · ${scopes} · ${when}</div>
+      <div class="list-sub">${token.role} Â· ${status} Â· ${scopes} Â· ${when}</div>
       <div class="row" style="justify-content: flex-end; gap: 6px; flex-wrap: wrap;">
         <button
           class="btn btn--sm"
@@ -479,7 +479,7 @@ function renderBindings(state: BindingState) {
           ?disabled=${state.disabled || !state.configDirty}
           @click=${state.onSave}
         >
-          ${state.configSaving ? "Saving…" : "Save"}
+          ${state.configSaving ? "Savingâ€¦" : "Save"}
         </button>
       </div>
 
@@ -498,7 +498,7 @@ function renderBindings(state: BindingState) {
           ? html`<div class="row" style="margin-top: 12px; gap: 12px;">
             <div class="muted">Load config to edit bindings.</div>
             <button class="btn" ?disabled=${state.configLoading} @click=${state.onLoadConfig}>
-              ${state.configLoading ? "Loading…" : "Load config"}
+              ${state.configLoading ? "Loadingâ€¦" : "Load config"}
             </button>
           </div>`
           : html`
@@ -572,7 +572,7 @@ function renderExecApprovals(state: ExecApprovalsState) {
           ?disabled=${state.disabled || !state.dirty || !targetReady}
           @click=${state.onSave}
         >
-          ${state.saving ? "Saving…" : "Save"}
+          ${state.saving ? "Savingâ€¦" : "Save"}
         </button>
       </div>
 
@@ -583,7 +583,7 @@ function renderExecApprovals(state: ExecApprovalsState) {
           ? html`<div class="row" style="margin-top: 12px; gap: 12px;">
             <div class="muted">Load exec approvals to edit allowlists.</div>
             <button class="btn" ?disabled=${state.loading || !targetReady} @click=${state.onLoad}>
-              ${state.loading ? "Loading…" : "Load approvals"}
+              ${state.loading ? "Loadingâ€¦" : "Load approvals"}
             </button>
           </div>`
           : html`
@@ -985,7 +985,7 @@ function renderAgentBinding(agent: BindingAgent, state: BindingState) {
       <div class="list-main">
         <div class="list-title">${label}</div>
         <div class="list-sub">
-          ${agent.isDefault ? "default agent" : "agent"} ·
+          ${agent.isDefault ? "default agent" : "agent"} Â·
           ${
             bindingValue === "__default__"
               ? `uses default (${state.defaultBinding ?? "any"})`
@@ -1041,7 +1041,7 @@ function resolveExecNodes(nodes: Array<Record<string, unknown>>): BindingNode[] 
         : nodeId;
     list.push({
       id: nodeId,
-      label: displayName === nodeId ? nodeId : `${displayName} · ${nodeId}`,
+      label: displayName === nodeId ? nodeId : `${displayName} Â· ${nodeId}`,
     });
   }
   list.sort((a, b) => a.label.localeCompare(b.label));
@@ -1071,7 +1071,7 @@ function resolveExecApprovalsNodes(
         : nodeId;
     list.push({
       id: nodeId,
-      label: displayName === nodeId ? nodeId : `${displayName} · ${nodeId}`,
+      label: displayName === nodeId ? nodeId : `${displayName} Â· ${nodeId}`,
     });
   }
   list.sort((a, b) => a.label.localeCompare(b.label));
@@ -1149,8 +1149,8 @@ function renderNode(node: Record<string, unknown>) {
         <div class="list-title">${title}</div>
         <div class="list-sub">
           ${typeof node.nodeId === "string" ? node.nodeId : ""}
-          ${typeof node.remoteIp === "string" ? ` · ${node.remoteIp}` : ""}
-          ${typeof node.version === "string" ? ` · ${node.version}` : ""}
+          ${typeof node.remoteIp === "string" ? ` Â· ${node.remoteIp}` : ""}
+          ${typeof node.version === "string" ? ` Â· ${node.version}` : ""}
         </div>
         <div class="chip-row" style="margin-top: 6px;">
           <span class="chip">${paired ? "paired" : "unpaired"}</span>
@@ -1164,3 +1164,4 @@ function renderNode(node: Record<string, unknown>) {
     </div>
   `;
 }
+

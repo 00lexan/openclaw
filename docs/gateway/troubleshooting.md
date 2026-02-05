@@ -1,15 +1,15 @@
----
-summary: "Quick troubleshooting guide for common OpenClaw failures"
+﻿---
+summary: "Quick troubleshooting guide for common  failures"
 read_when:
   - Investigating runtime issues or failures
 title: "Troubleshooting"
 ---
 
-# Troubleshooting 🔧
+# Troubleshooting ðŸ”§
 
-When OpenClaw misbehaves, here's how to fix it.
+When  misbehaves, here's how to fix it.
 
-Start with the FAQ’s [First 60 seconds](/help/faq#first-60-seconds-if-somethings-broken) if you just want a quick triage recipe. This page goes deeper on runtime failures and diagnostics.
+Start with the FAQâ€™s [First 60 seconds](/help/faq#first-60-seconds-if-somethings-broken) if you just want a quick triage recipe. This page goes deeper on runtime failures and diagnostics.
 
 Provider-specific shortcuts: [/channels/troubleshooting](/channels/troubleshooting)
 
@@ -19,15 +19,15 @@ Quick triage commands (in order):
 
 | Command                            | What it tells you                                                                                      | When to use it                                    |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| `openclaw status`                  | Local summary: OS + update, gateway reachability/mode, service, agents/sessions, provider config state | First check, quick overview                       |
-| `openclaw status --all`            | Full local diagnosis (read-only, pasteable, safe-ish) incl. log tail                                   | When you need to share a debug report             |
-| `openclaw status --deep`           | Runs gateway health checks (incl. provider probes; requires reachable gateway)                         | When “configured” doesn’t mean “working”          |
-| `openclaw gateway probe`           | Gateway discovery + reachability (local + remote targets)                                              | When you suspect you’re probing the wrong gateway |
-| `openclaw channels status --probe` | Asks the running gateway for channel status (and optionally probes)                                    | When gateway is reachable but channels misbehave  |
-| `openclaw gateway status`          | Supervisor state (launchd/systemd/schtasks), runtime PID/exit, last gateway error                      | When the service “looks loaded” but nothing runs  |
-| `openclaw logs --follow`           | Live logs (best signal for runtime issues)                                                             | When you need the actual failure reason           |
+| ` status`                  | Local summary: OS + update, gateway reachability/mode, service, agents/sessions, provider config state | First check, quick overview                       |
+| ` status --all`            | Full local diagnosis (read-only, pasteable, safe-ish) incl. log tail                                   | When you need to share a debug report             |
+| ` status --deep`           | Runs gateway health checks (incl. provider probes; requires reachable gateway)                         | When â€œconfiguredâ€ doesnâ€™t mean â€œworkingâ€          |
+| ` gateway probe`           | Gateway discovery + reachability (local + remote targets)                                              | When you suspect youâ€™re probing the wrong gateway |
+| ` channels status --probe` | Asks the running gateway for channel status (and optionally probes)                                    | When gateway is reachable but channels misbehave  |
+| ` gateway status`          | Supervisor state (launchd/systemd/schtasks), runtime PID/exit, last gateway error                      | When the service â€œlooks loadedâ€ but nothing runs  |
+| ` logs --follow`           | Live logs (best signal for runtime issues)                                                             | When you need the actual failure reason           |
 
-**Sharing output:** prefer `openclaw status --all` (it redacts tokens). If you paste `openclaw status`, consider setting `OPENCLAW_SHOW_SECRETS=0` first (token previews).
+**Sharing output:** prefer ` status --all` (it redacts tokens). If you paste ` status`, consider setting `_SHOW_SECRETS=0` first (token previews).
 
 See also: [Health checks](/gateway/health) and [Logging](/logging).
 
@@ -35,43 +35,43 @@ See also: [Health checks](/gateway/health) and [Logging](/logging).
 
 ### No API key found for provider "anthropic"
 
-This means the **agent’s auth store is empty** or missing Anthropic credentials.
-Auth is **per agent**, so a new agent won’t inherit the main agent’s keys.
+This means the **agentâ€™s auth store is empty** or missing Anthropic credentials.
+Auth is **per agent**, so a new agent wonâ€™t inherit the main agentâ€™s keys.
 
 Fix options:
 
 - Re-run onboarding and choose **Anthropic** for that agent.
 - Or paste a setup-token on the **gateway host**:
   ```bash
-  openclaw models auth setup-token --provider anthropic
+   models auth setup-token --provider anthropic
   ```
 - Or copy `auth-profiles.json` from the main agent dir to the new agent dir.
 
 Verify:
 
 ```bash
-openclaw models status
+ models status
 ```
 
 ### OAuth token refresh failed (Anthropic Claude subscription)
 
 This means the stored Anthropic OAuth token expired and the refresh failed.
-If you’re on a Claude subscription (no API key), the most reliable fix is to
+If youâ€™re on a Claude subscription (no API key), the most reliable fix is to
 switch to a **Claude Code setup-token** and paste it on the **gateway host**.
 
 **Recommended (setup-token):**
 
 ```bash
 # Run on the gateway host (paste the setup-token)
-openclaw models auth setup-token --provider anthropic
-openclaw models status
+ models auth setup-token --provider anthropic
+ models status
 ```
 
 If you generated the token elsewhere:
 
 ```bash
-openclaw models auth paste-token --provider anthropic
-openclaw models status
+ models auth paste-token --provider anthropic
+ models status
 ```
 
 More detail: [Anthropic](/providers/anthropic) and [OAuth](/concepts/oauth).
@@ -80,7 +80,7 @@ More detail: [Anthropic](/providers/anthropic) and [OAuth](/concepts/oauth).
 
 If you open the dashboard over plain HTTP (e.g. `http://<lan-ip>:18789/` or
 `http://<tailscale-ip>:18789/`), the browser runs in a **non-secure context** and
-blocks WebCrypto, so device identity can’t be generated.
+blocks WebCrypto, so device identity canâ€™t be generated.
 
 **Fix:**
 
@@ -98,24 +98,24 @@ Follow [Secret scanning](/gateway/security#secret-scanning-detect-secrets).
 ### Service Installed but Nothing is Running
 
 If the gateway service is installed but the process exits immediately, the service
-can appear “loaded” while nothing is running.
+can appear â€œloadedâ€ while nothing is running.
 
 **Check:**
 
 ```bash
-openclaw gateway status
-openclaw doctor
+ gateway status
+ doctor
 ```
 
 Doctor/service will show runtime state (PID/last exit) and log hints.
 
 **Logs:**
 
-- Preferred: `openclaw logs --follow`
-- File logs (always): `/tmp/openclaw/openclaw-YYYY-MM-DD.log` (or your configured `logging.file`)
-- macOS LaunchAgent (if installed): `$OPENCLAW_STATE_DIR/logs/gateway.log` and `gateway.err.log`
-- Linux systemd (if installed): `journalctl --user -u openclaw-gateway[-<profile>].service -n 200 --no-pager`
-- Windows: `schtasks /Query /TN "OpenClaw Gateway (<profile>)" /V /FO LIST`
+- Preferred: ` logs --follow`
+- File logs (always): `/tmp//-YYYY-MM-DD.log` (or your configured `logging.file`)
+- macOS LaunchAgent (if installed): `$_STATE_DIR/logs/gateway.log` and `gateway.err.log`
+- Linux systemd (if installed): `journalctl --user -u -gateway[-<profile>].service -n 200 --no-pager`
+- Windows: `schtasks /Query /TN " Gateway (<profile>)" /V /FO LIST`
 
 **Enable more logging:**
 
@@ -140,25 +140,25 @@ Gateway refuses to start.
 
 - Run the wizard and set the Gateway run mode to **Local**:
   ```bash
-  openclaw configure
+   configure
   ```
 - Or set it directly:
   ```bash
-  openclaw config set gateway.mode local
+   config set gateway.mode local
   ```
 
 **If you meant to run a remote Gateway instead:**
 
 - Set a remote URL and keep `gateway.mode=remote`:
   ```bash
-  openclaw config set gateway.mode remote
-  openclaw config set gateway.remote.url "wss://gateway.example.com"
+   config set gateway.mode remote
+   config set gateway.remote.url "wss://gateway.example.com"
   ```
 
 **Ad-hoc/dev only:** pass `--allow-unconfigured` to start the gateway without
 `gateway.mode=local`.
 
-**No config file yet?** Run `openclaw setup` to create a starter config, then rerun
+**No config file yet?** Run ` setup` to create a starter config, then rerun
 the gateway.
 
 ### Service Environment (PATH + runtime)
@@ -170,14 +170,14 @@ The gateway service runs with a **minimal PATH** to avoid shell/manager cruft:
 
 This intentionally excludes version managers (nvm/fnm/volta/asdf) and package
 managers (pnpm/npm) because the service does not load your shell init. Runtime
-variables like `DISPLAY` should live in `~/.openclaw/.env` (loaded early by the
+variables like `DISPLAY` should live in `~/./.env` (loaded early by the
 gateway).
 Exec runs on `host=gateway` merge your login-shell `PATH` into the exec environment,
-so missing tools usually mean your shell init isn’t exporting them (or set
+so missing tools usually mean your shell init isnâ€™t exporting them (or set
 `tools.exec.pathPrepend`). See [/tools/exec](/tools/exec).
 
 WhatsApp + Telegram channels require **Node**; Bun is unsupported. If your
-service was installed with Bun or a version-managed Node path, run `openclaw doctor`
+service was installed with Bun or a version-managed Node path, run ` doctor`
 to migrate to a system Node install.
 
 ### Skill missing API key in sandbox
@@ -190,7 +190,7 @@ to migrate to a system Node install.
 
 - set `agents.defaults.sandbox.docker.env` (or per-agent `agents.list[].sandbox.docker.env`)
 - or bake the key into your custom sandbox image
-- then run `openclaw sandbox recreate --agent <id>` (or `--all`)
+- then run ` sandbox recreate --agent <id>` (or `--all`)
 
 ### Service Running but Port Not Listening
 
@@ -201,42 +201,42 @@ the Gateway likely refused to bind.
 
 - `Runtime: running` means your supervisor (launchd/systemd/schtasks) thinks the process is alive.
 - `RPC probe` means the CLI could actually connect to the gateway WebSocket and call `status`.
-- Always trust `Probe target:` + `Config (service):` as the “what did we actually try?” lines.
+- Always trust `Probe target:` + `Config (service):` as the â€œwhat did we actually try?â€ lines.
 
 **Check:**
 
-- `gateway.mode` must be `local` for `openclaw gateway` and the service.
-- If you set `gateway.mode=remote`, the **CLI defaults** to a remote URL. The service can still be running locally, but your CLI may be probing the wrong place. Use `openclaw gateway status` to see the service’s resolved port + probe target (or pass `--url`).
-- `openclaw gateway status` and `openclaw doctor` surface the **last gateway error** from logs when the service looks running but the port is closed.
+- `gateway.mode` must be `local` for ` gateway` and the service.
+- If you set `gateway.mode=remote`, the **CLI defaults** to a remote URL. The service can still be running locally, but your CLI may be probing the wrong place. Use ` gateway status` to see the serviceâ€™s resolved port + probe target (or pass `--url`).
+- ` gateway status` and ` doctor` surface the **last gateway error** from logs when the service looks running but the port is closed.
 - Non-loopback binds (`lan`/`tailnet`/`custom`, or `auto` when loopback is unavailable) require auth:
-  `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`).
+  `gateway.auth.token` (or `_GATEWAY_TOKEN`).
 - `gateway.remote.token` is for remote CLI calls only; it does **not** enable local auth.
 - `gateway.token` is ignored; use `gateway.auth.token`.
 
-**If `openclaw gateway status` shows a config mismatch**
+**If ` gateway status` shows a config mismatch**
 
 - `Config (cli): ...` and `Config (service): ...` should normally match.
-- If they don’t, you’re almost certainly editing one config while the service is running another.
-- Fix: rerun `openclaw gateway install --force` from the same `--profile` / `OPENCLAW_STATE_DIR` you want the service to use.
+- If they donâ€™t, youâ€™re almost certainly editing one config while the service is running another.
+- Fix: rerun ` gateway install --force` from the same `--profile` / `_STATE_DIR` you want the service to use.
 
-**If `openclaw gateway status` reports service config issues**
+**If ` gateway status` reports service config issues**
 
 - The supervisor config (launchd/systemd/schtasks) is missing current defaults.
-- Fix: run `openclaw doctor` to update it (or `openclaw gateway install --force` for a full rewrite).
+- Fix: run ` doctor` to update it (or ` gateway install --force` for a full rewrite).
 
-**If `Last gateway error:` mentions “refusing to bind … without auth”**
+**If `Last gateway error:` mentions â€œrefusing to bind â€¦ without authâ€**
 
-- You set `gateway.bind` to a non-loopback mode (`lan`/`tailnet`/`custom`, or `auto` when loopback is unavailable) but didn’t configure auth.
-- Fix: set `gateway.auth.mode` + `gateway.auth.token` (or export `OPENCLAW_GATEWAY_TOKEN`) and restart the service.
+- You set `gateway.bind` to a non-loopback mode (`lan`/`tailnet`/`custom`, or `auto` when loopback is unavailable) but didnâ€™t configure auth.
+- Fix: set `gateway.auth.mode` + `gateway.auth.token` (or export `_GATEWAY_TOKEN`) and restart the service.
 
-**If `openclaw gateway status` says `bind=tailnet` but no tailnet interface was found**
+**If ` gateway status` says `bind=tailnet` but no tailnet interface was found**
 
 - The gateway tried to bind to a Tailscale IP (100.64.0.0/10) but none were detected on the host.
 - Fix: bring up Tailscale on that machine (or change `gateway.bind` to `loopback`/`lan`).
 
 **If `Probe note:` says the probe uses loopback**
 
-- That’s expected for `bind=lan`: the gateway listens on `0.0.0.0` (all interfaces), and loopback should still connect locally.
+- Thatâ€™s expected for `bind=lan`: the gateway listens on `0.0.0.0` (all interfaces), and loopback should still connect locally.
 - For remote clients, use a real LAN IP (not `0.0.0.0`) plus the port, and ensure auth is configured.
 
 ### Address Already in Use (Port 18789)
@@ -246,7 +246,7 @@ This means something is already listening on the gateway port.
 **Check:**
 
 ```bash
-openclaw gateway status
+ gateway status
 ```
 
 It will show the listener(s) and likely causes (gateway already running, SSH tunnel).
@@ -254,7 +254,7 @@ If needed, stop the service or pick a different port.
 
 ### Extra Workspace Folders Detected
 
-If you upgraded from older installs, you might still have `~/openclaw` on disk.
+If you upgraded from older installs, you might still have `~/` on disk.
 Multiple workspace directories can cause confusing auth or state drift because
 only one workspace is active.
 
@@ -263,7 +263,7 @@ only one workspace is active.
 
 ### Main chat running in a sandbox workspace
 
-Symptoms: `pwd` or file tools show `~/.openclaw/sandboxes/...` even though you
+Symptoms: `pwd` or file tools show `~/./sandboxes/...` even though you
 expected the host workspace.
 
 **Why:** `agents.defaults.sandbox.mode: "non-main"` keys off `session.mainKey` (default `"main"`).
@@ -289,15 +289,15 @@ The agent was interrupted mid-response.
 
 ### "Agent failed before reply: Unknown model: anthropic/claude-haiku-3-5"
 
-OpenClaw intentionally rejects **older/insecure models** (especially those more
+ intentionally rejects **older/insecure models** (especially those more
 vulnerable to prompt injection). If you see this error, the model name is no
 longer supported.
 
 **Fix:**
 
 - Pick a **latest** model for the provider and update your config or model alias.
-- If you’re unsure which models are available, run `openclaw models list` or
-  `openclaw models scan` and choose a supported one.
+- If youâ€™re unsure which models are available, run ` models list` or
+  ` models scan` and choose a supported one.
 - Check gateway logs for the detailed failure reason.
 
 See also: [Models CLI](/cli/models) and [Model providers](/concepts/model-providers).
@@ -307,7 +307,7 @@ See also: [Models CLI](/cli/models) and [Model providers](/concepts/model-provid
 **Check 1:** Is the sender allowlisted?
 
 ```bash
-openclaw status
+ status
 ```
 
 Look for `AllowFrom: ...` in the output.
@@ -318,15 +318,15 @@ Look for `AllowFrom: ...` in the output.
 # The message must match mentionPatterns or explicit mentions; defaults live in channel groups/guilds.
 # Multi-agent: `agents.list[].groupChat.mentionPatterns` overrides global patterns.
 grep -n "agents\\|groupChat\\|mentionPatterns\\|channels\\.whatsapp\\.groups\\|channels\\.telegram\\.groups\\|channels\\.imessage\\.groups\\|channels\\.discord\\.guilds" \
-  "${OPENCLAW_CONFIG_PATH:-$HOME/.openclaw/openclaw.json}"
+  "${_CONFIG_PATH:-$HOME/./.json}"
 ```
 
 **Check 3:** Check the logs
 
 ```bash
-openclaw logs --follow
+ logs --follow
 # or if you want quick filters:
-tail -f "$(ls -t /tmp/openclaw/openclaw-*.log | head -1)" | grep "blocked\\|skip\\|unauthorized"
+tail -f "$(ls -t /tmp//-*.log | head -1)" | grep "blocked\\|skip\\|unauthorized"
 ```
 
 ### Pairing Code Not Arriving
@@ -336,18 +336,18 @@ If `dmPolicy` is `pairing`, unknown senders should receive a code and their mess
 **Check 1:** Is a pending request already waiting?
 
 ```bash
-openclaw pairing list <channel>
+ pairing list <channel>
 ```
 
-Pending DM pairing requests are capped at **3 per channel** by default. If the list is full, new requests won’t generate a code until one is approved or expires.
+Pending DM pairing requests are capped at **3 per channel** by default. If the list is full, new requests wonâ€™t generate a code until one is approved or expires.
 
 **Check 2:** Did the request get created but no reply was sent?
 
 ```bash
-openclaw logs --follow | grep "pairing request"
+ logs --follow | grep "pairing request"
 ```
 
-**Check 3:** Confirm `dmPolicy` isn’t `open`/`allowlist` for that channel.
+**Check 3:** Confirm `dmPolicy` isnâ€™t `open`/`allowlist` for that channel.
 
 ### Image + Mention Not Working
 
@@ -355,15 +355,15 @@ Known issue: When you send an image with ONLY a mention (no other text), WhatsAp
 
 **Workaround:** Add some text with the mention:
 
-- ❌ `@openclaw` + image
-- ✅ `@openclaw check this` + image
+- âŒ `@` + image
+- âœ… `@ check this` + image
 
 ### Session Not Resuming
 
 **Check 1:** Is the session file there?
 
 ```bash
-ls -la ~/.openclaw/agents/<agentId>/sessions/
+ls -la ~/./agents/<agentId>/sessions/
 ```
 
 **Check 2:** Is the reset window too short?
@@ -400,26 +400,26 @@ Or use the `process` tool to background long commands.
 
 ```bash
 # Check local status (creds, sessions, queued events)
-openclaw status
+ status
 # Probe the running gateway + channels (WA connect + Telegram + Discord APIs)
-openclaw status --deep
+ status --deep
 
 # View recent connection events
-openclaw logs --limit 200 | grep "connection\\|disconnect\\|logout"
+ logs --limit 200 | grep "connection\\|disconnect\\|logout"
 ```
 
-**Fix:** Usually reconnects automatically once the Gateway is running. If you’re stuck, restart the Gateway process (however you supervise it), or run it manually with verbose output:
+**Fix:** Usually reconnects automatically once the Gateway is running. If youâ€™re stuck, restart the Gateway process (however you supervise it), or run it manually with verbose output:
 
 ```bash
-openclaw gateway --verbose
+ gateway --verbose
 ```
 
-If you’re logged out / unlinked:
+If youâ€™re logged out / unlinked:
 
 ```bash
-openclaw channels logout
-trash "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}/credentials" # if logout can't cleanly remove everything
-openclaw channels login --verbose       # re-scan QR
+ channels logout
+trash "${_STATE_DIR:-$HOME/.}/credentials" # if logout can't cleanly remove everything
+ channels login --verbose       # re-scan QR
 ```
 
 ### Media Send Failing
@@ -439,12 +439,12 @@ ls -la /path/to/your/image.jpg
 **Check 3:** Check media logs
 
 ```bash
-grep "media\\|fetch\\|download" "$(ls -t /tmp/openclaw/openclaw-*.log | head -1)" | tail -20
+grep "media\\|fetch\\|download" "$(ls -t /tmp//-*.log | head -1)" | tail -20
 ```
 
 ### High Memory Usage
 
-OpenClaw keeps conversation history in memory.
+ keeps conversation history in memory.
 
 **Fix:** Restart periodically or set session limits:
 
@@ -458,32 +458,32 @@ OpenClaw keeps conversation history in memory.
 
 ## Common troubleshooting
 
-### “Gateway won’t start — configuration invalid”
+### â€œGateway wonâ€™t start â€” configuration invalidâ€
 
-OpenClaw now refuses to start when the config contains unknown keys, malformed values, or invalid types.
+ now refuses to start when the config contains unknown keys, malformed values, or invalid types.
 This is intentional for safety.
 
 Fix it with Doctor:
 
 ```bash
-openclaw doctor
-openclaw doctor --fix
+ doctor
+ doctor --fix
 ```
 
 Notes:
 
-- `openclaw doctor` reports every invalid entry.
-- `openclaw doctor --fix` applies migrations/repairs and rewrites the config.
-- Diagnostic commands like `openclaw logs`, `openclaw health`, `openclaw status`, `openclaw gateway status`, and `openclaw gateway probe` still run even if the config is invalid.
+- ` doctor` reports every invalid entry.
+- ` doctor --fix` applies migrations/repairs and rewrites the config.
+- Diagnostic commands like ` logs`, ` health`, ` status`, ` gateway status`, and ` gateway probe` still run even if the config is invalid.
 
-### “All models failed” — what should I check first?
+### â€œAll models failedâ€ â€” what should I check first?
 
 - **Credentials** present for the provider(s) being tried (auth profiles + env vars).
 - **Model routing**: confirm `agents.defaults.model.primary` and fallbacks are models you can access.
-- **Gateway logs** in `/tmp/openclaw/…` for the exact provider error.
-- **Model status**: use `/model status` (chat) or `openclaw models status` (CLI).
+- **Gateway logs** in `/tmp//â€¦` for the exact provider error.
+- **Model status**: use `/model status` (chat) or ` models status` (CLI).
 
-### I’m running on my personal WhatsApp number — why is self-chat weird?
+### Iâ€™m running on my personal WhatsApp number â€” why is self-chat weird?
 
 Enable self-chat mode and allowlist your own number:
 
@@ -501,34 +501,34 @@ Enable self-chat mode and allowlist your own number:
 
 See [WhatsApp setup](/channels/whatsapp).
 
-### WhatsApp logged me out. How do I re‑auth?
+### WhatsApp logged me out. How do I reâ€‘auth?
 
 Run the login command again and scan the QR code:
 
 ```bash
-openclaw channels login
+ channels login
 ```
 
-### Build errors on `main` — what’s the standard fix path?
+### Build errors on `main` â€” whatâ€™s the standard fix path?
 
 1. `git pull origin main && pnpm install`
-2. `openclaw doctor`
+2. ` doctor`
 3. Check GitHub issues or Discord
 4. Temporary workaround: check out an older commit
 
 ### npm install fails (allow-build-scripts / missing tar or yargs). What now?
 
-If you’re running from source, use the repo’s package manager: **pnpm** (preferred).
-The repo declares `packageManager: "pnpm@…"`.
+If youâ€™re running from source, use the repoâ€™s package manager: **pnpm** (preferred).
+The repo declares `packageManager: "pnpm@â€¦"`.
 
 Typical recovery:
 
 ```bash
-git status   # ensure you’re in the repo root
+git status   # ensure youâ€™re in the repo root
 pnpm install
 pnpm build
-openclaw doctor
-openclaw gateway restart
+ doctor
+ gateway restart
 ```
 
 Why: pnpm is the configured package manager for this repo.
@@ -541,13 +541,13 @@ upgrades in place and rewrites the gateway service to point at the new install.
 Switch **to git install**:
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git --no-onboard
+curl -fsSL https://.ai/install.sh | bash -s -- --install-method git --no-onboard
 ```
 
 Switch **to npm global**:
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash
+curl -fsSL https://.ai/install.sh | bash
 ```
 
 Notes:
@@ -555,11 +555,11 @@ Notes:
 - The git flow only rebases if the repo is clean. Commit or stash changes first.
 - After switching, run:
   ```bash
-  openclaw doctor
-  openclaw gateway restart
+   doctor
+   gateway restart
   ```
 
-### Telegram block streaming isn’t splitting text between tool calls. Why?
+### Telegram block streaming isnâ€™t splitting text between tool calls. Why?
 
 Block streaming only sends **completed text blocks**. Common reasons you see a single message:
 
@@ -568,19 +568,19 @@ Block streaming only sends **completed text blocks**. Common reasons you see a s
 - `channels.telegram.streamMode` is `partial` or `block` **and draft streaming is active**
   (private chat + topics). Draft streaming disables block streaming in that case.
 - Your `minChars` / coalesce settings are too high, so chunks get merged.
-- The model emits one large text block (no mid‑reply flush points).
+- The model emits one large text block (no midâ€‘reply flush points).
 
 Fix checklist:
 
 1. Put block streaming settings under `agents.defaults`, not the root.
-2. Set `channels.telegram.streamMode: "off"` if you want real multi‑message block replies.
+2. Set `channels.telegram.streamMode: "off"` if you want real multiâ€‘message block replies.
 3. Use smaller chunk/coalesce thresholds while debugging.
 
 See [Streaming](/concepts/streaming).
 
-### Discord doesn’t reply in my server even with `requireMention: false`. Why?
+### Discord doesnâ€™t reply in my server even with `requireMention: false`. Why?
 
-`requireMention` only controls mention‑gating **after** the channel passes allowlists.
+`requireMention` only controls mentionâ€‘gating **after** the channel passes allowlists.
 By default `channels.discord.groupPolicy` is **allowlist**, so guilds must be explicitly enabled.
 If you set `channels.discord.guilds.<guildId>.channels`, only the listed channels are allowed; omit it to allow all channels in the guild.
 
@@ -588,28 +588,28 @@ Fix checklist:
 
 1. Set `channels.discord.groupPolicy: "open"` **or** add a guild allowlist entry (and optionally a channel allowlist).
 2. Use **numeric channel IDs** in `channels.discord.guilds.<guildId>.channels`.
-3. Put `requireMention: false` **under** `channels.discord.guilds` (global or per‑channel).
-   Top‑level `channels.discord.requireMention` is not a supported key.
+3. Put `requireMention: false` **under** `channels.discord.guilds` (global or perâ€‘channel).
+   Topâ€‘level `channels.discord.requireMention` is not a supported key.
 4. Ensure the bot has **Message Content Intent** and channel permissions.
-5. Run `openclaw channels status --probe` for audit hints.
+5. Run ` channels status --probe` for audit hints.
 
 Docs: [Discord](/channels/discord), [Channels troubleshooting](/channels/troubleshooting).
 
 ### Cloud Code Assist API error: invalid tool schema (400). What now?
 
 This is almost always a **tool schema compatibility** issue. The Cloud Code Assist
-endpoint accepts a strict subset of JSON Schema. OpenClaw scrubs/normalizes tool
+endpoint accepts a strict subset of JSON Schema.  scrubs/normalizes tool
 schemas in current `main`, but the fix is not in the last release yet (as of
 January 13, 2026).
 
 Fix checklist:
 
-1. **Update OpenClaw**:
+1. **Update **:
    - If you can run from source, pull `main` and restart the gateway.
    - Otherwise, wait for the next release that includes the schema scrubber.
 2. Avoid unsupported keywords like `anyOf/oneOf/allOf`, `patternProperties`,
    `additionalProperties`, `minLength`, `maxLength`, `format`, etc.
-3. If you define custom tools, keep the top‑level schema as `type: "object"` with
+3. If you define custom tools, keep the topâ€‘level schema as `type: "object"` with
    `properties` and simple enums.
 
 See [Tools](/tools) and [TypeBox schemas](/concepts/typebox).
@@ -627,7 +627,7 @@ tccutil reset All bot.molt.mac.debug
 ```
 
 **Fix 2: Force New Bundle ID**
-If resetting doesn't work, change the `BUNDLE_ID` in [`scripts/package-mac-app.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/package-mac-app.sh) (e.g., add a `.test` suffix) and rebuild. This forces macOS to treat it as a new app.
+If resetting doesn't work, change the `BUNDLE_ID` in [`scripts/package-mac-app.sh`](https://github.com///blob/main/scripts/package-mac-app.sh) (e.g., add a `.test` suffix) and rebuild. This forces macOS to treat it as a new app.
 
 ### Gateway stuck on "Starting..."
 
@@ -637,9 +637,9 @@ The app connects to a local gateway on port `18789`. If it stays stuck:
 If the gateway is supervised by launchd, killing the PID will just respawn it. Stop the supervisor first:
 
 ```bash
-openclaw gateway status
-openclaw gateway stop
-# Or: launchctl bootout gui/$UID/bot.molt.gateway (replace with bot.molt.<profile>; legacy com.openclaw.* still works)
+ gateway status
+ gateway stop
+# Or: launchctl bootout gui/$UID/bot.molt.gateway (replace with bot.molt.<profile>; legacy com..* still works)
 ```
 
 **Fix 2: Port is busy (find the listener)**
@@ -648,7 +648,7 @@ openclaw gateway stop
 lsof -nP -iTCP:18789 -sTCP:LISTEN
 ```
 
-If it’s an unsupervised process, try a graceful stop first, then escalate:
+If itâ€™s an unsupervised process, try a graceful stop first, then escalate:
 
 ```bash
 kill -TERM <PID>
@@ -657,11 +657,11 @@ kill -9 <PID> # last resort
 ```
 
 **Fix 3: Check the CLI install**
-Ensure the global `openclaw` CLI is installed and matches the app version:
+Ensure the global `` CLI is installed and matches the app version:
 
 ```bash
-openclaw --version
-npm install -g openclaw@<version>
+ --version
+npm install -g @<version>
 ```
 
 ## Debug Mode
@@ -670,43 +670,43 @@ Get verbose logging:
 
 ```bash
 # Turn on trace logging in config:
-#   ${OPENCLAW_CONFIG_PATH:-$HOME/.openclaw/openclaw.json} -> { logging: { level: "trace" } }
+#   ${_CONFIG_PATH:-$HOME/./.json} -> { logging: { level: "trace" } }
 #
 # Then run verbose commands to mirror debug output to stdout:
-openclaw gateway --verbose
-openclaw channels login --verbose
+ gateway --verbose
+ channels login --verbose
 ```
 
 ## Log Locations
 
 | Log                               | Location                                                                                                                                                                                                                                                                                                                    |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Gateway file logs (structured)    | `/tmp/openclaw/openclaw-YYYY-MM-DD.log` (or `logging.file`)                                                                                                                                                                                                                                                                 |
-| Gateway service logs (supervisor) | macOS: `$OPENCLAW_STATE_DIR/logs/gateway.log` + `gateway.err.log` (default: `~/.openclaw/logs/...`; profiles use `~/.openclaw-<profile>/logs/...`)<br />Linux: `journalctl --user -u openclaw-gateway[-<profile>].service -n 200 --no-pager`<br />Windows: `schtasks /Query /TN "OpenClaw Gateway (<profile>)" /V /FO LIST` |
-| Session files                     | `$OPENCLAW_STATE_DIR/agents/<agentId>/sessions/`                                                                                                                                                                                                                                                                            |
-| Media cache                       | `$OPENCLAW_STATE_DIR/media/`                                                                                                                                                                                                                                                                                                |
-| Credentials                       | `$OPENCLAW_STATE_DIR/credentials/`                                                                                                                                                                                                                                                                                          |
+| Gateway file logs (structured)    | `/tmp//-YYYY-MM-DD.log` (or `logging.file`)                                                                                                                                                                                                                                                                 |
+| Gateway service logs (supervisor) | macOS: `$_STATE_DIR/logs/gateway.log` + `gateway.err.log` (default: `~/./logs/...`; profiles use `~/.-<profile>/logs/...`)<br />Linux: `journalctl --user -u -gateway[-<profile>].service -n 200 --no-pager`<br />Windows: `schtasks /Query /TN " Gateway (<profile>)" /V /FO LIST` |
+| Session files                     | `$_STATE_DIR/agents/<agentId>/sessions/`                                                                                                                                                                                                                                                                            |
+| Media cache                       | `$_STATE_DIR/media/`                                                                                                                                                                                                                                                                                                |
+| Credentials                       | `$_STATE_DIR/credentials/`                                                                                                                                                                                                                                                                                          |
 
 ## Health Check
 
 ```bash
 # Supervisor + probe target + config paths
-openclaw gateway status
+ gateway status
 # Include system-level scans (legacy/extra services, port listeners)
-openclaw gateway status --deep
+ gateway status --deep
 
 # Is the gateway reachable?
-openclaw health --json
+ health --json
 # If it fails, rerun with connection details:
-openclaw health --verbose
+ health --verbose
 
 # Is something listening on the default port?
 lsof -nP -iTCP:18789 -sTCP:LISTEN
 
 # Recent activity (RPC log tail)
-openclaw logs --follow
+ logs --follow
 # Fallback if RPC is down
-tail -20 /tmp/openclaw/openclaw-*.log
+tail -20 /tmp//-*.log
 ```
 
 ## Reset Everything
@@ -714,32 +714,32 @@ tail -20 /tmp/openclaw/openclaw-*.log
 Nuclear option:
 
 ```bash
-openclaw gateway stop
+ gateway stop
 # If you installed a service and want a clean install:
-# openclaw gateway uninstall
+#  gateway uninstall
 
-trash "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
-openclaw channels login         # re-pair WhatsApp
-openclaw gateway restart           # or: openclaw gateway
+trash "${_STATE_DIR:-$HOME/.}"
+ channels login         # re-pair WhatsApp
+ gateway restart           # or:  gateway
 ```
 
-⚠️ This loses all sessions and requires re-pairing WhatsApp.
+âš ï¸ This loses all sessions and requires re-pairing WhatsApp.
 
 ## Getting Help
 
-1. Check logs first: `/tmp/openclaw/` (default: `openclaw-YYYY-MM-DD.log`, or your configured `logging.file`)
+1. Check logs first: `/tmp//` (default: `-YYYY-MM-DD.log`, or your configured `logging.file`)
 2. Search existing issues on GitHub
 3. Open a new issue with:
-   - OpenClaw version
+   -  version
    - Relevant log snippets
    - Steps to reproduce
    - Your config (redact secrets!)
 
 ---
 
-_"Have you tried turning it off and on again?"_ — Every IT person ever
+_"Have you tried turning it off and on again?"_ â€” Every IT person ever
 
-🦞🔧
+ðŸ¦žðŸ”§
 
 ### Browser Not Starting (Linux)
 
@@ -765,3 +765,4 @@ Then set in config:
 ```
 
 **Full guide:** See [browser-linux-troubleshooting](/tools/browser-linux-troubleshooting)
+

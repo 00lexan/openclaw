@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { SlackStatus } from "../types.ts";
 import type { ChannelsProps } from "./channels.types.ts";
 import { formatAgo } from "../format.ts";
@@ -47,7 +47,7 @@ export function renderSlackCard(params: {
       ${
         slack?.probe
           ? html`<div class="callout" style="margin-top: 12px;">
-            Probe ${slack.probe.ok ? "ok" : "failed"} ·
+            Probe ${slack.probe.ok ? "ok" : "failed"} Â·
             ${slack.probe.status ?? ""} ${slack.probe.error ?? ""}
           </div>`
           : nothing
@@ -63,3 +63,4 @@ export function renderSlackCard(params: {
     </div>
   `;
 }
+

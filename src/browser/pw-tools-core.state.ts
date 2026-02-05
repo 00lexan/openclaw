@@ -1,4 +1,4 @@
-import type { CDPSession, Page } from "playwright-core";
+﻿import type { CDPSession, Page } from "playwright-core";
 import { devices as playwrightDevices } from "playwright-core";
 import { ensurePageState, getPageForTargetId } from "./pw-session.js";
 
@@ -207,3 +207,4 @@ export async function setDeviceViaPlaywright(opts: {
     }
   });
 }
+

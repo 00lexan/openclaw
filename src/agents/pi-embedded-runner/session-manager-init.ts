@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 
 type SessionHeaderEntry = { type: "session"; id?: string; cwd?: string };
 type SessionMessageEntry = { type: "message"; message?: { role?: string } };
@@ -51,3 +51,4 @@ export async function prepareSessionManagerForRun(params: {
     sm.flushed = false;
   }
 }
+

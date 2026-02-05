@@ -1,4 +1,4 @@
-import type { ResolvedSlackAccount } from "../accounts.js";
+﻿import type { ResolvedSlackAccount } from "../accounts.js";
 import type { SlackMessageEvent } from "../types.js";
 import type { SlackMonitorContext } from "./context.js";
 import { hasControlCommand } from "../../auto-reply/command-detection.js";
@@ -115,3 +115,4 @@ export function createSlackMessageHandler(params: {
     await debouncer.enqueue({ message: resolvedMessage, opts });
   };
 }
+

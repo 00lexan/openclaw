@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { runCommandWithTimeout } from "../process/exec.js";
@@ -10,11 +10,11 @@ export function resolveDefaultAgentWorkspaceDir(
   env: NodeJS.ProcessEnv = process.env,
   homedir: () => string = os.homedir,
 ): string {
-  const profile = env.OPENCLAW_PROFILE?.trim();
+  const profile = env._PROFILE?.trim();
   if (profile && profile.toLowerCase() !== "default") {
-    return path.join(homedir(), ".openclaw", `workspace-${profile}`);
+    return path.join(homedir(), ".", `workspace-${profile}`);
   }
-  return path.join(homedir(), ".openclaw", "workspace");
+  return path.join(homedir(), ".", "workspace");
 }
 
 export const DEFAULT_AGENT_WORKSPACE_DIR = resolveDefaultAgentWorkspaceDir();
@@ -301,3 +301,4 @@ export function filterBootstrapFilesForSession(
   }
   return files.filter((file) => SUBAGENT_BOOTSTRAP_ALLOWLIST.has(file.name));
 }
+

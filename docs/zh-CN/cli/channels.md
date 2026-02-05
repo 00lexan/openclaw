@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想添加/删除渠道账户（WhatsApp/Telegram/Discord/Google Chat/Slack/Mattermost（插件）/Signal/iMessage）
-  - 你想检查渠道状态或跟踪渠道日志
-summary: "`openclaw channels` 的 CLI 参考（账户、状态、登录/登出、日志）"
+  - ä½ æƒ³æ·»åŠ /åˆ é™¤æ¸ é“è´¦æˆ·ï¼ˆWhatsApp/Telegram/Discord/Google Chat/Slack/Mattermostï¼ˆæ’ä»¶ï¼‰/Signal/iMessageï¼‰
+  - ä½ æƒ³æ£€æŸ¥æ¸ é“çŠ¶æ€æˆ–è·Ÿè¸ªæ¸ é“æ—¥å¿—
+summary: "` channels` çš„ CLI å‚è€ƒï¼ˆè´¦æˆ·ã€çŠ¶æ€ã€ç™»å½•/ç™»å‡ºã€æ—¥å¿—ï¼‰"
 title: channels
 x-i18n:
   generated_at: "2026-02-03T07:44:51Z"
@@ -13,74 +13,75 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw channels`
+# ` channels`
 
-管理 Gateway 网关上的聊天渠道账户及其运行时状态。
+ç®¡ç† Gateway ç½‘å…³ä¸Šçš„èŠå¤©æ¸ é“è´¦æˆ·åŠå…¶è¿è¡Œæ—¶çŠ¶æ€ã€‚
 
-相关文档：
+ç›¸å…³æ–‡æ¡£ï¼š
 
-- 渠道指南：[渠道](/channels/index)
-- Gateway 网关配置：[配置](/gateway/configuration)
+- æ¸ é“æŒ‡å—ï¼š[æ¸ é“](/channels/index)
+- Gateway ç½‘å…³é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-## 常用命令
-
-```bash
-openclaw channels list
-openclaw channels status
-openclaw channels capabilities
-openclaw channels capabilities --channel discord --target channel:123
-openclaw channels resolve --channel slack "#general" "@jane"
-openclaw channels logs --channel all
-```
-
-## 添加/删除账户
+## å¸¸ç”¨å‘½ä»¤
 
 ```bash
-openclaw channels add --channel telegram --token <bot-token>
-openclaw channels remove --channel telegram --delete
+ channels list
+ channels status
+ channels capabilities
+ channels capabilities --channel discord --target channel:123
+ channels resolve --channel slack "#general" "@jane"
+ channels logs --channel all
 ```
 
-提示：`openclaw channels add --help` 显示每个渠道的标志（token、app token、signal-cli 路径等）。
-
-## 登录/登出（交互式）
+## æ·»åŠ /åˆ é™¤è´¦æˆ·
 
 ```bash
-openclaw channels login --channel whatsapp
-openclaw channels logout --channel whatsapp
+ channels add --channel telegram --token <bot-token>
+ channels remove --channel telegram --delete
 ```
 
-## 故障排除
+æç¤ºï¼š` channels add --help` æ˜¾ç¤ºæ¯ä¸ªæ¸ é“çš„æ ‡å¿—ï¼ˆtokenã€app tokenã€signal-cli è·¯å¾„ç­‰ï¼‰ã€‚
 
-- 运行 `openclaw status --deep` 进行全面探测。
-- 使用 `openclaw doctor` 获取引导式修复。
-- `openclaw channels list` 输出 `Claude: HTTP 403 ... user:profile` → 用量快照需要 `user:profile` 权限范围。使用 `--no-usage`，或提供 claude.ai 会话密钥（`CLAUDE_WEB_SESSION_KEY` / `CLAUDE_WEB_COOKIE`），或通过 Claude Code CLI 重新授权。
-
-## 能力探测
-
-获取提供商能力提示（可用的 intents/scopes）以及静态功能支持：
+## ç™»å½•/ç™»å‡ºï¼ˆäº¤äº’å¼ï¼‰
 
 ```bash
-openclaw channels capabilities
-openclaw channels capabilities --channel discord --target channel:123
+ channels login --channel whatsapp
+ channels logout --channel whatsapp
 ```
 
-说明：
+## æ•…éšœæŽ’é™¤
 
-- `--channel` 是可选的；省略它可列出所有渠道（包括扩展）。
-- `--target` 接受 `channel:<id>` 或原始数字频道 id，仅适用于 Discord。
-- 探测是特定于提供商的：Discord intents + 可选的频道权限；Slack bot + user scopes；Telegram bot 标志 + webhook；Signal daemon 版本；MS Teams app token + Graph roles/scopes（在已知处标注）。没有探测功能的渠道报告 `Probe: unavailable`。
+- è¿è¡Œ ` status --deep` è¿›è¡Œå…¨é¢æŽ¢æµ‹ã€‚
+- ä½¿ç”¨ ` doctor` èŽ·å–å¼•å¯¼å¼ä¿®å¤ã€‚
+- ` channels list` è¾“å‡º `Claude: HTTP 403 ... user:profile` â†’ ç”¨é‡å¿«ç…§éœ€è¦ `user:profile` æƒé™èŒƒå›´ã€‚ä½¿ç”¨ `--no-usage`ï¼Œæˆ–æä¾› claude.ai ä¼šè¯å¯†é’¥ï¼ˆ`CLAUDE_WEB_SESSION_KEY` / `CLAUDE_WEB_COOKIE`ï¼‰ï¼Œæˆ–é€šè¿‡ Claude Code CLI é‡æ–°æŽˆæƒã€‚
 
-## 解析名称为 ID
+## èƒ½åŠ›æŽ¢æµ‹
 
-使用提供商目录将渠道/用户名称解析为 ID：
+èŽ·å–æä¾›å•†èƒ½åŠ›æç¤ºï¼ˆå¯ç”¨çš„ intents/scopesï¼‰ä»¥åŠé™æ€åŠŸèƒ½æ”¯æŒï¼š
 
 ```bash
-openclaw channels resolve --channel slack "#general" "@jane"
-openclaw channels resolve --channel discord "My Server/#support" "@someone"
-openclaw channels resolve --channel matrix "Project Room"
+ channels capabilities
+ channels capabilities --channel discord --target channel:123
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 使用 `--kind user|group|auto` 强制指定目标类型。
-- 当多个条目共享相同名称时，解析优先选择活跃的匹配项。
+- `--channel` æ˜¯å¯é€‰çš„ï¼›çœç•¥å®ƒå¯åˆ—å‡ºæ‰€æœ‰æ¸ é“ï¼ˆåŒ…æ‹¬æ‰©å±•ï¼‰ã€‚
+- `--target` æŽ¥å— `channel:<id>` æˆ–åŽŸå§‹æ•°å­—é¢‘é“ idï¼Œä»…é€‚ç”¨äºŽ Discordã€‚
+- æŽ¢æµ‹æ˜¯ç‰¹å®šäºŽæä¾›å•†çš„ï¼šDiscord intents + å¯é€‰çš„é¢‘é“æƒé™ï¼›Slack bot + user scopesï¼›Telegram bot æ ‡å¿— + webhookï¼›Signal daemon ç‰ˆæœ¬ï¼›MS Teams app token + Graph roles/scopesï¼ˆåœ¨å·²çŸ¥å¤„æ ‡æ³¨ï¼‰ã€‚æ²¡æœ‰æŽ¢æµ‹åŠŸèƒ½çš„æ¸ é“æŠ¥å‘Š `Probe: unavailable`ã€‚
+
+## è§£æžåç§°ä¸º ID
+
+ä½¿ç”¨æä¾›å•†ç›®å½•å°†æ¸ é“/ç”¨æˆ·åç§°è§£æžä¸º IDï¼š
+
+```bash
+ channels resolve --channel slack "#general" "@jane"
+ channels resolve --channel discord "My Server/#support" "@someone"
+ channels resolve --channel matrix "Project Room"
+```
+
+è¯´æ˜Žï¼š
+
+- ä½¿ç”¨ `--kind user|group|auto` å¼ºåˆ¶æŒ‡å®šç›®æ ‡ç±»åž‹ã€‚
+- å½“å¤šä¸ªæ¡ç›®å…±äº«ç›¸åŒåç§°æ—¶ï¼Œè§£æžä¼˜å…ˆé€‰æ‹©æ´»è·ƒçš„åŒ¹é…é¡¹ã€‚
+

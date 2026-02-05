@@ -1,4 +1,4 @@
-import { expect, test } from "vitest";
+﻿import { expect, test } from "vitest";
 import {
   BRACKETED_PASTE_END,
   BRACKETED_PASTE_START,
@@ -38,3 +38,4 @@ test("encodePaste wraps bracketed sequences by default", () => {
   expect(payload.startsWith(BRACKETED_PASTE_START)).toBe(true);
   expect(payload.endsWith(BRACKETED_PASTE_END)).toBe(true);
 });
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { parseBooleanValue } from "./boolean.js";
 
 describe("parseBooleanValue", () => {
@@ -39,3 +39,4 @@ describe("parseBooleanValue", () => {
     expect(parseBooleanValue(1)).toBeUndefined();
   });
 });
+

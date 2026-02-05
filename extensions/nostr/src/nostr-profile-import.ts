@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Nostr Profile Import
  *
  * Fetches and verifies kind:0 profile events from relays.
@@ -260,3 +260,4 @@ export function mergeProfiles(
     lud16: local.lud16 ?? imported.lud16,
   };
 }
+

@@ -1,8 +1,8 @@
----
-summary: "Troubleshooting hub: symptoms → checks → fixes"
+﻿---
+summary: "Troubleshooting hub: symptoms â†’ checks â†’ fixes"
 read_when:
   - You see an error and want the fix path
-  - The installer says “success” but the CLI doesn’t work
+  - The installer says â€œsuccessâ€ but the CLI doesnâ€™t work
 title: "Troubleshooting"
 ---
 
@@ -13,22 +13,22 @@ title: "Troubleshooting"
 Run these in order:
 
 ```bash
-openclaw status
-openclaw status --all
-openclaw gateway probe
-openclaw logs --follow
-openclaw doctor
+ status
+ status --all
+ gateway probe
+ logs --follow
+ doctor
 ```
 
 If the gateway is reachable, deep probes:
 
 ```bash
-openclaw status --deep
+ status --deep
 ```
 
-## Common “it broke” cases
+## Common â€œit brokeâ€ cases
 
-### `openclaw: command not found`
+### `: command not found`
 
 Almost always a Node/npm PATH issue. Start here:
 
@@ -39,18 +39,18 @@ Almost always a Node/npm PATH issue. Start here:
 Re-run the installer in verbose mode to see the full trace and npm output:
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --verbose
+curl -fsSL https://.ai/install.sh | bash -s -- --verbose
 ```
 
 For beta installs:
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash -s -- --beta --verbose
+curl -fsSL https://.ai/install.sh | bash -s -- --beta --verbose
 ```
 
-You can also set `OPENCLAW_VERBOSE=1` instead of the flag.
+You can also set `_VERBOSE=1` instead of the flag.
 
-### Gateway “unauthorized”, can’t connect, or keeps reconnecting
+### Gateway â€œunauthorizedâ€, canâ€™t connect, or keeps reconnecting
 
 - [Gateway troubleshooting](/gateway/troubleshooting)
 - [Gateway authentication](/gateway/authentication)
@@ -60,30 +60,30 @@ You can also set `OPENCLAW_VERBOSE=1` instead of the flag.
 - [Gateway troubleshooting](/gateway/troubleshooting)
 - [Control UI](/web/control-ui#insecure-http)
 
-### `docs.openclaw.ai` shows an SSL error (Comcast/Xfinity)
+### `docs..ai` shows an SSL error (Comcast/Xfinity)
 
-Some Comcast/Xfinity connections block `docs.openclaw.ai` via Xfinity Advanced Security.
-Disable Advanced Security or add `docs.openclaw.ai` to the allowlist, then retry.
+Some Comcast/Xfinity connections block `docs..ai` via Xfinity Advanced Security.
+Disable Advanced Security or add `docs..ai` to the allowlist, then retry.
 
 - Xfinity Advanced Security help: https://www.xfinity.com/support/articles/using-xfinity-xfi-advanced-security
-- Quick sanity checks: try a mobile hotspot or VPN to confirm it’s ISP-level filtering
+- Quick sanity checks: try a mobile hotspot or VPN to confirm itâ€™s ISP-level filtering
 
 ### Service says running, but RPC probe fails
 
 - [Gateway troubleshooting](/gateway/troubleshooting)
 - [Background process / service](/gateway/background-process)
 
-### Model/auth failures (rate limit, billing, “all models failed”)
+### Model/auth failures (rate limit, billing, â€œall models failedâ€)
 
 - [Models](/cli/models)
 - [OAuth / auth concepts](/concepts/oauth)
 
 ### `/model` says `model not allowed`
 
-This usually means `agents.defaults.models` is configured as an allowlist. When it’s non-empty,
+This usually means `agents.defaults.models` is configured as an allowlist. When itâ€™s non-empty,
 only those provider/model keys can be selected.
 
-- Check the allowlist: `openclaw config get agents.defaults.models`
+- Check the allowlist: ` config get agents.defaults.models`
 - Add the model you want (or clear the allowlist) and retry `/model`
 - Use `/models` to browse the allowed providers/models
 
@@ -92,7 +92,8 @@ only those provider/model keys can be selected.
 Paste a safe report:
 
 ```bash
-openclaw status --all
+ status --all
 ```
 
-If you can, include the relevant log tail from `openclaw logs --follow`.
+If you can, include the relevant log tail from ` logs --follow`.
+

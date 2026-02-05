@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { createMetrics, type MetricName } from "./metrics.js";
 import { validatePrivateKey, isValidPubkey, normalizePubkey } from "./nostr-bus.js";
 import { createSeenTracker } from "./seen-tracker.js";
@@ -51,14 +51,14 @@ describe("validatePrivateKey fuzz", () => {
       expect(() => validatePrivateKey(withRtl)).toThrow();
     });
 
-    it("rejects homoglyph 'a' (Cyrillic а)", () => {
-      // Using Cyrillic 'а' (U+0430) instead of Latin 'a'
+    it("rejects homoglyph 'a' (Cyrillic Ð°)", () => {
+      // Using Cyrillic 'Ð°' (U+0430) instead of Latin 'a'
       const withCyrillicA = "0123456789\u0430bcdef0123456789abcdef0123456789abcdef0123456789abcdef";
       expect(() => validatePrivateKey(withCyrillicA)).toThrow();
     });
 
     it("rejects emoji", () => {
-      const withEmoji = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789ab😀";
+      const withEmoji = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abðŸ˜€";
       expect(() => validatePrivateKey(withEmoji)).toThrow();
     });
 
@@ -226,7 +226,7 @@ describe("SeenTracker fuzz", () => {
 
     it("handles unicode IDs", () => {
       const tracker = createSeenTracker({ maxEntries: 100 });
-      const unicodeId = "事件ID_🎉_тест";
+      const unicodeId = "äº‹ä»¶ID_ðŸŽ‰_Ñ‚ÐµÑÑ‚";
       expect(() => tracker.add(unicodeId)).not.toThrow();
       expect(tracker.peek(unicodeId)).toBe(true);
       tracker.stop();
@@ -531,3 +531,4 @@ describe("JSON parsing edge cases", () => {
     });
   }
 });
+

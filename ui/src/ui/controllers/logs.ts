@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { LogEntry, LogLevel } from "../types.ts";
 
 export type LogsState = {
@@ -145,3 +145,4 @@ export async function loadLogs(state: LogsState, opts?: { reset?: boolean; quiet
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { ConfigUiHints } from "../types.ts";
 import { hintForPath, humanize, schemaType, type JsonSchema } from "./config-form.shared.ts";
 import { analyzeConfigSchema, renderConfigForm, SECTION_META } from "./config-form.ts";
@@ -484,7 +484,7 @@ export function renderConfig(props: ConfigProps) {
                   class="config-search__clear"
                   @click=${() => props.onSearchChange("")}
                 >
-                  ×
+                  Ã—
                 </button>
               `
               : nothing
@@ -562,28 +562,28 @@ export function renderConfig(props: ConfigProps) {
               ?disabled=${props.loading}
               @click=${props.onReload}
             >
-              ${props.loading ? "Loading…" : "Reload"}
+              ${props.loading ? "Loadingâ€¦" : "Reload"}
             </button>
             <button
               class="btn btn--sm primary"
               ?disabled=${!canSave}
               @click=${props.onSave}
             >
-              ${props.saving ? "Saving…" : "Save"}
+              ${props.saving ? "Savingâ€¦" : "Save"}
             </button>
             <button
               class="btn btn--sm"
               ?disabled=${!canApply}
               @click=${props.onApply}
             >
-              ${props.applying ? "Applying…" : "Apply"}
+              ${props.applying ? "Applyingâ€¦" : "Apply"}
             </button>
             <button
               class="btn btn--sm"
               ?disabled=${!canUpdate}
               @click=${props.onUpdate}
             >
-              ${props.updating ? "Updating…" : "Update"}
+              ${props.updating ? "Updatingâ€¦" : "Update"}
             </button>
           </div>
         </div>
@@ -617,7 +617,7 @@ export function renderConfig(props: ConfigProps) {
                           <span class="config-diff__from"
                             >${truncateValue(change.from)}</span
                           >
-                          <span class="config-diff__arrow">→</span>
+                          <span class="config-diff__arrow">â†’</span>
                           <span class="config-diff__to"
                             >${truncateValue(change.to)}</span
                           >
@@ -691,7 +691,7 @@ export function renderConfig(props: ConfigProps) {
                     ? html`
                         <div class="config-loading">
                           <div class="config-loading__spinner"></div>
-                          <span>Loading schema…</span>
+                          <span>Loading schemaâ€¦</span>
                         </div>
                       `
                     : renderConfigForm({
@@ -742,3 +742,4 @@ ${JSON.stringify(props.issues, null, 2)}</pre
     </div>
   `;
 }
+

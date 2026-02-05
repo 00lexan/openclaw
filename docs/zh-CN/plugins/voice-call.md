@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想从 OpenClaw 发起出站语音通话
-  - 你正在配置或开发 voice-call 插件
-summary: Voice Call 插件：通过 Twilio/Telnyx/Plivo 进行出站 + 入站通话（插件安装 + 配置 + CLI）
-title: Voice Call 插件
+  - ä½ æƒ³ä»Ž  å‘èµ·å‡ºç«™è¯­éŸ³é€šè¯
+  - ä½ æ­£åœ¨é…ç½®æˆ–å¼€å‘ voice-call æ’ä»¶
+summary: Voice Call æ’ä»¶ï¼šé€šè¿‡ Twilio/Telnyx/Plivo è¿›è¡Œå‡ºç«™ + å…¥ç«™é€šè¯ï¼ˆæ’ä»¶å®‰è£… + é…ç½® + CLIï¼‰
+title: Voice Call æ’ä»¶
 x-i18n:
   generated_at: "2026-02-03T07:53:40Z"
   model: claude-opus-4-5
@@ -13,52 +13,52 @@ x-i18n:
   workflow: 15
 ---
 
-# Voice Call（插件）
+# Voice Callï¼ˆæ’ä»¶ï¼‰
 
-通过插件为 OpenClaw 提供语音通话。支持出站通知和带有入站策略的多轮对话。
+é€šè¿‡æ’ä»¶ä¸º  æä¾›è¯­éŸ³é€šè¯ã€‚æ”¯æŒå‡ºç«™é€šçŸ¥å’Œå¸¦æœ‰å…¥ç«™ç­–ç•¥çš„å¤šè½®å¯¹è¯ã€‚
 
-当前提供商：
+å½“å‰æä¾›å•†ï¼š
 
-- `twilio`（Programmable Voice + Media Streams）
-- `telnyx`（Call Control v2）
-- `plivo`（Voice API + XML transfer + GetInput speech）
-- `mock`（开发/无网络）
+- `twilio`ï¼ˆProgrammable Voice + Media Streamsï¼‰
+- `telnyx`ï¼ˆCall Control v2ï¼‰
+- `plivo`ï¼ˆVoice API + XML transfer + GetInput speechï¼‰
+- `mock`ï¼ˆå¼€å‘/æ— ç½‘ç»œï¼‰
 
-快速心智模型：
+å¿«é€Ÿå¿ƒæ™ºæ¨¡åž‹ï¼š
 
-- 安装插件
-- 重启 Gateway 网关
-- 在 `plugins.entries.voice-call.config` 下配置
-- 使用 `openclaw voicecall ...` 或 `voice_call` 工具
+- å®‰è£…æ’ä»¶
+- é‡å¯ Gateway ç½‘å…³
+- åœ¨ `plugins.entries.voice-call.config` ä¸‹é…ç½®
+- ä½¿ç”¨ ` voicecall ...` æˆ– `voice_call` å·¥å…·
 
-## 运行位置（本地 vs 远程）
+## è¿è¡Œä½ç½®ï¼ˆæœ¬åœ° vs è¿œç¨‹ï¼‰
 
-Voice Call 插件运行在 **Gateway 网关进程内部**。
+Voice Call æ’ä»¶è¿è¡Œåœ¨ **Gateway ç½‘å…³è¿›ç¨‹å†…éƒ¨**ã€‚
 
-如果你使用远程 Gateway 网关，在**运行 Gateway 网关的机器**上安装/配置插件，然后重启 Gateway 网关以加载它。
+å¦‚æžœä½ ä½¿ç”¨è¿œç¨‹ Gateway ç½‘å…³ï¼Œåœ¨**è¿è¡Œ Gateway ç½‘å…³çš„æœºå™¨**ä¸Šå®‰è£…/é…ç½®æ’ä»¶ï¼Œç„¶åŽé‡å¯ Gateway ç½‘å…³ä»¥åŠ è½½å®ƒã€‚
 
-## 安装
+## å®‰è£…
 
-### 选项 A：从 npm 安装（推荐）
+### é€‰é¡¹ Aï¼šä»Ž npm å®‰è£…ï¼ˆæŽ¨èï¼‰
 
 ```bash
-openclaw plugins install @openclaw/voice-call
+ plugins install @/voice-call
 ```
 
-之后重启 Gateway 网关。
+ä¹‹åŽé‡å¯ Gateway ç½‘å…³ã€‚
 
-### 选项 B：从本地文件夹安装（开发，不复制）
+### é€‰é¡¹ Bï¼šä»Žæœ¬åœ°æ–‡ä»¶å¤¹å®‰è£…ï¼ˆå¼€å‘ï¼Œä¸å¤åˆ¶ï¼‰
 
 ```bash
-openclaw plugins install ./extensions/voice-call
+ plugins install ./extensions/voice-call
 cd ./extensions/voice-call && pnpm install
 ```
 
-之后重启 Gateway 网关。
+ä¹‹åŽé‡å¯ Gateway ç½‘å…³ã€‚
 
-## 配置
+## é…ç½®
 
-在 `plugins.entries.voice-call.config` 下设置配置：
+åœ¨ `plugins.entries.voice-call.config` ä¸‹è®¾ç½®é…ç½®ï¼š
 
 ```json5
 {
@@ -67,7 +67,7 @@ cd ./extensions/voice-call && pnpm install
       "voice-call": {
         enabled: true,
         config: {
-          provider: "twilio", // 或 "telnyx" | "plivo" | "mock"
+          provider: "twilio", // æˆ– "telnyx" | "plivo" | "mock"
           fromNumber: "+15550001234",
           toNumber: "+15550005678",
 
@@ -81,13 +81,13 @@ cd ./extensions/voice-call && pnpm install
             authToken: "...",
           },
 
-          // Webhook 服务器
+          // Webhook æœåŠ¡å™¨
           serve: {
             port: 3334,
             path: "/voice/webhook",
           },
 
-          // 公开暴露（选一个）
+          // å…¬å¼€æš´éœ²ï¼ˆé€‰ä¸€ä¸ªï¼‰
           // publicUrl: "https://example.ngrok.app/voice/webhook",
           // tunnel: { provider: "ngrok" },
           // tailscale: { mode: "funnel", path: "/voice/webhook" }
@@ -107,19 +107,19 @@ cd ./extensions/voice-call && pnpm install
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- Twilio/Telnyx 需要**可公开访问**的 webhook URL。
-- Plivo 需要**可公开访问**的 webhook URL。
-- `mock` 是本地开发提供商（无网络调用）。
-- `skipSignatureVerification` 仅用于本地测试。
-- 如果你使用 ngrok 免费版，将 `publicUrl` 设置为确切的 ngrok URL；签名验证始终强制执行。
-- `tunnel.allowNgrokFreeTierLoopbackBypass: true` 允许带有无效签名的 Twilio webhooks，**仅当** `tunnel.provider="ngrok"` 且 `serve.bind` 是 loopback（ngrok 本地代理）时。仅用于本地开发。
-- Ngrok 免费版 URL 可能会更改或添加中间页面行为；如果 `publicUrl` 漂移，Twilio 签名将失败。对于生产环境，优先使用稳定域名或 Tailscale funnel。
+- Twilio/Telnyx éœ€è¦**å¯å…¬å¼€è®¿é—®**çš„ webhook URLã€‚
+- Plivo éœ€è¦**å¯å…¬å¼€è®¿é—®**çš„ webhook URLã€‚
+- `mock` æ˜¯æœ¬åœ°å¼€å‘æä¾›å•†ï¼ˆæ— ç½‘ç»œè°ƒç”¨ï¼‰ã€‚
+- `skipSignatureVerification` ä»…ç”¨äºŽæœ¬åœ°æµ‹è¯•ã€‚
+- å¦‚æžœä½ ä½¿ç”¨ ngrok å…è´¹ç‰ˆï¼Œå°† `publicUrl` è®¾ç½®ä¸ºç¡®åˆ‡çš„ ngrok URLï¼›ç­¾åéªŒè¯å§‹ç»ˆå¼ºåˆ¶æ‰§è¡Œã€‚
+- `tunnel.allowNgrokFreeTierLoopbackBypass: true` å…è®¸å¸¦æœ‰æ— æ•ˆç­¾åçš„ Twilio webhooksï¼Œ**ä»…å½“** `tunnel.provider="ngrok"` ä¸” `serve.bind` æ˜¯ loopbackï¼ˆngrok æœ¬åœ°ä»£ç†ï¼‰æ—¶ã€‚ä»…ç”¨äºŽæœ¬åœ°å¼€å‘ã€‚
+- Ngrok å…è´¹ç‰ˆ URL å¯èƒ½ä¼šæ›´æ”¹æˆ–æ·»åŠ ä¸­é—´é¡µé¢è¡Œä¸ºï¼›å¦‚æžœ `publicUrl` æ¼‚ç§»ï¼ŒTwilio ç­¾åå°†å¤±è´¥ã€‚å¯¹äºŽç”Ÿäº§çŽ¯å¢ƒï¼Œä¼˜å…ˆä½¿ç”¨ç¨³å®šåŸŸåæˆ– Tailscale funnelã€‚
 
-## 通话的 TTS
+## é€šè¯çš„ TTS
 
-Voice Call 使用核心 `messages.tts` 配置（OpenAI 或 ElevenLabs）进行通话中的流式语音。你可以在插件配置下使用**相同的结构**覆盖它——它会与 `messages.tts` 深度合并。
+Voice Call ä½¿ç”¨æ ¸å¿ƒ `messages.tts` é…ç½®ï¼ˆOpenAI æˆ– ElevenLabsï¼‰è¿›è¡Œé€šè¯ä¸­çš„æµå¼è¯­éŸ³ã€‚ä½ å¯ä»¥åœ¨æ’ä»¶é…ç½®ä¸‹ä½¿ç”¨**ç›¸åŒçš„ç»“æž„**è¦†ç›–å®ƒâ€”â€”å®ƒä¼šä¸Ž `messages.tts` æ·±åº¦åˆå¹¶ã€‚
 
 ```json5
 {
@@ -133,14 +133,14 @@ Voice Call 使用核心 `messages.tts` 配置（OpenAI 或 ElevenLabs）进行�
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- **语音通话忽略 Edge TTS**（电话音频需要 PCM；Edge 输出不可靠）。
-- 当启用 Twilio 媒体流时使用核心 TTS；否则通话回退到提供商原生语音。
+- **è¯­éŸ³é€šè¯å¿½ç•¥ Edge TTS**ï¼ˆç”µè¯éŸ³é¢‘éœ€è¦ PCMï¼›Edge è¾“å‡ºä¸å¯é ï¼‰ã€‚
+- å½“å¯ç”¨ Twilio åª’ä½“æµæ—¶ä½¿ç”¨æ ¸å¿ƒ TTSï¼›å¦åˆ™é€šè¯å›žé€€åˆ°æä¾›å•†åŽŸç”Ÿè¯­éŸ³ã€‚
 
-### 更多示例
+### æ›´å¤šç¤ºä¾‹
 
-仅使用核心 TTS（无覆盖）：
+ä»…ä½¿ç”¨æ ¸å¿ƒ TTSï¼ˆæ— è¦†ç›–ï¼‰ï¼š
 
 ```json5
 {
@@ -153,7 +153,7 @@ Voice Call 使用核心 `messages.tts` 配置（OpenAI 或 ElevenLabs）进行�
 }
 ```
 
-仅为通话覆盖为 ElevenLabs（其他地方保持核心默认）：
+ä»…ä¸ºé€šè¯è¦†ç›–ä¸º ElevenLabsï¼ˆå…¶ä»–åœ°æ–¹ä¿æŒæ ¸å¿ƒé»˜è®¤ï¼‰ï¼š
 
 ```json5
 {
@@ -176,7 +176,7 @@ Voice Call 使用核心 `messages.tts` 配置（OpenAI 或 ElevenLabs）进行�
 }
 ```
 
-仅为通话覆盖 OpenAI 模型（深度合并示例）：
+ä»…ä¸ºé€šè¯è¦†ç›– OpenAI æ¨¡åž‹ï¼ˆæ·±åº¦åˆå¹¶ç¤ºä¾‹ï¼‰ï¼š
 
 ```json5
 {
@@ -197,9 +197,9 @@ Voice Call 使用核心 `messages.tts` 配置（OpenAI 或 ElevenLabs）进行�
 }
 ```
 
-## 入站通话
+## å…¥ç«™é€šè¯
 
-入站策略默认为 `disabled`。要启用入站通话，设置：
+å…¥ç«™ç­–ç•¥é»˜è®¤ä¸º `disabled`ã€‚è¦å¯ç”¨å…¥ç«™é€šè¯ï¼Œè®¾ç½®ï¼š
 
 ```json5
 {
@@ -209,7 +209,7 @@ Voice Call 使用核心 `messages.tts` 配置（OpenAI 或 ElevenLabs）进行�
 }
 ```
 
-自动响应使用智能体系统。通过以下方式调整：
+è‡ªåŠ¨å“åº”ä½¿ç”¨æ™ºèƒ½ä½“ç³»ç»Ÿã€‚é€šè¿‡ä»¥ä¸‹æ–¹å¼è°ƒæ•´ï¼š
 
 - `responseModel`
 - `responseSystemPrompt`
@@ -218,33 +218,34 @@ Voice Call 使用核心 `messages.tts` 配置（OpenAI 或 ElevenLabs）进行�
 ## CLI
 
 ```bash
-openclaw voicecall call --to "+15555550123" --message "Hello from OpenClaw"
-openclaw voicecall continue --call-id <id> --message "Any questions?"
-openclaw voicecall speak --call-id <id> --message "One moment"
-openclaw voicecall end --call-id <id>
-openclaw voicecall status --call-id <id>
-openclaw voicecall tail
-openclaw voicecall expose --mode funnel
+ voicecall call --to "+15555550123" --message "Hello from "
+ voicecall continue --call-id <id> --message "Any questions?"
+ voicecall speak --call-id <id> --message "One moment"
+ voicecall end --call-id <id>
+ voicecall status --call-id <id>
+ voicecall tail
+ voicecall expose --mode funnel
 ```
 
-## 智能体工具
+## æ™ºèƒ½ä½“å·¥å…·
 
-工具名称：`voice_call`
+å·¥å…·åç§°ï¼š`voice_call`
 
-操作：
+æ“ä½œï¼š
 
-- `initiate_call`（message、to?、mode?）
-- `continue_call`（callId、message）
-- `speak_to_user`（callId、message）
-- `end_call`（callId）
-- `get_status`（callId）
+- `initiate_call`ï¼ˆmessageã€to?ã€mode?ï¼‰
+- `continue_call`ï¼ˆcallIdã€messageï¼‰
+- `speak_to_user`ï¼ˆcallIdã€messageï¼‰
+- `end_call`ï¼ˆcallIdï¼‰
+- `get_status`ï¼ˆcallIdï¼‰
 
-此仓库在 `skills/voice-call/SKILL.md` 提供了配套的 skill 文档。
+æ­¤ä»“åº“åœ¨ `skills/voice-call/SKILL.md` æä¾›äº†é…å¥—çš„ skill æ–‡æ¡£ã€‚
 
-## Gateway 网关 RPC
+## Gateway ç½‘å…³ RPC
 
-- `voicecall.initiate`（`to?`、`message`、`mode?`）
-- `voicecall.continue`（`callId`、`message`）
-- `voicecall.speak`（`callId`、`message`）
-- `voicecall.end`（`callId`）
-- `voicecall.status`（`callId`）
+- `voicecall.initiate`ï¼ˆ`to?`ã€`message`ã€`mode?`ï¼‰
+- `voicecall.continue`ï¼ˆ`callId`ã€`message`ï¼‰
+- `voicecall.speak`ï¼ˆ`callId`ã€`message`ï¼‰
+- `voicecall.end`ï¼ˆ`callId`ï¼‰
+- `voicecall.status`ï¼ˆ`callId`ï¼‰
+

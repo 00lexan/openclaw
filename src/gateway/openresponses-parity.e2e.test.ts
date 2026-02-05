@@ -1,4 +1,4 @@
-/**
+﻿/**
  * OpenResponses Feature Parity E2E Tests
  *
  * Tests for input_image, input_file, and client-side tools (Hosted Tools)
@@ -200,7 +200,7 @@ describe("OpenResponses Feature Parity", () => {
           {
             type: "function_call_output" as const,
             call_id: "call_123",
-            output: '{"temperature": "72°F", "condition": "sunny"}',
+            output: '{"temperature": "72Â°F", "condition": "sunny"}',
           },
         ],
       };
@@ -242,7 +242,7 @@ describe("OpenResponses Feature Parity", () => {
           {
             type: "function_call_output" as const,
             call_id: "call_123",
-            output: '{"temperature": "72°F", "condition": "sunny"}',
+            output: '{"temperature": "72Â°F", "condition": "sunny"}',
           },
         ],
       };
@@ -277,12 +277,12 @@ describe("OpenResponses Feature Parity", () => {
         {
           type: "function_call_output" as const,
           call_id: "call_123",
-          output: '{"temperature": "72°F"}',
+          output: '{"temperature": "72Â°F"}',
         },
       ]);
 
       // When there's only a tool output (no history), returns just the body
-      expect(result.message).toBe('{"temperature": "72°F"}');
+      expect(result.message).toBe('{"temperature": "72Â°F"}');
     });
 
     it("should handle mixed message and function_call_output items", async () => {
@@ -297,7 +297,7 @@ describe("OpenResponses Feature Parity", () => {
         {
           type: "function_call_output" as const,
           call_id: "call_123",
-          output: '{"temperature": "72°F"}',
+          output: '{"temperature": "72Â°F"}',
         },
         {
           type: "message" as const,
@@ -308,8 +308,9 @@ describe("OpenResponses Feature Parity", () => {
 
       // Should include both user messages and tool output
       expect(result.message).toContain("weather");
-      expect(result.message).toContain("72°F");
+      expect(result.message).toContain("72Â°F");
       expect(result.message).toContain("Thanks");
     });
   });
 });
+

@@ -1,4 +1,4 @@
-import type { AuthProfileStore } from "../agents/auth-profiles.js";
+﻿import type { AuthProfileStore } from "../agents/auth-profiles.js";
 import type { AuthChoice } from "./onboard-types.js";
 
 export type AuthChoiceOption = {
@@ -250,3 +250,4 @@ export function buildAuthChoiceGroups(params: { store: AuthProfileStore; include
 
   return { groups, skipOption };
 }
+

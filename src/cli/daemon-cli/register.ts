@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { formatDocsLink } from "../../terminal/links.js";
 import { theme } from "../../terminal/theme.js";
 import { createDefaultDeps } from "../deps.js";
@@ -18,7 +18,7 @@ export function registerDaemonCli(program: Command) {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/gateway", "docs.openclaw.ai/cli/gateway")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/gateway", "docs..ai/cli/gateway")}\n`,
     );
 
   daemon
@@ -87,3 +87,4 @@ export function registerDaemonCli(program: Command) {
   // Build default deps (parity with other commands).
   void createDefaultDeps();
 }
+

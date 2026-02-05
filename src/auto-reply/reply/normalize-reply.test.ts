@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { SILENT_REPLY_TOKEN } from "../tokens.js";
 import { normalizeReplyPayload } from "./normalize-reply.js";
 
@@ -46,3 +46,4 @@ describe("normalizeReplyPayload", () => {
     expect(reasons).toEqual(["empty"]);
   });
 });
+

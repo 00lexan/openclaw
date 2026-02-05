@@ -1,4 +1,4 @@
-import {
+﻿import {
   DEFAULT_GATEWAY_DAEMON_RUNTIME,
   GATEWAY_DAEMON_RUNTIME_OPTIONS,
   isGatewayDaemonRuntime,
@@ -14,3 +14,4 @@ export const NODE_DAEMON_RUNTIME_OPTIONS = GATEWAY_DAEMON_RUNTIME_OPTIONS;
 export function isNodeDaemonRuntime(value: string | undefined): value is NodeDaemonRuntime {
   return isGatewayDaemonRuntime(value);
 }
+

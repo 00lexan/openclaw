@@ -1,4 +1,4 @@
-import { fetchDiscord } from "./api.js";
+﻿import { fetchDiscord } from "./api.js";
 import { normalizeDiscordSlug } from "./monitor/allow-list.js";
 import { normalizeDiscordToken } from "./token.js";
 
@@ -178,3 +178,4 @@ export async function resolveDiscordUserAllowlist(params: {
 
   return results;
 }
+

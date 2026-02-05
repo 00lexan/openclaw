@@ -1,4 +1,4 @@
-export type CacheEntry<T> = {
+﻿export type CacheEntry<T> = {
   value: T;
   expiresAt: number;
   insertedAt: number;
@@ -93,3 +93,4 @@ export async function readResponseText(res: Response): Promise<string> {
     return "";
   }
 }
+

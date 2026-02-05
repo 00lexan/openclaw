@@ -1,12 +1,12 @@
----
+﻿---
 name: video-frames
 description: Extract frames or short clips from videos using ffmpeg.
 homepage: https://ffmpeg.org
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🎞️",
+        "emoji": "ðŸŽžï¸",
         "requires": { "bins": ["ffmpeg"] },
         "install":
           [
@@ -42,5 +42,6 @@ At a timestamp:
 
 ## Notes
 
-- Prefer `--time` for “what is happening around here?”.
+- Prefer `--time` for â€œwhat is happening around here?â€.
 - Use a `.jpg` for quick share; use `.png` for crisp UI frames.
+

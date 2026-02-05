@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 
 export function hasExplicitOptions(command: Command, names: readonly string[]): boolean {
   if (typeof command.getOptionValueSource !== "function") {
@@ -6,3 +6,4 @@ export function hasExplicitOptions(command: Command, names: readonly string[]): 
   }
   return names.some((name) => command.getOptionValueSource(name) === "cli");
 }
+

@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BrowserActionOk,
   BrowserActionPathResult,
   BrowserActionTabResult,
@@ -261,3 +261,4 @@ export async function browserScreenshotAction(
     timeoutMs: 20000,
   });
 }
+

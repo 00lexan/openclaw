@@ -1,4 +1,4 @@
-export type ReasoningTagMode = "strict" | "preserve";
+﻿export type ReasoningTagMode = "strict" | "preserve";
 export type ReasoningTagTrim = "none" | "start" | "both";
 
 const QUICK_TAG_RE = /<\s*\/?\s*(?:think(?:ing)?|thought|antthinking|final)\b/i;
@@ -121,3 +121,4 @@ export function stripReasoningTagsFromText(
 
   return applyTrim(result, trimMode);
 }
+

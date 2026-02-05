@@ -1,9 +1,9 @@
-import { cancel, isCancel } from "@clack/prompts";
+﻿import { cancel, isCancel } from "@clack/prompts";
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { inspect } from "node:util";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import type { RuntimeEnv } from "../runtime.js";
 import type { NodeManagerChoice, OnboardMode, ResetScope } from "./onboard-types.js";
 import { DEFAULT_AGENT_WORKSPACE_DIR, ensureAgentWorkspace } from "../agents/workspace.js";
@@ -34,7 +34,7 @@ export function guardCancel<T>(value: T | symbol, runtime: RuntimeEnv): T {
   return value;
 }
 
-export function summarizeExistingConfig(config: OpenClawConfig): string {
+export function summarizeExistingConfig(config: Config): string {
   const rows: string[] = [];
   const defaults = config.agents?.defaults;
   if (defaults?.workspace) {
@@ -77,21 +77,21 @@ export function normalizeGatewayTokenInput(value: unknown): string {
 
 export function printWizardHeader(runtime: RuntimeEnv) {
   const header = [
-    "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",
-    "██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██",
-    "██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██",
-    "██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██",
-    "▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀",
-    "                  🦞 OPENCLAW 🦞                    ",
+    "â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„â–„",
+    "â–ˆâ–ˆâ–‘â–„â–„â–„â–‘â–ˆâ–ˆâ–‘â–„â–„â–‘â–ˆâ–ˆâ–‘â–„â–„â–„â–ˆâ–ˆâ–‘â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–‘â–„â–„â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–‘â–„â–„â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–‘â–ˆâ–ˆ",
+    "â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–‘â–ˆâ–ˆâ–‘â–€â–€â–‘â–ˆâ–ˆâ–‘â–„â–„â–„â–ˆâ–ˆâ–‘â–ˆâ–‘â–ˆâ–‘â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–‘â–€â–€â–‘â–ˆâ–ˆâ–‘â–ˆâ–‘â–ˆâ–‘â–ˆâ–ˆ",
+    "â–ˆâ–ˆâ–‘â–€â–€â–€â–‘â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–‘â–€â–€â–€â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–„â–‘â–ˆâ–ˆâ–‘â–€â–€â–„â–ˆâ–ˆâ–‘â–€â–€â–‘â–ˆâ–‘â–ˆâ–ˆâ–‘â–ˆâ–ˆâ–„â–€â–„â–€â–„â–ˆâ–ˆ",
+    "â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€â–€",
+    "                  ðŸ¦ž  ðŸ¦ž                    ",
     " ",
   ].join("\n");
   runtime.log(header);
 }
 
 export function applyWizardMetadata(
-  cfg: OpenClawConfig,
+  cfg: Config,
   params: { command: string; mode: OnboardMode },
-): OpenClawConfig {
+): Config {
   const commit = process.env.GIT_COMMIT?.trim() || process.env.GIT_SHA?.trim() || undefined;
   return {
     ...cfg,
@@ -197,8 +197,8 @@ export function formatControlUiSshHint(params: {
     localUrl,
     authedUrl,
     "Docs:",
-    "https://docs.openclaw.ai/gateway/remote",
-    "https://docs.openclaw.ai/web/control-ui",
+    "https://docs..ai/gateway/remote",
+    "https://docs..ai/web/control-ui",
   ]
     .filter(Boolean)
     .join("\n");
@@ -427,7 +427,7 @@ function summarizeError(err: unknown): string {
       .split("\n")
       .map((s) => s.trim())
       .find(Boolean) ?? raw;
-  return line.length > 120 ? `${line.slice(0, 119)}…` : line;
+  return line.length > 120 ? `${line.slice(0, 119)}â€¦` : line;
 }
 
 export const DEFAULT_WORKSPACE = DEFAULT_AGENT_WORKSPACE_DIR;
@@ -470,3 +470,4 @@ function isValidIPv4(host: string): boolean {
     return !Number.isNaN(n) && n >= 0 && n <= 255 && part === String(n);
   });
 }
+

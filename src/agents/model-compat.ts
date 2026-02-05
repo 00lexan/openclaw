@@ -1,4 +1,4 @@
-import type { Api, Model } from "@mariozechner/pi-ai";
+﻿import type { Api, Model } from "@mariozechner/pi-ai";
 
 function isOpenAiCompletionsModel(model: Model<Api>): model is Model<"openai-completions"> {
   return model.api === "openai-completions";
@@ -22,3 +22,4 @@ export function normalizeModelCompat(model: Model<Api>): Model<Api> {
     : { supportsDeveloperRole: false };
   return openaiModel;
 }
+

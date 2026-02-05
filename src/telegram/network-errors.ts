@@ -1,4 +1,4 @@
-import { extractErrorCode, formatErrorMessage } from "../infra/errors.js";
+﻿import { extractErrorCode, formatErrorMessage } from "../infra/errors.js";
 
 const RECOVERABLE_ERROR_CODES = new Set([
   "ECONNRESET",
@@ -148,3 +148,4 @@ export function isRecoverableTelegramNetworkError(
 
   return false;
 }
+

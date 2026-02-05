@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { getSlashCommands, parseCommand } from "./commands.js";
 
 describe("tui slash commands", () => {
@@ -19,3 +19,4 @@ describe("tui slash commands", () => {
     expect(commands.some((command) => command.name === "commands")).toBe(true);
   });
 });
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -102,3 +102,4 @@ export function toProp(key: string) {
 
   return `--${key[0]}-${key.slice(1)}`;
 }
+

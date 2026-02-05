@@ -1,9 +1,9 @@
-import type {
+﻿import type {
   ChannelId,
   ChannelMessageActionName,
   ChannelThreadingToolContext,
 } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import { getChannelMessageAdapter } from "./channel-adapters.js";
 import { normalizeTargetForProvider } from "./target-normalization.js";
 import { formatTargetDisplay, lookupDirectoryDisplay } from "./target-resolver.js";
@@ -88,7 +88,7 @@ export function enforceCrossContextPolicy(params: {
   action: ChannelMessageActionName;
   args: Record<string, unknown>;
   toolContext?: ChannelThreadingToolContext;
-  cfg: OpenClawConfig;
+  cfg: Config;
 }): void {
   const currentTarget = params.toolContext?.currentChannelId?.trim();
   if (!currentTarget) {
@@ -136,7 +136,7 @@ export function enforceCrossContextPolicy(params: {
 }
 
 export async function buildCrossContextDecoration(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   channel: ChannelId;
   target: string;
   toolContext?: ChannelThreadingToolContext;
@@ -200,3 +200,4 @@ export function applyCrossContextDecoration(params: {
   const message = `${params.decoration.prefix}${params.message}${params.decoration.suffix}`;
   return { message, usedEmbeds: false };
 }
+

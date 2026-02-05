@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -18,7 +18,7 @@ function createMockSkill(overrides: Partial<SkillStatusEntry> = {}): SkillStatus
     filePath: "/path/to/SKILL.md",
     baseDir: "/path/to",
     skillKey: "test-skill",
-    emoji: "🧪",
+    emoji: "ðŸ§ª",
     homepage: "https://example.com",
     always: false,
     disabled: false,
@@ -66,14 +66,14 @@ describe("skills-cli", () => {
         createMockSkill({
           name: "peekaboo",
           description: "Capture UI screenshots",
-          emoji: "📸",
+          emoji: "ðŸ“¸",
           eligible: true,
         }),
       ]);
       const output = formatSkillsList(report, {});
       expect(output).toContain("peekaboo");
-      expect(output).toContain("📸");
-      expect(output).toContain("✓");
+      expect(output).toContain("ðŸ“¸");
+      expect(output).toContain("âœ“");
     });
 
     it("formats skills list with disabled skill", () => {
@@ -274,3 +274,4 @@ describe("skills-cli", () => {
     });
   });
 });
+

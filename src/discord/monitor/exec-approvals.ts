@@ -1,6 +1,6 @@
-import { Button, type ButtonInteraction, type ComponentData } from "@buape/carbon";
+﻿import { Button, type ButtonInteraction, type ComponentData } from "@buape/carbon";
 import { ButtonStyle, Routes } from "discord-api-types/v10";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import type { DiscordExecApprovalConfig } from "../../config/types.discord.js";
 import type { EventFrame } from "../../gateway/protocol/index.js";
 import type { ExecApprovalDecision } from "../../infra/exec-approvals.js";
@@ -191,7 +191,7 @@ export type DiscordExecApprovalHandlerOpts = {
   accountId: string;
   config: DiscordExecApprovalConfig;
   gatewayUrl?: string;
-  cfg: OpenClawConfig;
+  cfg: Config;
   runtime?: RuntimeEnv;
   onResolve?: (id: string, decision: ExecApprovalDecision) => Promise<void>;
 };
@@ -577,3 +577,4 @@ export class ExecApprovalButton extends Button {
 export function createExecApprovalButton(ctx: ExecApprovalButtonContext): Button {
   return new ExecApprovalButton(ctx);
 }
+

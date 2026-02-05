@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+﻿import { describe, expect, test, vi } from "vitest";
 
 describe("GatewayClient", () => {
   test("uses a large maxPayload for node snapshots", async () => {
@@ -30,3 +30,4 @@ describe("GatewayClient", () => {
     );
   });
 });
+

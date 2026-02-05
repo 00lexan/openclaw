@@ -1,4 +1,4 @@
-import type { GatewayClient } from "../gateway/client.js";
+﻿import type { GatewayClient } from "../gateway/client.js";
 import type { AcpServerOptions } from "./types.js";
 import { readBool, readString } from "./meta.js";
 
@@ -96,3 +96,4 @@ export async function resetSessionIfNeeded(params: {
   }
   await params.gateway.request("sessions.reset", { key: params.sessionKey });
 }
+

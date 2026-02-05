@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 vi.mock("@slack/web-api", () => {
   const WebClient = vi.fn(function WebClientMock(
@@ -44,3 +44,4 @@ describe("slack web client config", () => {
     );
   });
 });
+

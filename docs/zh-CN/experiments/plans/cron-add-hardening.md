@@ -1,9 +1,9 @@
----
+﻿---
 last_updated: "2026-01-05"
-owner: openclaw
+owner: 
 status: complete
-summary: 加固 cron.add 输入处理，对齐 schema，改进 cron UI/智能体工具
-title: Cron Add 加固
+summary: åŠ å›º cron.add è¾“å…¥å¤„ç†ï¼Œå¯¹é½ schemaï¼Œæ”¹è¿› cron UI/æ™ºèƒ½ä½“å·¥å…·
+title: Cron Add åŠ å›º
 x-i18n:
   generated_at: "2026-02-03T07:47:26Z"
   model: claude-opus-4-5
@@ -13,58 +13,59 @@ x-i18n:
   workflow: 15
 ---
 
-# Cron Add 加固 & Schema 对齐
+# Cron Add åŠ å›º & Schema å¯¹é½
 
-## 背景
+## èƒŒæ™¯
 
-最近的 Gateway 网关日志显示重复的 `cron.add` 失败，参数无效（缺少 `sessionTarget`、`wakeMode`、`payload`，以及格式错误的 `schedule`）。这表明至少有一个客户端（可能是智能体工具调用路径）正在发送包装的或部分指定的任务负载。另外，TypeScript 中的 cron 提供商枚举、Gateway 网关 schema、CLI 标志和 UI 表单类型之间存在漂移，加上 `cron.status` 的 UI 不匹配（期望 `jobCount` 而 Gateway 网关返回 `jobs`）。
+æœ€è¿‘çš„ Gateway ç½‘å…³æ—¥å¿—æ˜¾ç¤ºé‡å¤çš„ `cron.add` å¤±è´¥ï¼Œå‚æ•°æ— æ•ˆï¼ˆç¼ºå°‘ `sessionTarget`ã€`wakeMode`ã€`payload`ï¼Œä»¥åŠæ ¼å¼é”™è¯¯çš„ `schedule`ï¼‰ã€‚è¿™è¡¨æ˜Žè‡³å°‘æœ‰ä¸€ä¸ªå®¢æˆ·ç«¯ï¼ˆå¯èƒ½æ˜¯æ™ºèƒ½ä½“å·¥å…·è°ƒç”¨è·¯å¾„ï¼‰æ­£åœ¨å‘é€åŒ…è£…çš„æˆ–éƒ¨åˆ†æŒ‡å®šçš„ä»»åŠ¡è´Ÿè½½ã€‚å¦å¤–ï¼ŒTypeScript ä¸­çš„ cron æä¾›å•†æžšä¸¾ã€Gateway ç½‘å…³ schemaã€CLI æ ‡å¿—å’Œ UI è¡¨å•ç±»åž‹ä¹‹é—´å­˜åœ¨æ¼‚ç§»ï¼ŒåŠ ä¸Š `cron.status` çš„ UI ä¸åŒ¹é…ï¼ˆæœŸæœ› `jobCount` è€Œ Gateway ç½‘å…³è¿”å›ž `jobs`ï¼‰ã€‚
 
-## 目标
+## ç›®æ ‡
 
-- 通过规范化常见的包装负载并推断缺失的 `kind` 字段来停止 `cron.add` INVALID_REQUEST 垃圾。
-- 在 Gateway 网关 schema、cron 类型、CLI 文档和 UI 表单之间对齐 cron 提供商列表。
-- 使智能体 cron 工具 schema 明确，以便 LLM 生成正确的任务负载。
-- 修复 Control UI cron 状态任务计数显示。
-- 添加测试以覆盖规范化和工具行为。
+- é€šè¿‡è§„èŒƒåŒ–å¸¸è§çš„åŒ…è£…è´Ÿè½½å¹¶æŽ¨æ–­ç¼ºå¤±çš„ `kind` å­—æ®µæ¥åœæ­¢ `cron.add` INVALID_REQUEST åžƒåœ¾ã€‚
+- åœ¨ Gateway ç½‘å…³ schemaã€cron ç±»åž‹ã€CLI æ–‡æ¡£å’Œ UI è¡¨å•ä¹‹é—´å¯¹é½ cron æä¾›å•†åˆ—è¡¨ã€‚
+- ä½¿æ™ºèƒ½ä½“ cron å·¥å…· schema æ˜Žç¡®ï¼Œä»¥ä¾¿ LLM ç”Ÿæˆæ­£ç¡®çš„ä»»åŠ¡è´Ÿè½½ã€‚
+- ä¿®å¤ Control UI cron çŠ¶æ€ä»»åŠ¡è®¡æ•°æ˜¾ç¤ºã€‚
+- æ·»åŠ æµ‹è¯•ä»¥è¦†ç›–è§„èŒƒåŒ–å’Œå·¥å…·è¡Œä¸ºã€‚
 
-## 非目标
+## éžç›®æ ‡
 
-- 更改 cron 调度语义或任务执行行为。
-- 添加新的调度类型或 cron 表达式解析。
-- 除了必要的字段修复外，不大改 cron 的 UI/UX。
+- æ›´æ”¹ cron è°ƒåº¦è¯­ä¹‰æˆ–ä»»åŠ¡æ‰§è¡Œè¡Œä¸ºã€‚
+- æ·»åŠ æ–°çš„è°ƒåº¦ç±»åž‹æˆ– cron è¡¨è¾¾å¼è§£æžã€‚
+- é™¤äº†å¿…è¦çš„å­—æ®µä¿®å¤å¤–ï¼Œä¸å¤§æ”¹ cron çš„ UI/UXã€‚
 
-## 发现（当前差距）
+## å‘çŽ°ï¼ˆå½“å‰å·®è·ï¼‰
 
-- Gateway 网关中的 `CronPayloadSchema` 排除了 `signal` + `imessage`，而 TS 类型包含它们。
-- Control UI CronStatus 期望 `jobCount`，但 Gateway 网关返回 `jobs`。
-- 智能体 cron 工具 schema 允许任意 `job` 对象，导致格式错误的输入。
-- Gateway 网关严格验证 `cron.add` 而不进行规范化，因此包装的负载会失败。
+- Gateway ç½‘å…³ä¸­çš„ `CronPayloadSchema` æŽ’é™¤äº† `signal` + `imessage`ï¼Œè€Œ TS ç±»åž‹åŒ…å«å®ƒä»¬ã€‚
+- Control UI CronStatus æœŸæœ› `jobCount`ï¼Œä½† Gateway ç½‘å…³è¿”å›ž `jobs`ã€‚
+- æ™ºèƒ½ä½“ cron å·¥å…· schema å…è®¸ä»»æ„ `job` å¯¹è±¡ï¼Œå¯¼è‡´æ ¼å¼é”™è¯¯çš„è¾“å…¥ã€‚
+- Gateway ç½‘å…³ä¸¥æ ¼éªŒè¯ `cron.add` è€Œä¸è¿›è¡Œè§„èŒƒåŒ–ï¼Œå› æ­¤åŒ…è£…çš„è´Ÿè½½ä¼šå¤±è´¥ã€‚
 
-## 变更内容
+## å˜æ›´å†…å®¹
 
-- `cron.add` 和 `cron.update` 现在规范化常见的包装形式并推断缺失的 `kind` 字段。
-- 智能体 cron 工具 schema 与 Gateway 网关 schema 匹配，减少无效负载。
-- 提供商枚举在 Gateway 网关、CLI、UI 和 macOS 选择器之间对齐。
-- Control UI 使用 Gateway 网关的 `jobs` 计数字段显示状态。
+- `cron.add` å’Œ `cron.update` çŽ°åœ¨è§„èŒƒåŒ–å¸¸è§çš„åŒ…è£…å½¢å¼å¹¶æŽ¨æ–­ç¼ºå¤±çš„ `kind` å­—æ®µã€‚
+- æ™ºèƒ½ä½“ cron å·¥å…· schema ä¸Ž Gateway ç½‘å…³ schema åŒ¹é…ï¼Œå‡å°‘æ— æ•ˆè´Ÿè½½ã€‚
+- æä¾›å•†æžšä¸¾åœ¨ Gateway ç½‘å…³ã€CLIã€UI å’Œ macOS é€‰æ‹©å™¨ä¹‹é—´å¯¹é½ã€‚
+- Control UI ä½¿ç”¨ Gateway ç½‘å…³çš„ `jobs` è®¡æ•°å­—æ®µæ˜¾ç¤ºçŠ¶æ€ã€‚
 
-## 当前行为
+## å½“å‰è¡Œä¸º
 
-- **规范化：**包装的 `data`/`job` 负载被解包；`schedule.kind` 和 `payload.kind` 在安全时被推断。
-- **默认值：**当缺失时，为 `wakeMode` 和 `sessionTarget` 应用安全默认值。
-- **提供商：**Discord/Slack/Signal/iMessage 现在在 CLI/UI 中一致显示。
+- **è§„èŒƒåŒ–ï¼š**åŒ…è£…çš„ `data`/`job` è´Ÿè½½è¢«è§£åŒ…ï¼›`schedule.kind` å’Œ `payload.kind` åœ¨å®‰å…¨æ—¶è¢«æŽ¨æ–­ã€‚
+- **é»˜è®¤å€¼ï¼š**å½“ç¼ºå¤±æ—¶ï¼Œä¸º `wakeMode` å’Œ `sessionTarget` åº”ç”¨å®‰å…¨é»˜è®¤å€¼ã€‚
+- **æä¾›å•†ï¼š**Discord/Slack/Signal/iMessage çŽ°åœ¨åœ¨ CLI/UI ä¸­ä¸€è‡´æ˜¾ç¤ºã€‚
 
-参见 [Cron 任务](/automation/cron-jobs) 了解规范化的形式和示例。
+å‚è§ [Cron ä»»åŠ¡](/automation/cron-jobs) äº†è§£è§„èŒƒåŒ–çš„å½¢å¼å’Œç¤ºä¾‹ã€‚
 
-## 验证
+## éªŒè¯
 
-- 观察 Gateway 网关日志中 `cron.add` INVALID_REQUEST 错误是否减少。
-- 确认 Control UI cron 状态在刷新后显示任务计数。
+- è§‚å¯Ÿ Gateway ç½‘å…³æ—¥å¿—ä¸­ `cron.add` INVALID_REQUEST é”™è¯¯æ˜¯å¦å‡å°‘ã€‚
+- ç¡®è®¤ Control UI cron çŠ¶æ€åœ¨åˆ·æ–°åŽæ˜¾ç¤ºä»»åŠ¡è®¡æ•°ã€‚
 
-## 可选后续工作
+## å¯é€‰åŽç»­å·¥ä½œ
 
-- 手动 Control UI 冒烟测试：为每个提供商添加一个 cron 任务 + 验证状态任务计数。
+- æ‰‹åŠ¨ Control UI å†’çƒŸæµ‹è¯•ï¼šä¸ºæ¯ä¸ªæä¾›å•†æ·»åŠ ä¸€ä¸ª cron ä»»åŠ¡ + éªŒè¯çŠ¶æ€ä»»åŠ¡è®¡æ•°ã€‚
 
-## 开放问题
+## å¼€æ”¾é—®é¢˜
 
-- `cron.add` 是否应该接受来自客户端的显式 `state`（当前被 schema 禁止）？
-- 我们是否应该允许 `webchat` 作为显式投递提供商（当前在投递解析中被过滤）？
+- `cron.add` æ˜¯å¦åº”è¯¥æŽ¥å—æ¥è‡ªå®¢æˆ·ç«¯çš„æ˜¾å¼ `state`ï¼ˆå½“å‰è¢« schema ç¦æ­¢ï¼‰ï¼Ÿ
+- æˆ‘ä»¬æ˜¯å¦åº”è¯¥å…è®¸ `webchat` ä½œä¸ºæ˜¾å¼æŠ•é€’æä¾›å•†ï¼ˆå½“å‰åœ¨æŠ•é€’è§£æžä¸­è¢«è¿‡æ»¤ï¼‰ï¼Ÿ
+

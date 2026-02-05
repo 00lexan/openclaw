@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 编辑 IPC 合约或菜单栏应用 IPC
-summary: OpenClaw 应用的 macOS IPC 架构、Gateway 网关节点传输和 PeekabooBridge
+  - ç¼–è¾‘ IPC åˆçº¦æˆ–èœå•æ åº”ç”¨ IPC
+summary:  åº”ç”¨çš„ macOS IPC æž¶æž„ã€Gateway ç½‘å…³èŠ‚ç‚¹ä¼ è¾“å’Œ PeekabooBridge
 title: macOS IPC
 x-i18n:
   generated_at: "2026-02-03T07:52:57Z"
@@ -12,30 +12,30 @@ x-i18n:
   workflow: 15
 ---
 
-# OpenClaw macOS IPC 架构
+#  macOS IPC æž¶æž„
 
-**当前模型：** 一个本地 Unix 套接字将**节点主机服务**连接到 **macOS 应用**，用于 exec 审批 + `system.run`。存在一个 `openclaw-mac` 调试 CLI 用于发现/连接检查；智能体操作仍通过 Gateway 网关 WebSocket 和 `node.invoke` 流转。UI 自动化使用 PeekabooBridge。
+**å½“å‰æ¨¡åž‹ï¼š** ä¸€ä¸ªæœ¬åœ° Unix å¥—æŽ¥å­—å°†**èŠ‚ç‚¹ä¸»æœºæœåŠ¡**è¿žæŽ¥åˆ° **macOS åº”ç”¨**ï¼Œç”¨äºŽ exec å®¡æ‰¹ + `system.run`ã€‚å­˜åœ¨ä¸€ä¸ª `-mac` è°ƒè¯• CLI ç”¨äºŽå‘çŽ°/è¿žæŽ¥æ£€æŸ¥ï¼›æ™ºèƒ½ä½“æ“ä½œä»é€šè¿‡ Gateway ç½‘å…³ WebSocket å’Œ `node.invoke` æµè½¬ã€‚UI è‡ªåŠ¨åŒ–ä½¿ç”¨ PeekabooBridgeã€‚
 
-## 目标
+## ç›®æ ‡
 
-- 单个 GUI 应用实例拥有所有面向 TCC 的工作（通知、屏幕录制、麦克风、语音、AppleScript）。
-- 小型自动化接口：Gateway 网关 + 节点命令，加上用于 UI 自动化的 PeekabooBridge。
-- 可预测的权限：始终是同一个签名的 bundle ID，由 launchd 启动，因此 TCC 授权保持有效。
+- å•ä¸ª GUI åº”ç”¨å®žä¾‹æ‹¥æœ‰æ‰€æœ‰é¢å‘ TCC çš„å·¥ä½œï¼ˆé€šçŸ¥ã€å±å¹•å½•åˆ¶ã€éº¦å…‹é£Žã€è¯­éŸ³ã€AppleScriptï¼‰ã€‚
+- å°åž‹è‡ªåŠ¨åŒ–æŽ¥å£ï¼šGateway ç½‘å…³ + èŠ‚ç‚¹å‘½ä»¤ï¼ŒåŠ ä¸Šç”¨äºŽ UI è‡ªåŠ¨åŒ–çš„ PeekabooBridgeã€‚
+- å¯é¢„æµ‹çš„æƒé™ï¼šå§‹ç»ˆæ˜¯åŒä¸€ä¸ªç­¾åçš„ bundle IDï¼Œç”± launchd å¯åŠ¨ï¼Œå› æ­¤ TCC æŽˆæƒä¿æŒæœ‰æ•ˆã€‚
 
-## 工作原理
+## å·¥ä½œåŽŸç†
 
-### Gateway 网关 + 节点传输
+### Gateway ç½‘å…³ + èŠ‚ç‚¹ä¼ è¾“
 
-- 应用运行 Gateway 网关（本地模式）并作为节点连接到它。
-- 智能体操作通过 `node.invoke` 执行（例如 `system.run`、`system.notify`、`canvas.*`）。
+- åº”ç”¨è¿è¡Œ Gateway ç½‘å…³ï¼ˆæœ¬åœ°æ¨¡å¼ï¼‰å¹¶ä½œä¸ºèŠ‚ç‚¹è¿žæŽ¥åˆ°å®ƒã€‚
+- æ™ºèƒ½ä½“æ“ä½œé€šè¿‡ `node.invoke` æ‰§è¡Œï¼ˆä¾‹å¦‚ `system.run`ã€`system.notify`ã€`canvas.*`ï¼‰ã€‚
 
-### 节点服务 + 应用 IPC
+### èŠ‚ç‚¹æœåŠ¡ + åº”ç”¨ IPC
 
-- 一个无头节点主机服务连接到 Gateway 网关 WebSocket。
-- `system.run` 请求通过本地 Unix 套接字转发到 macOS 应用。
-- 应用在 UI 上下文中执行 exec，必要时提示，并返回输出。
+- ä¸€ä¸ªæ— å¤´èŠ‚ç‚¹ä¸»æœºæœåŠ¡è¿žæŽ¥åˆ° Gateway ç½‘å…³ WebSocketã€‚
+- `system.run` è¯·æ±‚é€šè¿‡æœ¬åœ° Unix å¥—æŽ¥å­—è½¬å‘åˆ° macOS åº”ç”¨ã€‚
+- åº”ç”¨åœ¨ UI ä¸Šä¸‹æ–‡ä¸­æ‰§è¡Œ execï¼Œå¿…è¦æ—¶æç¤ºï¼Œå¹¶è¿”å›žè¾“å‡ºã€‚
 
-图示（SCI）：
+å›¾ç¤ºï¼ˆSCIï¼‰ï¼š
 
 ```
 Agent -> Gateway -> Node Service (WS)
@@ -44,25 +44,26 @@ Agent -> Gateway -> Node Service (WS)
                   Mac App (UI + TCC + system.run)
 ```
 
-### PeekabooBridge（UI 自动化）
+### PeekabooBridgeï¼ˆUI è‡ªåŠ¨åŒ–ï¼‰
 
-- UI 自动化使用名为 `bridge.sock` 的单独 UNIX 套接字和 PeekabooBridge JSON 协议。
-- 主机优先顺序（客户端侧）：Peekaboo.app → Claude.app → OpenClaw.app → 本地执行。
-- 安全性：桥接主机需要允许的 TeamID；仅 DEBUG 的同 UID 逃逸通道由 `PEEKABOO_ALLOW_UNSIGNED_SOCKET_CLIENTS=1` 保护（Peekaboo 约定）。
-- 参见：[PeekabooBridge 用法](/platforms/mac/peekaboo)了解详情。
+- UI è‡ªåŠ¨åŒ–ä½¿ç”¨åä¸º `bridge.sock` çš„å•ç‹¬ UNIX å¥—æŽ¥å­—å’Œ PeekabooBridge JSON åè®®ã€‚
+- ä¸»æœºä¼˜å…ˆé¡ºåºï¼ˆå®¢æˆ·ç«¯ä¾§ï¼‰ï¼šPeekaboo.app â†’ Claude.app â†’ .app â†’ æœ¬åœ°æ‰§è¡Œã€‚
+- å®‰å…¨æ€§ï¼šæ¡¥æŽ¥ä¸»æœºéœ€è¦å…è®¸çš„ TeamIDï¼›ä»… DEBUG çš„åŒ UID é€ƒé€¸é€šé“ç”± `PEEKABOO_ALLOW_UNSIGNED_SOCKET_CLIENTS=1` ä¿æŠ¤ï¼ˆPeekaboo çº¦å®šï¼‰ã€‚
+- å‚è§ï¼š[PeekabooBridge ç”¨æ³•](/platforms/mac/peekaboo)äº†è§£è¯¦æƒ…ã€‚
 
-## 操作流程
+## æ“ä½œæµç¨‹
 
-- 重启/重建：`SIGN_IDENTITY="Apple Development: <Developer Name> (<TEAMID>)" scripts/restart-mac.sh`
-  - 终止现有实例
-  - Swift 构建 + 打包
-  - 写入/引导/启动 LaunchAgent
-- 单实例：如果具有相同 bundle ID 的另一个实例正在运行，应用会提前退出。
+- é‡å¯/é‡å»ºï¼š`SIGN_IDENTITY="Apple Development: <Developer Name> (<TEAMID>)" scripts/restart-mac.sh`
+  - ç»ˆæ­¢çŽ°æœ‰å®žä¾‹
+  - Swift æž„å»º + æ‰“åŒ…
+  - å†™å…¥/å¼•å¯¼/å¯åŠ¨ LaunchAgent
+- å•å®žä¾‹ï¼šå¦‚æžœå…·æœ‰ç›¸åŒ bundle ID çš„å¦ä¸€ä¸ªå®žä¾‹æ­£åœ¨è¿è¡Œï¼Œåº”ç”¨ä¼šæå‰é€€å‡ºã€‚
 
-## 加固注意事项
+## åŠ å›ºæ³¨æ„äº‹é¡¹
 
-- 优先要求所有特权接口的 TeamID 匹配。
-- PeekabooBridge：`PEEKABOO_ALLOW_UNSIGNED_SOCKET_CLIENTS=1`（仅 DEBUG）可能允许同 UID 调用者用于本地开发。
-- 所有通信仅保持本地；不暴露网络套接字。
-- TCC 提示仅源自 GUI 应用包；在重建时保持签名的 bundle ID 稳定。
-- IPC 加固：套接字模式 `0600`、令牌、对等 UID 检查、HMAC 质询/响应、短 TTL。
+- ä¼˜å…ˆè¦æ±‚æ‰€æœ‰ç‰¹æƒæŽ¥å£çš„ TeamID åŒ¹é…ã€‚
+- PeekabooBridgeï¼š`PEEKABOO_ALLOW_UNSIGNED_SOCKET_CLIENTS=1`ï¼ˆä»… DEBUGï¼‰å¯èƒ½å…è®¸åŒ UID è°ƒç”¨è€…ç”¨äºŽæœ¬åœ°å¼€å‘ã€‚
+- æ‰€æœ‰é€šä¿¡ä»…ä¿æŒæœ¬åœ°ï¼›ä¸æš´éœ²ç½‘ç»œå¥—æŽ¥å­—ã€‚
+- TCC æç¤ºä»…æºè‡ª GUI åº”ç”¨åŒ…ï¼›åœ¨é‡å»ºæ—¶ä¿æŒç­¾åçš„ bundle ID ç¨³å®šã€‚
+- IPC åŠ å›ºï¼šå¥—æŽ¥å­—æ¨¡å¼ `0600`ã€ä»¤ç‰Œã€å¯¹ç­‰ UID æ£€æŸ¥ã€HMAC è´¨è¯¢/å“åº”ã€çŸ­ TTLã€‚
+

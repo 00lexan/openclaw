@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 vi.mock("../src/web/media.js", () => ({
   loadWebMedia: vi.fn(async () => ({
@@ -87,3 +87,4 @@ describe("deliverWebReply retry", () => {
     expect(msg.sendMedia).toHaveBeenCalledTimes(2);
   });
 });
+

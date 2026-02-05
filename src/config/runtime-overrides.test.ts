@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "vitest";
-import type { OpenClawConfig } from "./types.js";
+﻿import { beforeEach, describe, expect, it } from "vitest";
+import type { Config } from "./types.js";
 import {
   applyConfigOverrides,
   getConfigOverrides,
@@ -15,8 +15,8 @@ describe("runtime overrides", () => {
 
   it("sets and applies nested overrides", () => {
     const cfg = {
-      messages: { responsePrefix: "[openclaw]" },
-    } as OpenClawConfig;
+      messages: { responsePrefix: "[]" },
+    } as Config;
     setConfigOverride("messages.responsePrefix", "[debug]");
     const next = applyConfigOverrides(cfg);
     expect(next.messages?.responsePrefix).toBe("[debug]");
@@ -25,7 +25,7 @@ describe("runtime overrides", () => {
   it("merges object overrides without clobbering siblings", () => {
     const cfg = {
       channels: { whatsapp: { dmPolicy: "pairing", allowFrom: ["+1"] } },
-    } as OpenClawConfig;
+    } as Config;
     setConfigOverride("channels.whatsapp.dmPolicy", "open");
     const next = applyConfigOverrides(cfg);
     expect(next.channels?.whatsapp?.dmPolicy).toBe("open");
@@ -49,3 +49,4 @@ describe("runtime overrides", () => {
     }
   });
 });
+

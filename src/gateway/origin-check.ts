@@ -1,4 +1,4 @@
-type OriginCheckResult = { ok: true } | { ok: false; reason: string };
+﻿type OriginCheckResult = { ok: true } | { ok: false; reason: string };
 
 function normalizeHostHeader(hostHeader?: string): string {
   return (hostHeader ?? "").trim().toLowerCase();
@@ -83,3 +83,4 @@ export function checkBrowserOrigin(params: {
 
   return { ok: false, reason: "origin not allowed" };
 }
+

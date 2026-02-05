@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import type { GatewayRequestHandlers } from "./types.js";
 import { defaultRuntime } from "../../runtime.js";
 import { WizardSession } from "../../wizard/session.js";
@@ -137,3 +137,4 @@ export const wizardHandlers: GatewayRequestHandlers = {
     respond(true, status, undefined);
   },
 };
+

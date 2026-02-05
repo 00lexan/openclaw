@@ -1,4 +1,4 @@
-import type { loadConfig } from "../../../config/config.js";
+﻿import type { loadConfig } from "../../../config/config.js";
 import type { WebInboundMsg } from "../types.js";
 import { shouldAckReactionForWhatsApp } from "../../../channels/ack-reactions.js";
 import { logVerbose } from "../../../globals.js";
@@ -72,3 +72,4 @@ export function maybeSendAckReaction(params: {
     logVerbose(`WhatsApp ack reaction failed for chat ${params.msg.chatId}: ${formatError(err)}`);
   });
 }
+

@@ -1,4 +1,4 @@
-import type { DatabaseSync } from "node:sqlite";
+﻿import type { DatabaseSync } from "node:sqlite";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import { buildFileEntry, listMemoryFiles, type MemoryFileEntry } from "./internal.js";
 
@@ -45,7 +45,7 @@ export async function syncMemoryFiles(params: {
     params.progress.report({
       completed: params.progress.completed,
       total: params.progress.total,
-      label: params.batchEnabled ? "Indexing memory files (batch)..." : "Indexing memory files…",
+      label: params.batchEnabled ? "Indexing memory files (batch)..." : "Indexing memory filesâ€¦",
     });
   }
 
@@ -100,3 +100,4 @@ export async function syncMemoryFiles(params: {
     }
   }
 }
+

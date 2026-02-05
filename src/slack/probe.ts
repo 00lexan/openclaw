@@ -1,4 +1,4 @@
-import { createSlackWebClient } from "./client.js";
+﻿import { createSlackWebClient } from "./client.js";
 
 export type SlackProbe = {
   ok: boolean;
@@ -58,3 +58,4 @@ export async function probeSlack(token: string, timeoutMs = 2500): Promise<Slack
     };
   }
 }
+

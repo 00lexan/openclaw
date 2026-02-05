@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type {
   AgentFileEntry,
   AgentsFilesListResult,
@@ -551,7 +551,7 @@ export function renderAgents(props: AgentsProps) {
             <div class="card-sub">${agents.length} configured.</div>
           </div>
           <button class="btn btn--sm" ?disabled=${props.loading} @click=${props.onRefresh}>
-            ${props.loading ? "Loading…" : "Refresh"}
+            ${props.loading ? "Loadingâ€¦" : "Refresh"}
           </button>
         </div>
         ${
@@ -833,7 +833,7 @@ function renderAgentOverview(params: {
   const skillFilter = Array.isArray(config.entry?.skills) ? config.entry?.skills : null;
   const skillCount = skillFilter?.length ?? null;
   const identityStatus = agentIdentityLoading
-    ? "Loading…"
+    ? "Loadingâ€¦"
     : agentIdentityError
       ? "Unavailable"
       : "";
@@ -923,7 +923,7 @@ function renderAgentOverview(params: {
             ?disabled=${configSaving || !configDirty}
             @click=${onConfigSave}
           >
-            ${configSaving ? "Saving…" : "Save"}
+            ${configSaving ? "Savingâ€¦" : "Save"}
           </button>
         </div>
       </div>
@@ -1123,7 +1123,7 @@ function renderAgentChannels(params: {
             <div class="card-sub">Gateway-wide channel status snapshot.</div>
           </div>
           <button class="btn btn--sm" ?disabled=${params.loading} @click=${params.onRefresh}>
-            ${params.loading ? "Refreshing…" : "Refresh"}
+            ${params.loading ? "Refreshingâ€¦" : "Refresh"}
           </button>
         </div>
         <div class="muted" style="margin-top: 8px;">
@@ -1215,7 +1215,7 @@ function renderAgentCron(params: {
             <div class="card-sub">Gateway cron status.</div>
           </div>
           <button class="btn btn--sm" ?disabled=${params.loading} @click=${params.onRefresh}>
-            ${params.loading ? "Refreshing…" : "Refresh"}
+            ${params.loading ? "Refreshingâ€¦" : "Refresh"}
           </button>
         </div>
         <div class="stat-grid" style="margin-top: 16px;">
@@ -1314,7 +1314,7 @@ function renderAgentFiles(params: {
           ?disabled=${params.agentFilesLoading}
           @click=${() => params.onLoadFiles(params.agentId)}
         >
-          ${params.agentFilesLoading ? "Loading…" : "Refresh"}
+          ${params.agentFilesLoading ? "Loadingâ€¦" : "Refresh"}
         </button>
       </div>
       ${list ? html`<div class="muted mono" style="margin-top: 8px;">Workspace: ${list.workspace}</div>` : nothing}
@@ -1370,7 +1370,7 @@ function renderAgentFiles(params: {
                                 ?disabled=${params.agentFileSaving || !isDirty}
                                 @click=${() => params.onFileSave(activeEntry.name)}
                               >
-                                ${params.agentFileSaving ? "Saving…" : "Save"}
+                                ${params.agentFileSaving ? "Savingâ€¦" : "Save"}
                               </button>
                             </div>
                           </div>
@@ -1407,7 +1407,7 @@ function renderAgentFiles(params: {
 function renderAgentFileRow(file: AgentFileEntry, active: string | null, onSelect: () => void) {
   const status = file.missing
     ? "Missing"
-    : `${formatBytes(file.size)} · ${formatAgo(file.updatedAtMs ?? null)}`;
+    : `${formatBytes(file.size)} Â· ${formatAgo(file.updatedAtMs ?? null)}`;
   return html`
     <button
       type="button"
@@ -1558,7 +1558,7 @@ function renderAgentTools(params: {
             ?disabled=${params.configSaving || !params.configDirty}
             @click=${params.onConfigSave}
           >
-            ${params.configSaving ? "Saving…" : "Save"}
+            ${params.configSaving ? "Savingâ€¦" : "Save"}
           </button>
         </div>
       </div>
@@ -1680,10 +1680,10 @@ type SkillGroup = {
 };
 
 const SKILL_SOURCE_GROUPS: Array<{ id: string; label: string; sources: string[] }> = [
-  { id: "workspace", label: "Workspace Skills", sources: ["openclaw-workspace"] },
-  { id: "built-in", label: "Built-in Skills", sources: ["openclaw-bundled"] },
-  { id: "installed", label: "Installed Skills", sources: ["openclaw-managed"] },
-  { id: "extra", label: "Extra Skills", sources: ["openclaw-extra"] },
+  { id: "workspace", label: "Workspace Skills", sources: ["-workspace"] },
+  { id: "built-in", label: "Built-in Skills", sources: ["-bundled"] },
+  { id: "installed", label: "Installed Skills", sources: ["-managed"] },
+  { id: "extra", label: "Extra Skills", sources: ["-extra"] },
 ];
 
 function groupSkills(skills: SkillStatusEntry[]): SkillGroup[] {
@@ -1775,14 +1775,14 @@ function renderAgentSkills(params: {
             Reload Config
           </button>
           <button class="btn btn--sm" ?disabled=${params.loading} @click=${params.onRefresh}>
-            ${params.loading ? "Loading…" : "Refresh"}
+            ${params.loading ? "Loadingâ€¦" : "Refresh"}
           </button>
           <button
             class="btn btn--sm primary"
             ?disabled=${params.configSaving || !params.configDirty}
             @click=${params.onConfigSave}
           >
-            ${params.configSaving ? "Saving…" : "Save"}
+            ${params.configSaving ? "Savingâ€¦" : "Save"}
           </button>
         </div>
       </div>
@@ -1959,3 +1959,4 @@ function renderAgentSkillRow(
     </div>
   `;
 }
+

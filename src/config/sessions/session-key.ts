@@ -1,4 +1,4 @@
-import type { MsgContext } from "../../auto-reply/templating.js";
+﻿import type { MsgContext } from "../../auto-reply/templating.js";
 import type { SessionScope } from "./types.js";
 import {
   buildAgentMainSessionKey,
@@ -45,3 +45,4 @@ export function resolveSessionKey(scope: SessionScope, ctx: MsgContext, mainKey?
   }
   return `agent:${DEFAULT_AGENT_ID}:${raw}`;
 }
+

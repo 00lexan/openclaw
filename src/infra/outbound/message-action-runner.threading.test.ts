@@ -1,5 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import type { Config } from "../../config/config.js";
 import { slackPlugin } from "../../../extensions/slack/src/channel.js";
 import { setActivePluginRegistry } from "../../plugins/runtime.js";
 import { createTestRegistry } from "../../test-utils/channel-plugins.js";
@@ -38,7 +38,7 @@ const slackConfig = {
       appToken: "xapp-test",
     },
   },
-} as OpenClawConfig;
+} as Config;
 
 describe("runMessageAction Slack threading", () => {
   beforeEach(async () => {
@@ -115,3 +115,4 @@ describe("runMessageAction Slack threading", () => {
     expect(call?.ctx?.mirror?.sessionKey).toBe("agent:main:slack:channel:c123:thread:333.444");
   });
 });
+

@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "a2ui_genkit_eval",
   "version": "1.0.0",
   "main": "lib/index.js",
@@ -34,3 +34,4 @@
     "genkitx-anthropic": "^0.25.0"
   }
 }
+

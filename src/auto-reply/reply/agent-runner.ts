@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import fs from "node:fs";
 import type { TypingMode } from "../../config/types.js";
 import type { OriginatingChannelType, TemplateContext } from "../templating.js";
@@ -484,7 +484,7 @@ export async function runReplyAgent(params: {
         costConfig,
       });
       if (formatted && responseUsageMode === "full" && sessionKey) {
-        formatted = `${formatted} · session ${sessionKey}`;
+        formatted = `${formatted} Â· session ${sessionKey}`;
       }
       if (formatted) {
         responseUsageLine = formatted;
@@ -503,11 +503,11 @@ export async function runReplyAgent(params: {
       });
       if (verboseEnabled) {
         const suffix = typeof count === "number" ? ` (count ${count})` : "";
-        finalPayloads = [{ text: `🧹 Auto-compaction complete${suffix}.` }, ...finalPayloads];
+        finalPayloads = [{ text: `ðŸ§¹ Auto-compaction complete${suffix}.` }, ...finalPayloads];
       }
     }
     if (verboseEnabled && activeIsNewSession) {
-      finalPayloads = [{ text: `🧭 New session: ${followupRun.run.sessionId}` }, ...finalPayloads];
+      finalPayloads = [{ text: `ðŸ§­ New session: ${followupRun.run.sessionId}` }, ...finalPayloads];
     }
     if (responseUsageLine) {
       finalPayloads = appendUsageLine(finalPayloads, responseUsageLine);
@@ -523,3 +523,4 @@ export async function runReplyAgent(params: {
     typing.markRunComplete();
   }
 }
+

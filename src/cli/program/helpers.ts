@@ -1,4 +1,4 @@
-export function collectOption(value: string, previous: string[] = []): string[] {
+﻿export function collectOption(value: string, previous: string[] = []): string[] {
   return [...previous, value];
 }
 
@@ -30,3 +30,4 @@ export function resolveActionArgs(actionCommand?: import("commander").Command): 
   const args = (actionCommand as import("commander").Command & { args?: string[] }).args;
   return Array.isArray(args) ? args : [];
 }
+

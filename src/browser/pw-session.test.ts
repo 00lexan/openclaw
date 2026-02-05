@@ -1,4 +1,4 @@
-import type { Page } from "playwright-core";
+﻿import type { Page } from "playwright-core";
 import { describe, expect, it, vi } from "vitest";
 import {
   ensurePageState,
@@ -139,3 +139,4 @@ describe("pw-session ensurePageState", () => {
     expect(state2.requests).toEqual([]);
   });
 });
+

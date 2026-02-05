@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { RuntimeEnv } from "../runtime.js";
 import { discordPlugin } from "../../extensions/discord/src/channel.js";
 import { imessagePlugin } from "../../extensions/imessage/src/channel.js";
@@ -49,7 +49,7 @@ const runtime: RuntimeEnv = {
 };
 
 const baseSnapshot = {
-  path: "/tmp/openclaw.json",
+  path: "/tmp/.json",
   exists: true,
   raw: "{}",
   parsed: {},
@@ -369,7 +369,7 @@ describe("channels command", () => {
     });
     expect(lines.join("\n")).toMatch(/Warnings:/);
     expect(lines.join("\n")).toMatch(/Message Content Intent is disabled/i);
-    expect(lines.join("\n")).toMatch(/Run: (?:openclaw|openclaw)( --profile isolated)? doctor/);
+    expect(lines.join("\n")).toMatch(/Run: (?:|)( --profile isolated)? doctor/);
   });
 
   it("surfaces Discord permission audit issues in channels status output", () => {
@@ -424,12 +424,12 @@ describe("channels command", () => {
             accountId: "default",
             enabled: true,
             configured: true,
-            probe: { ok: true, bot: { username: "openclaw_bot" } },
+            probe: { ok: true, bot: { username: "_bot" } },
           },
         ],
       },
     });
-    expect(lines.join("\n")).toMatch(/bot:@openclaw_bot/);
+    expect(lines.join("\n")).toMatch(/bot:@_bot/);
   });
 
   it("surfaces Telegram group membership audit issues in channels status output", () => {
@@ -488,3 +488,4 @@ describe("channels command", () => {
     expect(disconnected.join("\n")).toMatch(/disconnected/i);
   });
 });
+

@@ -1,4 +1,4 @@
-let activeStream: NodeJS.WriteStream | null = null;
+﻿let activeStream: NodeJS.WriteStream | null = null;
 
 export function registerActiveProgressLine(stream: NodeJS.WriteStream): void {
   if (!stream.isTTY) {
@@ -23,3 +23,4 @@ export function unregisterActiveProgressLine(stream?: NodeJS.WriteStream): void 
   }
   activeStream = null;
 }
+

@@ -1,4 +1,4 @@
-const SHELL_METACHARS = /[;&|`$<>]/;
+﻿const SHELL_METACHARS = /[;&|`$<>]/;
 const CONTROL_CHARS = /[\r\n]/;
 const QUOTE_CHARS = /["']/;
 const BARE_NAME_PATTERN = /^[A-Za-z0-9._+-]+$/;
@@ -42,3 +42,4 @@ export function isSafeExecutableValue(value: string | null | undefined): boolean
   }
   return BARE_NAME_PATTERN.test(trimmed);
 }
+

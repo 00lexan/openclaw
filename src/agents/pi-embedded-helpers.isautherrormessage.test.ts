@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isAuthErrorMessage } from "./pi-embedded-helpers.js";
 import { DEFAULT_AGENTS_FILENAME } from "./workspace.js";
 
@@ -33,3 +33,4 @@ describe("isAuthErrorMessage", () => {
     expect(isAuthErrorMessage("billing issue detected")).toBe(false);
   });
 });
+

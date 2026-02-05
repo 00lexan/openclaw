@@ -1,4 +1,4 @@
-import { note as clackNote } from "@clack/prompts";
+﻿import { note as clackNote } from "@clack/prompts";
 import { visibleWidth } from "./ansi.js";
 import { stylePromptTitle } from "./prompt-style.js";
 
@@ -95,3 +95,4 @@ export function wrapNoteMessage(
 export function note(message: string, title?: string) {
   clackNote(wrapNoteMessage(message), stylePromptTitle(title));
 }
+

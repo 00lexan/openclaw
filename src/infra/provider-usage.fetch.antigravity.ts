@@ -1,4 +1,4 @@
-import type { ProviderUsageSnapshot, UsageWindow } from "./provider-usage.types.js";
+﻿import type { ProviderUsageSnapshot, UsageWindow } from "./provider-usage.types.js";
 import { logDebug } from "../logger.js";
 import { fetchJson } from "./provider-usage.fetch.shared.js";
 import { clampPercent, PROVIDER_LABELS } from "./provider-usage.shared.js";
@@ -312,3 +312,4 @@ export async function fetchAntigravityUsage(
 
   return snapshot;
 }
+

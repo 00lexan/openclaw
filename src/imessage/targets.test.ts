@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   formatIMessageChatTarget,
   isAllowedIMessageSender,
@@ -70,3 +70,4 @@ describe("imessage targets", () => {
     expect(formatIMessageChatTarget(undefined)).toBe("");
   });
 });
+

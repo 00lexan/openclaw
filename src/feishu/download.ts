@@ -1,4 +1,4 @@
-import type { Client } from "@larksuiteoapi/node-sdk";
+﻿import type { Client } from "@larksuiteoapi/node-sdk";
 import { formatErrorMessage } from "../infra/errors.js";
 import { getChildLogger } from "../logging.js";
 import { saveMediaBuffer } from "../media/store.js";
@@ -181,3 +181,4 @@ export async function resolveFeishuMedia(
 
   return null;
 }
+

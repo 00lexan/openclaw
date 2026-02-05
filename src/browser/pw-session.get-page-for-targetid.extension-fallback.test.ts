@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 
 describe("pw-session getPageForTargetId", () => {
   it("falls back to the only page when CDP session attachment is blocked (extension relays)", async () => {
@@ -52,3 +52,4 @@ describe("pw-session getPageForTargetId", () => {
     expect(browserClose).toHaveBeenCalled();
   });
 });
+

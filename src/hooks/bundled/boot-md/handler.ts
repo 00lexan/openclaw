@@ -1,11 +1,11 @@
-import type { CliDeps } from "../../../cli/deps.js";
-import type { OpenClawConfig } from "../../../config/config.js";
+﻿import type { CliDeps } from "../../../cli/deps.js";
+import type { Config } from "../../../config/config.js";
 import type { HookHandler } from "../../hooks.js";
 import { createDefaultDeps } from "../../../cli/deps.js";
 import { runBootOnce } from "../../../gateway/boot.js";
 
 type BootHookContext = {
-  cfg?: OpenClawConfig;
+  cfg?: Config;
   workspaceDir?: string;
   deps?: CliDeps;
 };
@@ -25,3 +25,4 @@ const runBootChecklist: HookHandler = async (event) => {
 };
 
 export default runBootChecklist;
+

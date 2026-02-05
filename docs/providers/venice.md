@@ -1,7 +1,7 @@
----
-summary: "Use Venice AI privacy-focused models in OpenClaw"
+﻿---
+summary: "Use Venice AI privacy-focused models in "
 read_when:
-  - You want privacy-focused inference in OpenClaw
+  - You want privacy-focused inference in 
   - You want Venice AI setup guidance
 title: "Venice AI"
 ---
@@ -10,9 +10,9 @@ title: "Venice AI"
 
 **Venice** is our highlight Venice setup for privacy-first inference with optional anonymized access to proprietary models.
 
-Venice AI provides privacy-focused AI inference with support for uncensored models and access to major proprietary models through their anonymized proxy. All inference is private by default—no training on your data, no logging.
+Venice AI provides privacy-focused AI inference with support for uncensored models and access to major proprietary models through their anonymized proxy. All inference is private by defaultâ€”no training on your data, no logging.
 
-## Why Venice in OpenClaw
+## Why Venice in 
 
 - **Private inference** for open-source models (no logging).
 - **Uncensored models** when you need them.
@@ -21,7 +21,7 @@ Venice AI provides privacy-focused AI inference with support for uncensored mode
 
 ## Privacy Modes
 
-Venice offers two privacy levels — understanding this is key to choosing your model:
+Venice offers two privacy levels â€” understanding this is key to choosing your model:
 
 | Mode           | Description                                                                                                          | Models                                         |
 | -------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
@@ -34,9 +34,9 @@ Venice offers two privacy levels — understanding this is key to choosing your 
 - **Uncensored models**: Access to models without content restrictions
 - **Major model access**: Use Claude, GPT-5.2, Gemini, Grok via Venice's anonymized proxy
 - **OpenAI-compatible API**: Standard `/v1` endpoints for easy integration
-- **Streaming**: ✅ Supported on all models
-- **Function calling**: ✅ Supported on select models (check model capabilities)
-- **Vision**: ✅ Supported on models with vision capability
+- **Streaming**: âœ… Supported on all models
+- **Function calling**: âœ… Supported on select models (check model capabilities)
+- **Vision**: âœ… Supported on models with vision capability
 - **No hard rate limits**: Fair-use throttling may apply for extreme usage
 
 ## Setup
@@ -44,10 +44,10 @@ Venice offers two privacy levels — understanding this is key to choosing your 
 ### 1. Get API Key
 
 1. Sign up at [venice.ai](https://venice.ai)
-2. Go to **Settings → API Keys → Create new key**
+2. Go to **Settings â†’ API Keys â†’ Create new key**
 3. Copy your API key (format: `vapi_xxxxxxxxxxxx`)
 
-### 2. Configure OpenClaw
+### 2. Configure 
 
 **Option A: Environment Variable**
 
@@ -58,7 +58,7 @@ export VENICE_API_KEY="vapi_xxxxxxxxxxxx"
 **Option B: Interactive Setup (Recommended)**
 
 ```bash
-openclaw onboard --auth-choice venice-api-key
+ onboard --auth-choice venice-api-key
 ```
 
 This will:
@@ -71,7 +71,7 @@ This will:
 **Option C: Non-interactive**
 
 ```bash
-openclaw onboard --non-interactive \
+ onboard --non-interactive \
   --auth-choice venice-api-key \
   --venice-api-key "vapi_xxxxxxxxxxxx"
 ```
@@ -79,12 +79,12 @@ openclaw onboard --non-interactive \
 ### 3. Verify Setup
 
 ```bash
-openclaw chat --model venice/llama-3.3-70b "Hello, are you working?"
+ chat --model venice/llama-3.3-70b "Hello, are you working?"
 ```
 
 ## Model Selection
 
-After setup, OpenClaw shows all available Venice models. Pick based on your needs:
+After setup,  shows all available Venice models. Pick based on your needs:
 
 - **Default (our pick)**: `venice/llama-3.3-70b` for private, balanced performance.
 - **Best overall quality**: `venice/claude-opus-45` for hard jobs (Opus remains the strongest).
@@ -94,19 +94,19 @@ After setup, OpenClaw shows all available Venice models. Pick based on your need
 Change your default model anytime:
 
 ```bash
-openclaw models set venice/claude-opus-45
-openclaw models set venice/llama-3.3-70b
+ models set venice/claude-opus-45
+ models set venice/llama-3.3-70b
 ```
 
 List all available models:
 
 ```bash
-openclaw models list | grep venice
+ models list | grep venice
 ```
 
-## Configure via `openclaw configure`
+## Configure via ` configure`
 
-1. Run `openclaw configure`
+1. Run ` configure`
 2. Select **Model/auth**
 3. Choose **Venice AI**
 
@@ -125,7 +125,7 @@ openclaw models list | grep venice
 
 ## Available Models (25 Total)
 
-### Private Models (15) — Fully Private, No Logging
+### Private Models (15) â€” Fully Private, No Logging
 
 | Model ID                         | Name                    | Context (tokens) | Features                |
 | -------------------------------- | ----------------------- | ---------------- | ----------------------- |
@@ -145,7 +145,7 @@ openclaw models list | grep venice
 | `openai-gpt-oss-120b`            | OpenAI GPT OSS 120B     | 131k             | General                 |
 | `zai-org-glm-4.7`                | GLM 4.7                 | 202k             | Reasoning, multilingual |
 
-### Anonymized Models (10) — Via Venice Proxy
+### Anonymized Models (10) â€” Via Venice Proxy
 
 | Model ID                 | Original          | Context (tokens) | Features          |
 | ------------------------ | ----------------- | ---------------- | ----------------- |
@@ -162,7 +162,7 @@ openclaw models list | grep venice
 
 ## Model Discovery
 
-OpenClaw automatically discovers models from the Venice API when `VENICE_API_KEY` is set. If the API is unreachable, it falls back to a static catalog.
+ automatically discovers models from the Venice API when `VENICE_API_KEY` is set. If the API is unreachable, it falls back to a static catalog.
 
 The `/models` endpoint is public (no auth needed for listing), but inference requires a valid API key.
 
@@ -170,10 +170,10 @@ The `/models` endpoint is public (no auth needed for listing), but inference req
 
 | Feature              | Support                                                 |
 | -------------------- | ------------------------------------------------------- |
-| **Streaming**        | ✅ All models                                           |
-| **Function calling** | ✅ Most models (check `supportsFunctionCalling` in API) |
-| **Vision/Images**    | ✅ Models marked with "Vision" feature                  |
-| **JSON mode**        | ✅ Supported via `response_format`                      |
+| **Streaming**        | âœ… All models                                           |
+| **Function calling** | âœ… Most models (check `supportsFunctionCalling` in API) |
+| **Vision/Images**    | âœ… Models marked with "Vision" feature                  |
+| **JSON mode**        | âœ… Supported via `response_format`                      |
 
 ## Pricing
 
@@ -195,19 +195,19 @@ Venice uses a credit-based system. Check [venice.ai/pricing](https://venice.ai/p
 
 ```bash
 # Use default private model
-openclaw chat --model venice/llama-3.3-70b
+ chat --model venice/llama-3.3-70b
 
 # Use Claude via Venice (anonymized)
-openclaw chat --model venice/claude-opus-45
+ chat --model venice/claude-opus-45
 
 # Use uncensored model
-openclaw chat --model venice/venice-uncensored
+ chat --model venice/venice-uncensored
 
 # Use vision model with image
-openclaw chat --model venice/qwen3-vl-235b-a22b
+ chat --model venice/qwen3-vl-235b-a22b
 
 # Use coding model
-openclaw chat --model venice/qwen3-coder-480b-a35b-instruct
+ chat --model venice/qwen3-coder-480b-a35b-instruct
 ```
 
 ## Troubleshooting
@@ -216,14 +216,14 @@ openclaw chat --model venice/qwen3-coder-480b-a35b-instruct
 
 ```bash
 echo $VENICE_API_KEY
-openclaw models list | grep venice
+ models list | grep venice
 ```
 
 Ensure the key starts with `vapi_`.
 
 ### Model not available
 
-The Venice model catalog updates dynamically. Run `openclaw models list` to see currently available models. Some models may be temporarily offline.
+The Venice model catalog updates dynamically. Run ` models list` to see currently available models. Some models may be temporarily offline.
 
 ### Connection issues
 
@@ -265,3 +265,4 @@ Venice API is at `https://api.venice.ai/api/v1`. Ensure your network allows HTTP
 - [API Documentation](https://docs.venice.ai)
 - [Pricing](https://venice.ai/pricing)
 - [Status](https://status.venice.ai)
+

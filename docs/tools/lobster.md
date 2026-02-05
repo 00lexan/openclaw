@@ -1,7 +1,7 @@
----
+﻿---
 title: Lobster
-summary: "Typed workflow runtime for OpenClaw with resumable approval gates."
-description: Typed workflow runtime for OpenClaw — composable pipelines with approval gates.
+summary: "Typed workflow runtime for  with resumable approval gates."
+description: Typed workflow runtime for  â€” composable pipelines with approval gates.
 read_when:
   - You want deterministic multi-step workflows with explicit approvals
   - You need to resume a workflow without re-running earlier steps
@@ -9,7 +9,7 @@ read_when:
 
 # Lobster
 
-Lobster is a workflow shell that lets OpenClaw run multi-step tool sequences as a single, deterministic operation with explicit approval checkpoints.
+Lobster is a workflow shell that lets  run multi-step tool sequences as a single, deterministic operation with explicit approval checkpoints.
 
 ## Hook
 
@@ -19,7 +19,7 @@ Your assistant can build the tools that manage itself. Ask for a workflow, and 3
 
 Today, complex workflows require many back-and-forth tool calls. Each call costs tokens, and the LLM has to orchestrate every step. Lobster moves that orchestration into a typed runtime:
 
-- **One call instead of many**: OpenClaw runs one Lobster tool call and gets a structured result.
+- **One call instead of many**:  runs one Lobster tool call and gets a structured result.
 - **Approvals built in**: Side effects (send email, post comment) halt the workflow until explicitly approved.
 - **Resumable**: Halted workflows return a token; approve and resume without re-running everything.
 
@@ -27,20 +27,20 @@ Today, complex workflows require many back-and-forth tool calls. Each call costs
 
 Lobster is intentionally small. The goal is not "a new language," it's a predictable, AI-friendly pipeline spec with first-class approvals and resume tokens.
 
-- **Approve/resume is built in**: A normal program can prompt a human, but it can’t _pause and resume_ with a durable token without you inventing that runtime yourself.
-- **Determinism + auditability**: Pipelines are data, so they’re easy to log, diff, replay, and review.
-- **Constrained surface for AI**: A tiny grammar + JSON piping reduces “creative” code paths and makes validation realistic.
+- **Approve/resume is built in**: A normal program can prompt a human, but it canâ€™t _pause and resume_ with a durable token without you inventing that runtime yourself.
+- **Determinism + auditability**: Pipelines are data, so theyâ€™re easy to log, diff, replay, and review.
+- **Constrained surface for AI**: A tiny grammar + JSON piping reduces â€œcreativeâ€ code paths and makes validation realistic.
 - **Safety policy baked in**: Timeouts, output caps, sandbox checks, and allowlists are enforced by the runtime, not each script.
 - **Still programmable**: Each step can call any CLI or script. If you want JS/TS, generate `.lobster` files from code.
 
 ## How it works
 
-OpenClaw launches the local `lobster` CLI in **tool mode** and parses a JSON envelope from stdout.
+ launches the local `lobster` CLI in **tool mode** and parses a JSON envelope from stdout.
 If the pipeline pauses for approval, the tool returns a `resumeToken` so you can continue later.
 
 ## Pattern: small CLI + JSON pipes + approvals
 
-Build tiny commands that speak JSON, then chain them into a single Lobster call. (Example command names below — swap in your own.)
+Build tiny commands that speak JSON, then chain them into a single Lobster call. (Example command names below â€” swap in your own.)
 
 ```bash
 inbox list --json
@@ -72,7 +72,7 @@ Example: map input items into tool calls:
 
 ```bash
 gog.gmail.search --query 'newer_than:1d' \
-  | openclaw.invoke --tool message --action send --each --item-key message --args-json '{"provider":"telegram","to":"..."}'
+  | .invoke --tool message --action send --each --item-key message --args-json '{"provider":"telegram","to":"..."}'
 ```
 
 ## JSON-only LLM steps (llm-task)
@@ -104,7 +104,7 @@ Enable the tool:
 Use it in a pipeline:
 
 ```lobster
-openclaw.invoke --tool llm-task --action json --args-json '{
+.invoke --tool llm-task --action json --args-json '{
   "prompt": "Given the input email, return intent and draft.",
   "input": { "subject": "Hello", "body": "Can you help?" },
   "schema": {
@@ -123,7 +123,7 @@ See [LLM Task](/tools/llm-task) for details and configuration options.
 
 ## Workflow files (.lobster)
 
-Lobster can run YAML/JSON workflow files with `name`, `args`, `steps`, `env`, `condition`, and `approval` fields. In OpenClaw tool calls, set `pipeline` to the file path.
+Lobster can run YAML/JSON workflow files with `name`, `args`, `steps`, `env`, `condition`, and `approval` fields. In  tool calls, set `pipeline` to the file path.
 
 ```yaml
 name: inbox-triage
@@ -148,12 +148,12 @@ steps:
 
 Notes:
 
-- `stdin: $step.stdout` and `stdin: $step.json` pass a prior step’s output.
+- `stdin: $step.stdout` and `stdin: $step.json` pass a prior stepâ€™s output.
 - `condition` (or `when`) can gate steps on `$step.approved`.
 
 ## Install Lobster
 
-Install the Lobster CLI on the **same host** that runs the OpenClaw Gateway (see the [Lobster repo](https://github.com/openclaw/lobster)), and ensure `lobster` is on `PATH`.
+Install the Lobster CLI on the **same host** that runs the  Gateway (see the [Lobster repo](https://github.com//lobster)), and ensure `lobster` is on `PATH`.
 If you want to use a custom binary location, pass an **absolute** `lobsterPath` in the tool call.
 
 ## Enable the tool
@@ -190,7 +190,7 @@ Or per-agent:
 Avoid using `tools.allow: ["lobster"]` unless you intend to run in restrictive allowlist mode.
 
 Note: allowlists are opt-in for optional plugins. If your allowlist only names
-plugin tools (like `lobster`), OpenClaw keeps core tools enabled. To restrict core
+plugin tools (like `lobster`),  keeps core tools enabled. To restrict core
 tools, include the core tools or groups you want in the allowlist too.
 
 ## Example: Email triage
@@ -199,12 +199,12 @@ Without Lobster:
 
 ```
 User: "Check my email and draft replies"
-→ openclaw calls gmail.list
-→ LLM summarizes
-→ User: "draft replies to #2 and #5"
-→ LLM drafts
-→ User: "send #2"
-→ openclaw calls gmail.send
+â†’  calls gmail.list
+â†’ LLM summarizes
+â†’ User: "draft replies to #2 and #5"
+â†’ LLM drafts
+â†’ User: "send #2"
+â†’  calls gmail.send
 (repeat daily, no memory of what was triaged)
 ```
 
@@ -234,7 +234,7 @@ Returns a JSON envelope (truncated):
 }
 ```
 
-User approves → resume:
+User approves â†’ resume:
 
 ```json
 {
@@ -296,9 +296,9 @@ Continue a halted workflow after approval.
 
 Lobster returns a JSON envelope with one of three statuses:
 
-- `ok` → finished successfully
-- `needs_approval` → paused; `requiresApproval.resumeToken` is required to resume
-- `cancelled` → explicitly denied or cancelled
+- `ok` â†’ finished successfully
+- `needs_approval` â†’ paused; `requiresApproval.resumeToken` is required to resume
+- `cancelled` â†’ explicitly denied or cancelled
 
 The tool surfaces the envelope in both `content` (pretty JSON) and `details` (raw object).
 
@@ -306,8 +306,8 @@ The tool surfaces the envelope in both `content` (pretty JSON) and `details` (ra
 
 If `requiresApproval` is present, inspect the prompt and decide:
 
-- `approve: true` → resume and continue side effects
-- `approve: false` → cancel and finalize the workflow
+- `approve: true` â†’ resume and continue side effects
+- `approve: false` â†’ cancel and finalize the workflow
 
 Use `approve --preview-from-stdin --limit N` to attach a JSON preview to approval requests without custom jq/heredoc glue. Resume tokens are now compact: Lobster stores workflow resume state under its state dir and hands back a small token key.
 
@@ -317,17 +317,17 @@ OpenProse pairs well with Lobster: use `/prose` to orchestrate multi-agent prep,
 
 ## Safety
 
-- **Local subprocess only** — no network calls from the plugin itself.
-- **No secrets** — Lobster doesn't manage OAuth; it calls OpenClaw tools that do.
-- **Sandbox-aware** — disabled when the tool context is sandboxed.
-- **Hardened** — `lobsterPath` must be absolute if specified; timeouts and output caps enforced.
+- **Local subprocess only** â€” no network calls from the plugin itself.
+- **No secrets** â€” Lobster doesn't manage OAuth; it calls  tools that do.
+- **Sandbox-aware** â€” disabled when the tool context is sandboxed.
+- **Hardened** â€” `lobsterPath` must be absolute if specified; timeouts and output caps enforced.
 
 ## Troubleshooting
 
-- **`lobster subprocess timed out`** → increase `timeoutMs`, or split a long pipeline.
-- **`lobster output exceeded maxStdoutBytes`** → raise `maxStdoutBytes` or reduce output size.
-- **`lobster returned invalid JSON`** → ensure the pipeline runs in tool mode and prints only JSON.
-- **`lobster failed (code …)`** → run the same pipeline in a terminal to inspect stderr.
+- **`lobster subprocess timed out`** â†’ increase `timeoutMs`, or split a long pipeline.
+- **`lobster output exceeded maxStdoutBytes`** â†’ raise `maxStdoutBytes` or reduce output size.
+- **`lobster returned invalid JSON`** â†’ ensure the pipeline runs in tool mode and prints only JSON.
+- **`lobster failed (code â€¦)`** â†’ run the same pipeline in a terminal to inspect stderr.
 
 ## Learn more
 
@@ -336,7 +336,8 @@ OpenProse pairs well with Lobster: use `/prose` to orchestrate multi-agent prep,
 
 ## Case study: community workflows
 
-One public example: a “second brain” CLI + Lobster pipelines that manage three Markdown vaults (personal, partner, shared). The CLI emits JSON for stats, inbox listings, and stale scans; Lobster chains those commands into workflows like `weekly-review`, `inbox-triage`, `memory-consolidation`, and `shared-task-sync`, each with approval gates. AI handles judgment (categorization) when available and falls back to deterministic rules when not.
+One public example: a â€œsecond brainâ€ CLI + Lobster pipelines that manage three Markdown vaults (personal, partner, shared). The CLI emits JSON for stats, inbox listings, and stale scans; Lobster chains those commands into workflows like `weekly-review`, `inbox-triage`, `memory-consolidation`, and `shared-task-sync`, each with approval gates. AI handles judgment (categorization) when available and falls back to deterministic rules when not.
 
 - Thread: https://x.com/plattenschieber/status/2014508656335770033
 - Repo: https://github.com/bloomedai/brain-cli
+

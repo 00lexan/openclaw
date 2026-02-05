@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Feishu Streaming Card Support
  *
  * Implements typing indicator and streaming text output for Feishu using
@@ -111,7 +111,7 @@ export async function createStreamingCard(
       elements: [
         {
           tag: "markdown",
-          content: "⏳ Thinking...",
+          content: "â³ Thinking...",
           element_id: "streaming_content",
         },
       ],
@@ -402,3 +402,4 @@ function truncateForSummary(text: string, maxLength: number = 50): string {
   }
   return cleaned.slice(0, maxLength - 3) + "...";
 }
+

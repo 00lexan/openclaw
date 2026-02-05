@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { SessionEntry } from "../../config/sessions.js";
 import type { TemplateContext } from "../templating.js";
 import type { FollowupRun, QueueSettings } from "./queue.js";
@@ -128,7 +128,7 @@ describe("runReplyAgent response usage footer", () => {
     const res = await createRun({ responseUsage: "full", sessionKey });
     const payload = Array.isArray(res) ? res[0] : res;
     expect(String(payload?.text ?? "")).toContain("Usage:");
-    expect(String(payload?.text ?? "")).toContain(`· session ${sessionKey}`);
+    expect(String(payload?.text ?? "")).toContain(`Â· session ${sessionKey}`);
   });
 
   it("does not append session key when responseUsage=tokens", async () => {
@@ -154,6 +154,7 @@ describe("runReplyAgent response usage footer", () => {
     const res = await createRun({ responseUsage: "tokens", sessionKey });
     const payload = Array.isArray(res) ? res[0] : res;
     expect(String(payload?.text ?? "")).toContain("Usage:");
-    expect(String(payload?.text ?? "")).not.toContain("· session ");
+    expect(String(payload?.text ?? "")).not.toContain("Â· session ");
   });
 });
+

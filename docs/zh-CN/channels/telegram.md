@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 开发 Telegram 功能或 webhook
-summary: Telegram 机器人支持状态、功能和配置
+  - å¼€å‘ Telegram åŠŸèƒ½æˆ– webhook
+summary: Telegram æœºå™¨äººæ”¯æŒçŠ¶æ€ã€åŠŸèƒ½å’Œé…ç½®
 title: Telegram
 x-i18n:
   generated_at: "2026-02-03T10:07:32Z"
@@ -12,21 +12,21 @@ x-i18n:
   workflow: 15
 ---
 
-# Telegram（Bot API）
+# Telegramï¼ˆBot APIï¼‰
 
-状态：通过 grammY 支持机器人私信和群组，已可用于生产环境。默认使用长轮询；webhook 可选。
+çŠ¶æ€ï¼šé€šè¿‡ grammY æ”¯æŒæœºå™¨äººç§ä¿¡å’Œç¾¤ç»„ï¼Œå·²å¯ç”¨äºŽç”Ÿäº§çŽ¯å¢ƒã€‚é»˜è®¤ä½¿ç”¨é•¿è½®è¯¢ï¼›webhook å¯é€‰ã€‚
 
-## 快速设置（入门）
+## å¿«é€Ÿè®¾ç½®ï¼ˆå…¥é—¨ï¼‰
 
-1. 通过 **@BotFather**（[直达链接](https://t.me/BotFather)）创建机器人。确认用户名确实是 `@BotFather`，然后复制 token。
-2. 设置 token：
-   - 环境变量：`TELEGRAM_BOT_TOKEN=...`
-   - 或配置：`channels.telegram.botToken: "..."`。
-   - 如果两者都设置了，配置优先（环境变量回退仅适用于默认账户）。
-3. 启动 Gateway 网关。
-4. 私信访问默认使用配对模式；首次联系时需要批准配对码。
+1. é€šè¿‡ **@BotFather**ï¼ˆ[ç›´è¾¾é“¾æŽ¥](https://t.me/BotFather)ï¼‰åˆ›å»ºæœºå™¨äººã€‚ç¡®è®¤ç”¨æˆ·åç¡®å®žæ˜¯ `@BotFather`ï¼Œç„¶åŽå¤åˆ¶ tokenã€‚
+2. è®¾ç½® tokenï¼š
+   - çŽ¯å¢ƒå˜é‡ï¼š`TELEGRAM_BOT_TOKEN=...`
+   - æˆ–é…ç½®ï¼š`channels.telegram.botToken: "..."`ã€‚
+   - å¦‚æžœä¸¤è€…éƒ½è®¾ç½®äº†ï¼Œé…ç½®ä¼˜å…ˆï¼ˆçŽ¯å¢ƒå˜é‡å›žé€€ä»…é€‚ç”¨äºŽé»˜è®¤è´¦æˆ·ï¼‰ã€‚
+3. å¯åŠ¨ Gateway ç½‘å…³ã€‚
+4. ç§ä¿¡è®¿é—®é»˜è®¤ä½¿ç”¨é…å¯¹æ¨¡å¼ï¼›é¦–æ¬¡è”ç³»æ—¶éœ€è¦æ‰¹å‡†é…å¯¹ç ã€‚
 
-最小配置：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -40,28 +40,28 @@ x-i18n:
 }
 ```
 
-## 这是什么
+## è¿™æ˜¯ä»€ä¹ˆ
 
-- 一个由 Gateway 网关拥有的 Telegram Bot API 渠道。
-- 确定性路由：回复返回到 Telegram；模型不会选择渠道。
-- 私信共享智能体的主会话；群组保持隔离（`agent:<agentId>:telegram:group:<chatId>`）。
+- ä¸€ä¸ªç”± Gateway ç½‘å…³æ‹¥æœ‰çš„ Telegram Bot API æ¸ é“ã€‚
+- ç¡®å®šæ€§è·¯ç”±ï¼šå›žå¤è¿”å›žåˆ° Telegramï¼›æ¨¡åž‹ä¸ä¼šé€‰æ‹©æ¸ é“ã€‚
+- ç§ä¿¡å…±äº«æ™ºèƒ½ä½“çš„ä¸»ä¼šè¯ï¼›ç¾¤ç»„ä¿æŒéš”ç¦»ï¼ˆ`agent:<agentId>:telegram:group:<chatId>`ï¼‰ã€‚
 
-## 设置（快速路径）
+## è®¾ç½®ï¼ˆå¿«é€Ÿè·¯å¾„ï¼‰
 
-### 1）创建机器人 token（BotFather）
+### 1ï¼‰åˆ›å»ºæœºå™¨äºº tokenï¼ˆBotFatherï¼‰
 
-1. 打开 Telegram 并与 **@BotFather**（[直达链接](https://t.me/BotFather)）对话。确认用户名确实是 `@BotFather`。
-2. 运行 `/newbot`，然后按照提示操作（名称 + 以 `bot` 结尾的用户名）。
-3. 复制 token 并安全保存。
+1. æ‰“å¼€ Telegram å¹¶ä¸Ž **@BotFather**ï¼ˆ[ç›´è¾¾é“¾æŽ¥](https://t.me/BotFather)ï¼‰å¯¹è¯ã€‚ç¡®è®¤ç”¨æˆ·åç¡®å®žæ˜¯ `@BotFather`ã€‚
+2. è¿è¡Œ `/newbot`ï¼Œç„¶åŽæŒ‰ç…§æç¤ºæ“ä½œï¼ˆåç§° + ä»¥ `bot` ç»“å°¾çš„ç”¨æˆ·åï¼‰ã€‚
+3. å¤åˆ¶ token å¹¶å®‰å…¨ä¿å­˜ã€‚
 
-可选的 BotFather 设置：
+å¯é€‰çš„ BotFather è®¾ç½®ï¼š
 
-- `/setjoingroups` — 允许/拒绝将机器人添加到群组。
-- `/setprivacy` — 控制机器人是否可以看到所有群组消息。
+- `/setjoingroups` â€” å…è®¸/æ‹’ç»å°†æœºå™¨äººæ·»åŠ åˆ°ç¾¤ç»„ã€‚
+- `/setprivacy` â€” æŽ§åˆ¶æœºå™¨äººæ˜¯å¦å¯ä»¥çœ‹åˆ°æ‰€æœ‰ç¾¤ç»„æ¶ˆæ¯ã€‚
 
-### 2）配置 token（环境变量或配置文件）
+### 2ï¼‰é…ç½® tokenï¼ˆçŽ¯å¢ƒå˜é‡æˆ–é…ç½®æ–‡ä»¶ï¼‰
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -76,181 +76,181 @@ x-i18n:
 }
 ```
 
-环境变量选项：`TELEGRAM_BOT_TOKEN=...`（适用于默认账户）。
-如果环境变量和配置都设置了，配置优先。
+çŽ¯å¢ƒå˜é‡é€‰é¡¹ï¼š`TELEGRAM_BOT_TOKEN=...`ï¼ˆé€‚ç”¨äºŽé»˜è®¤è´¦æˆ·ï¼‰ã€‚
+å¦‚æžœçŽ¯å¢ƒå˜é‡å’Œé…ç½®éƒ½è®¾ç½®äº†ï¼Œé…ç½®ä¼˜å…ˆã€‚
 
-多账户支持：使用 `channels.telegram.accounts`，每个账户有独立的 token 和可选的 `name`。参见 [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) 了解共享模式。
+å¤šè´¦æˆ·æ”¯æŒï¼šä½¿ç”¨ `channels.telegram.accounts`ï¼Œæ¯ä¸ªè´¦æˆ·æœ‰ç‹¬ç«‹çš„ token å’Œå¯é€‰çš„ `name`ã€‚å‚è§ [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) äº†è§£å…±äº«æ¨¡å¼ã€‚
 
-3. 启动 Gateway 网关。当 token 解析成功时 Telegram 启动（配置优先，环境变量回退）。
-4. 私信访问默认为配对模式。机器人首次被联系时批准配对码。
-5. 对于群组：添加机器人，决定隐私/管理员行为（见下文），然后设置 `channels.telegram.groups` 来控制提及门控和允许列表。
+3. å¯åŠ¨ Gateway ç½‘å…³ã€‚å½“ token è§£æžæˆåŠŸæ—¶ Telegram å¯åŠ¨ï¼ˆé…ç½®ä¼˜å…ˆï¼ŒçŽ¯å¢ƒå˜é‡å›žé€€ï¼‰ã€‚
+4. ç§ä¿¡è®¿é—®é»˜è®¤ä¸ºé…å¯¹æ¨¡å¼ã€‚æœºå™¨äººé¦–æ¬¡è¢«è”ç³»æ—¶æ‰¹å‡†é…å¯¹ç ã€‚
+5. å¯¹äºŽç¾¤ç»„ï¼šæ·»åŠ æœºå™¨äººï¼Œå†³å®šéšç§/ç®¡ç†å‘˜è¡Œä¸ºï¼ˆè§ä¸‹æ–‡ï¼‰ï¼Œç„¶åŽè®¾ç½® `channels.telegram.groups` æ¥æŽ§åˆ¶æåŠé—¨æŽ§å’Œå…è®¸åˆ—è¡¨ã€‚
 
-## Token + 隐私 + 权限（Telegram 端）
+## Token + éšç§ + æƒé™ï¼ˆTelegram ç«¯ï¼‰
 
-### Token 创建（BotFather）
+### Token åˆ›å»ºï¼ˆBotFatherï¼‰
 
-- `/newbot` 创建机器人并返回 token（请保密）。
-- 如果 token 泄露，通过 @BotFather 撤销/重新生成，并更新你的配置。
+- `/newbot` åˆ›å»ºæœºå™¨äººå¹¶è¿”å›ž tokenï¼ˆè¯·ä¿å¯†ï¼‰ã€‚
+- å¦‚æžœ token æ³„éœ²ï¼Œé€šè¿‡ @BotFather æ’¤é”€/é‡æ–°ç”Ÿæˆï¼Œå¹¶æ›´æ–°ä½ çš„é…ç½®ã€‚
 
-### 群组消息可见性（隐私模式）
+### ç¾¤ç»„æ¶ˆæ¯å¯è§æ€§ï¼ˆéšç§æ¨¡å¼ï¼‰
 
-Telegram 机器人默认启用**隐私模式**，这会限制它们接收哪些群组消息。
-如果你的机器人必须看到*所有*群组消息，有两个选项：
+Telegram æœºå™¨äººé»˜è®¤å¯ç”¨**éšç§æ¨¡å¼**ï¼Œè¿™ä¼šé™åˆ¶å®ƒä»¬æŽ¥æ”¶å“ªäº›ç¾¤ç»„æ¶ˆæ¯ã€‚
+å¦‚æžœä½ çš„æœºå™¨äººå¿…é¡»çœ‹åˆ°*æ‰€æœ‰*ç¾¤ç»„æ¶ˆæ¯ï¼Œæœ‰ä¸¤ä¸ªé€‰é¡¹ï¼š
 
-- 使用 `/setprivacy` 禁用隐私模式**或**
-- 将机器人添加为群组**管理员**（管理员机器人可以接收所有消息）。
+- ä½¿ç”¨ `/setprivacy` ç¦ç”¨éšç§æ¨¡å¼**æˆ–**
+- å°†æœºå™¨äººæ·»åŠ ä¸ºç¾¤ç»„**ç®¡ç†å‘˜**ï¼ˆç®¡ç†å‘˜æœºå™¨äººå¯ä»¥æŽ¥æ”¶æ‰€æœ‰æ¶ˆæ¯ï¼‰ã€‚
 
-**注意：** 当你切换隐私模式时，Telegram 要求将机器人从每个群组中移除并重新添加，更改才能生效。
+**æ³¨æ„ï¼š** å½“ä½ åˆ‡æ¢éšç§æ¨¡å¼æ—¶ï¼ŒTelegram è¦æ±‚å°†æœºå™¨äººä»Žæ¯ä¸ªç¾¤ç»„ä¸­ç§»é™¤å¹¶é‡æ–°æ·»åŠ ï¼Œæ›´æ”¹æ‰èƒ½ç”Ÿæ•ˆã€‚
 
-### 群组权限（管理员权限）
+### ç¾¤ç»„æƒé™ï¼ˆç®¡ç†å‘˜æƒé™ï¼‰
 
-管理员状态在群组内设置（Telegram UI）。管理员机器人始终接收所有群组消息，因此如果需要完全可见性，请使用管理员身份。
+ç®¡ç†å‘˜çŠ¶æ€åœ¨ç¾¤ç»„å†…è®¾ç½®ï¼ˆTelegram UIï¼‰ã€‚ç®¡ç†å‘˜æœºå™¨äººå§‹ç»ˆæŽ¥æ”¶æ‰€æœ‰ç¾¤ç»„æ¶ˆæ¯ï¼Œå› æ­¤å¦‚æžœéœ€è¦å®Œå…¨å¯è§æ€§ï¼Œè¯·ä½¿ç”¨ç®¡ç†å‘˜èº«ä»½ã€‚
 
-## 工作原理（行为）
+## å·¥ä½œåŽŸç†ï¼ˆè¡Œä¸ºï¼‰
 
-- 入站消息被规范化为共享渠道信封，包含回复上下文和媒体占位符。
-- 群组回复默认需要提及（原生 @提及或 `agents.list[].groupChat.mentionPatterns` / `messages.groupChat.mentionPatterns`）。
-- 多智能体覆盖：在 `agents.list[].groupChat.mentionPatterns` 上设置每个智能体的模式。
-- 回复始终路由回同一个 Telegram 聊天。
-- 长轮询使用 grammY runner，每个聊天按顺序处理；总体并发受 `agents.defaults.maxConcurrent` 限制。
-- Telegram Bot API 不支持已读回执；没有 `sendReadReceipts` 选项。
+- å…¥ç«™æ¶ˆæ¯è¢«è§„èŒƒåŒ–ä¸ºå…±äº«æ¸ é“ä¿¡å°ï¼ŒåŒ…å«å›žå¤ä¸Šä¸‹æ–‡å’Œåª’ä½“å ä½ç¬¦ã€‚
+- ç¾¤ç»„å›žå¤é»˜è®¤éœ€è¦æåŠï¼ˆåŽŸç”Ÿ @æåŠæˆ– `agents.list[].groupChat.mentionPatterns` / `messages.groupChat.mentionPatterns`ï¼‰ã€‚
+- å¤šæ™ºèƒ½ä½“è¦†ç›–ï¼šåœ¨ `agents.list[].groupChat.mentionPatterns` ä¸Šè®¾ç½®æ¯ä¸ªæ™ºèƒ½ä½“çš„æ¨¡å¼ã€‚
+- å›žå¤å§‹ç»ˆè·¯ç”±å›žåŒä¸€ä¸ª Telegram èŠå¤©ã€‚
+- é•¿è½®è¯¢ä½¿ç”¨ grammY runnerï¼Œæ¯ä¸ªèŠå¤©æŒ‰é¡ºåºå¤„ç†ï¼›æ€»ä½“å¹¶å‘å— `agents.defaults.maxConcurrent` é™åˆ¶ã€‚
+- Telegram Bot API ä¸æ”¯æŒå·²è¯»å›žæ‰§ï¼›æ²¡æœ‰ `sendReadReceipts` é€‰é¡¹ã€‚
 
-## 草稿流式传输
+## è‰ç¨¿æµå¼ä¼ è¾“
 
-OpenClaw 可以在 Telegram 私信中使用 `sendMessageDraft` 流式传输部分回复。
+ å¯ä»¥åœ¨ Telegram ç§ä¿¡ä¸­ä½¿ç”¨ `sendMessageDraft` æµå¼ä¼ è¾“éƒ¨åˆ†å›žå¤ã€‚
 
-要求：
+è¦æ±‚ï¼š
 
-- 在 @BotFather 中为机器人启用线程模式（论坛话题模式）。
-- 仅限私聊线程（Telegram 在入站消息中包含 `message_thread_id`）。
-- `channels.telegram.streamMode` 未设置为 `"off"`（默认：`"partial"`，`"block"` 启用分块草稿更新）。
+- åœ¨ @BotFather ä¸­ä¸ºæœºå™¨äººå¯ç”¨çº¿ç¨‹æ¨¡å¼ï¼ˆè®ºå›è¯é¢˜æ¨¡å¼ï¼‰ã€‚
+- ä»…é™ç§èŠçº¿ç¨‹ï¼ˆTelegram åœ¨å…¥ç«™æ¶ˆæ¯ä¸­åŒ…å« `message_thread_id`ï¼‰ã€‚
+- `channels.telegram.streamMode` æœªè®¾ç½®ä¸º `"off"`ï¼ˆé»˜è®¤ï¼š`"partial"`ï¼Œ`"block"` å¯ç”¨åˆ†å—è‰ç¨¿æ›´æ–°ï¼‰ã€‚
 
-草稿流式传输仅限私信；Telegram 在群组或频道中不支持此功能。
+è‰ç¨¿æµå¼ä¼ è¾“ä»…é™ç§ä¿¡ï¼›Telegram åœ¨ç¾¤ç»„æˆ–é¢‘é“ä¸­ä¸æ”¯æŒæ­¤åŠŸèƒ½ã€‚
 
-## 格式化（Telegram HTML）
+## æ ¼å¼åŒ–ï¼ˆTelegram HTMLï¼‰
 
-- 出站 Telegram 文本使用 `parse_mode: "HTML"`（Telegram 支持的标签子集）。
-- 类 Markdown 输入被渲染为 **Telegram 安全 HTML**（粗体/斜体/删除线/代码/链接）；块级元素被扁平化为带换行/项目符号的文本。
-- 来自模型的原始 HTML 会被转义，以避免 Telegram 解析错误。
-- 如果 Telegram 拒绝 HTML 负载，OpenClaw 会以纯文本重试相同的消息。
+- å‡ºç«™ Telegram æ–‡æœ¬ä½¿ç”¨ `parse_mode: "HTML"`ï¼ˆTelegram æ”¯æŒçš„æ ‡ç­¾å­é›†ï¼‰ã€‚
+- ç±» Markdown è¾“å…¥è¢«æ¸²æŸ“ä¸º **Telegram å®‰å…¨ HTML**ï¼ˆç²—ä½“/æ–œä½“/åˆ é™¤çº¿/ä»£ç /é“¾æŽ¥ï¼‰ï¼›å—çº§å…ƒç´ è¢«æ‰å¹³åŒ–ä¸ºå¸¦æ¢è¡Œ/é¡¹ç›®ç¬¦å·çš„æ–‡æœ¬ã€‚
+- æ¥è‡ªæ¨¡åž‹çš„åŽŸå§‹ HTML ä¼šè¢«è½¬ä¹‰ï¼Œä»¥é¿å… Telegram è§£æžé”™è¯¯ã€‚
+- å¦‚æžœ Telegram æ‹’ç» HTML è´Ÿè½½ï¼Œ ä¼šä»¥çº¯æ–‡æœ¬é‡è¯•ç›¸åŒçš„æ¶ˆæ¯ã€‚
 
-## 命令（原生 + 自定义）
+## å‘½ä»¤ï¼ˆåŽŸç”Ÿ + è‡ªå®šä¹‰ï¼‰
 
-OpenClaw 在启动时向 Telegram 的机器人菜单注册原生命令（如 `/status`、`/reset`、`/model`）。
-你可以通过配置向菜单添加自定义命令：
+ åœ¨å¯åŠ¨æ—¶å‘ Telegram çš„æœºå™¨äººèœå•æ³¨å†ŒåŽŸç”Ÿå‘½ä»¤ï¼ˆå¦‚ `/status`ã€`/reset`ã€`/model`ï¼‰ã€‚
+ä½ å¯ä»¥é€šè¿‡é…ç½®å‘èœå•æ·»åŠ è‡ªå®šä¹‰å‘½ä»¤ï¼š
 
 ```json5
 {
   channels: {
     telegram: {
       customCommands: [
-        { command: "backup", description: "Git 备份" },
-        { command: "generate", description: "创建图片" },
+        { command: "backup", description: "Git å¤‡ä»½" },
+        { command: "generate", description: "åˆ›å»ºå›¾ç‰‡" },
       ],
     },
   },
 }
 ```
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-- 日志中出现 `setMyCommands failed` 通常意味着到 `api.telegram.org` 的出站 HTTPS/DNS 被阻止。
-- 如果你看到 `sendMessage` 或 `sendChatAction` 失败，检查 IPv6 路由和 DNS。
+- æ—¥å¿—ä¸­å‡ºçŽ° `setMyCommands failed` é€šå¸¸æ„å‘³ç€åˆ° `api.telegram.org` çš„å‡ºç«™ HTTPS/DNS è¢«é˜»æ­¢ã€‚
+- å¦‚æžœä½ çœ‹åˆ° `sendMessage` æˆ– `sendChatAction` å¤±è´¥ï¼Œæ£€æŸ¥ IPv6 è·¯ç”±å’Œ DNSã€‚
 
-更多帮助：[渠道故障排除](/channels/troubleshooting)。
+æ›´å¤šå¸®åŠ©ï¼š[æ¸ é“æ•…éšœæŽ’é™¤](/channels/troubleshooting)ã€‚
 
-注意：
+æ³¨æ„ï¼š
 
-- 自定义命令**仅是菜单条目**；除非你在其他地方处理它们，否则 OpenClaw 不会实现它们。
-- 命令名称会被规范化（去除前导 `/`，转为小写），必须匹配 `a-z`、`0-9`、`_`（1-32 个字符）。
-- 自定义命令**不能覆盖原生命令**。冲突会被忽略并记录日志。
-- 如果禁用了 `commands.native`，则只注册自定义命令（如果没有则清空）。
+- è‡ªå®šä¹‰å‘½ä»¤**ä»…æ˜¯èœå•æ¡ç›®**ï¼›é™¤éžä½ åœ¨å…¶ä»–åœ°æ–¹å¤„ç†å®ƒä»¬ï¼Œå¦åˆ™  ä¸ä¼šå®žçŽ°å®ƒä»¬ã€‚
+- å‘½ä»¤åç§°ä¼šè¢«è§„èŒƒåŒ–ï¼ˆåŽ»é™¤å‰å¯¼ `/`ï¼Œè½¬ä¸ºå°å†™ï¼‰ï¼Œå¿…é¡»åŒ¹é… `a-z`ã€`0-9`ã€`_`ï¼ˆ1-32 ä¸ªå­—ç¬¦ï¼‰ã€‚
+- è‡ªå®šä¹‰å‘½ä»¤**ä¸èƒ½è¦†ç›–åŽŸç”Ÿå‘½ä»¤**ã€‚å†²çªä¼šè¢«å¿½ç•¥å¹¶è®°å½•æ—¥å¿—ã€‚
+- å¦‚æžœç¦ç”¨äº† `commands.native`ï¼Œåˆ™åªæ³¨å†Œè‡ªå®šä¹‰å‘½ä»¤ï¼ˆå¦‚æžœæ²¡æœ‰åˆ™æ¸…ç©ºï¼‰ã€‚
 
-## 限制
+## é™åˆ¶
 
-- 出站文本按 `channels.telegram.textChunkLimit` 分块（默认 4000）。
-- 可选的换行分块：设置 `channels.telegram.chunkMode="newline"` 在长度分块之前按空行（段落边界）分割。
-- 媒体下载/上传受 `channels.telegram.mediaMaxMb` 限制（默认 5）。
-- Telegram Bot API 请求在 `channels.telegram.timeoutSeconds` 后超时（通过 grammY 默认 500）。设置较低的值以避免长时间挂起。
-- 群组历史上下文使用 `channels.telegram.historyLimit`（或 `channels.telegram.accounts.*.historyLimit`），回退到 `messages.groupChat.historyLimit`。设置 `0` 禁用（默认 50）。
-- 私信历史可以用 `channels.telegram.dmHistoryLimit`（用户轮次）限制。每用户覆盖：`channels.telegram.dms["<user_id>"].historyLimit`。
+- å‡ºç«™æ–‡æœ¬æŒ‰ `channels.telegram.textChunkLimit` åˆ†å—ï¼ˆé»˜è®¤ 4000ï¼‰ã€‚
+- å¯é€‰çš„æ¢è¡Œåˆ†å—ï¼šè®¾ç½® `channels.telegram.chunkMode="newline"` åœ¨é•¿åº¦åˆ†å—ä¹‹å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- åª’ä½“ä¸‹è½½/ä¸Šä¼ å— `channels.telegram.mediaMaxMb` é™åˆ¶ï¼ˆé»˜è®¤ 5ï¼‰ã€‚
+- Telegram Bot API è¯·æ±‚åœ¨ `channels.telegram.timeoutSeconds` åŽè¶…æ—¶ï¼ˆé€šè¿‡ grammY é»˜è®¤ 500ï¼‰ã€‚è®¾ç½®è¾ƒä½Žçš„å€¼ä»¥é¿å…é•¿æ—¶é—´æŒ‚èµ·ã€‚
+- ç¾¤ç»„åŽ†å²ä¸Šä¸‹æ–‡ä½¿ç”¨ `channels.telegram.historyLimit`ï¼ˆæˆ– `channels.telegram.accounts.*.historyLimit`ï¼‰ï¼Œå›žé€€åˆ° `messages.groupChat.historyLimit`ã€‚è®¾ç½® `0` ç¦ç”¨ï¼ˆé»˜è®¤ 50ï¼‰ã€‚
+- ç§ä¿¡åŽ†å²å¯ä»¥ç”¨ `channels.telegram.dmHistoryLimit`ï¼ˆç”¨æˆ·è½®æ¬¡ï¼‰é™åˆ¶ã€‚æ¯ç”¨æˆ·è¦†ç›–ï¼š`channels.telegram.dms["<user_id>"].historyLimit`ã€‚
 
-## 群组激活模式
+## ç¾¤ç»„æ¿€æ´»æ¨¡å¼
 
-默认情况下，机器人只响应群组中的提及（`@botname` 或 `agents.list[].groupChat.mentionPatterns` 中的模式）。要更改此行为：
+é»˜è®¤æƒ…å†µä¸‹ï¼Œæœºå™¨äººåªå“åº”ç¾¤ç»„ä¸­çš„æåŠï¼ˆ`@botname` æˆ– `agents.list[].groupChat.mentionPatterns` ä¸­çš„æ¨¡å¼ï¼‰ã€‚è¦æ›´æ”¹æ­¤è¡Œä¸ºï¼š
 
-### 通过配置（推荐）
-
-```json5
-{
-  channels: {
-    telegram: {
-      groups: {
-        "-1001234567890": { requireMention: false }, // 在此群组中始终响应
-      },
-    },
-  },
-}
-```
-
-**重要：** 设置 `channels.telegram.groups` 会创建一个**允许列表** - 只有列出的群组（或 `"*"`）会被接受。
-论坛话题继承其父群组配置（allowFrom、requireMention、skills、prompts），除非你在 `channels.telegram.groups.<groupId>.topics.<topicId>` 下添加每话题覆盖。
-
-要允许所有群组并始终响应：
+### é€šè¿‡é…ç½®ï¼ˆæŽ¨èï¼‰
 
 ```json5
 {
   channels: {
     telegram: {
       groups: {
-        "*": { requireMention: false }, // 所有群组，始终响应
+        "-1001234567890": { requireMention: false }, // åœ¨æ­¤ç¾¤ç»„ä¸­å§‹ç»ˆå“åº”
       },
     },
   },
 }
 ```
 
-要保持所有群组仅提及响应（默认行为）：
+**é‡è¦ï¼š** è®¾ç½® `channels.telegram.groups` ä¼šåˆ›å»ºä¸€ä¸ª**å…è®¸åˆ—è¡¨** - åªæœ‰åˆ—å‡ºçš„ç¾¤ç»„ï¼ˆæˆ– `"*"`ï¼‰ä¼šè¢«æŽ¥å—ã€‚
+è®ºå›è¯é¢˜ç»§æ‰¿å…¶çˆ¶ç¾¤ç»„é…ç½®ï¼ˆallowFromã€requireMentionã€skillsã€promptsï¼‰ï¼Œé™¤éžä½ åœ¨ `channels.telegram.groups.<groupId>.topics.<topicId>` ä¸‹æ·»åŠ æ¯è¯é¢˜è¦†ç›–ã€‚
+
+è¦å…è®¸æ‰€æœ‰ç¾¤ç»„å¹¶å§‹ç»ˆå“åº”ï¼š
 
 ```json5
 {
   channels: {
     telegram: {
       groups: {
-        "*": { requireMention: true }, // 或完全省略 groups
+        "*": { requireMention: false }, // æ‰€æœ‰ç¾¤ç»„ï¼Œå§‹ç»ˆå“åº”
       },
     },
   },
 }
 ```
 
-### 通过命令（会话级别）
+è¦ä¿æŒæ‰€æœ‰ç¾¤ç»„ä»…æåŠå“åº”ï¼ˆé»˜è®¤è¡Œä¸ºï¼‰ï¼š
 
-在群组中发送：
+```json5
+{
+  channels: {
+    telegram: {
+      groups: {
+        "*": { requireMention: true }, // æˆ–å®Œå…¨çœç•¥ groups
+      },
+    },
+  },
+}
+```
 
-- `/activation always` - 响应所有消息
-- `/activation mention` - 需要提及（默认）
+### é€šè¿‡å‘½ä»¤ï¼ˆä¼šè¯çº§åˆ«ï¼‰
 
-**注意：** 命令只更新会话状态。要在重启后保持持久行为，请使用配置。
+åœ¨ç¾¤ç»„ä¸­å‘é€ï¼š
 
-### 获取群组聊天 ID
+- `/activation always` - å“åº”æ‰€æœ‰æ¶ˆæ¯
+- `/activation mention` - éœ€è¦æåŠï¼ˆé»˜è®¤ï¼‰
 
-将群组中的任何消息转发给 Telegram 上的 `@userinfobot` 或 `@getidsbot` 以查看聊天 ID（负数，如 `-1001234567890`）。
+**æ³¨æ„ï¼š** å‘½ä»¤åªæ›´æ–°ä¼šè¯çŠ¶æ€ã€‚è¦åœ¨é‡å¯åŽä¿æŒæŒä¹…è¡Œä¸ºï¼Œè¯·ä½¿ç”¨é…ç½®ã€‚
 
-**提示：** 要获取你自己的用户 ID，私信机器人，它会回复你的用户 ID（配对消息），或者在命令启用后使用 `/whoami`。
+### èŽ·å–ç¾¤ç»„èŠå¤© ID
 
-**隐私注意：** `@userinfobot` 是第三方机器人。如果你更倾向于其他方式，将机器人添加到群组，发送一条消息，然后使用 `openclaw logs --follow` 读取 `chat.id`，或使用 Bot API `getUpdates`。
+å°†ç¾¤ç»„ä¸­çš„ä»»ä½•æ¶ˆæ¯è½¬å‘ç»™ Telegram ä¸Šçš„ `@userinfobot` æˆ– `@getidsbot` ä»¥æŸ¥çœ‹èŠå¤© IDï¼ˆè´Ÿæ•°ï¼Œå¦‚ `-1001234567890`ï¼‰ã€‚
 
-## 配置写入
+**æç¤ºï¼š** è¦èŽ·å–ä½ è‡ªå·±çš„ç”¨æˆ· IDï¼Œç§ä¿¡æœºå™¨äººï¼Œå®ƒä¼šå›žå¤ä½ çš„ç”¨æˆ· IDï¼ˆé…å¯¹æ¶ˆæ¯ï¼‰ï¼Œæˆ–è€…åœ¨å‘½ä»¤å¯ç”¨åŽä½¿ç”¨ `/whoami`ã€‚
 
-默认情况下，Telegram 允许写入由渠道事件或 `/config set|unset` 触发的配置更新。
+**éšç§æ³¨æ„ï¼š** `@userinfobot` æ˜¯ç¬¬ä¸‰æ–¹æœºå™¨äººã€‚å¦‚æžœä½ æ›´å€¾å‘äºŽå…¶ä»–æ–¹å¼ï¼Œå°†æœºå™¨äººæ·»åŠ åˆ°ç¾¤ç»„ï¼Œå‘é€ä¸€æ¡æ¶ˆæ¯ï¼Œç„¶åŽä½¿ç”¨ ` logs --follow` è¯»å– `chat.id`ï¼Œæˆ–ä½¿ç”¨ Bot API `getUpdates`ã€‚
 
-这发生在以下情况：
+## é…ç½®å†™å…¥
 
-- 群组升级为超级群组，Telegram 发出 `migrate_to_chat_id`（聊天 ID 更改）。OpenClaw 可以自动迁移 `channels.telegram.groups`。
-- 你在 Telegram 聊天中运行 `/config set` 或 `/config unset`（需要 `commands.config: true`）。
+é»˜è®¤æƒ…å†µä¸‹ï¼ŒTelegram å…è®¸å†™å…¥ç”±æ¸ é“äº‹ä»¶æˆ– `/config set|unset` è§¦å‘çš„é…ç½®æ›´æ–°ã€‚
 
-禁用方式：
+è¿™å‘ç”Ÿåœ¨ä»¥ä¸‹æƒ…å†µï¼š
+
+- ç¾¤ç»„å‡çº§ä¸ºè¶…çº§ç¾¤ç»„ï¼ŒTelegram å‘å‡º `migrate_to_chat_id`ï¼ˆèŠå¤© ID æ›´æ”¹ï¼‰ã€‚ å¯ä»¥è‡ªåŠ¨è¿ç§» `channels.telegram.groups`ã€‚
+- ä½ åœ¨ Telegram èŠå¤©ä¸­è¿è¡Œ `/config set` æˆ– `/config unset`ï¼ˆéœ€è¦ `commands.config: true`ï¼‰ã€‚
+
+ç¦ç”¨æ–¹å¼ï¼š
 
 ```json5
 {
@@ -258,22 +258,22 @@ OpenClaw 在启动时向 Telegram 的机器人菜单注册原生命令（如 `/s
 }
 ```
 
-## 话题（论坛超级群组）
+## è¯é¢˜ï¼ˆè®ºå›è¶…çº§ç¾¤ç»„ï¼‰
 
-Telegram 论坛话题在每条消息中包含 `message_thread_id`。OpenClaw：
+Telegram è®ºå›è¯é¢˜åœ¨æ¯æ¡æ¶ˆæ¯ä¸­åŒ…å« `message_thread_id`ã€‚ï¼š
 
-- 将 `:topic:<threadId>` 附加到 Telegram 群组会话键，使每个话题隔离。
-- 发送输入指示器和回复时带上 `message_thread_id`，使响应保持在话题内。
-- 通用话题（线程 id `1`）是特殊的：消息发送省略 `message_thread_id`（Telegram 会拒绝），但输入指示器仍然包含它。
-- 在模板上下文中暴露 `MessageThreadId` + `IsForum` 用于路由/模板。
-- 话题特定配置可在 `channels.telegram.groups.<chatId>.topics.<threadId>` 下设置（skills、允许列表、自动回复、系统提示、禁用）。
-- 话题配置继承群组设置（requireMention、允许列表、skills、提示、enabled），除非每话题覆盖。
+- å°† `:topic:<threadId>` é™„åŠ åˆ° Telegram ç¾¤ç»„ä¼šè¯é”®ï¼Œä½¿æ¯ä¸ªè¯é¢˜éš”ç¦»ã€‚
+- å‘é€è¾“å…¥æŒ‡ç¤ºå™¨å’Œå›žå¤æ—¶å¸¦ä¸Š `message_thread_id`ï¼Œä½¿å“åº”ä¿æŒåœ¨è¯é¢˜å†…ã€‚
+- é€šç”¨è¯é¢˜ï¼ˆçº¿ç¨‹ id `1`ï¼‰æ˜¯ç‰¹æ®Šçš„ï¼šæ¶ˆæ¯å‘é€çœç•¥ `message_thread_id`ï¼ˆTelegram ä¼šæ‹’ç»ï¼‰ï¼Œä½†è¾“å…¥æŒ‡ç¤ºå™¨ä»ç„¶åŒ…å«å®ƒã€‚
+- åœ¨æ¨¡æ¿ä¸Šä¸‹æ–‡ä¸­æš´éœ² `MessageThreadId` + `IsForum` ç”¨äºŽè·¯ç”±/æ¨¡æ¿ã€‚
+- è¯é¢˜ç‰¹å®šé…ç½®å¯åœ¨ `channels.telegram.groups.<chatId>.topics.<threadId>` ä¸‹è®¾ç½®ï¼ˆskillsã€å…è®¸åˆ—è¡¨ã€è‡ªåŠ¨å›žå¤ã€ç³»ç»Ÿæç¤ºã€ç¦ç”¨ï¼‰ã€‚
+- è¯é¢˜é…ç½®ç»§æ‰¿ç¾¤ç»„è®¾ç½®ï¼ˆrequireMentionã€å…è®¸åˆ—è¡¨ã€skillsã€æç¤ºã€enabledï¼‰ï¼Œé™¤éžæ¯è¯é¢˜è¦†ç›–ã€‚
 
-私聊在某些边缘情况下可能包含 `message_thread_id`。OpenClaw 保持私信会话键不变，但在存在线程 id 时仍将其用于回复/草稿流式传输。
+ç§èŠåœ¨æŸäº›è¾¹ç¼˜æƒ…å†µä¸‹å¯èƒ½åŒ…å« `message_thread_id`ã€‚ ä¿æŒç§ä¿¡ä¼šè¯é”®ä¸å˜ï¼Œä½†åœ¨å­˜åœ¨çº¿ç¨‹ id æ—¶ä»å°†å…¶ç”¨äºŽå›žå¤/è‰ç¨¿æµå¼ä¼ è¾“ã€‚
 
-## 内联按钮
+## å†…è”æŒ‰é’®
 
-Telegram 支持带回调按钮的内联键盘。
+Telegram æ”¯æŒå¸¦å›žè°ƒæŒ‰é’®çš„å†…è”é”®ç›˜ã€‚
 
 ```json5
 {
@@ -287,7 +287,7 @@ Telegram 支持带回调按钮的内联键盘。
 }
 ```
 
-对于每账户配置：
+å¯¹äºŽæ¯è´¦æˆ·é…ç½®ï¼š
 
 ```json5
 {
@@ -305,128 +305,128 @@ Telegram 支持带回调按钮的内联键盘。
 }
 ```
 
-作用域：
+ä½œç”¨åŸŸï¼š
 
-- `off` — 禁用内联按钮
-- `dm` — 仅私信（群组目标被阻止）
-- `group` — 仅群组（私信目标被阻止）
-- `all` — 私信 + 群组
-- `allowlist` — 私信 + 群组，但仅限 `allowFrom`/`groupAllowFrom` 允许的发送者（与控制命令规则相同）
+- `off` â€” ç¦ç”¨å†…è”æŒ‰é’®
+- `dm` â€” ä»…ç§ä¿¡ï¼ˆç¾¤ç»„ç›®æ ‡è¢«é˜»æ­¢ï¼‰
+- `group` â€” ä»…ç¾¤ç»„ï¼ˆç§ä¿¡ç›®æ ‡è¢«é˜»æ­¢ï¼‰
+- `all` â€” ç§ä¿¡ + ç¾¤ç»„
+- `allowlist` â€” ç§ä¿¡ + ç¾¤ç»„ï¼Œä½†ä»…é™ `allowFrom`/`groupAllowFrom` å…è®¸çš„å‘é€è€…ï¼ˆä¸ŽæŽ§åˆ¶å‘½ä»¤è§„åˆ™ç›¸åŒï¼‰
 
-默认：`allowlist`。
-旧版：`capabilities: ["inlineButtons"]` = `inlineButtons: "all"`。
+é»˜è®¤ï¼š`allowlist`ã€‚
+æ—§ç‰ˆï¼š`capabilities: ["inlineButtons"]` = `inlineButtons: "all"`ã€‚
 
-### 发送按钮
+### å‘é€æŒ‰é’®
 
-使用带 `buttons` 参数的消息工具：
+ä½¿ç”¨å¸¦ `buttons` å‚æ•°çš„æ¶ˆæ¯å·¥å…·ï¼š
 
 ```json5
 {
   action: "send",
   channel: "telegram",
   to: "123456789",
-  message: "选择一个选项：",
+  message: "é€‰æ‹©ä¸€ä¸ªé€‰é¡¹ï¼š",
   buttons: [
     [
-      { text: "是", callback_data: "yes" },
-      { text: "否", callback_data: "no" },
+      { text: "æ˜¯", callback_data: "yes" },
+      { text: "å¦", callback_data: "no" },
     ],
-    [{ text: "取消", callback_data: "cancel" }],
+    [{ text: "å–æ¶ˆ", callback_data: "cancel" }],
   ],
 }
 ```
 
-当用户点击按钮时，回调数据会以以下格式作为消息发送回智能体：
+å½“ç”¨æˆ·ç‚¹å‡»æŒ‰é’®æ—¶ï¼Œå›žè°ƒæ•°æ®ä¼šä»¥ä»¥ä¸‹æ ¼å¼ä½œä¸ºæ¶ˆæ¯å‘é€å›žæ™ºèƒ½ä½“ï¼š
 `callback_data: value`
 
-### 配置选项
+### é…ç½®é€‰é¡¹
 
-Telegram 功能可以在两个级别配置（上面显示的对象形式；旧版字符串数组仍然支持）：
+Telegram åŠŸèƒ½å¯ä»¥åœ¨ä¸¤ä¸ªçº§åˆ«é…ç½®ï¼ˆä¸Šé¢æ˜¾ç¤ºçš„å¯¹è±¡å½¢å¼ï¼›æ—§ç‰ˆå­—ç¬¦ä¸²æ•°ç»„ä»ç„¶æ”¯æŒï¼‰ï¼š
 
-- `channels.telegram.capabilities`：应用于所有 Telegram 账户的全局默认功能配置，除非被覆盖。
-- `channels.telegram.accounts.<account>.capabilities`：每账户功能，覆盖该特定账户的全局默认值。
+- `channels.telegram.capabilities`ï¼šåº”ç”¨äºŽæ‰€æœ‰ Telegram è´¦æˆ·çš„å…¨å±€é»˜è®¤åŠŸèƒ½é…ç½®ï¼Œé™¤éžè¢«è¦†ç›–ã€‚
+- `channels.telegram.accounts.<account>.capabilities`ï¼šæ¯è´¦æˆ·åŠŸèƒ½ï¼Œè¦†ç›–è¯¥ç‰¹å®šè´¦æˆ·çš„å…¨å±€é»˜è®¤å€¼ã€‚
 
-当所有 Telegram 机器人/账户应具有相同行为时使用全局设置。当不同机器人需要不同行为时使用每账户配置（例如，一个账户只处理私信，而另一个允许在群组中使用）。
+å½“æ‰€æœ‰ Telegram æœºå™¨äºº/è´¦æˆ·åº”å…·æœ‰ç›¸åŒè¡Œä¸ºæ—¶ä½¿ç”¨å…¨å±€è®¾ç½®ã€‚å½“ä¸åŒæœºå™¨äººéœ€è¦ä¸åŒè¡Œä¸ºæ—¶ä½¿ç”¨æ¯è´¦æˆ·é…ç½®ï¼ˆä¾‹å¦‚ï¼Œä¸€ä¸ªè´¦æˆ·åªå¤„ç†ç§ä¿¡ï¼Œè€Œå¦ä¸€ä¸ªå…è®¸åœ¨ç¾¤ç»„ä¸­ä½¿ç”¨ï¼‰ã€‚
 
-## 访问控制（私信 + 群组）
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ + ç¾¤ç»„ï¼‰
 
-### 私信访问
+### ç§ä¿¡è®¿é—®
 
-- 默认：`channels.telegram.dmPolicy = "pairing"`。未知发送者收到配对码；在批准之前消息被忽略（配对码 1 小时后过期）。
-- 批准方式：
-  - `openclaw pairing list telegram`
-  - `openclaw pairing approve telegram <CODE>`
-- 配对是 Telegram 私信使用的默认 token 交换。详情：[配对](/start/pairing)
-- `channels.telegram.allowFrom` 接受数字用户 ID（推荐）或 `@username` 条目。这**不是**机器人用户名；使用人类发送者的 ID。向导接受 `@username` 并在可能时将其解析为数字 ID。
+- é»˜è®¤ï¼š`channels.telegram.dmPolicy = "pairing"`ã€‚æœªçŸ¥å‘é€è€…æ”¶åˆ°é…å¯¹ç ï¼›åœ¨æ‰¹å‡†ä¹‹å‰æ¶ˆæ¯è¢«å¿½ç•¥ï¼ˆé…å¯¹ç  1 å°æ—¶åŽè¿‡æœŸï¼‰ã€‚
+- æ‰¹å‡†æ–¹å¼ï¼š
+  - ` pairing list telegram`
+  - ` pairing approve telegram <CODE>`
+- é…å¯¹æ˜¯ Telegram ç§ä¿¡ä½¿ç”¨çš„é»˜è®¤ token äº¤æ¢ã€‚è¯¦æƒ…ï¼š[é…å¯¹](/start/pairing)
+- `channels.telegram.allowFrom` æŽ¥å—æ•°å­—ç”¨æˆ· IDï¼ˆæŽ¨èï¼‰æˆ– `@username` æ¡ç›®ã€‚è¿™**ä¸æ˜¯**æœºå™¨äººç”¨æˆ·åï¼›ä½¿ç”¨äººç±»å‘é€è€…çš„ IDã€‚å‘å¯¼æŽ¥å— `@username` å¹¶åœ¨å¯èƒ½æ—¶å°†å…¶è§£æžä¸ºæ•°å­— IDã€‚
 
-#### 查找你的 Telegram 用户 ID
+#### æŸ¥æ‰¾ä½ çš„ Telegram ç”¨æˆ· ID
 
-更安全（无第三方机器人）：
+æ›´å®‰å…¨ï¼ˆæ— ç¬¬ä¸‰æ–¹æœºå™¨äººï¼‰ï¼š
 
-1. 启动 Gateway 网关并私信你的机器人。
-2. 运行 `openclaw logs --follow` 并查找 `from.id`。
+1. å¯åŠ¨ Gateway ç½‘å…³å¹¶ç§ä¿¡ä½ çš„æœºå™¨äººã€‚
+2. è¿è¡Œ ` logs --follow` å¹¶æŸ¥æ‰¾ `from.id`ã€‚
 
-备选（官方 Bot API）：
+å¤‡é€‰ï¼ˆå®˜æ–¹ Bot APIï¼‰ï¼š
 
-1. 私信你的机器人。
-2. 使用你的机器人 token 获取更新并读取 `message.from.id`：
+1. ç§ä¿¡ä½ çš„æœºå™¨äººã€‚
+2. ä½¿ç”¨ä½ çš„æœºå™¨äºº token èŽ·å–æ›´æ–°å¹¶è¯»å– `message.from.id`ï¼š
    ```bash
    curl "https://api.telegram.org/bot<bot_token>/getUpdates"
    ```
 
-第三方（隐私性较低）：
+ç¬¬ä¸‰æ–¹ï¼ˆéšç§æ€§è¾ƒä½Žï¼‰ï¼š
 
-- 私信 `@userinfobot` 或 `@getidsbot` 并使用返回的用户 id。
+- ç§ä¿¡ `@userinfobot` æˆ– `@getidsbot` å¹¶ä½¿ç”¨è¿”å›žçš„ç”¨æˆ· idã€‚
 
-### 群组访问
+### ç¾¤ç»„è®¿é—®
 
-两个独立的控制：
+ä¸¤ä¸ªç‹¬ç«‹çš„æŽ§åˆ¶ï¼š
 
-**1. 允许哪些群组**（通过 `channels.telegram.groups` 的群组允许列表）：
+**1. å…è®¸å“ªäº›ç¾¤ç»„**ï¼ˆé€šè¿‡ `channels.telegram.groups` çš„ç¾¤ç»„å…è®¸åˆ—è¡¨ï¼‰ï¼š
 
-- 无 `groups` 配置 = 允许所有群组
-- 有 `groups` 配置 = 只允许列出的群组或 `"*"`
-- 示例：`"groups": { "-1001234567890": {}, "*": {} }` 允许所有群组
+- æ—  `groups` é…ç½® = å…è®¸æ‰€æœ‰ç¾¤ç»„
+- æœ‰ `groups` é…ç½® = åªå…è®¸åˆ—å‡ºçš„ç¾¤ç»„æˆ– `"*"`
+- ç¤ºä¾‹ï¼š`"groups": { "-1001234567890": {}, "*": {} }` å…è®¸æ‰€æœ‰ç¾¤ç»„
 
-**2. 允许哪些发送者**（通过 `channels.telegram.groupPolicy` 的发送者过滤）：
+**2. å…è®¸å“ªäº›å‘é€è€…**ï¼ˆé€šè¿‡ `channels.telegram.groupPolicy` çš„å‘é€è€…è¿‡æ»¤ï¼‰ï¼š
 
-- `"open"` = 允许群组中的所有发送者发消息
-- `"allowlist"` = 只有 `channels.telegram.groupAllowFrom` 中的发送者可以发消息
-- `"disabled"` = 不接受任何群组消息
-  默认是 `groupPolicy: "allowlist"`（除非添加 `groupAllowFrom` 否则被阻止）。
+- `"open"` = å…è®¸ç¾¤ç»„ä¸­çš„æ‰€æœ‰å‘é€è€…å‘æ¶ˆæ¯
+- `"allowlist"` = åªæœ‰ `channels.telegram.groupAllowFrom` ä¸­çš„å‘é€è€…å¯ä»¥å‘æ¶ˆæ¯
+- `"disabled"` = ä¸æŽ¥å—ä»»ä½•ç¾¤ç»„æ¶ˆæ¯
+  é»˜è®¤æ˜¯ `groupPolicy: "allowlist"`ï¼ˆé™¤éžæ·»åŠ  `groupAllowFrom` å¦åˆ™è¢«é˜»æ­¢ï¼‰ã€‚
 
-大多数用户需要：`groupPolicy: "allowlist"` + `groupAllowFrom` + 在 `channels.telegram.groups` 中列出特定群组
+å¤§å¤šæ•°ç”¨æˆ·éœ€è¦ï¼š`groupPolicy: "allowlist"` + `groupAllowFrom` + åœ¨ `channels.telegram.groups` ä¸­åˆ—å‡ºç‰¹å®šç¾¤ç»„
 
-## 长轮询 vs webhook
+## é•¿è½®è¯¢ vs webhook
 
-- 默认：长轮询（不需要公共 URL）。
-- Webhook 模式：设置 `channels.telegram.webhookUrl` 和 `channels.telegram.webhookSecret`（可选 `channels.telegram.webhookPath`）。
-  - 本地监听器绑定到 `0.0.0.0:8787`，默认服务于 `POST /telegram-webhook`。
-  - 如果你的公共 URL 不同，使用反向代理并将 `channels.telegram.webhookUrl` 指向公共端点。
+- é»˜è®¤ï¼šé•¿è½®è¯¢ï¼ˆä¸éœ€è¦å…¬å…± URLï¼‰ã€‚
+- Webhook æ¨¡å¼ï¼šè®¾ç½® `channels.telegram.webhookUrl` å’Œ `channels.telegram.webhookSecret`ï¼ˆå¯é€‰ `channels.telegram.webhookPath`ï¼‰ã€‚
+  - æœ¬åœ°ç›‘å¬å™¨ç»‘å®šåˆ° `0.0.0.0:8787`ï¼Œé»˜è®¤æœåŠ¡äºŽ `POST /telegram-webhook`ã€‚
+  - å¦‚æžœä½ çš„å…¬å…± URL ä¸åŒï¼Œä½¿ç”¨åå‘ä»£ç†å¹¶å°† `channels.telegram.webhookUrl` æŒ‡å‘å…¬å…±ç«¯ç‚¹ã€‚
 
-## 回复线程
+## å›žå¤çº¿ç¨‹
 
-Telegram 通过标签支持可选的线程回复：
+Telegram é€šè¿‡æ ‡ç­¾æ”¯æŒå¯é€‰çš„çº¿ç¨‹å›žå¤ï¼š
 
-- `[[reply_to_current]]` -- 回复触发消息。
-- `[[reply_to:<id>]]` -- 回复特定消息 id。
+- `[[reply_to_current]]` -- å›žå¤è§¦å‘æ¶ˆæ¯ã€‚
+- `[[reply_to:<id>]]` -- å›žå¤ç‰¹å®šæ¶ˆæ¯ idã€‚
 
-通过 `channels.telegram.replyToMode` 控制：
+é€šè¿‡ `channels.telegram.replyToMode` æŽ§åˆ¶ï¼š
 
-- `first`（默认）、`all`、`off`。
+- `first`ï¼ˆé»˜è®¤ï¼‰ã€`all`ã€`off`ã€‚
 
-## 音频消息（语音 vs 文件）
+## éŸ³é¢‘æ¶ˆæ¯ï¼ˆè¯­éŸ³ vs æ–‡ä»¶ï¼‰
 
-Telegram 区分**语音备忘录**（圆形气泡）和**音频文件**（元数据卡片）。
-OpenClaw 默认使用音频文件以保持向后兼容性。
+Telegram åŒºåˆ†**è¯­éŸ³å¤‡å¿˜å½•**ï¼ˆåœ†å½¢æ°”æ³¡ï¼‰å’Œ**éŸ³é¢‘æ–‡ä»¶**ï¼ˆå…ƒæ•°æ®å¡ç‰‡ï¼‰ã€‚
+ é»˜è®¤ä½¿ç”¨éŸ³é¢‘æ–‡ä»¶ä»¥ä¿æŒå‘åŽå…¼å®¹æ€§ã€‚
 
-要在智能体回复中强制使用语音备忘录气泡，在回复中的任何位置包含此标签：
+è¦åœ¨æ™ºèƒ½ä½“å›žå¤ä¸­å¼ºåˆ¶ä½¿ç”¨è¯­éŸ³å¤‡å¿˜å½•æ°”æ³¡ï¼Œåœ¨å›žå¤ä¸­çš„ä»»ä½•ä½ç½®åŒ…å«æ­¤æ ‡ç­¾ï¼š
 
-- `[[audio_as_voice]]` — 将音频作为语音备忘录而不是文件发送。
+- `[[audio_as_voice]]` â€” å°†éŸ³é¢‘ä½œä¸ºè¯­éŸ³å¤‡å¿˜å½•è€Œä¸æ˜¯æ–‡ä»¶å‘é€ã€‚
 
-该标签会从发送的文本中去除。其他渠道会忽略此标签。
+è¯¥æ ‡ç­¾ä¼šä»Žå‘é€çš„æ–‡æœ¬ä¸­åŽ»é™¤ã€‚å…¶ä»–æ¸ é“ä¼šå¿½ç•¥æ­¤æ ‡ç­¾ã€‚
 
-对于消息工具发送，设置 `asVoice: true` 并配合兼容语音的音频 `media` URL（当存在 media 时 `message` 是可选的）：
+å¯¹äºŽæ¶ˆæ¯å·¥å…·å‘é€ï¼Œè®¾ç½® `asVoice: true` å¹¶é…åˆå…¼å®¹è¯­éŸ³çš„éŸ³é¢‘ `media` URLï¼ˆå½“å­˜åœ¨ media æ—¶ `message` æ˜¯å¯é€‰çš„ï¼‰ï¼š
 
 ```json5
 {
@@ -438,63 +438,63 @@ OpenClaw 默认使用音频文件以保持向后兼容性。
 }
 ```
 
-## 贴纸
+## è´´çº¸
 
-OpenClaw 支持接收和发送 Telegram 贴纸，并具有智能缓存功能。
+ æ”¯æŒæŽ¥æ”¶å’Œå‘é€ Telegram è´´çº¸ï¼Œå¹¶å…·æœ‰æ™ºèƒ½ç¼“å­˜åŠŸèƒ½ã€‚
 
-### 接收贴纸
+### æŽ¥æ”¶è´´çº¸
 
-当用户发送贴纸时，OpenClaw 根据贴纸类型处理：
+å½“ç”¨æˆ·å‘é€è´´çº¸æ—¶ï¼Œ æ ¹æ®è´´çº¸ç±»åž‹å¤„ç†ï¼š
 
-- **静态贴纸（WEBP）：** 下载并通过视觉处理。贴纸在消息内容中显示为 `<media:sticker>` 占位符。
-- **动画贴纸（TGS）：** 跳过（Lottie 格式不支持处理）。
-- **视频贴纸（WEBM）：** 跳过（视频格式不支持处理）。
+- **é™æ€è´´çº¸ï¼ˆWEBPï¼‰ï¼š** ä¸‹è½½å¹¶é€šè¿‡è§†è§‰å¤„ç†ã€‚è´´çº¸åœ¨æ¶ˆæ¯å†…å®¹ä¸­æ˜¾ç¤ºä¸º `<media:sticker>` å ä½ç¬¦ã€‚
+- **åŠ¨ç”»è´´çº¸ï¼ˆTGSï¼‰ï¼š** è·³è¿‡ï¼ˆLottie æ ¼å¼ä¸æ”¯æŒå¤„ç†ï¼‰ã€‚
+- **è§†é¢‘è´´çº¸ï¼ˆWEBMï¼‰ï¼š** è·³è¿‡ï¼ˆè§†é¢‘æ ¼å¼ä¸æ”¯æŒå¤„ç†ï¼‰ã€‚
 
-接收贴纸时可用的模板上下文字段：
+æŽ¥æ”¶è´´çº¸æ—¶å¯ç”¨çš„æ¨¡æ¿ä¸Šä¸‹æ–‡å­—æ®µï¼š
 
-- `Sticker` — 包含以下属性的对象：
-  - `emoji` — 与贴纸关联的表情符号
-  - `setName` — 贴纸集名称
-  - `fileId` — Telegram 文件 ID（用于发送相同贴纸）
-  - `fileUniqueId` — 用于缓存查找的稳定 ID
-  - `cachedDescription` — 可用时的缓存视觉描述
+- `Sticker` â€” åŒ…å«ä»¥ä¸‹å±žæ€§çš„å¯¹è±¡ï¼š
+  - `emoji` â€” ä¸Žè´´çº¸å…³è”çš„è¡¨æƒ…ç¬¦å·
+  - `setName` â€” è´´çº¸é›†åç§°
+  - `fileId` â€” Telegram æ–‡ä»¶ IDï¼ˆç”¨äºŽå‘é€ç›¸åŒè´´çº¸ï¼‰
+  - `fileUniqueId` â€” ç”¨äºŽç¼“å­˜æŸ¥æ‰¾çš„ç¨³å®š ID
+  - `cachedDescription` â€” å¯ç”¨æ—¶çš„ç¼“å­˜è§†è§‰æè¿°
 
-### 贴纸缓存
+### è´´çº¸ç¼“å­˜
 
-贴纸通过 AI 的视觉功能处理以生成描述。由于相同的贴纸经常重复发送，OpenClaw 缓存这些描述以避免冗余的 API 调用。
+è´´çº¸é€šè¿‡ AI çš„è§†è§‰åŠŸèƒ½å¤„ç†ä»¥ç”Ÿæˆæè¿°ã€‚ç”±äºŽç›¸åŒçš„è´´çº¸ç»å¸¸é‡å¤å‘é€ï¼Œ ç¼“å­˜è¿™äº›æè¿°ä»¥é¿å…å†—ä½™çš„ API è°ƒç”¨ã€‚
 
-**工作原理：**
+**å·¥ä½œåŽŸç†ï¼š**
 
-1. **首次遇到：** 贴纸图像被发送给 AI 进行视觉分析。AI 生成描述（例如"一只卡通猫热情地挥手"）。
-2. **缓存存储：** 描述与贴纸的文件 ID、表情符号和集合名称一起保存。
-3. **后续遇到：** 当再次看到相同贴纸时，直接使用缓存的描述。图像不会发送给 AI。
+1. **é¦–æ¬¡é‡åˆ°ï¼š** è´´çº¸å›¾åƒè¢«å‘é€ç»™ AI è¿›è¡Œè§†è§‰åˆ†æžã€‚AI ç”Ÿæˆæè¿°ï¼ˆä¾‹å¦‚"ä¸€åªå¡é€šçŒ«çƒ­æƒ…åœ°æŒ¥æ‰‹"ï¼‰ã€‚
+2. **ç¼“å­˜å­˜å‚¨ï¼š** æè¿°ä¸Žè´´çº¸çš„æ–‡ä»¶ IDã€è¡¨æƒ…ç¬¦å·å’Œé›†åˆåç§°ä¸€èµ·ä¿å­˜ã€‚
+3. **åŽç»­é‡åˆ°ï¼š** å½“å†æ¬¡çœ‹åˆ°ç›¸åŒè´´çº¸æ—¶ï¼Œç›´æŽ¥ä½¿ç”¨ç¼“å­˜çš„æè¿°ã€‚å›¾åƒä¸ä¼šå‘é€ç»™ AIã€‚
 
-**缓存位置：** `~/.openclaw/telegram/sticker-cache.json`
+**ç¼“å­˜ä½ç½®ï¼š** `~/./telegram/sticker-cache.json`
 
-**缓存条目格式：**
+**ç¼“å­˜æ¡ç›®æ ¼å¼ï¼š**
 
 ```json
 {
   "fileId": "CAACAgIAAxkBAAI...",
   "fileUniqueId": "AgADBAADb6cxG2Y",
-  "emoji": "👋",
+  "emoji": "ðŸ‘‹",
   "setName": "CoolCats",
-  "description": "一只卡通猫热情地挥手",
+  "description": "ä¸€åªå¡é€šçŒ«çƒ­æƒ…åœ°æŒ¥æ‰‹",
   "cachedAt": "2026-01-15T10:30:00.000Z"
 }
 ```
 
-**优点：**
+**ä¼˜ç‚¹ï¼š**
 
-- 通过避免对相同贴纸重复调用视觉 API 来降低 API 成本
-- 缓存贴纸响应更快（无视觉处理延迟）
-- 基于缓存描述启用贴纸搜索功能
+- é€šè¿‡é¿å…å¯¹ç›¸åŒè´´çº¸é‡å¤è°ƒç”¨è§†è§‰ API æ¥é™ä½Ž API æˆæœ¬
+- ç¼“å­˜è´´çº¸å“åº”æ›´å¿«ï¼ˆæ— è§†è§‰å¤„ç†å»¶è¿Ÿï¼‰
+- åŸºäºŽç¼“å­˜æè¿°å¯ç”¨è´´çº¸æœç´¢åŠŸèƒ½
 
-缓存在接收贴纸时自动填充。无需手动缓存管理。
+ç¼“å­˜åœ¨æŽ¥æ”¶è´´çº¸æ—¶è‡ªåŠ¨å¡«å……ã€‚æ— éœ€æ‰‹åŠ¨ç¼“å­˜ç®¡ç†ã€‚
 
-### 发送贴纸
+### å‘é€è´´çº¸
 
-智能体可以使用 `sticker` 和 `sticker-search` 动作发送和搜索贴纸。这些默认禁用，必须在配置中启用：
+æ™ºèƒ½ä½“å¯ä»¥ä½¿ç”¨ `sticker` å’Œ `sticker-search` åŠ¨ä½œå‘é€å’Œæœç´¢è´´çº¸ã€‚è¿™äº›é»˜è®¤ç¦ç”¨ï¼Œå¿…é¡»åœ¨é…ç½®ä¸­å¯ç”¨ï¼š
 
 ```json5
 {
@@ -508,7 +508,7 @@ OpenClaw 支持接收和发送 Telegram 贴纸，并具有智能缓存功能。
 }
 ```
 
-**发送贴纸：**
+**å‘é€è´´çº¸ï¼š**
 
 ```json5
 {
@@ -519,26 +519,26 @@ OpenClaw 支持接收和发送 Telegram 贴纸，并具有智能缓存功能。
 }
 ```
 
-参数：
+å‚æ•°ï¼š
 
-- `fileId`（必需）— 贴纸的 Telegram 文件 ID。从接收贴纸时的 `Sticker.fileId` 获取，或从 `sticker-search` 结果获取。
-- `replyTo`（可选）— 要回复的消息 ID。
-- `threadId`（可选）— 论坛话题的消息线程 ID。
+- `fileId`ï¼ˆå¿…éœ€ï¼‰â€” è´´çº¸çš„ Telegram æ–‡ä»¶ IDã€‚ä»ŽæŽ¥æ”¶è´´çº¸æ—¶çš„ `Sticker.fileId` èŽ·å–ï¼Œæˆ–ä»Ž `sticker-search` ç»“æžœèŽ·å–ã€‚
+- `replyTo`ï¼ˆå¯é€‰ï¼‰â€” è¦å›žå¤çš„æ¶ˆæ¯ IDã€‚
+- `threadId`ï¼ˆå¯é€‰ï¼‰â€” è®ºå›è¯é¢˜çš„æ¶ˆæ¯çº¿ç¨‹ IDã€‚
 
-**搜索贴纸：**
+**æœç´¢è´´çº¸ï¼š**
 
-智能体可以按描述、表情符号或集合名称搜索缓存的贴纸：
+æ™ºèƒ½ä½“å¯ä»¥æŒ‰æè¿°ã€è¡¨æƒ…ç¬¦å·æˆ–é›†åˆåç§°æœç´¢ç¼“å­˜çš„è´´çº¸ï¼š
 
 ```json5
 {
   action: "sticker-search",
   channel: "telegram",
-  query: "猫 挥手",
+  query: "çŒ« æŒ¥æ‰‹",
   limit: 5,
 }
 ```
 
-返回缓存中匹配的贴纸：
+è¿”å›žç¼“å­˜ä¸­åŒ¹é…çš„è´´çº¸ï¼š
 
 ```json5
 {
@@ -547,17 +547,17 @@ OpenClaw 支持接收和发送 Telegram 贴纸，并具有智能缓存功能。
   stickers: [
     {
       fileId: "CAACAgIAAxkBAAI...",
-      emoji: "👋",
-      description: "一只卡通猫热情地挥手",
+      emoji: "ðŸ‘‹",
+      description: "ä¸€åªå¡é€šçŒ«çƒ­æƒ…åœ°æŒ¥æ‰‹",
       setName: "CoolCats",
     },
   ],
 }
 ```
 
-搜索在描述文本、表情符号字符和集合名称之间使用模糊匹配。
+æœç´¢åœ¨æè¿°æ–‡æœ¬ã€è¡¨æƒ…ç¬¦å·å­—ç¬¦å’Œé›†åˆåç§°ä¹‹é—´ä½¿ç”¨æ¨¡ç³ŠåŒ¹é…ã€‚
 
-**带线程的示例：**
+**å¸¦çº¿ç¨‹çš„ç¤ºä¾‹ï¼š**
 
 ```json5
 {
@@ -570,182 +570,183 @@ OpenClaw 支持接收和发送 Telegram 贴纸，并具有智能缓存功能。
 }
 ```
 
-## 流式传输（草稿）
+## æµå¼ä¼ è¾“ï¼ˆè‰ç¨¿ï¼‰
 
-Telegram 可以在智能体生成响应时流式传输**草稿气泡**。
-OpenClaw 使用 Bot API `sendMessageDraft`（不是真实消息），然后将最终回复作为普通消息发送。
+Telegram å¯ä»¥åœ¨æ™ºèƒ½ä½“ç”Ÿæˆå“åº”æ—¶æµå¼ä¼ è¾“**è‰ç¨¿æ°”æ³¡**ã€‚
+ ä½¿ç”¨ Bot API `sendMessageDraft`ï¼ˆä¸æ˜¯çœŸå®žæ¶ˆæ¯ï¼‰ï¼Œç„¶åŽå°†æœ€ç»ˆå›žå¤ä½œä¸ºæ™®é€šæ¶ˆæ¯å‘é€ã€‚
 
-要求（Telegram Bot API 9.3+）：
+è¦æ±‚ï¼ˆTelegram Bot API 9.3+ï¼‰ï¼š
 
-- **启用话题的私聊**（机器人的论坛话题模式）。
-- 入站消息必须包含 `message_thread_id`（私有话题线程）。
-- 群组/超级群组/频道的流式传输被忽略。
+- **å¯ç”¨è¯é¢˜çš„ç§èŠ**ï¼ˆæœºå™¨äººçš„è®ºå›è¯é¢˜æ¨¡å¼ï¼‰ã€‚
+- å…¥ç«™æ¶ˆæ¯å¿…é¡»åŒ…å« `message_thread_id`ï¼ˆç§æœ‰è¯é¢˜çº¿ç¨‹ï¼‰ã€‚
+- ç¾¤ç»„/è¶…çº§ç¾¤ç»„/é¢‘é“çš„æµå¼ä¼ è¾“è¢«å¿½ç•¥ã€‚
 
-配置：
+é…ç½®ï¼š
 
-- `channels.telegram.streamMode: "off" | "partial" | "block"`（默认：`partial`）
-  - `partial`：用最新的流式文本更新草稿气泡。
-  - `block`：以较大块（分块）更新草稿气泡。
-  - `off`：禁用草稿流式传输。
-- 可选（仅用于 `streamMode: "block"`）：
+- `channels.telegram.streamMode: "off" | "partial" | "block"`ï¼ˆé»˜è®¤ï¼š`partial`ï¼‰
+  - `partial`ï¼šç”¨æœ€æ–°çš„æµå¼æ–‡æœ¬æ›´æ–°è‰ç¨¿æ°”æ³¡ã€‚
+  - `block`ï¼šä»¥è¾ƒå¤§å—ï¼ˆåˆ†å—ï¼‰æ›´æ–°è‰ç¨¿æ°”æ³¡ã€‚
+  - `off`ï¼šç¦ç”¨è‰ç¨¿æµå¼ä¼ è¾“ã€‚
+- å¯é€‰ï¼ˆä»…ç”¨äºŽ `streamMode: "block"`ï¼‰ï¼š
   - `channels.telegram.draftChunk: { minChars?, maxChars?, breakPreference? }`
-    - 默认值：`minChars: 200`、`maxChars: 800`、`breakPreference: "paragraph"`（限制在 `channels.telegram.textChunkLimit` 内）。
+    - é»˜è®¤å€¼ï¼š`minChars: 200`ã€`maxChars: 800`ã€`breakPreference: "paragraph"`ï¼ˆé™åˆ¶åœ¨ `channels.telegram.textChunkLimit` å†…ï¼‰ã€‚
 
-注意：草稿流式传输与**分块流式传输**（渠道消息）不同。
-分块流式传输默认关闭，如果你想要早期 Telegram 消息而不是草稿更新，需要 `channels.telegram.blockStreaming: true`。
+æ³¨æ„ï¼šè‰ç¨¿æµå¼ä¼ è¾“ä¸Ž**åˆ†å—æµå¼ä¼ è¾“**ï¼ˆæ¸ é“æ¶ˆæ¯ï¼‰ä¸åŒã€‚
+åˆ†å—æµå¼ä¼ è¾“é»˜è®¤å…³é—­ï¼Œå¦‚æžœä½ æƒ³è¦æ—©æœŸ Telegram æ¶ˆæ¯è€Œä¸æ˜¯è‰ç¨¿æ›´æ–°ï¼Œéœ€è¦ `channels.telegram.blockStreaming: true`ã€‚
 
-推理流（仅限 Telegram）：
+æŽ¨ç†æµï¼ˆä»…é™ Telegramï¼‰ï¼š
 
-- `/reasoning stream` 在回复生成时将推理流式传输到草稿气泡中，然后发送不带推理的最终答案。
-- 如果 `channels.telegram.streamMode` 为 `off`，推理流被禁用。
-  更多上下文：[流式传输 + 分块](/concepts/streaming)。
+- `/reasoning stream` åœ¨å›žå¤ç”Ÿæˆæ—¶å°†æŽ¨ç†æµå¼ä¼ è¾“åˆ°è‰ç¨¿æ°”æ³¡ä¸­ï¼Œç„¶åŽå‘é€ä¸å¸¦æŽ¨ç†çš„æœ€ç»ˆç­”æ¡ˆã€‚
+- å¦‚æžœ `channels.telegram.streamMode` ä¸º `off`ï¼ŒæŽ¨ç†æµè¢«ç¦ç”¨ã€‚
+  æ›´å¤šä¸Šä¸‹æ–‡ï¼š[æµå¼ä¼ è¾“ + åˆ†å—](/concepts/streaming)ã€‚
 
-## 重试策略
+## é‡è¯•ç­–ç•¥
 
-出站 Telegram API 调用在遇到临时网络/429 错误时会以指数退避和抖动进行重试。通过 `channels.telegram.retry` 配置。参见[重试策略](/concepts/retry)。
+å‡ºç«™ Telegram API è°ƒç”¨åœ¨é‡åˆ°ä¸´æ—¶ç½‘ç»œ/429 é”™è¯¯æ—¶ä¼šä»¥æŒ‡æ•°é€€é¿å’ŒæŠ–åŠ¨è¿›è¡Œé‡è¯•ã€‚é€šè¿‡ `channels.telegram.retry` é…ç½®ã€‚å‚è§[é‡è¯•ç­–ç•¥](/concepts/retry)ã€‚
 
-## 智能体工具（消息 + 反应）
+## æ™ºèƒ½ä½“å·¥å…·ï¼ˆæ¶ˆæ¯ + ååº”ï¼‰
 
-- 工具：`telegram`，使用 `sendMessage` 动作（`to`、`content`，可选 `mediaUrl`、`replyToMessageId`、`messageThreadId`）。
-- 工具：`telegram`，使用 `react` 动作（`chatId`、`messageId`、`emoji`）。
-- 工具：`telegram`，使用 `deleteMessage` 动作（`chatId`、`messageId`）。
-- 反应移除语义：参见 [/tools/reactions](/tools/reactions)。
-- 工具门控：`channels.telegram.actions.reactions`、`channels.telegram.actions.sendMessage`、`channels.telegram.actions.deleteMessage`（默认：启用），以及 `channels.telegram.actions.sticker`（默认：禁用）。
+- å·¥å…·ï¼š`telegram`ï¼Œä½¿ç”¨ `sendMessage` åŠ¨ä½œï¼ˆ`to`ã€`content`ï¼Œå¯é€‰ `mediaUrl`ã€`replyToMessageId`ã€`messageThreadId`ï¼‰ã€‚
+- å·¥å…·ï¼š`telegram`ï¼Œä½¿ç”¨ `react` åŠ¨ä½œï¼ˆ`chatId`ã€`messageId`ã€`emoji`ï¼‰ã€‚
+- å·¥å…·ï¼š`telegram`ï¼Œä½¿ç”¨ `deleteMessage` åŠ¨ä½œï¼ˆ`chatId`ã€`messageId`ï¼‰ã€‚
+- ååº”ç§»é™¤è¯­ä¹‰ï¼šå‚è§ [/tools/reactions](/tools/reactions)ã€‚
+- å·¥å…·é—¨æŽ§ï¼š`channels.telegram.actions.reactions`ã€`channels.telegram.actions.sendMessage`ã€`channels.telegram.actions.deleteMessage`ï¼ˆé»˜è®¤ï¼šå¯ç”¨ï¼‰ï¼Œä»¥åŠ `channels.telegram.actions.sticker`ï¼ˆé»˜è®¤ï¼šç¦ç”¨ï¼‰ã€‚
 
-## 反应通知
+## ååº”é€šçŸ¥
 
-**反应工作原理：**
-Telegram 反应作为**单独的 `message_reaction` 事件**到达，而不是消息负载中的属性。当用户添加反应时，OpenClaw：
+**ååº”å·¥ä½œåŽŸç†ï¼š**
+Telegram ååº”ä½œä¸º**å•ç‹¬çš„ `message_reaction` äº‹ä»¶**åˆ°è¾¾ï¼Œè€Œä¸æ˜¯æ¶ˆæ¯è´Ÿè½½ä¸­çš„å±žæ€§ã€‚å½“ç”¨æˆ·æ·»åŠ ååº”æ—¶ï¼Œï¼š
 
-1. 从 Telegram API 接收 `message_reaction` 更新
-2. 将其转换为**系统事件**，格式为：`"Telegram reaction added: {emoji} by {user} on msg {id}"`
-3. 使用与常规消息**相同的会话键**将系统事件加入队列
-4. 当该对话中的下一条消息到达时，系统事件被排出并前置到智能体的上下文中
+1. ä»Ž Telegram API æŽ¥æ”¶ `message_reaction` æ›´æ–°
+2. å°†å…¶è½¬æ¢ä¸º**ç³»ç»Ÿäº‹ä»¶**ï¼Œæ ¼å¼ä¸ºï¼š`"Telegram reaction added: {emoji} by {user} on msg {id}"`
+3. ä½¿ç”¨ä¸Žå¸¸è§„æ¶ˆæ¯**ç›¸åŒçš„ä¼šè¯é”®**å°†ç³»ç»Ÿäº‹ä»¶åŠ å…¥é˜Ÿåˆ—
+4. å½“è¯¥å¯¹è¯ä¸­çš„ä¸‹ä¸€æ¡æ¶ˆæ¯åˆ°è¾¾æ—¶ï¼Œç³»ç»Ÿäº‹ä»¶è¢«æŽ’å‡ºå¹¶å‰ç½®åˆ°æ™ºèƒ½ä½“çš„ä¸Šä¸‹æ–‡ä¸­
 
-智能体将反应视为对话历史中的**系统通知**，而不是消息元数据。
+æ™ºèƒ½ä½“å°†ååº”è§†ä¸ºå¯¹è¯åŽ†å²ä¸­çš„**ç³»ç»Ÿé€šçŸ¥**ï¼Œè€Œä¸æ˜¯æ¶ˆæ¯å…ƒæ•°æ®ã€‚
 
-**配置：**
+**é…ç½®ï¼š**
 
-- `channels.telegram.reactionNotifications`：控制哪些反应触发通知
-  - `"off"` — 忽略所有反应
-  - `"own"` — 当用户对机器人消息做出反应时通知（尽力而为；内存中）（默认）
-  - `"all"` — 通知所有反应
+- `channels.telegram.reactionNotifications`ï¼šæŽ§åˆ¶å“ªäº›ååº”è§¦å‘é€šçŸ¥
+  - `"off"` â€” å¿½ç•¥æ‰€æœ‰ååº”
+  - `"own"` â€” å½“ç”¨æˆ·å¯¹æœºå™¨äººæ¶ˆæ¯åšå‡ºååº”æ—¶é€šçŸ¥ï¼ˆå°½åŠ›è€Œä¸ºï¼›å†…å­˜ä¸­ï¼‰ï¼ˆé»˜è®¤ï¼‰
+  - `"all"` â€” é€šçŸ¥æ‰€æœ‰ååº”
 
-- `channels.telegram.reactionLevel`：控制智能体的反应能力
-  - `"off"` — 智能体不能对消息做出反应
-  - `"ack"` — 机器人发送确认反应（处理时显示 👀）（默认）
-  - `"minimal"` — 智能体可以少量反应（指导：每 5-10 次交换 1 次）
-  - `"extensive"` — 智能体可以在适当时自由反应
+- `channels.telegram.reactionLevel`ï¼šæŽ§åˆ¶æ™ºèƒ½ä½“çš„ååº”èƒ½åŠ›
+  - `"off"` â€” æ™ºèƒ½ä½“ä¸èƒ½å¯¹æ¶ˆæ¯åšå‡ºååº”
+  - `"ack"` â€” æœºå™¨äººå‘é€ç¡®è®¤ååº”ï¼ˆå¤„ç†æ—¶æ˜¾ç¤º ðŸ‘€ï¼‰ï¼ˆé»˜è®¤ï¼‰
+  - `"minimal"` â€” æ™ºèƒ½ä½“å¯ä»¥å°‘é‡ååº”ï¼ˆæŒ‡å¯¼ï¼šæ¯ 5-10 æ¬¡äº¤æ¢ 1 æ¬¡ï¼‰
+  - `"extensive"` â€” æ™ºèƒ½ä½“å¯ä»¥åœ¨é€‚å½“æ—¶è‡ªç”±ååº”
 
-**论坛群组：** 论坛群组中的反应包含 `message_thread_id`，使用类似 `agent:main:telegram:group:{chatId}:topic:{threadId}` 的会话键。这确保同一话题中的反应和消息保持在一起。
+**è®ºå›ç¾¤ç»„ï¼š** è®ºå›ç¾¤ç»„ä¸­çš„ååº”åŒ…å« `message_thread_id`ï¼Œä½¿ç”¨ç±»ä¼¼ `agent:main:telegram:group:{chatId}:topic:{threadId}` çš„ä¼šè¯é”®ã€‚è¿™ç¡®ä¿åŒä¸€è¯é¢˜ä¸­çš„ååº”å’Œæ¶ˆæ¯ä¿æŒåœ¨ä¸€èµ·ã€‚
 
-**示例配置：**
+**ç¤ºä¾‹é…ç½®ï¼š**
 
 ```json5
 {
   channels: {
     telegram: {
-      reactionNotifications: "all", // 查看所有反应
-      reactionLevel: "minimal", // 智能体可以少量反应
+      reactionNotifications: "all", // æŸ¥çœ‹æ‰€æœ‰ååº”
+      reactionLevel: "minimal", // æ™ºèƒ½ä½“å¯ä»¥å°‘é‡ååº”
     },
   },
 }
 ```
 
-**要求：**
+**è¦æ±‚ï¼š**
 
-- Telegram 机器人必须在 `allowed_updates` 中明确请求 `message_reaction`（由 OpenClaw 自动配置）
-- 对于 webhook 模式，反应包含在 webhook `allowed_updates` 中
-- 对于轮询模式，反应包含在 `getUpdates` `allowed_updates` 中
+- Telegram æœºå™¨äººå¿…é¡»åœ¨ `allowed_updates` ä¸­æ˜Žç¡®è¯·æ±‚ `message_reaction`ï¼ˆç”±  è‡ªåŠ¨é…ç½®ï¼‰
+- å¯¹äºŽ webhook æ¨¡å¼ï¼Œååº”åŒ…å«åœ¨ webhook `allowed_updates` ä¸­
+- å¯¹äºŽè½®è¯¢æ¨¡å¼ï¼Œååº”åŒ…å«åœ¨ `getUpdates` `allowed_updates` ä¸­
 
-## 投递目标（CLI/cron）
+## æŠ•é€’ç›®æ ‡ï¼ˆCLI/cronï¼‰
 
-- 使用聊天 id（`123456789`）或用户名（`@name`）作为目标。
-- 示例：`openclaw message send --channel telegram --target 123456789 --message "hi"`。
+- ä½¿ç”¨èŠå¤© idï¼ˆ`123456789`ï¼‰æˆ–ç”¨æˆ·åï¼ˆ`@name`ï¼‰ä½œä¸ºç›®æ ‡ã€‚
+- ç¤ºä¾‹ï¼š` message send --channel telegram --target 123456789 --message "hi"`ã€‚
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-**机器人不响应群组中的非提及消息：**
+**æœºå™¨äººä¸å“åº”ç¾¤ç»„ä¸­çš„éžæåŠæ¶ˆæ¯ï¼š**
 
-- 如果你设置了 `channels.telegram.groups.*.requireMention=false`，Telegram 的 Bot API **隐私模式**必须禁用。
-  - BotFather：`/setprivacy` → **Disable**（然后从群组中移除并重新添加机器人）
-- `openclaw channels status` 在配置期望未提及群组消息时显示警告。
-- `openclaw channels status --probe` 可以额外检查显式数字群组 ID 的成员资格（它无法审计通配符 `"*"` 规则）。
-- 快速测试：`/activation always`（仅会话级别；使用配置以持久化）
+- å¦‚æžœä½ è®¾ç½®äº† `channels.telegram.groups.*.requireMention=false`ï¼ŒTelegram çš„ Bot API **éšç§æ¨¡å¼**å¿…é¡»ç¦ç”¨ã€‚
+  - BotFatherï¼š`/setprivacy` â†’ **Disable**ï¼ˆç„¶åŽä»Žç¾¤ç»„ä¸­ç§»é™¤å¹¶é‡æ–°æ·»åŠ æœºå™¨äººï¼‰
+- ` channels status` åœ¨é…ç½®æœŸæœ›æœªæåŠç¾¤ç»„æ¶ˆæ¯æ—¶æ˜¾ç¤ºè­¦å‘Šã€‚
+- ` channels status --probe` å¯ä»¥é¢å¤–æ£€æŸ¥æ˜¾å¼æ•°å­—ç¾¤ç»„ ID çš„æˆå‘˜èµ„æ ¼ï¼ˆå®ƒæ— æ³•å®¡è®¡é€šé…ç¬¦ `"*"` è§„åˆ™ï¼‰ã€‚
+- å¿«é€Ÿæµ‹è¯•ï¼š`/activation always`ï¼ˆä»…ä¼šè¯çº§åˆ«ï¼›ä½¿ç”¨é…ç½®ä»¥æŒä¹…åŒ–ï¼‰
 
-**机器人完全看不到群组消息：**
+**æœºå™¨äººå®Œå…¨çœ‹ä¸åˆ°ç¾¤ç»„æ¶ˆæ¯ï¼š**
 
-- 如果设置了 `channels.telegram.groups`，群组必须被列出或使用 `"*"`
-- 在 @BotFather 中检查隐私设置 →"Group Privacy"应为 **OFF**
-- 验证机器人确实是成员（不仅仅是没有读取权限的管理员）
-- 检查 Gateway 网关日志：`openclaw logs --follow`（查找"skipping group message"）
+- å¦‚æžœè®¾ç½®äº† `channels.telegram.groups`ï¼Œç¾¤ç»„å¿…é¡»è¢«åˆ—å‡ºæˆ–ä½¿ç”¨ `"*"`
+- åœ¨ @BotFather ä¸­æ£€æŸ¥éšç§è®¾ç½® â†’"Group Privacy"åº”ä¸º **OFF**
+- éªŒè¯æœºå™¨äººç¡®å®žæ˜¯æˆå‘˜ï¼ˆä¸ä»…ä»…æ˜¯æ²¡æœ‰è¯»å–æƒé™çš„ç®¡ç†å‘˜ï¼‰
+- æ£€æŸ¥ Gateway ç½‘å…³æ—¥å¿—ï¼š` logs --follow`ï¼ˆæŸ¥æ‰¾"skipping group message"ï¼‰
 
-**机器人响应提及但不响应 `/activation always`：**
+**æœºå™¨äººå“åº”æåŠä½†ä¸å“åº” `/activation always`ï¼š**
 
-- `/activation` 命令更新会话状态但不持久化到配置
-- 要持久化行为，将群组添加到 `channels.telegram.groups` 并设置 `requireMention: false`
+- `/activation` å‘½ä»¤æ›´æ–°ä¼šè¯çŠ¶æ€ä½†ä¸æŒä¹…åŒ–åˆ°é…ç½®
+- è¦æŒä¹…åŒ–è¡Œä¸ºï¼Œå°†ç¾¤ç»„æ·»åŠ åˆ° `channels.telegram.groups` å¹¶è®¾ç½® `requireMention: false`
 
-**像 `/status` 这样的命令不起作用：**
+**åƒ `/status` è¿™æ ·çš„å‘½ä»¤ä¸èµ·ä½œç”¨ï¼š**
 
-- 确保你的 Telegram 用户 ID 已授权（通过配对或 `channels.telegram.allowFrom`）
-- 即使在 `groupPolicy: "open"` 的群组中，命令也需要授权
+- ç¡®ä¿ä½ çš„ Telegram ç”¨æˆ· ID å·²æŽˆæƒï¼ˆé€šè¿‡é…å¯¹æˆ– `channels.telegram.allowFrom`ï¼‰
+- å³ä½¿åœ¨ `groupPolicy: "open"` çš„ç¾¤ç»„ä¸­ï¼Œå‘½ä»¤ä¹Ÿéœ€è¦æŽˆæƒ
 
-**长轮询在 Node 22+ 上立即中止（通常与代理/自定义 fetch 有关）：**
+**é•¿è½®è¯¢åœ¨ Node 22+ ä¸Šç«‹å³ä¸­æ­¢ï¼ˆé€šå¸¸ä¸Žä»£ç†/è‡ªå®šä¹‰ fetch æœ‰å…³ï¼‰ï¼š**
 
-- Node 22+ 对 `AbortSignal` 实例更严格；外部信号可以立即中止 `fetch` 调用。
-- 升级到规范化中止信号的 OpenClaw 构建版本，或在可以升级之前在 Node 20 上运行 Gateway 网关。
+- Node 22+ å¯¹ `AbortSignal` å®žä¾‹æ›´ä¸¥æ ¼ï¼›å¤–éƒ¨ä¿¡å·å¯ä»¥ç«‹å³ä¸­æ­¢ `fetch` è°ƒç”¨ã€‚
+- å‡çº§åˆ°è§„èŒƒåŒ–ä¸­æ­¢ä¿¡å·çš„  æž„å»ºç‰ˆæœ¬ï¼Œæˆ–åœ¨å¯ä»¥å‡çº§ä¹‹å‰åœ¨ Node 20 ä¸Šè¿è¡Œ Gateway ç½‘å…³ã€‚
 
-**机器人启动后静默停止响应（或日志显示 `HttpError: Network request ... failed`）：**
+**æœºå™¨äººå¯åŠ¨åŽé™é»˜åœæ­¢å“åº”ï¼ˆæˆ–æ—¥å¿—æ˜¾ç¤º `HttpError: Network request ... failed`ï¼‰ï¼š**
 
-- 某些主机首先将 `api.telegram.org` 解析为 IPv6。如果你的服务器没有可用的 IPv6 出口，grammY 可能会卡在仅 IPv6 的请求上。
-- 通过启用 IPv6 出口**或**强制 `api.telegram.org` 使用 IPv4 解析来修复（例如，使用 IPv4 A 记录添加 `/etc/hosts` 条目，或在你的 OS DNS 堆栈中优先使用 IPv4），然后重启 Gateway 网关。
-- 快速检查：`dig +short api.telegram.org A` 和 `dig +short api.telegram.org AAAA` 确认 DNS 返回的内容。
+- æŸäº›ä¸»æœºé¦–å…ˆå°† `api.telegram.org` è§£æžä¸º IPv6ã€‚å¦‚æžœä½ çš„æœåŠ¡å™¨æ²¡æœ‰å¯ç”¨çš„ IPv6 å‡ºå£ï¼ŒgrammY å¯èƒ½ä¼šå¡åœ¨ä»… IPv6 çš„è¯·æ±‚ä¸Šã€‚
+- é€šè¿‡å¯ç”¨ IPv6 å‡ºå£**æˆ–**å¼ºåˆ¶ `api.telegram.org` ä½¿ç”¨ IPv4 è§£æžæ¥ä¿®å¤ï¼ˆä¾‹å¦‚ï¼Œä½¿ç”¨ IPv4 A è®°å½•æ·»åŠ  `/etc/hosts` æ¡ç›®ï¼Œæˆ–åœ¨ä½ çš„ OS DNS å †æ ˆä¸­ä¼˜å…ˆä½¿ç”¨ IPv4ï¼‰ï¼Œç„¶åŽé‡å¯ Gateway ç½‘å…³ã€‚
+- å¿«é€Ÿæ£€æŸ¥ï¼š`dig +short api.telegram.org A` å’Œ `dig +short api.telegram.org AAAA` ç¡®è®¤ DNS è¿”å›žçš„å†…å®¹ã€‚
 
-## 配置参考（Telegram）
+## é…ç½®å‚è€ƒï¼ˆTelegramï¼‰
 
-完整配置：[配置](/gateway/configuration)
+å®Œæ•´é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-提供商选项：
+æä¾›å•†é€‰é¡¹ï¼š
 
-- `channels.telegram.enabled`：启用/禁用渠道启动。
-- `channels.telegram.botToken`：机器人 token（BotFather）。
-- `channels.telegram.tokenFile`：从文件路径读取 token。
-- `channels.telegram.dmPolicy`：`pairing | allowlist | open | disabled`（默认：pairing）。
-- `channels.telegram.allowFrom`：私信允许列表（id/用户名）。`open` 需要 `"*"`。
-- `channels.telegram.groupPolicy`：`open | allowlist | disabled`（默认：allowlist）。
-- `channels.telegram.groupAllowFrom`：群组发送者允许列表（id/用户名）。
-- `channels.telegram.groups`：每群组默认值 + 允许列表（使用 `"*"` 作为全局默认值）。
-  - `channels.telegram.groups.<id>.requireMention`：提及门控默认值。
-  - `channels.telegram.groups.<id>.skills`：skill 过滤器（省略 = 所有 skills，空 = 无）。
-  - `channels.telegram.groups.<id>.allowFrom`：每群组发送者允许列表覆盖。
-  - `channels.telegram.groups.<id>.systemPrompt`：群组的额外系统提示。
-  - `channels.telegram.groups.<id>.enabled`：为 `false` 时禁用群组。
-  - `channels.telegram.groups.<id>.topics.<threadId>.*`：每话题覆盖（与群组相同的字段）。
-  - `channels.telegram.groups.<id>.topics.<threadId>.requireMention`：每话题提及门控覆盖。
-- `channels.telegram.capabilities.inlineButtons`：`off | dm | group | all | allowlist`（默认：allowlist）。
-- `channels.telegram.accounts.<account>.capabilities.inlineButtons`：每账户覆盖。
-- `channels.telegram.replyToMode`：`off | first | all`（默认：`first`）。
-- `channels.telegram.textChunkLimit`：出站分块大小（字符）。
-- `channels.telegram.chunkMode`：`length`（默认）或 `newline` 在长度分块之前按空行（段落边界）分割。
-- `channels.telegram.linkPreview`：切换出站消息的链接预览（默认：true）。
-- `channels.telegram.streamMode`：`off | partial | block`（草稿流式传输）。
-- `channels.telegram.mediaMaxMb`：入站/出站媒体上限（MB）。
-- `channels.telegram.retry`：出站 Telegram API 调用的重试策略（attempts、minDelayMs、maxDelayMs、jitter）。
-- `channels.telegram.network.autoSelectFamily`：覆盖 Node autoSelectFamily（true=启用，false=禁用）。在 Node 22 上默认禁用以避免 Happy Eyeballs 超时。
-- `channels.telegram.proxy`：Bot API 调用的代理 URL（SOCKS/HTTP）。
-- `channels.telegram.webhookUrl`：启用 webhook 模式（需要 `channels.telegram.webhookSecret`）。
-- `channels.telegram.webhookSecret`：webhook 密钥（设置 webhookUrl 时必需）。
-- `channels.telegram.webhookPath`：本地 webhook 路径（默认 `/telegram-webhook`）。
-- `channels.telegram.actions.reactions`：门控 Telegram 工具反应。
-- `channels.telegram.actions.sendMessage`：门控 Telegram 工具消息发送。
-- `channels.telegram.actions.deleteMessage`：门控 Telegram 工具消息删除。
-- `channels.telegram.actions.sticker`：门控 Telegram 贴纸动作 — 发送和搜索（默认：false）。
-- `channels.telegram.reactionNotifications`：`off | own | all` — 控制哪些反应触发系统事件（未设置时默认：`own`）。
-- `channels.telegram.reactionLevel`：`off | ack | minimal | extensive` — 控制智能体的反应能力（未设置时默认：`minimal`）。
+- `channels.telegram.enabled`ï¼šå¯ç”¨/ç¦ç”¨æ¸ é“å¯åŠ¨ã€‚
+- `channels.telegram.botToken`ï¼šæœºå™¨äºº tokenï¼ˆBotFatherï¼‰ã€‚
+- `channels.telegram.tokenFile`ï¼šä»Žæ–‡ä»¶è·¯å¾„è¯»å– tokenã€‚
+- `channels.telegram.dmPolicy`ï¼š`pairing | allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼špairingï¼‰ã€‚
+- `channels.telegram.allowFrom`ï¼šç§ä¿¡å…è®¸åˆ—è¡¨ï¼ˆid/ç”¨æˆ·åï¼‰ã€‚`open` éœ€è¦ `"*"`ã€‚
+- `channels.telegram.groupPolicy`ï¼š`open | allowlist | disabled`ï¼ˆé»˜è®¤ï¼šallowlistï¼‰ã€‚
+- `channels.telegram.groupAllowFrom`ï¼šç¾¤ç»„å‘é€è€…å…è®¸åˆ—è¡¨ï¼ˆid/ç”¨æˆ·åï¼‰ã€‚
+- `channels.telegram.groups`ï¼šæ¯ç¾¤ç»„é»˜è®¤å€¼ + å…è®¸åˆ—è¡¨ï¼ˆä½¿ç”¨ `"*"` ä½œä¸ºå…¨å±€é»˜è®¤å€¼ï¼‰ã€‚
+  - `channels.telegram.groups.<id>.requireMention`ï¼šæåŠé—¨æŽ§é»˜è®¤å€¼ã€‚
+  - `channels.telegram.groups.<id>.skills`ï¼šskill è¿‡æ»¤å™¨ï¼ˆçœç•¥ = æ‰€æœ‰ skillsï¼Œç©º = æ— ï¼‰ã€‚
+  - `channels.telegram.groups.<id>.allowFrom`ï¼šæ¯ç¾¤ç»„å‘é€è€…å…è®¸åˆ—è¡¨è¦†ç›–ã€‚
+  - `channels.telegram.groups.<id>.systemPrompt`ï¼šç¾¤ç»„çš„é¢å¤–ç³»ç»Ÿæç¤ºã€‚
+  - `channels.telegram.groups.<id>.enabled`ï¼šä¸º `false` æ—¶ç¦ç”¨ç¾¤ç»„ã€‚
+  - `channels.telegram.groups.<id>.topics.<threadId>.*`ï¼šæ¯è¯é¢˜è¦†ç›–ï¼ˆä¸Žç¾¤ç»„ç›¸åŒçš„å­—æ®µï¼‰ã€‚
+  - `channels.telegram.groups.<id>.topics.<threadId>.requireMention`ï¼šæ¯è¯é¢˜æåŠé—¨æŽ§è¦†ç›–ã€‚
+- `channels.telegram.capabilities.inlineButtons`ï¼š`off | dm | group | all | allowlist`ï¼ˆé»˜è®¤ï¼šallowlistï¼‰ã€‚
+- `channels.telegram.accounts.<account>.capabilities.inlineButtons`ï¼šæ¯è´¦æˆ·è¦†ç›–ã€‚
+- `channels.telegram.replyToMode`ï¼š`off | first | all`ï¼ˆé»˜è®¤ï¼š`first`ï¼‰ã€‚
+- `channels.telegram.textChunkLimit`ï¼šå‡ºç«™åˆ†å—å¤§å°ï¼ˆå­—ç¬¦ï¼‰ã€‚
+- `channels.telegram.chunkMode`ï¼š`length`ï¼ˆé»˜è®¤ï¼‰æˆ– `newline` åœ¨é•¿åº¦åˆ†å—ä¹‹å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- `channels.telegram.linkPreview`ï¼šåˆ‡æ¢å‡ºç«™æ¶ˆæ¯çš„é“¾æŽ¥é¢„è§ˆï¼ˆé»˜è®¤ï¼štrueï¼‰ã€‚
+- `channels.telegram.streamMode`ï¼š`off | partial | block`ï¼ˆè‰ç¨¿æµå¼ä¼ è¾“ï¼‰ã€‚
+- `channels.telegram.mediaMaxMb`ï¼šå…¥ç«™/å‡ºç«™åª’ä½“ä¸Šé™ï¼ˆMBï¼‰ã€‚
+- `channels.telegram.retry`ï¼šå‡ºç«™ Telegram API è°ƒç”¨çš„é‡è¯•ç­–ç•¥ï¼ˆattemptsã€minDelayMsã€maxDelayMsã€jitterï¼‰ã€‚
+- `channels.telegram.network.autoSelectFamily`ï¼šè¦†ç›– Node autoSelectFamilyï¼ˆtrue=å¯ç”¨ï¼Œfalse=ç¦ç”¨ï¼‰ã€‚åœ¨ Node 22 ä¸Šé»˜è®¤ç¦ç”¨ä»¥é¿å… Happy Eyeballs è¶…æ—¶ã€‚
+- `channels.telegram.proxy`ï¼šBot API è°ƒç”¨çš„ä»£ç† URLï¼ˆSOCKS/HTTPï¼‰ã€‚
+- `channels.telegram.webhookUrl`ï¼šå¯ç”¨ webhook æ¨¡å¼ï¼ˆéœ€è¦ `channels.telegram.webhookSecret`ï¼‰ã€‚
+- `channels.telegram.webhookSecret`ï¼šwebhook å¯†é’¥ï¼ˆè®¾ç½® webhookUrl æ—¶å¿…éœ€ï¼‰ã€‚
+- `channels.telegram.webhookPath`ï¼šæœ¬åœ° webhook è·¯å¾„ï¼ˆé»˜è®¤ `/telegram-webhook`ï¼‰ã€‚
+- `channels.telegram.actions.reactions`ï¼šé—¨æŽ§ Telegram å·¥å…·ååº”ã€‚
+- `channels.telegram.actions.sendMessage`ï¼šé—¨æŽ§ Telegram å·¥å…·æ¶ˆæ¯å‘é€ã€‚
+- `channels.telegram.actions.deleteMessage`ï¼šé—¨æŽ§ Telegram å·¥å…·æ¶ˆæ¯åˆ é™¤ã€‚
+- `channels.telegram.actions.sticker`ï¼šé—¨æŽ§ Telegram è´´çº¸åŠ¨ä½œ â€” å‘é€å’Œæœç´¢ï¼ˆé»˜è®¤ï¼šfalseï¼‰ã€‚
+- `channels.telegram.reactionNotifications`ï¼š`off | own | all` â€” æŽ§åˆ¶å“ªäº›ååº”è§¦å‘ç³»ç»Ÿäº‹ä»¶ï¼ˆæœªè®¾ç½®æ—¶é»˜è®¤ï¼š`own`ï¼‰ã€‚
+- `channels.telegram.reactionLevel`ï¼š`off | ack | minimal | extensive` â€” æŽ§åˆ¶æ™ºèƒ½ä½“çš„ååº”èƒ½åŠ›ï¼ˆæœªè®¾ç½®æ—¶é»˜è®¤ï¼š`minimal`ï¼‰ã€‚
 
-相关全局选项：
+ç›¸å…³å…¨å±€é€‰é¡¹ï¼š
 
-- `agents.list[].groupChat.mentionPatterns`（提及门控模式）。
-- `messages.groupChat.mentionPatterns`（全局回退）。
-- `commands.native`（默认为 `"auto"` → Telegram/Discord 开启，Slack 关闭）、`commands.text`、`commands.useAccessGroups`（命令行为）。使用 `channels.telegram.commands.native` 覆盖。
-- `messages.responsePrefix`、`messages.ackReaction`、`messages.ackReactionScope`、`messages.removeAckAfterReply`。
+- `agents.list[].groupChat.mentionPatterns`ï¼ˆæåŠé—¨æŽ§æ¨¡å¼ï¼‰ã€‚
+- `messages.groupChat.mentionPatterns`ï¼ˆå…¨å±€å›žé€€ï¼‰ã€‚
+- `commands.native`ï¼ˆé»˜è®¤ä¸º `"auto"` â†’ Telegram/Discord å¼€å¯ï¼ŒSlack å…³é—­ï¼‰ã€`commands.text`ã€`commands.useAccessGroups`ï¼ˆå‘½ä»¤è¡Œä¸ºï¼‰ã€‚ä½¿ç”¨ `channels.telegram.commands.native` è¦†ç›–ã€‚
+- `messages.responsePrefix`ã€`messages.ackReaction`ã€`messages.ackReactionScope`ã€`messages.removeAckAfterReply`ã€‚
+

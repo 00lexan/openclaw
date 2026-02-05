@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { ChannelAccountSnapshot } from "../types.ts";
 import type { ChannelKey, ChannelsProps } from "./channels.types.ts";
 
@@ -52,3 +52,4 @@ export function renderChannelAccountCount(
   }
   return html`<div class="account-count">Accounts (${count})</div>`;
 }
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   applyAccountNameToChannelSection,
   buildChannelConfigSchema,
   collectDiscordAuditChannelIds,
@@ -25,7 +25,7 @@ import {
   type ChannelMessageActionAdapter,
   type ChannelPlugin,
   type ResolvedDiscordAccount,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import { getDiscordRuntime } from "./runtime.js";
 
 const meta = getChatChannelMeta("discord");
@@ -395,7 +395,7 @@ export const discordPlugin: ChannelPlugin<ResolvedDiscordAccount> = {
         const messageContent = probe.application?.intents?.messageContent;
         if (messageContent === "disabled") {
           ctx.log?.warn(
-            `[${account.accountId}] Discord Message Content Intent is disabled; bot may not respond to channel messages. Enable it in Discord Dev Portal (Bot → Privileged Gateway Intents) or require mentions.`,
+            `[${account.accountId}] Discord Message Content Intent is disabled; bot may not respond to channel messages. Enable it in Discord Dev Portal (Bot â†’ Privileged Gateway Intents) or require mentions.`,
           );
         } else if (messageContent === "limited") {
           ctx.log?.info(
@@ -420,3 +420,4 @@ export const discordPlugin: ChannelPlugin<ResolvedDiscordAccount> = {
     },
   },
 };
+

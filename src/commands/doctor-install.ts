@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { note } from "../terminal/note.js";
 
@@ -38,3 +38,4 @@ export function noteSourceInstallIssues(root: string | null) {
     note(warnings.join("\n"), "Install");
   }
 }
+

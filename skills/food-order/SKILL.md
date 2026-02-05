@@ -1,13 +1,13 @@
----
+﻿---
 name: food-order
 description: Reorder Foodora orders + track ETA/status with ordercli. Never confirm without explicit user approval. Triggers: order food, reorder, track ETA.
 homepage: https://ordercli.sh
-metadata: {"openclaw":{"emoji":"🥡","requires":{"bins":["ordercli"]},"install":[{"id":"go","kind":"go","module":"github.com/steipete/ordercli/cmd/ordercli@latest","bins":["ordercli"],"label":"Install ordercli (go)"}]}}
+metadata: {"":{"emoji":"ðŸ¥¡","requires":{"bins":["ordercli"]},"install":[{"id":"go","kind":"go","module":"github.com/steipete/ordercli/cmd/ordercli@latest","bins":["ordercli"],"label":"Install ordercli (go)"}]}}
 ---
 
 # Food order (Foodora via ordercli)
 
-Goal: reorder a previous Foodora order safely (preview first; confirm only on explicit user “yes/confirm/place the order”).
+Goal: reorder a previous Foodora order safely (preview first; confirm only on explicit user â€œyes/confirm/place the orderâ€).
 
 Hard safety rules
 
@@ -17,7 +17,7 @@ Hard safety rules
 
 Setup (once)
 
-- Country: `ordercli foodora countries` → `ordercli foodora config set --country AT`
+- Country: `ordercli foodora countries` â†’ `ordercli foodora config set --country AT`
 - Login (password): `ordercli foodora login --email you@example.com --password-stdin`
 - Login (no password, preferred): `ordercli foodora session chrome --url https://www.foodora.at/ --profile "Default"`
 
@@ -46,3 +46,4 @@ Track the order
 Debug / safe testing
 
 - Use a throwaway config: `ordercli --config /tmp/ordercli.json ...`
+

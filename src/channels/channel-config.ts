@@ -1,4 +1,4 @@
-export type ChannelMatchSource = "direct" | "parent" | "wildcard";
+﻿export type ChannelMatchSource = "direct" | "parent" | "wildcard";
 
 export type ChannelEntryMatch<T> = {
   entry?: T;
@@ -180,3 +180,4 @@ export function resolveNestedAllowlistDecision(params: {
   }
   return params.innerMatched;
 }
+

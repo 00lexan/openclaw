@@ -1,4 +1,4 @@
-const ESC = "\x1b";
+﻿const ESC = "\x1b";
 const CR = "\r";
 const TAB = "\t";
 const BACKSPACE = "\x7f";
@@ -291,3 +291,4 @@ function parseHexByte(raw: string): number | null {
   }
   return value;
 }
+

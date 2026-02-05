@@ -1,4 +1,4 @@
-import { WebSocket } from "ws";
+﻿import { WebSocket } from "ws";
 import {
   loadOrCreateDeviceIdentity,
   publicKeyRawBase64UrlFromPem,
@@ -136,3 +136,4 @@ export async function connectDeviceAuthReq(params: { url: string; token?: string
   ws.close();
   return res;
 }
+

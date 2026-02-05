@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   listDiscordDirectoryGroupsFromConfig,
   listDiscordDirectoryPeersFromConfig,
@@ -144,3 +144,4 @@ describe("directory (config-backed)", () => {
     expect(groups?.map((e) => e.id)).toEqual(["999@g.us"]);
   });
 });
+

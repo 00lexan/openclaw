@@ -1,4 +1,4 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
 import {
   EventType,
   type MatrixMessageSummary,
@@ -73,3 +73,4 @@ export async function fetchEventSummary(
     return null;
   }
 }
+

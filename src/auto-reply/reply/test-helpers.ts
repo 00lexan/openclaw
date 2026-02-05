@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+﻿import { vi } from "vitest";
 import type { TypingController } from "./typing.js";
 
 export function createMockTypingController(
@@ -16,3 +16,4 @@ export function createMockTypingController(
     ...overrides,
   };
 }
+

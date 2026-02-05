@@ -1,4 +1,4 @@
-import { render } from "lit";
+﻿import { render } from "lit";
 import { describe, expect, it, vi } from "vitest";
 import type { SessionsListResult } from "../types.ts";
 import { renderChat, type ChatProps } from "./chat.ts";
@@ -36,7 +36,7 @@ function createProps(overrides: Partial<ChatProps> = {}): ChatProps {
     error: null,
     sessions: createSessions(),
     focusMode: false,
-    assistantName: "OpenClaw",
+    assistantName: "",
     assistantAvatar: null,
     onRefresh: () => undefined,
     onToggleFocusMode: () => undefined,
@@ -93,3 +93,4 @@ describe("chat view", () => {
     expect(container.textContent).not.toContain("Stop");
   });
 });
+

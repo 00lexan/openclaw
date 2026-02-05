@@ -1,10 +1,10 @@
----
+﻿---
 read_when:
-  - 添加或修改模型 CLI（models list/set/scan/aliases/fallbacks）
-  - 更改模型回退行为或选择用户体验
-  - 更新模型扫描探测（工具/图像）
-summary: 模型 CLI：列表、设置、别名、回退、扫描、状态
-title: 模型 CLI
+  - æ·»åŠ æˆ–ä¿®æ”¹æ¨¡åž‹ CLIï¼ˆmodels list/set/scan/aliases/fallbacksï¼‰
+  - æ›´æ”¹æ¨¡åž‹å›žé€€è¡Œä¸ºæˆ–é€‰æ‹©ç”¨æˆ·ä½“éªŒ
+  - æ›´æ–°æ¨¡åž‹æ‰«ææŽ¢æµ‹ï¼ˆå·¥å…·/å›¾åƒï¼‰
+summary: æ¨¡åž‹ CLIï¼šåˆ—è¡¨ã€è®¾ç½®ã€åˆ«åã€å›žé€€ã€æ‰«æã€çŠ¶æ€
+title: æ¨¡åž‹ CLI
 x-i18n:
   generated_at: "2026-02-03T10:05:42Z"
   model: claude-opus-4-5
@@ -14,66 +14,66 @@ x-i18n:
   workflow: 15
 ---
 
-# 模型 CLI
+# æ¨¡åž‹ CLI
 
-参见 [/concepts/model-failover](/concepts/model-failover) 了解认证配置文件轮换、冷却时间及其与回退的交互。
-快速提供商概述 + 示例：[/concepts/model-providers](/concepts/model-providers)。
+å‚è§ [/concepts/model-failover](/concepts/model-failover) äº†è§£è®¤è¯é…ç½®æ–‡ä»¶è½®æ¢ã€å†·å´æ—¶é—´åŠå…¶ä¸Žå›žé€€çš„äº¤äº’ã€‚
+å¿«é€Ÿæä¾›å•†æ¦‚è¿° + ç¤ºä¾‹ï¼š[/concepts/model-providers](/concepts/model-providers)ã€‚
 
-## 模型选择工作原理
+## æ¨¡åž‹é€‰æ‹©å·¥ä½œåŽŸç†
 
-OpenClaw 按以下顺序选择模型：
+ æŒ‰ä»¥ä¸‹é¡ºåºé€‰æ‹©æ¨¡åž‹ï¼š
 
-1. **主要**模型（`agents.defaults.model.primary` 或 `agents.defaults.model`）。
-2. `agents.defaults.model.fallbacks` 中的**回退**（按顺序）。
-3. **提供商认证故障转移**在移动到下一个模型之前在提供商内部发生。
+1. **ä¸»è¦**æ¨¡åž‹ï¼ˆ`agents.defaults.model.primary` æˆ– `agents.defaults.model`ï¼‰ã€‚
+2. `agents.defaults.model.fallbacks` ä¸­çš„**å›žé€€**ï¼ˆæŒ‰é¡ºåºï¼‰ã€‚
+3. **æä¾›å•†è®¤è¯æ•…éšœè½¬ç§»**åœ¨ç§»åŠ¨åˆ°ä¸‹ä¸€ä¸ªæ¨¡åž‹ä¹‹å‰åœ¨æä¾›å•†å†…éƒ¨å‘ç”Ÿã€‚
 
-相关：
+ç›¸å…³ï¼š
 
-- `agents.defaults.models` 是 OpenClaw 可使用的模型白名单/目录（加上别名）。
-- `agents.defaults.imageModel` **仅在**主要模型无法接受图像时使用。
-- 每个智能体的默认值可以通过 `agents.list[].model` 加绑定覆盖 `agents.defaults.model`（参见 [/concepts/multi-agent](/concepts/multi-agent)）。
+- `agents.defaults.models` æ˜¯  å¯ä½¿ç”¨çš„æ¨¡åž‹ç™½åå•/ç›®å½•ï¼ˆåŠ ä¸Šåˆ«åï¼‰ã€‚
+- `agents.defaults.imageModel` **ä»…åœ¨**ä¸»è¦æ¨¡åž‹æ— æ³•æŽ¥å—å›¾åƒæ—¶ä½¿ç”¨ã€‚
+- æ¯ä¸ªæ™ºèƒ½ä½“çš„é»˜è®¤å€¼å¯ä»¥é€šè¿‡ `agents.list[].model` åŠ ç»‘å®šè¦†ç›– `agents.defaults.model`ï¼ˆå‚è§ [/concepts/multi-agent](/concepts/multi-agent)ï¼‰ã€‚
 
-## 快速模型推荐（经验之谈）
+## å¿«é€Ÿæ¨¡åž‹æŽ¨èï¼ˆç»éªŒä¹‹è°ˆï¼‰
 
-- **GLM**：在编程/工具调用方面稍好。
-- **MiniMax**：在写作和氛围方面更好。
+- **GLM**ï¼šåœ¨ç¼–ç¨‹/å·¥å…·è°ƒç”¨æ–¹é¢ç¨å¥½ã€‚
+- **MiniMax**ï¼šåœ¨å†™ä½œå’Œæ°›å›´æ–¹é¢æ›´å¥½ã€‚
 
-## 设置向导（推荐）
+## è®¾ç½®å‘å¯¼ï¼ˆæŽ¨èï¼‰
 
-如果你不想手动编辑配置，请运行新手引导向导：
+å¦‚æžœä½ ä¸æƒ³æ‰‹åŠ¨ç¼–è¾‘é…ç½®ï¼Œè¯·è¿è¡Œæ–°æ‰‹å¼•å¯¼å‘å¯¼ï¼š
 
 ```bash
-openclaw onboard
+ onboard
 ```
 
-它可以为常见提供商设置模型 + 认证，包括 **OpenAI Code（Codex）订阅**（OAuth）和 **Anthropic**（推荐使用 API 密钥；也支持 `claude setup-token`）。
+å®ƒå¯ä»¥ä¸ºå¸¸è§æä¾›å•†è®¾ç½®æ¨¡åž‹ + è®¤è¯ï¼ŒåŒ…æ‹¬ **OpenAI Codeï¼ˆCodexï¼‰è®¢é˜…**ï¼ˆOAuthï¼‰å’Œ **Anthropic**ï¼ˆæŽ¨èä½¿ç”¨ API å¯†é’¥ï¼›ä¹Ÿæ”¯æŒ `claude setup-token`ï¼‰ã€‚
 
-## 配置键（概述）
+## é…ç½®é”®ï¼ˆæ¦‚è¿°ï¼‰
 
-- `agents.defaults.model.primary` 和 `agents.defaults.model.fallbacks`
-- `agents.defaults.imageModel.primary` 和 `agents.defaults.imageModel.fallbacks`
-- `agents.defaults.models`（白名单 + 别名 + 提供商参数）
-- `models.providers`（写入 `models.json` 的自定义提供商）
+- `agents.defaults.model.primary` å’Œ `agents.defaults.model.fallbacks`
+- `agents.defaults.imageModel.primary` å’Œ `agents.defaults.imageModel.fallbacks`
+- `agents.defaults.models`ï¼ˆç™½åå• + åˆ«å + æä¾›å•†å‚æ•°ï¼‰
+- `models.providers`ï¼ˆå†™å…¥ `models.json` çš„è‡ªå®šä¹‰æä¾›å•†ï¼‰
 
-模型引用会规范化为小写。提供商别名如 `z.ai/*` 会规范化为 `zai/*`。
+æ¨¡åž‹å¼•ç”¨ä¼šè§„èŒƒåŒ–ä¸ºå°å†™ã€‚æä¾›å•†åˆ«åå¦‚ `z.ai/*` ä¼šè§„èŒƒåŒ–ä¸º `zai/*`ã€‚
 
-提供商配置示例（包括 OpenCode Zen）在 [/gateway/configuration](/gateway/configuration#opencode-zen-multi-model-proxy)。
+æä¾›å•†é…ç½®ç¤ºä¾‹ï¼ˆåŒ…æ‹¬ OpenCode Zenï¼‰åœ¨ [/gateway/configuration](/gateway/configuration#opencode-zen-multi-model-proxy)ã€‚
 
-## "Model is not allowed"（以及为什么回复停止）
+## "Model is not allowed"ï¼ˆä»¥åŠä¸ºä»€ä¹ˆå›žå¤åœæ­¢ï¼‰
 
-如果设置了 `agents.defaults.models`，它将成为 `/model` 和会话覆盖的**白名单**。当用户选择不在该白名单中的模型时，OpenClaw 返回：
+å¦‚æžœè®¾ç½®äº† `agents.defaults.models`ï¼Œå®ƒå°†æˆä¸º `/model` å’Œä¼šè¯è¦†ç›–çš„**ç™½åå•**ã€‚å½“ç”¨æˆ·é€‰æ‹©ä¸åœ¨è¯¥ç™½åå•ä¸­çš„æ¨¡åž‹æ—¶ï¼Œ è¿”å›žï¼š
 
 ```
 Model "provider/model" is not allowed. Use /model to list available models.
 ```
 
-这发生在正常回复生成**之前**，所以消息可能感觉像"没有响应"。修复方法是：
+è¿™å‘ç”Ÿåœ¨æ­£å¸¸å›žå¤ç”Ÿæˆ**ä¹‹å‰**ï¼Œæ‰€ä»¥æ¶ˆæ¯å¯èƒ½æ„Ÿè§‰åƒ"æ²¡æœ‰å“åº”"ã€‚ä¿®å¤æ–¹æ³•æ˜¯ï¼š
 
-- 将模型添加到 `agents.defaults.models`，或
-- 清除白名单（删除 `agents.defaults.models`），或
-- 从 `/model list` 中选择一个模型。
+- å°†æ¨¡åž‹æ·»åŠ åˆ° `agents.defaults.models`ï¼Œæˆ–
+- æ¸…é™¤ç™½åå•ï¼ˆåˆ é™¤ `agents.defaults.models`ï¼‰ï¼Œæˆ–
+- ä»Ž `/model list` ä¸­é€‰æ‹©ä¸€ä¸ªæ¨¡åž‹ã€‚
 
-白名单配置示例：
+ç™½åå•é…ç½®ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -87,9 +87,9 @@ Model "provider/model" is not allowed. Use /model to list available models.
 }
 ```
 
-## 在聊天中切换模型（`/model`）
+## åœ¨èŠå¤©ä¸­åˆ‡æ¢æ¨¡åž‹ï¼ˆ`/model`ï¼‰
 
-你可以在不重启的情况下切换当前会话的模型：
+ä½ å¯ä»¥åœ¨ä¸é‡å¯çš„æƒ…å†µä¸‹åˆ‡æ¢å½“å‰ä¼šè¯çš„æ¨¡åž‹ï¼š
 
 ```
 /model
@@ -99,98 +99,99 @@ Model "provider/model" is not allowed. Use /model to list available models.
 /model status
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- `/model`（和 `/model list`）是紧凑的编号选择器（模型系列 + 可用提供商）。
-- `/model <#>` 从该选择器中选择。
-- `/model status` 是详细视图（认证候选项，以及配置时的提供商端点 `baseUrl` + `api` 模式）。
-- 模型引用通过在**第一个** `/` 处分割来解析。输入 `/model <ref>` 时使用 `provider/model`。
-- 如果模型 ID 本身包含 `/`（OpenRouter 风格），你必须包含提供商前缀（例如：`/model openrouter/moonshotai/kimi-k2`）。
-- 如果省略提供商，OpenClaw 将输入视为别名或**默认提供商**的模型（仅在模型 ID 中没有 `/` 时有效）。
+- `/model`ï¼ˆå’Œ `/model list`ï¼‰æ˜¯ç´§å‡‘çš„ç¼–å·é€‰æ‹©å™¨ï¼ˆæ¨¡åž‹ç³»åˆ— + å¯ç”¨æä¾›å•†ï¼‰ã€‚
+- `/model <#>` ä»Žè¯¥é€‰æ‹©å™¨ä¸­é€‰æ‹©ã€‚
+- `/model status` æ˜¯è¯¦ç»†è§†å›¾ï¼ˆè®¤è¯å€™é€‰é¡¹ï¼Œä»¥åŠé…ç½®æ—¶çš„æä¾›å•†ç«¯ç‚¹ `baseUrl` + `api` æ¨¡å¼ï¼‰ã€‚
+- æ¨¡åž‹å¼•ç”¨é€šè¿‡åœ¨**ç¬¬ä¸€ä¸ª** `/` å¤„åˆ†å‰²æ¥è§£æžã€‚è¾“å…¥ `/model <ref>` æ—¶ä½¿ç”¨ `provider/model`ã€‚
+- å¦‚æžœæ¨¡åž‹ ID æœ¬èº«åŒ…å« `/`ï¼ˆOpenRouter é£Žæ ¼ï¼‰ï¼Œä½ å¿…é¡»åŒ…å«æä¾›å•†å‰ç¼€ï¼ˆä¾‹å¦‚ï¼š`/model openrouter/moonshotai/kimi-k2`ï¼‰ã€‚
+- å¦‚æžœçœç•¥æä¾›å•†ï¼Œ å°†è¾“å…¥è§†ä¸ºåˆ«åæˆ–**é»˜è®¤æä¾›å•†**çš„æ¨¡åž‹ï¼ˆä»…åœ¨æ¨¡åž‹ ID ä¸­æ²¡æœ‰ `/` æ—¶æœ‰æ•ˆï¼‰ã€‚
 
-完整命令行为/配置：[斜杠命令](/tools/slash-commands)。
+å®Œæ•´å‘½ä»¤è¡Œä¸º/é…ç½®ï¼š[æ–œæ å‘½ä»¤](/tools/slash-commands)ã€‚
 
-## CLI 命令
+## CLI å‘½ä»¤
 
 ```bash
-openclaw models list
-openclaw models status
-openclaw models set <provider/model>
-openclaw models set-image <provider/model>
+ models list
+ models status
+ models set <provider/model>
+ models set-image <provider/model>
 
-openclaw models aliases list
-openclaw models aliases add <alias> <provider/model>
-openclaw models aliases remove <alias>
+ models aliases list
+ models aliases add <alias> <provider/model>
+ models aliases remove <alias>
 
-openclaw models fallbacks list
-openclaw models fallbacks add <provider/model>
-openclaw models fallbacks remove <provider/model>
-openclaw models fallbacks clear
+ models fallbacks list
+ models fallbacks add <provider/model>
+ models fallbacks remove <provider/model>
+ models fallbacks clear
 
-openclaw models image-fallbacks list
-openclaw models image-fallbacks add <provider/model>
-openclaw models image-fallbacks remove <provider/model>
-openclaw models image-fallbacks clear
+ models image-fallbacks list
+ models image-fallbacks add <provider/model>
+ models image-fallbacks remove <provider/model>
+ models image-fallbacks clear
 ```
 
-`openclaw models`（无子命令）是 `models status` 的快捷方式。
+` models`ï¼ˆæ— å­å‘½ä»¤ï¼‰æ˜¯ `models status` çš„å¿«æ·æ–¹å¼ã€‚
 
 ### `models list`
 
-默认显示已配置的模型。有用的标志：
+é»˜è®¤æ˜¾ç¤ºå·²é…ç½®çš„æ¨¡åž‹ã€‚æœ‰ç”¨çš„æ ‡å¿—ï¼š
 
-- `--all`：完整目录
-- `--local`：仅本地提供商
-- `--provider <name>`：按提供商筛选
-- `--plain`：每行一个模型
-- `--json`：机器可读输出
+- `--all`ï¼šå®Œæ•´ç›®å½•
+- `--local`ï¼šä»…æœ¬åœ°æä¾›å•†
+- `--provider <name>`ï¼šæŒ‰æä¾›å•†ç­›é€‰
+- `--plain`ï¼šæ¯è¡Œä¸€ä¸ªæ¨¡åž‹
+- `--json`ï¼šæœºå™¨å¯è¯»è¾“å‡º
 
 ### `models status`
 
-显示已解析的主要模型、回退、图像模型，以及已配置提供商的认证概述。它还显示认证存储中找到的配置文件的 OAuth 过期状态（默认在 24 小时内警告）。`--plain` 仅打印已解析的主要模型。
-OAuth 状态始终显示（并包含在 `--json` 输出中）。如果已配置的提供商没有凭证，`models status` 会打印 **Missing auth** 部分。
-JSON 包括 `auth.oauth`（警告窗口 + 配置文件）和 `auth.providers`（每个提供商的有效认证）。
-使用 `--check` 进行自动化（缺失/过期时退出 `1`，即将过期时退出 `2`）。
+æ˜¾ç¤ºå·²è§£æžçš„ä¸»è¦æ¨¡åž‹ã€å›žé€€ã€å›¾åƒæ¨¡åž‹ï¼Œä»¥åŠå·²é…ç½®æä¾›å•†çš„è®¤è¯æ¦‚è¿°ã€‚å®ƒè¿˜æ˜¾ç¤ºè®¤è¯å­˜å‚¨ä¸­æ‰¾åˆ°çš„é…ç½®æ–‡ä»¶çš„ OAuth è¿‡æœŸçŠ¶æ€ï¼ˆé»˜è®¤åœ¨ 24 å°æ—¶å†…è­¦å‘Šï¼‰ã€‚`--plain` ä»…æ‰“å°å·²è§£æžçš„ä¸»è¦æ¨¡åž‹ã€‚
+OAuth çŠ¶æ€å§‹ç»ˆæ˜¾ç¤ºï¼ˆå¹¶åŒ…å«åœ¨ `--json` è¾“å‡ºä¸­ï¼‰ã€‚å¦‚æžœå·²é…ç½®çš„æä¾›å•†æ²¡æœ‰å‡­è¯ï¼Œ`models status` ä¼šæ‰“å° **Missing auth** éƒ¨åˆ†ã€‚
+JSON åŒ…æ‹¬ `auth.oauth`ï¼ˆè­¦å‘Šçª—å£ + é…ç½®æ–‡ä»¶ï¼‰å’Œ `auth.providers`ï¼ˆæ¯ä¸ªæä¾›å•†çš„æœ‰æ•ˆè®¤è¯ï¼‰ã€‚
+ä½¿ç”¨ `--check` è¿›è¡Œè‡ªåŠ¨åŒ–ï¼ˆç¼ºå¤±/è¿‡æœŸæ—¶é€€å‡º `1`ï¼Œå³å°†è¿‡æœŸæ—¶é€€å‡º `2`ï¼‰ã€‚
 
-首选的 Anthropic 认证是 Claude Code CLI setup-token（在任何地方运行；如需要在 Gateway 网关主机上粘贴）：
+é¦–é€‰çš„ Anthropic è®¤è¯æ˜¯ Claude Code CLI setup-tokenï¼ˆåœ¨ä»»ä½•åœ°æ–¹è¿è¡Œï¼›å¦‚éœ€è¦åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šç²˜è´´ï¼‰ï¼š
 
 ```bash
 claude setup-token
-openclaw models status
+ models status
 ```
 
-## 扫描（OpenRouter 免费模型）
+## æ‰«æï¼ˆOpenRouter å…è´¹æ¨¡åž‹ï¼‰
 
-`openclaw models scan` 检查 OpenRouter 的**免费模型目录**，并可选择性地探测模型的工具和图像支持。
+` models scan` æ£€æŸ¥ OpenRouter çš„**å…è´¹æ¨¡åž‹ç›®å½•**ï¼Œå¹¶å¯é€‰æ‹©æ€§åœ°æŽ¢æµ‹æ¨¡åž‹çš„å·¥å…·å’Œå›¾åƒæ”¯æŒã€‚
 
-关键标志：
+å…³é”®æ ‡å¿—ï¼š
 
-- `--no-probe`：跳过实时探测（仅元数据）
-- `--min-params <b>`：最小参数量（十亿）
-- `--max-age-days <days>`：跳过较旧的模型
-- `--provider <name>`：提供商前缀筛选
-- `--max-candidates <n>`：回退列表大小
-- `--set-default`：将 `agents.defaults.model.primary` 设置为第一个选择
-- `--set-image`：将 `agents.defaults.imageModel.primary` 设置为第一个图像选择
+- `--no-probe`ï¼šè·³è¿‡å®žæ—¶æŽ¢æµ‹ï¼ˆä»…å…ƒæ•°æ®ï¼‰
+- `--min-params <b>`ï¼šæœ€å°å‚æ•°é‡ï¼ˆåäº¿ï¼‰
+- `--max-age-days <days>`ï¼šè·³è¿‡è¾ƒæ—§çš„æ¨¡åž‹
+- `--provider <name>`ï¼šæä¾›å•†å‰ç¼€ç­›é€‰
+- `--max-candidates <n>`ï¼šå›žé€€åˆ—è¡¨å¤§å°
+- `--set-default`ï¼šå°† `agents.defaults.model.primary` è®¾ç½®ä¸ºç¬¬ä¸€ä¸ªé€‰æ‹©
+- `--set-image`ï¼šå°† `agents.defaults.imageModel.primary` è®¾ç½®ä¸ºç¬¬ä¸€ä¸ªå›¾åƒé€‰æ‹©
 
-探测需要 OpenRouter API 密钥（来自认证配置文件或 `OPENROUTER_API_KEY`）。没有密钥时，使用 `--no-probe` 仅列出候选项。
+æŽ¢æµ‹éœ€è¦ OpenRouter API å¯†é’¥ï¼ˆæ¥è‡ªè®¤è¯é…ç½®æ–‡ä»¶æˆ– `OPENROUTER_API_KEY`ï¼‰ã€‚æ²¡æœ‰å¯†é’¥æ—¶ï¼Œä½¿ç”¨ `--no-probe` ä»…åˆ—å‡ºå€™é€‰é¡¹ã€‚
 
-扫描结果按以下顺序排名：
+æ‰«æç»“æžœæŒ‰ä»¥ä¸‹é¡ºåºæŽ’åï¼š
 
-1. 图像支持
-2. 工具延迟
-3. 上下文大小
-4. 参数数量
+1. å›¾åƒæ”¯æŒ
+2. å·¥å…·å»¶è¿Ÿ
+3. ä¸Šä¸‹æ–‡å¤§å°
+4. å‚æ•°æ•°é‡
 
-输入
+è¾“å…¥
 
-- OpenRouter `/models` 列表（筛选 `:free`）
-- 需要来自认证配置文件或 `OPENROUTER_API_KEY` 的 OpenRouter API 密钥（参见 [/environment](/environment)）
-- 可选筛选器：`--max-age-days`、`--min-params`、`--provider`、`--max-candidates`
-- 探测控制：`--timeout`、`--concurrency`
+- OpenRouter `/models` åˆ—è¡¨ï¼ˆç­›é€‰ `:free`ï¼‰
+- éœ€è¦æ¥è‡ªè®¤è¯é…ç½®æ–‡ä»¶æˆ– `OPENROUTER_API_KEY` çš„ OpenRouter API å¯†é’¥ï¼ˆå‚è§ [/environment](/environment)ï¼‰
+- å¯é€‰ç­›é€‰å™¨ï¼š`--max-age-days`ã€`--min-params`ã€`--provider`ã€`--max-candidates`
+- æŽ¢æµ‹æŽ§åˆ¶ï¼š`--timeout`ã€`--concurrency`
 
-在 TTY 中运行时，你可以交互式选择回退。在非交互模式下，传递 `--yes` 接受默认值。
+åœ¨ TTY ä¸­è¿è¡Œæ—¶ï¼Œä½ å¯ä»¥äº¤äº’å¼é€‰æ‹©å›žé€€ã€‚åœ¨éžäº¤äº’æ¨¡å¼ä¸‹ï¼Œä¼ é€’ `--yes` æŽ¥å—é»˜è®¤å€¼ã€‚
 
-## 模型注册表（`models.json`）
+## æ¨¡åž‹æ³¨å†Œè¡¨ï¼ˆ`models.json`ï¼‰
 
-`models.providers` 中的自定义提供商会写入智能体目录下的 `models.json`（默认 `~/.openclaw/agents/<agentId>/models.json`）。除非 `models.mode` 设置为 `replace`，否则此文件默认会被合并。
+`models.providers` ä¸­çš„è‡ªå®šä¹‰æä¾›å•†ä¼šå†™å…¥æ™ºèƒ½ä½“ç›®å½•ä¸‹çš„ `models.json`ï¼ˆé»˜è®¤ `~/./agents/<agentId>/models.json`ï¼‰ã€‚é™¤éž `models.mode` è®¾ç½®ä¸º `replace`ï¼Œå¦åˆ™æ­¤æ–‡ä»¶é»˜è®¤ä¼šè¢«åˆå¹¶ã€‚
+

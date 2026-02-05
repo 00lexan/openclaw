@@ -1,4 +1,4 @@
-import type { SlackEventMiddlewareArgs } from "@slack/bolt";
+﻿import type { SlackEventMiddlewareArgs } from "@slack/bolt";
 import type { SlackMonitorContext } from "../context.js";
 import type {
   SlackChannelCreatedEvent,
@@ -107,7 +107,7 @@ export function registerSlackChannelEvents(params: { ctx: SlackMonitorContext })
         });
 
         ctx.runtime.log?.(
-          warn(`[slack] Channel ID changed: ${oldChannelId} → ${newChannelId} (${label})`),
+          warn(`[slack] Channel ID changed: ${oldChannelId} â†’ ${newChannelId} (${label})`),
         );
 
         if (
@@ -159,3 +159,4 @@ export function registerSlackChannelEvents(params: { ctx: SlackMonitorContext })
     },
   );
 }
+

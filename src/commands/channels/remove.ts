@@ -1,10 +1,10 @@
-import { resolveChannelDefaultAccountId } from "../../channels/plugins/helpers.js";
+﻿import { resolveChannelDefaultAccountId } from "../../channels/plugins/helpers.js";
 import {
   getChannelPlugin,
   listChannelPlugins,
   normalizeChannelId,
 } from "../../channels/plugins/index.js";
-import { type OpenClawConfig, writeConfigFile } from "../../config/config.js";
+import { type Config, writeConfigFile } from "../../config/config.js";
 import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../../routing/session-key.js";
 import { defaultRuntime, type RuntimeEnv } from "../../runtime.js";
 import { createClackPrompter } from "../../wizard/clack-prompter.js";
@@ -16,7 +16,7 @@ export type ChannelsRemoveOptions = {
   delete?: boolean;
 };
 
-function listAccountIds(cfg: OpenClawConfig, channel: ChatChannel): string[] {
+function listAccountIds(cfg: Config, channel: ChatChannel): string[] {
   const plugin = getChannelPlugin(channel);
   if (!plugin) {
     return [];
@@ -140,3 +140,4 @@ export async function channelsRemoveCommand(
     );
   }
 }
+

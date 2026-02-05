@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { NodesRpcOpts } from "./types.js";
 import { defaultRuntime } from "../../runtime.js";
 import { renderTable } from "../../terminal/table.js";
@@ -114,3 +114,4 @@ export function registerNodesPairingCommands(nodes: Command) {
       }),
   );
 }
+

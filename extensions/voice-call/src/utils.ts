@@ -1,4 +1,4 @@
-import os from "node:os";
+﻿import os from "node:os";
 import path from "node:path";
 
 export function resolveUserPath(input: string): string {
@@ -12,3 +12,4 @@ export function resolveUserPath(input: string): string {
   }
   return path.resolve(trimmed);
 }
+

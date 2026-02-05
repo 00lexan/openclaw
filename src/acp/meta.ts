@@ -1,4 +1,4 @@
-export function readString(
+﻿export function readString(
   meta: Record<string, unknown> | null | undefined,
   keys: string[],
 ): string | undefined {
@@ -45,3 +45,4 @@ export function readNumber(
   }
   return undefined;
 }
+

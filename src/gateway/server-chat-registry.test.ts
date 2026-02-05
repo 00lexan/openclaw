@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { createChatRunRegistry } from "./server-chat.js";
 
 describe("chat run registry", () => {
@@ -16,3 +16,4 @@ describe("chat run registry", () => {
     expect(registry.peek("s1")).toBeUndefined();
   });
 });
+

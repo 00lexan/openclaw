@@ -1,4 +1,4 @@
-import type { CommandArgValues } from "./commands-registry.types.js";
+﻿import type { CommandArgValues } from "./commands-registry.types.js";
 
 export type CommandArgsFormatter = (values: CommandArgValues) => string | undefined;
 
@@ -98,3 +98,4 @@ export const COMMAND_ARG_FORMATTERS: Record<string, CommandArgsFormatter> = {
   debug: formatDebugArgs,
   queue: formatQueueArgs,
 };
+

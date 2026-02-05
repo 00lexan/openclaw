@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { runExec } from "../process/exec.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { ensureBinary } from "./binaries.js";
@@ -31,3 +31,4 @@ describe("ensureBinary", () => {
     expect(exit).toHaveBeenCalledWith(1);
   });
 });
+

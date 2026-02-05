@@ -1,4 +1,4 @@
-import type { ChannelId, ChannelMessageActionName } from "../channels/plugins/types.js";
+﻿import type { ChannelId, ChannelMessageActionName } from "../channels/plugins/types.js";
 import type { OutboundDeliveryResult } from "../infra/outbound/deliver.js";
 import type { MessageActionRunResult } from "../infra/outbound/message-action-runner.js";
 import { getChannelPlugin } from "../channels/plugins/index.js";
@@ -12,7 +12,7 @@ const shortenText = (value: string, maxLen: number) => {
   if (chars.length <= maxLen) {
     return value;
   }
-  return `${chars.slice(0, Math.max(0, maxLen - 1)).join("")}…`;
+  return `${chars.slice(0, Math.max(0, maxLen - 1)).join("")}â€¦`;
 };
 
 const resolveChannelLabel = (channel: ChannelId) =>
@@ -282,7 +282,7 @@ export function formatMessageCliText(result: MessageActionRunResult): string[] {
     const okCount = results.filter((entry) => entry.ok).length;
     const total = results.length;
     const headingLine = ok(
-      `✅ Broadcast complete (${okCount}/${total} succeeded, ${total - okCount} failed)`,
+      `âœ… Broadcast complete (${okCount}/${total} succeeded, ${total - okCount} failed)`,
     );
     return [
       headingLine,
@@ -319,7 +319,7 @@ export function formatMessageCliText(result: MessageActionRunResult): string[] {
 
     const label = resolveChannelLabel(result.channel);
     const msgId = extractMessageId(result.payload);
-    return [ok(`✅ Sent via ${label}.${msgId ? ` Message ID: ${msgId}` : ""}`)];
+    return [ok(`âœ… Sent via ${label}.${msgId ? ` Message ID: ${msgId}` : ""}`)];
   }
 
   if (result.kind === "poll") {
@@ -344,7 +344,7 @@ export function formatMessageCliText(result: MessageActionRunResult): string[] {
 
     const label = resolveChannelLabel(result.channel);
     const msgId = extractMessageId(result.payload);
-    return [ok(`✅ Poll sent via ${label}.${msgId ? ` Message ID: ${msgId}` : ""}`)];
+    return [ok(`âœ… Poll sent via ${label}.${msgId ? ` Message ID: ${msgId}` : ""}`)];
   }
 
   // channel actions (non-send/poll)
@@ -355,11 +355,11 @@ export function formatMessageCliText(result: MessageActionRunResult): string[] {
     const added = (payload as { added?: unknown }).added;
     const removed = (payload as { removed?: unknown }).removed;
     if (typeof added === "string" && added.trim()) {
-      lines.push(ok(`✅ Reaction added: ${added.trim()}`));
+      lines.push(ok(`âœ… Reaction added: ${added.trim()}`));
       return lines;
     }
     if (typeof removed === "string" && removed.trim()) {
-      lines.push(ok(`✅ Reaction removed: ${removed.trim()}`));
+      lines.push(ok(`âœ… Reaction removed: ${removed.trim()}`));
       return lines;
     }
     if (Array.isArray(removed)) {
@@ -367,10 +367,10 @@ export function formatMessageCliText(result: MessageActionRunResult): string[] {
         .map((x) => String(x).trim())
         .filter(Boolean)
         .join(", ");
-      lines.push(ok(`✅ Reactions removed${list ? `: ${list}` : ""}`));
+      lines.push(ok(`âœ… Reactions removed${list ? `: ${list}` : ""}`));
       return lines;
     }
-    lines.push(ok("✅ Reaction updated."));
+    lines.push(ok("âœ… Reaction updated."));
     return lines;
   }
 
@@ -410,7 +410,7 @@ export function formatMessageCliText(result: MessageActionRunResult): string[] {
   }
 
   // Generic success + compact details table.
-  lines.push(ok(`✅ ${result.action} via ${resolveChannelLabel(result.channel)}.`));
+  lines.push(ok(`âœ… ${result.action} via ${resolveChannelLabel(result.channel)}.`));
   const summary = renderObjectSummary(payload, opts);
   if (summary.length) {
     lines.push("");
@@ -420,3 +420,4 @@ export function formatMessageCliText(result: MessageActionRunResult): string[] {
   }
   return lines;
 }
+

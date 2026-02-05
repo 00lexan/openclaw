@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import {
   formatIcaclsResetCommand,
   formatWindowsAclSummary,
@@ -192,3 +192,4 @@ export function isGroupReadable(bits: number | null): boolean {
   }
   return (bits & 0o040) !== 0;
 }
+

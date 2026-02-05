@@ -1,5 +1,5 @@
-import { formatCliCommand } from "../cli/command-format.js";
-import { resolveOpenClawPackageRoot } from "../infra/openclaw-root.js";
+﻿import { formatCliCommand } from "../cli/command-format.js";
+import { resolvePackageRoot } from "../infra/-root.js";
 import {
   checkUpdateStatus,
   compareSemverStrings,
@@ -12,7 +12,7 @@ export async function getUpdateCheckResult(params: {
   fetchGit: boolean;
   includeRegistry: boolean;
 }): Promise<UpdateCheckResult> {
-  const root = await resolveOpenClawPackageRoot({
+  const root = await resolvePackageRoot({
     moduleUrl: import.meta.url,
     argv1: process.argv[1],
     cwd: process.cwd(),
@@ -65,8 +65,8 @@ export function formatUpdateAvailableHint(update: UpdateCheckResult): string | n
   if (availability.hasRegistryUpdate && availability.latestVersion) {
     details.push(`npm ${availability.latestVersion}`);
   }
-  const suffix = details.length > 0 ? ` (${details.join(" · ")})` : "";
-  return `Update available${suffix}. Run: ${formatCliCommand("openclaw update")}`;
+  const suffix = details.length > 0 ? ` (${details.join(" Â· ")})` : "";
+  return `Update available${suffix}. Run: ${formatCliCommand(" update")}`;
 }
 
 export function formatUpdateOneLiner(update: UpdateCheckResult): string {
@@ -75,7 +75,7 @@ export function formatUpdateOneLiner(update: UpdateCheckResult): string {
     const branch = update.git.branch ? `git ${update.git.branch}` : "git";
     parts.push(branch);
     if (update.git.upstream) {
-      parts.push(`↔ ${update.git.upstream}`);
+      parts.push(`â†” ${update.git.upstream}`);
     }
     if (update.git.dirty === true) {
       parts.push("dirty");
@@ -134,5 +134,6 @@ export function formatUpdateOneLiner(update: UpdateCheckResult): string {
       parts.push("deps stale");
     }
   }
-  return `Update: ${parts.join(" · ")}`;
+  return `Update: ${parts.join(" Â· ")}`;
 }
+

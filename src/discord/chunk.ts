@@ -1,4 +1,4 @@
-import { chunkMarkdownTextWithMode, type ChunkMode } from "../auto-reply/chunk.js";
+﻿import { chunkMarkdownTextWithMode, type ChunkMode } from "../auto-reply/chunk.js";
 
 export type ChunkDiscordTextOpts = {
   /** Max characters per Discord message. Default: 2000. */
@@ -233,7 +233,7 @@ export function chunkDiscordTextWithMode(
   return chunks;
 }
 
-// Keep italics intact for reasoning payloads that are wrapped once with `_…_`.
+// Keep italics intact for reasoning payloads that are wrapped once with `_â€¦_`.
 // When Discord chunking splits the message, we close italics at the end of
 // each chunk and reopen at the start of the next so every chunk renders
 // consistently.
@@ -275,3 +275,4 @@ function rebalanceReasoningItalics(source: string, chunks: string[]): string[] {
 
   return adjusted;
 }
+

@@ -1,4 +1,4 @@
-import { parseFenceSpans, type FenceSpan } from "./fences.js";
+﻿import { parseFenceSpans, type FenceSpan } from "./fences.js";
 
 export type InlineCodeState = {
   open: boolean;
@@ -103,3 +103,4 @@ function isInsideFenceSpan(index: number, spans: FenceSpan[]): boolean {
 function isInsideInlineSpan(index: number, spans: Array<[number, number]>): boolean {
   return spans.some(([start, end]) => index >= start && index < end);
 }
+

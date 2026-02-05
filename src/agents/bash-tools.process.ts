@@ -1,4 +1,4 @@
-import type { AgentTool } from "@mariozechner/pi-agent-core";
+﻿import type { AgentTool } from "@mariozechner/pi-agent-core";
 import { Type } from "@sinclair/typebox";
 import {
   deleteSession,
@@ -154,7 +154,7 @@ export function createProcessTool(
                     text:
                       (scopedFinished.tail ||
                         `(no output recorded${
-                          scopedFinished.truncated ? " — truncated to cap" : ""
+                          scopedFinished.truncated ? " â€” truncated to cap" : ""
                         })`) +
                       `\n\nProcess exited with ${
                         scopedFinished.exitSignal
@@ -663,3 +663,4 @@ export function createProcessTool(
 }
 
 export const processTool = createProcessTool();
+

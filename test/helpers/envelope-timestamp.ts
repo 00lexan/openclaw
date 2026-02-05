@@ -1,4 +1,4 @@
-type EnvelopeTimestampZone = string;
+﻿type EnvelopeTimestampZone = string;
 
 function formatUtcTimestamp(date: Date): string {
   const yyyy = String(date.getUTCFullYear()).padStart(4, "0");
@@ -57,3 +57,4 @@ export function formatLocalEnvelopeTimestamp(date: Date): string {
 export function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
+

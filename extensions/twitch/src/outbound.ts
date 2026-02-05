@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Twitch outbound adapter for sending messages.
  *
  * Implements the ChannelOutboundAdapter interface for Twitch chat.
@@ -97,7 +97,7 @@ export const twitchOutbound: ChannelOutboundAdapter = {
    *
    * @example
    * const result = await twitchOutbound.sendText({
-   *   cfg: openclawConfig,
+   *   cfg: Config,
    *   to: "#mychannel",
    *   text: "Hello Twitch!",
    *   accountId: "default",
@@ -157,7 +157,7 @@ export const twitchOutbound: ChannelOutboundAdapter = {
    *
    * @example
    * const result = await twitchOutbound.sendMedia({
-   *   cfg: openclawConfig,
+   *   cfg: Config,
    *   to: "#mychannel",
    *   text: "Check this out!",
    *   mediaUrl: "https://example.com/image.png",
@@ -182,3 +182,4 @@ export const twitchOutbound: ChannelOutboundAdapter = {
     });
   },
 };
+

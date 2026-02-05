@@ -1,4 +1,4 @@
-export type MentionGateParams = {
+﻿export type MentionGateParams = {
   requireMention: boolean;
   canDetectMention: boolean;
   wasMentioned: boolean;
@@ -57,3 +57,4 @@ export function resolveMentionGatingWithBypass(
     shouldBypassMention,
   };
 }
+

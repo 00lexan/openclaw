@@ -1,4 +1,4 @@
-import { tmpdir } from "node:os";
+﻿import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { withTempHome as withTempHomeBase } from "../../test/helpers/temp-home.js";
@@ -18,7 +18,7 @@ const usageMocks = vi.hoisted(() => ({
     updatedAt: 0,
     providers: [],
   }),
-  formatUsageSummaryLine: vi.fn().mockReturnValue("📊 Usage: Claude 80% left"),
+  formatUsageSummaryLine: vi.fn().mockReturnValue("ðŸ“Š Usage: Claude 80% left"),
   resolveUsageProviderId: vi.fn((provider: string) => provider.split("/")[0]),
 }));
 
@@ -68,7 +68,7 @@ async function withTempHome<T>(fn: (home: string) => Promise<T>): Promise<T> {
       vi.mocked(abortEmbeddedPiRun).mockClear();
       return await fn(home);
     },
-    { prefix: "openclaw-triggers-" },
+    { prefix: "-triggers-" },
   );
 }
 
@@ -77,7 +77,7 @@ function makeCfg(home: string) {
     agents: {
       defaults: {
         model: "anthropic/claude-opus-4-5",
-        workspace: join(home, "openclaw"),
+        workspace: join(home, ""),
       },
     },
     channels: {
@@ -111,7 +111,7 @@ describe("trigger handling", () => {
         cfg,
       );
       const text = Array.isArray(res) ? res[0]?.text : res?.text;
-      expect(text).toBe("⚙️ Group activation set to mention.");
+      expect(text).toBe("âš™ï¸ Group activation set to mention.");
       expect(runEmbeddedPiAgent).not.toHaveBeenCalled();
     });
   });
@@ -141,7 +141,7 @@ describe("trigger handling", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: join(home, "openclaw"),
+              workspace: join(home, ""),
             },
           },
           channels: {
@@ -187,7 +187,7 @@ describe("trigger handling", () => {
           agents: {
             defaults: {
               model: "anthropic/claude-opus-4-5",
-              workspace: join(home, "openclaw"),
+              workspace: join(home, ""),
             },
           },
           channels: {
@@ -196,7 +196,7 @@ describe("trigger handling", () => {
             },
           },
           session: {
-            store: join(tmpdir(), `openclaw-session-test-${Date.now()}.json`),
+            store: join(tmpdir(), `-session-test-${Date.now()}.json`),
           },
         },
       );
@@ -208,3 +208,4 @@ describe("trigger handling", () => {
     });
   });
 });
+

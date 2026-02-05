@@ -1,4 +1,4 @@
-# Local Places
+﻿# Local Places
 
 This repo is a fusion of two pieces:
 
@@ -99,3 +99,4 @@ Generate the OpenAPI schema:
 ```bash
 uv run python scripts/generate_openapi.py
 ```
+

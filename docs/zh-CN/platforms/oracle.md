@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 在 Oracle Cloud 上设置 OpenClaw
-  - 寻找 OpenClaw 的低成本 VPS 托管
-  - 想要在小型服务器上 24/7 运行 OpenClaw
-summary: 在 Oracle Cloud 上运行 OpenClaw（Always Free ARM）
+  - åœ¨ Oracle Cloud ä¸Šè®¾ç½® 
+  - å¯»æ‰¾  çš„ä½Žæˆæœ¬ VPS æ‰˜ç®¡
+  - æƒ³è¦åœ¨å°åž‹æœåŠ¡å™¨ä¸Š 24/7 è¿è¡Œ 
+summary: åœ¨ Oracle Cloud ä¸Šè¿è¡Œ ï¼ˆAlways Free ARMï¼‰
 title: Oracle Cloud
 x-i18n:
   generated_at: "2026-02-03T07:53:25Z"
@@ -14,297 +14,298 @@ x-i18n:
   workflow: 15
 ---
 
-# 在 Oracle Cloud（OCI）上运行 OpenClaw
+# åœ¨ Oracle Cloudï¼ˆOCIï¼‰ä¸Šè¿è¡Œ 
 
-## 目标
+## ç›®æ ‡
 
-在 Oracle Cloud 的 **Always Free** ARM 层上运行持久化的 OpenClaw Gateway 网关。
+åœ¨ Oracle Cloud çš„ **Always Free** ARM å±‚ä¸Šè¿è¡ŒæŒä¹…åŒ–çš„  Gateway ç½‘å…³ã€‚
 
-Oracle 的免费层非常适合 OpenClaw（特别是如果你已经有 OCI 账户），但有一些权衡：
+Oracle çš„å…è´¹å±‚éžå¸¸é€‚åˆ ï¼ˆç‰¹åˆ«æ˜¯å¦‚æžœä½ å·²ç»æœ‰ OCI è´¦æˆ·ï¼‰ï¼Œä½†æœ‰ä¸€äº›æƒè¡¡ï¼š
 
-- ARM 架构（大多数东西都能工作，但某些二进制文件可能仅支持 x86）
-- 容量和注册可能比较麻烦
+- ARM æž¶æž„ï¼ˆå¤§å¤šæ•°ä¸œè¥¿éƒ½èƒ½å·¥ä½œï¼Œä½†æŸäº›äºŒè¿›åˆ¶æ–‡ä»¶å¯èƒ½ä»…æ”¯æŒ x86ï¼‰
+- å®¹é‡å’Œæ³¨å†Œå¯èƒ½æ¯”è¾ƒéº»çƒ¦
 
-## 成本比较（2026）
+## æˆæœ¬æ¯”è¾ƒï¼ˆ2026ï¼‰
 
-| 提供商       | 方案            | 配置                  | 价格/月 | 说明                 |
+| æä¾›å•†       | æ–¹æ¡ˆ            | é…ç½®                  | ä»·æ ¼/æœˆ | è¯´æ˜Ž                 |
 | ------------ | --------------- | --------------------- | ------- | -------------------- |
-| Oracle Cloud | Always Free ARM | 最多 4 OCPU，24GB RAM | $0      | ARM，容量有限        |
-| Hetzner      | CX22            | 2 vCPU，4GB RAM       | ~ $4    | 最便宜的付费选项     |
-| DigitalOcean | Basic           | 1 vCPU，1GB RAM       | $6      | 易用的 UI，文档完善  |
-| Vultr        | Cloud Compute   | 1 vCPU，1GB RAM       | $6      | 多个地区             |
-| Linode       | Nanode          | 1 vCPU，1GB RAM       | $5      | 现为 Akamai 的一部分 |
+| Oracle Cloud | Always Free ARM | æœ€å¤š 4 OCPUï¼Œ24GB RAM | $0      | ARMï¼Œå®¹é‡æœ‰é™        |
+| Hetzner      | CX22            | 2 vCPUï¼Œ4GB RAM       | ~ $4    | æœ€ä¾¿å®œçš„ä»˜è´¹é€‰é¡¹     |
+| DigitalOcean | Basic           | 1 vCPUï¼Œ1GB RAM       | $6      | æ˜“ç”¨çš„ UIï¼Œæ–‡æ¡£å®Œå–„  |
+| Vultr        | Cloud Compute   | 1 vCPUï¼Œ1GB RAM       | $6      | å¤šä¸ªåœ°åŒº             |
+| Linode       | Nanode          | 1 vCPUï¼Œ1GB RAM       | $5      | çŽ°ä¸º Akamai çš„ä¸€éƒ¨åˆ† |
 
 ---
 
-## 先决条件
+## å…ˆå†³æ¡ä»¶
 
-- Oracle Cloud 账户（[注册](https://www.oracle.com/cloud/free/)）——如果遇到问题请参阅[社区注册指南](https://gist.github.com/rssnyder/51e3cfedd730e7dd5f4a816143b25dbd)
-- Tailscale 账户（在 [tailscale.com](https://tailscale.com) 免费）
-- 约 30 分钟
+- Oracle Cloud è´¦æˆ·ï¼ˆ[æ³¨å†Œ](https://www.oracle.com/cloud/free/)ï¼‰â€”â€”å¦‚æžœé‡åˆ°é—®é¢˜è¯·å‚é˜…[ç¤¾åŒºæ³¨å†ŒæŒ‡å—](https://gist.github.com/rssnyder/51e3cfedd730e7dd5f4a816143b25dbd)
+- Tailscale è´¦æˆ·ï¼ˆåœ¨ [tailscale.com](https://tailscale.com) å…è´¹ï¼‰
+- çº¦ 30 åˆ†é’Ÿ
 
-## 1) 创建 OCI 实例
+## 1) åˆ›å»º OCI å®žä¾‹
 
-1. 登录 [Oracle Cloud Console](https://cloud.oracle.com/)
-2. 导航到 **Compute → Instances → Create Instance**
-3. 配置：
-   - **Name:** `openclaw`
+1. ç™»å½• [Oracle Cloud Console](https://cloud.oracle.com/)
+2. å¯¼èˆªåˆ° **Compute â†’ Instances â†’ Create Instance**
+3. é…ç½®ï¼š
+   - **Name:** ``
    - **Image:** Ubuntu 24.04 (aarch64)
-   - **Shape:** `VM.Standard.A1.Flex`（Ampere ARM）
-   - **OCPUs:** 2（或最多 4）
-   - **Memory:** 12 GB（或最多 24 GB）
-   - **Boot volume:** 50 GB（最多 200 GB 免费）
-   - **SSH key:** 添加你的公钥
-4. 点击 **Create**
-5. 记录公网 IP 地址
+   - **Shape:** `VM.Standard.A1.Flex`ï¼ˆAmpere ARMï¼‰
+   - **OCPUs:** 2ï¼ˆæˆ–æœ€å¤š 4ï¼‰
+   - **Memory:** 12 GBï¼ˆæˆ–æœ€å¤š 24 GBï¼‰
+   - **Boot volume:** 50 GBï¼ˆæœ€å¤š 200 GB å…è´¹ï¼‰
+   - **SSH key:** æ·»åŠ ä½ çš„å…¬é’¥
+4. ç‚¹å‡» **Create**
+5. è®°å½•å…¬ç½‘ IP åœ°å€
 
-**提示：** 如果实例创建失败并显示"Out of capacity"，尝试不同的可用性域或稍后重试。免费层容量有限。
+**æç¤ºï¼š** å¦‚æžœå®žä¾‹åˆ›å»ºå¤±è´¥å¹¶æ˜¾ç¤º"Out of capacity"ï¼Œå°è¯•ä¸åŒçš„å¯ç”¨æ€§åŸŸæˆ–ç¨åŽé‡è¯•ã€‚å…è´¹å±‚å®¹é‡æœ‰é™ã€‚
 
-## 2) 连接并更新
+## 2) è¿žæŽ¥å¹¶æ›´æ–°
 
 ```bash
-# 通过公网 IP 连接
+# é€šè¿‡å…¬ç½‘ IP è¿žæŽ¥
 ssh ubuntu@YOUR_PUBLIC_IP
 
-# 更新系统
+# æ›´æ–°ç³»ç»Ÿ
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y build-essential
 ```
 
-**注意：** `build-essential` 是某些依赖项 ARM 编译所必需的。
+**æ³¨æ„ï¼š** `build-essential` æ˜¯æŸäº›ä¾èµ–é¡¹ ARM ç¼–è¯‘æ‰€å¿…éœ€çš„ã€‚
 
-## 3) 配置用户和主机名
+## 3) é…ç½®ç”¨æˆ·å’Œä¸»æœºå
 
 ```bash
-# 设置主机名
-sudo hostnamectl set-hostname openclaw
+# è®¾ç½®ä¸»æœºå
+sudo hostnamectl set-hostname 
 
-# 为 ubuntu 用户设置密码
+# ä¸º ubuntu ç”¨æˆ·è®¾ç½®å¯†ç 
 sudo passwd ubuntu
 
-# 启用 lingering（注销后保持用户服务运行）
+# å¯ç”¨ lingeringï¼ˆæ³¨é”€åŽä¿æŒç”¨æˆ·æœåŠ¡è¿è¡Œï¼‰
 sudo loginctl enable-linger ubuntu
 ```
 
-## 4) 安装 Tailscale
+## 4) å®‰è£… Tailscale
 
 ```bash
 curl -fsSL https://tailscale.com/install.sh | sh
-sudo tailscale up --ssh --hostname=openclaw
+sudo tailscale up --ssh --hostname=
 ```
 
-这会启用 Tailscale SSH，所以你可以从 tailnet 上的任何设备通过 `ssh openclaw` 连接——不需要公网 IP。
+è¿™ä¼šå¯ç”¨ Tailscale SSHï¼Œæ‰€ä»¥ä½ å¯ä»¥ä»Ž tailnet ä¸Šçš„ä»»ä½•è®¾å¤‡é€šè¿‡ `ssh ` è¿žæŽ¥â€”â€”ä¸éœ€è¦å…¬ç½‘ IPã€‚
 
-验证：
+éªŒè¯ï¼š
 
 ```bash
 tailscale status
 ```
 
-**从现在开始，通过 Tailscale 连接：** `ssh ubuntu@openclaw`（或使用 Tailscale IP）。
+**ä»ŽçŽ°åœ¨å¼€å§‹ï¼Œé€šè¿‡ Tailscale è¿žæŽ¥ï¼š** `ssh ubuntu@`ï¼ˆæˆ–ä½¿ç”¨ Tailscale IPï¼‰ã€‚
 
-## 5) 安装 OpenClaw
+## 5) å®‰è£… 
 
 ```bash
-curl -fsSL https://openclaw.ai/install.sh | bash
+curl -fsSL https://.ai/install.sh | bash
 source ~/.bashrc
 ```
 
-当提示"How do you want to hatch your bot?"时，选择 **"Do this later"**。
+å½“æç¤º"How do you want to hatch your bot?"æ—¶ï¼Œé€‰æ‹© **"Do this later"**ã€‚
 
-> 注意：如果你遇到 ARM 原生构建问题，在使用 Homebrew 之前先从系统包开始（例如 `sudo apt install -y build-essential`）。
+> æ³¨æ„ï¼šå¦‚æžœä½ é‡åˆ° ARM åŽŸç”Ÿæž„å»ºé—®é¢˜ï¼Œåœ¨ä½¿ç”¨ Homebrew ä¹‹å‰å…ˆä»Žç³»ç»ŸåŒ…å¼€å§‹ï¼ˆä¾‹å¦‚ `sudo apt install -y build-essential`ï¼‰ã€‚
 
-## 6) 配置 Gateway 网关（loopback + 令牌认证）并启用 Tailscale Serve
+## 6) é…ç½® Gateway ç½‘å…³ï¼ˆloopback + ä»¤ç‰Œè®¤è¯ï¼‰å¹¶å¯ç”¨ Tailscale Serve
 
-使用令牌认证作为默认值。它是可预测的，避免需要任何"不安全认证"的控制 UI 标志。
+ä½¿ç”¨ä»¤ç‰Œè®¤è¯ä½œä¸ºé»˜è®¤å€¼ã€‚å®ƒæ˜¯å¯é¢„æµ‹çš„ï¼Œé¿å…éœ€è¦ä»»ä½•"ä¸å®‰å…¨è®¤è¯"çš„æŽ§åˆ¶ UI æ ‡å¿—ã€‚
 
 ```bash
-# 在 VM 上保持 Gateway 网关私有
-openclaw config set gateway.bind loopback
+# åœ¨ VM ä¸Šä¿æŒ Gateway ç½‘å…³ç§æœ‰
+ config set gateway.bind loopback
 
-# 要求 Gateway 网关 + 控制 UI 的认证
-openclaw config set gateway.auth.mode token
-openclaw doctor --generate-gateway-token
+# è¦æ±‚ Gateway ç½‘å…³ + æŽ§åˆ¶ UI çš„è®¤è¯
+ config set gateway.auth.mode token
+ doctor --generate-gateway-token
 
-# 通过 Tailscale Serve 暴露（HTTPS + tailnet 访问）
-openclaw config set gateway.tailscale.mode serve
-openclaw config set gateway.trustedProxies '["127.0.0.1"]'
+# é€šè¿‡ Tailscale Serve æš´éœ²ï¼ˆHTTPS + tailnet è®¿é—®ï¼‰
+ config set gateway.tailscale.mode serve
+ config set gateway.trustedProxies '["127.0.0.1"]'
 
-systemctl --user restart openclaw-gateway
+systemctl --user restart -gateway
 ```
 
-## 7) 验证
+## 7) éªŒè¯
 
 ```bash
-# 检查版本
-openclaw --version
+# æ£€æŸ¥ç‰ˆæœ¬
+ --version
 
-# 检查守护进程状态
-systemctl --user status openclaw-gateway
+# æ£€æŸ¥å®ˆæŠ¤è¿›ç¨‹çŠ¶æ€
+systemctl --user status -gateway
 
-# 检查 Tailscale Serve
+# æ£€æŸ¥ Tailscale Serve
 tailscale serve status
 
-# 测试本地响应
+# æµ‹è¯•æœ¬åœ°å“åº”
 curl http://localhost:18789
 ```
 
-## 8) 锁定 VCN 安全
+## 8) é”å®š VCN å®‰å…¨
 
-现在一切正常工作了，锁定 VCN 以阻止除 Tailscale 之外的所有流量。OCI 的虚拟云网络充当网络边缘的防火墙——流量在到达你的实例之前就被阻止。
+çŽ°åœ¨ä¸€åˆ‡æ­£å¸¸å·¥ä½œäº†ï¼Œé”å®š VCN ä»¥é˜»æ­¢é™¤ Tailscale ä¹‹å¤–çš„æ‰€æœ‰æµé‡ã€‚OCI çš„è™šæ‹Ÿäº‘ç½‘ç»œå……å½“ç½‘ç»œè¾¹ç¼˜çš„é˜²ç«å¢™â€”â€”æµé‡åœ¨åˆ°è¾¾ä½ çš„å®žä¾‹ä¹‹å‰å°±è¢«é˜»æ­¢ã€‚
 
-1. 在 OCI Console 中转到 **Networking → Virtual Cloud Networks**
-2. 点击你的 VCN → **Security Lists** → Default Security List
-3. **移除**除以下之外的所有入站规则：
-   - `0.0.0.0/0 UDP 41641`（Tailscale）
-4. 保留默认出站规则（允许所有出站）
+1. åœ¨ OCI Console ä¸­è½¬åˆ° **Networking â†’ Virtual Cloud Networks**
+2. ç‚¹å‡»ä½ çš„ VCN â†’ **Security Lists** â†’ Default Security List
+3. **ç§»é™¤**é™¤ä»¥ä¸‹ä¹‹å¤–çš„æ‰€æœ‰å…¥ç«™è§„åˆ™ï¼š
+   - `0.0.0.0/0 UDP 41641`ï¼ˆTailscaleï¼‰
+4. ä¿ç•™é»˜è®¤å‡ºç«™è§„åˆ™ï¼ˆå…è®¸æ‰€æœ‰å‡ºç«™ï¼‰
 
-这会在网络边缘阻止端口 22 上的 SSH、HTTP、HTTPS 和其他所有内容。从现在开始，你只能通过 Tailscale 连接。
-
----
-
-## 访问控制 UI
-
-从你 Tailscale 网络上的任何设备：
-
-```
-https://openclaw.<tailnet-name>.ts.net/
-```
-
-将 `<tailnet-name>` 替换为你的 tailnet 名称（在 `tailscale status` 中可见）。
-
-不需要 SSH 隧道。Tailscale 提供：
-
-- HTTPS 加密（自动证书）
-- 通过 Tailscale 身份认证
-- 从 tailnet 上的任何设备（笔记本电脑、手机等）访问
+è¿™ä¼šåœ¨ç½‘ç»œè¾¹ç¼˜é˜»æ­¢ç«¯å£ 22 ä¸Šçš„ SSHã€HTTPã€HTTPS å’Œå…¶ä»–æ‰€æœ‰å†…å®¹ã€‚ä»ŽçŽ°åœ¨å¼€å§‹ï¼Œä½ åªèƒ½é€šè¿‡ Tailscale è¿žæŽ¥ã€‚
 
 ---
 
-## 安全：VCN + Tailscale（推荐基线）
+## è®¿é—®æŽ§åˆ¶ UI
 
-通过锁定 VCN（仅开放 UDP 41641）并将 Gateway 网关绑定到 loopback，你获得了强大的纵深防御：公共流量在网络边缘被阻止，管理访问通过你的 tailnet 进行。
+ä»Žä½  Tailscale ç½‘ç»œä¸Šçš„ä»»ä½•è®¾å¤‡ï¼š
 
-此设置通常消除了纯粹为了阻止互联网范围的 SSH 暴力破解而需要额外的基于主机的防火墙规则的*需求*——但你仍应保持操作系统更新，运行 `openclaw security audit`，并验证你没有意外地在公共接口上监听。
+```
+https://.<tailnet-name>.ts.net/
+```
 
-### 已经受保护的内容
+å°† `<tailnet-name>` æ›¿æ¢ä¸ºä½ çš„ tailnet åç§°ï¼ˆåœ¨ `tailscale status` ä¸­å¯è§ï¼‰ã€‚
 
-| 传统步骤        | 是否需要？ | 原因                                             |
+ä¸éœ€è¦ SSH éš§é“ã€‚Tailscale æä¾›ï¼š
+
+- HTTPS åŠ å¯†ï¼ˆè‡ªåŠ¨è¯ä¹¦ï¼‰
+- é€šè¿‡ Tailscale èº«ä»½è®¤è¯
+- ä»Ž tailnet ä¸Šçš„ä»»ä½•è®¾å¤‡ï¼ˆç¬”è®°æœ¬ç”µè„‘ã€æ‰‹æœºç­‰ï¼‰è®¿é—®
+
+---
+
+## å®‰å…¨ï¼šVCN + Tailscaleï¼ˆæŽ¨èåŸºçº¿ï¼‰
+
+é€šè¿‡é”å®š VCNï¼ˆä»…å¼€æ”¾ UDP 41641ï¼‰å¹¶å°† Gateway ç½‘å…³ç»‘å®šåˆ° loopbackï¼Œä½ èŽ·å¾—äº†å¼ºå¤§çš„çºµæ·±é˜²å¾¡ï¼šå…¬å…±æµé‡åœ¨ç½‘ç»œè¾¹ç¼˜è¢«é˜»æ­¢ï¼Œç®¡ç†è®¿é—®é€šè¿‡ä½ çš„ tailnet è¿›è¡Œã€‚
+
+æ­¤è®¾ç½®é€šå¸¸æ¶ˆé™¤äº†çº¯ç²¹ä¸ºäº†é˜»æ­¢äº’è”ç½‘èŒƒå›´çš„ SSH æš´åŠ›ç ´è§£è€Œéœ€è¦é¢å¤–çš„åŸºäºŽä¸»æœºçš„é˜²ç«å¢™è§„åˆ™çš„*éœ€æ±‚*â€”â€”ä½†ä½ ä»åº”ä¿æŒæ“ä½œç³»ç»Ÿæ›´æ–°ï¼Œè¿è¡Œ ` security audit`ï¼Œå¹¶éªŒè¯ä½ æ²¡æœ‰æ„å¤–åœ°åœ¨å…¬å…±æŽ¥å£ä¸Šç›‘å¬ã€‚
+
+### å·²ç»å—ä¿æŠ¤çš„å†…å®¹
+
+| ä¼ ç»Ÿæ­¥éª¤        | æ˜¯å¦éœ€è¦ï¼Ÿ | åŽŸå›                                              |
 | --------------- | ---------- | ------------------------------------------------ |
-| UFW 防火墙      | 否         | VCN 在流量到达实例之前就阻止了                   |
-| fail2ban        | 否         | 如果端口 22 在 VCN 被阻止则无暴力破解            |
-| sshd 加固       | 否         | Tailscale SSH 不使用 sshd                        |
-| 禁用 root 登录  | 否         | Tailscale 使用 Tailscale 身份，而不是系统用户    |
-| 仅 SSH 密钥认证 | 否         | Tailscale 通过你的 tailnet 认证                  |
-| IPv6 加固       | 通常不需要 | 取决于你的 VCN/子网设置；验证实际分配/暴露的内容 |
+| UFW é˜²ç«å¢™      | å¦         | VCN åœ¨æµé‡åˆ°è¾¾å®žä¾‹ä¹‹å‰å°±é˜»æ­¢äº†                   |
+| fail2ban        | å¦         | å¦‚æžœç«¯å£ 22 åœ¨ VCN è¢«é˜»æ­¢åˆ™æ— æš´åŠ›ç ´è§£            |
+| sshd åŠ å›º       | å¦         | Tailscale SSH ä¸ä½¿ç”¨ sshd                        |
+| ç¦ç”¨ root ç™»å½•  | å¦         | Tailscale ä½¿ç”¨ Tailscale èº«ä»½ï¼Œè€Œä¸æ˜¯ç³»ç»Ÿç”¨æˆ·    |
+| ä»… SSH å¯†é’¥è®¤è¯ | å¦         | Tailscale é€šè¿‡ä½ çš„ tailnet è®¤è¯                  |
+| IPv6 åŠ å›º       | é€šå¸¸ä¸éœ€è¦ | å–å†³äºŽä½ çš„ VCN/å­ç½‘è®¾ç½®ï¼›éªŒè¯å®žé™…åˆ†é…/æš´éœ²çš„å†…å®¹ |
 
-### 仍然推荐
+### ä»ç„¶æŽ¨è
 
-- **凭证权限：** `chmod 700 ~/.openclaw`
-- **安全审计：** `openclaw security audit`
-- **系统更新：** 定期 `sudo apt update && sudo apt upgrade`
-- **监控 Tailscale：** 在 [Tailscale 管理控制台](https://login.tailscale.com/admin) 中查看设备
+- **å‡­è¯æƒé™ï¼š** `chmod 700 ~/.`
+- **å®‰å…¨å®¡è®¡ï¼š** ` security audit`
+- **ç³»ç»Ÿæ›´æ–°ï¼š** å®šæœŸ `sudo apt update && sudo apt upgrade`
+- **ç›‘æŽ§ Tailscaleï¼š** åœ¨ [Tailscale ç®¡ç†æŽ§åˆ¶å°](https://login.tailscale.com/admin) ä¸­æŸ¥çœ‹è®¾å¤‡
 
-### 验证安全态势
+### éªŒè¯å®‰å…¨æ€åŠ¿
 
 ```bash
-# 确认没有公共端口在监听
+# ç¡®è®¤æ²¡æœ‰å…¬å…±ç«¯å£åœ¨ç›‘å¬
 sudo ss -tlnp | grep -v '127.0.0.1\|::1'
 
-# 验证 Tailscale SSH 处于活动状态
+# éªŒè¯ Tailscale SSH å¤„äºŽæ´»åŠ¨çŠ¶æ€
 tailscale status | grep -q 'offers: ssh' && echo "Tailscale SSH active"
 
-# 可选：完全禁用 sshd
+# å¯é€‰ï¼šå®Œå…¨ç¦ç”¨ sshd
 sudo systemctl disable --now ssh
 ```
 
 ---
 
-## 备用方案：SSH 隧道
+## å¤‡ç”¨æ–¹æ¡ˆï¼šSSH éš§é“
 
-如果 Tailscale Serve 不工作，使用 SSH 隧道：
+å¦‚æžœ Tailscale Serve ä¸å·¥ä½œï¼Œä½¿ç”¨ SSH éš§é“ï¼š
 
 ```bash
-# 从你的本地机器（通过 Tailscale）
-ssh -L 18789:127.0.0.1:18789 ubuntu@openclaw
+# ä»Žä½ çš„æœ¬åœ°æœºå™¨ï¼ˆé€šè¿‡ Tailscaleï¼‰
+ssh -L 18789:127.0.0.1:18789 ubuntu@
 ```
 
-然后打开 `http://localhost:18789`。
+ç„¶åŽæ‰“å¼€ `http://localhost:18789`ã€‚
 
 ---
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-### 实例创建失败（"Out of capacity"）
+### å®žä¾‹åˆ›å»ºå¤±è´¥ï¼ˆ"Out of capacity"ï¼‰
 
-免费层 ARM 实例很受欢迎。尝试：
+å…è´¹å±‚ ARM å®žä¾‹å¾ˆå—æ¬¢è¿Žã€‚å°è¯•ï¼š
 
-- 不同的可用性域
-- 在非高峰时段（清晨）重试
-- 选择 shape 时使用"Always Free"过滤器
+- ä¸åŒçš„å¯ç”¨æ€§åŸŸ
+- åœ¨éžé«˜å³°æ—¶æ®µï¼ˆæ¸…æ™¨ï¼‰é‡è¯•
+- é€‰æ‹© shape æ—¶ä½¿ç”¨"Always Free"è¿‡æ»¤å™¨
 
-### Tailscale 无法连接
+### Tailscale æ— æ³•è¿žæŽ¥
 
 ```bash
-# 检查状态
+# æ£€æŸ¥çŠ¶æ€
 sudo tailscale status
 
-# 重新认证
-sudo tailscale up --ssh --hostname=openclaw --reset
+# é‡æ–°è®¤è¯
+sudo tailscale up --ssh --hostname= --reset
 ```
 
-### Gateway 网关无法启动
+### Gateway ç½‘å…³æ— æ³•å¯åŠ¨
 
 ```bash
-openclaw gateway status
-openclaw doctor --non-interactive
-journalctl --user -u openclaw-gateway -n 50
+ gateway status
+ doctor --non-interactive
+journalctl --user -u -gateway -n 50
 ```
 
-### 无法访问控制 UI
+### æ— æ³•è®¿é—®æŽ§åˆ¶ UI
 
 ```bash
-# 验证 Tailscale Serve 正在运行
+# éªŒè¯ Tailscale Serve æ­£åœ¨è¿è¡Œ
 tailscale serve status
 
-# 检查 Gateway 网关是否在监听
+# æ£€æŸ¥ Gateway ç½‘å…³æ˜¯å¦åœ¨ç›‘å¬
 curl http://localhost:18789
 
-# 如需要则重启
-systemctl --user restart openclaw-gateway
+# å¦‚éœ€è¦åˆ™é‡å¯
+systemctl --user restart -gateway
 ```
 
-### ARM 二进制文件问题
+### ARM äºŒè¿›åˆ¶æ–‡ä»¶é—®é¢˜
 
-某些工具可能没有 ARM 构建。检查：
+æŸäº›å·¥å…·å¯èƒ½æ²¡æœ‰ ARM æž„å»ºã€‚æ£€æŸ¥ï¼š
 
 ```bash
-uname -m  # 应该显示 aarch64
+uname -m  # åº”è¯¥æ˜¾ç¤º aarch64
 ```
 
-大多数 npm 包工作正常。对于二进制文件，寻找 `linux-arm64` 或 `aarch64` 版本。
+å¤§å¤šæ•° npm åŒ…å·¥ä½œæ­£å¸¸ã€‚å¯¹äºŽäºŒè¿›åˆ¶æ–‡ä»¶ï¼Œå¯»æ‰¾ `linux-arm64` æˆ– `aarch64` ç‰ˆæœ¬ã€‚
 
 ---
 
-## 持久化
+## æŒä¹…åŒ–
 
-所有状态存储在：
+æ‰€æœ‰çŠ¶æ€å­˜å‚¨åœ¨ï¼š
 
-- `~/.openclaw/` — 配置、凭证、会话数据
-- `~/.openclaw/workspace/` — 工作区（SOUL.md、记忆、产物）
+- `~/./` â€” é…ç½®ã€å‡­è¯ã€ä¼šè¯æ•°æ®
+- `~/./workspace/` â€” å·¥ä½œåŒºï¼ˆSOUL.mdã€è®°å¿†ã€äº§ç‰©ï¼‰
 
-定期备份：
+å®šæœŸå¤‡ä»½ï¼š
 
 ```bash
-tar -czvf openclaw-backup.tar.gz ~/.openclaw ~/.openclaw/workspace
+tar -czvf -backup.tar.gz ~/. ~/./workspace
 ```
 
 ---
 
-## 另请参阅
+## å¦è¯·å‚é˜…
 
-- [Gateway 网关远程访问](/gateway/remote) — 其他远程访问模式
-- [Tailscale 集成](/gateway/tailscale) — 完整的 Tailscale 文档
-- [Gateway 网关配置](/gateway/configuration) — 所有配置选项
-- [DigitalOcean 指南](/platforms/digitalocean) — 如果你想要付费 + 更容易注册
-- [Hetzner 指南](/platforms/hetzner) — 基于 Docker 的替代方案
+- [Gateway ç½‘å…³è¿œç¨‹è®¿é—®](/gateway/remote) â€” å…¶ä»–è¿œç¨‹è®¿é—®æ¨¡å¼
+- [Tailscale é›†æˆ](/gateway/tailscale) â€” å®Œæ•´çš„ Tailscale æ–‡æ¡£
+- [Gateway ç½‘å…³é…ç½®](/gateway/configuration) â€” æ‰€æœ‰é…ç½®é€‰é¡¹
+- [DigitalOcean æŒ‡å—](/platforms/digitalocean) â€” å¦‚æžœä½ æƒ³è¦ä»˜è´¹ + æ›´å®¹æ˜“æ³¨å†Œ
+- [Hetzner æŒ‡å—](/platforms/hetzner) â€” åŸºäºŽ Docker çš„æ›¿ä»£æ–¹æ¡ˆ
+

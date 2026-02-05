@@ -1,4 +1,4 @@
-import {
+﻿import {
   applyAccountNameToChannelSection,
   buildChannelConfigSchema,
   DEFAULT_ACCOUNT_ID,
@@ -8,7 +8,7 @@ import {
   normalizeAccountId,
   setAccountEnabledInConfigSection,
   type ChannelPlugin,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import { MattermostConfigSchema } from "./config-schema.js";
 import { resolveMattermostGroupRequireMention } from "./group-mentions.js";
 import {
@@ -335,3 +335,4 @@ export const mattermostPlugin: ChannelPlugin<ResolvedMattermostAccount> = {
     },
   },
 };
+

@@ -1,4 +1,4 @@
-export function normalizePhoneNumber(input?: string): string {
+﻿export function normalizePhoneNumber(input?: string): string {
   if (!input) {
     return "";
   }
@@ -17,3 +17,4 @@ export function isAllowlistedCaller(
     return normalizedAllow !== "" && normalizedAllow === normalizedFrom;
   });
 }
+

@@ -1,4 +1,4 @@
-import { getMatrixRuntime } from "../../runtime.js";
+﻿import { getMatrixRuntime } from "../../runtime.js";
 import { markdownToMatrixHtml } from "../format.js";
 import {
   MsgType,
@@ -87,3 +87,4 @@ export function resolveMatrixVoiceDecision(opts: {
   }
   return { useVoice: false };
 }
+

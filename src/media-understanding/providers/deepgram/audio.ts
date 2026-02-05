@@ -1,4 +1,4 @@
-import type { AudioTranscriptionRequest, AudioTranscriptionResult } from "../../types.js";
+﻿import type { AudioTranscriptionRequest, AudioTranscriptionResult } from "../../types.js";
 import { fetchWithTimeoutGuarded, normalizeBaseUrl, readErrorResponse } from "../shared.js";
 
 export const DEFAULT_DEEPGRAM_AUDIO_BASE_URL = "https://api.deepgram.com/v1";
@@ -79,3 +79,4 @@ export async function transcribeDeepgramAudio(
     await release();
   }
 }
+

@@ -1,4 +1,4 @@
-import type { EventEmitter } from "node:events";
+﻿import type { EventEmitter } from "node:events";
 import type { RuntimeEnv } from "../runtime.js";
 import { logVerbose } from "../globals.js";
 
@@ -65,3 +65,4 @@ export function attachDiscordGatewayLogging(params: {
     emitter.removeListener("metrics", onGatewayMetrics);
   };
 }
+

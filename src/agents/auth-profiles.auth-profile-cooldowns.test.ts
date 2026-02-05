@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { calculateAuthProfileCooldownMs } from "./auth-profiles.js";
 
 describe("auth profile cooldowns", () => {
@@ -10,3 +10,4 @@ describe("auth profile cooldowns", () => {
     expect(calculateAuthProfileCooldownMs(5)).toBe(60 * 60_000);
   });
 });
+

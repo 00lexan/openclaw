@@ -1,56 +1,56 @@
----
-summary: "CLI reference for `openclaw devices` (device pairing + token rotation/revocation)"
+﻿---
+summary: "CLI reference for ` devices` (device pairing + token rotation/revocation)"
 read_when:
   - You are approving device pairing requests
   - You need to rotate or revoke device tokens
 title: "devices"
 ---
 
-# `openclaw devices`
+# ` devices`
 
 Manage device pairing requests and device-scoped tokens.
 
 ## Commands
 
-### `openclaw devices list`
+### ` devices list`
 
 List pending pairing requests and paired devices.
 
 ```
-openclaw devices list
-openclaw devices list --json
+ devices list
+ devices list --json
 ```
 
-### `openclaw devices approve <requestId>`
+### ` devices approve <requestId>`
 
 Approve a pending device pairing request.
 
 ```
-openclaw devices approve <requestId>
+ devices approve <requestId>
 ```
 
-### `openclaw devices reject <requestId>`
+### ` devices reject <requestId>`
 
 Reject a pending device pairing request.
 
 ```
-openclaw devices reject <requestId>
+ devices reject <requestId>
 ```
 
-### `openclaw devices rotate --device <id> --role <role> [--scope <scope...>]`
+### ` devices rotate --device <id> --role <role> [--scope <scope...>]`
 
 Rotate a device token for a specific role (optionally updating scopes).
 
 ```
-openclaw devices rotate --device <deviceId> --role operator --scope operator.read --scope operator.write
+ devices rotate --device <deviceId> --role operator --scope operator.read --scope operator.write
 ```
 
-### `openclaw devices revoke --device <id> --role <role>`
+### ` devices revoke --device <id> --role <role>`
 
 Revoke a device token for a specific role.
 
 ```
-openclaw devices revoke --device <deviceId> --role node
+ devices revoke --device <deviceId> --role node
 ```
 
 ## Common options
@@ -68,3 +68,4 @@ Pass `--token` or `--password` explicitly. Missing explicit credentials is an er
 
 - Token rotation returns a new token (sensitive). Treat it like a secret.
 - These commands require `operator.pairing` (or `operator.admin`) scope.
+

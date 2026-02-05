@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@a2ui/angular",
   "version": "0.8.1",
   "scripts": {
@@ -57,3 +57,4 @@
     ]
   }
 }
+

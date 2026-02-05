@@ -1,4 +1,4 @@
-import { execFile } from "node:child_process";
+﻿import { execFile } from "node:child_process";
 import { X509Certificate } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -55,7 +55,7 @@ async function generateSelfSignedCert(params: {
     "-out",
     params.certPath,
     "-subj",
-    "/CN=openclaw-gateway",
+    "/CN=-gateway",
   ]);
   await fs.chmod(params.keyPath, 0o600).catch(() => {});
   await fs.chmod(params.certPath, 0o600).catch(() => {});
@@ -148,3 +148,4 @@ export async function loadGatewayTlsRuntime(
     };
   }
 }
+

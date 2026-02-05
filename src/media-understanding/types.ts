@@ -1,4 +1,4 @@
-export type MediaUnderstandingKind =
+﻿export type MediaUnderstandingKind =
   | "audio.transcription"
   | "video.description"
   | "image.description";
@@ -97,7 +97,7 @@ export type ImageDescriptionRequest = {
   profile?: string;
   preferredProfile?: string;
   agentDir: string;
-  cfg: import("../config/config.js").OpenClawConfig;
+  cfg: import("../config/config.js").Config;
 };
 
 export type ImageDescriptionResult = {
@@ -112,3 +112,4 @@ export type MediaUnderstandingProvider = {
   describeVideo?: (req: VideoDescriptionRequest) => Promise<VideoDescriptionResult>;
   describeImage?: (req: ImageDescriptionRequest) => Promise<ImageDescriptionResult>;
 };
+

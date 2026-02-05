@@ -1,4 +1,4 @@
-import type { TUI } from "@mariozechner/pi-tui";
+﻿import type { TUI } from "@mariozechner/pi-tui";
 import type { ChatLog } from "./components/chat-log.js";
 import type { AgentEvent, ChatEvent, TuiStateAccess } from "./tui-types.js";
 import { asString, extractTextFromMessage, isCommandMessage } from "./tui-formatters.js";
@@ -245,3 +245,4 @@ export function createEventHandlers(context: EventHandlerContext) {
 
   return { handleChatEvent, handleAgentEvent };
 }
+

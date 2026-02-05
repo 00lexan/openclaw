@@ -1,4 +1,4 @@
-/**
+﻿/**
  * OpenAI TTS Provider
  *
  * Generates speech audio using OpenAI's text-to-speech API.
@@ -257,3 +257,4 @@ export function chunkAudio(audio: Buffer, chunkSize = 160): Generator<Buffer, vo
     }
   })();
 }
+

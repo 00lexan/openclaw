@@ -1,4 +1,4 @@
-export type DedupeCache = {
+﻿export type DedupeCache = {
   check: (key: string | undefined | null, now?: number) => boolean;
   clear: () => void;
   size: () => number;
@@ -61,3 +61,4 @@ export function createDedupeCache(options: DedupeCacheOptions): DedupeCache {
     size: () => cache.size,
   };
 }
+

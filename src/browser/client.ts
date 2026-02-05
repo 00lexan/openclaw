@@ -1,4 +1,4 @@
-import { fetchBrowserJson } from "./client-fetch.js";
+﻿import { fetchBrowserJson } from "./client-fetch.js";
 
 export type BrowserStatus = {
   enabled: boolean;
@@ -163,7 +163,7 @@ export async function browserCreateProfile(
     name: string;
     color?: string;
     cdpUrl?: string;
-    driver?: "openclaw" | "extension";
+    driver?: "" | "extension";
   },
 ): Promise<BrowserCreateProfileResult> {
   return await fetchBrowserJson<BrowserCreateProfileResult>(
@@ -335,3 +335,4 @@ export async function browserSnapshot(
 }
 
 // Actions beyond the basic read-only commands live in client-actions.ts.
+

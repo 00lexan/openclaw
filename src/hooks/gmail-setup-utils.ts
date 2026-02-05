@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { hasBinary } from "../agents/skills.js";
 import { runCommandWithTimeout, type SpawnResult } from "../process/exec.js";
@@ -16,7 +16,7 @@ function trimOutput(value: string): string {
   if (trimmed.length <= MAX_OUTPUT_CHARS) {
     return trimmed;
   }
-  return `${trimmed.slice(0, MAX_OUTPUT_CHARS)}…`;
+  return `${trimmed.slice(0, MAX_OUTPUT_CHARS)}â€¦`;
 }
 
 function formatCommandFailure(command: string, result: SpawnResult): string {
@@ -381,3 +381,4 @@ function extractProjectNumber(clientId: string | null): string | null {
   const match = clientId.match(/^(\d+)-/);
   return match?.[1] ?? null;
 }
+

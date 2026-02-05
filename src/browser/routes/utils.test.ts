@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { toBoolean } from "./utils.js";
 
 describe("toBoolean", () => {
@@ -19,3 +19,4 @@ describe("toBoolean", () => {
     expect(toBoolean(false)).toBe(false);
   });
 });
+

@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString } from "./primitives.js";
 
 export const LogsTailParamsSchema = Type.Object(
@@ -79,3 +79,4 @@ export const ChatEventSchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

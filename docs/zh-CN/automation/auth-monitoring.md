@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 设置认证过期监控或告警
-  - 自动化 Claude Code / Codex OAuth 刷新检查
-summary: 监控模型提供商的 OAuth 过期状态
-title: 认证监控
+  - è®¾ç½®è®¤è¯è¿‡æœŸç›‘æŽ§æˆ–å‘Šè­¦
+  - è‡ªåŠ¨åŒ– Claude Code / Codex OAuth åˆ·æ–°æ£€æŸ¥
+summary: ç›‘æŽ§æ¨¡åž‹æä¾›å•†çš„ OAuth è¿‡æœŸçŠ¶æ€
+title: è®¤è¯ç›‘æŽ§
 x-i18n:
   generated_at: "2026-02-03T10:03:53Z"
   model: claude-opus-4-5
@@ -13,35 +13,36 @@ x-i18n:
   workflow: 15
 ---
 
-# 认证监控
+# è®¤è¯ç›‘æŽ§
 
-OpenClaw 通过 `openclaw models status` 提供 OAuth 过期健康状态。请使用该命令进行自动化和告警；脚本是为手机工作流程提供的可选附加功能。
+ é€šè¿‡ ` models status` æä¾› OAuth è¿‡æœŸå¥åº·çŠ¶æ€ã€‚è¯·ä½¿ç”¨è¯¥å‘½ä»¤è¿›è¡Œè‡ªåŠ¨åŒ–å’Œå‘Šè­¦ï¼›è„šæœ¬æ˜¯ä¸ºæ‰‹æœºå·¥ä½œæµç¨‹æä¾›çš„å¯é€‰é™„åŠ åŠŸèƒ½ã€‚
 
-## 推荐方式：CLI 检查（可移植）
+## æŽ¨èæ–¹å¼ï¼šCLI æ£€æŸ¥ï¼ˆå¯ç§»æ¤ï¼‰
 
 ```bash
-openclaw models status --check
+ models status --check
 ```
 
-退出码：
+é€€å‡ºç ï¼š
 
-- `0`：正常
-- `1`：凭证过期或缺失
-- `2`：即将过期（24 小时内）
+- `0`ï¼šæ­£å¸¸
+- `1`ï¼šå‡­è¯è¿‡æœŸæˆ–ç¼ºå¤±
+- `2`ï¼šå³å°†è¿‡æœŸï¼ˆ24 å°æ—¶å†…ï¼‰
 
-此方式适用于 cron/systemd，无需额外脚本。
+æ­¤æ–¹å¼é€‚ç”¨äºŽ cron/systemdï¼Œæ— éœ€é¢å¤–è„šæœ¬ã€‚
 
-## 可选脚本（运维 / 手机工作流程）
+## å¯é€‰è„šæœ¬ï¼ˆè¿ç»´ / æ‰‹æœºå·¥ä½œæµç¨‹ï¼‰
 
-这些脚本位于 `scripts/` 目录下，属于**可选**内容。它们假定你可以通过 SSH 访问 Gateway 网关主机，并针对 systemd + Termux 进行了调优。
+è¿™äº›è„šæœ¬ä½äºŽ `scripts/` ç›®å½•ä¸‹ï¼Œå±žäºŽ**å¯é€‰**å†…å®¹ã€‚å®ƒä»¬å‡å®šä½ å¯ä»¥é€šè¿‡ SSH è®¿é—® Gateway ç½‘å…³ä¸»æœºï¼Œå¹¶é’ˆå¯¹ systemd + Termux è¿›è¡Œäº†è°ƒä¼˜ã€‚
 
-- `scripts/claude-auth-status.sh` 现在使用 `openclaw models status --json` 作为数据来源（如果 CLI 不可用则回退到直接读取文件），因此请确保 `openclaw` 在定时器的 `PATH` 中。
-- `scripts/auth-monitor.sh`：cron/systemd 定时器目标；发送告警（ntfy 或手机）。
-- `scripts/systemd/openclaw-auth-monitor.{service,timer}`：systemd 用户定时器。
-- `scripts/claude-auth-status.sh`：Claude Code + OpenClaw 认证检查器（完整/json/简洁模式）。
-- `scripts/mobile-reauth.sh`：通过 SSH 引导的重新认证流程。
-- `scripts/termux-quick-auth.sh`：一键小部件状态查看 + 打开认证 URL。
-- `scripts/termux-auth-widget.sh`：完整的引导式小部件流程。
-- `scripts/termux-sync-widget.sh`：同步 Claude Code 凭证 → OpenClaw。
+- `scripts/claude-auth-status.sh` çŽ°åœ¨ä½¿ç”¨ ` models status --json` ä½œä¸ºæ•°æ®æ¥æºï¼ˆå¦‚æžœ CLI ä¸å¯ç”¨åˆ™å›žé€€åˆ°ç›´æŽ¥è¯»å–æ–‡ä»¶ï¼‰ï¼Œå› æ­¤è¯·ç¡®ä¿ `` åœ¨å®šæ—¶å™¨çš„ `PATH` ä¸­ã€‚
+- `scripts/auth-monitor.sh`ï¼šcron/systemd å®šæ—¶å™¨ç›®æ ‡ï¼›å‘é€å‘Šè­¦ï¼ˆntfy æˆ–æ‰‹æœºï¼‰ã€‚
+- `scripts/systemd/-auth-monitor.{service,timer}`ï¼šsystemd ç”¨æˆ·å®šæ—¶å™¨ã€‚
+- `scripts/claude-auth-status.sh`ï¼šClaude Code +  è®¤è¯æ£€æŸ¥å™¨ï¼ˆå®Œæ•´/json/ç®€æ´æ¨¡å¼ï¼‰ã€‚
+- `scripts/mobile-reauth.sh`ï¼šé€šè¿‡ SSH å¼•å¯¼çš„é‡æ–°è®¤è¯æµç¨‹ã€‚
+- `scripts/termux-quick-auth.sh`ï¼šä¸€é”®å°éƒ¨ä»¶çŠ¶æ€æŸ¥çœ‹ + æ‰“å¼€è®¤è¯ URLã€‚
+- `scripts/termux-auth-widget.sh`ï¼šå®Œæ•´çš„å¼•å¯¼å¼å°éƒ¨ä»¶æµç¨‹ã€‚
+- `scripts/termux-sync-widget.sh`ï¼šåŒæ­¥ Claude Code å‡­è¯ â†’ ã€‚
 
-如果你不需要手机自动化或 systemd 定时器，可以跳过这些脚本。
+å¦‚æžœä½ ä¸éœ€è¦æ‰‹æœºè‡ªåŠ¨åŒ–æˆ– systemd å®šæ—¶å™¨ï¼Œå¯ä»¥è·³è¿‡è¿™äº›è„šæœ¬ã€‚
+

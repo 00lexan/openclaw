@@ -1,4 +1,4 @@
-import { formatToolSummary, resolveToolDisplay } from "../agents/tool-display.js";
+﻿import { formatToolSummary, resolveToolDisplay } from "../agents/tool-display.js";
 import { shortenHomeInString, shortenHomePath } from "../utils.js";
 
 type ToolAggregateOptions = {
@@ -42,7 +42,7 @@ export function formatToolAggregate(
       rawSegments.push(m);
       continue;
     }
-    if (m.includes("→")) {
+    if (m.includes("â†’")) {
       rawSegments.push(m);
       continue;
     }
@@ -91,9 +91,9 @@ function formatMetaForDisplay(
     const { flags, body } = splitExecFlags(meta);
     if (flags.length > 0) {
       if (!body) {
-        return flags.join(" · ");
+        return flags.join(" Â· ");
       }
-      return `${flags.join(" · ")} · ${maybeWrapMarkdown(body, markdown)}`;
+      return `${flags.join(" Â· ")} Â· ${maybeWrapMarkdown(body, markdown)}`;
     }
   }
   return maybeWrapMarkdown(meta, markdown);
@@ -101,7 +101,7 @@ function formatMetaForDisplay(
 
 function splitExecFlags(meta: string): { flags: string[]; body: string } {
   const parts = meta
-    .split(" · ")
+    .split(" Â· ")
     .map((part) => part.trim())
     .filter(Boolean);
   if (parts.length === 0) {
@@ -116,7 +116,7 @@ function splitExecFlags(meta: string): { flags: string[]; body: string } {
     }
     bodyParts.push(part);
   }
-  return { flags, body: bodyParts.join(" · ") };
+  return { flags, body: bodyParts.join(" Â· ") };
 }
 
 function isPathLike(value: string): boolean {
@@ -129,7 +129,7 @@ function isPathLike(value: string): boolean {
   if (value.includes("://")) {
     return false;
   }
-  if (value.includes("·")) {
+  if (value.includes("Â·")) {
     return false;
   }
   if (value.includes("&&") || value.includes("||")) {
@@ -147,3 +147,4 @@ function maybeWrapMarkdown(value: string, markdown?: boolean): string {
   }
   return `\`${value}\``;
 }
+

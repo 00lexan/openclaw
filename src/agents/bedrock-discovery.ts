@@ -1,4 +1,4 @@
-import {
+﻿import {
   BedrockClient,
   ListFoundationModelsCommand,
   type ListFoundationModelsCommandOutput,
@@ -221,3 +221,4 @@ export async function discoverBedrockModels(params: {
     return [];
   }
 }
+

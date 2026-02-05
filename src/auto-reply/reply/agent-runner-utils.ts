@@ -1,6 +1,6 @@
-import type { NormalizedUsage } from "../../agents/usage.js";
+﻿import type { NormalizedUsage } from "../../agents/usage.js";
 import type { ChannelId, ChannelThreadingToolContext } from "../../channels/plugins/types.js";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import type { TemplateContext } from "../templating.js";
 import type { ReplyPayload } from "../types.js";
 import type { FollowupRun } from "./queue.js";
@@ -16,7 +16,7 @@ const BUN_FETCH_SOCKET_ERROR_RE = /socket connection was closed unexpectedly/i;
  */
 export function buildThreadingToolContext(params: {
   sessionCtx: TemplateContext;
-  config: OpenClawConfig | undefined;
+  config: Config | undefined;
   hasRepliedRef: { value: boolean } | undefined;
 }): ChannelThreadingToolContext {
   const { sessionCtx, config, hasRepliedRef } = params;
@@ -64,7 +64,7 @@ export const isBunFetchSocketError = (message?: string) =>
 export const formatBunFetchSocketError = (message: string) => {
   const trimmed = message.trim();
   return [
-    "⚠️ LLM connection failed. This could be due to server issues, network problems, or context length exceeded (e.g., with local LLMs like LM Studio). Original error:",
+    "âš ï¸ LLM connection failed. This could be due to server issues, network problems, or context length exceeded (e.g., with local LLMs like LM Studio). Original error:",
     "```",
     trimmed || "Unknown error",
     "```",
@@ -105,7 +105,7 @@ export const formatResponseUsageLine = (params: {
         })
       : undefined;
   const costLabel = params.showCost ? formatUsd(cost) : undefined;
-  const suffix = costLabel ? ` · est ${costLabel}` : "";
+  const suffix = costLabel ? ` Â· est ${costLabel}` : "";
   return `Usage: ${inputLabel} in / ${outputLabel} out${suffix}`;
 };
 
@@ -134,3 +134,4 @@ export const appendUsageLine = (payloads: ReplyPayload[], line: string): ReplyPa
 
 export const resolveEnforceFinalTag = (run: FollowupRun["run"], provider: string) =>
   Boolean(run.enforceFinalTag || isReasoningTagProvider(provider));
+

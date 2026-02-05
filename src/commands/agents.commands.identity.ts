@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import type { IdentityConfig } from "../config/types.js";
 import type { RuntimeEnv } from "../runtime.js";
@@ -231,3 +231,4 @@ export async function agentsSetIdentityCommand(
     runtime.log(`Workspace: ${shortenHomePath(workspaceDir)}`);
   }
 }
+

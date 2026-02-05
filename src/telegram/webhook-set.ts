@@ -1,4 +1,4 @@
-import { type ApiClientOptions, Bot } from "grammy";
+﻿import { type ApiClientOptions, Bot } from "grammy";
 import type { TelegramNetworkConfig } from "../config/types.telegram.js";
 import { withTelegramApiErrorLogging } from "./api-logging.js";
 import { resolveTelegramFetch } from "./fetch.js";
@@ -39,3 +39,4 @@ export async function deleteTelegramWebhook(opts: {
     fn: () => bot.api.deleteWebhook(),
   });
 }
+

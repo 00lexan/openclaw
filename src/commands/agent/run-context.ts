@@ -1,4 +1,4 @@
-import type { AgentCommandOpts, AgentRunContext } from "./types.js";
+﻿import type { AgentCommandOpts, AgentRunContext } from "./types.js";
 import { normalizeAccountId } from "../../utils/account-id.js";
 import { resolveMessageChannel } from "../../utils/message-channel.js";
 
@@ -44,3 +44,4 @@ export function resolveAgentRunContext(opts: AgentCommandOpts): AgentRunContext 
 
   return merged;
 }
+

@@ -1,4 +1,4 @@
-import type { CoreConfig, NextcloudTalkSendResult } from "./types.js";
+﻿import type { CoreConfig, NextcloudTalkSendResult } from "./types.js";
 import { resolveNextcloudTalkAccount } from "./accounts.js";
 import { getNextcloudTalkRuntime } from "./runtime.js";
 import { generateNextcloudTalkSignature } from "./signature.js";
@@ -208,3 +208,4 @@ export async function sendReactionNextcloudTalk(
 
   return { ok: true };
 }
+

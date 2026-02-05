@@ -1,4 +1,4 @@
-import { resolveFetch } from "../infra/fetch.js";
+﻿import { resolveFetch } from "../infra/fetch.js";
 
 const PLURALKIT_API_BASE = "https://api.pluralkit.me/v2";
 
@@ -56,3 +56,4 @@ export async function fetchPluralKitMessageInfo(params: {
   }
   return (await res.json()) as PluralKitMessageInfo;
 }
+

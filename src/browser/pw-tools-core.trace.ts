@@ -1,4 +1,4 @@
-import { ensureContextState, getPageForTargetId } from "./pw-session.js";
+﻿import { ensureContextState, getPageForTargetId } from "./pw-session.js";
 
 export async function traceStartViaPlaywright(opts: {
   cdpUrl: string;
@@ -35,3 +35,4 @@ export async function traceStopViaPlaywright(opts: {
   await context.tracing.stop({ path: opts.path });
   ctxState.traceActive = false;
 }
+

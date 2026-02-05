@@ -1,9 +1,9 @@
----
-summary: "Schema-accurate configuration examples for common OpenClaw setups"
+﻿---
+summary: "Schema-accurate configuration examples for common  setups"
 read_when:
-  - Learning how to configure OpenClaw
+  - Learning how to configure 
   - Looking for configuration examples
-  - Setting up OpenClaw for the first time
+  - Setting up  for the first time
 title: "Configuration Examples"
 ---
 
@@ -17,12 +17,12 @@ Examples below are aligned with the current config schema. For the exhaustive re
 
 ```json5
 {
-  agent: { workspace: "~/.openclaw/workspace" },
+  agent: { workspace: "~/./workspace" },
   channels: { whatsapp: { allowFrom: ["+15555550123"] } },
 }
 ```
 
-Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
+Save to `~/./.json` and you can DM the bot from that number.
 
 ### Recommended starter
 
@@ -31,10 +31,10 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
   identity: {
     name: "Clawd",
     theme: "helpful assistant",
-    emoji: "🦞",
+    emoji: "ðŸ¦ž",
   },
   agent: {
-    workspace: "~/.openclaw/workspace",
+    workspace: "~/./workspace",
     model: { primary: "anthropic/claude-sonnet-4-5" },
   },
   channels: {
@@ -83,13 +83,13 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
   identity: {
     name: "Samantha",
     theme: "helpful sloth",
-    emoji: "🦥",
+    emoji: "ðŸ¦¥",
   },
 
   // Logging
   logging: {
     level: "info",
-    file: "/tmp/openclaw/openclaw.log",
+    file: "/tmp//.log",
     consoleLevel: "info",
     consoleStyle: "pretty",
     redactSensitive: "tools",
@@ -97,16 +97,16 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
   // Message formatting
   messages: {
-    messagePrefix: "[openclaw]",
+    messagePrefix: "[]",
     responsePrefix: ">",
-    ackReaction: "👀",
+    ackReaction: "ðŸ‘€",
     ackReactionScope: "group-mentions",
   },
 
   // Routing + queue
   routing: {
     groupChat: {
-      mentionPatterns: ["@openclaw", "openclaw"],
+      mentionPatterns: ["@", ""],
       historyLimit: 50,
     },
     queue: {
@@ -159,7 +159,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       discord: { mode: "idle", idleMinutes: 10080 },
     },
     resetTriggers: ["/new", "/reset"],
-    store: "~/.openclaw/agents/default/sessions/sessions.json",
+    store: "~/./agents/default/sessions/sessions.json",
     typingIntervalSeconds: 5,
     sendPolicy: {
       default: "allow",
@@ -192,7 +192,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       dm: { enabled: true, allowFrom: ["steipete"] },
       guilds: {
         "123456789012345678": {
-          slug: "friends-of-openclaw",
+          slug: "friends-of-",
           requireMention: false,
           channels: {
             general: { allow: true },
@@ -212,7 +212,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       dm: { enabled: true, allowFrom: ["U123"] },
       slashCommand: {
         enabled: true,
-        name: "openclaw",
+        name: "",
         sessionPrefix: "slack:slash",
         ephemeral: true,
       },
@@ -222,7 +222,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
   // Agent runtime
   agents: {
     defaults: {
-      workspace: "~/.openclaw/workspace",
+      workspace: "~/./workspace",
       userTimezone: "America/Chicago",
       model: {
         primary: "anthropic/claude-sonnet-4-5",
@@ -275,9 +275,9 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       sandbox: {
         mode: "non-main",
         perSession: true,
-        workspaceRoot: "~/.openclaw/sandboxes",
+        workspaceRoot: "~/./sandboxes",
         docker: {
-          image: "openclaw-sandbox:bookworm-slim",
+          image: "-sandbox:bookworm-slim",
           workdir: "/workspace",
           readOnlyRoot: true,
           tmpfs: ["/tmp", "/var/tmp", "/run"],
@@ -342,7 +342,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
   // Cron jobs
   cron: {
     enabled: true,
-    store: "~/.openclaw/cron/cron.json",
+    store: "~/./cron/cron.json",
     maxConcurrentRuns: 2,
   },
 
@@ -352,7 +352,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
     path: "/hooks",
     token: "shared-secret",
     presets: ["gmail"],
-    transformsDir: "~/.openclaw/hooks",
+    transformsDir: "~/./hooks",
     mappings: [
       {
         id: "gmail-hook",
@@ -372,7 +372,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       },
     ],
     gmail: {
-      account: "openclaw@gmail.com",
+      account: "@gmail.com",
       label: "INBOX",
       topic: "projects/<project-id>/topics/gog-gmail-watch",
       subscription: "gog-gmail-watch-push",
@@ -391,7 +391,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
     mode: "local",
     port: 18789,
     bind: "loopback",
-    controlUi: { enabled: true, basePath: "/openclaw" },
+    controlUi: { enabled: true, basePath: "/" },
     auth: {
       mode: "token",
       token: "gateway-token",
@@ -429,7 +429,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
 ```json5
 {
-  agent: { workspace: "~/.openclaw/workspace" },
+  agent: { workspace: "~/./workspace" },
   channels: {
     whatsapp: { allowFrom: ["+15555550123"] },
     telegram: {
@@ -448,7 +448,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
 
 ### Secure DM mode (shared inbox / multi-user DMs)
 
-If more than one person can DM your bot (multiple entries in `allowFrom`, pairing approvals for multiple people, or `dmPolicy: "open"`), enable **secure DM mode** so DMs from different senders don’t share one context by default:
+If more than one person can DM your bot (multiple entries in `allowFrom`, pairing approvals for multiple people, or `dmPolicy: "open"`), enable **secure DM mode** so DMs from different senders donâ€™t share one context by default:
 
 ```json5
 {
@@ -493,7 +493,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
     },
   },
   agent: {
-    workspace: "~/.openclaw/workspace",
+    workspace: "~/./workspace",
     model: {
       primary: "anthropic/claude-sonnet-4-5",
       fallbacks: ["anthropic/claude-opus-4-5"],
@@ -532,7 +532,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
     },
   },
   agent: {
-    workspace: "~/.openclaw/workspace",
+    workspace: "~/./workspace",
     model: {
       primary: "anthropic/claude-opus-4-5",
       fallbacks: ["minimax/MiniMax-M2.1"],
@@ -550,7 +550,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
     theme: "professional assistant",
   },
   agent: {
-    workspace: "~/work-openclaw",
+    workspace: "~/work-",
     elevated: { enabled: false },
   },
   channels: {
@@ -571,7 +571,7 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
 ```json5
 {
   agent: {
-    workspace: "~/.openclaw/workspace",
+    workspace: "~/./workspace",
     model: { primary: "lmstudio/minimax-m2.1-gs32" },
   },
   models: {
@@ -604,3 +604,4 @@ If more than one person can DM your bot (multiple entries in `allowFrom`, pairin
 - Provider IDs differ (phone numbers, user IDs, channel IDs). Use the provider docs to confirm the format.
 - Optional sections to add later: `web`, `browser`, `ui`, `discovery`, `canvasHost`, `talk`, `signal`, `imessage`.
 - See [Providers](/channels/whatsapp) and [Troubleshooting](/gateway/troubleshooting) for deeper setup notes.
+

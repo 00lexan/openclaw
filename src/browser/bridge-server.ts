@@ -1,4 +1,4 @@
-import type { Server } from "node:http";
+﻿import type { Server } from "node:http";
 import type { AddressInfo } from "node:net";
 import express from "express";
 import type { ResolvedBrowserConfig } from "./config.js";
@@ -74,3 +74,4 @@ export async function stopBrowserBridgeServer(server: Server): Promise<void> {
     server.close(() => resolve());
   });
 }
+

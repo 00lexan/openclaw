@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizePluginsConfig } from "./config-state.js";
 
 describe("normalizePluginsConfig", () => {
@@ -49,3 +49,4 @@ describe("normalizePluginsConfig", () => {
     expect(result.slots.memory).toBe("memory-core");
   });
 });
+

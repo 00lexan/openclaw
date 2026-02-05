@@ -1,4 +1,4 @@
-export type PollInput = {
+﻿export type PollInput = {
   question: string;
   options: string[];
   maxSelections?: number;
@@ -67,3 +67,4 @@ export function normalizePollDurationHours(
     typeof value === "number" && Number.isFinite(value) ? Math.floor(value) : options.defaultHours;
   return Math.min(Math.max(base, 1), options.maxHours);
 }
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   DEFAULT_HEARTBEAT_ACK_MAX_CHARS,
   stripHeartbeatToken,
 } from "../../auto-reply/heartbeat.js";
@@ -16,7 +16,7 @@ export function pickSummaryFromOutput(text: string | undefined) {
     return undefined;
   }
   const limit = 2000;
-  return clean.length > limit ? `${truncateUtf16Safe(clean, limit)}…` : clean;
+  return clean.length > limit ? `${truncateUtf16Safe(clean, limit)}â€¦` : clean;
 }
 
 export function pickSummaryFromPayloads(payloads: Array<{ text?: string | undefined }>) {
@@ -66,3 +66,4 @@ export function resolveHeartbeatAckMaxChars(agentCfg?: { heartbeat?: { ackMaxCha
   const raw = agentCfg?.heartbeat?.ackMaxChars ?? DEFAULT_HEARTBEAT_ACK_MAX_CHARS;
   return Math.max(0, raw);
 }
+

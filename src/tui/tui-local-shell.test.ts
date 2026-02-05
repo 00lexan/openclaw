@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createLocalShellRunner } from "./tui-local-shell.js";
 
 const createSelector = () => {
@@ -51,3 +51,4 @@ describe("createLocalShellRunner", () => {
     expect(spawnCommand).not.toHaveBeenCalled();
   });
 });
+

@@ -1,4 +1,4 @@
-export type DeviceAuthEntry = {
+﻿export type DeviceAuthEntry = {
   token: string;
   role: string;
   scopes: string[];
@@ -11,7 +11,7 @@ type DeviceAuthStore = {
   tokens: Record<string, DeviceAuthEntry>;
 };
 
-const STORAGE_KEY = "openclaw.device.auth.v1";
+const STORAGE_KEY = ".device.auth.v1";
 
 function normalizeRole(role: string): string {
   return role.trim();
@@ -117,3 +117,4 @@ export function clearDeviceAuthToken(params: { deviceId: string; role: string })
   delete next.tokens[role];
   writeStore(next);
 }
+

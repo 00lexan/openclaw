@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { probeSignal } from "./probe.js";
 
 const signalCheckMock = vi.fn();
@@ -43,3 +43,4 @@ describe("probeSignal", () => {
     expect(res.version).toBe(null);
   });
 });
+

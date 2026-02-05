@@ -1,11 +1,11 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import {
   createActionGate,
   jsonResult,
   readNumberParam,
   readReactionParams,
   readStringParam,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { CoreConfig } from "./types.js";
 import {
   deleteMatrixMessage,
@@ -162,3 +162,4 @@ export async function handleMatrixAction(
 
   throw new Error(`Unsupported Matrix action: ${action}`);
 }
+

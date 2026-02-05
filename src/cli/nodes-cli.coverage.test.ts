@@ -1,4 +1,4 @@
-import { Command } from "commander";
+﻿import { Command } from "commander";
 import { describe, expect, it, vi } from "vitest";
 
 const callGateway = vi.fn(async (opts: { method?: string }) => {
@@ -252,3 +252,4 @@ describe("nodes-cli coverage", () => {
     expect(invoke?.params?.timeoutMs).toBe(6000);
   });
 });
+

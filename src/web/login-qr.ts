@@ -1,4 +1,4 @@
-import { DisconnectReason } from "@whiskeysockets/baileys";
+﻿import { DisconnectReason } from "@whiskeysockets/baileys";
 import { randomUUID } from "node:crypto";
 import { loadConfig } from "../config/config.js";
 import { danger, info, success } from "../globals.js";
@@ -85,7 +85,7 @@ async function restartLoginSocket(login: ActiveLogin, runtime: RuntimeEnv) {
   }
   login.restartAttempted = true;
   runtime.log(
-    info("WhatsApp asked for a restart after pairing (code 515); retrying connection once…"),
+    info("WhatsApp asked for a restart after pairing (code 515); retrying connection onceâ€¦"),
   );
   closeSocket(login.sock);
   try {
@@ -122,7 +122,7 @@ export async function startWebLoginWithQr(
   if (hasWeb && !opts.force) {
     const who = selfId.e164 ?? selfId.jid ?? "unknown";
     return {
-      message: `WhatsApp is already linked (${who}). Say “relink” if you want a fresh QR.`,
+      message: `WhatsApp is already linked (${who}). Say â€œrelinkâ€ if you want a fresh QR.`,
     };
   }
 
@@ -130,7 +130,7 @@ export async function startWebLoginWithQr(
   if (existing && isLoginFresh(existing) && existing.qrDataUrl) {
     return {
       qrDataUrl: existing.qrDataUrl,
-      message: "QR already active. Scan it in WhatsApp → Linked Devices.",
+      message: "QR already active. Scan it in WhatsApp â†’ Linked Devices.",
     };
   }
 
@@ -209,7 +209,7 @@ export async function startWebLoginWithQr(
   login.qrDataUrl = `data:image/png;base64,${base64}`;
   return {
     qrDataUrl: login.qrDataUrl,
-    message: "Scan this QR in WhatsApp → Linked Devices.",
+    message: "Scan this QR in WhatsApp â†’ Linked Devices.",
   };
 }
 
@@ -243,7 +243,7 @@ export async function waitForWebLogin(
     if (remaining <= 0) {
       return {
         connected: false,
-        message: "Still waiting for the QR scan. Let me know when you’ve scanned it.",
+        message: "Still waiting for the QR scan. Let me know when youâ€™ve scanned it.",
       };
     }
     const timeout = new Promise<"timeout">((resolve) =>
@@ -254,7 +254,7 @@ export async function waitForWebLogin(
     if (result === "timeout") {
       return {
         connected: false,
-        message: "Still waiting for the QR scan. Let me know when you’ve scanned it.",
+        message: "Still waiting for the QR scan. Let me know when youâ€™ve scanned it.",
       };
     }
 
@@ -284,7 +284,7 @@ export async function waitForWebLogin(
     }
 
     if (login.connected) {
-      const message = "✅ Linked! WhatsApp is ready.";
+      const message = "âœ… Linked! WhatsApp is ready.";
       runtime.log(success(message));
       await resetActiveLogin(account.accountId);
       return { connected: true, message };
@@ -293,3 +293,4 @@ export async function waitForWebLogin(
     return { connected: false, message: "Login ended without a connection." };
   }
 }
+

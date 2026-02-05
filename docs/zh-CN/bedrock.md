@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想在 OpenClaw 中使用 Amazon Bedrock 模型
-  - 你需要为模型调用配置 AWS 凭证/区域
-summary: 在 OpenClaw 中使用 Amazon Bedrock（Converse API）模型
+  - ä½ æƒ³åœ¨  ä¸­ä½¿ç”¨ Amazon Bedrock æ¨¡åž‹
+  - ä½ éœ€è¦ä¸ºæ¨¡åž‹è°ƒç”¨é…ç½® AWS å‡­è¯/åŒºåŸŸ
+summary: åœ¨  ä¸­ä½¿ç”¨ Amazon Bedrockï¼ˆConverse APIï¼‰æ¨¡åž‹
 title: Amazon Bedrock
 x-i18n:
   generated_at: "2026-02-03T10:04:01Z"
@@ -15,20 +15,20 @@ x-i18n:
 
 # Amazon Bedrock
 
-OpenClaw 可以通过 pi‑ai 的 **Bedrock Converse** 流式提供商使用 **Amazon Bedrock** 模型。Bedrock 认证使用 **AWS SDK 默认凭证链**，而非 API 密钥。
+ å¯ä»¥é€šè¿‡ piâ€‘ai çš„ **Bedrock Converse** æµå¼æä¾›å•†ä½¿ç”¨ **Amazon Bedrock** æ¨¡åž‹ã€‚Bedrock è®¤è¯ä½¿ç”¨ **AWS SDK é»˜è®¤å‡­è¯é“¾**ï¼Œè€Œéž API å¯†é’¥ã€‚
 
-## pi‑ai 支持的功能
+## piâ€‘ai æ”¯æŒçš„åŠŸèƒ½
 
-- 提供商：`amazon-bedrock`
-- API：`bedrock-converse-stream`
-- 认证：AWS 凭证（环境变量、共享配置或实例角色）
-- 区域：`AWS_REGION` 或 `AWS_DEFAULT_REGION`（默认：`us-east-1`）
+- æä¾›å•†ï¼š`amazon-bedrock`
+- APIï¼š`bedrock-converse-stream`
+- è®¤è¯ï¼šAWS å‡­è¯ï¼ˆçŽ¯å¢ƒå˜é‡ã€å…±äº«é…ç½®æˆ–å®žä¾‹è§’è‰²ï¼‰
+- åŒºåŸŸï¼š`AWS_REGION` æˆ– `AWS_DEFAULT_REGION`ï¼ˆé»˜è®¤ï¼š`us-east-1`ï¼‰
 
-## 自动模型发现
+## è‡ªåŠ¨æ¨¡åž‹å‘çŽ°
 
-如果检测到 AWS 凭证，OpenClaw 可以自动发现支持**流式传输**和**文本输出**的 Bedrock 模型。发现功能使用 `bedrock:ListFoundationModels`，并会被缓存（默认：1 小时）。
+å¦‚æžœæ£€æµ‹åˆ° AWS å‡­è¯ï¼Œ å¯ä»¥è‡ªåŠ¨å‘çŽ°æ”¯æŒ**æµå¼ä¼ è¾“**å’Œ**æ–‡æœ¬è¾“å‡º**çš„ Bedrock æ¨¡åž‹ã€‚å‘çŽ°åŠŸèƒ½ä½¿ç”¨ `bedrock:ListFoundationModels`ï¼Œå¹¶ä¼šè¢«ç¼“å­˜ï¼ˆé»˜è®¤ï¼š1 å°æ—¶ï¼‰ã€‚
 
-配置选项位于 `models.bedrockDiscovery` 下：
+é…ç½®é€‰é¡¹ä½äºŽ `models.bedrockDiscovery` ä¸‹ï¼š
 
 ```json5
 {
@@ -45,30 +45,30 @@ OpenClaw 可以通过 pi‑ai 的 **Bedrock Converse** 流式提供商使用 **A
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- `enabled` 在存在 AWS 凭证时默认为 `true`。
-- `region` 默认为 `AWS_REGION` 或 `AWS_DEFAULT_REGION`，然后是 `us-east-1`。
-- `providerFilter` 匹配 Bedrock 提供商名称（例如 `anthropic`）。
-- `refreshInterval` 单位为秒；设置为 `0` 可禁用缓存。
-- `defaultContextWindow`（默认：`32000`）和 `defaultMaxTokens`（默认：`4096`）用于已发现的模型（如果你知道模型限制，可以覆盖这些值）。
+- `enabled` åœ¨å­˜åœ¨ AWS å‡­è¯æ—¶é»˜è®¤ä¸º `true`ã€‚
+- `region` é»˜è®¤ä¸º `AWS_REGION` æˆ– `AWS_DEFAULT_REGION`ï¼Œç„¶åŽæ˜¯ `us-east-1`ã€‚
+- `providerFilter` åŒ¹é… Bedrock æä¾›å•†åç§°ï¼ˆä¾‹å¦‚ `anthropic`ï¼‰ã€‚
+- `refreshInterval` å•ä½ä¸ºç§’ï¼›è®¾ç½®ä¸º `0` å¯ç¦ç”¨ç¼“å­˜ã€‚
+- `defaultContextWindow`ï¼ˆé»˜è®¤ï¼š`32000`ï¼‰å’Œ `defaultMaxTokens`ï¼ˆé»˜è®¤ï¼š`4096`ï¼‰ç”¨äºŽå·²å‘çŽ°çš„æ¨¡åž‹ï¼ˆå¦‚æžœä½ çŸ¥é“æ¨¡åž‹é™åˆ¶ï¼Œå¯ä»¥è¦†ç›–è¿™äº›å€¼ï¼‰ã€‚
 
-## 设置（手动）
+## è®¾ç½®ï¼ˆæ‰‹åŠ¨ï¼‰
 
-1. 确保 AWS 凭证在 **Gateway 网关主机**上可用：
+1. ç¡®ä¿ AWS å‡­è¯åœ¨ **Gateway ç½‘å…³ä¸»æœº**ä¸Šå¯ç”¨ï¼š
 
 ```bash
 export AWS_ACCESS_KEY_ID="AKIA..."
 export AWS_SECRET_ACCESS_KEY="..."
 export AWS_REGION="us-east-1"
-# 可选：
+# å¯é€‰ï¼š
 export AWS_SESSION_TOKEN="..."
 export AWS_PROFILE="your-profile"
-# 可选（Bedrock API 密钥/Bearer 令牌）：
+# å¯é€‰ï¼ˆBedrock API å¯†é’¥/Bearer ä»¤ç‰Œï¼‰ï¼š
 export AWS_BEARER_TOKEN_BEDROCK="..."
 ```
 
-2. 在配置中添加 Bedrock 提供商和模型（无需 `apiKey`）：
+2. åœ¨é…ç½®ä¸­æ·»åŠ  Bedrock æä¾›å•†å’Œæ¨¡åž‹ï¼ˆæ— éœ€ `apiKey`ï¼‰ï¼š
 
 ```json5
 {
@@ -100,30 +100,30 @@ export AWS_BEARER_TOKEN_BEDROCK="..."
 }
 ```
 
-## EC2 实例角色
+## EC2 å®žä¾‹è§’è‰²
 
-当在附加了 IAM 角色的 EC2 实例上运行 OpenClaw 时，AWS SDK 会自动使用实例元数据服务（IMDS）进行认证。但是，OpenClaw 的凭证检测目前只检查环境变量，不检查 IMDS 凭证。
+å½“åœ¨é™„åŠ äº† IAM è§’è‰²çš„ EC2 å®žä¾‹ä¸Šè¿è¡Œ  æ—¶ï¼ŒAWS SDK ä¼šè‡ªåŠ¨ä½¿ç”¨å®žä¾‹å…ƒæ•°æ®æœåŠ¡ï¼ˆIMDSï¼‰è¿›è¡Œè®¤è¯ã€‚ä½†æ˜¯ï¼Œ çš„å‡­è¯æ£€æµ‹ç›®å‰åªæ£€æŸ¥çŽ¯å¢ƒå˜é‡ï¼Œä¸æ£€æŸ¥ IMDS å‡­è¯ã€‚
 
-**解决方法：** 设置 `AWS_PROFILE=default` 以表明 AWS 凭证可用。实际认证仍然通过 IMDS 使用实例角色。
+**è§£å†³æ–¹æ³•ï¼š** è®¾ç½® `AWS_PROFILE=default` ä»¥è¡¨æ˜Ž AWS å‡­è¯å¯ç”¨ã€‚å®žé™…è®¤è¯ä»ç„¶é€šè¿‡ IMDS ä½¿ç”¨å®žä¾‹è§’è‰²ã€‚
 
 ```bash
-# 添加到 ~/.bashrc 或你的 shell 配置文件
+# æ·»åŠ åˆ° ~/.bashrc æˆ–ä½ çš„ shell é…ç½®æ–‡ä»¶
 export AWS_PROFILE=default
 export AWS_REGION=us-east-1
 ```
 
-EC2 实例角色**所需的 IAM 权限**：
+EC2 å®žä¾‹è§’è‰²**æ‰€éœ€çš„ IAM æƒé™**ï¼š
 
 - `bedrock:InvokeModel`
 - `bedrock:InvokeModelWithResponseStream`
-- `bedrock:ListFoundationModels`（用于自动发现）
+- `bedrock:ListFoundationModels`ï¼ˆç”¨äºŽè‡ªåŠ¨å‘çŽ°ï¼‰
 
-或者附加托管策略 `AmazonBedrockFullAccess`。
+æˆ–è€…é™„åŠ æ‰˜ç®¡ç­–ç•¥ `AmazonBedrockFullAccess`ã€‚
 
-**快速设置：**
+**å¿«é€Ÿè®¾ç½®ï¼š**
 
 ```bash
-# 1. 创建 IAM 角色和实例配置文件
+# 1. åˆ›å»º IAM è§’è‰²å’Œå®žä¾‹é…ç½®æ–‡ä»¶
 aws iam create-role --role-name EC2-Bedrock-Access \
   --assume-role-policy-document '{
     "Version": "2012-10-17",
@@ -142,29 +142,30 @@ aws iam add-role-to-instance-profile \
   --instance-profile-name EC2-Bedrock-Access \
   --role-name EC2-Bedrock-Access
 
-# 2. 附加到你的 EC2 实例
+# 2. é™„åŠ åˆ°ä½ çš„ EC2 å®žä¾‹
 aws ec2 associate-iam-instance-profile \
   --instance-id i-xxxxx \
   --iam-instance-profile Name=EC2-Bedrock-Access
 
-# 3. 在 EC2 实例上启用发现功能
-openclaw config set models.bedrockDiscovery.enabled true
-openclaw config set models.bedrockDiscovery.region us-east-1
+# 3. åœ¨ EC2 å®žä¾‹ä¸Šå¯ç”¨å‘çŽ°åŠŸèƒ½
+ config set models.bedrockDiscovery.enabled true
+ config set models.bedrockDiscovery.region us-east-1
 
-# 4. 设置解决方法所需的环境变量
+# 4. è®¾ç½®è§£å†³æ–¹æ³•æ‰€éœ€çš„çŽ¯å¢ƒå˜é‡
 echo 'export AWS_PROFILE=default' >> ~/.bashrc
 echo 'export AWS_REGION=us-east-1' >> ~/.bashrc
 source ~/.bashrc
 
-# 5. 验证模型已被发现
-openclaw models list
+# 5. éªŒè¯æ¨¡åž‹å·²è¢«å‘çŽ°
+ models list
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- Bedrock 需要在你的 AWS 账户/区域中启用**模型访问**。
-- 自动发现需要 `bedrock:ListFoundationModels` 权限。
-- 如果你使用配置文件，请在 Gateway 网关主机上设置 `AWS_PROFILE`。
-- OpenClaw 按以下顺序获取凭证来源：`AWS_BEARER_TOKEN_BEDROCK`，然后是 `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY`，然后是 `AWS_PROFILE`，最后是默认的 AWS SDK 链。
-- 推理支持取决于模型；请查看 Bedrock 模型卡了解当前功能。
-- 如果你更喜欢托管密钥流程，也可以在 Bedrock 前面放置一个 OpenAI 兼容的代理，并将其配置为 OpenAI 提供商。
+- Bedrock éœ€è¦åœ¨ä½ çš„ AWS è´¦æˆ·/åŒºåŸŸä¸­å¯ç”¨**æ¨¡åž‹è®¿é—®**ã€‚
+- è‡ªåŠ¨å‘çŽ°éœ€è¦ `bedrock:ListFoundationModels` æƒé™ã€‚
+- å¦‚æžœä½ ä½¿ç”¨é…ç½®æ–‡ä»¶ï¼Œè¯·åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè®¾ç½® `AWS_PROFILE`ã€‚
+-  æŒ‰ä»¥ä¸‹é¡ºåºèŽ·å–å‡­è¯æ¥æºï¼š`AWS_BEARER_TOKEN_BEDROCK`ï¼Œç„¶åŽæ˜¯ `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY`ï¼Œç„¶åŽæ˜¯ `AWS_PROFILE`ï¼Œæœ€åŽæ˜¯é»˜è®¤çš„ AWS SDK é“¾ã€‚
+- æŽ¨ç†æ”¯æŒå–å†³äºŽæ¨¡åž‹ï¼›è¯·æŸ¥çœ‹ Bedrock æ¨¡åž‹å¡äº†è§£å½“å‰åŠŸèƒ½ã€‚
+- å¦‚æžœä½ æ›´å–œæ¬¢æ‰˜ç®¡å¯†é’¥æµç¨‹ï¼Œä¹Ÿå¯ä»¥åœ¨ Bedrock å‰é¢æ”¾ç½®ä¸€ä¸ª OpenAI å…¼å®¹çš„ä»£ç†ï¼Œå¹¶å°†å…¶é…ç½®ä¸º OpenAI æä¾›å•†ã€‚
+

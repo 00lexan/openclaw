@@ -1,4 +1,4 @@
-export const formatAge = (ms: number | null | undefined) => {
+﻿export const formatAge = (ms: number | null | undefined) => {
   if (!ms || ms < 0) {
     return "unknown";
   }
@@ -60,3 +60,4 @@ export function redactSecrets(text: string): string {
   out = out.replace(/\bsk-[A-Za-z0-9]{10,}\b/g, "sk-***");
   return out;
 }
+

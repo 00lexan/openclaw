@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { formatHealthCheckFailure } from "./health-format.js";
 
 const ansiEscape = String.fromCharCode(27);
@@ -19,7 +19,7 @@ describe("formatHealthCheckFailure", () => {
         "gateway closed (1006 abnormal closure (no close frame)): no close reason",
         "Gateway target: ws://127.0.0.1:19001",
         "Source: local loopback",
-        "Config: /Users/steipete/.openclaw-dev/openclaw.json",
+        "Config: /Users/steipete/.-dev/.json",
         "Bind: loopback",
       ].join("\n"),
     );
@@ -29,9 +29,10 @@ describe("formatHealthCheckFailure", () => {
         "Health check failed: gateway closed (1006 abnormal closure (no close frame)): no close reason",
         "  Gateway target: ws://127.0.0.1:19001",
         "  Source: local loopback",
-        "  Config: /Users/steipete/.openclaw-dev/openclaw.json",
+        "  Config: /Users/steipete/.-dev/.json",
         "  Bind: loopback",
       ].join("\n"),
     );
   });
 });
+

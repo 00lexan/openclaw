@@ -1,4 +1,4 @@
-export type CryptoLike = {
+﻿export type CryptoLike = {
   randomUUID?: (() => string) | undefined;
   getRandomValues?: ((array: Uint8Array) => Uint8Array) | undefined;
 };
@@ -55,3 +55,4 @@ export function generateUUID(cryptoLike: CryptoLike | null = globalThis.crypto):
   warnWeakCryptoOnce();
   return uuidFromBytes(weakRandomBytes());
 }
+

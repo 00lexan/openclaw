@@ -1,4 +1,4 @@
-export type SafeStreamWriterOptions = {
+﻿export type SafeStreamWriterOptions = {
   beforeWrite?: () => void;
   onBrokenPipe?: (err: NodeJS.ErrnoException, stream: NodeJS.WriteStream) => void;
 };
@@ -66,3 +66,4 @@ export function createSafeStreamWriter(options: SafeStreamWriterOptions = {}): S
     isClosed: () => closed,
   };
 }
+

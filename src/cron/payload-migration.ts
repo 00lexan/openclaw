@@ -1,4 +1,4 @@
-type UnknownRecord = Record<string, unknown>;
+﻿type UnknownRecord = Record<string, unknown>;
 
 function readString(value: unknown): string | undefined {
   if (typeof value !== "string") {
@@ -38,3 +38,4 @@ export function migrateLegacyCronPayload(payload: UnknownRecord): boolean {
 
   return mutated;
 }
+

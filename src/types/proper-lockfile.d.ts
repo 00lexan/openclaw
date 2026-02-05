@@ -1,4 +1,4 @@
-declare module "proper-lockfile" {
+﻿declare module "proper-lockfile" {
   export type RetryOptions = {
     retries?: number;
     factor?: number;
@@ -24,3 +24,4 @@ declare module "proper-lockfile" {
 
   export default lockfile;
 }
+

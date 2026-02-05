@@ -1,4 +1,4 @@
-import type { SessionEntry } from "../config/sessions.js";
+﻿import type { SessionEntry } from "../config/sessions.js";
 
 export type ModelOverrideSelection = {
   provider: string;
@@ -70,3 +70,4 @@ export function applyModelOverrideToSessionEntry(params: {
 
   return { updated };
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isBillingErrorMessage } from "./pi-embedded-helpers.js";
 import { DEFAULT_AGENTS_FILENAME } from "./workspace.js";
 
@@ -29,3 +29,4 @@ describe("isBillingErrorMessage", () => {
     expect(isBillingErrorMessage("context length exceeded")).toBe(false);
   });
 });
+

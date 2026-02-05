@@ -1,4 +1,4 @@
-import { normalizeIMessageHandle } from "../../../imessage/targets.js";
+﻿import { normalizeIMessageHandle } from "../../../imessage/targets.js";
 
 // Service prefixes that indicate explicit delivery method; must be preserved during normalization
 const SERVICE_PREFIXES = ["imessage:", "sms:", "auto:"] as const;
@@ -11,7 +11,7 @@ export function normalizeIMessageMessagingTarget(raw: string): string | undefine
     return undefined;
   }
 
-  // Preserve service prefix if present (e.g., "sms:+1555" → "sms:+15551234567")
+  // Preserve service prefix if present (e.g., "sms:+1555" â†’ "sms:+15551234567")
   const lower = trimmed.toLowerCase();
   for (const prefix of SERVICE_PREFIXES) {
     if (lower.startsWith(prefix)) {
@@ -47,3 +47,4 @@ export function looksLikeIMessageTargetId(raw: string): boolean {
   }
   return /^\+?\d{3,}$/.test(trimmed);
 }
+

@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
@@ -62,7 +62,7 @@ describe("hooks mapping", () => {
   });
 
   it("runs transform module", async () => {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-hooks-"));
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "-hooks-"));
     const modPath = path.join(dir, "transform.mjs");
     const placeholder = "${payload.name}";
     fs.writeFileSync(
@@ -98,7 +98,7 @@ describe("hooks mapping", () => {
   });
 
   it("treats null transform as a handled skip", async () => {
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-hooks-skip-"));
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "-hooks-skip-"));
     const modPath = path.join(dir, "transform.mjs");
     fs.writeFileSync(modPath, "export default () => null;");
 
@@ -165,3 +165,4 @@ describe("hooks mapping", () => {
     expect(result?.ok).toBe(false);
   });
 });
+

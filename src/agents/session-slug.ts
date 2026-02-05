@@ -1,4 +1,4 @@
-const SLUG_ADJECTIVES = [
+﻿const SLUG_ADJECTIVES = [
   "amber",
   "briny",
   "brisk",
@@ -141,3 +141,4 @@ export function createSessionSlug(isTaken?: (id: string) => boolean): string {
   const fallback = `${createSlugBase(3)}-${Math.random().toString(36).slice(2, 5)}`;
   return isIdTaken(fallback) ? `${fallback}-${Date.now().toString(36)}` : fallback;
 }
+

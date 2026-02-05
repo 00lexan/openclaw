@@ -1,4 +1,4 @@
-export function extractErrorCode(err: unknown): string | undefined {
+﻿export function extractErrorCode(err: unknown): string | undefined {
   if (!err || typeof err !== "object") {
     return undefined;
   }
@@ -38,3 +38,4 @@ export function formatUncaughtError(err: unknown): string {
   }
   return formatErrorMessage(err);
 }
+

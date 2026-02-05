@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
@@ -21,7 +21,7 @@ const LEGACY_STATE_DIRS: string[] = [];
 
 function resolveDefaultDbPath(): string {
   const home = homedir();
-  const preferred = join(home, ".openclaw", "memory", "lancedb");
+  const preferred = join(home, ".", "memory", "lancedb");
   try {
     if (fs.existsSync(preferred)) {
       return preferred;
@@ -124,7 +124,7 @@ export const memoryConfigSchema = {
     },
     dbPath: {
       label: "Database Path",
-      placeholder: "~/.openclaw/memory/lancedb",
+      placeholder: "~/./memory/lancedb",
       advanced: true,
     },
     autoCapture: {
@@ -137,3 +137,4 @@ export const memoryConfigSchema = {
     },
   },
 };
+

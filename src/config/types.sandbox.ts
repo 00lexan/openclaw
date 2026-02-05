@@ -1,4 +1,4 @@
-export type SandboxDockerSettings = {
+﻿export type SandboxDockerSettings = {
   /** Docker image to use for sandbox containers. */
   image?: string;
   /** Prefix for sandbox container names. */
@@ -73,3 +73,4 @@ export type SandboxPruneSettings = {
   /** Prune if older than N days (0 disables). */
   maxAgeDays?: number;
 };
+

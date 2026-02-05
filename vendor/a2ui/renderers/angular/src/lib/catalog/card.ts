@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,3 +55,4 @@ import { Types } from '@a2ui/lit/0.8';
   `,
 })
 export class Card extends DynamicComponent<Types.CardNode> { }
+

@@ -1,4 +1,4 @@
-import type { WebhookRequestBody } from "@line/bot-sdk";
+﻿import type { WebhookRequestBody } from "@line/bot-sdk";
 import type { Request, Response, NextFunction } from "express";
 import type { RuntimeEnv } from "../runtime.js";
 import { logVerbose, danger } from "../globals.js";
@@ -102,3 +102,4 @@ export function startLineWebhook(options: StartLineWebhookOptions): {
 
   return { path, handler: middleware };
 }
+

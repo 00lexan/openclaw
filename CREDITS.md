@@ -1,6 +1,7 @@
 ﻿## Credits
 
-This project includes software from the OpenClaw project, licensed under the MIT License.
+This project includes software from the  project, licensed under the MIT License.
 
-Original project: OpenClaw contributors (MIT)
+Original project:  contributors (MIT)
 Modifications and additional UI: 00lexan
+

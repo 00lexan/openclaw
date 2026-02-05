@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Plugin Hook Runner
  *
  * Provides utilities for executing plugin lifecycle hooks with proper
@@ -468,3 +468,4 @@ export function createHookRunner(registry: PluginRegistry, options: HookRunnerOp
 }
 
 export type HookRunner = ReturnType<typeof createHookRunner>;
+

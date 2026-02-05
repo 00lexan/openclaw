@@ -1,4 +1,4 @@
-import type { BrowserRouteContext } from "../server-context.js";
+﻿import type { BrowserRouteContext } from "../server-context.js";
 import type { BrowserRouteRegistrar } from "./types.js";
 import { registerBrowserAgentActRoutes } from "./agent.act.js";
 import { registerBrowserAgentDebugRoutes } from "./agent.debug.js";
@@ -11,3 +11,4 @@ export function registerBrowserAgentRoutes(app: BrowserRouteRegistrar, ctx: Brow
   registerBrowserAgentDebugRoutes(app, ctx);
   registerBrowserAgentStorageRoutes(app, ctx);
 }
+

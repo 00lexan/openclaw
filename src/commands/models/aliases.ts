@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../../runtime.js";
+﻿import type { RuntimeEnv } from "../../runtime.js";
 import { loadConfig } from "../../config/config.js";
 import { logConfigUpdated } from "../../config/logging.js";
 import {
@@ -116,3 +116,4 @@ export async function modelsAliasesRemoveCommand(aliasRaw: string, runtime: Runt
     runtime.log("No aliases configured.");
   }
 }
+

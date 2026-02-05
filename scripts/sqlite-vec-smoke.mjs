@@ -1,4 +1,4 @@
-import { DatabaseSync } from "node:sqlite";
+﻿import { DatabaseSync } from "node:sqlite";
 import { load, getLoadablePath } from "sqlite-vec";
 
 function vec(values) {
@@ -36,3 +36,4 @@ const rows = db
 
 console.log("sqlite-vec ok");
 console.log(rows);
+

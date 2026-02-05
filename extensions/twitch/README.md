@@ -1,17 +1,17 @@
-# @openclaw/twitch
+﻿# @/twitch
 
-Twitch channel plugin for OpenClaw.
+Twitch channel plugin for .
 
 ## Install (local checkout)
 
 ```bash
-openclaw plugins install ./extensions/twitch
+ plugins install ./extensions/twitch
 ```
 
 ## Install (npm)
 
 ```bash
-openclaw plugins install @openclaw/twitch
+ plugins install @/twitch
 ```
 
 Onboarding: select Twitch and confirm the install prompt to fetch the plugin automatically.
@@ -20,14 +20,14 @@ Onboarding: select Twitch and confirm the install prompt to fetch the plugin aut
 
 Minimal config (simplified single-account):
 
-**⚠️ Important:** `requireMention` defaults to `true`. Add access control (`allowFrom` or `allowedRoles`) to prevent unauthorized users from triggering the bot.
+**âš ï¸ Important:** `requireMention` defaults to `true`. Add access control (`allowFrom` or `allowedRoles`) to prevent unauthorized users from triggering the bot.
 
 ```json5
 {
   channels: {
     twitch: {
       enabled: true,
-      username: "openclaw",
+      username: "",
       accessToken: "oauth:abc123...", // OAuth Access Token (add oauth: prefix)
       clientId: "xyz789...", // Client ID from Token Generator
       channel: "vevisk", // Channel to join (required)
@@ -52,13 +52,13 @@ Multi-account config (advanced):
       enabled: true,
       accounts: {
         default: {
-          username: "openclaw",
+          username: "",
           accessToken: "oauth:abc123...",
           clientId: "xyz789...",
           channel: "vevisk",
         },
         channel2: {
-          username: "openclaw",
+          username: "",
           accessToken: "oauth:def456...",
           clientId: "uvw012...",
           channel: "secondchannel",
@@ -80,10 +80,11 @@ Multi-account config (advanced):
 
 ## Full documentation
 
-See https://docs.openclaw.ai/channels/twitch for:
+See https://docs..ai/channels/twitch for:
 
 - Token refresh setup
 - Access control patterns
 - Multi-account configuration
 - Troubleshooting
 - Capabilities & limits
+

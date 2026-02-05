@@ -1,4 +1,4 @@
-import { Command } from "commander";
+﻿import { Command } from "commander";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 const gatewayMocks = vi.hoisted(() => ({
@@ -109,3 +109,4 @@ describe("browser cli snapshot defaults", () => {
     expect((params?.query as { mode?: unknown } | undefined)?.mode).toBeUndefined();
   });
 });
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Memory Plugin E2E Tests
  *
  * Tests the memory plugin functionality including:
@@ -15,7 +15,7 @@ import { describe, test, expect, beforeEach, afterEach } from "vitest";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY ?? "test-key";
 const HAS_OPENAI_KEY = Boolean(process.env.OPENAI_API_KEY);
-const liveEnabled = HAS_OPENAI_KEY && process.env.OPENCLAW_LIVE_TEST === "1";
+const liveEnabled = HAS_OPENAI_KEY && process.env._LIVE_TEST === "1";
 const describeLive = liveEnabled ? describe : describe.skip;
 
 describe("memory plugin e2e", () => {
@@ -23,7 +23,7 @@ describe("memory plugin e2e", () => {
   let dbPath: string;
 
   beforeEach(async () => {
-    tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-memory-test-"));
+    tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "-memory-test-"));
     dbPath = path.join(tmpDir, "lancedb");
   });
 
@@ -109,7 +109,7 @@ describe("memory plugin e2e", () => {
     // The shouldCapture function is internal, but we can test via the capture behavior
     // For now, just verify the patterns we expect to match
     for (const { text, shouldMatch } of triggers) {
-      const hasPreference = /prefer|radši|like|love|hate|want/i.test(text);
+      const hasPreference = /prefer|radÅ¡i|like|love|hate|want/i.test(text);
       const hasRemember = /zapamatuj|pamatuj|remember/i.test(text);
       const hasEmail = /[\w.-]+@[\w.-]+\.\w+/.test(text);
       const hasPhone = /\+\d{10,}/.test(text);
@@ -142,13 +142,13 @@ describe("memory plugin e2e", () => {
       const lower = text.toLowerCase();
       let category: string;
 
-      if (/prefer|radši|like|love|hate|want/i.test(lower)) {
+      if (/prefer|radÅ¡i|like|love|hate|want/i.test(lower)) {
         category = "preference";
       } else if (/rozhodli|decided|will use|budeme/i.test(lower)) {
         category = "decision";
       } else if (/\+\d{10,}|@[\w.-]+\.\w+|is called|jmenuje se/i.test(lower)) {
         category = "entity";
-      } else if (/is|are|has|have|je|má|jsou/i.test(lower)) {
+      } else if (/is|are|has|have|je|mÃ¡|jsou/i.test(lower)) {
         category = "fact";
       } else {
         category = "other";
@@ -165,7 +165,7 @@ describeLive("memory plugin live tests", () => {
   let dbPath: string;
 
   beforeEach(async () => {
-    tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-memory-live-"));
+    tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "-memory-live-"));
     dbPath = path.join(tmpDir, "lancedb");
   });
 
@@ -293,3 +293,4 @@ describeLive("memory plugin live tests", () => {
     expect(recallAfterForget.details?.count).toBe(0);
   }, 60000); // 60s timeout for live API calls
 });
+

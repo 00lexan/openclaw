@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 
 export function registerMessageSendCommand(message: Command, helpers: MessageCliHelpers) {
@@ -29,3 +29,4 @@ export function registerMessageSendCommand(message: Command, helpers: MessageCli
       await helpers.runMessageAction("send", opts);
     });
 }
+

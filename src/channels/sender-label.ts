@@ -1,4 +1,4 @@
-export type SenderLabelParams = {
+﻿export type SenderLabelParams = {
   name?: string;
   username?: string;
   tag?: string;
@@ -55,3 +55,4 @@ export function listSenderLabelCandidates(params: SenderLabelParams): string[] {
   }
   return Array.from(candidates);
 }
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   type MSTeamsPoll,
   type MSTeamsPollStore,
   normalizeMSTeamsPollSelections,
@@ -30,3 +30,4 @@ export function createMSTeamsPollStoreMemory(initial: MSTeamsPoll[] = []): MSTea
 
   return { createPoll, getPoll, recordVote };
 }
+

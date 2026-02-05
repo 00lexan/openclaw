@@ -1,12 +1,12 @@
----
+﻿---
 name: bear-notes
 description: Create, search, and manage Bear notes via grizzly CLI.
 homepage: https://bear.app
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🐻",
+        "emoji": "ðŸ»",
         "os": ["darwin"],
         "requires": { "bins": ["grizzly"] },
         "install":
@@ -36,7 +36,7 @@ Requirements
 
 For operations that require a token (add-text, tags, open-note --selected), you need an authentication token:
 
-1. Open Bear → Help → API Token → Copy Token
+1. Open Bear â†’ Help â†’ API Token â†’ Copy Token
 2. Save it: `echo "YOUR_TOKEN" > ~/.config/grizzly/token`
 
 ## Common Commands
@@ -76,11 +76,11 @@ grizzly open-tag --name "work" --enable-callback --json
 
 Common flags:
 
-- `--dry-run` — Preview the URL without executing
-- `--print-url` — Show the x-callback-url
-- `--enable-callback` — Wait for Bear's response (needed for reading data)
-- `--json` — Output as JSON (when using callbacks)
-- `--token-file PATH` — Path to Bear API token file
+- `--dry-run` â€” Preview the URL without executing
+- `--print-url` â€” Show the x-callback-url
+- `--enable-callback` â€” Wait for Bear's response (needed for reading data)
+- `--json` â€” Output as JSON (when using callbacks)
+- `--token-file PATH` â€” Path to Bear API token file
 
 ## Configuration
 
@@ -105,3 +105,4 @@ timeout = "5s"
 - Note IDs are Bear's internal identifiers (visible in note info or via callbacks)
 - Use `--enable-callback` when you need to read data back from Bear
 - Some operations require a valid token (add-text, tags, open-note --selected)
+

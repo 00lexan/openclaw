@@ -1,10 +1,10 @@
----
+﻿---
 read_when:
-  - 设置私信访问控制
-  - 配对新的 iOS/Android 节点
-  - 审查 OpenClaw 安全态势
-summary: 配对概述：批准谁可以向你发送私信 + 哪些节点可以加入
-title: 配对
+  - è®¾ç½®ç§ä¿¡è®¿é—®æŽ§åˆ¶
+  - é…å¯¹æ–°çš„ iOS/Android èŠ‚ç‚¹
+  - å®¡æŸ¥  å®‰å…¨æ€åŠ¿
+summary: é…å¯¹æ¦‚è¿°ï¼šæ‰¹å‡†è°å¯ä»¥å‘ä½ å‘é€ç§ä¿¡ + å“ªäº›èŠ‚ç‚¹å¯ä»¥åŠ å…¥
+title: é…å¯¹
 x-i18n:
   generated_at: "2026-02-03T07:54:19Z"
   model: claude-opus-4-5
@@ -14,76 +14,77 @@ x-i18n:
   workflow: 15
 ---
 
-# 配对
+# é…å¯¹
 
-"配对"是 OpenClaw 的显式**所有者批准**步骤。它用于两个地方：
+"é…å¯¹"æ˜¯  çš„æ˜¾å¼**æ‰€æœ‰è€…æ‰¹å‡†**æ­¥éª¤ã€‚å®ƒç”¨äºŽä¸¤ä¸ªåœ°æ–¹ï¼š
 
-1. **私信配对**（谁被允许与机器人对话）
-2. **节点配对**（哪些设备/节点被允许加入 Gateway 网关网络）
+1. **ç§ä¿¡é…å¯¹**ï¼ˆè°è¢«å…è®¸ä¸Žæœºå™¨äººå¯¹è¯ï¼‰
+2. **èŠ‚ç‚¹é…å¯¹**ï¼ˆå“ªäº›è®¾å¤‡/èŠ‚ç‚¹è¢«å…è®¸åŠ å…¥ Gateway ç½‘å…³ç½‘ç»œï¼‰
 
-安全上下文：[安全](/gateway/security)
+å®‰å…¨ä¸Šä¸‹æ–‡ï¼š[å®‰å…¨](/gateway/security)
 
-## 1）私信配对（入站聊天访问）
+## 1ï¼‰ç§ä¿¡é…å¯¹ï¼ˆå…¥ç«™èŠå¤©è®¿é—®ï¼‰
 
-当渠道配置为私信策略 `pairing` 时，未知发送者会收到一个短代码，他们的消息**不会被处理**，直到你批准。
+å½“æ¸ é“é…ç½®ä¸ºç§ä¿¡ç­–ç•¥ `pairing` æ—¶ï¼ŒæœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°ä¸€ä¸ªçŸ­ä»£ç ï¼Œä»–ä»¬çš„æ¶ˆæ¯**ä¸ä¼šè¢«å¤„ç†**ï¼Œç›´åˆ°ä½ æ‰¹å‡†ã€‚
 
-默认私信策略记录在：[安全](/gateway/security)
+é»˜è®¤ç§ä¿¡ç­–ç•¥è®°å½•åœ¨ï¼š[å®‰å…¨](/gateway/security)
 
-配对代码：
+é…å¯¹ä»£ç ï¼š
 
-- 8 个字符，大写，无歧义字符（`0O1I`）。
-- **1 小时后过期**。机器人仅在创建新请求时发送配对消息（大约每个发送者每小时一次）。
-- 待处理的私信配对请求默认上限为**每个渠道 3 个**；在一个过期或被批准之前，额外的请求将被忽略。
+- 8 ä¸ªå­—ç¬¦ï¼Œå¤§å†™ï¼Œæ— æ­§ä¹‰å­—ç¬¦ï¼ˆ`0O1I`ï¼‰ã€‚
+- **1 å°æ—¶åŽè¿‡æœŸ**ã€‚æœºå™¨äººä»…åœ¨åˆ›å»ºæ–°è¯·æ±‚æ—¶å‘é€é…å¯¹æ¶ˆæ¯ï¼ˆå¤§çº¦æ¯ä¸ªå‘é€è€…æ¯å°æ—¶ä¸€æ¬¡ï¼‰ã€‚
+- å¾…å¤„ç†çš„ç§ä¿¡é…å¯¹è¯·æ±‚é»˜è®¤ä¸Šé™ä¸º**æ¯ä¸ªæ¸ é“ 3 ä¸ª**ï¼›åœ¨ä¸€ä¸ªè¿‡æœŸæˆ–è¢«æ‰¹å‡†ä¹‹å‰ï¼Œé¢å¤–çš„è¯·æ±‚å°†è¢«å¿½ç•¥ã€‚
 
-### 批准发送者
-
-```bash
-openclaw pairing list telegram
-openclaw pairing approve telegram <CODE>
-```
-
-支持的渠道：`telegram`、`whatsapp`、`signal`、`imessage`、`discord`、`slack`。
-
-### 状态存储位置
-
-存储在 `~/.openclaw/credentials/` 下：
-
-- 待处理请求：`<channel>-pairing.json`
-- 已批准允许列表存储：`<channel>-allowFrom.json`
-
-将这些视为敏感信息（它们控制对你助手的访问）。
-
-## 2）节点设备配对（iOS/Android/macOS/无头节点）
-
-节点作为 `role: node` 的**设备**连接到 Gateway 网关。Gateway 网关创建一个必须被批准的设备配对请求。
-
-### 批准节点设备
+### æ‰¹å‡†å‘é€è€…
 
 ```bash
-openclaw devices list
-openclaw devices approve <requestId>
-openclaw devices reject <requestId>
+ pairing list telegram
+ pairing approve telegram <CODE>
 ```
 
-### 状态存储位置
+æ”¯æŒçš„æ¸ é“ï¼š`telegram`ã€`whatsapp`ã€`signal`ã€`imessage`ã€`discord`ã€`slack`ã€‚
 
-存储在 `~/.openclaw/devices/` 下：
+### çŠ¶æ€å­˜å‚¨ä½ç½®
 
-- `pending.json`（短期；待处理请求会过期）
-- `paired.json`（已配对设备 + 令牌）
+å­˜å‚¨åœ¨ `~/./credentials/` ä¸‹ï¼š
 
-### 说明
+- å¾…å¤„ç†è¯·æ±‚ï¼š`<channel>-pairing.json`
+- å·²æ‰¹å‡†å…è®¸åˆ—è¡¨å­˜å‚¨ï¼š`<channel>-allowFrom.json`
 
-- 旧版 `node.pair.*` API（CLI：`openclaw nodes pending/approve`）是一个单独的 Gateway 网关拥有的配对存储。WS 节点仍然需要设备配对。
+å°†è¿™äº›è§†ä¸ºæ•æ„Ÿä¿¡æ¯ï¼ˆå®ƒä»¬æŽ§åˆ¶å¯¹ä½ åŠ©æ‰‹çš„è®¿é—®ï¼‰ã€‚
 
-## 相关文档
+## 2ï¼‰èŠ‚ç‚¹è®¾å¤‡é…å¯¹ï¼ˆiOS/Android/macOS/æ— å¤´èŠ‚ç‚¹ï¼‰
 
-- 安全模型 + 提示注入：[安全](/gateway/security)
-- 安全更新（运行 doctor）：[更新](/install/updating)
-- 渠道配置：
-  - Telegram：[Telegram](/channels/telegram)
-  - WhatsApp：[WhatsApp](/channels/whatsapp)
-  - Signal：[Signal](/channels/signal)
-  - iMessage：[iMessage](/channels/imessage)
-  - Discord：[Discord](/channels/discord)
-  - Slack：[Slack](/channels/slack)
+èŠ‚ç‚¹ä½œä¸º `role: node` çš„**è®¾å¤‡**è¿žæŽ¥åˆ° Gateway ç½‘å…³ã€‚Gateway ç½‘å…³åˆ›å»ºä¸€ä¸ªå¿…é¡»è¢«æ‰¹å‡†çš„è®¾å¤‡é…å¯¹è¯·æ±‚ã€‚
+
+### æ‰¹å‡†èŠ‚ç‚¹è®¾å¤‡
+
+```bash
+ devices list
+ devices approve <requestId>
+ devices reject <requestId>
+```
+
+### çŠ¶æ€å­˜å‚¨ä½ç½®
+
+å­˜å‚¨åœ¨ `~/./devices/` ä¸‹ï¼š
+
+- `pending.json`ï¼ˆçŸ­æœŸï¼›å¾…å¤„ç†è¯·æ±‚ä¼šè¿‡æœŸï¼‰
+- `paired.json`ï¼ˆå·²é…å¯¹è®¾å¤‡ + ä»¤ç‰Œï¼‰
+
+### è¯´æ˜Ž
+
+- æ—§ç‰ˆ `node.pair.*` APIï¼ˆCLIï¼š` nodes pending/approve`ï¼‰æ˜¯ä¸€ä¸ªå•ç‹¬çš„ Gateway ç½‘å…³æ‹¥æœ‰çš„é…å¯¹å­˜å‚¨ã€‚WS èŠ‚ç‚¹ä»ç„¶éœ€è¦è®¾å¤‡é…å¯¹ã€‚
+
+## ç›¸å…³æ–‡æ¡£
+
+- å®‰å…¨æ¨¡åž‹ + æç¤ºæ³¨å…¥ï¼š[å®‰å…¨](/gateway/security)
+- å®‰å…¨æ›´æ–°ï¼ˆè¿è¡Œ doctorï¼‰ï¼š[æ›´æ–°](/install/updating)
+- æ¸ é“é…ç½®ï¼š
+  - Telegramï¼š[Telegram](/channels/telegram)
+  - WhatsAppï¼š[WhatsApp](/channels/whatsapp)
+  - Signalï¼š[Signal](/channels/signal)
+  - iMessageï¼š[iMessage](/channels/imessage)
+  - Discordï¼š[Discord](/channels/discord)
+  - Slackï¼š[Slack](/channels/slack)
+

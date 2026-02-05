@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import type { NodeEvent, NodeEventContext } from "./server-node-events-types.js";
 import { normalizeChannelId } from "../channels/plugins/index.js";
 import { agentCommand } from "../commands/agent.js";
@@ -246,3 +246,4 @@ export const handleNodeEvent = async (ctx: NodeEventContext, nodeId: string, evt
       return;
   }
 };
+

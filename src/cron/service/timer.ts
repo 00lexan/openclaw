@@ -1,4 +1,4 @@
-import type { HeartbeatRunResult } from "../../infra/heartbeat-wake.js";
+﻿import type { HeartbeatRunResult } from "../../infra/heartbeat-wake.js";
 import type { CronJob } from "../types.js";
 import type { CronEvent, CronServiceState } from "./state.js";
 import { computeJobNextRunAtMs, nextWakeAtMs, resolveJobPayloadTextForMain } from "./jobs.js";
@@ -246,3 +246,4 @@ export function emit(state: CronServiceState, evt: CronEvent) {
     /* ignore */
   }
 }
+

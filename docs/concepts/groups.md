@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Group chat behavior across surfaces (WhatsApp/Telegram/Discord/Slack/Signal/iMessage/Microsoft Teams)"
 read_when:
   - Changing group chat behavior or mention gating
@@ -7,19 +7,19 @@ title: "Groups"
 
 # Groups
 
-OpenClaw treats group chats consistently across surfaces: WhatsApp, Telegram, Discord, Slack, Signal, iMessage, Microsoft Teams.
+ treats group chats consistently across surfaces: WhatsApp, Telegram, Discord, Slack, Signal, iMessage, Microsoft Teams.
 
 ## Beginner intro (2 minutes)
 
-OpenClaw “lives” on your own messaging accounts. There is no separate WhatsApp bot user.
-If **you** are in a group, OpenClaw can see that group and respond there.
+ â€œlivesâ€ on your own messaging accounts. There is no separate WhatsApp bot user.
+If **you** are in a group,  can see that group and respond there.
 
 Default behavior:
 
 - Groups are restricted (`groupPolicy: "allowlist"`).
 - Replies require a mention unless you explicitly disable mention gating.
 
-Translation: allowlisted senders can trigger OpenClaw by mentioning it.
+Translation: allowlisted senders can trigger  by mentioning it.
 
 > TL;DR
 >
@@ -55,16 +55,16 @@ If you want...
 
 ## Pattern: personal DMs + public groups (single agent)
 
-Yes — this works well if your “personal” traffic is **DMs** and your “public” traffic is **groups**.
+Yes â€” this works well if your â€œpersonalâ€ traffic is **DMs** and your â€œpublicâ€ traffic is **groups**.
 
 Why: in single-agent mode, DMs typically land in the **main** session key (`agent:main:main`), while groups always use **non-main** session keys (`agent:main:<channel>:group:<id>`). If you enable sandboxing with `mode: "non-main"`, those group sessions run in Docker while your main DM session stays on-host.
 
-This gives you one agent “brain” (shared workspace + memory), but two execution postures:
+This gives you one agent â€œbrainâ€ (shared workspace + memory), but two execution postures:
 
 - **DMs**: full tools (host)
 - **Groups**: sandbox + restricted tools (Docker)
 
-> If you need truly separate workspaces/personas (“personal” and “public” must never mix), use a second agent + bindings. See [Multi-Agent Routing](/concepts/multi-agent).
+> If you need truly separate workspaces/personas (â€œpersonalâ€ and â€œpublicâ€ must never mix), use a second agent + bindings. See [Multi-Agent Routing](/concepts/multi-agent).
 
 Example (DMs on host, groups sandboxed + messaging-only tools):
 
@@ -91,7 +91,7 @@ Example (DMs on host, groups sandboxed + messaging-only tools):
 }
 ```
 
-Want “groups can only see folder X” instead of “no host access”? Keep `workspaceAccess: "none"` and mount only allowlisted paths into the sandbox:
+Want â€œgroups can only see folder Xâ€ instead of â€œno host accessâ€? Keep `workspaceAccess: "none"` and mount only allowlisted paths into the sandbox:
 
 ```json5
 {
@@ -229,7 +229,7 @@ Replying to a bot message counts as an implicit mention (when the channel suppor
       {
         id: "main",
         groupChat: {
-          mentionPatterns: ["@openclaw", "openclaw", "\\+15555550123"],
+          mentionPatterns: ["@", "", "\\+15555550123"],
           historyLimit: 50,
         },
       },
@@ -348,7 +348,7 @@ Group owners can toggle per-group activation:
 - `/activation mention`
 - `/activation always`
 
-Owner is determined by `channels.whatsapp.allowFrom` (or the bot’s self E.164 when unset). Send the command as a standalone message. Other surfaces currently ignore `/activation`.
+Owner is determined by `channels.whatsapp.allowFrom` (or the botâ€™s self E.164 when unset). Send the command as a standalone message. Other surfaces currently ignore `/activation`.
 
 ## Context fields
 
@@ -371,3 +371,4 @@ The agent system prompt includes a group intro on the first turn of a new group 
 ## WhatsApp specifics
 
 See [Group messages](/concepts/group-messages) for WhatsApp-only behavior (history injection, mention handling details).
+

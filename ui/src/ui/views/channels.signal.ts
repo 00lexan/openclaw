@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { SignalStatus } from "../types.ts";
 import type { ChannelsProps } from "./channels.types.ts";
 import { formatAgo } from "../format.ts";
@@ -51,7 +51,7 @@ export function renderSignalCard(params: {
       ${
         signal?.probe
           ? html`<div class="callout" style="margin-top: 12px;">
-            Probe ${signal.probe.ok ? "ok" : "failed"} ·
+            Probe ${signal.probe.ok ? "ok" : "failed"} Â·
             ${signal.probe.status ?? ""} ${signal.probe.error ?? ""}
           </div>`
           : nothing
@@ -67,3 +67,4 @@ export function renderSignalCard(params: {
     </div>
   `;
 }
+

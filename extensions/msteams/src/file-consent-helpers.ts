@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Shared helpers for FileConsentCard flow in MSTeams.
  *
  * FileConsentCard is required for:
@@ -71,3 +71,4 @@ export function requiresFileConsent(params: {
   const isLargeFile = params.bufferSize >= params.thresholdBytes;
   return isPersonal && (isLargeFile || !isImage);
 }
+

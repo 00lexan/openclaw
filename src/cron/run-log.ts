@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 
 export type CronRunLogEntry = {
@@ -100,3 +100,4 @@ export async function readCronRunLogEntries(
   }
   return parsed.toReversed();
 }
+

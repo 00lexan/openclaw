@@ -1,4 +1,4 @@
-import { deflateSync } from "node:zlib";
+﻿import { deflateSync } from "node:zlib";
 import QRCodeModule from "qrcode-terminal/vendor/QRCode/index.js";
 import QRErrorCorrectLevelModule from "qrcode-terminal/vendor/QRCode/QRErrorCorrectLevel.js";
 
@@ -129,3 +129,4 @@ export async function renderQrPngBase64(
   const png = encodePngRgba(buf, size, size);
   return png.toString("base64");
 }
+

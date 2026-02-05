@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Redraws Extension
  *
  * Exposes /tui to show TUI redraw stats.
@@ -24,3 +24,4 @@ export default function (pi: ExtensionAPI) {
     },
   });
 }
+

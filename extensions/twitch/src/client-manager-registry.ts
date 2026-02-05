@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Client manager registry for Twitch plugin.
  *
  * Manages the lifecycle of TwitchClientManager instances across the plugin,
@@ -113,3 +113,4 @@ export function getRegisteredClientManagerCount(): number {
 export function _clearAllClientManagersForTest(): void {
   registry.clear();
 }
+

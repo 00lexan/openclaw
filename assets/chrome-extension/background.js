@@ -1,9 +1,9 @@
-const DEFAULT_PORT = 18792
+﻿const DEFAULT_PORT = 18792
 
 const BADGE = {
   on: { text: 'ON', color: '#FF5A36' },
   off: { text: '', color: '#000000' },
-  connecting: { text: '…', color: '#F59E0B' },
+  connecting: { text: 'â€¦', color: '#F59E0B' },
   error: { text: '!', color: '#B91C1C' },
 }
 
@@ -114,7 +114,7 @@ function onRelayClosed(reason) {
     setBadge(tabId, 'connecting')
     void chrome.action.setTitle({
       tabId,
-      title: 'OpenClaw Browser Relay: disconnected (click to re-attach)',
+      title: ' Browser Relay: disconnected (click to re-attach)',
     })
   }
   tabs.clear()
@@ -225,7 +225,7 @@ async function attachTab(tabId, opts = {}) {
   tabBySession.set(sessionId, tabId)
   void chrome.action.setTitle({
     tabId,
-    title: 'OpenClaw Browser Relay: attached (click to detach)',
+    title: ' Browser Relay: attached (click to detach)',
   })
 
   if (!opts.skipAttachedEvent) {
@@ -278,7 +278,7 @@ async function detachTab(tabId, reason) {
   setBadge(tabId, 'off')
   void chrome.action.setTitle({
     tabId,
-    title: 'OpenClaw Browser Relay (click to attach/detach)',
+    title: ' Browser Relay (click to attach/detach)',
   })
 }
 
@@ -297,7 +297,7 @@ async function connectOrToggleForActiveTab() {
   setBadge(tabId, 'connecting')
   void chrome.action.setTitle({
     tabId,
-    title: 'OpenClaw Browser Relay: connecting to local relay…',
+    title: ' Browser Relay: connecting to local relayâ€¦',
   })
 
   try {
@@ -308,7 +308,7 @@ async function connectOrToggleForActiveTab() {
     setBadge(tabId, 'error')
     void chrome.action.setTitle({
       tabId,
-      title: 'OpenClaw Browser Relay: relay not running (open options for setup)',
+      title: ' Browser Relay: relay not running (open options for setup)',
     })
     void maybeOpenHelpOnce()
     // Extra breadcrumbs in chrome://extensions service worker logs.
@@ -436,3 +436,4 @@ chrome.runtime.onInstalled.addListener(() => {
   // Useful: first-time instructions.
   void chrome.runtime.openOptionsPage()
 })
+

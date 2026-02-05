@@ -1,9 +1,9 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
 const realOs = await vi.importActual<typeof import("node:os")>("node:os");
-const HOME = path.join(realOs.tmpdir(), "openclaw-home-header-ext-test");
+const HOME = path.join(realOs.tmpdir(), "-home-header-ext-test");
 
 vi.mock("node:os", () => ({
   default: { homedir: () => HOME, tmpdir: () => realOs.tmpdir() },
@@ -36,3 +36,4 @@ describe("media store header extensions", () => {
     expect(path.extname(saved.path)).toBe(".ogg");
   });
 });
+

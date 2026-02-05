@@ -1,4 +1,4 @@
-import type { DirectoryConfigParams } from "../channels/plugins/directory-config.js";
+﻿import type { DirectoryConfigParams } from "../channels/plugins/directory-config.js";
 import type { ChannelDirectoryEntry } from "../channels/plugins/types.js";
 import { resolveDiscordAccount } from "./accounts.js";
 import { fetchDiscord } from "./api.js";
@@ -104,3 +104,4 @@ export async function listDiscordDirectoryPeersLive(
 
   return rows;
 }
+

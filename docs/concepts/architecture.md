@@ -1,4 +1,4 @@
----
+﻿---
 summary: "WebSocket gateway architecture, components, and client flows"
 read_when:
   - Working on gateway protocol, clients, or transports
@@ -11,7 +11,7 @@ Last updated: 2026-01-22
 
 ## Overview
 
-- A single long‑lived **Gateway** owns all messaging surfaces (WhatsApp via
+- A single longâ€‘lived **Gateway** owns all messaging surfaces (WhatsApp via
   Baileys, Telegram via grammY, Slack, Discord, Signal, iMessage, WebChat).
 - Control-plane clients (macOS app, CLI, web UI, automations) connect to the
   Gateway over **WebSocket** on the configured bind host (default
@@ -19,14 +19,14 @@ Last updated: 2026-01-22
 - **Nodes** (macOS/iOS/Android/headless) also connect over **WebSocket**, but
   declare `role: node` with explicit caps/commands.
 - One Gateway per host; it is the only place that opens a WhatsApp session.
-- A **canvas host** (default `18793`) serves agent‑editable HTML and A2UI.
+- A **canvas host** (default `18793`) serves agentâ€‘editable HTML and A2UI.
 
 ## Components and flows
 
 ### Gateway (daemon)
 
 - Maintains provider connections.
-- Exposes a typed WS API (requests, responses, server‑push events).
+- Exposes a typed WS API (requests, responses, serverâ€‘push events).
 - Validates inbound frames against JSON Schema.
 - Emits events like `agent`, `chat`, `presence`, `health`, `heartbeat`, `cron`.
 
@@ -39,7 +39,7 @@ Last updated: 2026-01-22
 ### Nodes (macOS / iOS / Android / headless)
 
 - Connect to the **same WS server** with `role: node`.
-- Provide a device identity in `connect`; pairing is **device‑based** (role `node`) and
+- Provide a device identity in `connect`; pairing is **deviceâ€‘based** (role `node`) and
   approval lives in the device pairing store.
 - Expose commands like `canvas.*`, `camera.*`, `screen.record`, `location.get`.
 
@@ -77,12 +77,12 @@ Client                    Gateway
 - Transport: WebSocket, text frames with JSON payloads.
 - First frame **must** be `connect`.
 - After handshake:
-  - Requests: `{type:"req", id, method, params}` → `{type:"res", id, ok, payload|error}`
+  - Requests: `{type:"req", id, method, params}` â†’ `{type:"res", id, ok, payload|error}`
   - Events: `{type:"event", event, payload, seq?, stateVersion?}`
-- If `OPENCLAW_GATEWAY_TOKEN` (or `--token`) is set, `connect.params.auth.token`
+- If `_GATEWAY_TOKEN` (or `--token`) is set, `connect.params.auth.token`
   must match or the socket closes.
-- Idempotency keys are required for side‑effecting methods (`send`, `agent`) to
-  safely retry; the server keeps a short‑lived dedupe cache.
+- Idempotency keys are required for sideâ€‘effecting methods (`send`, `agent`) to
+  safely retry; the server keeps a shortâ€‘lived dedupe cache.
 - Nodes must include `role: "node"` plus caps/commands/permissions in `connect`.
 
 ## Pairing + local trust
@@ -90,9 +90,9 @@ Client                    Gateway
 - All WS clients (operators + nodes) include a **device identity** on `connect`.
 - New device IDs require pairing approval; the Gateway issues a **device token**
   for subsequent connects.
-- **Local** connects (loopback or the gateway host’s own tailnet address) can be
-  auto‑approved to keep same‑host UX smooth.
-- **Non‑local** connects must sign the `connect.challenge` nonce and require
+- **Local** connects (loopback or the gateway hostâ€™s own tailnet address) can be
+  autoâ€‘approved to keep sameâ€‘host UX smooth.
+- **Nonâ€‘local** connects must sign the `connect.challenge` nonce and require
   explicit approval.
 - Gateway auth (`gateway.auth.*`) still applies to **all** connections, local or
   remote.
@@ -118,12 +118,13 @@ Details: [Gateway protocol](/gateway/protocol), [Pairing](/start/pairing),
 
 ## Operations snapshot
 
-- Start: `openclaw gateway` (foreground, logs to stdout).
+- Start: ` gateway` (foreground, logs to stdout).
 - Health: `health` over WS (also included in `hello-ok`).
-- Supervision: launchd/systemd for auto‑restart.
+- Supervision: launchd/systemd for autoâ€‘restart.
 
 ## Invariants
 
 - Exactly one Gateway controls a single Baileys session per host.
-- Handshake is mandatory; any non‑JSON or non‑connect first frame is a hard close.
+- Handshake is mandatory; any nonâ€‘JSON or nonâ€‘connect first frame is a hard close.
 - Events are not replayed; clients must refresh on gaps.
+

@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { PresenceEntry } from "../types.ts";
 
 export type PresenceState = {
@@ -35,3 +35,4 @@ export async function loadPresence(state: PresenceState) {
     state.presenceLoading = false;
   }
 }
+

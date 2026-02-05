@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Use Claude Max/Pro subscription as an OpenAI-compatible API endpoint"
 read_when:
   - You want to use Claude Max subscription with OpenAI-compatible tools
@@ -23,7 +23,7 @@ If you have a Claude Max subscription and want to use it with OpenAI-compatible 
 ## How It Works
 
 ```
-Your App → claude-max-api-proxy → Claude Code CLI → Anthropic (via subscription)
+Your App â†’ claude-max-api-proxy â†’ Claude Code CLI â†’ Anthropic (via subscription)
      (OpenAI format)              (converts format)      (uses your login)
 ```
 
@@ -70,9 +70,9 @@ curl http://localhost:3456/v1/chat/completions \
   }'
 ```
 
-### With OpenClaw
+### With 
 
-You can point OpenClaw at the proxy as a custom OpenAI-compatible endpoint:
+You can point  at the proxy as a custom OpenAI-compatible endpoint:
 
 ```json5
 {
@@ -137,12 +137,13 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.claude-max-api.plist
 
 ## Notes
 
-- This is a **community tool**, not officially supported by Anthropic or OpenClaw
+- This is a **community tool**, not officially supported by Anthropic or 
 - Requires an active Claude Max/Pro subscription with Claude Code CLI authenticated
 - The proxy runs locally and does not send data to any third-party servers
 - Streaming responses are fully supported
 
 ## See Also
 
-- [Anthropic provider](/providers/anthropic) - Native OpenClaw integration with Claude setup-token or API keys
+- [Anthropic provider](/providers/anthropic) - Native  integration with Claude setup-token or API keys
 - [OpenAI provider](/providers/openai) - For OpenAI/Codex subscriptions
+

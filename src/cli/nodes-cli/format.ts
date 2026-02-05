@@ -1,4 +1,4 @@
-import type { NodeListNode, PairedNode, PairingList, PendingRequest } from "./types.js";
+﻿import type { NodeListNode, PairedNode, PairingList, PendingRequest } from "./types.js";
 
 export function formatAge(msAgo: number) {
   const s = Math.max(0, Math.floor(msAgo / 1000));
@@ -43,3 +43,4 @@ export function formatPermissions(raw: unknown) {
   const parts = entries.map(([key, granted]) => `${key}=${granted ? "yes" : "no"}`);
   return `[${parts.join(", ")}]`;
 }
+

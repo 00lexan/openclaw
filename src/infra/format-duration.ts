@@ -1,4 +1,4 @@
-export type FormatDurationSecondsOptions = {
+﻿export type FormatDurationSecondsOptions = {
   decimals?: number;
   unit?: "s" | "seconds";
 };
@@ -35,3 +35,4 @@ export function formatDurationMs(ms: number, options: FormatDurationMsOptions = 
     unit: options.unit ?? "s",
   });
 }
+

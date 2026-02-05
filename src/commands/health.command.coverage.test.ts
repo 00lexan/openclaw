@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { HealthSummary } from "./health.js";
 import { setActivePluginRegistry } from "../plugins/runtime.js";
 import { stripAnsi } from "../terminal/ansi.js";
@@ -130,3 +130,4 @@ describe("healthCommand (coverage)", () => {
     expect(logWebSelfIdMock).toHaveBeenCalled();
   });
 });
+

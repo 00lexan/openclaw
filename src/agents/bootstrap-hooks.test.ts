@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
   clearInternalHooks,
   registerInternalHook,
@@ -38,3 +38,4 @@ describe("applyBootstrapHookOverrides", () => {
     expect(updated[1]?.name).toBe("EXTRA.md");
   });
 });
+

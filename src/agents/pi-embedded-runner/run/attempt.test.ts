@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import type { ImageContent } from "@mariozechner/pi-ai";
 import { describe, expect, it } from "vitest";
 import { injectHistoryImagesIntoMessages } from "./attempt.js";
@@ -56,3 +56,4 @@ describe("injectHistoryImagesIntoMessages", () => {
     expect(messages[0]?.content).toBe("noop");
   });
 });
+

@@ -1,4 +1,4 @@
-import type { DaemonLifecycleOptions } from "./types.js";
+﻿import type { DaemonLifecycleOptions } from "./types.js";
 import { resolveIsNixMode } from "../../config/paths.js";
 import { resolveGatewayService } from "../../daemon/service.js";
 import { renderSystemdUnavailableHints } from "../../daemon/systemd-hints.js";
@@ -317,3 +317,4 @@ export async function runDaemonRestart(opts: DaemonLifecycleOptions = {}): Promi
     return false;
   }
 }
+

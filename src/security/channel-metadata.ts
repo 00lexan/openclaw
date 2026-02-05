@@ -1,4 +1,4 @@
-import { wrapExternalContent } from "./external-content.js";
+﻿import { wrapExternalContent } from "./external-content.js";
 
 const DEFAULT_MAX_CHARS = 800;
 const DEFAULT_MAX_ENTRY_CHARS = 400;
@@ -43,3 +43,4 @@ export function buildUntrustedChannelMetadata(params: {
     includeWarning: false,
   });
 }
+

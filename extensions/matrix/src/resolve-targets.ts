@@ -1,9 +1,9 @@
-import type {
+﻿import type {
   ChannelDirectoryEntry,
   ChannelResolveKind,
   ChannelResolveResult,
   RuntimeEnv,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import { listMatrixDirectoryGroupsLive, listMatrixDirectoryPeersLive } from "./directory-live.js";
 
 function pickBestGroupMatch(
@@ -133,3 +133,4 @@ export async function resolveMatrixTargets(params: {
   }
   return results;
 }
+

@@ -1,6 +1,6 @@
-# @openclaw/voice-call
+﻿# @/voice-call
 
-Official Voice Call plugin for **OpenClaw**.
+Official Voice Call plugin for ****.
 
 Providers:
 
@@ -9,15 +9,15 @@ Providers:
 - **Plivo** (Voice API + XML transfer + GetInput speech)
 - **Mock** (dev/no network)
 
-Docs: `https://docs.openclaw.ai/plugins/voice-call`
-Plugin system: `https://docs.openclaw.ai/plugin`
+Docs: `https://docs..ai/plugins/voice-call`
+Plugin system: `https://docs..ai/plugin`
 
 ## Install (local dev)
 
-### Option A: install via OpenClaw (recommended)
+### Option A: install via  (recommended)
 
 ```bash
-openclaw plugins install @openclaw/voice-call
+ plugins install @/voice-call
 ```
 
 Restart the Gateway afterwards.
@@ -25,9 +25,9 @@ Restart the Gateway afterwards.
 ### Option B: copy into your global extensions folder (dev)
 
 ```bash
-mkdir -p ~/.openclaw/extensions
-cp -R extensions/voice-call ~/.openclaw/extensions/voice-call
-cd ~/.openclaw/extensions/voice-call && pnpm install
+mkdir -p ~/./extensions
+cp -R extensions/voice-call ~/./extensions/voice-call
+cd ~/./extensions/voice-call && pnpm install
 ```
 
 ## Config
@@ -82,7 +82,7 @@ Notes:
 
 Voice Call uses the core `messages.tts` configuration (OpenAI or ElevenLabs) for
 streaming speech on calls. You can override it under the plugin config with the
-same shape — overrides deep-merge with `messages.tts`.
+same shape â€” overrides deep-merge with `messages.tts`.
 
 ```json5
 {
@@ -103,13 +103,13 @@ Notes:
 ## CLI
 
 ```bash
-openclaw voicecall call --to "+15555550123" --message "Hello from OpenClaw"
-openclaw voicecall continue --call-id <id> --message "Any questions?"
-openclaw voicecall speak --call-id <id> --message "One moment"
-openclaw voicecall end --call-id <id>
-openclaw voicecall status --call-id <id>
-openclaw voicecall tail
-openclaw voicecall expose --mode funnel
+ voicecall call --to "+15555550123" --message "Hello from "
+ voicecall continue --call-id <id> --message "Any questions?"
+ voicecall speak --call-id <id> --message "One moment"
+ voicecall end --call-id <id>
+ voicecall status --call-id <id>
+ voicecall tail
+ voicecall expose --mode funnel
 ```
 
 ## Tool
@@ -137,3 +137,4 @@ Actions:
 - Uses webhook signature verification for Twilio/Telnyx/Plivo.
 - `responseModel` / `responseSystemPrompt` control AI auto-responses.
 - Media streaming requires `ws` and OpenAI Realtime API key.
+

@@ -1,4 +1,4 @@
-import { MarkdownConfigSchema, ToolPolicySchema } from "openclaw/plugin-sdk";
+﻿import { MarkdownConfigSchema, ToolPolicySchema } from "/plugin-sdk";
 import { z } from "zod";
 
 const allowFromEntry = z.union([z.string(), z.number()]);
@@ -45,3 +45,4 @@ const FeishuAccountSchema = z
 export const FeishuConfigSchema = FeishuAccountSchema.extend({
   accounts: z.object({}).catchall(FeishuAccountSchema).optional(),
 });
+

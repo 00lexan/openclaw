@@ -1,9 +1,9 @@
----
+﻿---
 role: experimental
 summary: |
   Borges-inspired alternative keywords for OpenProse. A "what if" exploration drawing
   from The Library of Babel, Garden of Forking Paths, Circular Ruins, and other works.
-  Not for implementation—just capturing ideas.
+  Not for implementationâ€”just capturing ideas.
 status: draft
 ---
 
@@ -76,7 +76,7 @@ captain "Review this"    # librarian invocation (same pattern)
 | `book`      | Library of Babel | Contains knowledge            | Too concrete, conflicts with prose   |
 | `hexagon`   | Library of Babel | Unit of space                 | Better for blocks                    |
 | `librarian` | Library of Babel | Keeper of infinite knowledge  | **Selected**                         |
-| `tlonist`   | Tlön             | Inhabitant of imaginary world | Too obscure, requires deep knowledge |
+| `tlonist`   | TlÃ¶n             | Inhabitant of imaginary world | Too obscure, requires deep knowledge |
 
 ## Alternative Ephemeral Keywords Considered
 
@@ -117,7 +117,7 @@ captain "Review this"    # librarian invocation (same pattern)
 | ----------- | ---------------------- | -------------------------------------- |
 | `mirror`    | Various                | Too passive, confusing with reflection |
 | `labyrinth` | Labyrinths             | Too complex, suggests confusion        |
-| `tlon`      | Tlön                   | Too obscure, entire imaginary world    |
+| `tlon`      | TlÃ¶n                   | Too obscure, entire imaginary world    |
 | `book`      | Library of Babel       | Conflicts with "prose"                 |
 | `sand`      | Book of Sand           | Too abstract, infinite but ephemeral   |
 | `zahir`     | The Zahir              | Obsessive, single-minded (too narrow)  |
@@ -139,3 +139,4 @@ Borges's work anticipates many computational concepts:
 - **Combinatorics**: All possible books in the Library
 
 This alternative honors that connection while recognizing it may be too esoteric for practical use.
+

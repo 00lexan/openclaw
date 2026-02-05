@@ -1,4 +1,4 @@
-import { EventEmitter } from "node:events";
+﻿import { EventEmitter } from "node:events";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetLogger, setLoggerOverride } from "../logging.js";
 
@@ -40,3 +40,4 @@ describe("web login", () => {
     expect(close).toHaveBeenCalled();
   });
 });
+

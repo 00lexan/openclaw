@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 查找操作系统支持或安装路径时
-  - 决定在哪里运行 Gateway 网关时
-summary: 平台支持概述（Gateway 网关 + 配套应用）
-title: 平台
+  - æŸ¥æ‰¾æ“ä½œç³»ç»Ÿæ”¯æŒæˆ–å®‰è£…è·¯å¾„æ—¶
+  - å†³å®šåœ¨å“ªé‡Œè¿è¡Œ Gateway ç½‘å…³æ—¶
+summary: å¹³å°æ”¯æŒæ¦‚è¿°ï¼ˆGateway ç½‘å…³ + é…å¥—åº”ç”¨ï¼‰
+title: å¹³å°
 x-i18n:
   generated_at: "2026-02-03T07:52:07Z"
   model: claude-opus-4-5
@@ -13,48 +13,49 @@ x-i18n:
   workflow: 15
 ---
 
-# 平台
+# å¹³å°
 
-OpenClaw 核心使用 TypeScript 编写。**Node 是推荐的运行时**。
-不推荐 Bun 用于 Gateway 网关（WhatsApp/Telegram 存在 bug）。
+ æ ¸å¿ƒä½¿ç”¨ TypeScript ç¼–å†™ã€‚**Node æ˜¯æŽ¨èçš„è¿è¡Œæ—¶**ã€‚
+ä¸æŽ¨è Bun ç”¨äºŽ Gateway ç½‘å…³ï¼ˆWhatsApp/Telegram å­˜åœ¨ bugï¼‰ã€‚
 
-配套应用适用于 macOS（菜单栏应用）和移动节点（iOS/Android）。Windows 和
-Linux 配套应用已在计划中，但 Gateway 网关目前已完全支持。
-Windows 原生配套应用也在计划中；推荐通过 WSL2 使用 Gateway 网关。
+é…å¥—åº”ç”¨é€‚ç”¨äºŽ macOSï¼ˆèœå•æ åº”ç”¨ï¼‰å’Œç§»åŠ¨èŠ‚ç‚¹ï¼ˆiOS/Androidï¼‰ã€‚Windows å’Œ
+Linux é…å¥—åº”ç”¨å·²åœ¨è®¡åˆ’ä¸­ï¼Œä½† Gateway ç½‘å…³ç›®å‰å·²å®Œå…¨æ”¯æŒã€‚
+Windows åŽŸç”Ÿé…å¥—åº”ç”¨ä¹Ÿåœ¨è®¡åˆ’ä¸­ï¼›æŽ¨èé€šè¿‡ WSL2 ä½¿ç”¨ Gateway ç½‘å…³ã€‚
 
-## 选择你的操作系统
+## é€‰æ‹©ä½ çš„æ“ä½œç³»ç»Ÿ
 
-- macOS：[macOS](/platforms/macos)
-- iOS：[iOS](/platforms/ios)
-- Android：[Android](/platforms/android)
-- Windows：[Windows](/platforms/windows)
-- Linux：[Linux](/platforms/linux)
+- macOSï¼š[macOS](/platforms/macos)
+- iOSï¼š[iOS](/platforms/ios)
+- Androidï¼š[Android](/platforms/android)
+- Windowsï¼š[Windows](/platforms/windows)
+- Linuxï¼š[Linux](/platforms/linux)
 
-## VPS 和托管
+## VPS å’Œæ‰˜ç®¡
 
-- VPS 中心：[VPS 托管](/vps)
-- Fly.io：[Fly.io](/platforms/fly)
-- Hetzner（Docker）：[Hetzner](/platforms/hetzner)
-- GCP（Compute Engine）：[GCP](/platforms/gcp)
-- exe.dev（VM + HTTPS 代理）：[exe.dev](/platforms/exe-dev)
+- VPS ä¸­å¿ƒï¼š[VPS æ‰˜ç®¡](/vps)
+- Fly.ioï¼š[Fly.io](/platforms/fly)
+- Hetznerï¼ˆDockerï¼‰ï¼š[Hetzner](/platforms/hetzner)
+- GCPï¼ˆCompute Engineï¼‰ï¼š[GCP](/platforms/gcp)
+- exe.devï¼ˆVM + HTTPS ä»£ç†ï¼‰ï¼š[exe.dev](/platforms/exe-dev)
 
-## 常用链接
+## å¸¸ç”¨é“¾æŽ¥
 
-- 安装指南：[入门指南](/start/getting-started)
-- Gateway 网关运行手册：[Gateway 网关](/gateway)
-- Gateway 网关配置：[配置](/gateway/configuration)
-- 服务状态：`openclaw gateway status`
+- å®‰è£…æŒ‡å—ï¼š[å…¥é—¨æŒ‡å—](/start/getting-started)
+- Gateway ç½‘å…³è¿è¡Œæ‰‹å†Œï¼š[Gateway ç½‘å…³](/gateway)
+- Gateway ç½‘å…³é…ç½®ï¼š[é…ç½®](/gateway/configuration)
+- æœåŠ¡çŠ¶æ€ï¼š` gateway status`
 
-## Gateway 网关服务安装（CLI）
+## Gateway ç½‘å…³æœåŠ¡å®‰è£…ï¼ˆCLIï¼‰
 
-使用以下任一方式（均支持）：
+ä½¿ç”¨ä»¥ä¸‹ä»»ä¸€æ–¹å¼ï¼ˆå‡æ”¯æŒï¼‰ï¼š
 
-- 向导（推荐）：`openclaw onboard --install-daemon`
-- 直接安装：`openclaw gateway install`
-- 配置流程：`openclaw configure` → 选择 **Gateway service**
-- 修复/迁移：`openclaw doctor`（提供安装或修复服务）
+- å‘å¯¼ï¼ˆæŽ¨èï¼‰ï¼š` onboard --install-daemon`
+- ç›´æŽ¥å®‰è£…ï¼š` gateway install`
+- é…ç½®æµç¨‹ï¼š` configure` â†’ é€‰æ‹© **Gateway service**
+- ä¿®å¤/è¿ç§»ï¼š` doctor`ï¼ˆæä¾›å®‰è£…æˆ–ä¿®å¤æœåŠ¡ï¼‰
 
-服务目标取决于操作系统：
+æœåŠ¡ç›®æ ‡å–å†³äºŽæ“ä½œç³»ç»Ÿï¼š
 
-- macOS：LaunchAgent（`bot.molt.gateway` 或 `bot.molt.<profile>`；旧版 `com.openclaw.*`）
-- Linux/WSL2：systemd 用户服务（`openclaw-gateway[-<profile>].service`）
+- macOSï¼šLaunchAgentï¼ˆ`bot.molt.gateway` æˆ– `bot.molt.<profile>`ï¼›æ—§ç‰ˆ `com..*`ï¼‰
+- Linux/WSL2ï¼šsystemd ç”¨æˆ·æœåŠ¡ï¼ˆ`-gateway[-<profile>].service`ï¼‰
+

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const rpcMock = vi.fn();
 const loadSendReactions = async () => await import("./send-reactions.js");
@@ -33,7 +33,7 @@ describe("sendReactionSignal", () => {
 
   it("uses recipients array and targetAuthor for uuid dms", async () => {
     const { sendReactionSignal } = await loadSendReactions();
-    await sendReactionSignal("uuid:123e4567-e89b-12d3-a456-426614174000", 123, "🔥");
+    await sendReactionSignal("uuid:123e4567-e89b-12d3-a456-426614174000", 123, "ðŸ”¥");
 
     const params = rpcMock.mock.calls[0]?.[1] as Record<string, unknown>;
     expect(rpcMock).toHaveBeenCalledWith("sendReaction", expect.any(Object), expect.any(Object));
@@ -46,7 +46,7 @@ describe("sendReactionSignal", () => {
 
   it("uses groupIds array and maps targetAuthorUuid", async () => {
     const { sendReactionSignal } = await loadSendReactions();
-    await sendReactionSignal("", 123, "✅", {
+    await sendReactionSignal("", 123, "âœ…", {
       groupId: "group-id",
       targetAuthorUuid: "uuid:123e4567-e89b-12d3-a456-426614174000",
     });
@@ -59,7 +59,7 @@ describe("sendReactionSignal", () => {
 
   it("defaults targetAuthor to recipient for removals", async () => {
     const { removeReactionSignal } = await loadSendReactions();
-    await removeReactionSignal("+15551230000", 456, "❌");
+    await removeReactionSignal("+15551230000", 456, "âŒ");
 
     const params = rpcMock.mock.calls[0]?.[1] as Record<string, unknown>;
     expect(params.recipients).toEqual(["+15551230000"]);
@@ -67,3 +67,4 @@ describe("sendReactionSignal", () => {
     expect(params.remove).toBe(true);
   });
 });
+

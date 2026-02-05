@@ -1,4 +1,4 @@
-import type { ChildProcessWithoutNullStreams } from "node:child_process";
+﻿import type { ChildProcessWithoutNullStreams } from "node:child_process";
 import { existsSync, statSync } from "node:fs";
 import fs from "node:fs/promises";
 import { homedir } from "node:os";
@@ -68,14 +68,14 @@ export function buildDockerExecArgs(params: {
   const hasCustomPath = typeof params.env.PATH === "string" && params.env.PATH.length > 0;
   if (hasCustomPath) {
     // Avoid interpolating PATH into the shell command; pass it via env instead.
-    args.push("-e", `OPENCLAW_PREPEND_PATH=${params.env.PATH}`);
+    args.push("-e", `_PREPEND_PATH=${params.env.PATH}`);
   }
   // Login shell (-l) sources /etc/profile which resets PATH to a minimal set,
   // overriding both Docker ENV and -e PATH=... environment variables.
   // Prepend custom PATH after profile sourcing to ensure custom tools are accessible
   // while preserving system paths that /etc/profile may have added.
   const pathExport = hasCustomPath
-    ? 'export PATH="${OPENCLAW_PREPEND_PATH}:$PATH"; unset OPENCLAW_PREPEND_PATH; '
+    ? 'export PATH="${_PREPEND_PATH}:$PATH"; unset _PREPEND_PATH; '
     : "";
   args.push(params.containerName, "sh", "-lc", `${pathExport}${params.command}`);
   return args;
@@ -263,3 +263,4 @@ export function pad(str: string, width: number) {
   }
   return str + " ".repeat(width - str.length);
 }
+

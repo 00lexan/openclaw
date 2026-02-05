@@ -1,4 +1,4 @@
-import type { FinalizedMsgContext } from "../../../auto-reply/templating.js";
+﻿import type { FinalizedMsgContext } from "../../../auto-reply/templating.js";
 import type { ResolvedSlackAccount } from "../../accounts.js";
 import type { SlackMessageEvent } from "../../types.js";
 import type { PreparedSlackMessage } from "./types.js";
@@ -581,3 +581,4 @@ export async function prepareSlackMessage(params: {
     ackReactionPromise,
   };
 }
+

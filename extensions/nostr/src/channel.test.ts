@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { nostrPlugin } from "./channel.js";
 
 describe("nostrPlugin", () => {
@@ -149,3 +149,4 @@ describe("nostrPlugin", () => {
     });
   });
 });
+

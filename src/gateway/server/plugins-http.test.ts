@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+﻿import type { IncomingMessage, ServerResponse } from "node:http";
 import { describe, expect, it, vi } from "vitest";
 import { createTestRegistry } from "./__tests__/test-utils.js";
 import { createGatewayPluginRequestHandler } from "./plugins-http.js";
@@ -112,3 +112,4 @@ describe("createGatewayPluginRequestHandler", () => {
     expect(end).toHaveBeenCalledWith("Internal Server Error");
   });
 });
+

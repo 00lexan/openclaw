@@ -1,4 +1,4 @@
-import { messagingApi } from "@line/bot-sdk";
+﻿import { messagingApi } from "@line/bot-sdk";
 import type { LineSendResult } from "./types.js";
 import { loadConfig } from "../config/config.js";
 import { logVerbose } from "../globals.js";
@@ -635,3 +635,4 @@ export async function getUserDisplayName(
   const profile = await getUserProfile(userId, opts);
   return profile?.displayName ?? userId;
 }
+

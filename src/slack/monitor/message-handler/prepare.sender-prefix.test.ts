@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { SlackMonitorContext } from "../context.js";
 import { prepareSlackMessage } from "./prepare.js";
 
@@ -6,7 +6,7 @@ describe("prepareSlackMessage sender prefix", () => {
   it("prefixes channel bodies with sender label", async () => {
     const ctx = {
       cfg: {
-        agents: { defaults: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/openclaw" } },
+        agents: { defaults: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/" } },
         channels: { slack: {} },
       },
       accountId: "default",
@@ -39,7 +39,7 @@ describe("prepareSlackMessage sender prefix", () => {
       replyToMode: "off",
       threadHistoryScope: "channel",
       threadInheritParent: false,
-      slashCommand: { command: "/openclaw", enabled: true },
+      slashCommand: { command: "/", enabled: true },
       textLimit: 2000,
       ackReactionScope: "off",
       mediaMaxBytes: 1000,
@@ -77,3 +77,4 @@ describe("prepareSlackMessage sender prefix", () => {
     expect(body).toContain("Alice (U1): <@BOT> hello");
   });
 });
+

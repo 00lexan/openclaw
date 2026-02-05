@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { createSessionsSpawnTool } from "./tools/sessions-spawn-tool.js";
 
 vi.mock("../config/config.js", async () => {
@@ -64,3 +64,4 @@ describe("sessions_spawn thinking defaults", () => {
     expect(agentCall?.params?.thinking).toBe("low");
   });
 });
+

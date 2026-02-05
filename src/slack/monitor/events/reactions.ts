@@ -1,4 +1,4 @@
-import type { SlackEventMiddlewareArgs } from "@slack/bolt";
+﻿import type { SlackEventMiddlewareArgs } from "@slack/bolt";
 import type { SlackMonitorContext } from "../context.js";
 import type { SlackReactionEvent } from "../types.js";
 import { danger } from "../../../globals.js";
@@ -71,3 +71,4 @@ export function registerSlackReactionEvents(params: { ctx: SlackMonitorContext }
     },
   );
 }
+

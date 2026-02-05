@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想使用 GitHub Copilot 作为模型提供商
-  - 你需要了解 `openclaw models auth login-github-copilot` 流程
-summary: 使用设备流从 OpenClaw 登录 GitHub Copilot
+  - ä½ æƒ³ä½¿ç”¨ GitHub Copilot ä½œä¸ºæ¨¡åž‹æä¾›å•†
+  - ä½ éœ€è¦äº†è§£ ` models auth login-github-copilot` æµç¨‹
+summary: ä½¿ç”¨è®¾å¤‡æµä»Ž  ç™»å½• GitHub Copilot
 title: GitHub Copilot
 x-i18n:
   generated_at: "2026-02-01T21:34:57Z"
@@ -15,44 +15,44 @@ x-i18n:
 
 # GitHub Copilot
 
-## 什么是 GitHub Copilot？
+## ä»€ä¹ˆæ˜¯ GitHub Copilotï¼Ÿ
 
-GitHub Copilot 是 GitHub 的 AI 编程助手。它为你的 GitHub 账户和订阅计划提供 Copilot 模型的访问权限。OpenClaw 可以通过两种不同的方式将 Copilot 用作模型提供商。
+GitHub Copilot æ˜¯ GitHub çš„ AI ç¼–ç¨‹åŠ©æ‰‹ã€‚å®ƒä¸ºä½ çš„ GitHub è´¦æˆ·å’Œè®¢é˜…è®¡åˆ’æä¾› Copilot æ¨¡åž‹çš„è®¿é—®æƒé™ã€‚ å¯ä»¥é€šè¿‡ä¸¤ç§ä¸åŒçš„æ–¹å¼å°† Copilot ç”¨ä½œæ¨¡åž‹æä¾›å•†ã€‚
 
-## 在 OpenClaw 中使用 Copilot 的两种方式
+## åœ¨  ä¸­ä½¿ç”¨ Copilot çš„ä¸¤ç§æ–¹å¼
 
-### 1）内置 GitHub Copilot 提供商（`github-copilot`）
+### 1ï¼‰å†…ç½® GitHub Copilot æä¾›å•†ï¼ˆ`github-copilot`ï¼‰
 
-使用原生设备登录流程获取 GitHub 令牌，然后在 OpenClaw 运行时将其兑换为 Copilot API 令牌。这是**默认**且最简单的方式，因为它不需要 VS Code。
+ä½¿ç”¨åŽŸç”Ÿè®¾å¤‡ç™»å½•æµç¨‹èŽ·å– GitHub ä»¤ç‰Œï¼Œç„¶åŽåœ¨  è¿è¡Œæ—¶å°†å…¶å…‘æ¢ä¸º Copilot API ä»¤ç‰Œã€‚è¿™æ˜¯**é»˜è®¤**ä¸”æœ€ç®€å•çš„æ–¹å¼ï¼Œå› ä¸ºå®ƒä¸éœ€è¦ VS Codeã€‚
 
-### 2）Copilot Proxy 插件（`copilot-proxy`）
+### 2ï¼‰Copilot Proxy æ’ä»¶ï¼ˆ`copilot-proxy`ï¼‰
 
-使用 **Copilot Proxy** VS Code 扩展作为本地桥接。OpenClaw 与代理的 `/v1` 端点通信，并使用你在其中配置的模型列表。当你已经在 VS Code 中运行 Copilot Proxy 或需要通过它进行路由时，选择此方式。你必须启用该插件并保持 VS Code 扩展运行。
+ä½¿ç”¨ **Copilot Proxy** VS Code æ‰©å±•ä½œä¸ºæœ¬åœ°æ¡¥æŽ¥ã€‚ ä¸Žä»£ç†çš„ `/v1` ç«¯ç‚¹é€šä¿¡ï¼Œå¹¶ä½¿ç”¨ä½ åœ¨å…¶ä¸­é…ç½®çš„æ¨¡åž‹åˆ—è¡¨ã€‚å½“ä½ å·²ç»åœ¨ VS Code ä¸­è¿è¡Œ Copilot Proxy æˆ–éœ€è¦é€šè¿‡å®ƒè¿›è¡Œè·¯ç”±æ—¶ï¼Œé€‰æ‹©æ­¤æ–¹å¼ã€‚ä½ å¿…é¡»å¯ç”¨è¯¥æ’ä»¶å¹¶ä¿æŒ VS Code æ‰©å±•è¿è¡Œã€‚
 
-使用 GitHub Copilot 作为模型提供商（`github-copilot`）。登录命令运行 GitHub 设备流程，保存认证配置文件，并更新你的配置以使用该配置文件。
+ä½¿ç”¨ GitHub Copilot ä½œä¸ºæ¨¡åž‹æä¾›å•†ï¼ˆ`github-copilot`ï¼‰ã€‚ç™»å½•å‘½ä»¤è¿è¡Œ GitHub è®¾å¤‡æµç¨‹ï¼Œä¿å­˜è®¤è¯é…ç½®æ–‡ä»¶ï¼Œå¹¶æ›´æ–°ä½ çš„é…ç½®ä»¥ä½¿ç”¨è¯¥é…ç½®æ–‡ä»¶ã€‚
 
-## CLI 设置
-
-```bash
-openclaw models auth login-github-copilot
-```
-
-系统会提示你访问一个 URL 并输入一次性代码。请保持终端打开直到流程完成。
-
-### 可选参数
+## CLI è®¾ç½®
 
 ```bash
-openclaw models auth login-github-copilot --profile-id github-copilot:work
-openclaw models auth login-github-copilot --yes
+ models auth login-github-copilot
 ```
 
-## 设置默认模型
+ç³»ç»Ÿä¼šæç¤ºä½ è®¿é—®ä¸€ä¸ª URL å¹¶è¾“å…¥ä¸€æ¬¡æ€§ä»£ç ã€‚è¯·ä¿æŒç»ˆç«¯æ‰“å¼€ç›´åˆ°æµç¨‹å®Œæˆã€‚
+
+### å¯é€‰å‚æ•°
 
 ```bash
-openclaw models set github-copilot/gpt-4o
+ models auth login-github-copilot --profile-id github-copilot:work
+ models auth login-github-copilot --yes
 ```
 
-### 配置片段
+## è®¾ç½®é»˜è®¤æ¨¡åž‹
+
+```bash
+ models set github-copilot/gpt-4o
+```
+
+### é…ç½®ç‰‡æ®µ
 
 ```json5
 {
@@ -60,8 +60,9 @@ openclaw models set github-copilot/gpt-4o
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 需要交互式 TTY；请直接在终端中运行。
-- Copilot 模型的可用性取决于你的订阅计划；如果某个模型被拒绝，请尝试其他 ID（例如 `github-copilot/gpt-4.1`）。
-- 登录会将 GitHub 令牌存储在认证配置文件中，并在 OpenClaw 运行时将其兑换为 Copilot API 令牌。
+- éœ€è¦äº¤äº’å¼ TTYï¼›è¯·ç›´æŽ¥åœ¨ç»ˆç«¯ä¸­è¿è¡Œã€‚
+- Copilot æ¨¡åž‹çš„å¯ç”¨æ€§å–å†³äºŽä½ çš„è®¢é˜…è®¡åˆ’ï¼›å¦‚æžœæŸä¸ªæ¨¡åž‹è¢«æ‹’ç»ï¼Œè¯·å°è¯•å…¶ä»– IDï¼ˆä¾‹å¦‚ `github-copilot/gpt-4.1`ï¼‰ã€‚
+- ç™»å½•ä¼šå°† GitHub ä»¤ç‰Œå­˜å‚¨åœ¨è®¤è¯é…ç½®æ–‡ä»¶ä¸­ï¼Œå¹¶åœ¨  è¿è¡Œæ—¶å°†å…¶å…‘æ¢ä¸º Copilot API ä»¤ç‰Œã€‚
+

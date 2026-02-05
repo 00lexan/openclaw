@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "openclaw/plugin-sdk";
+﻿import type { RuntimeEnv } from "/plugin-sdk";
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
@@ -41,7 +41,7 @@ export async function ensureMatrixSdkInstalled(params: {
   const command = fs.existsSync(path.join(root, "pnpm-lock.yaml"))
     ? ["pnpm", "install"]
     : ["npm", "install", "--omit=dev", "--silent"];
-  params.runtime.log?.(`matrix: installing dependencies via ${command[0]} (${root})…`);
+  params.runtime.log?.(`matrix: installing dependencies via ${command[0]} (${root})â€¦`);
   const result = await getMatrixRuntime().system.runCommandWithTimeout(command, {
     cwd: root,
     timeoutMs: 300_000,
@@ -58,3 +58,4 @@ export async function ensureMatrixSdkInstalled(params: {
     );
   }
 }
+

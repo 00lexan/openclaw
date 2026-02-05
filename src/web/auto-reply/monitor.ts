@@ -1,4 +1,4 @@
-import type { WebChannelStatus, WebInboundMsg, WebMonitorTuning } from "./types.js";
+﻿import type { WebChannelStatus, WebInboundMsg, WebMonitorTuning } from "./types.js";
 import { hasControlCommand } from "../../auto-reply/command-detection.js";
 import { resolveInboundDebounceMs } from "../../auto-reply/inbound-debounce.js";
 import { getReplyFromConfig } from "../../auto-reply/reply.js";
@@ -286,7 +286,7 @@ export async function monitorWebChannel(
         };
 
         if (minutesSinceLastMessage && minutesSinceLastMessage > 30) {
-          heartbeatLogger.warn(logData, "⚠️ web gateway heartbeat - no messages in 30+ minutes");
+          heartbeatLogger.warn(logData, "âš ï¸ web gateway heartbeat - no messages in 30+ minutes");
         } else {
           heartbeatLogger.info(logData, "web gateway heartbeat");
         }
@@ -394,7 +394,7 @@ export async function monitorWebChannel(
 
     if (loggedOut) {
       runtime.error(
-        `WhatsApp session logged out. Run \`${formatCliCommand("openclaw channels login --channel web")}\` to relink.`,
+        `WhatsApp session logged out. Run \`${formatCliCommand(" channels login --channel web")}\` to relink.`,
       );
       await closeListener();
       break;
@@ -432,7 +432,7 @@ export async function monitorWebChannel(
       "web reconnect: scheduling retry",
     );
     runtime.error(
-      `WhatsApp Web connection closed (status ${statusCode}). Retry ${reconnectAttempts}/${reconnectPolicy.maxAttempts || "∞"} in ${formatDurationMs(delay)}… (${errorStr})`,
+      `WhatsApp Web connection closed (status ${statusCode}). Retry ${reconnectAttempts}/${reconnectPolicy.maxAttempts || "âˆž"} in ${formatDurationMs(delay)}â€¦ (${errorStr})`,
     );
     await closeListener();
     try {
@@ -449,3 +449,4 @@ export async function monitorWebChannel(
 
   process.removeListener("SIGINT", handleSigint);
 }
+

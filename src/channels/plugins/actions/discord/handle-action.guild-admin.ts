@@ -1,4 +1,4 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { ChannelMessageActionContext } from "../../types.js";
 import {
   readNumberParam,
@@ -435,3 +435,4 @@ export async function tryHandleDiscordMessageActionGuildAdmin(params: {
 
   return undefined;
 }
+

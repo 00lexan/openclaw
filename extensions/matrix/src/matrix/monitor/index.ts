@@ -1,5 +1,5 @@
-import { format } from "node:util";
-import { mergeAllowlist, summarizeMapping, type RuntimeEnv } from "openclaw/plugin-sdk";
+﻿import { format } from "node:util";
+import { mergeAllowlist, summarizeMapping, type RuntimeEnv } from "/plugin-sdk";
 import type { CoreConfig, ReplyToMode } from "../../types.js";
 import { resolveMatrixTargets } from "../../resolve-targets.js";
 import { getMatrixRuntime } from "../../runtime.js";
@@ -105,7 +105,7 @@ export async function monitorMatrixProvider(opts: MonitorMatrixOpts = {}): Promi
         if (entry.resolved && entry.id) {
           const normalizedId = normalizeMatrixUserId(entry.id);
           additions.push(normalizedId);
-          mapping.push(`${entry.input}→${normalizedId}`);
+          mapping.push(`${entry.input}â†’${normalizedId}`);
         } else {
           unresolved.push(entry.input);
         }
@@ -152,7 +152,7 @@ export async function monitorMatrixProvider(opts: MonitorMatrixOpts = {}): Promi
           nextRooms[cleaned] = roomConfig;
         }
         if (cleaned !== entry) {
-          mapping.push(`${entry}→${cleaned}`);
+          mapping.push(`${entry}â†’${cleaned}`);
         }
         continue;
       }
@@ -174,7 +174,7 @@ export async function monitorMatrixProvider(opts: MonitorMatrixOpts = {}): Promi
           if (!nextRooms[entry.id]) {
             nextRooms[entry.id] = source.config;
           }
-          mapping.push(`${source.input}→${entry.id}`);
+          mapping.push(`${source.input}â†’${entry.id}`);
         } else {
           unresolved.push(source.input);
         }
@@ -336,3 +336,4 @@ export async function monitorMatrixProvider(opts: MonitorMatrixOpts = {}): Promi
     opts.abortSignal?.addEventListener("abort", onAbort, { once: true });
   });
 }
+

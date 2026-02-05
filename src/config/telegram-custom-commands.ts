@@ -1,4 +1,4 @@
-export const TELEGRAM_COMMAND_NAME_PATTERN = /^[a-z0-9_]{1,32}$/;
+﻿export const TELEGRAM_COMMAND_NAME_PATTERN = /^[a-z0-9_]{1,32}$/;
 
 export type TelegramCustomCommandInput = {
   command?: string | null;
@@ -93,3 +93,4 @@ export function resolveTelegramCustomCommands(params: {
 
   return { commands: resolved, issues };
 }
+

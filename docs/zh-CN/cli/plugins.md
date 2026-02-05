@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想安装或管理进程内 Gateway 网关插件
-  - 你想调试插件加载失败问题
-summary: "`openclaw plugins` 的 CLI 参考（列出、安装、启用/禁用、诊断）"
+  - ä½ æƒ³å®‰è£…æˆ–ç®¡ç†è¿›ç¨‹å†… Gateway ç½‘å…³æ’ä»¶
+  - ä½ æƒ³è°ƒè¯•æ’ä»¶åŠ è½½å¤±è´¥é—®é¢˜
+summary: "` plugins` çš„ CLI å‚è€ƒï¼ˆåˆ—å‡ºã€å®‰è£…ã€å¯ç”¨/ç¦ç”¨ã€è¯Šæ–­ï¼‰"
 title: plugins
 x-i18n:
   generated_at: "2026-02-03T07:45:08Z"
@@ -13,54 +13,55 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw plugins`
+# ` plugins`
 
-管理 Gateway 网关插件/扩展（进程内加载）。
+ç®¡ç† Gateway ç½‘å…³æ’ä»¶/æ‰©å±•ï¼ˆè¿›ç¨‹å†…åŠ è½½ï¼‰ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 插件系统：[插件](/plugin)
-- 插件清单 + 模式：[插件清单](/plugins/manifest)
-- 安全加固：[安全](/gateway/security)
+- æ’ä»¶ç³»ç»Ÿï¼š[æ’ä»¶](/plugin)
+- æ’ä»¶æ¸…å• + æ¨¡å¼ï¼š[æ’ä»¶æ¸…å•](/plugins/manifest)
+- å®‰å…¨åŠ å›ºï¼š[å®‰å…¨](/gateway/security)
 
-## 命令
-
-```bash
-openclaw plugins list
-openclaw plugins info <id>
-openclaw plugins enable <id>
-openclaw plugins disable <id>
-openclaw plugins doctor
-openclaw plugins update <id>
-openclaw plugins update --all
-```
-
-内置插件随 OpenClaw 一起发布，但默认禁用。使用 `plugins enable` 来激活它们。
-
-所有插件必须提供 `openclaw.plugin.json` 文件，其中包含内联 JSON Schema（`configSchema`，即使为空）。缺少或无效的清单或模式会阻止插件加载并导致配置验证失败。
-
-### 安装
+## å‘½ä»¤
 
 ```bash
-openclaw plugins install <path-or-spec>
+ plugins list
+ plugins info <id>
+ plugins enable <id>
+ plugins disable <id>
+ plugins doctor
+ plugins update <id>
+ plugins update --all
 ```
 
-安全提示：将插件安装视为运行代码。优先使用固定版本。
+å†…ç½®æ’ä»¶éš  ä¸€èµ·å‘å¸ƒï¼Œä½†é»˜è®¤ç¦ç”¨ã€‚ä½¿ç”¨ `plugins enable` æ¥æ¿€æ´»å®ƒä»¬ã€‚
 
-支持的归档格式：`.zip`、`.tgz`、`.tar.gz`、`.tar`。
+æ‰€æœ‰æ’ä»¶å¿…é¡»æä¾› `.plugin.json` æ–‡ä»¶ï¼Œå…¶ä¸­åŒ…å«å†…è” JSON Schemaï¼ˆ`configSchema`ï¼Œå³ä½¿ä¸ºç©ºï¼‰ã€‚ç¼ºå°‘æˆ–æ— æ•ˆçš„æ¸…å•æˆ–æ¨¡å¼ä¼šé˜»æ­¢æ’ä»¶åŠ è½½å¹¶å¯¼è‡´é…ç½®éªŒè¯å¤±è´¥ã€‚
 
-使用 `--link` 避免复制本地目录（添加到 `plugins.load.paths`）：
+### å®‰è£…
 
 ```bash
-openclaw plugins install -l ./my-plugin
+ plugins install <path-or-spec>
 ```
 
-### 更新
+å®‰å…¨æç¤ºï¼šå°†æ’ä»¶å®‰è£…è§†ä¸ºè¿è¡Œä»£ç ã€‚ä¼˜å…ˆä½¿ç”¨å›ºå®šç‰ˆæœ¬ã€‚
+
+æ”¯æŒçš„å½’æ¡£æ ¼å¼ï¼š`.zip`ã€`.tgz`ã€`.tar.gz`ã€`.tar`ã€‚
+
+ä½¿ç”¨ `--link` é¿å…å¤åˆ¶æœ¬åœ°ç›®å½•ï¼ˆæ·»åŠ åˆ° `plugins.load.paths`ï¼‰ï¼š
 
 ```bash
-openclaw plugins update <id>
-openclaw plugins update --all
-openclaw plugins update <id> --dry-run
+ plugins install -l ./my-plugin
 ```
 
-更新仅适用于从 npm 安装的插件（在 `plugins.installs` 中跟踪）。
+### æ›´æ–°
+
+```bash
+ plugins update <id>
+ plugins update --all
+ plugins update <id> --dry-run
+```
+
+æ›´æ–°ä»…é€‚ç”¨äºŽä»Ž npm å®‰è£…çš„æ’ä»¶ï¼ˆåœ¨ `plugins.installs` ä¸­è·Ÿè¸ªï¼‰ã€‚
+

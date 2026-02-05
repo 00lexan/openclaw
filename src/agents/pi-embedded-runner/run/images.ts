@@ -1,4 +1,4 @@
-import type { ImageContent } from "@mariozechner/pi-ai";
+﻿import type { ImageContent } from "@mariozechner/pi-ai";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -445,3 +445,4 @@ export async function detectAndLoadPromptImages(params: {
     skippedCount,
   };
 }
+

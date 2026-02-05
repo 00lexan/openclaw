@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { SubagentRunRecord } from "../../agents/subagent-registry.js";
 import {
   formatDurationShort,
@@ -33,7 +33,7 @@ describe("subagents utils", () => {
     const run = { ...baseRun, label: long };
     const formatted = formatRunLabel(run, { maxLength: 10 });
     expect(formatted.startsWith("x".repeat(10))).toBe(true);
-    expect(formatted.endsWith("…")).toBe(true);
+    expect(formatted.endsWith("â€¦")).toBe(true);
   });
 
   it("sorts subagent runs by newest start/created time", () => {
@@ -59,3 +59,4 @@ describe("subagents utils", () => {
     expect(formatDurationShort(65_000)).toBe("1m5s");
   });
 });
+

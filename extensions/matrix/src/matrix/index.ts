@@ -1,4 +1,4 @@
-export { monitorMatrixProvider } from "./monitor/index.js";
+﻿export { monitorMatrixProvider } from "./monitor/index.js";
 export { probeMatrix } from "./probe.js";
 export {
   reactMatrixMessage,
@@ -9,3 +9,4 @@ export {
   sendTypingMatrix,
 } from "./send.js";
 export { resolveMatrixAuth, resolveSharedMatrixClient } from "./client.js";
+

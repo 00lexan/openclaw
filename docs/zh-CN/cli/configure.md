@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你想交互式地调整凭证、设备或智能体默认设置
-summary: "`openclaw configure` 的 CLI 参考（交互式配置提示）"
+  - ä½ æƒ³äº¤äº’å¼åœ°è°ƒæ•´å‡­è¯ã€è®¾å¤‡æˆ–æ™ºèƒ½ä½“é»˜è®¤è®¾ç½®
+summary: "` configure` çš„ CLI å‚è€ƒï¼ˆäº¤äº’å¼é…ç½®æç¤ºï¼‰"
 title: configure
 x-i18n:
   generated_at: "2026-02-03T07:44:46Z"
@@ -12,27 +12,28 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw configure`
+# ` configure`
 
-用于设置凭证、设备和智能体默认值的交互式提示。
+ç”¨äºŽè®¾ç½®å‡­è¯ã€è®¾å¤‡å’Œæ™ºèƒ½ä½“é»˜è®¤å€¼çš„äº¤äº’å¼æç¤ºã€‚
 
-注意：**模型**部分现在包含一个用于 `agents.defaults.models` 允许列表的多选项（显示在 `/model` 和模型选择器中的内容）。
+æ³¨æ„ï¼š**æ¨¡åž‹**éƒ¨åˆ†çŽ°åœ¨åŒ…å«ä¸€ä¸ªç”¨äºŽ `agents.defaults.models` å…è®¸åˆ—è¡¨çš„å¤šé€‰é¡¹ï¼ˆæ˜¾ç¤ºåœ¨ `/model` å’Œæ¨¡åž‹é€‰æ‹©å™¨ä¸­çš„å†…å®¹ï¼‰ã€‚
 
-提示：不带子命令的 `openclaw config` 会打开相同的向导。使用 `openclaw config get|set|unset` 进行非交互式编辑。
+æç¤ºï¼šä¸å¸¦å­å‘½ä»¤çš„ ` config` ä¼šæ‰“å¼€ç›¸åŒçš„å‘å¯¼ã€‚ä½¿ç”¨ ` config get|set|unset` è¿›è¡Œéžäº¤äº’å¼ç¼–è¾‘ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- Gateway 网关配置参考：[配置](/gateway/configuration)
-- Config CLI：[Config](/cli/config)
+- Gateway ç½‘å…³é…ç½®å‚è€ƒï¼š[é…ç½®](/gateway/configuration)
+- Config CLIï¼š[Config](/cli/config)
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 选择 Gateway 网关运行位置始终会更新 `gateway.mode`。如果这是你唯一需要的，可以不选择其他部分直接选择"继续"。
-- 面向渠道的服务（Slack/Discord/Matrix/Microsoft Teams）在设置期间会提示输入频道/房间允许列表。你可以输入名称或 ID；向导会尽可能将名称解析为 ID。
+- é€‰æ‹© Gateway ç½‘å…³è¿è¡Œä½ç½®å§‹ç»ˆä¼šæ›´æ–° `gateway.mode`ã€‚å¦‚æžœè¿™æ˜¯ä½ å”¯ä¸€éœ€è¦çš„ï¼Œå¯ä»¥ä¸é€‰æ‹©å…¶ä»–éƒ¨åˆ†ç›´æŽ¥é€‰æ‹©"ç»§ç»­"ã€‚
+- é¢å‘æ¸ é“çš„æœåŠ¡ï¼ˆSlack/Discord/Matrix/Microsoft Teamsï¼‰åœ¨è®¾ç½®æœŸé—´ä¼šæç¤ºè¾“å…¥é¢‘é“/æˆ¿é—´å…è®¸åˆ—è¡¨ã€‚ä½ å¯ä»¥è¾“å…¥åç§°æˆ– IDï¼›å‘å¯¼ä¼šå°½å¯èƒ½å°†åç§°è§£æžä¸º IDã€‚
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
-openclaw configure
-openclaw configure --section models --section channels
+ configure
+ configure --section models --section channels
 ```
+

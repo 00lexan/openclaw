@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import { createWriteStream } from "node:fs";
 import fs from "node:fs/promises";
 import { request as httpRequest } from "node:http";
@@ -31,7 +31,7 @@ function sanitizeFilename(name: string): string {
 
 /**
  * Extract original filename from path if it matches the embedded format.
- * Pattern: {original}---{uuid}.{ext} → returns "{original}.{ext}"
+ * Pattern: {original}---{uuid}.{ext} â†’ returns "{original}.{ext}"
  * Falls back to basename if no pattern match, or "file.bin" if empty.
  */
 export function extractOriginalFilename(filePath: string): string {
@@ -240,3 +240,4 @@ export async function saveMediaBuffer(
   await fs.writeFile(dest, buffer, { mode: 0o600 });
   return { id, path: dest, size: buffer.byteLength, contentType: mime };
 }
+

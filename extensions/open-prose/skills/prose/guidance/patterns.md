@@ -1,4 +1,4 @@
----
+﻿---
 role: best-practices
 summary: |
   Design patterns for robust, efficient, and maintainable OpenProse programs.
@@ -206,7 +206,7 @@ Match model capability to task complexity:
 | **Opus 4.5**   | Hard/difficult work requiring deep reasoning | Complex analysis, strategic decisions, novel problem-solving |
 | **Haiku**      | Simple, self-evident tasks (use sparingly)   | Classification, summarization, formatting                    |
 
-**Key insight:** Sonnet 4.5 excels at _orchestrating_ agents and managing control flow—it's the ideal model for the OpenProse VM itself and for "captain" agents that coordinate work. Opus 4.5 should be reserved for agents doing genuinely difficult intellectual work. Haiku can handle simple tasks but should generally be avoided where quality matters.
+**Key insight:** Sonnet 4.5 excels at _orchestrating_ agents and managing control flowâ€”it's the ideal model for the OpenProse VM itself and for "captain" agents that coordinate work. Opus 4.5 should be reserved for agents doing genuinely difficult intellectual work. Haiku can handle simple tasks but should generally be avoided where quality matters.
 
 **Detailed task-to-model mapping:**
 
@@ -285,7 +285,7 @@ loop until **solution found and verified** (max: 10):
 
 #### early-signal-exit
 
-When observing or monitoring, exit as soon as you have a definitive answer—don't wait for the full observation window.
+When observing or monitoring, exit as soon as you have a definitive answerâ€”don't wait for the full observation window.
 
 ```prose
 # Good: Exit on signal
@@ -698,3 +698,4 @@ The most effective OpenProse programs combine these patterns:
 5. **Maintainability**: Name clearly, separate concerns, make flow explicit
 
 Choose patterns based on your specific constraints. A quick prototype prioritizes speed over robustness. A production workflow prioritizes reliability over cost. A research exploration prioritizes thoroughness over efficiency.
+

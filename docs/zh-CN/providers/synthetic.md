@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想使用 Synthetic 作为模型提供商
-  - 你需要配置 Synthetic API 密钥或 base URL
-summary: 在 OpenClaw 中使用 Synthetic 的 Anthropic 兼容 API
+  - ä½ æƒ³ä½¿ç”¨ Synthetic ä½œä¸ºæ¨¡åž‹æä¾›å•†
+  - ä½ éœ€è¦é…ç½® Synthetic API å¯†é’¥æˆ– base URL
+summary: åœ¨  ä¸­ä½¿ç”¨ Synthetic çš„ Anthropic å…¼å®¹ API
 title: Synthetic
 x-i18n:
   generated_at: "2026-02-01T21:35:34Z"
@@ -15,24 +15,24 @@ x-i18n:
 
 # Synthetic
 
-Synthetic 提供兼容 Anthropic 的端点。OpenClaw 将其注册为 `synthetic` 提供商，并使用 Anthropic Messages API。
+Synthetic æä¾›å…¼å®¹ Anthropic çš„ç«¯ç‚¹ã€‚ å°†å…¶æ³¨å†Œä¸º `synthetic` æä¾›å•†ï¼Œå¹¶ä½¿ç”¨ Anthropic Messages APIã€‚
 
-## 快速设置
+## å¿«é€Ÿè®¾ç½®
 
-1. 设置 `SYNTHETIC_API_KEY`（或运行以下向导）。
-2. 运行新手引导：
+1. è®¾ç½® `SYNTHETIC_API_KEY`ï¼ˆæˆ–è¿è¡Œä»¥ä¸‹å‘å¯¼ï¼‰ã€‚
+2. è¿è¡Œæ–°æ‰‹å¼•å¯¼ï¼š
 
 ```bash
-openclaw onboard --auth-choice synthetic-api-key
+ onboard --auth-choice synthetic-api-key
 ```
 
-默认模型设置为：
+é»˜è®¤æ¨¡åž‹è®¾ç½®ä¸ºï¼š
 
 ```
 synthetic/hf:MiniMaxAI/MiniMax-M2.1
 ```
 
-## 配置示例
+## é…ç½®ç¤ºä¾‹
 
 ```json5
 {
@@ -67,13 +67,13 @@ synthetic/hf:MiniMaxAI/MiniMax-M2.1
 }
 ```
 
-注意：OpenClaw 的 Anthropic 客户端会自动在 base URL 后追加 `/v1`，因此请使用 `https://api.synthetic.new/anthropic`（而非 `/anthropic/v1`）。如果 Synthetic 更改了其 base URL，请覆盖 `models.providers.synthetic.baseUrl`。
+æ³¨æ„ï¼š çš„ Anthropic å®¢æˆ·ç«¯ä¼šè‡ªåŠ¨åœ¨ base URL åŽè¿½åŠ  `/v1`ï¼Œå› æ­¤è¯·ä½¿ç”¨ `https://api.synthetic.new/anthropic`ï¼ˆè€Œéž `/anthropic/v1`ï¼‰ã€‚å¦‚æžœ Synthetic æ›´æ”¹äº†å…¶ base URLï¼Œè¯·è¦†ç›– `models.providers.synthetic.baseUrl`ã€‚
 
-## 模型目录
+## æ¨¡åž‹ç›®å½•
 
-以下所有模型的费用均为 `0`（输入/输出/缓存）。
+ä»¥ä¸‹æ‰€æœ‰æ¨¡åž‹çš„è´¹ç”¨å‡ä¸º `0`ï¼ˆè¾“å…¥/è¾“å‡º/ç¼“å­˜ï¼‰ã€‚
 
-| 模型 ID                                                | 上下文窗口 | 最大令牌数 | 推理  | 输入         |
+| æ¨¡åž‹ ID                                                | ä¸Šä¸‹æ–‡çª—å£ | æœ€å¤§ä»¤ç‰Œæ•° | æŽ¨ç†  | è¾“å…¥         |
 | ------------------------------------------------------ | ---------- | ---------- | ----- | ------------ |
 | `hf:MiniMaxAI/MiniMax-M2.1`                            | 192000     | 65536      | false | text         |
 | `hf:moonshotai/Kimi-K2-Thinking`                       | 256000     | 8192       | true  | text         |
@@ -95,8 +95,9 @@ synthetic/hf:MiniMaxAI/MiniMax-M2.1
 | `hf:deepseek-ai/DeepSeek-V3`                           | 128000     | 8192       | false | text         |
 | `hf:Qwen/Qwen3-235B-A22B-Thinking-2507`                | 256000     | 8192       | true  | text         |
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 模型引用格式为 `synthetic/<modelId>`。
-- 如果启用了模型允许列表（`agents.defaults.models`），请添加你计划使用的所有模型。
-- 参阅[模型提供商](/concepts/model-providers)了解提供商规则。
+- æ¨¡åž‹å¼•ç”¨æ ¼å¼ä¸º `synthetic/<modelId>`ã€‚
+- å¦‚æžœå¯ç”¨äº†æ¨¡åž‹å…è®¸åˆ—è¡¨ï¼ˆ`agents.defaults.models`ï¼‰ï¼Œè¯·æ·»åŠ ä½ è®¡åˆ’ä½¿ç”¨çš„æ‰€æœ‰æ¨¡åž‹ã€‚
+- å‚é˜…[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)äº†è§£æä¾›å•†è§„åˆ™ã€‚
+

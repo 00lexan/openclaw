@@ -1,4 +1,4 @@
-import { type Message, MessageType } from "@buape/carbon";
+﻿import { type Message, MessageType } from "@buape/carbon";
 import { formatDiscordUserTag } from "./format.js";
 
 export function resolveDiscordSystemEvent(message: Message, location: string): string | null {
@@ -53,3 +53,4 @@ function buildDiscordSystemEvent(message: Message, location: string, action: str
   const actor = authorLabel ? `${authorLabel} ` : "";
   return `Discord system: ${actor}${action} in ${location}`;
 }
+

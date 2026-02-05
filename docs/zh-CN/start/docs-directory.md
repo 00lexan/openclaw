@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想快速访问关键文档页面
-summary: 精选的常用 OpenClaw 文档链接。
-title: 文档目录
+  - ä½ æƒ³å¿«é€Ÿè®¿é—®å…³é”®æ–‡æ¡£é¡µé¢
+summary: ç²¾é€‰çš„å¸¸ç”¨  æ–‡æ¡£é“¾æŽ¥ã€‚
+title: æ–‡æ¡£ç›®å½•
 x-i18n:
   generated_at: "2026-02-04T17:53:20Z"
   model: claude-opus-4-5
@@ -13,58 +13,59 @@ x-i18n:
 ---
 
 <Note>
-如需查看完整的文档地图，请参阅[文档中心](/start/hubs)。
+å¦‚éœ€æŸ¥çœ‹å®Œæ•´çš„æ–‡æ¡£åœ°å›¾ï¼Œè¯·å‚é˜…[æ–‡æ¡£ä¸­å¿ƒ](/start/hubs)ã€‚
 </Note>
 
-## 从这里开始
+## ä»Žè¿™é‡Œå¼€å§‹
 
-- [文档中心（所有页面链接）](/start/hubs)
-- [帮助](/help)
-- [配置](/gateway/configuration)
-- [配置示例](/gateway/configuration-examples)
-- [斜杠命令](/tools/slash-commands)
-- [多智能体路由](/concepts/multi-agent)
-- [更新与回滚](/install/updating)
-- [配对（私信和节点）](/start/pairing)
-- [Nix 模式](/install/nix)
-- [OpenClaw 助手设置](/start/openclaw)
+- [æ–‡æ¡£ä¸­å¿ƒï¼ˆæ‰€æœ‰é¡µé¢é“¾æŽ¥ï¼‰](/start/hubs)
+- [å¸®åŠ©](/help)
+- [é…ç½®](/gateway/configuration)
+- [é…ç½®ç¤ºä¾‹](/gateway/configuration-examples)
+- [æ–œæ å‘½ä»¤](/tools/slash-commands)
+- [å¤šæ™ºèƒ½ä½“è·¯ç”±](/concepts/multi-agent)
+- [æ›´æ–°ä¸Žå›žæ»š](/install/updating)
+- [é…å¯¹ï¼ˆç§ä¿¡å’ŒèŠ‚ç‚¹ï¼‰](/start/pairing)
+- [Nix æ¨¡å¼](/install/nix)
+- [ åŠ©æ‰‹è®¾ç½®](/start/)
 - [Skills](/tools/skills)
-- [Skills 配置](/tools/skills-config)
-- [工作区模板](/reference/templates/AGENTS)
-- [RPC 适配器](/reference/rpc)
-- [Gateway 网关运维手册](/gateway)
-- [节点（iOS 和 Android）](/nodes)
-- [Web 界面（控制面板 UI）](/web)
-- [设备发现与传输协议](/gateway/discovery)
-- [远程访问](/gateway/remote)
+- [Skills é…ç½®](/tools/skills-config)
+- [å·¥ä½œåŒºæ¨¡æ¿](/reference/templates/AGENTS)
+- [RPC é€‚é…å™¨](/reference/rpc)
+- [Gateway ç½‘å…³è¿ç»´æ‰‹å†Œ](/gateway)
+- [èŠ‚ç‚¹ï¼ˆiOS å’Œ Androidï¼‰](/nodes)
+- [Web ç•Œé¢ï¼ˆæŽ§åˆ¶é¢æ¿ UIï¼‰](/web)
+- [è®¾å¤‡å‘çŽ°ä¸Žä¼ è¾“åè®®](/gateway/discovery)
+- [è¿œç¨‹è®¿é—®](/gateway/remote)
 
-## 提供商与用户体验
+## æä¾›å•†ä¸Žç”¨æˆ·ä½“éªŒ
 
 - [WebChat](/web/webchat)
-- [控制面板 UI（浏览器）](/web/control-ui)
+- [æŽ§åˆ¶é¢æ¿ UIï¼ˆæµè§ˆå™¨ï¼‰](/web/control-ui)
 - [Telegram](/channels/telegram)
 - [Discord](/channels/discord)
-- [Mattermost（插件）](/channels/mattermost)
+- [Mattermostï¼ˆæ’ä»¶ï¼‰](/channels/mattermost)
 - [BlueBubbles (iMessage)](/channels/bluebubbles)
-- [iMessage（旧版）](/channels/imessage)
-- [群组](/concepts/groups)
-- [WhatsApp 群消息](/concepts/group-messages)
-- [媒体图片](/nodes/images)
-- [媒体音频](/nodes/audio)
+- [iMessageï¼ˆæ—§ç‰ˆï¼‰](/channels/imessage)
+- [ç¾¤ç»„](/concepts/groups)
+- [WhatsApp ç¾¤æ¶ˆæ¯](/concepts/group-messages)
+- [åª’ä½“å›¾ç‰‡](/nodes/images)
+- [åª’ä½“éŸ³é¢‘](/nodes/audio)
 
-## 配套应用
+## é…å¥—åº”ç”¨
 
-- [macOS 应用](/platforms/macos)
-- [iOS 应用](/platforms/ios)
-- [Android 应用](/platforms/android)
+- [macOS åº”ç”¨](/platforms/macos)
+- [iOS åº”ç”¨](/platforms/ios)
+- [Android åº”ç”¨](/platforms/android)
 - [Windows (WSL2)](/platforms/windows)
-- [Linux 应用](/platforms/linux)
+- [Linux åº”ç”¨](/platforms/linux)
 
-## 运维与安全
+## è¿ç»´ä¸Žå®‰å…¨
 
-- [会话](/concepts/session)
-- [定时任务](/automation/cron-jobs)
+- [ä¼šè¯](/concepts/session)
+- [å®šæ—¶ä»»åŠ¡](/automation/cron-jobs)
 - [Webhooks](/automation/webhook)
-- [Gmail 钩子（Pub/Sub）](/automation/gmail-pubsub)
-- [安全](/gateway/security)
-- [故障排除](/gateway/troubleshooting)
+- [Gmail é’©å­ï¼ˆPub/Subï¼‰](/automation/gmail-pubsub)
+- [å®‰å…¨](/gateway/security)
+- [æ•…éšœæŽ’é™¤](/gateway/troubleshooting)
+

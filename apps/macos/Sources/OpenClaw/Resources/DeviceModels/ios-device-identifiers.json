@@ -1,4 +1,4 @@
-{
+﻿{
   "i386": "iPhone Simulator",
   "x86_64": "iPhone Simulator",
   "arm64": "iPhone Simulator",
@@ -174,3 +174,4 @@
   "iPod7,1": "iPod touch (6th generation)",
   "iPod9,1": "iPod touch (7th generation)"
 }
+

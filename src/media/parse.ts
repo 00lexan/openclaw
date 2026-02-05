@@ -1,4 +1,4 @@
-// Shared helpers for parsing MEDIA tokens from command/stdout text.
+﻿// Shared helpers for parsing MEDIA tokens from command/stdout text.
 
 import { parseFenceSpans } from "../markdown/fences.js";
 import { parseAudioTag } from "./audio-tags.js";
@@ -218,3 +218,4 @@ export function splitMediaFromOutput(raw: string): {
     ...(hasAudioAsVoice ? { audioAsVoice: true } : {}),
   };
 }
+

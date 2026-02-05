@@ -1,4 +1,4 @@
-# Copyright 2025 Google LLC
+﻿# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ nav:
       - Where is it Used?: introduction/where-is-it-used.md
       - Agent UI Ecosystem: introduction/agent-ui-ecosystem.md
   - Quickstart: quickstart.md
-  - A2UI Composer ⭐: composer.md
+  - A2UI Composer â­: composer.md
   - Developer Guides:
       - Client Setup: guides/client-setup.md
       - Agent Development: guides/agent-development.md
@@ -182,3 +182,4 @@ plugins:
   # - redirects:
   #     redirect_maps:
   #       "index.md": "a2ui_protocol.md"
+

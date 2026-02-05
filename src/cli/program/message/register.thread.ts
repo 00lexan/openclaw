@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 
 export function registerMessageThreadCommands(message: Command, helpers: MessageCliHelpers) {
@@ -52,3 +52,4 @@ export function registerMessageThreadCommands(message: Command, helpers: Message
       await helpers.runMessageAction("thread-reply", opts);
     });
 }
+

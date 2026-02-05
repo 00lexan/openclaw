@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -180,7 +180,7 @@ describe("runReplyAgent typing (heartbeat)", () => {
   });
   it("announces auto-compaction in verbose mode and tracks count", async () => {
     const storePath = path.join(
-      await fs.mkdtemp(path.join(tmpdir(), "openclaw-compaction-")),
+      await fs.mkdtemp(path.join(tmpdir(), "-compaction-")),
       "sessions.json",
     );
     const sessionEntry = { sessionId: "session", updatedAt: Date.now() };
@@ -213,3 +213,4 @@ describe("runReplyAgent typing (heartbeat)", () => {
     expect(sessionStore.main.compactionCount).toBe(1);
   });
 });
+

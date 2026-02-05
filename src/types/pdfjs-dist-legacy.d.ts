@@ -1,4 +1,4 @@
-declare module "pdfjs-dist/legacy/build/pdf.mjs" {
+﻿declare module "pdfjs-dist/legacy/build/pdf.mjs" {
   export type TextItem = {
     str: string;
   };
@@ -31,3 +31,4 @@ declare module "pdfjs-dist/legacy/build/pdf.mjs" {
     promise: Promise<PDFDocumentProxy>;
   };
 }
+

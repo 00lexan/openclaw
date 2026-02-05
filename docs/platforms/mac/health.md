@@ -1,4 +1,4 @@
----
+﻿---
 summary: "How the macOS app reports gateway/Baileys health states"
 read_when:
   - Debugging mac app health indicators
@@ -15,7 +15,7 @@ How to see whether the linked channel is healthy from the menu bar app.
   - Green: linked + socket opened recently.
   - Orange: connecting/retrying.
   - Red: logged out or probe failed.
-- Secondary line reads "linked · auth 12m" or shows the failure reason.
+- Secondary line reads "linked Â· auth 12m" or shows the failure reason.
 - "Run Health Check" menu item triggers an on-demand probe.
 
 ## Settings
@@ -26,9 +26,10 @@ How to see whether the linked channel is healthy from the menu bar app.
 
 ## How the probe works
 
-- App runs `openclaw health --json` via `ShellExecutor` every ~60s and on demand. The probe loads creds and reports status without sending messages.
+- App runs ` health --json` via `ShellExecutor` every ~60s and on demand. The probe loads creds and reports status without sending messages.
 - Cache the last good snapshot and the last error separately to avoid flicker; show the timestamp of each.
 
 ## When in doubt
 
-- You can still use the CLI flow in [Gateway health](/gateway/health) (`openclaw status`, `openclaw status --deep`, `openclaw health --json`) and tail `/tmp/openclaw/openclaw-*.log` for `web-heartbeat` / `web-reconnect`.
+- You can still use the CLI flow in [Gateway health](/gateway/health) (` status`, ` status --deep`, ` health --json`) and tail `/tmp//-*.log` for `web-heartbeat` / `web-reconnect`.
+

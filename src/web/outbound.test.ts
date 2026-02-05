@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetLogger, setLoggerOverride } from "../logging.js";
 import { setActiveWebListener } from "./active-listener.js";
 
@@ -152,16 +152,17 @@ describe("web outbound", () => {
   });
 
   it("sends reactions via active listener", async () => {
-    await sendReactionWhatsApp("1555@s.whatsapp.net", "msg123", "✅", {
+    await sendReactionWhatsApp("1555@s.whatsapp.net", "msg123", "âœ…", {
       verbose: false,
       fromMe: false,
     });
     expect(sendReaction).toHaveBeenCalledWith(
       "1555@s.whatsapp.net",
       "msg123",
-      "✅",
+      "âœ…",
       false,
       undefined,
     );
   });
 });
+

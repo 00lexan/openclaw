@@ -1,4 +1,4 @@
-import type { APIMessage } from "discord-api-types/v10";
+﻿import type { APIMessage } from "discord-api-types/v10";
 import { Routes } from "discord-api-types/v10";
 import type {
   DiscordMessageEdit,
@@ -150,3 +150,4 @@ export async function searchMessagesDiscord(
   }
   return await rest.get(`/guilds/${query.guildId}/messages/search?${params.toString()}`);
 }
+

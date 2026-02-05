@@ -1,4 +1,4 @@
-import type { MemoryProviderStatus } from "../memory/types.js";
+﻿import type { MemoryProviderStatus } from "../memory/types.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { withProgress } from "../cli/progress.js";
 import { loadConfig } from "../config/config.js";
@@ -69,17 +69,17 @@ export async function scanStatus(
 ): Promise<StatusScanResult> {
   return await withProgress(
     {
-      label: "Scanning status…",
+      label: "Scanning statusâ€¦",
       total: 10,
       enabled: opts.json !== true,
     },
     async (progress) => {
-      progress.setLabel("Loading config…");
+      progress.setLabel("Loading configâ€¦");
       const cfg = loadConfig();
       const osSummary = resolveOsSummary();
       progress.tick();
 
-      progress.setLabel("Checking Tailscale…");
+      progress.setLabel("Checking Tailscaleâ€¦");
       const tailscaleMode = cfg.gateway?.tailscale?.mode ?? "off";
       const tailscaleDns =
         tailscaleMode === "off"
@@ -93,7 +93,7 @@ export async function scanStatus(
           : null;
       progress.tick();
 
-      progress.setLabel("Checking for updates…");
+      progress.setLabel("Checking for updatesâ€¦");
       const updateTimeoutMs = opts.all ? 6500 : 2500;
       const update = await getUpdateCheckResult({
         timeoutMs: updateTimeoutMs,
@@ -102,11 +102,11 @@ export async function scanStatus(
       });
       progress.tick();
 
-      progress.setLabel("Resolving agents…");
+      progress.setLabel("Resolving agentsâ€¦");
       const agentStatus = await getAgentLocalStatuses();
       progress.tick();
 
-      progress.setLabel("Probing gateway…");
+      progress.setLabel("Probing gatewayâ€¦");
       const gatewayConnection = buildGatewayConnectionDetails();
       const isRemoteMode = cfg.gateway?.mode === "remote";
       const remoteUrlRaw =
@@ -126,7 +126,7 @@ export async function scanStatus(
         : null;
       progress.tick();
 
-      progress.setLabel("Querying channel status…");
+      progress.setLabel("Querying channel statusâ€¦");
       const channelsStatus = gatewayReachable
         ? await callGateway({
             method: "channels.status",
@@ -140,7 +140,7 @@ export async function scanStatus(
       const channelIssues = channelsStatus ? collectChannelStatusIssues(channelsStatus) : [];
       progress.tick();
 
-      progress.setLabel("Summarizing channels…");
+      progress.setLabel("Summarizing channelsâ€¦");
       const channels = await buildChannelsTable(cfg, {
         // Show token previews in regular status; keep `status --all` redacted.
         // Set `CLAWDBOT_SHOW_SECRETS=0` to force redaction.
@@ -148,7 +148,7 @@ export async function scanStatus(
       });
       progress.tick();
 
-      progress.setLabel("Checking memory…");
+      progress.setLabel("Checking memoryâ€¦");
       const memoryPlugin = resolveMemoryPluginStatus(cfg);
       const memory = await (async (): Promise<MemoryStatusSnapshot | null> => {
         if (!memoryPlugin.enabled) {
@@ -171,11 +171,11 @@ export async function scanStatus(
       })();
       progress.tick();
 
-      progress.setLabel("Reading sessions…");
+      progress.setLabel("Reading sessionsâ€¦");
       const summary = await getStatusSummary();
       progress.tick();
 
-      progress.setLabel("Rendering…");
+      progress.setLabel("Renderingâ€¦");
       progress.tick();
 
       return {
@@ -201,3 +201,4 @@ export async function scanStatus(
     },
   );
 }
+

@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
@@ -28,8 +28,8 @@ let port = 0;
 let previousToken: string | undefined;
 
 beforeAll(async () => {
-  previousToken = process.env.OPENCLAW_GATEWAY_TOKEN;
-  delete process.env.OPENCLAW_GATEWAY_TOKEN;
+  previousToken = process.env._GATEWAY_TOKEN;
+  delete process.env._GATEWAY_TOKEN;
   port = await getFreePort();
   server = await startGatewayServer(port);
 });
@@ -37,9 +37,9 @@ beforeAll(async () => {
 afterAll(async () => {
   await server.close();
   if (previousToken === undefined) {
-    delete process.env.OPENCLAW_GATEWAY_TOKEN;
+    delete process.env._GATEWAY_TOKEN;
   } else {
-    process.env.OPENCLAW_GATEWAY_TOKEN = previousToken;
+    process.env._GATEWAY_TOKEN = previousToken;
   }
 });
 
@@ -219,7 +219,7 @@ describe("gateway server health/presence", () => {
   });
 
   test("presence includes client fingerprint", async () => {
-    const identityPath = path.join(os.tmpdir(), `openclaw-device-${randomUUID()}.json`);
+    const identityPath = path.join(os.tmpdir(), `-device-${randomUUID()}.json`);
     const identity = loadOrCreateDeviceIdentity(identityPath);
     const role = "operator";
     const scopes: string[] = [];
@@ -304,3 +304,4 @@ describe("gateway server health/presence", () => {
     ws.close();
   });
 });
+

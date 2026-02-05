@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { CronJob } from "../../cron/types.js";
 import type { GatewayRpcOpts } from "../gateway-rpc.js";
 import { danger } from "../../globals.js";
@@ -248,3 +248,4 @@ export function registerCronAddCommand(cron: Command) {
       }),
   );
 }
+

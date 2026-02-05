@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Agent-controlled Canvas panel embedded via WKWebView + custom URL scheme"
 read_when:
   - Implementing the macOS Canvas panel
@@ -9,7 +9,7 @@ title: "Canvas"
 
 # Canvas (macOS app)
 
-The macOS app embeds an agent‑controlled **Canvas panel** using `WKWebView`. It
+The macOS app embeds an agentâ€‘controlled **Canvas panel** using `WKWebView`. It
 is a lightweight visual workspace for HTML/CSS/JS, A2UI, and small interactive
 UI surfaces.
 
@@ -17,28 +17,28 @@ UI surfaces.
 
 Canvas state is stored under Application Support:
 
-- `~/Library/Application Support/OpenClaw/canvas/<session>/...`
+- `~/Library/Application Support//canvas/<session>/...`
 
 The Canvas panel serves those files via a **custom URL scheme**:
 
-- `openclaw-canvas://<session>/<path>`
+- `-canvas://<session>/<path>`
 
 Examples:
 
-- `openclaw-canvas://main/` → `<canvasRoot>/main/index.html`
-- `openclaw-canvas://main/assets/app.css` → `<canvasRoot>/main/assets/app.css`
-- `openclaw-canvas://main/widgets/todo/` → `<canvasRoot>/main/widgets/todo/index.html`
+- `-canvas://main/` â†’ `<canvasRoot>/main/index.html`
+- `-canvas://main/assets/app.css` â†’ `<canvasRoot>/main/assets/app.css`
+- `-canvas://main/widgets/todo/` â†’ `<canvasRoot>/main/widgets/todo/index.html`
 
-If no `index.html` exists at the root, the app shows a **built‑in scaffold page**.
+If no `index.html` exists at the root, the app shows a **builtâ€‘in scaffold page**.
 
 ## Panel behavior
 
 - Borderless, resizable panel anchored near the menu bar (or mouse cursor).
 - Remembers size/position per session.
-- Auto‑reloads when local canvas files change.
+- Autoâ€‘reloads when local canvas files change.
 - Only one Canvas panel is visible at a time (session is switched as needed).
 
-Canvas can be disabled from Settings → **Allow Canvas**. When disabled, canvas
+Canvas can be disabled from Settings â†’ **Allow Canvas**. When disabled, canvas
 node commands return `CANVAS_DISABLED`.
 
 ## Agent API surface
@@ -53,10 +53,10 @@ Canvas is exposed via the **Gateway WebSocket**, so the agent can:
 CLI examples:
 
 ```bash
-openclaw nodes canvas present --node <id>
-openclaw nodes canvas navigate --node <id> --url "/"
-openclaw nodes canvas eval --node <id> --js "document.title"
-openclaw nodes canvas snapshot --node <id>
+ nodes canvas present --node <id>
+ nodes canvas navigate --node <id> --url "/"
+ nodes canvas eval --node <id> --js "document.title"
+ nodes canvas snapshot --node <id>
 ```
 
 Notes:
@@ -67,18 +67,18 @@ Notes:
 ## A2UI in Canvas
 
 A2UI is hosted by the Gateway canvas host and rendered inside the Canvas panel.
-When the Gateway advertises a Canvas host, the macOS app auto‑navigates to the
+When the Gateway advertises a Canvas host, the macOS app autoâ€‘navigates to the
 A2UI host page on first open.
 
 Default A2UI host URL:
 
 ```
-http://<gateway-host>:18793/__openclaw__/a2ui/
+http://<gateway-host>:18793/____/a2ui/
 ```
 
 ### A2UI commands (v0.8)
 
-Canvas currently accepts **A2UI v0.8** server→client messages:
+Canvas currently accepts **A2UI v0.8** serverâ†’client messages:
 
 - `beginRendering`
 - `surfaceUpdate`
@@ -95,25 +95,25 @@ cat > /tmp/a2ui-v0.8.jsonl <<'EOFA2'
 {"beginRendering":{"surfaceId":"main","root":"root"}}
 EOFA2
 
-openclaw nodes canvas a2ui push --jsonl /tmp/a2ui-v0.8.jsonl --node <id>
+ nodes canvas a2ui push --jsonl /tmp/a2ui-v0.8.jsonl --node <id>
 ```
 
 Quick smoke:
 
 ```bash
-openclaw nodes canvas a2ui push --node <id> --text "Hello from A2UI"
+ nodes canvas a2ui push --node <id> --text "Hello from A2UI"
 ```
 
 ## Triggering agent runs from Canvas
 
 Canvas can trigger new agent runs via deep links:
 
-- `openclaw://agent?...`
+- `://agent?...`
 
 Example (in JS):
 
 ```js
-window.location.href = "openclaw://agent?message=Review%20this%20design";
+window.location.href = "://agent?message=Review%20this%20design";
 ```
 
 The app prompts for confirmation unless a valid key is provided.
@@ -123,3 +123,4 @@ The app prompts for confirmation unless a valid key is provided.
 - Canvas scheme blocks directory traversal; files must live under the session root.
 - Local Canvas content uses a custom scheme (no loopback server required).
 - External `http(s)` URLs are allowed only when explicitly navigated.
+

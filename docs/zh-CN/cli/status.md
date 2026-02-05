@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想快速诊断渠道健康状况 + 最近的会话接收者
-  - 你想获取可粘贴的"all"状态用于调试
-summary: "`openclaw status` 的 CLI 参考（诊断、探测、使用量快照）"
+  - ä½ æƒ³å¿«é€Ÿè¯Šæ–­æ¸ é“å¥åº·çŠ¶å†µ + æœ€è¿‘çš„ä¼šè¯æŽ¥æ”¶è€…
+  - ä½ æƒ³èŽ·å–å¯ç²˜è´´çš„"all"çŠ¶æ€ç”¨äºŽè°ƒè¯•
+summary: "` status` çš„ CLI å‚è€ƒï¼ˆè¯Šæ–­ã€æŽ¢æµ‹ã€ä½¿ç”¨é‡å¿«ç…§ï¼‰"
 title: status
 x-i18n:
   generated_at: "2026-02-03T07:45:21Z"
@@ -13,21 +13,22 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw status`
+# ` status`
 
-渠道 + 会话的诊断。
+æ¸ é“ + ä¼šè¯çš„è¯Šæ–­ã€‚
 
 ```bash
-openclaw status
-openclaw status --all
-openclaw status --deep
-openclaw status --usage
+ status
+ status --all
+ status --deep
+ status --usage
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- `--deep` 运行实时探测（WhatsApp Web + Telegram + Discord + Google Chat + Slack + Signal）。
-- 当配置了多个智能体时，输出包含每个智能体的会话存储。
-- 概览包含 Gateway 网关 + 节点主机服务安装/运行时状态（如果可用）。
-- 概览包含更新渠道 + git SHA（用于源代码检出）。
-- 更新信息显示在概览中；如果有可用更新，status 会打印提示运行 `openclaw update`（参见[更新](/install/updating)）。
+- `--deep` è¿è¡Œå®žæ—¶æŽ¢æµ‹ï¼ˆWhatsApp Web + Telegram + Discord + Google Chat + Slack + Signalï¼‰ã€‚
+- å½“é…ç½®äº†å¤šä¸ªæ™ºèƒ½ä½“æ—¶ï¼Œè¾“å‡ºåŒ…å«æ¯ä¸ªæ™ºèƒ½ä½“çš„ä¼šè¯å­˜å‚¨ã€‚
+- æ¦‚è§ˆåŒ…å« Gateway ç½‘å…³ + èŠ‚ç‚¹ä¸»æœºæœåŠ¡å®‰è£…/è¿è¡Œæ—¶çŠ¶æ€ï¼ˆå¦‚æžœå¯ç”¨ï¼‰ã€‚
+- æ¦‚è§ˆåŒ…å«æ›´æ–°æ¸ é“ + git SHAï¼ˆç”¨äºŽæºä»£ç æ£€å‡ºï¼‰ã€‚
+- æ›´æ–°ä¿¡æ¯æ˜¾ç¤ºåœ¨æ¦‚è§ˆä¸­ï¼›å¦‚æžœæœ‰å¯ç”¨æ›´æ–°ï¼Œstatus ä¼šæ‰“å°æç¤ºè¿è¡Œ ` update`ï¼ˆå‚è§[æ›´æ–°](/install/updating)ï¼‰ã€‚
+

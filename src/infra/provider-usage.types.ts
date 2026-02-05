@@ -1,4 +1,4 @@
-export type UsageWindow = {
+﻿export type UsageWindow = {
   label: string;
   usedPercent: number;
   resetAt?: number;
@@ -26,3 +26,4 @@ export type UsageProviderId =
   | "openai-codex"
   | "xiaomi"
   | "zai";
+

@@ -1,4 +1,4 @@
-import { loadConfig } from "../config/config.js";
+﻿import { loadConfig } from "../config/config.js";
 import { resolveMarkdownTableMode } from "../config/markdown-tables.js";
 import { convertMarkdownTables } from "../markdown/tables.js";
 import { mediaKindFromMime } from "../media/constants.js";
@@ -138,3 +138,4 @@ export async function sendMessageIMessage(
     }
   }
 }
+

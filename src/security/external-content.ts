@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Security utilities for handling untrusted external content.
  *
  * This module provides functions to safely wrap and process content from
@@ -280,3 +280,4 @@ export function wrapWebContent(
   // Marker sanitization happens in wrapExternalContent
   return wrapExternalContent(content, { source, includeWarning });
 }
+

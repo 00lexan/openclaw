@@ -1,4 +1,4 @@
-# SwiftLint for swabble
+﻿# SwiftLint for swabble
 included:
   - Sources
 excluded:
@@ -41,3 +41,4 @@ line_length:
   error: 180
 
 reporter: "xcode"
+

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { botApi, botCtorSpy } = vi.hoisted(() => ({
   botApi: {
@@ -92,7 +92,7 @@ describe("telegram proxy client", () => {
     makeProxyFetch.mockReturnValue(proxyFetch as unknown as typeof fetch);
     resolveTelegramFetch.mockReturnValue(fetchImpl as unknown as typeof fetch);
 
-    await reactMessageTelegram("123", "456", "✅", { token: "tok", accountId: "foo" });
+    await reactMessageTelegram("123", "456", "âœ…", { token: "tok", accountId: "foo" });
 
     expect(makeProxyFetch).toHaveBeenCalledWith(proxyUrl);
     expect(resolveTelegramFetch).toHaveBeenCalledWith(proxyFetch, { network: undefined });
@@ -122,3 +122,4 @@ describe("telegram proxy client", () => {
     );
   });
 });
+

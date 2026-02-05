@@ -1,4 +1,4 @@
-{
+﻿{
   "title": "A2UI (Agent to UI) Client-to-Server Event Schema",
   "description": "Describes a JSON payload for a client-to-server event message.",
   "type": "object",
@@ -51,3 +51,4 @@
     { "required": ["error"] }
   ]
 }
+

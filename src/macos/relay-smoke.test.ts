@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { parseRelaySmokeTest, runRelaySmokeTest } from "./relay-smoke.js";
 
 vi.mock("../web/qr-image.js", () => ({
@@ -15,8 +15,8 @@ describe("parseRelaySmokeTest", () => {
   });
 
   it("parses env var smoke mode only when no args", () => {
-    expect(parseRelaySmokeTest([], { OPENCLAW_SMOKE_QR: "1" })).toBe("qr");
-    expect(parseRelaySmokeTest(["send"], { OPENCLAW_SMOKE_QR: "1" })).toBe(null);
+    expect(parseRelaySmokeTest([], { _SMOKE_QR: "1" })).toBe("qr");
+    expect(parseRelaySmokeTest(["send"], { _SMOKE_QR: "1" })).toBe(null);
   });
 
   it("rejects unknown smoke values", () => {
@@ -31,3 +31,4 @@ describe("runRelaySmokeTest", () => {
     expect(mod.renderQrPngBase64).toHaveBeenCalledWith("smoke-test");
   });
 });
+

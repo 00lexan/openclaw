@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   getConfigValueAtPath,
   parseConfigPath,
@@ -29,3 +29,4 @@ describe("config paths", () => {
     expect(getConfigValueAtPath(root, parsed.path)).toBeUndefined();
   });
 });
+

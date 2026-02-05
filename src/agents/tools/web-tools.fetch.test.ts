@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as ssrf from "../../infra/net/ssrf.js";
 import { createWebFetchTool } from "./web-tools.js";
 
@@ -475,3 +475,4 @@ describe("web_fetch extraction fallbacks", () => {
     expect(message).toContain("blocked");
   });
 });
+

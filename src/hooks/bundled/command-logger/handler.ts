@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Example hook handler: Log all commands to a file
  *
  * This handler demonstrates how to create a hook that logs all command events
@@ -39,7 +39,7 @@ const logCommand: HookHandler = async (event) => {
 
   try {
     // Create log directory
-    const stateDir = process.env.OPENCLAW_STATE_DIR?.trim() || path.join(os.homedir(), ".openclaw");
+    const stateDir = process.env._STATE_DIR?.trim() || path.join(os.homedir(), ".");
     const logDir = path.join(stateDir, "logs");
     await fs.mkdir(logDir, { recursive: true });
 
@@ -64,3 +64,4 @@ const logCommand: HookHandler = async (event) => {
 };
 
 export default logCommand;
+

@@ -1,4 +1,4 @@
-export {
+﻿export {
   buildBootstrapContextFiles,
   DEFAULT_BOOTSTRAP_MAX_CHARS,
   ensureSessionHeader,
@@ -56,3 +56,4 @@ export type { EmbeddedContextFile, FailoverReason } from "./pi-embedded-helpers/
 
 export type { ToolCallIdMode } from "./tool-call-id.js";
 export { isValidCloudCodeAssistToolId, sanitizeToolCallId } from "./tool-call-id.js";
+

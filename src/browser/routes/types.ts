@@ -1,4 +1,4 @@
-export type BrowserRequest = {
+﻿export type BrowserRequest = {
   params: Record<string, string>;
   query: Record<string, unknown>;
   body?: unknown;
@@ -19,3 +19,4 @@ export type BrowserRouteRegistrar = {
   post: (path: string, handler: BrowserRouteHandler) => void;
   delete: (path: string, handler: BrowserRouteHandler) => void;
 };
+

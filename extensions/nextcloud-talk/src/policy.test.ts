@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveNextcloudTalkAllowlistMatch } from "./policy.js";
 
 describe("nextcloud-talk policy", () => {
@@ -31,3 +31,4 @@ describe("nextcloud-talk policy", () => {
     });
   });
 });
+

@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "imessage",
   "channels": ["imessage"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

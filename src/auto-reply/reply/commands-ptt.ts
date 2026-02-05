@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import type { CommandHandler } from "./commands-types.js";
 import { callGateway, randomIdempotencyKey } from "../../gateway/call.js";
 import { logVerbose } from "../../globals.js";
@@ -38,7 +38,7 @@ function isIOSNode(node: NodeSummary): boolean {
   );
 }
 
-async function loadNodes(cfg: OpenClawConfig): Promise<NodeSummary[]> {
+async function loadNodes(cfg: Config): Promise<NodeSummary[]> {
   try {
     const res = await callGateway<{ nodes?: NodeSummary[] }>({
       method: "node.list",
@@ -189,7 +189,7 @@ export const handlePTTCommand: CommandHandler = async (params, allowTextCommands
     });
     const payload = res.payload && typeof res.payload === "object" ? res.payload : {};
 
-    const lines = [`PTT ${actionKey} → ${nodeId}`];
+    const lines = [`PTT ${actionKey} â†’ ${nodeId}`];
     if (typeof payload.status === "string") {
       lines.push(`status: ${payload.status}`);
     }
@@ -206,3 +206,4 @@ export const handlePTTCommand: CommandHandler = async (params, allowTextCommands
     return { shouldContinue: false, reply: { text: `PTT failed: ${message}` } };
   }
 };
+

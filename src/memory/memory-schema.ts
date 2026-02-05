@@ -1,4 +1,4 @@
-import type { DatabaseSync } from "node:sqlite";
+﻿import type { DatabaseSync } from "node:sqlite";
 
 export function ensureMemoryIndexSchema(params: {
   db: DatabaseSync;
@@ -94,3 +94,4 @@ function ensureColumn(
   }
   db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
 }
+

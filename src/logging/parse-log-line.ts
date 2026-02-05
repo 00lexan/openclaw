@@ -1,4 +1,4 @@
-export type ParsedLogLine = {
+﻿export type ParsedLogLine = {
   time?: string;
   level?: string;
   subsystem?: string;
@@ -61,3 +61,4 @@ export function parseLogLine(raw: string): ParsedLogLine | null {
     return null;
   }
 }
+

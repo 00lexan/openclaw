@@ -1,4 +1,4 @@
-import os from "node:os";
+﻿import os from "node:os";
 import { runExec } from "../process/exec.js";
 
 export type ExecFn = typeof runExec;
@@ -226,3 +226,4 @@ export function createIcaclsResetCommand(
   ];
   return { command: "icacls", args, display: formatIcaclsResetCommand(targetPath, opts) };
 }
+

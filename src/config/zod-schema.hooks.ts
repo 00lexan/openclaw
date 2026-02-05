@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 
 export const HookMappingSchema = z
   .object({
@@ -128,3 +128,4 @@ export const HooksGmailSchema = z
   })
   .strict()
   .optional();
+

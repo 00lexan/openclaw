@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 
 export function loadJsonFile(pathname: string): unknown {
@@ -21,3 +21,4 @@ export function saveJsonFile(pathname: string, data: unknown) {
   fs.writeFileSync(pathname, `${JSON.stringify(data, null, 2)}\n`, "utf8");
   fs.chmodSync(pathname, 0o600);
 }
+

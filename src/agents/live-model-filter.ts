@@ -1,4 +1,4 @@
-export type ModelRef = {
+﻿export type ModelRef = {
   provider?: string | null;
   id?: string | null;
 };
@@ -89,3 +89,4 @@ export function isModernModelRef(ref: ModelRef): boolean {
 
   return false;
 }
+

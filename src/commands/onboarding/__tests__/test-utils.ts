@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+﻿import { vi } from "vitest";
 import type { RuntimeEnv } from "../../../runtime.js";
 import type { WizardPrompter } from "../../../wizard/prompts.js";
 
@@ -22,3 +22,4 @@ export const makePrompter = (overrides: Partial<WizardPrompter> = {}): WizardPro
   progress: vi.fn(() => ({ update: vi.fn(), stop: vi.fn() })),
   ...overrides,
 });
+

@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { resolveStateDir } from "../config/paths.js";
 
@@ -140,3 +140,4 @@ export function clearDeviceAuthToken(params: {
   delete next.tokens[role];
   writeStore(filePath, next);
 }
+

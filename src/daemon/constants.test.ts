@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   formatGatewayServiceDescription,
   GATEWAY_LAUNCH_AGENT_LABEL,
@@ -14,7 +14,7 @@ describe("resolveGatewayLaunchAgentLabel", () => {
   it("returns default label when no profile is set", () => {
     const result = resolveGatewayLaunchAgentLabel();
     expect(result).toBe(GATEWAY_LAUNCH_AGENT_LABEL);
-    expect(result).toBe("ai.openclaw.gateway");
+    expect(result).toBe("ai..gateway");
   });
 
   it("returns default label when profile is undefined", () => {
@@ -34,17 +34,17 @@ describe("resolveGatewayLaunchAgentLabel", () => {
 
   it("returns profile-specific label when profile is set", () => {
     const result = resolveGatewayLaunchAgentLabel("dev");
-    expect(result).toBe("ai.openclaw.dev");
+    expect(result).toBe("ai..dev");
   });
 
   it("returns profile-specific label for custom profile", () => {
     const result = resolveGatewayLaunchAgentLabel("work");
-    expect(result).toBe("ai.openclaw.work");
+    expect(result).toBe("ai..work");
   });
 
   it("trims whitespace from profile", () => {
     const result = resolveGatewayLaunchAgentLabel("  staging  ");
-    expect(result).toBe("ai.openclaw.staging");
+    expect(result).toBe("ai..staging");
   });
 
   it("returns default label for empty string profile", () => {
@@ -62,7 +62,7 @@ describe("resolveGatewaySystemdServiceName", () => {
   it("returns default service name when no profile is set", () => {
     const result = resolveGatewaySystemdServiceName();
     expect(result).toBe(GATEWAY_SYSTEMD_SERVICE_NAME);
-    expect(result).toBe("openclaw-gateway");
+    expect(result).toBe("-gateway");
   });
 
   it("returns default service name when profile is undefined", () => {
@@ -82,17 +82,17 @@ describe("resolveGatewaySystemdServiceName", () => {
 
   it("returns profile-specific service name when profile is set", () => {
     const result = resolveGatewaySystemdServiceName("dev");
-    expect(result).toBe("openclaw-gateway-dev");
+    expect(result).toBe("-gateway-dev");
   });
 
   it("returns profile-specific service name for custom profile", () => {
     const result = resolveGatewaySystemdServiceName("production");
-    expect(result).toBe("openclaw-gateway-production");
+    expect(result).toBe("-gateway-production");
   });
 
   it("trims whitespace from profile", () => {
     const result = resolveGatewaySystemdServiceName("  test  ");
-    expect(result).toBe("openclaw-gateway-test");
+    expect(result).toBe("-gateway-test");
   });
 
   it("returns default service name for empty string profile", () => {
@@ -110,7 +110,7 @@ describe("resolveGatewayWindowsTaskName", () => {
   it("returns default task name when no profile is set", () => {
     const result = resolveGatewayWindowsTaskName();
     expect(result).toBe(GATEWAY_WINDOWS_TASK_NAME);
-    expect(result).toBe("OpenClaw Gateway");
+    expect(result).toBe(" Gateway");
   });
 
   it("returns default task name when profile is undefined", () => {
@@ -130,17 +130,17 @@ describe("resolveGatewayWindowsTaskName", () => {
 
   it("returns profile-specific task name when profile is set", () => {
     const result = resolveGatewayWindowsTaskName("dev");
-    expect(result).toBe("OpenClaw Gateway (dev)");
+    expect(result).toBe(" Gateway (dev)");
   });
 
   it("returns profile-specific task name for custom profile", () => {
     const result = resolveGatewayWindowsTaskName("work");
-    expect(result).toBe("OpenClaw Gateway (work)");
+    expect(result).toBe(" Gateway (work)");
   });
 
   it("trims whitespace from profile", () => {
     const result = resolveGatewayWindowsTaskName("  ci  ");
-    expect(result).toBe("OpenClaw Gateway (ci)");
+    expect(result).toBe(" Gateway (ci)");
   });
 
   it("returns default task name for empty string profile", () => {
@@ -175,24 +175,25 @@ describe("resolveGatewayProfileSuffix", () => {
 
 describe("formatGatewayServiceDescription", () => {
   it("returns default description when no profile/version", () => {
-    expect(formatGatewayServiceDescription()).toBe("OpenClaw Gateway");
+    expect(formatGatewayServiceDescription()).toBe(" Gateway");
   });
 
   it("includes profile when set", () => {
     expect(formatGatewayServiceDescription({ profile: "work" })).toBe(
-      "OpenClaw Gateway (profile: work)",
+      " Gateway (profile: work)",
     );
   });
 
   it("includes version when set", () => {
     expect(formatGatewayServiceDescription({ version: "2026.1.10" })).toBe(
-      "OpenClaw Gateway (v2026.1.10)",
+      " Gateway (v2026.1.10)",
     );
   });
 
   it("includes profile and version when set", () => {
     expect(formatGatewayServiceDescription({ profile: "dev", version: "1.2.3" })).toBe(
-      "OpenClaw Gateway (profile: dev, v1.2.3)",
+      " Gateway (profile: dev, v1.2.3)",
     );
   });
 });
+

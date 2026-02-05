@@ -1,4 +1,4 @@
-import type { GatewayBonjourBeacon } from "../../infra/bonjour-discovery.js";
+﻿import type { GatewayBonjourBeacon } from "../../infra/bonjour-discovery.js";
 import { colorize, theme } from "../../terminal/theme.js";
 
 export type GatewayDiscoverOpts = {
@@ -106,3 +106,4 @@ export function renderBeaconLines(beacon: GatewayBonjourBeacon, rich: boolean): 
   }
   return lines;
 }
+

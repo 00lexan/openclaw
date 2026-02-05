@@ -1,4 +1,4 @@
-const ENVELOPE_PREFIX = /^\[([^\]]+)\]\s*/;
+﻿const ENVELOPE_PREFIX = /^\[([^\]]+)\]\s*/;
 const ENVELOPE_CHANNELS = [
   "WebChat",
   "WhatsApp",
@@ -121,3 +121,4 @@ export function stripEnvelopeFromMessages(messages: unknown[]): unknown[] {
   });
   return changed ? next : messages;
 }
+

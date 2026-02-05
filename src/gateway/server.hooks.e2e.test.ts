@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+﻿import { describe, expect, test } from "vitest";
 import { resolveMainSessionKeyFromConfig } from "../config/sessions.js";
 import { drainSystemEvents, peekSystemEvents } from "../infra/system-events.js";
 import {
@@ -108,7 +108,7 @@ describe("gateway server hooks", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-openclaw-token": "hook-secret",
+          "x--token": "hook-secret",
         },
         body: JSON.stringify({ text: "Header auth" }),
       });
@@ -157,3 +157,4 @@ describe("gateway server hooks", () => {
     }
   });
 });
+

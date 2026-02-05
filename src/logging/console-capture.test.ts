@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -124,7 +124,7 @@ describe("enableConsoleCapture", () => {
 });
 
 function tempLogPath() {
-  return path.join(os.tmpdir(), `openclaw-log-${crypto.randomUUID()}.log`);
+  return path.join(os.tmpdir(), `-log-${crypto.randomUUID()}.log`);
 }
 
 function eioError() {
@@ -132,3 +132,4 @@ function eioError() {
   err.code = "EIO";
   return err;
 }
+

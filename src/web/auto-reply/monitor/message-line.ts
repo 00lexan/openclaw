@@ -1,4 +1,4 @@
-import type { loadConfig } from "../../../config/config.js";
+﻿import type { loadConfig } from "../../../config/config.js";
 import type { WebInboundMsg } from "../types.js";
 import { resolveMessagePrefix } from "../../../agents/identity.js";
 import { formatInboundEnvelope, type EnvelopeFormatOptions } from "../../../auto-reply/envelope.js";
@@ -45,3 +45,4 @@ export function buildInboundLine(params: {
     envelope,
   });
 }
+

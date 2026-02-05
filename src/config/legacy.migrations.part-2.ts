@@ -1,4 +1,4 @@
-import {
+﻿import {
   ensureAgentEntry,
   ensureRecord,
   getAgentsList,
@@ -152,22 +152,22 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
       agent.models = models;
 
       if (legacyModel !== undefined) {
-        changes.push(`Migrated ${label}.model string → ${label}.model.primary.`);
+        changes.push(`Migrated ${label}.model string â†’ ${label}.model.primary.`);
       }
       if (legacyModelFallbacks.length > 0) {
-        changes.push(`Migrated ${label}.modelFallbacks → ${label}.model.fallbacks.`);
+        changes.push(`Migrated ${label}.modelFallbacks â†’ ${label}.model.fallbacks.`);
       }
       if (legacyImageModel !== undefined) {
-        changes.push(`Migrated ${label}.imageModel string → ${label}.imageModel.primary.`);
+        changes.push(`Migrated ${label}.imageModel string â†’ ${label}.imageModel.primary.`);
       }
       if (legacyImageModelFallbacks.length > 0) {
-        changes.push(`Migrated ${label}.imageModelFallbacks → ${label}.imageModel.fallbacks.`);
+        changes.push(`Migrated ${label}.imageModelFallbacks â†’ ${label}.imageModel.fallbacks.`);
       }
       if (legacyAllowed.length > 0) {
-        changes.push(`Migrated ${label}.allowedModels → ${label}.models.`);
+        changes.push(`Migrated ${label}.allowedModels â†’ ${label}.models.`);
       }
       if (Object.keys(legacyAliases).length > 0) {
-        changes.push(`Migrated ${label}.modelAliases → ${label}.models.*.alias.`);
+        changes.push(`Migrated ${label}.modelAliases â†’ ${label}.models.*.alias.`);
       }
 
       delete agent.allowedModels;
@@ -206,7 +206,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
             if (groupChat.mentionPatterns === undefined) {
               groupChat.mentionPatterns = mentionPatterns;
               changes.push(
-                `Moved routing.agents.${agentId}.mentionPatterns → agents.list (id "${agentId}").groupChat.mentionPatterns.`,
+                `Moved routing.agents.${agentId}.mentionPatterns â†’ agents.list (id "${agentId}").groupChat.mentionPatterns.`,
               );
             } else {
               changes.push(
@@ -233,7 +233,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
               mergeMissing(toolPolicy, sandboxTools);
               delete legacySandbox.tools;
               changes.push(
-                `Moved routing.agents.${agentId}.sandbox.tools → agents.list (id "${agentId}").tools.sandbox.tools.`,
+                `Moved routing.agents.${agentId}.sandbox.tools â†’ agents.list (id "${agentId}").tools.sandbox.tools.`,
               );
             }
             entryCopy.sandbox = legacySandbox;
@@ -242,7 +242,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
           mergeMissing(target, entryCopy);
         }
         delete routing.agents;
-        changes.push("Moved routing.agents → agents.list.");
+        changes.push("Moved routing.agents â†’ agents.list.");
       }
 
       const defaultAgentId =
@@ -255,7 +255,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
           const entry = ensureAgentEntry(list, defaultAgentId);
           entry.default = true;
           changes.push(
-            `Moved routing.defaultAgentId → agents.list (id "${defaultAgentId}").default.`,
+            `Moved routing.defaultAgentId â†’ agents.list (id "${defaultAgentId}").default.`,
           );
         } else {
           changes.push("Removed routing.defaultAgentId (agents.list default already set).");
@@ -284,7 +284,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
       if (routing.bindings !== undefined) {
         if (raw.bindings === undefined) {
           raw.bindings = routing.bindings;
-          changes.push("Moved routing.bindings → bindings.");
+          changes.push("Moved routing.bindings â†’ bindings.");
         } else {
           changes.push("Removed routing.bindings (bindings already set).");
         }
@@ -295,7 +295,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
         const tools = ensureRecord(raw, "tools");
         if (tools.agentToAgent === undefined) {
           tools.agentToAgent = routing.agentToAgent;
-          changes.push("Moved routing.agentToAgent → tools.agentToAgent.");
+          changes.push("Moved routing.agentToAgent â†’ tools.agentToAgent.");
         } else {
           changes.push("Removed routing.agentToAgent (tools.agentToAgent already set).");
         }
@@ -306,7 +306,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
         const messages = ensureRecord(raw, "messages");
         if (messages.queue === undefined) {
           messages.queue = routing.queue;
-          changes.push("Moved routing.queue → messages.queue.");
+          changes.push("Moved routing.queue â†’ messages.queue.");
         } else {
           changes.push("Removed routing.queue (messages.queue already set).");
         }
@@ -321,7 +321,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
           const messagesGroup = ensureRecord(messages, "groupChat");
           if (messagesGroup.historyLimit === undefined) {
             messagesGroup.historyLimit = historyLimit;
-            changes.push("Moved routing.groupChat.historyLimit → messages.groupChat.historyLimit.");
+            changes.push("Moved routing.groupChat.historyLimit â†’ messages.groupChat.historyLimit.");
           } else {
             changes.push(
               "Removed routing.groupChat.historyLimit (messages.groupChat.historyLimit already set).",
@@ -337,7 +337,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
           if (messagesGroup.mentionPatterns === undefined) {
             messagesGroup.mentionPatterns = mentionPatterns;
             changes.push(
-              "Moved routing.groupChat.mentionPatterns → messages.groupChat.mentionPatterns.",
+              "Moved routing.groupChat.mentionPatterns â†’ messages.groupChat.mentionPatterns.",
             );
           } else {
             changes.push(
@@ -364,7 +364,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
           if (models.length === 0) {
             mediaAudio.enabled = true;
             mediaAudio.models = [mapped];
-            changes.push("Moved routing.transcribeAudio → tools.media.audio.models.");
+            changes.push("Moved routing.transcribeAudio â†’ tools.media.audio.models.");
           } else {
             changes.push("Removed routing.transcribeAudio (tools.media.audio.models already set).");
           }
@@ -385,7 +385,7 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
           if (models.length === 0) {
             mediaAudio.enabled = true;
             mediaAudio.models = [mapped];
-            changes.push("Moved audio.transcription → tools.media.audio.models.");
+            changes.push("Moved audio.transcription â†’ tools.media.audio.models.");
           } else {
             changes.push("Removed audio.transcription (tools.media.audio.models already set).");
           }
@@ -412,3 +412,4 @@ export const LEGACY_CONFIG_MIGRATIONS_PART_2: LegacyConfigMigration[] = [
     },
   },
 ];
+

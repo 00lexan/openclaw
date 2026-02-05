@@ -1,4 +1,4 @@
-export type HybridSource = string;
+﻿export type HybridSource = string;
 
 export type HybridVectorResult = {
   id: string;
@@ -113,3 +113,4 @@ export function mergeHybridResults(params: {
 
   return merged.toSorted((a, b) => b.score - a.score);
 }
+

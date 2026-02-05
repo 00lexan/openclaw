@@ -1,4 +1,4 @@
-export type BrowserActionOk = { ok: true };
+﻿export type BrowserActionOk = { ok: true };
 
 export type BrowserActionTabResult = {
   ok: true;
@@ -14,3 +14,4 @@ export type BrowserActionPathResult = {
 };
 
 export type BrowserActionTargetOk = { ok: true; targetId: string };
+

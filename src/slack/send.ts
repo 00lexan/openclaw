@@ -1,4 +1,4 @@
-import { type FilesUploadV2Arguments, type WebClient } from "@slack/web-api";
+﻿import { type FilesUploadV2Arguments, type WebClient } from "@slack/web-api";
 import type { SlackTokenSource } from "./accounts.js";
 import {
   chunkMarkdownTextWithMode,
@@ -205,3 +205,4 @@ export async function sendMessageSlack(
     channelId,
   };
 }
+

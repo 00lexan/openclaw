@@ -1,12 +1,12 @@
----
+﻿---
 name: bird
 description: X/Twitter CLI for reading, searching, posting, and engagement via cookies.
 homepage: https://bird.fast
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🐦",
+        "emoji": "ðŸ¦",
         "requires": { "bins": ["bird"] },
         "install":
           [
@@ -30,7 +30,7 @@ metadata:
   }
 ---
 
-# bird 🐦
+# bird ðŸ¦
 
 Fast X/Twitter CLI using GraphQL + cookie auth.
 
@@ -145,7 +145,7 @@ bird reply <url-or-id> "nice thread!"
 bird tweet "check this out" --media image.png --alt "description"
 ```
 
-**⚠️ Posting risks**: Posting is more likely to be rate limited; if blocked, use the browser tool instead.
+**âš ï¸ Posting risks**: Posting is more likely to be rate limited; if blocked, use the browser tool instead.
 
 ## Media Uploads
 
@@ -221,4 +221,5 @@ bird query-ids --fresh
 
 ---
 
-**TL;DR**: Read/search/engage with CLI. Post carefully or use browser. 🐦
+**TL;DR**: Read/search/engage with CLI. Post carefully or use browser. ðŸ¦
+

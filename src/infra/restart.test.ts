@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   __testing,
   consumeGatewaySigusr1RestartAuthorization,
@@ -38,3 +38,4 @@ describe("restart authorization", () => {
     expect(isGatewaySigusr1RestartExternallyAllowed()).toBe(true);
   });
 });
+

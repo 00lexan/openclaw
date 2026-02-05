@@ -1,4 +1,4 @@
-import type { FollowupRun, QueueDedupeMode, QueueSettings } from "./types.js";
+﻿import type { FollowupRun, QueueDedupeMode, QueueSettings } from "./types.js";
 import { applyQueueDropPolicy, shouldSkipQueueItem } from "../../../utils/queue-helpers.js";
 import { FOLLOWUP_QUEUES, getFollowupQueue } from "./state.js";
 
@@ -67,3 +67,4 @@ export function getFollowupQueueDepth(key: string): number {
   }
   return queue.items.length;
 }
+

@@ -1,4 +1,4 @@
-import type { MSTeamsAttachmentLike, MSTeamsHtmlAttachmentSummary } from "./types.js";
+﻿import type { MSTeamsAttachmentLike, MSTeamsHtmlAttachmentSummary } from "./types.js";
 import {
   ATTACHMENT_TAG_RE,
   extractHtmlFromAttachment,
@@ -88,3 +88,4 @@ export function buildMSTeamsAttachmentPlaceholder(
   const count = list.length;
   return `<media:document>${count > 1 ? ` (${count} files)` : ""}`;
 }
+

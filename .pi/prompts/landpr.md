@@ -1,4 +1,4 @@
----
+﻿---
 description: Land a PR (merge with proper workflow)
 ---
 
@@ -68,3 +68,4 @@ Goal: PR must end in GitHub state = MERGED (never CLOSED). Use `gh pr merge` wit
     - `gh pr view <PR> --json state --jq .state`
 16. Delete temp branch:
     - `git branch -D temp/landpr-<ts-or-pr>`
+

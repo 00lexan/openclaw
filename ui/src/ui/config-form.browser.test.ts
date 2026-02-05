@@ -1,4 +1,4 @@
-import { render } from "lit";
+﻿import { render } from "lit";
 import { describe, expect, it, vi } from "vitest";
 import { analyzeConfigSchema, renderConfigForm } from "./views/config-form.ts";
 
@@ -257,3 +257,4 @@ describe("config form renderer", () => {
     expect(analysis.unsupportedPaths).toContain("extra");
   });
 });
+

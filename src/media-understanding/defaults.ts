@@ -1,4 +1,4 @@
-import type { MediaUnderstandingCapability } from "./types.js";
+﻿import type { MediaUnderstandingCapability } from "./types.js";
 
 const MB = 1024 * 1024;
 
@@ -34,3 +34,4 @@ export const DEFAULT_AUDIO_MODELS: Record<string, string> = {
 };
 export const CLI_OUTPUT_MAX_BUFFER = 5 * MB;
 export const DEFAULT_MEDIA_CONCURRENCY = 2;
+

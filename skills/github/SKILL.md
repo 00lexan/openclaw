@@ -1,11 +1,11 @@
----
+﻿---
 name: github
 description: "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries."
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🐙",
+        "emoji": "ðŸ™",
         "requires": { "bins": ["gh"] },
         "install":
           [
@@ -75,3 +75,4 @@ Most commands support `--json` for structured output. You can use `--jq` to filt
 ```bash
 gh issue list --repo owner/repo --json number,title --jq '.[] | "\(.number): \(.title)"'
 ```
+

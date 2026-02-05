@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import { listChannelPlugins } from "../../channels/plugins/index.js";
 import { getResolvedLoggerSettings } from "../../logging.js";
 import { parseLogLine } from "../../logging/parse-log-line.js";
@@ -111,3 +111,4 @@ export async function channelsLogsCommand(
     runtime.log(`${ts}${level}${line.message}`.trim());
   }
 }
+

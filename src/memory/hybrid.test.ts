@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { bm25RankToScore, buildFtsQuery, mergeHybridResults } from "./hybrid.js";
 
 describe("memory hybrid helpers", () => {
@@ -83,3 +83,4 @@ describe("memory hybrid helpers", () => {
     expect(merged[0]?.score).toBeCloseTo(0.5 * 0.2 + 0.5 * 1.0);
   });
 });
+

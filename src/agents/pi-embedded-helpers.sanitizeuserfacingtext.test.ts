@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { sanitizeUserFacingText } from "./pi-embedded-helpers.js";
 
 describe("sanitizeUserFacingText", () => {
@@ -38,3 +38,4 @@ describe("sanitizeUserFacingText", () => {
     expect(sanitizeUserFacingText(text)).toBe(text);
   });
 });
+

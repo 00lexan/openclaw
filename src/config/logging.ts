@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../runtime.js";
+﻿import type { RuntimeEnv } from "../runtime.js";
 import { displayPath } from "../utils.js";
 import { CONFIG_PATH } from "./paths.js";
 
@@ -16,3 +16,4 @@ export function logConfigUpdated(runtime: RuntimeEnv, opts: LogConfigUpdatedOpti
   const suffix = opts.suffix ? ` ${opts.suffix}` : "";
   runtime.log(`Updated ${path}${suffix}`);
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   buildModelsKeyboard,
   buildProviderKeyboard,
@@ -142,7 +142,7 @@ describe("buildModelsKeyboard", () => {
       currentPage: 1,
       totalPages: 1,
     });
-    expect(result[0]?.[0]?.text).toBe("claude-sonnet-4 ✓");
+    expect(result[0]?.[0]?.text).toBe("claude-sonnet-4 âœ“");
     expect(result[1]?.[0]?.text).toBe("claude-opus-4");
   });
 
@@ -159,7 +159,7 @@ describe("buildModelsKeyboard", () => {
     const paginationRow = result[2];
     expect(paginationRow).toHaveLength(2); // no prev on first page
     expect(paginationRow?.[0]?.text).toBe("1/3");
-    expect(paginationRow?.[1]?.text).toBe("Next ▶");
+    expect(paginationRow?.[1]?.text).toBe("Next â–¶");
   });
 
   it("shows prev and next on middle pages", () => {
@@ -175,9 +175,9 @@ describe("buildModelsKeyboard", () => {
     expect(result).toHaveLength(4);
     const paginationRow = result[2];
     expect(paginationRow).toHaveLength(3);
-    expect(paginationRow?.[0]?.text).toBe("◀ Prev");
+    expect(paginationRow?.[0]?.text).toBe("â—€ Prev");
     expect(paginationRow?.[1]?.text).toBe("2/3");
-    expect(paginationRow?.[2]?.text).toBe("Next ▶");
+    expect(paginationRow?.[2]?.text).toBe("Next â–¶");
   });
 
   it("shows only prev on last page", () => {
@@ -193,7 +193,7 @@ describe("buildModelsKeyboard", () => {
     expect(result).toHaveLength(4);
     const paginationRow = result[2];
     expect(paginationRow).toHaveLength(2);
-    expect(paginationRow?.[0]?.text).toBe("◀ Prev");
+    expect(paginationRow?.[0]?.text).toBe("â—€ Prev");
     expect(paginationRow?.[1]?.text).toBe("3/3");
   });
 
@@ -223,7 +223,7 @@ describe("buildModelsKeyboard", () => {
       totalPages: 1,
     });
     const text = result[0]?.[0]?.text;
-    expect(text?.startsWith("…")).toBe(true);
+    expect(text?.startsWith("â€¦")).toBe(true);
     expect(text?.length).toBeLessThanOrEqual(38);
   });
 });
@@ -333,3 +333,4 @@ describe("large model lists (OpenRouter-scale)", () => {
     expect(modelButtons[1]?.[0]?.text).toBe("another-short");
   });
 });
+

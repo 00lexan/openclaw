@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 向新用户介绍 OpenClaw
-summary: OpenClaw 是一个多渠道 AI 智能体 Gateway 网关，可在任何操作系统上运行。
-title: OpenClaw
+  - å‘æ–°ç”¨æˆ·ä»‹ç» 
+summary:  æ˜¯ä¸€ä¸ªå¤šæ¸ é“ AI æ™ºèƒ½ä½“ Gateway ç½‘å…³ï¼Œå¯åœ¨ä»»ä½•æ“ä½œç³»ç»Ÿä¸Šè¿è¡Œã€‚
+title: 
 x-i18n:
   generated_at: "2026-02-04T17:53:40Z"
   model: claude-opus-4-5
@@ -12,45 +12,45 @@ x-i18n:
   workflow: 15
 ---
 
-# OpenClaw 🦞
+#  ðŸ¦ž
 
 <p align="center">
     <img
-        src="/assets/openclaw-logo-text-dark.png"
-        alt="OpenClaw"
+        src="/assets/-logo-text-dark.png"
+        alt=""
         width="500"
         class="dark:hidden"
     />
     <img
-        src="/assets/openclaw-logo-text.png"
-        alt="OpenClaw"
+        src="/assets/-logo-text.png"
+        alt=""
         width="500"
         class="hidden dark:block"
     />
 </p>
 
-> _"去壳！去壳！"_ — 大概是一只太空龙虾说的
+> _"åŽ»å£³ï¼åŽ»å£³ï¼"_ â€” å¤§æ¦‚æ˜¯ä¸€åªå¤ªç©ºé¾™è™¾è¯´çš„
 
 <p align="center">
-  <strong>适用于任何操作系统的 AI 智能体 Gateway 网关，支持 WhatsApp、Telegram、Discord、iMessage 等。</strong><br />
-  发送消息，随时随地获取智能体响应。通过插件可添加 Mattermost 等更多渠道。
+  <strong>é€‚ç”¨äºŽä»»ä½•æ“ä½œç³»ç»Ÿçš„ AI æ™ºèƒ½ä½“ Gateway ç½‘å…³ï¼Œæ”¯æŒ WhatsAppã€Telegramã€Discordã€iMessage ç­‰ã€‚</strong><br />
+  å‘é€æ¶ˆæ¯ï¼Œéšæ—¶éšåœ°èŽ·å–æ™ºèƒ½ä½“å“åº”ã€‚é€šè¿‡æ’ä»¶å¯æ·»åŠ  Mattermost ç­‰æ›´å¤šæ¸ é“ã€‚
 </p>
 
 <Columns>
-  <Card title="入门指南" href="/start/getting-started" icon="rocket">
-    安装 OpenClaw 并在几分钟内启动 Gateway 网关。
+  <Card title="å…¥é—¨æŒ‡å—" href="/start/getting-started" icon="rocket">
+    å®‰è£…  å¹¶åœ¨å‡ åˆ†é’Ÿå†…å¯åŠ¨ Gateway ç½‘å…³ã€‚
   </Card>
-  <Card title="运行向导" href="/start/wizard" icon="sparkles">
-    通过 `openclaw onboard` 和配对流程进行引导式设置。
+  <Card title="è¿è¡Œå‘å¯¼" href="/start/wizard" icon="sparkles">
+    é€šè¿‡ ` onboard` å’Œé…å¯¹æµç¨‹è¿›è¡Œå¼•å¯¼å¼è®¾ç½®ã€‚
   </Card>
-  <Card title="打开控制界面" href="/web/control-ui" icon="layout-dashboard">
-    启动浏览器仪表板，管理聊天、配置和会话。
+  <Card title="æ‰“å¼€æŽ§åˆ¶ç•Œé¢" href="/web/control-ui" icon="layout-dashboard">
+    å¯åŠ¨æµè§ˆå™¨ä»ªè¡¨æ¿ï¼Œç®¡ç†èŠå¤©ã€é…ç½®å’Œä¼šè¯ã€‚
   </Card>
 </Columns>
 
-OpenClaw 通过单个 Gateway 网关进程将聊天应用连接到 Pi 等编程智能体。它为 OpenClaw 助手提供支持，并支持本地或远程部署。
+ é€šè¿‡å•ä¸ª Gateway ç½‘å…³è¿›ç¨‹å°†èŠå¤©åº”ç”¨è¿žæŽ¥åˆ° Pi ç­‰ç¼–ç¨‹æ™ºèƒ½ä½“ã€‚å®ƒä¸º  åŠ©æ‰‹æä¾›æ”¯æŒï¼Œå¹¶æ”¯æŒæœ¬åœ°æˆ–è¿œç¨‹éƒ¨ç½²ã€‚
 
-## 工作原理
+## å·¥ä½œåŽŸç†
 
 ```mermaid
 flowchart LR
@@ -62,73 +62,73 @@ flowchart LR
   B --> G["iOS and Android nodes"]
 ```
 
-Gateway 网关是会话、路由和渠道连接的唯一事实来源。
+Gateway ç½‘å…³æ˜¯ä¼šè¯ã€è·¯ç”±å’Œæ¸ é“è¿žæŽ¥çš„å”¯ä¸€äº‹å®žæ¥æºã€‚
 
-## 核心功能
+## æ ¸å¿ƒåŠŸèƒ½
 
 <Columns>
-  <Card title="多渠道 Gateway 网关" icon="network">
-    通过单个 Gateway 网关进程连接 WhatsApp、Telegram、Discord 和 iMessage。
+  <Card title="å¤šæ¸ é“ Gateway ç½‘å…³" icon="network">
+    é€šè¿‡å•ä¸ª Gateway ç½‘å…³è¿›ç¨‹è¿žæŽ¥ WhatsAppã€Telegramã€Discord å’Œ iMessageã€‚
   </Card>
-  <Card title="插件渠道" icon="plug">
-    通过扩展包添加 Mattermost 等更多渠道。
+  <Card title="æ’ä»¶æ¸ é“" icon="plug">
+    é€šè¿‡æ‰©å±•åŒ…æ·»åŠ  Mattermost ç­‰æ›´å¤šæ¸ é“ã€‚
   </Card>
-  <Card title="多智能体路由" icon="route">
-    按智能体、工作区或发送者隔离会话。
+  <Card title="å¤šæ™ºèƒ½ä½“è·¯ç”±" icon="route">
+    æŒ‰æ™ºèƒ½ä½“ã€å·¥ä½œåŒºæˆ–å‘é€è€…éš”ç¦»ä¼šè¯ã€‚
   </Card>
-  <Card title="媒体支持" icon="image">
-    发送和接收图片、音频和文档。
+  <Card title="åª’ä½“æ”¯æŒ" icon="image">
+    å‘é€å’ŒæŽ¥æ”¶å›¾ç‰‡ã€éŸ³é¢‘å’Œæ–‡æ¡£ã€‚
   </Card>
-  <Card title="Web 控制界面" icon="monitor">
-    浏览器仪表板，用于聊天、配置、会话和节点管理。
+  <Card title="Web æŽ§åˆ¶ç•Œé¢" icon="monitor">
+    æµè§ˆå™¨ä»ªè¡¨æ¿ï¼Œç”¨äºŽèŠå¤©ã€é…ç½®ã€ä¼šè¯å’ŒèŠ‚ç‚¹ç®¡ç†ã€‚
   </Card>
-  <Card title="移动节点" icon="smartphone">
-    配对 iOS 和 Android 节点，支持 Canvas。
+  <Card title="ç§»åŠ¨èŠ‚ç‚¹" icon="smartphone">
+    é…å¯¹ iOS å’Œ Android èŠ‚ç‚¹ï¼Œæ”¯æŒ Canvasã€‚
   </Card>
 </Columns>
 
-## 快速开始
+## å¿«é€Ÿå¼€å§‹
 
 <Steps>
-  <Step title="安装 OpenClaw">
+  <Step title="å®‰è£… ">
     ```bash
-    npm install -g openclaw@latest
+    npm install -g @latest
     ```
   </Step>
-  <Step title="新手引导并安装服务">
+  <Step title="æ–°æ‰‹å¼•å¯¼å¹¶å®‰è£…æœåŠ¡">
     ```bash
-    openclaw onboard --install-daemon
+     onboard --install-daemon
     ```
   </Step>
-  <Step title="配对 WhatsApp 并启动 Gateway 网关">
+  <Step title="é…å¯¹ WhatsApp å¹¶å¯åŠ¨ Gateway ç½‘å…³">
     ```bash
-    openclaw channels login
-    openclaw gateway --port 18789
+     channels login
+     gateway --port 18789
     ```
   </Step>
 </Steps>
 
-需要完整的安装和开发环境设置？请参阅[快速开始](/start/quickstart)。
+éœ€è¦å®Œæ•´çš„å®‰è£…å’Œå¼€å‘çŽ¯å¢ƒè®¾ç½®ï¼Ÿè¯·å‚é˜…[å¿«é€Ÿå¼€å§‹](/start/quickstart)ã€‚
 
-## 仪表板
+## ä»ªè¡¨æ¿
 
-Gateway 网关启动后，打开浏览器控制界面。
+Gateway ç½‘å…³å¯åŠ¨åŽï¼Œæ‰“å¼€æµè§ˆå™¨æŽ§åˆ¶ç•Œé¢ã€‚
 
-- 本地默认地址：http://127.0.0.1:18789/
-- 远程访问：[Web 界面](/web)和 [Tailscale](/gateway/tailscale)
+- æœ¬åœ°é»˜è®¤åœ°å€ï¼šhttp://127.0.0.1:18789/
+- è¿œç¨‹è®¿é—®ï¼š[Web ç•Œé¢](/web)å’Œ [Tailscale](/gateway/tailscale)
 
 <p align="center">
-  <img src="whatsapp-openclaw.jpg" alt="OpenClaw" width="420" />
+  <img src="whatsapp-.jpg" alt="" width="420" />
 </p>
 
-## 配置（可选）
+## é…ç½®ï¼ˆå¯é€‰ï¼‰
 
-配置文件位于 `~/.openclaw/openclaw.json`。
+é…ç½®æ–‡ä»¶ä½äºŽ `~/./.json`ã€‚
 
-- 如果你**不做任何修改**，OpenClaw 将使用内置的 Pi 二进制文件以 RPC 模式运行，并按发送者创建独立会话。
-- 如果你想要限制访问，可以从 `channels.whatsapp.allowFrom` 和（针对群组的）提及规则开始配置。
+- å¦‚æžœä½ **ä¸åšä»»ä½•ä¿®æ”¹**ï¼Œ å°†ä½¿ç”¨å†…ç½®çš„ Pi äºŒè¿›åˆ¶æ–‡ä»¶ä»¥ RPC æ¨¡å¼è¿è¡Œï¼Œå¹¶æŒ‰å‘é€è€…åˆ›å»ºç‹¬ç«‹ä¼šè¯ã€‚
+- å¦‚æžœä½ æƒ³è¦é™åˆ¶è®¿é—®ï¼Œå¯ä»¥ä»Ž `channels.whatsapp.allowFrom` å’Œï¼ˆé’ˆå¯¹ç¾¤ç»„çš„ï¼‰æåŠè§„åˆ™å¼€å§‹é…ç½®ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -138,49 +138,50 @@ Gateway 网关启动后，打开浏览器控制界面。
       groups: { "*": { requireMention: true } },
     },
   },
-  messages: { groupChat: { mentionPatterns: ["@openclaw"] } },
+  messages: { groupChat: { mentionPatterns: ["@"] } },
 }
 ```
 
-## 从这里开始
+## ä»Žè¿™é‡Œå¼€å§‹
 
 <Columns>
-  <Card title="文档中心" href="/start/hubs" icon="book-open">
-    所有文档和指南，按用例分类。
+  <Card title="æ–‡æ¡£ä¸­å¿ƒ" href="/start/hubs" icon="book-open">
+    æ‰€æœ‰æ–‡æ¡£å’ŒæŒ‡å—ï¼ŒæŒ‰ç”¨ä¾‹åˆ†ç±»ã€‚
   </Card>
-  <Card title="配置" href="/gateway/configuration" icon="settings">
-    核心 Gateway 网关设置、令牌和提供商配置。
+  <Card title="é…ç½®" href="/gateway/configuration" icon="settings">
+    æ ¸å¿ƒ Gateway ç½‘å…³è®¾ç½®ã€ä»¤ç‰Œå’Œæä¾›å•†é…ç½®ã€‚
   </Card>
-  <Card title="远程访问" href="/gateway/remote" icon="globe">
-    SSH 和 tailnet 访问模式。
+  <Card title="è¿œç¨‹è®¿é—®" href="/gateway/remote" icon="globe">
+    SSH å’Œ tailnet è®¿é—®æ¨¡å¼ã€‚
   </Card>
-  <Card title="渠道" href="/channels/telegram" icon="message-square">
-    WhatsApp、Telegram、Discord 等渠道的具体设置。
+  <Card title="æ¸ é“" href="/channels/telegram" icon="message-square">
+    WhatsAppã€Telegramã€Discord ç­‰æ¸ é“çš„å…·ä½“è®¾ç½®ã€‚
   </Card>
-  <Card title="节点" href="/nodes" icon="smartphone">
-    iOS 和 Android 节点的配对与 Canvas 功能。
+  <Card title="èŠ‚ç‚¹" href="/nodes" icon="smartphone">
+    iOS å’Œ Android èŠ‚ç‚¹çš„é…å¯¹ä¸Ž Canvas åŠŸèƒ½ã€‚
   </Card>
-  <Card title="帮助" href="/help" icon="life-buoy">
-    常见修复方法和故障排除入口。
+  <Card title="å¸®åŠ©" href="/help" icon="life-buoy">
+    å¸¸è§ä¿®å¤æ–¹æ³•å’Œæ•…éšœæŽ’é™¤å…¥å£ã€‚
   </Card>
 </Columns>
 
-## 了解更多
+## äº†è§£æ›´å¤š
 
 <Columns>
-  <Card title="完整功能列表" href="/concepts/features" icon="list">
-    全部渠道、路由和媒体功能。
+  <Card title="å®Œæ•´åŠŸèƒ½åˆ—è¡¨" href="/concepts/features" icon="list">
+    å…¨éƒ¨æ¸ é“ã€è·¯ç”±å’Œåª’ä½“åŠŸèƒ½ã€‚
   </Card>
-  <Card title="多智能体路由" href="/concepts/multi-agent" icon="route">
-    工作区隔离和按智能体的会话管理。
+  <Card title="å¤šæ™ºèƒ½ä½“è·¯ç”±" href="/concepts/multi-agent" icon="route">
+    å·¥ä½œåŒºéš”ç¦»å’ŒæŒ‰æ™ºèƒ½ä½“çš„ä¼šè¯ç®¡ç†ã€‚
   </Card>
-  <Card title="安全" href="/gateway/security" icon="shield">
-    令牌、白名单和安全控制。
+  <Card title="å®‰å…¨" href="/gateway/security" icon="shield">
+    ä»¤ç‰Œã€ç™½åå•å’Œå®‰å…¨æŽ§åˆ¶ã€‚
   </Card>
-  <Card title="故障排除" href="/gateway/troubleshooting" icon="wrench">
-    Gateway 网关诊断和常见错误。
+  <Card title="æ•…éšœæŽ’é™¤" href="/gateway/troubleshooting" icon="wrench">
+    Gateway ç½‘å…³è¯Šæ–­å’Œå¸¸è§é”™è¯¯ã€‚
   </Card>
-  <Card title="关于与致谢" href="/reference/credits" icon="info">
-    项目起源、贡献者和许可证。
+  <Card title="å…³äºŽä¸Žè‡´è°¢" href="/reference/credits" icon="info">
+    é¡¹ç›®èµ·æºã€è´¡çŒ®è€…å’Œè®¸å¯è¯ã€‚
   </Card>
 </Columns>
+

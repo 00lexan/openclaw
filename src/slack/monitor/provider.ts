@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+﻿import type { IncomingMessage, ServerResponse } from "node:http";
 import SlackBolt from "@slack/bolt";
 import type { SessionScope } from "../../config/sessions.js";
 import type { RuntimeEnv } from "../../runtime.js";
@@ -242,7 +242,7 @@ export async function monitorSlackProvider(opts: MonitorSlackOpts = {}) {
                 unresolved.push(entry.input);
                 continue;
               }
-              mapping.push(`${entry.input}→${entry.id}${entry.archived ? " (archived)" : ""}`);
+              mapping.push(`${entry.input}â†’${entry.id}${entry.archived ? " (archived)" : ""}`);
               const existing = nextChannels[entry.id] ?? {};
               nextChannels[entry.id] = { ...source, ...existing };
             }
@@ -269,7 +269,7 @@ export async function monitorSlackProvider(opts: MonitorSlackOpts = {}) {
           for (const entry of resolvedUsers) {
             if (entry.resolved && entry.id) {
               const note = entry.note ? ` (${entry.note})` : "";
-              mapping.push(`${entry.input}→${entry.id}${note}`);
+              mapping.push(`${entry.input}â†’${entry.id}${note}`);
               additions.push(entry.id);
             } else {
               unresolved.push(entry.input);
@@ -310,7 +310,7 @@ export async function monitorSlackProvider(opts: MonitorSlackOpts = {}) {
             const resolvedMap = new Map(resolvedUsers.map((entry) => [entry.input, entry]));
             const mapping = resolvedUsers
               .filter((entry) => entry.resolved && entry.id)
-              .map((entry) => `${entry.input}→${entry.id}`);
+              .map((entry) => `${entry.input}â†’${entry.id}`);
             const unresolved = resolvedUsers
               .filter((entry) => !entry.resolved)
               .map((entry) => entry.input);
@@ -378,3 +378,4 @@ export async function monitorSlackProvider(opts: MonitorSlackOpts = {}) {
     await app.stop().catch(() => undefined);
   }
 }
+

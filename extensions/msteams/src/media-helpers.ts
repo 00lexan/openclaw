@@ -1,4 +1,4 @@
-/**
+﻿/**
  * MIME type detection and filename extraction for MSTeams media attachments.
  */
 
@@ -8,7 +8,7 @@ import {
   extensionForMime,
   extractOriginalFilename,
   getFileExtension,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 
 /**
  * Detect MIME type from URL extension or data URL.
@@ -84,3 +84,4 @@ export function extractMessageId(response: unknown): string | null {
   }
   return id;
 }
+

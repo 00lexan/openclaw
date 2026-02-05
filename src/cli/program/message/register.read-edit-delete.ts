@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 
 export function registerMessageReadEditDeleteCommands(
@@ -48,3 +48,4 @@ export function registerMessageReadEditDeleteCommands(
       await helpers.runMessageAction("delete", opts);
     });
 }
+

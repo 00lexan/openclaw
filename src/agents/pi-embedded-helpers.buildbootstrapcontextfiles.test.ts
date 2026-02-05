@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { buildBootstrapContextFiles, DEFAULT_BOOTSTRAP_MAX_CHARS } from "./pi-embedded-helpers.js";
 import { DEFAULT_AGENTS_FILENAME } from "./workspace.js";
 
@@ -51,3 +51,4 @@ describe("buildBootstrapContextFiles", () => {
     expect(result?.content).not.toContain("[...truncated, read AGENTS.md for full content...]");
   });
 });
+

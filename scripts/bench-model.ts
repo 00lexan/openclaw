@@ -1,4 +1,4 @@
-import { completeSimple, getModel, type Model } from "@mariozechner/pi-ai";
+﻿import { completeSimple, getModel, type Model } from "@mariozechner/pi-ai";
 
 type Usage = {
   input?: number;
@@ -144,3 +144,4 @@ async function main(): Promise<void> {
 }
 
 await main();
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { validateConfigObject } from "./config.js";
 
 describe("Slack HTTP mode config", () => {
@@ -62,3 +62,4 @@ describe("Slack HTTP mode config", () => {
     }
   });
 });
+

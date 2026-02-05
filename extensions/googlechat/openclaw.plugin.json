@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "googlechat",
   "channels": ["googlechat"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+﻿import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import type { BlueBubblesSendTarget } from "./types.js";
 import { sendMessageBlueBubbles, resolveChatGuidForTarget } from "./send.js";
 
@@ -806,3 +806,4 @@ describe("send", () => {
     });
   });
 });
+

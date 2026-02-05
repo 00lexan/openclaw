@@ -1,4 +1,4 @@
-
+﻿
 /*
  Copyright 2025 Google LLC
 
@@ -44,3 +44,4 @@ if (process.env.ANTHROPIC_API_KEY) {
 export const ai = genkit({
   plugins,
 });
+

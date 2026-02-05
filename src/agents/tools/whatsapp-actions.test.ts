@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import { describe, expect, it, vi } from "vitest";
+import type { Config } from "../../config/config.js";
 import { handleWhatsAppAction } from "./whatsapp-actions.js";
 
 const sendReactionWhatsApp = vi.fn(async () => undefined);
@@ -12,7 +12,7 @@ vi.mock("../../web/outbound.js", () => ({
 
 const enabledConfig = {
   channels: { whatsapp: { actions: { reactions: true } } },
-} as OpenClawConfig;
+} as Config;
 
 describe("handleWhatsAppAction", () => {
   it("adds reactions", async () => {
@@ -21,11 +21,11 @@ describe("handleWhatsAppAction", () => {
         action: "react",
         chatJid: "123@s.whatsapp.net",
         messageId: "msg1",
-        emoji: "✅",
+        emoji: "âœ…",
       },
       enabledConfig,
     );
-    expect(sendReactionWhatsApp).toHaveBeenCalledWith("123@s.whatsapp.net", "msg1", "✅", {
+    expect(sendReactionWhatsApp).toHaveBeenCalledWith("123@s.whatsapp.net", "msg1", "âœ…", {
       verbose: false,
       fromMe: undefined,
       participant: undefined,
@@ -57,7 +57,7 @@ describe("handleWhatsAppAction", () => {
         action: "react",
         chatJid: "123@s.whatsapp.net",
         messageId: "msg1",
-        emoji: "✅",
+        emoji: "âœ…",
         remove: true,
       },
       enabledConfig,
@@ -76,14 +76,14 @@ describe("handleWhatsAppAction", () => {
         action: "react",
         chatJid: "123@s.whatsapp.net",
         messageId: "msg1",
-        emoji: "🎉",
+        emoji: "ðŸŽ‰",
         accountId: "work",
         fromMe: true,
         participant: "999@s.whatsapp.net",
       },
       enabledConfig,
     );
-    expect(sendReactionWhatsApp).toHaveBeenCalledWith("123@s.whatsapp.net", "msg1", "🎉", {
+    expect(sendReactionWhatsApp).toHaveBeenCalledWith("123@s.whatsapp.net", "msg1", "ðŸŽ‰", {
       verbose: false,
       fromMe: true,
       participant: "999@s.whatsapp.net",
@@ -94,17 +94,18 @@ describe("handleWhatsAppAction", () => {
   it("respects reaction gating", async () => {
     const cfg = {
       channels: { whatsapp: { actions: { reactions: false } } },
-    } as OpenClawConfig;
+    } as Config;
     await expect(
       handleWhatsAppAction(
         {
           action: "react",
           chatJid: "123@s.whatsapp.net",
           messageId: "msg1",
-          emoji: "✅",
+          emoji: "âœ…",
         },
         cfg,
       ),
     ).rejects.toThrow(/WhatsApp reactions are disabled/);
   });
 });
+

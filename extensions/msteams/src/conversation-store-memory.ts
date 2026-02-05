@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   MSTeamsConversationStore,
   MSTeamsConversationStoreEntry,
   StoredConversationReference,
@@ -45,3 +45,4 @@ export function createMSTeamsConversationStoreMemory(
     },
   };
 }
+

@@ -1,4 +1,4 @@
-import { loadConfig } from "../config/config.js";
+﻿import { loadConfig } from "../config/config.js";
 import { resolveMarkdownTableMode } from "../config/markdown-tables.js";
 import { mediaKindFromMime } from "../media/constants.js";
 import { saveMediaBuffer } from "../media/store.js";
@@ -279,3 +279,4 @@ export async function sendReadReceiptSignal(
   });
   return true;
 }
+

@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString } from "./primitives.js";
 
 export const CronScheduleSchema = Type.Union([
@@ -245,3 +245,4 @@ export const CronRunLogEntrySchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

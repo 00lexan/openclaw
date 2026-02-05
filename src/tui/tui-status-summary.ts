@@ -1,4 +1,4 @@
-import type { GatewayStatusSummary } from "./tui-types.js";
+﻿import type { GatewayStatusSummary } from "./tui-types.js";
 import { formatAge } from "../infra/channel-summary.js";
 import { formatTokenCount } from "../utils/usage-format.js";
 import { formatContextUsageLine } from "./tui-formatters.js";
@@ -86,3 +86,4 @@ export function formatStatusSummary(summary: GatewayStatusSummary) {
 
   return lines;
 }
+

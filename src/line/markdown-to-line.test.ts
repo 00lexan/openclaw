@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   extractMarkdownTables,
   extractCodeBlocks,
@@ -447,3 +447,4 @@ describe("hasMarkdownToConvert", () => {
     expect(hasMarkdownToConvert("Just plain text.")).toBe(false);
   });
 });
+

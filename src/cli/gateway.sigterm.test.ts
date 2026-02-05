@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+﻿import { spawn } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -79,22 +79,22 @@ describe("gateway SIGTERM", () => {
   });
 
   it("exits 0 on SIGTERM", { timeout: 180_000 }, async () => {
-    const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-gateway-test-"));
+    const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "-gateway-test-"));
     const out: string[] = [];
     const err: string[] = [];
 
     const nodeBin = process.execPath;
     const env = {
       ...process.env,
-      OPENCLAW_NO_RESPAWN: "1",
-      OPENCLAW_STATE_DIR: stateDir,
-      OPENCLAW_SKIP_CHANNELS: "1",
-      OPENCLAW_SKIP_GMAIL_WATCHER: "1",
-      OPENCLAW_SKIP_CRON: "1",
-      OPENCLAW_SKIP_BROWSER_CONTROL_SERVER: "1",
-      OPENCLAW_SKIP_CANVAS_HOST: "1",
+      _NO_RESPAWN: "1",
+      _STATE_DIR: stateDir,
+      _SKIP_CHANNELS: "1",
+      _SKIP_GMAIL_WATCHER: "1",
+      _SKIP_CRON: "1",
+      _SKIP_BROWSER_CONTROL_SERVER: "1",
+      _SKIP_CANVAS_HOST: "1",
     };
-    const bootstrapPath = path.join(stateDir, "openclaw-entry-bootstrap.mjs");
+    const bootstrapPath = path.join(stateDir, "-entry-bootstrap.mjs");
     const runLoopPath = path.resolve("src/cli/gateway-cli/run-loop.ts");
     const runtimePath = path.resolve("src/runtime.ts");
     fs.writeFileSync(
@@ -158,3 +158,4 @@ describe("gateway SIGTERM", () => {
     expect(result.signal).toBeNull();
   });
 });
+

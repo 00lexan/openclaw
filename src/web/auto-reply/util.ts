@@ -1,11 +1,11 @@
-export function elide(text?: string, limit = 400) {
+﻿export function elide(text?: string, limit = 400) {
   if (!text) {
     return text;
   }
   if (text.length <= limit) {
     return text;
   }
-  return `${text.slice(0, limit)}… (truncated ${text.length - limit} chars)`;
+  return `${text.slice(0, limit)}â€¦ (truncated ${text.length - limit} chars)`;
 }
 
 export function isLikelyWhatsAppCryptoError(reason: unknown) {
@@ -59,3 +59,4 @@ export function isLikelyWhatsAppCryptoError(reason: unknown) {
     haystack.includes("aesdecryptgcm")
   );
 }
+

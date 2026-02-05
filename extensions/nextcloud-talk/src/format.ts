@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Format utilities for Nextcloud Talk messages.
  *
  * Nextcloud Talk supports markdown natively, so most formatting passes through.
@@ -77,3 +77,4 @@ export function truncateNextcloudTalkText(text: string, maxLength: number, suffi
   }
   return truncated + suffix;
 }
+

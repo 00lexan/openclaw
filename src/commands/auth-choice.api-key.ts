@@ -1,4 +1,4 @@
-const DEFAULT_KEY_PREVIEW = { head: 4, tail: 4 };
+﻿const DEFAULT_KEY_PREVIEW = { head: 4, tail: 4 };
 
 export function normalizeApiKeyInput(raw: string): string {
   const trimmed = String(raw ?? "").trim();
@@ -32,7 +32,7 @@ export function formatApiKeyPreview(
 ): string {
   const trimmed = raw.trim();
   if (!trimmed) {
-    return "…";
+    return "â€¦";
   }
   const head = opts.head ?? DEFAULT_KEY_PREVIEW.head;
   const tail = opts.tail ?? DEFAULT_KEY_PREVIEW.tail;
@@ -40,9 +40,10 @@ export function formatApiKeyPreview(
     const shortHead = Math.min(2, trimmed.length);
     const shortTail = Math.min(2, trimmed.length - shortHead);
     if (shortTail <= 0) {
-      return `${trimmed.slice(0, shortHead)}…`;
+      return `${trimmed.slice(0, shortHead)}â€¦`;
     }
-    return `${trimmed.slice(0, shortHead)}…${trimmed.slice(-shortTail)}`;
+    return `${trimmed.slice(0, shortHead)}â€¦${trimmed.slice(-shortTail)}`;
   }
-  return `${trimmed.slice(0, head)}…${trimmed.slice(-tail)}`;
+  return `${trimmed.slice(0, head)}â€¦${trimmed.slice(-tail)}`;
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   createInfoCard,
   createListCard,
@@ -497,3 +497,4 @@ describe("toFlexMessage", () => {
     expect(message.contents).toBe(bubble);
   });
 });
+

@@ -1,4 +1,4 @@
----
+﻿---
 description: Analyze GitHub issues (bugs or feature requests)
 ---
 
@@ -20,3 +20,4 @@ For each issue:
    - List affected files and changes needed
 
 Do NOT implement unless explicitly asked. Analyze and propose only.
+

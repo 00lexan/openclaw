@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { DiscordActionConfig } from "../../config/config.js";
 import { handleDiscordGuildAction } from "./discord-actions-guild.js";
 import { handleDiscordMessagingAction } from "./discord-actions-messaging.js";
@@ -28,7 +28,7 @@ const pinMessageDiscord = vi.fn(async () => ({}));
 const reactMessageDiscord = vi.fn(async () => ({}));
 const readMessagesDiscord = vi.fn(async () => []);
 const removeChannelPermissionDiscord = vi.fn(async () => ({ ok: true }));
-const removeOwnReactionsDiscord = vi.fn(async () => ({ removed: ["👍"] }));
+const removeOwnReactionsDiscord = vi.fn(async () => ({ removed: ["ðŸ‘"] }));
 const removeReactionDiscord = vi.fn(async () => ({}));
 const searchMessagesDiscord = vi.fn(async () => ({}));
 const sendMessageDiscord = vi.fn(async () => ({}));
@@ -84,11 +84,11 @@ describe("handleDiscordMessagingAction", () => {
       {
         channelId: "C1",
         messageId: "M1",
-        emoji: "✅",
+        emoji: "âœ…",
       },
       enableAllActions,
     );
-    expect(reactMessageDiscord).toHaveBeenCalledWith("C1", "M1", "✅");
+    expect(reactMessageDiscord).toHaveBeenCalledWith("C1", "M1", "âœ…");
   });
 
   it("forwards accountId for reactions", async () => {
@@ -97,12 +97,12 @@ describe("handleDiscordMessagingAction", () => {
       {
         channelId: "C1",
         messageId: "M1",
-        emoji: "✅",
+        emoji: "âœ…",
         accountId: "ops",
       },
       enableAllActions,
     );
-    expect(reactMessageDiscord).toHaveBeenCalledWith("C1", "M1", "✅", { accountId: "ops" });
+    expect(reactMessageDiscord).toHaveBeenCalledWith("C1", "M1", "âœ…", { accountId: "ops" });
   });
 
   it("removes reactions on empty emoji", async () => {
@@ -124,12 +124,12 @@ describe("handleDiscordMessagingAction", () => {
       {
         channelId: "C1",
         messageId: "M1",
-        emoji: "✅",
+        emoji: "âœ…",
         remove: true,
       },
       enableAllActions,
     );
-    expect(removeReactionDiscord).toHaveBeenCalledWith("C1", "M1", "✅");
+    expect(removeReactionDiscord).toHaveBeenCalledWith("C1", "M1", "âœ…");
   });
 
   it("rejects removes without emoji", async () => {
@@ -154,7 +154,7 @@ describe("handleDiscordMessagingAction", () => {
         {
           channelId: "C1",
           messageId: "M1",
-          emoji: "✅",
+          emoji: "âœ…",
         },
         disabledActions,
       ),
@@ -504,3 +504,4 @@ describe("handleDiscordModerationAction", () => {
     );
   });
 });
+

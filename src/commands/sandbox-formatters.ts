@@ -1,9 +1,9 @@
-/**
+﻿/**
  * Formatting utilities for sandbox CLI output
  */
 
 export function formatStatus(running: boolean): string {
-  return running ? "🟢 running" : "⚫ stopped";
+  return running ? "ðŸŸ¢ running" : "âš« stopped";
 }
 
 export function formatSimpleStatus(running: boolean): string {
@@ -11,7 +11,7 @@ export function formatSimpleStatus(running: boolean): string {
 }
 
 export function formatImageMatch(matches: boolean): string {
-  return matches ? "✓" : "⚠️  mismatch";
+  return matches ? "âœ“" : "âš ï¸  mismatch";
 }
 
 export function formatAge(ms: number): string {
@@ -53,3 +53,4 @@ export function countRunning<T extends { running: boolean }>(items: T[]): number
 export function countMismatches<T extends { imageMatch: boolean }>(items: T[]): number {
   return items.filter((item) => !item.imageMatch).length;
 }
+

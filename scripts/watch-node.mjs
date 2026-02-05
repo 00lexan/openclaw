@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 import { spawn, spawnSync } from "node:child_process";
 import process from "node:process";
 
@@ -23,7 +23,7 @@ const compilerProcess = spawn("pnpm", ["exec", compiler, "--watch"], {
   stdio: "inherit",
 });
 
-const nodeProcess = spawn(process.execPath, ["--watch", "openclaw.mjs", ...args], {
+const nodeProcess = spawn(process.execPath, ["--watch", ".mjs", ...args], {
   cwd,
   env,
   stdio: "inherit",
@@ -57,3 +57,4 @@ nodeProcess.on("exit", (code, signal) => {
   }
   cleanup(code ?? 1);
 });
+

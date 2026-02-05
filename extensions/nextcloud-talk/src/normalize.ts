@@ -1,4 +1,4 @@
-export function normalizeNextcloudTalkMessagingTarget(raw: string): string | undefined {
+﻿export function normalizeNextcloudTalkMessagingTarget(raw: string): string | undefined {
   const trimmed = raw.trim();
   if (!trimmed) {
     return undefined;
@@ -37,3 +37,4 @@ export function looksLikeNextcloudTalkTargetId(raw: string): boolean {
 
   return /^[a-z0-9]{8,}$/i.test(trimmed);
 }
+

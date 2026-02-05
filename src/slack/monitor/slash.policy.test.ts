@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { registerSlackMonitorSlashCommands } from "./slash.js";
 
 const dispatchMock = vi.fn();
@@ -65,7 +65,7 @@ function createHarness(overrides?: {
     channelsConfig: overrides?.channelsConfig,
     slashCommand: {
       enabled: true,
-      name: "openclaw",
+      name: "",
       ephemeral: true,
       sessionPrefix: "slack:slash",
     },
@@ -304,3 +304,4 @@ describe("slack slash commands access groups", () => {
     });
   });
 });
+

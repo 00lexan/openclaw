@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { AgentIdentityResult } from "../types.ts";
 
 export type AgentIdentityState = {
@@ -57,3 +57,4 @@ export async function loadAgentIdentities(state: AgentIdentityState, agentIds: s
     state.agentIdentityLoading = false;
   }
 }
+

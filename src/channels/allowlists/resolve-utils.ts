@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../../runtime.js";
+﻿import type { RuntimeEnv } from "../../runtime.js";
 
 export function mergeAllowlist(params: {
   existing?: Array<string | number>;
@@ -49,3 +49,4 @@ export function summarizeMapping(
     runtime.log?.(lines.join("\n"));
   }
 }
+

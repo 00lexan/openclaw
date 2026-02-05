@@ -1,4 +1,4 @@
-import type { AnyAgentTool } from "./pi-tools.types.js";
+﻿import type { AnyAgentTool } from "./pi-tools.types.js";
 import { cleanSchemaForGemini } from "./schema/clean-for-gemini.js";
 
 function extractEnumValues(schema: unknown): unknown[] | undefined {
@@ -177,3 +177,4 @@ export function normalizeToolParameters(tool: AnyAgentTool): AnyAgentTool {
 export function cleanToolSchemaForGemini(schema: Record<string, unknown>): unknown {
   return cleanSchemaForGemini(schema);
 }
+

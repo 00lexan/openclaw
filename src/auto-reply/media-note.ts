@@ -1,4 +1,4 @@
-import type { MsgContext } from "./templating.js";
+﻿import type { MsgContext } from "./templating.js";
 
 function formatMediaAttachedLine(params: {
   path: string;
@@ -91,3 +91,4 @@ export function buildInboundMediaNote(ctx: MsgContext): string | undefined {
   }
   return lines.join("\n");
 }
+

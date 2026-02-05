@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Cron jobs + wakeups for the Gateway scheduler"
 read_when:
   - Scheduling background jobs or wakeups
@@ -11,27 +11,27 @@ title: "Cron Jobs"
 
 > **Cron vs Heartbeat?** See [Cron vs Heartbeat](/automation/cron-vs-heartbeat) for guidance on when to use each.
 
-Cron is the Gateway’s built-in scheduler. It persists jobs, wakes the agent at
+Cron is the Gatewayâ€™s built-in scheduler. It persists jobs, wakes the agent at
 the right time, and can optionally deliver output back to a chat.
 
-If you want _“run this every morning”_ or _“poke the agent in 20 minutes”_,
+If you want _â€œrun this every morningâ€_ or _â€œpoke the agent in 20 minutesâ€_,
 cron is the mechanism.
 
 ## TL;DR
 
 - Cron runs **inside the Gateway** (not inside the model).
-- Jobs persist under `~/.openclaw/cron/` so restarts don’t lose schedules.
+- Jobs persist under `~/./cron/` so restarts donâ€™t lose schedules.
 - Two execution styles:
   - **Main session**: enqueue a system event, then run on the next heartbeat.
   - **Isolated**: run a dedicated agent turn in `cron:<jobId>`, with delivery (announce by default or none).
-- Wakeups are first-class: a job can request “wake now” vs “next heartbeat”.
+- Wakeups are first-class: a job can request â€œwake nowâ€ vs â€œnext heartbeatâ€.
 
 ## Quick start (actionable)
 
 Create a one-shot reminder, verify it exists, and run it immediately:
 
 ```bash
-openclaw cron add \
+ cron add \
   --name "Reminder" \
   --at "2026-02-01T16:00:00Z" \
   --session main \
@@ -39,15 +39,15 @@ openclaw cron add \
   --wake now \
   --delete-after-run
 
-openclaw cron list
-openclaw cron run <job-id> --force
-openclaw cron runs --id <job-id>
+ cron list
+ cron run <job-id> --force
+ cron runs --id <job-id>
 ```
 
 Schedule a recurring isolated job with delivery:
 
 ```bash
-openclaw cron add \
+ cron add \
   --name "Morning brief" \
   --cron "0 7 * * *" \
   --tz "America/Los_Angeles" \
@@ -64,9 +64,9 @@ For the canonical JSON shapes and examples, see [JSON schema for tool calls](/au
 
 ## Where cron jobs are stored
 
-Cron jobs are persisted on the Gateway host at `~/.openclaw/cron/jobs.json` by default.
+Cron jobs are persisted on the Gateway host at `~/./cron/jobs.json` by default.
 The Gateway loads the file into memory and writes it back on changes, so manual edits
-are only safe when the Gateway is stopped. Prefer `openclaw cron add/edit` or the cron
+are only safe when the Gateway is stopped. Prefer ` cron add/edit` or the cron
 tool call API for changes.
 
 ## Beginner-friendly overview
@@ -74,17 +74,17 @@ tool call API for changes.
 Think of a cron job as: **when** to run + **what** to do.
 
 1. **Choose a schedule**
-   - One-shot reminder → `schedule.kind = "at"` (CLI: `--at`)
-   - Repeating job → `schedule.kind = "every"` or `schedule.kind = "cron"`
+   - One-shot reminder â†’ `schedule.kind = "at"` (CLI: `--at`)
+   - Repeating job â†’ `schedule.kind = "every"` or `schedule.kind = "cron"`
    - If your ISO timestamp omits a timezone, it is treated as **UTC**.
 
 2. **Choose where it runs**
-   - `sessionTarget: "main"` → run during the next heartbeat with main context.
-   - `sessionTarget: "isolated"` → run a dedicated agent turn in `cron:<jobId>`.
+   - `sessionTarget: "main"` â†’ run during the next heartbeat with main context.
+   - `sessionTarget: "isolated"` â†’ run a dedicated agent turn in `cron:<jobId>`.
 
 3. **Choose the payload**
-   - Main session → `payload.kind = "systemEvent"`
-   - Isolated session → `payload.kind = "agentTurn"`
+   - Main session â†’ `payload.kind = "systemEvent"`
+   - Isolated session â†’ `payload.kind = "agentTurn"`
 
 Optional: one-shot jobs (`schedule.kind = "at"`) delete after success by default. Set
 `deleteAfterRun: false` to keep them (they will disable after success).
@@ -113,7 +113,7 @@ Cron supports three schedule kinds:
 - `every`: fixed interval (ms).
 - `cron`: 5-field cron expression with optional IANA timezone.
 
-Cron expressions use `croner`. If a timezone is omitted, the Gateway host’s
+Cron expressions use `croner`. If a timezone is omitted, the Gateway hostâ€™s
 local timezone is used.
 
 ### Main vs isolated execution
@@ -171,7 +171,7 @@ Delivery config (isolated jobs only):
 Announce delivery suppresses messaging tool sends for the run; use `delivery.channel`/`delivery.to`
 to target the chat instead. When `delivery.mode = "none"`, no summary is posted to the main session.
 
-If `delivery` is omitted for isolated jobs, OpenClaw defaults to `announce`.
+If `delivery` is omitted for isolated jobs,  defaults to `announce`.
 
 #### Announce delivery flow
 
@@ -217,8 +217,8 @@ Isolated jobs can deliver output to a channel via the top-level `delivery` confi
 
 Delivery config is only valid for isolated jobs (`sessionTarget: "isolated"`).
 
-If `delivery.channel` or `delivery.to` is omitted, cron can fall back to the main session’s
-“last route” (the last place the agent replied).
+If `delivery.channel` or `delivery.to` is omitted, cron can fall back to the main sessionâ€™s
+â€œlast routeâ€ (the last place the agent replied).
 
 Target format reminders:
 
@@ -319,8 +319,8 @@ Notes:
 
 ## Storage & history
 
-- Job store: `~/.openclaw/cron/jobs.json` (Gateway-managed JSON).
-- Run history: `~/.openclaw/cron/runs/<jobId>.jsonl` (JSONL, auto-pruned).
+- Job store: `~/./cron/jobs.json` (Gateway-managed JSON).
+- Run history: `~/./cron/runs/<jobId>.jsonl` (JSONL, auto-pruned).
 - Override store path: `cron.store` in config.
 
 ## Configuration
@@ -329,7 +329,7 @@ Notes:
 {
   cron: {
     enabled: true, // default true
-    store: "~/.openclaw/cron/jobs.json",
+    store: "~/./cron/jobs.json",
     maxConcurrentRuns: 1, // default 1
   },
 }
@@ -338,14 +338,14 @@ Notes:
 Disable cron entirely:
 
 - `cron.enabled: false` (config)
-- `OPENCLAW_SKIP_CRON=1` (env)
+- `_SKIP_CRON=1` (env)
 
 ## CLI quickstart
 
 One-shot reminder (UTC ISO, auto-delete after success):
 
 ```bash
-openclaw cron add \
+ cron add \
   --name "Send reminder" \
   --at "2026-01-12T18:00:00Z" \
   --session main \
@@ -357,7 +357,7 @@ openclaw cron add \
 One-shot reminder (main session, wake immediately):
 
 ```bash
-openclaw cron add \
+ cron add \
   --name "Calendar check" \
   --at "20m" \
   --session main \
@@ -368,7 +368,7 @@ openclaw cron add \
 Recurring isolated job (announce to WhatsApp):
 
 ```bash
-openclaw cron add \
+ cron add \
   --name "Morning status" \
   --cron "0 7 * * *" \
   --tz "America/Los_Angeles" \
@@ -382,7 +382,7 @@ openclaw cron add \
 Recurring isolated job (deliver to a Telegram topic):
 
 ```bash
-openclaw cron add \
+ cron add \
   --name "Nightly summary (topic)" \
   --cron "0 22 * * *" \
   --tz "America/Los_Angeles" \
@@ -396,7 +396,7 @@ openclaw cron add \
 Isolated job with model and thinking override:
 
 ```bash
-openclaw cron add \
+ cron add \
   --name "Deep analysis" \
   --cron "0 6 * * 1" \
   --tz "America/Los_Angeles" \
@@ -413,23 +413,23 @@ Agent selection (multi-agent setups):
 
 ```bash
 # Pin a job to agent "ops" (falls back to default if that agent is missing)
-openclaw cron add --name "Ops sweep" --cron "0 6 * * *" --session isolated --message "Check ops queue" --agent ops
+ cron add --name "Ops sweep" --cron "0 6 * * *" --session isolated --message "Check ops queue" --agent ops
 
 # Switch or clear the agent on an existing job
-openclaw cron edit <jobId> --agent ops
-openclaw cron edit <jobId> --clear-agent
+ cron edit <jobId> --agent ops
+ cron edit <jobId> --clear-agent
 ```
 
 Manual run (debug):
 
 ```bash
-openclaw cron run <jobId> --force
+ cron run <jobId> --force
 ```
 
 Edit an existing job (patch fields):
 
 ```bash
-openclaw cron edit <jobId> \
+ cron edit <jobId> \
   --message "Updated prompt" \
   --model "opus" \
   --thinking low
@@ -438,31 +438,32 @@ openclaw cron edit <jobId> \
 Run history:
 
 ```bash
-openclaw cron runs --id <jobId> --limit 50
+ cron runs --id <jobId> --limit 50
 ```
 
 Immediate system event without creating a job:
 
 ```bash
-openclaw system event --mode now --text "Next heartbeat: check battery."
+ system event --mode now --text "Next heartbeat: check battery."
 ```
 
 ## Gateway API surface
 
 - `cron.list`, `cron.status`, `cron.add`, `cron.update`, `cron.remove`
 - `cron.run` (force or due), `cron.runs`
-  For immediate system events without a job, use [`openclaw system event`](/cli/system).
+  For immediate system events without a job, use [` system event`](/cli/system).
 
 ## Troubleshooting
 
-### “Nothing runs”
+### â€œNothing runsâ€
 
-- Check cron is enabled: `cron.enabled` and `OPENCLAW_SKIP_CRON`.
+- Check cron is enabled: `cron.enabled` and `_SKIP_CRON`.
 - Check the Gateway is running continuously (cron runs inside the Gateway process).
 - For `cron` schedules: confirm timezone (`--tz`) vs the host timezone.
 
 ### Telegram delivers to the wrong place
 
-- For forum topics, use `-100…:topic:<id>` so it’s explicit and unambiguous.
-- If you see `telegram:...` prefixes in logs or stored “last route” targets, that’s normal;
+- For forum topics, use `-100â€¦:topic:<id>` so itâ€™s explicit and unambiguous.
+- If you see `telegram:...` prefixes in logs or stored â€œlast routeâ€ targets, thatâ€™s normal;
   cron delivery accepts them and still parses topic IDs correctly.
+

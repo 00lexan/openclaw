@@ -1,4 +1,4 @@
-import type { WebInboundMsg } from "../types.js";
+﻿import type { WebInboundMsg } from "../types.js";
 import { jidToE164, normalizeE164 } from "../../../utils.js";
 
 export function resolvePeerId(msg: WebInboundMsg) {
@@ -13,3 +13,4 @@ export function resolvePeerId(msg: WebInboundMsg) {
   }
   return normalizeE164(msg.from) ?? msg.from;
 }
+

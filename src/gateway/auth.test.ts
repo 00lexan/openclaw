@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { authorizeGatewayConnect } from "./auth.js";
 
 describe("gateway auth", () => {
@@ -99,3 +99,4 @@ describe("gateway auth", () => {
     expect(res.user).toBe("peter");
   });
 });
+

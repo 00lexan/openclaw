@@ -1,4 +1,4 @@
-export type ReplyToMode = "off" | "first" | "all";
+﻿export type ReplyToMode = "off" | "first" | "all";
 export type GroupPolicy = "open" | "disabled" | "allowlist";
 export type DmPolicy = "pairing" | "allowlist" | "open" | "disabled";
 
@@ -95,3 +95,4 @@ export type CoreConfig = {
   };
   [key: string]: unknown;
 };
+

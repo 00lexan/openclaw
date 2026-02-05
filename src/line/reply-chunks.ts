@@ -1,4 +1,4 @@
-import type { messagingApi } from "@line/bot-sdk";
+﻿import type { messagingApi } from "@line/bot-sdk";
 
 export type LineReplyMessage = messagingApi.TextMessage;
 
@@ -99,3 +99,4 @@ export async function sendLineReplyChunks(
 
   return { replyTokenUsed };
 }
+

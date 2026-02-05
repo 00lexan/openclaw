@@ -1,4 +1,4 @@
----
+﻿---
 summary: "How the mac app embeds the gateway WebChat and how to debug it"
 read_when:
   - Debugging mac WebChat view or loopback port
@@ -17,20 +17,20 @@ agent (with a session switcher for other sessions).
 
 ## Launch & debugging
 
-- Manual: Lobster menu → “Open Chat”.
-- Auto‑open for testing:
+- Manual: Lobster menu â†’ â€œOpen Chatâ€.
+- Autoâ€‘open for testing:
   ```bash
-  dist/OpenClaw.app/Contents/MacOS/OpenClaw --webchat
+  dist/.app/Contents/MacOS/ --webchat
   ```
 - Logs: `./scripts/clawlog.sh` (subsystem `bot.molt`, category `WebChatSwiftUI`).
 
-## How it’s wired
+## How itâ€™s wired
 
 - Data plane: Gateway WS methods `chat.history`, `chat.send`, `chat.abort`,
   `chat.inject` and events `chat`, `agent`, `presence`, `tick`, `health`.
 - Session: defaults to the primary session (`main`, or `global` when scope is
   global). The UI can switch between sessions.
-- Onboarding uses a dedicated session to keep first‑run setup separate.
+- Onboarding uses a dedicated session to keep firstâ€‘run setup separate.
 
 ## Security surface
 
@@ -39,3 +39,4 @@ agent (with a session switcher for other sessions).
 ## Known limitations
 
 - The UI is optimized for chat sessions (not a full browser sandbox).
+

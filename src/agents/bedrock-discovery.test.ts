@@ -1,4 +1,4 @@
-import type { BedrockClient } from "@aws-sdk/client-bedrock";
+﻿import type { BedrockClient } from "@aws-sdk/client-bedrock";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const sendMock = vi.fn();
@@ -191,3 +191,4 @@ describe("bedrock discovery", () => {
     expect(sendMock).toHaveBeenCalledTimes(2);
   });
 });
+

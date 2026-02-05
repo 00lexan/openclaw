@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BlockStreamingCoalesceConfig,
   DmPolicy,
   GroupPolicy,
@@ -23,7 +23,7 @@ export type IMessageAccountConfig = {
   cliPath?: string;
   /** Optional Messages db path override. */
   dbPath?: string;
-  /** Remote host for SCP when attachments live on a different machine (e.g., openclaw@192.168.64.3). */
+  /** Remote host for SCP when attachments live on a different machine (e.g., @192.168.64.3). */
   remoteHost?: string;
   /** Optional default send service (imessage|sms|auto). */
   service?: "imessage" | "sms" | "auto";
@@ -79,3 +79,4 @@ export type IMessageConfig = {
   /** Optional per-account iMessage configuration (multi-account). */
   accounts?: Record<string, IMessageAccountConfig>;
 } & IMessageAccountConfig;
+

@@ -1,4 +1,4 @@
-# 1Password CLI get-started (summary)
+﻿# 1Password CLI get-started (summary)
 
 - Works on macOS, Windows, and Linux.
   - macOS/Linux shells: bash, zsh, sh, fish.
@@ -15,3 +15,4 @@
 - After integration, run any command to sign in (example in docs: `op vault list`).
 - If multiple accounts: use `op signin` to pick one, or `--account` / `OP_ACCOUNT`.
 - For non-integration auth, use `op account add`.
+

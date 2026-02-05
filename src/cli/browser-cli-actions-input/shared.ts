@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { BrowserFormField } from "../../browser/client-actions-core.js";
 import { danger } from "../../globals.js";
 import { defaultRuntime } from "../../runtime.js";
@@ -86,3 +86,4 @@ export async function readFields(opts: {
     throw new Error(`fields[${index}].value must be string, number, boolean, or null`);
   });
 }
+

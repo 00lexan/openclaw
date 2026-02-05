@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BlockStreamingCoalesceConfig,
   DmPolicy,
   GroupPolicy,
@@ -109,3 +109,4 @@ export type MSTeamsConfig = {
   /** Outbound response prefix override for this channel/account. */
   responsePrefix?: string;
 };
+

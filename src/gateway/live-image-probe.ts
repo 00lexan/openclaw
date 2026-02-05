@@ -1,4 +1,4 @@
-import { deflateSync } from "node:zlib";
+﻿import { deflateSync } from "node:zlib";
 
 const CRC_TABLE = (() => {
   const table = new Uint32Array(256);
@@ -212,3 +212,4 @@ export function renderCatNoncePngBase64(nonce: string): string {
   const png = encodePngRgba(buf, width, height);
   return png.toString("base64");
 }
+

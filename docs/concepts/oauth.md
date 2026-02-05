@@ -1,7 +1,7 @@
----
-summary: "OAuth in OpenClaw: token exchange, storage, and multi-account patterns"
+﻿---
+summary: "OAuth in : token exchange, storage, and multi-account patterns"
 read_when:
-  - You want to understand OpenClaw OAuth end-to-end
+  - You want to understand  OAuth end-to-end
   - You hit token invalidation / logout issues
   - You want setup-token or OAuth auth flows
   - You want multiple accounts or profile routing
@@ -10,17 +10,17 @@ title: "OAuth"
 
 # OAuth
 
-OpenClaw supports “subscription auth” via OAuth for providers that offer it (notably **OpenAI Codex (ChatGPT OAuth)**). For Anthropic subscriptions, use the **setup-token** flow. This page explains:
+ supports â€œsubscription authâ€ via OAuth for providers that offer it (notably **OpenAI Codex (ChatGPT OAuth)**). For Anthropic subscriptions, use the **setup-token** flow. This page explains:
 
 - how the OAuth **token exchange** works (PKCE)
 - where tokens are **stored** (and why)
 - how to handle **multiple accounts** (profiles + per-session overrides)
 
-OpenClaw also supports **provider plugins** that ship their own OAuth or API‑key
+ also supports **provider plugins** that ship their own OAuth or APIâ€‘key
 flows. Run them via:
 
 ```bash
-openclaw models auth login --provider <id>
+ models auth login --provider <id>
 ```
 
 ## The token sink (why it exists)
@@ -29,9 +29,9 @@ OAuth providers commonly mint a **new refresh token** during login/refresh flows
 
 Practical symptom:
 
-- you log in via OpenClaw _and_ via Claude Code / Codex CLI → one of them randomly gets “logged out” later
+- you log in via  _and_ via Claude Code / Codex CLI â†’ one of them randomly gets â€œlogged outâ€ later
 
-To reduce that, OpenClaw treats `auth-profiles.json` as a **token sink**:
+To reduce that,  treats `auth-profiles.json` as a **token sink**:
 
 - the runtime reads credentials from **one place**
 - we can keep multiple profiles and route them deterministically
@@ -40,48 +40,48 @@ To reduce that, OpenClaw treats `auth-profiles.json` as a **token sink**:
 
 Secrets are stored **per-agent**:
 
-- Auth profiles (OAuth + API keys): `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`
-- Runtime cache (managed automatically; don’t edit): `~/.openclaw/agents/<agentId>/agent/auth.json`
+- Auth profiles (OAuth + API keys): `~/./agents/<agentId>/agent/auth-profiles.json`
+- Runtime cache (managed automatically; donâ€™t edit): `~/./agents/<agentId>/agent/auth.json`
 
 Legacy import-only file (still supported, but not the main store):
 
-- `~/.openclaw/credentials/oauth.json` (imported into `auth-profiles.json` on first use)
+- `~/./credentials/oauth.json` (imported into `auth-profiles.json` on first use)
 
-All of the above also respect `$OPENCLAW_STATE_DIR` (state dir override). Full reference: [/gateway/configuration](/gateway/configuration#auth-storage-oauth--api-keys)
+All of the above also respect `$_STATE_DIR` (state dir override). Full reference: [/gateway/configuration](/gateway/configuration#auth-storage-oauth--api-keys)
 
 ## Anthropic setup-token (subscription auth)
 
-Run `claude setup-token` on any machine, then paste it into OpenClaw:
+Run `claude setup-token` on any machine, then paste it into :
 
 ```bash
-openclaw models auth setup-token --provider anthropic
+ models auth setup-token --provider anthropic
 ```
 
 If you generated the token elsewhere, paste it manually:
 
 ```bash
-openclaw models auth paste-token --provider anthropic
+ models auth paste-token --provider anthropic
 ```
 
 Verify:
 
 ```bash
-openclaw models status
+ models status
 ```
 
 ## OAuth exchange (how login works)
 
-OpenClaw’s interactive login flows are implemented in `@mariozechner/pi-ai` and wired into the wizards/commands.
+â€™s interactive login flows are implemented in `@mariozechner/pi-ai` and wired into the wizards/commands.
 
 ### Anthropic (Claude Pro/Max) setup-token
 
 Flow shape:
 
 1. run `claude setup-token`
-2. paste the token into OpenClaw
+2. paste the token into 
 3. store as a token auth profile (no refresh)
 
-The wizard path is `openclaw onboard` → auth choice `setup-token` (Anthropic).
+The wizard path is ` onboard` â†’ auth choice `setup-token` (Anthropic).
 
 ### OpenAI Codex (ChatGPT OAuth)
 
@@ -90,11 +90,11 @@ Flow shape (PKCE):
 1. generate PKCE verifier/challenge + random `state`
 2. open `https://auth.openai.com/oauth/authorize?...`
 3. try to capture callback on `http://127.0.0.1:1455/auth/callback`
-4. if callback can’t bind (or you’re remote/headless), paste the redirect URL/code
+4. if callback canâ€™t bind (or youâ€™re remote/headless), paste the redirect URL/code
 5. exchange at `https://auth.openai.com/oauth/token`
 6. extract `accountId` from the access token and store `{ access, refresh, expires, accountId }`
 
-Wizard path is `openclaw onboard` → auth choice `openai-codex`.
+Wizard path is ` onboard` â†’ auth choice `openai-codex`.
 
 ## Refresh + expiry
 
@@ -102,8 +102,8 @@ Profiles store an `expires` timestamp.
 
 At runtime:
 
-- if `expires` is in the future → use the stored access token
-- if expired → refresh (under a file lock) and overwrite the stored credentials
+- if `expires` is in the future â†’ use the stored access token
+- if expired â†’ refresh (under a file lock) and overwrite the stored credentials
 
 The refresh flow is automatic; you generally don't need to manage tokens manually.
 
@@ -113,11 +113,11 @@ Two patterns:
 
 ### 1) Preferred: separate agents
 
-If you want “personal” and “work” to never interact, use isolated agents (separate sessions + credentials + workspace):
+If you want â€œpersonalâ€ and â€œworkâ€ to never interact, use isolated agents (separate sessions + credentials + workspace):
 
 ```bash
-openclaw agents add work
-openclaw agents add personal
+ agents add work
+ agents add personal
 ```
 
 Then configure auth per-agent (wizard) and route chats to the right agent.
@@ -137,9 +137,10 @@ Example (session override):
 
 How to see what profile IDs exist:
 
-- `openclaw channels list --json` (shows `auth[]`)
+- ` channels list --json` (shows `auth[]`)
 
 Related docs:
 
 - [/concepts/model-failover](/concepts/model-failover) (rotation + cooldown rules)
 - [/tools/slash-commands](/tools/slash-commands) (command surface)
+

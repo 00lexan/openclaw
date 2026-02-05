@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk";
+﻿import type { Config } from "/plugin-sdk";
 import { resolveBlueBubblesAccount } from "./accounts.js";
 import { blueBubblesFetchWithTimeout, buildBlueBubblesApiUrl } from "./types.js";
 
@@ -7,7 +7,7 @@ export type BlueBubblesReactionOpts = {
   password?: string;
   accountId?: string;
   timeoutMs?: number;
-  cfg?: OpenClawConfig;
+  cfg?: Config;
 };
 
 const REACTION_TYPES = new Set(["love", "like", "dislike", "laugh", "emphasize", "question"]);
@@ -16,8 +16,8 @@ const REACTION_ALIASES = new Map<string, string>([
   // General
   ["heart", "love"],
   ["love", "love"],
-  ["❤", "love"],
-  ["❤️", "love"],
+  ["â¤", "love"],
+  ["â¤ï¸", "love"],
   ["red_heart", "love"],
   ["thumbs_up", "like"],
   ["thumbsup", "like"],
@@ -37,8 +37,8 @@ const REACTION_ALIASES = new Map<string, string>([
   ["lol", "laugh"],
   ["lmao", "laugh"],
   ["rofl", "laugh"],
-  ["😂", "laugh"],
-  ["🤣", "laugh"],
+  ["ðŸ˜‚", "laugh"],
+  ["ðŸ¤£", "laugh"],
   ["xd", "laugh"],
   ["laugh", "laugh"],
   // Emphasize / exclaim
@@ -46,16 +46,16 @@ const REACTION_ALIASES = new Map<string, string>([
   ["emphasize", "emphasize"],
   ["exclaim", "emphasize"],
   ["!!", "emphasize"],
-  ["‼", "emphasize"],
-  ["‼️", "emphasize"],
-  ["❗", "emphasize"],
+  ["â€¼", "emphasize"],
+  ["â€¼ï¸", "emphasize"],
+  ["â—", "emphasize"],
   ["important", "emphasize"],
   ["bang", "emphasize"],
   // Question
   ["question", "question"],
   ["?", "question"],
-  ["❓", "question"],
-  ["❔", "question"],
+  ["â“", "question"],
+  ["â”", "question"],
   ["ask", "question"],
   // Apple/Messages names
   ["loved", "love"],
@@ -66,7 +66,7 @@ const REACTION_ALIASES = new Map<string, string>([
   ["questioned", "question"],
   // Colloquial / informal
   ["fire", "love"],
-  ["🔥", "love"],
+  ["ðŸ”¥", "love"],
   ["wow", "emphasize"],
   ["!", "emphasize"],
   // Edge: generic emoji name forms
@@ -79,34 +79,34 @@ const REACTION_ALIASES = new Map<string, string>([
 
 const REACTION_EMOJIS = new Map<string, string>([
   // Love
-  ["❤️", "love"],
-  ["❤", "love"],
-  ["♥️", "love"],
-  ["♥", "love"],
-  ["😍", "love"],
-  ["💕", "love"],
+  ["â¤ï¸", "love"],
+  ["â¤", "love"],
+  ["â™¥ï¸", "love"],
+  ["â™¥", "love"],
+  ["ðŸ˜", "love"],
+  ["ðŸ’•", "love"],
   // Like
-  ["👍", "like"],
-  ["👌", "like"],
+  ["ðŸ‘", "like"],
+  ["ðŸ‘Œ", "like"],
   // Dislike
-  ["👎", "dislike"],
-  ["🙅", "dislike"],
+  ["ðŸ‘Ž", "dislike"],
+  ["ðŸ™…", "dislike"],
   // Laugh
-  ["😂", "laugh"],
-  ["🤣", "laugh"],
-  ["😆", "laugh"],
-  ["😁", "laugh"],
-  ["😹", "laugh"],
+  ["ðŸ˜‚", "laugh"],
+  ["ðŸ¤£", "laugh"],
+  ["ðŸ˜†", "laugh"],
+  ["ðŸ˜", "laugh"],
+  ["ðŸ˜¹", "laugh"],
   // Emphasize
-  ["‼️", "emphasize"],
-  ["‼", "emphasize"],
+  ["â€¼ï¸", "emphasize"],
+  ["â€¼", "emphasize"],
   ["!!", "emphasize"],
-  ["❗", "emphasize"],
-  ["❕", "emphasize"],
+  ["â—", "emphasize"],
+  ["â•", "emphasize"],
   ["!", "emphasize"],
   // Question
-  ["❓", "question"],
-  ["❔", "question"],
+  ["â“", "question"],
+  ["â”", "question"],
   ["?", "question"],
 ]);
 
@@ -186,3 +186,4 @@ export async function sendBlueBubblesReaction(params: {
     throw new Error(`BlueBubbles reaction failed (${res.status}): ${errorText || "unknown"}`);
   }
 }
+

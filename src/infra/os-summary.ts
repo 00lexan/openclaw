@@ -1,4 +1,4 @@
-import { spawnSync } from "node:child_process";
+﻿import { spawnSync } from "node:child_process";
 import os from "node:os";
 
 export type OsSummary = {
@@ -33,3 +33,4 @@ export function resolveOsSummary(): OsSummary {
   })();
   return { platform, arch, release, label };
 }
+

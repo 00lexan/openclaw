@@ -1,4 +1,4 @@
-/**
+﻿/**
  * OpenCode Zen model catalog with dynamic fetching, caching, and static fallback.
  *
  * OpenCode Zen is a $200/month subscription that provides proxy access to multiple
@@ -305,3 +305,4 @@ export function clearOpencodeZenModelCache(): void {
   cachedModels = null;
   cacheTimestamp = 0;
 }
+

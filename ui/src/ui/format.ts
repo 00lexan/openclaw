@@ -1,4 +1,4 @@
-import { stripReasoningTagsFromText } from "../../../src/shared/text/reasoning-tags.js";
+﻿import { stripReasoningTagsFromText } from "../../../src/shared/text/reasoning-tags.js";
 
 export function formatMs(ms?: number | null): string {
   if (!ms && ms !== 0) {
@@ -64,7 +64,7 @@ export function clampText(value: string, max = 120): string {
   if (value.length <= max) {
     return value;
   }
-  return `${value.slice(0, Math.max(0, max - 1))}…`;
+  return `${value.slice(0, Math.max(0, max - 1))}â€¦`;
 }
 
 export function truncateText(
@@ -100,3 +100,4 @@ export function parseList(input: string): string[] {
 export function stripThinkingTags(value: string): string {
   return stripReasoningTagsFromText(value, { mode: "preserve", trim: "start" });
 }
+

@@ -1,6 +1,6 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import {
   formatUserTime,
   resolveUserTimeFormat,
@@ -31,7 +31,7 @@ export type SystemPromptRuntimeParams = {
 };
 
 export function buildSystemPromptParams(params: {
-  config?: OpenClawConfig;
+  config?: Config;
   agentId?: string;
   runtime: Omit<RuntimeInfoInput, "agentId">;
   workspaceDir?: string;
@@ -58,7 +58,7 @@ export function buildSystemPromptParams(params: {
 }
 
 function resolveRepoRoot(params: {
-  config?: OpenClawConfig;
+  config?: Config;
   workspaceDir?: string;
   cwd?: string;
 }): string | undefined {
@@ -112,3 +112,4 @@ function findGitRoot(startDir: string): string | null {
   }
   return null;
 }
+

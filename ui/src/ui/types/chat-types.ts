@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Chat message types for the UI layer.
  */
 
@@ -41,3 +41,4 @@ export type ToolCard = {
   args?: unknown;
   text?: string;
 };
+

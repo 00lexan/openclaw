@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import path from "node:path";
 import { normalizeAgentId } from "../../routing/session-key.js";
 import { resolveUserPath } from "../../utils.js";
@@ -44,3 +44,4 @@ export function resolveSandboxAgentId(scopeKey: string): string | undefined {
   }
   return resolveAgentIdFromSessionKey(trimmed);
 }
+

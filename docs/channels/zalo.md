@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Zalo bot support status, capabilities, and configuration"
 read_when:
   - Working on Zalo features or webhooks
@@ -13,15 +13,15 @@ Status: experimental. Direct messages only; groups coming soon per Zalo docs.
 
 Zalo ships as a plugin and is not bundled with the core install.
 
-- Install via CLI: `openclaw plugins install @openclaw/zalo`
+- Install via CLI: ` plugins install @/zalo`
 - Or select **Zalo** during onboarding and confirm the install prompt
 - Details: [Plugins](/plugin)
 
 ## Quick setup (beginner)
 
 1. Install the Zalo plugin:
-   - From a source checkout: `openclaw plugins install ./extensions/zalo`
-   - From npm (if published): `openclaw plugins install @openclaw/zalo`
+   - From a source checkout: ` plugins install ./extensions/zalo`
+   - From npm (if published): ` plugins install @/zalo`
    - Or pick **Zalo** in onboarding and confirm the install prompt
 2. Set the token:
    - Env: `ZALO_BOT_TOKEN=...`
@@ -102,8 +102,8 @@ Multi-account support: use `channels.zalo.accounts` with per-account tokens and 
 
 - Default: `channels.zalo.dmPolicy = "pairing"`. Unknown senders receive a pairing code; messages are ignored until approved (codes expire after 1 hour).
 - Approve via:
-  - `openclaw pairing list zalo`
-  - `openclaw pairing approve zalo <CODE>`
+  - ` pairing list zalo`
+  - ` pairing approve zalo <CODE>`
 - Pairing is the default token exchange. Details: [Pairing](/start/pairing)
 - `channels.zalo.allowFrom` accepts numeric user IDs (no username lookup available).
 
@@ -129,27 +129,27 @@ Multi-account support: use `channels.zalo.accounts` with per-account tokens and 
 
 | Feature         | Status                         |
 | --------------- | ------------------------------ |
-| Direct messages | ✅ Supported                   |
-| Groups          | ❌ Coming soon (per Zalo docs) |
-| Media (images)  | ✅ Supported                   |
-| Reactions       | ❌ Not supported               |
-| Threads         | ❌ Not supported               |
-| Polls           | ❌ Not supported               |
-| Native commands | ❌ Not supported               |
-| Streaming       | ⚠️ Blocked (2000 char limit)   |
+| Direct messages | âœ… Supported                   |
+| Groups          | âŒ Coming soon (per Zalo docs) |
+| Media (images)  | âœ… Supported                   |
+| Reactions       | âŒ Not supported               |
+| Threads         | âŒ Not supported               |
+| Polls           | âŒ Not supported               |
+| Native commands | âŒ Not supported               |
+| Streaming       | âš ï¸ Blocked (2000 char limit)   |
 
 ## Delivery targets (CLI/cron)
 
 - Use a chat id as the target.
-- Example: `openclaw message send --channel zalo --target 123456789 --message "hi"`.
+- Example: ` message send --channel zalo --target 123456789 --message "hi"`.
 
 ## Troubleshooting
 
 **Bot doesn't respond:**
 
-- Check that the token is valid: `openclaw channels status --probe`
+- Check that the token is valid: ` channels status --probe`
 - Verify the sender is approved (pairing or allowFrom)
-- Check gateway logs: `openclaw logs --follow`
+- Check gateway logs: ` logs --follow`
 
 **Webhook not receiving events:**
 
@@ -187,3 +187,4 @@ Multi-account options:
 - `channels.zalo.accounts.<id>.webhookSecret`: per-account webhook secret.
 - `channels.zalo.accounts.<id>.webhookPath`: per-account webhook path.
 - `channels.zalo.accounts.<id>.proxy`: per-account proxy URL.
+

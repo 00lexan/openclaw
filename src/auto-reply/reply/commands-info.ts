@@ -1,4 +1,4 @@
-import type { CommandHandler } from "./commands-types.js";
+﻿import type { CommandHandler } from "./commands-types.js";
 import { logVerbose } from "../../globals.js";
 import { listSkillCommandsForAgents } from "../skill-commands.js";
 import {
@@ -95,7 +95,7 @@ export function buildCommandsPaginationKeyboard(
 
   if (currentPage > 1) {
     buttons.push({
-      text: "◀ Prev",
+      text: "â—€ Prev",
       callback_data: `commands_page_${currentPage - 1}${suffix}`,
     });
   }
@@ -107,7 +107,7 @@ export function buildCommandsPaginationKeyboard(
 
   if (currentPage < totalPages) {
     buttons.push({
-      text: "Next ▶",
+      text: "Next â–¶",
       callback_data: `commands_page_${currentPage + 1}${suffix}`,
     });
   }
@@ -183,7 +183,7 @@ export const handleWhoamiCommand: CommandHandler = async (params, allowTextComma
   }
   const senderId = params.ctx.SenderId ?? "";
   const senderUsername = params.ctx.SenderUsername ?? "";
-  const lines = ["🧭 Identity", `Channel: ${params.command.channel}`];
+  const lines = ["ðŸ§­ Identity", `Channel: ${params.command.channel}`];
   if (senderId) {
     lines.push(`User id: ${senderId}`);
   }
@@ -202,3 +202,4 @@ export const handleWhoamiCommand: CommandHandler = async (params, allowTextComma
   }
   return { shouldContinue: false, reply: { text: lines.join("\n") } };
 };
+

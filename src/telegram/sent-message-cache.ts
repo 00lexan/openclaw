@@ -1,4 +1,4 @@
-/**
+﻿/**
  * In-memory cache of sent message IDs per chat.
  * Used to identify bot's own messages for reaction filtering ("own" mode).
  */
@@ -64,3 +64,4 @@ export function wasSentByBot(chatId: number | string, messageId: number): boolea
 export function clearSentMessageCache(): void {
   sentMessages.clear();
 }
+

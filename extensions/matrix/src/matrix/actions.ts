@@ -1,4 +1,4 @@
-export type {
+﻿export type {
   MatrixActionClientOpts,
   MatrixMessageSummary,
   MatrixReactionSummary,
@@ -13,3 +13,4 @@ export { listMatrixReactions, removeMatrixReactions } from "./actions/reactions.
 export { pinMatrixMessage, unpinMatrixMessage, listMatrixPins } from "./actions/pins.js";
 export { getMatrixMemberInfo, getMatrixRoomInfo } from "./actions/room.js";
 export { reactMatrixMessage } from "./send.js";
+

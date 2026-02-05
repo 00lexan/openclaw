@@ -1,4 +1,4 @@
-import {
+﻿import {
   BlockStreamingCoalesceSchema,
   DmConfigSchema,
   DmPolicySchema,
@@ -6,7 +6,7 @@ import {
   MarkdownConfigSchema,
   ToolPolicySchema,
   requireOpenAllowFrom,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import { z } from "zod";
 
 export const NextcloudTalkRoomSchema = z
@@ -77,3 +77,4 @@ export const NextcloudTalkConfigSchema = NextcloudTalkAccountSchemaBase.extend({
       'channels.nextcloud-talk.dmPolicy="open" requires channels.nextcloud-talk.allowFrom to include "*"',
   });
 });
+

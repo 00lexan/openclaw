@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { markdownToSignalText } from "./format.js";
 
 describe("markdownToSignalText", () => {
@@ -42,15 +42,16 @@ describe("markdownToSignalText", () => {
   it("renders lists without extra block markup", () => {
     const res = markdownToSignalText("- one\n- two");
 
-    expect(res.text).toBe("• one\n• two");
+    expect(res.text).toBe("â€¢ one\nâ€¢ two");
     expect(res.styles).toEqual([]);
   });
 
   it("uses UTF-16 code units for offsets", () => {
-    const res = markdownToSignalText("😀 **bold**");
+    const res = markdownToSignalText("ðŸ˜€ **bold**");
 
-    const prefix = "😀 ";
+    const prefix = "ðŸ˜€ ";
     expect(res.text).toBe(`${prefix}bold`);
     expect(res.styles).toEqual([{ start: prefix.length, length: 4, style: "BOLD" }]);
   });
 });
+

@@ -1,4 +1,4 @@
-import type { ChannelDirectoryEntry } from "openclaw/plugin-sdk";
+﻿import type { ChannelDirectoryEntry } from "/plugin-sdk";
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { listMatrixDirectoryPeersLive } from "./directory-live.js";
 import { resolveMatrixTargets } from "./resolve-targets.js";
@@ -46,3 +46,4 @@ describe("resolveMatrixTargets (users)", () => {
     expect(result?.note).toMatch(/use full Matrix ID/i);
   });
 });
+

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { isYes, setVerbose, setYes } from "../globals.js";
 
 vi.mock("node:readline/promises", () => {
@@ -46,3 +46,4 @@ describe("promptYesNo", () => {
     expect(resultYes).toBe(true);
   });
 });
+

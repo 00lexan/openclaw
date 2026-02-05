@@ -1,4 +1,4 @@
-import { cancel, multiselect as clackMultiselect, isCancel } from "@clack/prompts";
+﻿import { cancel, multiselect as clackMultiselect, isCancel } from "@clack/prompts";
 import type { RuntimeEnv } from "../../runtime.js";
 import { resolveApiKeyForProvider } from "../../agents/model-auth.js";
 import { type ModelScanResult, scanOpenRouterModels } from "../../agents/model-scan.js";
@@ -380,3 +380,4 @@ export async function modelsScanCommand(
     runtime.log(`Image model: ${selectedImages[0]}`);
   }
 }
+

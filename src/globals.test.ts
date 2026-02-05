@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 import { isVerbose, isYes, logVerbose, setVerbose, setYes } from "./globals.js";
 
 describe("globals", () => {
@@ -27,3 +27,4 @@ describe("globals", () => {
     expect(isYes()).toBe(false);
   });
 });
+

@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as ssrf from "../../../infra/net/ssrf.js";
 import { describeGeminiVideo } from "./video.js";
 
@@ -119,3 +119,4 @@ describe("describeGeminiVideo", () => {
     );
   });
 });
+

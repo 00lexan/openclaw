@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 开发 MS Teams 渠道功能
-summary: Microsoft Teams 机器人支持状态、功能和配置
+  - å¼€å‘ MS Teams æ¸ é“åŠŸèƒ½
+summary: Microsoft Teams æœºå™¨äººæ”¯æŒçŠ¶æ€ã€åŠŸèƒ½å’Œé…ç½®
 title: Microsoft Teams
 x-i18n:
   generated_at: "2026-02-03T07:46:52Z"
@@ -12,48 +12,48 @@ x-i18n:
   workflow: 15
 ---
 
-# Microsoft Teams（插件）
+# Microsoft Teamsï¼ˆæ’ä»¶ï¼‰
 
-> "进入此地者，放弃一切希望。"
+> "è¿›å…¥æ­¤åœ°è€…ï¼Œæ”¾å¼ƒä¸€åˆ‡å¸Œæœ›ã€‚"
 
-更新时间：2026-01-21
+æ›´æ–°æ—¶é—´ï¼š2026-01-21
 
-状态：支持文本 + 私信附件；频道/群组文件发送需要 `sharePointSiteId` + Graph 权限（参见[在群聊中发送文件](#sending-files-in-group-chats)）。投票通过 Adaptive Cards 发送。
+çŠ¶æ€ï¼šæ”¯æŒæ–‡æœ¬ + ç§ä¿¡é™„ä»¶ï¼›é¢‘é“/ç¾¤ç»„æ–‡ä»¶å‘é€éœ€è¦ `sharePointSiteId` + Graph æƒé™ï¼ˆå‚è§[åœ¨ç¾¤èŠä¸­å‘é€æ–‡ä»¶](#sending-files-in-group-chats)ï¼‰ã€‚æŠ•ç¥¨é€šè¿‡ Adaptive Cards å‘é€ã€‚
 
-## 需要插件
+## éœ€è¦æ’ä»¶
 
-Microsoft Teams 作为插件提供，不包含在核心安装中。
+Microsoft Teams ä½œä¸ºæ’ä»¶æä¾›ï¼Œä¸åŒ…å«åœ¨æ ¸å¿ƒå®‰è£…ä¸­ã€‚
 
-**破坏性变更（2026.1.15）：** MS Teams 已从核心移出。如果你使用它，必须安装插件。
+**ç ´åæ€§å˜æ›´ï¼ˆ2026.1.15ï¼‰ï¼š** MS Teams å·²ä»Žæ ¸å¿ƒç§»å‡ºã€‚å¦‚æžœä½ ä½¿ç”¨å®ƒï¼Œå¿…é¡»å®‰è£…æ’ä»¶ã€‚
 
-原因说明：保持核心安装更轻量，并让 MS Teams 依赖项可以独立更新。
+åŽŸå› è¯´æ˜Žï¼šä¿æŒæ ¸å¿ƒå®‰è£…æ›´è½»é‡ï¼Œå¹¶è®© MS Teams ä¾èµ–é¡¹å¯ä»¥ç‹¬ç«‹æ›´æ–°ã€‚
 
-通过 CLI 安装（npm 注册表）：
-
-```bash
-openclaw plugins install @openclaw/msteams
-```
-
-本地检出（从 git 仓库运行时）：
+é€šè¿‡ CLI å®‰è£…ï¼ˆnpm æ³¨å†Œè¡¨ï¼‰ï¼š
 
 ```bash
-openclaw plugins install ./extensions/msteams
+ plugins install @/msteams
 ```
 
-如果你在配置/新手引导过程中选择 Teams 并检测到 git 检出，
-OpenClaw 将自动提供本地安装路径。
+æœ¬åœ°æ£€å‡ºï¼ˆä»Ž git ä»“åº“è¿è¡Œæ—¶ï¼‰ï¼š
 
-详情：[插件](/plugin)
+```bash
+ plugins install ./extensions/msteams
+```
 
-## 快速设置（初学者）
+å¦‚æžœä½ åœ¨é…ç½®/æ–°æ‰‹å¼•å¯¼è¿‡ç¨‹ä¸­é€‰æ‹© Teams å¹¶æ£€æµ‹åˆ° git æ£€å‡ºï¼Œ
+ å°†è‡ªåŠ¨æä¾›æœ¬åœ°å®‰è£…è·¯å¾„ã€‚
 
-1. 安装 Microsoft Teams 插件。
-2. 创建一个 **Azure Bot**（App ID + 客户端密钥 + 租户 ID）。
-3. 使用这些凭证配置 OpenClaw。
-4. 通过公共 URL 或隧道暴露 `/api/messages`（默认端口 3978）。
-5. 安装 Teams 应用包并启动 Gateway 网关。
+è¯¦æƒ…ï¼š[æ’ä»¶](/plugin)
 
-最小配置：
+## å¿«é€Ÿè®¾ç½®ï¼ˆåˆå­¦è€…ï¼‰
+
+1. å®‰è£… Microsoft Teams æ’ä»¶ã€‚
+2. åˆ›å»ºä¸€ä¸ª **Azure Bot**ï¼ˆApp ID + å®¢æˆ·ç«¯å¯†é’¥ + ç§Ÿæˆ· IDï¼‰ã€‚
+3. ä½¿ç”¨è¿™äº›å‡­è¯é…ç½® ã€‚
+4. é€šè¿‡å…¬å…± URL æˆ–éš§é“æš´éœ² `/api/messages`ï¼ˆé»˜è®¤ç«¯å£ 3978ï¼‰ã€‚
+5. å®‰è£… Teams åº”ç”¨åŒ…å¹¶å¯åŠ¨ Gateway ç½‘å…³ã€‚
+
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -69,19 +69,19 @@ OpenClaw 将自动提供本地安装路径。
 }
 ```
 
-注意：群聊默认被阻止（`channels.msteams.groupPolicy: "allowlist"`）。要允许群组回复，请设置 `channels.msteams.groupAllowFrom`（或使用 `groupPolicy: "open"` 允许任何成员，需要提及才能触发）。
+æ³¨æ„ï¼šç¾¤èŠé»˜è®¤è¢«é˜»æ­¢ï¼ˆ`channels.msteams.groupPolicy: "allowlist"`ï¼‰ã€‚è¦å…è®¸ç¾¤ç»„å›žå¤ï¼Œè¯·è®¾ç½® `channels.msteams.groupAllowFrom`ï¼ˆæˆ–ä½¿ç”¨ `groupPolicy: "open"` å…è®¸ä»»ä½•æˆå‘˜ï¼Œéœ€è¦æåŠæ‰èƒ½è§¦å‘ï¼‰ã€‚
 
-## 目标
+## ç›®æ ‡
 
-- 通过 Teams 私信、群聊或频道与 OpenClaw 交流。
-- 保持路由确定性：回复始终返回到消息到达的渠道。
-- 默认使用安全的渠道行为（除非另有配置，否则需要提及）。
+- é€šè¿‡ Teams ç§ä¿¡ã€ç¾¤èŠæˆ–é¢‘é“ä¸Ž  äº¤æµã€‚
+- ä¿æŒè·¯ç”±ç¡®å®šæ€§ï¼šå›žå¤å§‹ç»ˆè¿”å›žåˆ°æ¶ˆæ¯åˆ°è¾¾çš„æ¸ é“ã€‚
+- é»˜è®¤ä½¿ç”¨å®‰å…¨çš„æ¸ é“è¡Œä¸ºï¼ˆé™¤éžå¦æœ‰é…ç½®ï¼Œå¦åˆ™éœ€è¦æåŠï¼‰ã€‚
 
-## 配置写入
+## é…ç½®å†™å…¥
 
-默认情况下，Microsoft Teams 允许通过 `/config set|unset` 触发的配置更新写入（需要 `commands.config: true`）。
+é»˜è®¤æƒ…å†µä¸‹ï¼ŒMicrosoft Teams å…è®¸é€šè¿‡ `/config set|unset` è§¦å‘çš„é…ç½®æ›´æ–°å†™å…¥ï¼ˆéœ€è¦ `commands.config: true`ï¼‰ã€‚
 
-禁用方式：
+ç¦ç”¨æ–¹å¼ï¼š
 
 ```json5
 {
@@ -89,21 +89,21 @@ OpenClaw 将自动提供本地安装路径。
 }
 ```
 
-## 访问控制（私信 + 群组）
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ + ç¾¤ç»„ï¼‰
 
-**私信访问**
+**ç§ä¿¡è®¿é—®**
 
-- 默认：`channels.msteams.dmPolicy = "pairing"`。未知发送者在获得批准之前将被忽略。
-- `channels.msteams.allowFrom` 接受 AAD 对象 ID、UPN 或显示名称。当凭证允许时，向导会通过 Microsoft Graph 将名称解析为 ID。
+- é»˜è®¤ï¼š`channels.msteams.dmPolicy = "pairing"`ã€‚æœªçŸ¥å‘é€è€…åœ¨èŽ·å¾—æ‰¹å‡†ä¹‹å‰å°†è¢«å¿½ç•¥ã€‚
+- `channels.msteams.allowFrom` æŽ¥å— AAD å¯¹è±¡ IDã€UPN æˆ–æ˜¾ç¤ºåç§°ã€‚å½“å‡­è¯å…è®¸æ—¶ï¼Œå‘å¯¼ä¼šé€šè¿‡ Microsoft Graph å°†åç§°è§£æžä¸º IDã€‚
 
-**群组访问**
+**ç¾¤ç»„è®¿é—®**
 
-- 默认：`channels.msteams.groupPolicy = "allowlist"`（除非添加 `groupAllowFrom`，否则被阻止）。使用 `channels.defaults.groupPolicy` 在未设置时覆盖默认值。
-- `channels.msteams.groupAllowFrom` 控制哪些发送者可以在群聊/频道中触发（回退到 `channels.msteams.allowFrom`）。
-- 设置 `groupPolicy: "open"` 允许任何成员（默认仍需提及才能触发）。
-- 要**不允许任何频道**，设置 `channels.msteams.groupPolicy: "disabled"`。
+- é»˜è®¤ï¼š`channels.msteams.groupPolicy = "allowlist"`ï¼ˆé™¤éžæ·»åŠ  `groupAllowFrom`ï¼Œå¦åˆ™è¢«é˜»æ­¢ï¼‰ã€‚ä½¿ç”¨ `channels.defaults.groupPolicy` åœ¨æœªè®¾ç½®æ—¶è¦†ç›–é»˜è®¤å€¼ã€‚
+- `channels.msteams.groupAllowFrom` æŽ§åˆ¶å“ªäº›å‘é€è€…å¯ä»¥åœ¨ç¾¤èŠ/é¢‘é“ä¸­è§¦å‘ï¼ˆå›žé€€åˆ° `channels.msteams.allowFrom`ï¼‰ã€‚
+- è®¾ç½® `groupPolicy: "open"` å…è®¸ä»»ä½•æˆå‘˜ï¼ˆé»˜è®¤ä»éœ€æåŠæ‰èƒ½è§¦å‘ï¼‰ã€‚
+- è¦**ä¸å…è®¸ä»»ä½•é¢‘é“**ï¼Œè®¾ç½® `channels.msteams.groupPolicy: "disabled"`ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -116,16 +116,16 @@ OpenClaw 将自动提供本地安装路径。
 }
 ```
 
-**团队 + 频道允许列表**
+**å›¢é˜Ÿ + é¢‘é“å…è®¸åˆ—è¡¨**
 
-- 通过在 `channels.msteams.teams` 下列出团队和频道来限定群组/频道回复的范围。
-- 键可以是团队 ID 或名称；频道键可以是会话 ID 或名称。
-- 当 `groupPolicy="allowlist"` 且存在团队允许列表时，仅接受列出的团队/频道（需要提及才能触发）。
-- 配置向导接受 `Team/Channel` 条目并为你存储。
-- 启动时，OpenClaw 将团队/频道和用户允许列表名称解析为 ID（当 Graph 权限允许时）
-  并记录映射；未解析的条目保持原样。
+- é€šè¿‡åœ¨ `channels.msteams.teams` ä¸‹åˆ—å‡ºå›¢é˜Ÿå’Œé¢‘é“æ¥é™å®šç¾¤ç»„/é¢‘é“å›žå¤çš„èŒƒå›´ã€‚
+- é”®å¯ä»¥æ˜¯å›¢é˜Ÿ ID æˆ–åç§°ï¼›é¢‘é“é”®å¯ä»¥æ˜¯ä¼šè¯ ID æˆ–åç§°ã€‚
+- å½“ `groupPolicy="allowlist"` ä¸”å­˜åœ¨å›¢é˜Ÿå…è®¸åˆ—è¡¨æ—¶ï¼Œä»…æŽ¥å—åˆ—å‡ºçš„å›¢é˜Ÿ/é¢‘é“ï¼ˆéœ€è¦æåŠæ‰èƒ½è§¦å‘ï¼‰ã€‚
+- é…ç½®å‘å¯¼æŽ¥å— `Team/Channel` æ¡ç›®å¹¶ä¸ºä½ å­˜å‚¨ã€‚
+- å¯åŠ¨æ—¶ï¼Œ å°†å›¢é˜Ÿ/é¢‘é“å’Œç”¨æˆ·å…è®¸åˆ—è¡¨åç§°è§£æžä¸º IDï¼ˆå½“ Graph æƒé™å…è®¸æ—¶ï¼‰
+  å¹¶è®°å½•æ˜ å°„ï¼›æœªè§£æžçš„æ¡ç›®ä¿æŒåŽŸæ ·ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -144,126 +144,126 @@ OpenClaw 将自动提供本地安装路径。
 }
 ```
 
-## 工作原理
+## å·¥ä½œåŽŸç†
 
-1. 安装 Microsoft Teams 插件。
-2. 创建一个 **Azure Bot**（App ID + 密钥 + 租户 ID）。
-3. 构建一个引用机器人并包含以下 RSC 权限的 **Teams 应用包**。
-4. 将 Teams 应用上传/安装到团队中（或用于私信的个人范围）。
-5. 在 `~/.openclaw/openclaw.json`（或环境变量）中配置 `msteams` 并启动 Gateway 网关。
-6. Gateway 网关默认在 `/api/messages` 上监听 Bot Framework webhook 流量。
+1. å®‰è£… Microsoft Teams æ’ä»¶ã€‚
+2. åˆ›å»ºä¸€ä¸ª **Azure Bot**ï¼ˆApp ID + å¯†é’¥ + ç§Ÿæˆ· IDï¼‰ã€‚
+3. æž„å»ºä¸€ä¸ªå¼•ç”¨æœºå™¨äººå¹¶åŒ…å«ä»¥ä¸‹ RSC æƒé™çš„ **Teams åº”ç”¨åŒ…**ã€‚
+4. å°† Teams åº”ç”¨ä¸Šä¼ /å®‰è£…åˆ°å›¢é˜Ÿä¸­ï¼ˆæˆ–ç”¨äºŽç§ä¿¡çš„ä¸ªäººèŒƒå›´ï¼‰ã€‚
+5. åœ¨ `~/./.json`ï¼ˆæˆ–çŽ¯å¢ƒå˜é‡ï¼‰ä¸­é…ç½® `msteams` å¹¶å¯åŠ¨ Gateway ç½‘å…³ã€‚
+6. Gateway ç½‘å…³é»˜è®¤åœ¨ `/api/messages` ä¸Šç›‘å¬ Bot Framework webhook æµé‡ã€‚
 
-## Azure Bot 设置（前提条件）
+## Azure Bot è®¾ç½®ï¼ˆå‰ææ¡ä»¶ï¼‰
 
-在配置 OpenClaw 之前，你需要创建一个 Azure Bot 资源。
+åœ¨é…ç½®  ä¹‹å‰ï¼Œä½ éœ€è¦åˆ›å»ºä¸€ä¸ª Azure Bot èµ„æºã€‚
 
-### 步骤 1：创建 Azure Bot
+### æ­¥éª¤ 1ï¼šåˆ›å»º Azure Bot
 
-1. 前往[创建 Azure Bot](https://portal.azure.com/#create/Microsoft.AzureBot)
-2. 填写**基本信息**选项卡：
+1. å‰å¾€[åˆ›å»º Azure Bot](https://portal.azure.com/#create/Microsoft.AzureBot)
+2. å¡«å†™**åŸºæœ¬ä¿¡æ¯**é€‰é¡¹å¡ï¼š
 
-   | 字段               | 值                                                  |
+   | å­—æ®µ               | å€¼                                                  |
    | ------------------ | --------------------------------------------------- |
-   | **Bot handle**     | 你的机器人名称，例如 `openclaw-msteams`（必须唯一） |
-   | **Subscription**   | 选择你的 Azure 订阅                                 |
-   | **Resource group** | 新建或使用现有                                      |
-   | **Pricing tier**   | **Free** 用于开发/测试                              |
-   | **Type of App**    | **Single Tenant**（推荐 - 见下方说明）              |
+   | **Bot handle**     | ä½ çš„æœºå™¨äººåç§°ï¼Œä¾‹å¦‚ `-msteams`ï¼ˆå¿…é¡»å”¯ä¸€ï¼‰ |
+   | **Subscription**   | é€‰æ‹©ä½ çš„ Azure è®¢é˜…                                 |
+   | **Resource group** | æ–°å»ºæˆ–ä½¿ç”¨çŽ°æœ‰                                      |
+   | **Pricing tier**   | **Free** ç”¨äºŽå¼€å‘/æµ‹è¯•                              |
+   | **Type of App**    | **Single Tenant**ï¼ˆæŽ¨è - è§ä¸‹æ–¹è¯´æ˜Žï¼‰              |
    | **Creation type**  | **Create new Microsoft App ID**                     |
 
-> **弃用通知：** 2025-07-31 之后已弃用创建新的多租户机器人。新机器人请使用 **Single Tenant**。
+> **å¼ƒç”¨é€šçŸ¥ï¼š** 2025-07-31 ä¹‹åŽå·²å¼ƒç”¨åˆ›å»ºæ–°çš„å¤šç§Ÿæˆ·æœºå™¨äººã€‚æ–°æœºå™¨äººè¯·ä½¿ç”¨ **Single Tenant**ã€‚
 
-3. 点击 **Review + create** → **Create**（等待约 1-2 分钟）
+3. ç‚¹å‡» **Review + create** â†’ **Create**ï¼ˆç­‰å¾…çº¦ 1-2 åˆ†é’Ÿï¼‰
 
-### 步骤 2：获取凭证
+### æ­¥éª¤ 2ï¼šèŽ·å–å‡­è¯
 
-1. 前往你的 Azure Bot 资源 → **Configuration**
-2. 复制 **Microsoft App ID** → 这是你的 `appId`
-3. 点击 **Manage Password** → 前往应用注册
-4. 在 **Certificates & secrets** → **New client secret** → 复制 **Value** → 这是你的 `appPassword`
-5. 前往 **Overview** → 复制 **Directory (tenant) ID** → 这是你的 `tenantId`
+1. å‰å¾€ä½ çš„ Azure Bot èµ„æº â†’ **Configuration**
+2. å¤åˆ¶ **Microsoft App ID** â†’ è¿™æ˜¯ä½ çš„ `appId`
+3. ç‚¹å‡» **Manage Password** â†’ å‰å¾€åº”ç”¨æ³¨å†Œ
+4. åœ¨ **Certificates & secrets** â†’ **New client secret** â†’ å¤åˆ¶ **Value** â†’ è¿™æ˜¯ä½ çš„ `appPassword`
+5. å‰å¾€ **Overview** â†’ å¤åˆ¶ **Directory (tenant) ID** â†’ è¿™æ˜¯ä½ çš„ `tenantId`
 
-### 步骤 3：配置消息端点
+### æ­¥éª¤ 3ï¼šé…ç½®æ¶ˆæ¯ç«¯ç‚¹
 
-1. 在 Azure Bot → **Configuration**
-2. 将 **Messaging endpoint** 设置为你的 webhook URL：
-   - 生产环境：`https://your-domain.com/api/messages`
-   - 本地开发：使用隧道（见下方[本地开发](#local-development-tunneling)）
+1. åœ¨ Azure Bot â†’ **Configuration**
+2. å°† **Messaging endpoint** è®¾ç½®ä¸ºä½ çš„ webhook URLï¼š
+   - ç”Ÿäº§çŽ¯å¢ƒï¼š`https://your-domain.com/api/messages`
+   - æœ¬åœ°å¼€å‘ï¼šä½¿ç”¨éš§é“ï¼ˆè§ä¸‹æ–¹[æœ¬åœ°å¼€å‘](#local-development-tunneling)ï¼‰
 
-### 步骤 4：启用 Teams 渠道
+### æ­¥éª¤ 4ï¼šå¯ç”¨ Teams æ¸ é“
 
-1. 在 Azure Bot → **Channels**
-2. 点击 **Microsoft Teams** → Configure → Save
-3. 接受服务条款
+1. åœ¨ Azure Bot â†’ **Channels**
+2. ç‚¹å‡» **Microsoft Teams** â†’ Configure â†’ Save
+3. æŽ¥å—æœåŠ¡æ¡æ¬¾
 
-## 本地开发（隧道）
+## æœ¬åœ°å¼€å‘ï¼ˆéš§é“ï¼‰
 
-Teams 无法访问 `localhost`。本地开发请使用隧道：
+Teams æ— æ³•è®¿é—® `localhost`ã€‚æœ¬åœ°å¼€å‘è¯·ä½¿ç”¨éš§é“ï¼š
 
-**选项 A：ngrok**
+**é€‰é¡¹ Aï¼šngrok**
 
 ```bash
 ngrok http 3978
-# 复制 https URL，例如 https://abc123.ngrok.io
-# 将消息端点设置为：https://abc123.ngrok.io/api/messages
+# å¤åˆ¶ https URLï¼Œä¾‹å¦‚ https://abc123.ngrok.io
+# å°†æ¶ˆæ¯ç«¯ç‚¹è®¾ç½®ä¸ºï¼šhttps://abc123.ngrok.io/api/messages
 ```
 
-**选项 B：Tailscale Funnel**
+**é€‰é¡¹ Bï¼šTailscale Funnel**
 
 ```bash
 tailscale funnel 3978
-# 使用你的 Tailscale funnel URL 作为消息端点
+# ä½¿ç”¨ä½ çš„ Tailscale funnel URL ä½œä¸ºæ¶ˆæ¯ç«¯ç‚¹
 ```
 
-## Teams 开发者门户（替代方案）
+## Teams å¼€å‘è€…é—¨æˆ·ï¼ˆæ›¿ä»£æ–¹æ¡ˆï¼‰
 
-除了手动创建清单 ZIP，你可以使用 [Teams 开发者门户](https://dev.teams.microsoft.com/apps)：
+é™¤äº†æ‰‹åŠ¨åˆ›å»ºæ¸…å• ZIPï¼Œä½ å¯ä»¥ä½¿ç”¨ [Teams å¼€å‘è€…é—¨æˆ·](https://dev.teams.microsoft.com/apps)ï¼š
 
-1. 点击 **+ New app**
-2. 填写基本信息（名称、描述、开发者信息）
-3. 前往 **App features** → **Bot**
-4. 选择 **Enter a bot ID manually** 并粘贴你的 Azure Bot App ID
-5. 勾选范围：**Personal**、**Team**、**Group Chat**
-6. 点击 **Distribute** → **Download app package**
-7. 在 Teams 中：**Apps** → **Manage your apps** → **Upload a custom app** → 选择 ZIP
+1. ç‚¹å‡» **+ New app**
+2. å¡«å†™åŸºæœ¬ä¿¡æ¯ï¼ˆåç§°ã€æè¿°ã€å¼€å‘è€…ä¿¡æ¯ï¼‰
+3. å‰å¾€ **App features** â†’ **Bot**
+4. é€‰æ‹© **Enter a bot ID manually** å¹¶ç²˜è´´ä½ çš„ Azure Bot App ID
+5. å‹¾é€‰èŒƒå›´ï¼š**Personal**ã€**Team**ã€**Group Chat**
+6. ç‚¹å‡» **Distribute** â†’ **Download app package**
+7. åœ¨ Teams ä¸­ï¼š**Apps** â†’ **Manage your apps** â†’ **Upload a custom app** â†’ é€‰æ‹© ZIP
 
-这通常比手动编辑 JSON 清单更容易。
+è¿™é€šå¸¸æ¯”æ‰‹åŠ¨ç¼–è¾‘ JSON æ¸…å•æ›´å®¹æ˜“ã€‚
 
-## 测试机器人
+## æµ‹è¯•æœºå™¨äºº
 
-**选项 A：Azure Web Chat（先验证 webhook）**
+**é€‰é¡¹ Aï¼šAzure Web Chatï¼ˆå…ˆéªŒè¯ webhookï¼‰**
 
-1. 在 Azure 门户 → 你的 Azure Bot 资源 → **Test in Web Chat**
-2. 发送一条消息 - 你应该看到响应
-3. 这确认你的 webhook 端点在 Teams 设置之前正常工作
+1. åœ¨ Azure é—¨æˆ· â†’ ä½ çš„ Azure Bot èµ„æº â†’ **Test in Web Chat**
+2. å‘é€ä¸€æ¡æ¶ˆæ¯ - ä½ åº”è¯¥çœ‹åˆ°å“åº”
+3. è¿™ç¡®è®¤ä½ çš„ webhook ç«¯ç‚¹åœ¨ Teams è®¾ç½®ä¹‹å‰æ­£å¸¸å·¥ä½œ
 
-**选项 B：Teams（应用安装后）**
+**é€‰é¡¹ Bï¼šTeamsï¼ˆåº”ç”¨å®‰è£…åŽï¼‰**
 
-1. 安装 Teams 应用（侧载或组织目录）
-2. 在 Teams 中找到机器人并发送私信
-3. 检查 Gateway 网关日志中的传入活动
+1. å®‰è£… Teams åº”ç”¨ï¼ˆä¾§è½½æˆ–ç»„ç»‡ç›®å½•ï¼‰
+2. åœ¨ Teams ä¸­æ‰¾åˆ°æœºå™¨äººå¹¶å‘é€ç§ä¿¡
+3. æ£€æŸ¥ Gateway ç½‘å…³æ—¥å¿—ä¸­çš„ä¼ å…¥æ´»åŠ¨
 
-## 设置（最小纯文本）
+## è®¾ç½®ï¼ˆæœ€å°çº¯æ–‡æœ¬ï¼‰
 
-1. **安装 Microsoft Teams 插件**
-   - 从 npm：`openclaw plugins install @openclaw/msteams`
-   - 从本地检出：`openclaw plugins install ./extensions/msteams`
+1. **å®‰è£… Microsoft Teams æ’ä»¶**
+   - ä»Ž npmï¼š` plugins install @/msteams`
+   - ä»Žæœ¬åœ°æ£€å‡ºï¼š` plugins install ./extensions/msteams`
 
-2. **机器人注册**
-   - 创建一个 Azure Bot（见上文）并记录：
+2. **æœºå™¨äººæ³¨å†Œ**
+   - åˆ›å»ºä¸€ä¸ª Azure Botï¼ˆè§ä¸Šæ–‡ï¼‰å¹¶è®°å½•ï¼š
      - App ID
-     - 客户端密钥（App password）
-     - 租户 ID（单租户）
+     - å®¢æˆ·ç«¯å¯†é’¥ï¼ˆApp passwordï¼‰
+     - ç§Ÿæˆ· IDï¼ˆå•ç§Ÿæˆ·ï¼‰
 
-3. **Teams 应用清单**
-   - 包含一个 `bot` 条目，其中 `botId = <App ID>`。
-   - 范围：`personal`、`team`、`groupChat`。
-   - `supportsFiles: true`（个人范围文件处理所需）。
-   - 添加 RSC 权限（见下文）。
-   - 创建图标：`outline.png`（32x32）和 `color.png`（192x192）。
-   - 将三个文件一起打包：`manifest.json`、`outline.png`、`color.png`。
+3. **Teams åº”ç”¨æ¸…å•**
+   - åŒ…å«ä¸€ä¸ª `bot` æ¡ç›®ï¼Œå…¶ä¸­ `botId = <App ID>`ã€‚
+   - èŒƒå›´ï¼š`personal`ã€`team`ã€`groupChat`ã€‚
+   - `supportsFiles: true`ï¼ˆä¸ªäººèŒƒå›´æ–‡ä»¶å¤„ç†æ‰€éœ€ï¼‰ã€‚
+   - æ·»åŠ  RSC æƒé™ï¼ˆè§ä¸‹æ–‡ï¼‰ã€‚
+   - åˆ›å»ºå›¾æ ‡ï¼š`outline.png`ï¼ˆ32x32ï¼‰å’Œ `color.png`ï¼ˆ192x192ï¼‰ã€‚
+   - å°†ä¸‰ä¸ªæ–‡ä»¶ä¸€èµ·æ‰“åŒ…ï¼š`manifest.json`ã€`outline.png`ã€`color.png`ã€‚
 
-4. **配置 OpenClaw**
+4. **é…ç½® **
 
    ```json
    {
@@ -277,45 +277,45 @@ tailscale funnel 3978
    }
    ```
 
-   你也可以使用环境变量代替配置键：
+   ä½ ä¹Ÿå¯ä»¥ä½¿ç”¨çŽ¯å¢ƒå˜é‡ä»£æ›¿é…ç½®é”®ï¼š
    - `MSTEAMS_APP_ID`
    - `MSTEAMS_APP_PASSWORD`
    - `MSTEAMS_TENANT_ID`
 
-5. **机器人端点**
-   - 将 Azure Bot Messaging Endpoint 设置为：
-     - `https://<host>:3978/api/messages`（或你选择的路径/端口）。
+5. **æœºå™¨äººç«¯ç‚¹**
+   - å°† Azure Bot Messaging Endpoint è®¾ç½®ä¸ºï¼š
+     - `https://<host>:3978/api/messages`ï¼ˆæˆ–ä½ é€‰æ‹©çš„è·¯å¾„/ç«¯å£ï¼‰ã€‚
 
-6. **运行 Gateway 网关**
-   - 当插件已安装且 `msteams` 配置存在并有凭证时，Teams 渠道会自动启动。
+6. **è¿è¡Œ Gateway ç½‘å…³**
+   - å½“æ’ä»¶å·²å®‰è£…ä¸” `msteams` é…ç½®å­˜åœ¨å¹¶æœ‰å‡­è¯æ—¶ï¼ŒTeams æ¸ é“ä¼šè‡ªåŠ¨å¯åŠ¨ã€‚
 
-## 历史上下文
+## åŽ†å²ä¸Šä¸‹æ–‡
 
-- `channels.msteams.historyLimit` 控制将多少条最近的频道/群组消息包含到提示中。
-- 回退到 `messages.groupChat.historyLimit`。设置 `0` 禁用（默认 50）。
-- 私信历史可以通过 `channels.msteams.dmHistoryLimit`（用户轮次）限制。每用户覆盖：`channels.msteams.dms["<user_id>"].historyLimit`。
+- `channels.msteams.historyLimit` æŽ§åˆ¶å°†å¤šå°‘æ¡æœ€è¿‘çš„é¢‘é“/ç¾¤ç»„æ¶ˆæ¯åŒ…å«åˆ°æç¤ºä¸­ã€‚
+- å›žé€€åˆ° `messages.groupChat.historyLimit`ã€‚è®¾ç½® `0` ç¦ç”¨ï¼ˆé»˜è®¤ 50ï¼‰ã€‚
+- ç§ä¿¡åŽ†å²å¯ä»¥é€šè¿‡ `channels.msteams.dmHistoryLimit`ï¼ˆç”¨æˆ·è½®æ¬¡ï¼‰é™åˆ¶ã€‚æ¯ç”¨æˆ·è¦†ç›–ï¼š`channels.msteams.dms["<user_id>"].historyLimit`ã€‚
 
-## 当前 Teams RSC 权限（清单）
+## å½“å‰ Teams RSC æƒé™ï¼ˆæ¸…å•ï¼‰
 
-这些是我们 Teams 应用清单中**现有的 resourceSpecific 权限**。它们仅适用于安装了应用的团队/聊天内部。
+è¿™äº›æ˜¯æˆ‘ä»¬ Teams åº”ç”¨æ¸…å•ä¸­**çŽ°æœ‰çš„ resourceSpecific æƒé™**ã€‚å®ƒä»¬ä»…é€‚ç”¨äºŽå®‰è£…äº†åº”ç”¨çš„å›¢é˜Ÿ/èŠå¤©å†…éƒ¨ã€‚
 
-**对于频道（团队范围）：**
+**å¯¹äºŽé¢‘é“ï¼ˆå›¢é˜ŸèŒƒå›´ï¼‰ï¼š**
 
-- `ChannelMessage.Read.Group`（Application）- 无需 @提及即可接收所有频道消息
-- `ChannelMessage.Send.Group`（Application）
-- `Member.Read.Group`（Application）
-- `Owner.Read.Group`（Application）
-- `ChannelSettings.Read.Group`（Application）
-- `TeamMember.Read.Group`（Application）
-- `TeamSettings.Read.Group`（Application）
+- `ChannelMessage.Read.Group`ï¼ˆApplicationï¼‰- æ— éœ€ @æåŠå³å¯æŽ¥æ”¶æ‰€æœ‰é¢‘é“æ¶ˆæ¯
+- `ChannelMessage.Send.Group`ï¼ˆApplicationï¼‰
+- `Member.Read.Group`ï¼ˆApplicationï¼‰
+- `Owner.Read.Group`ï¼ˆApplicationï¼‰
+- `ChannelSettings.Read.Group`ï¼ˆApplicationï¼‰
+- `TeamMember.Read.Group`ï¼ˆApplicationï¼‰
+- `TeamSettings.Read.Group`ï¼ˆApplicationï¼‰
 
-**对于群聊：**
+**å¯¹äºŽç¾¤èŠï¼š**
 
-- `ChatMessage.Read.Chat`（Application）- 无需 @提及即可接收所有群聊消息
+- `ChatMessage.Read.Chat`ï¼ˆApplicationï¼‰- æ— éœ€ @æåŠå³å¯æŽ¥æ”¶æ‰€æœ‰ç¾¤èŠæ¶ˆæ¯
 
-## Teams 清单示例（已脱敏）
+## Teams æ¸…å•ç¤ºä¾‹ï¼ˆå·²è„±æ•ï¼‰
 
-包含必需字段的最小有效示例。请替换 ID 和 URL。
+åŒ…å«å¿…éœ€å­—æ®µçš„æœ€å°æœ‰æ•ˆç¤ºä¾‹ã€‚è¯·æ›¿æ¢ ID å’Œ URLã€‚
 
 ```json
 {
@@ -323,14 +323,14 @@ tailscale funnel 3978
   "manifestVersion": "1.23",
   "version": "1.0.0",
   "id": "00000000-0000-0000-0000-000000000000",
-  "name": { "short": "OpenClaw" },
+  "name": { "short": "" },
   "developer": {
     "name": "Your Org",
     "websiteUrl": "https://example.com",
     "privacyUrl": "https://example.com/privacy",
     "termsOfUseUrl": "https://example.com/terms"
   },
-  "description": { "short": "OpenClaw in Teams", "full": "OpenClaw in Teams" },
+  "description": { "short": " in Teams", "full": " in Teams" },
   "icons": { "outline": "outline.png", "color": "color.png" },
   "accentColor": "#5B6DEF",
   "bots": [
@@ -363,142 +363,142 @@ tailscale funnel 3978
 }
 ```
 
-### 清单注意事项（必填字段）
+### æ¸…å•æ³¨æ„äº‹é¡¹ï¼ˆå¿…å¡«å­—æ®µï¼‰
 
-- `bots[].botId` **必须**与 Azure Bot App ID 匹配。
-- `webApplicationInfo.id` **必须**与 Azure Bot App ID 匹配。
-- `bots[].scopes` 必须包含你计划使用的界面（`personal`、`team`、`groupChat`）。
-- `bots[].supportsFiles: true` 是个人范围文件处理所需的。
-- `authorization.permissions.resourceSpecific` 如果你需要频道流量，必须包含频道读取/发送权限。
+- `bots[].botId` **å¿…é¡»**ä¸Ž Azure Bot App ID åŒ¹é…ã€‚
+- `webApplicationInfo.id` **å¿…é¡»**ä¸Ž Azure Bot App ID åŒ¹é…ã€‚
+- `bots[].scopes` å¿…é¡»åŒ…å«ä½ è®¡åˆ’ä½¿ç”¨çš„ç•Œé¢ï¼ˆ`personal`ã€`team`ã€`groupChat`ï¼‰ã€‚
+- `bots[].supportsFiles: true` æ˜¯ä¸ªäººèŒƒå›´æ–‡ä»¶å¤„ç†æ‰€éœ€çš„ã€‚
+- `authorization.permissions.resourceSpecific` å¦‚æžœä½ éœ€è¦é¢‘é“æµé‡ï¼Œå¿…é¡»åŒ…å«é¢‘é“è¯»å–/å‘é€æƒé™ã€‚
 
-### 更新现有应用
+### æ›´æ–°çŽ°æœ‰åº”ç”¨
 
-要更新已安装的 Teams 应用（例如，添加 RSC 权限）：
+è¦æ›´æ–°å·²å®‰è£…çš„ Teams åº”ç”¨ï¼ˆä¾‹å¦‚ï¼Œæ·»åŠ  RSC æƒé™ï¼‰ï¼š
 
-1. 使用新设置更新你的 `manifest.json`
-2. **增加 `version` 字段**（例如，`1.0.0` → `1.1.0`）
-3. **重新打包**清单和图标（`manifest.json`、`outline.png`、`color.png`）
-4. 上传新的 zip：
-   - **选项 A（Teams 管理中心）：** Teams 管理中心 → Teams apps → Manage apps → 找到你的应用 → Upload new version
-   - **选项 B（侧载）：** 在 Teams 中 → Apps → Manage your apps → Upload a custom app
-5. **对于团队频道：** 在每个团队中重新安装应用以使新权限生效
-6. **完全退出并重新启动 Teams**（不仅仅是关闭窗口）以清除缓存的应用元数据
+1. ä½¿ç”¨æ–°è®¾ç½®æ›´æ–°ä½ çš„ `manifest.json`
+2. **å¢žåŠ  `version` å­—æ®µ**ï¼ˆä¾‹å¦‚ï¼Œ`1.0.0` â†’ `1.1.0`ï¼‰
+3. **é‡æ–°æ‰“åŒ…**æ¸…å•å’Œå›¾æ ‡ï¼ˆ`manifest.json`ã€`outline.png`ã€`color.png`ï¼‰
+4. ä¸Šä¼ æ–°çš„ zipï¼š
+   - **é€‰é¡¹ Aï¼ˆTeams ç®¡ç†ä¸­å¿ƒï¼‰ï¼š** Teams ç®¡ç†ä¸­å¿ƒ â†’ Teams apps â†’ Manage apps â†’ æ‰¾åˆ°ä½ çš„åº”ç”¨ â†’ Upload new version
+   - **é€‰é¡¹ Bï¼ˆä¾§è½½ï¼‰ï¼š** åœ¨ Teams ä¸­ â†’ Apps â†’ Manage your apps â†’ Upload a custom app
+5. **å¯¹äºŽå›¢é˜Ÿé¢‘é“ï¼š** åœ¨æ¯ä¸ªå›¢é˜Ÿä¸­é‡æ–°å®‰è£…åº”ç”¨ä»¥ä½¿æ–°æƒé™ç”Ÿæ•ˆ
+6. **å®Œå…¨é€€å‡ºå¹¶é‡æ–°å¯åŠ¨ Teams**ï¼ˆä¸ä»…ä»…æ˜¯å…³é—­çª—å£ï¼‰ä»¥æ¸…é™¤ç¼“å­˜çš„åº”ç”¨å…ƒæ•°æ®
 
-## 功能：仅 RSC 与 Graph
+## åŠŸèƒ½ï¼šä»… RSC ä¸Ž Graph
 
-### 仅使用 **Teams RSC**（应用已安装，无 Graph API 权限）
+### ä»…ä½¿ç”¨ **Teams RSC**ï¼ˆåº”ç”¨å·²å®‰è£…ï¼Œæ—  Graph API æƒé™ï¼‰
 
-可用：
+å¯ç”¨ï¼š
 
-- 读取频道消息**文本**内容。
-- 发送频道消息**文本**内容。
-- 接收**个人（私信）**文件附件。
+- è¯»å–é¢‘é“æ¶ˆæ¯**æ–‡æœ¬**å†…å®¹ã€‚
+- å‘é€é¢‘é“æ¶ˆæ¯**æ–‡æœ¬**å†…å®¹ã€‚
+- æŽ¥æ”¶**ä¸ªäººï¼ˆç§ä¿¡ï¼‰**æ–‡ä»¶é™„ä»¶ã€‚
 
-不可用：
+ä¸å¯ç”¨ï¼š
 
-- 频道/群组**图片或文件内容**（负载仅包含 HTML 存根）。
-- 下载存储在 SharePoint/OneDrive 中的附件。
-- 读取消息历史（超出实时 webhook 事件）。
+- é¢‘é“/ç¾¤ç»„**å›¾ç‰‡æˆ–æ–‡ä»¶å†…å®¹**ï¼ˆè´Ÿè½½ä»…åŒ…å« HTML å­˜æ ¹ï¼‰ã€‚
+- ä¸‹è½½å­˜å‚¨åœ¨ SharePoint/OneDrive ä¸­çš„é™„ä»¶ã€‚
+- è¯»å–æ¶ˆæ¯åŽ†å²ï¼ˆè¶…å‡ºå®žæ—¶ webhook äº‹ä»¶ï¼‰ã€‚
 
-### 使用 **Teams RSC + Microsoft Graph Application 权限**
+### ä½¿ç”¨ **Teams RSC + Microsoft Graph Application æƒé™**
 
-增加：
+å¢žåŠ ï¼š
 
-- 下载托管内容（粘贴到消息中的图片）。
-- 下载存储在 SharePoint/OneDrive 中的文件附件。
-- 通过 Graph 读取频道/聊天消息历史。
+- ä¸‹è½½æ‰˜ç®¡å†…å®¹ï¼ˆç²˜è´´åˆ°æ¶ˆæ¯ä¸­çš„å›¾ç‰‡ï¼‰ã€‚
+- ä¸‹è½½å­˜å‚¨åœ¨ SharePoint/OneDrive ä¸­çš„æ–‡ä»¶é™„ä»¶ã€‚
+- é€šè¿‡ Graph è¯»å–é¢‘é“/èŠå¤©æ¶ˆæ¯åŽ†å²ã€‚
 
-### RSC 与 Graph API 对比
+### RSC ä¸Ž Graph API å¯¹æ¯”
 
-| 功能           | RSC 权限           | Graph API                 |
+| åŠŸèƒ½           | RSC æƒé™           | Graph API                 |
 | -------------- | ------------------ | ------------------------- |
-| **实时消息**   | 是（通过 webhook） | 否（仅轮询）              |
-| **历史消息**   | 否                 | 是（可查询历史）          |
-| **设置复杂度** | 仅应用清单         | 需要管理员同意 + 令牌流程 |
-| **离线工作**   | 否（必须运行）     | 是（随时查询）            |
+| **å®žæ—¶æ¶ˆæ¯**   | æ˜¯ï¼ˆé€šè¿‡ webhookï¼‰ | å¦ï¼ˆä»…è½®è¯¢ï¼‰              |
+| **åŽ†å²æ¶ˆæ¯**   | å¦                 | æ˜¯ï¼ˆå¯æŸ¥è¯¢åŽ†å²ï¼‰          |
+| **è®¾ç½®å¤æ‚åº¦** | ä»…åº”ç”¨æ¸…å•         | éœ€è¦ç®¡ç†å‘˜åŒæ„ + ä»¤ç‰Œæµç¨‹ |
+| **ç¦»çº¿å·¥ä½œ**   | å¦ï¼ˆå¿…é¡»è¿è¡Œï¼‰     | æ˜¯ï¼ˆéšæ—¶æŸ¥è¯¢ï¼‰            |
 
-**结论：** RSC 用于实时监听；Graph API 用于历史访问。要在离线时补上错过的消息，你需要带有 `ChannelMessage.Read.All` 的 Graph API（需要管理员同意）。
+**ç»“è®ºï¼š** RSC ç”¨äºŽå®žæ—¶ç›‘å¬ï¼›Graph API ç”¨äºŽåŽ†å²è®¿é—®ã€‚è¦åœ¨ç¦»çº¿æ—¶è¡¥ä¸Šé”™è¿‡çš„æ¶ˆæ¯ï¼Œä½ éœ€è¦å¸¦æœ‰ `ChannelMessage.Read.All` çš„ Graph APIï¼ˆéœ€è¦ç®¡ç†å‘˜åŒæ„ï¼‰ã€‚
 
-## 启用 Graph 的媒体 + 历史（频道所需）
+## å¯ç”¨ Graph çš„åª’ä½“ + åŽ†å²ï¼ˆé¢‘é“æ‰€éœ€ï¼‰
 
-如果你需要**频道**中的图片/文件或想要获取**消息历史**，你必须启用 Microsoft Graph 权限并授予管理员同意。
+å¦‚æžœä½ éœ€è¦**é¢‘é“**ä¸­çš„å›¾ç‰‡/æ–‡ä»¶æˆ–æƒ³è¦èŽ·å–**æ¶ˆæ¯åŽ†å²**ï¼Œä½ å¿…é¡»å¯ç”¨ Microsoft Graph æƒé™å¹¶æŽˆäºˆç®¡ç†å‘˜åŒæ„ã€‚
 
-1. 在 Entra ID（Azure AD）**App Registration** 中，添加 Microsoft Graph **Application 权限**：
-   - `ChannelMessage.Read.All`（频道附件 + 历史）
-   - `Chat.Read.All` 或 `ChatMessage.Read.All`（群聊）
-2. 为租户**授予管理员同意**。
-3. 提升 Teams 应用**清单版本**，重新上传，并**在 Teams 中重新安装应用**。
-4. **完全退出并重新启动 Teams** 以清除缓存的应用元数据。
+1. åœ¨ Entra IDï¼ˆAzure ADï¼‰**App Registration** ä¸­ï¼Œæ·»åŠ  Microsoft Graph **Application æƒé™**ï¼š
+   - `ChannelMessage.Read.All`ï¼ˆé¢‘é“é™„ä»¶ + åŽ†å²ï¼‰
+   - `Chat.Read.All` æˆ– `ChatMessage.Read.All`ï¼ˆç¾¤èŠï¼‰
+2. ä¸ºç§Ÿæˆ·**æŽˆäºˆç®¡ç†å‘˜åŒæ„**ã€‚
+3. æå‡ Teams åº”ç”¨**æ¸…å•ç‰ˆæœ¬**ï¼Œé‡æ–°ä¸Šä¼ ï¼Œå¹¶**åœ¨ Teams ä¸­é‡æ–°å®‰è£…åº”ç”¨**ã€‚
+4. **å®Œå…¨é€€å‡ºå¹¶é‡æ–°å¯åŠ¨ Teams** ä»¥æ¸…é™¤ç¼“å­˜çš„åº”ç”¨å…ƒæ•°æ®ã€‚
 
-## 已知限制
+## å·²çŸ¥é™åˆ¶
 
-### Webhook 超时
+### Webhook è¶…æ—¶
 
-Teams 通过 HTTP webhook 传递消息。如果处理时间过长（例如，LLM 响应缓慢），你可能会看到：
+Teams é€šè¿‡ HTTP webhook ä¼ é€’æ¶ˆæ¯ã€‚å¦‚æžœå¤„ç†æ—¶é—´è¿‡é•¿ï¼ˆä¾‹å¦‚ï¼ŒLLM å“åº”ç¼“æ…¢ï¼‰ï¼Œä½ å¯èƒ½ä¼šçœ‹åˆ°ï¼š
 
-- Gateway 网关超时
-- Teams 重试消息（导致重复）
-- 丢失的回复
+- Gateway ç½‘å…³è¶…æ—¶
+- Teams é‡è¯•æ¶ˆæ¯ï¼ˆå¯¼è‡´é‡å¤ï¼‰
+- ä¸¢å¤±çš„å›žå¤
 
-OpenClaw 通过快速返回并主动发送回复来处理这个问题，但非常慢的响应仍可能导致问题。
+ é€šè¿‡å¿«é€Ÿè¿”å›žå¹¶ä¸»åŠ¨å‘é€å›žå¤æ¥å¤„ç†è¿™ä¸ªé—®é¢˜ï¼Œä½†éžå¸¸æ…¢çš„å“åº”ä»å¯èƒ½å¯¼è‡´é—®é¢˜ã€‚
 
-### 格式化
+### æ ¼å¼åŒ–
 
-Teams markdown 比 Slack 或 Discord 更有限：
+Teams markdown æ¯” Slack æˆ– Discord æ›´æœ‰é™ï¼š
 
-- 基本格式化有效：**粗体**、_斜体_、`代码`、链接
-- 复杂的 markdown（表格、嵌套列表）可能无法正确渲染
-- 支持 Adaptive Cards 用于投票和任意卡片发送（见下文）
+- åŸºæœ¬æ ¼å¼åŒ–æœ‰æ•ˆï¼š**ç²—ä½“**ã€_æ–œä½“_ã€`ä»£ç `ã€é“¾æŽ¥
+- å¤æ‚çš„ markdownï¼ˆè¡¨æ ¼ã€åµŒå¥—åˆ—è¡¨ï¼‰å¯èƒ½æ— æ³•æ­£ç¡®æ¸²æŸ“
+- æ”¯æŒ Adaptive Cards ç”¨äºŽæŠ•ç¥¨å’Œä»»æ„å¡ç‰‡å‘é€ï¼ˆè§ä¸‹æ–‡ï¼‰
 
-## 配置
+## é…ç½®
 
-关键设置（共享渠道模式见 `/gateway/configuration`）：
+å…³é”®è®¾ç½®ï¼ˆå…±äº«æ¸ é“æ¨¡å¼è§ `/gateway/configuration`ï¼‰ï¼š
 
-- `channels.msteams.enabled`：启用/禁用渠道。
-- `channels.msteams.appId`、`channels.msteams.appPassword`、`channels.msteams.tenantId`：机器人凭证。
-- `channels.msteams.webhook.port`（默认 `3978`）
-- `channels.msteams.webhook.path`（默认 `/api/messages`）
-- `channels.msteams.dmPolicy`：`pairing | allowlist | open | disabled`（默认：pairing）
-- `channels.msteams.allowFrom`：私信允许列表（AAD 对象 ID、UPN 或显示名称）。当 Graph 访问可用时，向导在设置期间将名称解析为 ID。
-- `channels.msteams.textChunkLimit`：出站文本分块大小。
-- `channels.msteams.chunkMode`：`length`（默认）或 `newline` 在长度分块之前按空行（段落边界）分割。
-- `channels.msteams.mediaAllowHosts`：入站附件主机允许列表（默认为 Microsoft/Teams 域名）。
-- `channels.msteams.mediaAuthAllowHosts`：在媒体重试时附加 Authorization 头的允许列表（默认为 Graph + Bot Framework 主机）。
-- `channels.msteams.requireMention`：在频道/群组中需要 @提及（默认 true）。
-- `channels.msteams.replyStyle`：`thread | top-level`（见[回复样式](#reply-style-threads-vs-posts)）。
-- `channels.msteams.teams.<teamId>.replyStyle`：每团队覆盖。
-- `channels.msteams.teams.<teamId>.requireMention`：每团队覆盖。
-- `channels.msteams.teams.<teamId>.tools`：当缺少频道覆盖时使用的默认每团队工具策略覆盖（`allow`/`deny`/`alsoAllow`）。
-- `channels.msteams.teams.<teamId>.toolsBySender`：默认每团队每发送者工具策略覆盖（支持 `"*"` 通配符）。
-- `channels.msteams.teams.<teamId>.channels.<conversationId>.replyStyle`：每频道覆盖。
-- `channels.msteams.teams.<teamId>.channels.<conversationId>.requireMention`：每频道覆盖。
-- `channels.msteams.teams.<teamId>.channels.<conversationId>.tools`：每频道工具策略覆盖（`allow`/`deny`/`alsoAllow`）。
-- `channels.msteams.teams.<teamId>.channels.<conversationId>.toolsBySender`：每频道每发送者工具策略覆盖（支持 `"*"` 通配符）。
-- `channels.msteams.sharePointSiteId`：用于群聊/频道文件上传的 SharePoint 站点 ID（见[在群聊中发送文件](#sending-files-in-group-chats)）。
+- `channels.msteams.enabled`ï¼šå¯ç”¨/ç¦ç”¨æ¸ é“ã€‚
+- `channels.msteams.appId`ã€`channels.msteams.appPassword`ã€`channels.msteams.tenantId`ï¼šæœºå™¨äººå‡­è¯ã€‚
+- `channels.msteams.webhook.port`ï¼ˆé»˜è®¤ `3978`ï¼‰
+- `channels.msteams.webhook.path`ï¼ˆé»˜è®¤ `/api/messages`ï¼‰
+- `channels.msteams.dmPolicy`ï¼š`pairing | allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼špairingï¼‰
+- `channels.msteams.allowFrom`ï¼šç§ä¿¡å…è®¸åˆ—è¡¨ï¼ˆAAD å¯¹è±¡ IDã€UPN æˆ–æ˜¾ç¤ºåç§°ï¼‰ã€‚å½“ Graph è®¿é—®å¯ç”¨æ—¶ï¼Œå‘å¯¼åœ¨è®¾ç½®æœŸé—´å°†åç§°è§£æžä¸º IDã€‚
+- `channels.msteams.textChunkLimit`ï¼šå‡ºç«™æ–‡æœ¬åˆ†å—å¤§å°ã€‚
+- `channels.msteams.chunkMode`ï¼š`length`ï¼ˆé»˜è®¤ï¼‰æˆ– `newline` åœ¨é•¿åº¦åˆ†å—ä¹‹å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚
+- `channels.msteams.mediaAllowHosts`ï¼šå…¥ç«™é™„ä»¶ä¸»æœºå…è®¸åˆ—è¡¨ï¼ˆé»˜è®¤ä¸º Microsoft/Teams åŸŸåï¼‰ã€‚
+- `channels.msteams.mediaAuthAllowHosts`ï¼šåœ¨åª’ä½“é‡è¯•æ—¶é™„åŠ  Authorization å¤´çš„å…è®¸åˆ—è¡¨ï¼ˆé»˜è®¤ä¸º Graph + Bot Framework ä¸»æœºï¼‰ã€‚
+- `channels.msteams.requireMention`ï¼šåœ¨é¢‘é“/ç¾¤ç»„ä¸­éœ€è¦ @æåŠï¼ˆé»˜è®¤ trueï¼‰ã€‚
+- `channels.msteams.replyStyle`ï¼š`thread | top-level`ï¼ˆè§[å›žå¤æ ·å¼](#reply-style-threads-vs-posts)ï¼‰ã€‚
+- `channels.msteams.teams.<teamId>.replyStyle`ï¼šæ¯å›¢é˜Ÿè¦†ç›–ã€‚
+- `channels.msteams.teams.<teamId>.requireMention`ï¼šæ¯å›¢é˜Ÿè¦†ç›–ã€‚
+- `channels.msteams.teams.<teamId>.tools`ï¼šå½“ç¼ºå°‘é¢‘é“è¦†ç›–æ—¶ä½¿ç”¨çš„é»˜è®¤æ¯å›¢é˜Ÿå·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆ`allow`/`deny`/`alsoAllow`ï¼‰ã€‚
+- `channels.msteams.teams.<teamId>.toolsBySender`ï¼šé»˜è®¤æ¯å›¢é˜Ÿæ¯å‘é€è€…å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆæ”¯æŒ `"*"` é€šé…ç¬¦ï¼‰ã€‚
+- `channels.msteams.teams.<teamId>.channels.<conversationId>.replyStyle`ï¼šæ¯é¢‘é“è¦†ç›–ã€‚
+- `channels.msteams.teams.<teamId>.channels.<conversationId>.requireMention`ï¼šæ¯é¢‘é“è¦†ç›–ã€‚
+- `channels.msteams.teams.<teamId>.channels.<conversationId>.tools`ï¼šæ¯é¢‘é“å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆ`allow`/`deny`/`alsoAllow`ï¼‰ã€‚
+- `channels.msteams.teams.<teamId>.channels.<conversationId>.toolsBySender`ï¼šæ¯é¢‘é“æ¯å‘é€è€…å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆæ”¯æŒ `"*"` é€šé…ç¬¦ï¼‰ã€‚
+- `channels.msteams.sharePointSiteId`ï¼šç”¨äºŽç¾¤èŠ/é¢‘é“æ–‡ä»¶ä¸Šä¼ çš„ SharePoint ç«™ç‚¹ IDï¼ˆè§[åœ¨ç¾¤èŠä¸­å‘é€æ–‡ä»¶](#sending-files-in-group-chats)ï¼‰ã€‚
 
-## 路由和会话
+## è·¯ç”±å’Œä¼šè¯
 
-- 会话键遵循标准智能体格式（见 [/concepts/session](/concepts/session)）：
-  - 私信共享主会话（`agent:<agentId>:<mainKey>`）。
-  - 频道/群组消息使用会话 ID：
+- ä¼šè¯é”®éµå¾ªæ ‡å‡†æ™ºèƒ½ä½“æ ¼å¼ï¼ˆè§ [/concepts/session](/concepts/session)ï¼‰ï¼š
+  - ç§ä¿¡å…±äº«ä¸»ä¼šè¯ï¼ˆ`agent:<agentId>:<mainKey>`ï¼‰ã€‚
+  - é¢‘é“/ç¾¤ç»„æ¶ˆæ¯ä½¿ç”¨ä¼šè¯ IDï¼š
     - `agent:<agentId>:msteams:channel:<conversationId>`
     - `agent:<agentId>:msteams:group:<conversationId>`
 
-## 回复样式：话题 vs 帖子
+## å›žå¤æ ·å¼ï¼šè¯é¢˜ vs å¸–å­
 
-Teams 最近在相同的底层数据模型上引入了两种频道 UI 样式：
+Teams æœ€è¿‘åœ¨ç›¸åŒçš„åº•å±‚æ•°æ®æ¨¡åž‹ä¸Šå¼•å…¥äº†ä¸¤ç§é¢‘é“ UI æ ·å¼ï¼š
 
-| 样式                    | 描述                           | 推荐的 `replyStyle` |
+| æ ·å¼                    | æè¿°                           | æŽ¨èçš„ `replyStyle` |
 | ----------------------- | ------------------------------ | ------------------- |
-| **Posts**（经典）       | 消息显示为卡片，下方有话题回复 | `thread`（默认）    |
-| **Threads**（类 Slack） | 消息线性流动，更像 Slack       | `top-level`         |
+| **Posts**ï¼ˆç»å…¸ï¼‰       | æ¶ˆæ¯æ˜¾ç¤ºä¸ºå¡ç‰‡ï¼Œä¸‹æ–¹æœ‰è¯é¢˜å›žå¤ | `thread`ï¼ˆé»˜è®¤ï¼‰    |
+| **Threads**ï¼ˆç±» Slackï¼‰ | æ¶ˆæ¯çº¿æ€§æµåŠ¨ï¼Œæ›´åƒ Slack       | `top-level`         |
 
-**问题：** Teams API 不暴露频道使用的 UI 样式。如果你使用错误的 `replyStyle`：
+**é—®é¢˜ï¼š** Teams API ä¸æš´éœ²é¢‘é“ä½¿ç”¨çš„ UI æ ·å¼ã€‚å¦‚æžœä½ ä½¿ç”¨é”™è¯¯çš„ `replyStyle`ï¼š
 
-- 在 Threads 样式频道中使用 `thread` → 回复嵌套显示很别扭
-- 在 Posts 样式频道中使用 `top-level` → 回复显示为单独的顶级帖子而不是在话题中
+- åœ¨ Threads æ ·å¼é¢‘é“ä¸­ä½¿ç”¨ `thread` â†’ å›žå¤åµŒå¥—æ˜¾ç¤ºå¾ˆåˆ«æ‰­
+- åœ¨ Posts æ ·å¼é¢‘é“ä¸­ä½¿ç”¨ `top-level` â†’ å›žå¤æ˜¾ç¤ºä¸ºå•ç‹¬çš„é¡¶çº§å¸–å­è€Œä¸æ˜¯åœ¨è¯é¢˜ä¸­
 
-**解决方案：** 根据频道的设置方式为每个频道配置 `replyStyle`：
+**è§£å†³æ–¹æ¡ˆï¼š** æ ¹æ®é¢‘é“çš„è®¾ç½®æ–¹å¼ä¸ºæ¯ä¸ªé¢‘é“é…ç½® `replyStyle`ï¼š
 
 ```json
 {
@@ -517,103 +517,103 @@ Teams 最近在相同的底层数据模型上引入了两种频道 UI 样式：
 }
 ```
 
-## 附件和图片
+## é™„ä»¶å’Œå›¾ç‰‡
 
-**当前限制：**
+**å½“å‰é™åˆ¶ï¼š**
 
-- **私信：** 图片和文件附件通过 Teams bot file API 工作。
-- **频道/群组：** 附件存储在 M365 存储（SharePoint/OneDrive）中。webhook 负载仅包含 HTML 存根，而非实际文件字节。**需要 Graph API 权限**才能下载频道附件。
+- **ç§ä¿¡ï¼š** å›¾ç‰‡å’Œæ–‡ä»¶é™„ä»¶é€šè¿‡ Teams bot file API å·¥ä½œã€‚
+- **é¢‘é“/ç¾¤ç»„ï¼š** é™„ä»¶å­˜å‚¨åœ¨ M365 å­˜å‚¨ï¼ˆSharePoint/OneDriveï¼‰ä¸­ã€‚webhook è´Ÿè½½ä»…åŒ…å« HTML å­˜æ ¹ï¼Œè€Œéžå®žé™…æ–‡ä»¶å­—èŠ‚ã€‚**éœ€è¦ Graph API æƒé™**æ‰èƒ½ä¸‹è½½é¢‘é“é™„ä»¶ã€‚
 
-没有 Graph 权限，带图片的频道消息将作为纯文本接收（机器人无法访问图片内容）。
-默认情况下，OpenClaw 仅从 Microsoft/Teams 主机名下载媒体。使用 `channels.msteams.mediaAllowHosts` 覆盖（使用 `["*"]` 允许任何主机）。
-Authorization 头仅附加到 `channels.msteams.mediaAuthAllowHosts` 中的主机（默认为 Graph + Bot Framework 主机）。保持此列表严格（避免多租户后缀）。
+æ²¡æœ‰ Graph æƒé™ï¼Œå¸¦å›¾ç‰‡çš„é¢‘é“æ¶ˆæ¯å°†ä½œä¸ºçº¯æ–‡æœ¬æŽ¥æ”¶ï¼ˆæœºå™¨äººæ— æ³•è®¿é—®å›¾ç‰‡å†…å®¹ï¼‰ã€‚
+é»˜è®¤æƒ…å†µä¸‹ï¼Œ ä»…ä»Ž Microsoft/Teams ä¸»æœºåä¸‹è½½åª’ä½“ã€‚ä½¿ç”¨ `channels.msteams.mediaAllowHosts` è¦†ç›–ï¼ˆä½¿ç”¨ `["*"]` å…è®¸ä»»ä½•ä¸»æœºï¼‰ã€‚
+Authorization å¤´ä»…é™„åŠ åˆ° `channels.msteams.mediaAuthAllowHosts` ä¸­çš„ä¸»æœºï¼ˆé»˜è®¤ä¸º Graph + Bot Framework ä¸»æœºï¼‰ã€‚ä¿æŒæ­¤åˆ—è¡¨ä¸¥æ ¼ï¼ˆé¿å…å¤šç§Ÿæˆ·åŽç¼€ï¼‰ã€‚
 
-## 在群聊中发送文件
+## åœ¨ç¾¤èŠä¸­å‘é€æ–‡ä»¶
 
-机器人可以使用 FileConsentCard 流程在私信中发送文件（内置）。但是，**在群聊/频道中发送文件**需要额外设置：
+æœºå™¨äººå¯ä»¥ä½¿ç”¨ FileConsentCard æµç¨‹åœ¨ç§ä¿¡ä¸­å‘é€æ–‡ä»¶ï¼ˆå†…ç½®ï¼‰ã€‚ä½†æ˜¯ï¼Œ**åœ¨ç¾¤èŠ/é¢‘é“ä¸­å‘é€æ–‡ä»¶**éœ€è¦é¢å¤–è®¾ç½®ï¼š
 
-| 上下文                 | 文件发送方式                            | 所需设置                             |
+| ä¸Šä¸‹æ–‡                 | æ–‡ä»¶å‘é€æ–¹å¼                            | æ‰€éœ€è®¾ç½®                             |
 | ---------------------- | --------------------------------------- | ------------------------------------ |
-| **私信**               | FileConsentCard → 用户接受 → 机器人上传 | 开箱即用                             |
-| **群聊/频道**          | 上传到 SharePoint → 共享链接            | 需要 `sharePointSiteId` + Graph 权限 |
-| **图片（任何上下文）** | Base64 编码内联                         | 开箱即用                             |
+| **ç§ä¿¡**               | FileConsentCard â†’ ç”¨æˆ·æŽ¥å— â†’ æœºå™¨äººä¸Šä¼  | å¼€ç®±å³ç”¨                             |
+| **ç¾¤èŠ/é¢‘é“**          | ä¸Šä¼ åˆ° SharePoint â†’ å…±äº«é“¾æŽ¥            | éœ€è¦ `sharePointSiteId` + Graph æƒé™ |
+| **å›¾ç‰‡ï¼ˆä»»ä½•ä¸Šä¸‹æ–‡ï¼‰** | Base64 ç¼–ç å†…è”                         | å¼€ç®±å³ç”¨                             |
 
-### 为什么群聊需要 SharePoint
+### ä¸ºä»€ä¹ˆç¾¤èŠéœ€è¦ SharePoint
 
-机器人没有个人 OneDrive 驱动器（`/me/drive` Graph API 端点对应用程序身份不起作用）。要在群聊/频道中发送文件，机器人上传到 **SharePoint 站点**并创建共享链接。
+æœºå™¨äººæ²¡æœ‰ä¸ªäºº OneDrive é©±åŠ¨å™¨ï¼ˆ`/me/drive` Graph API ç«¯ç‚¹å¯¹åº”ç”¨ç¨‹åºèº«ä»½ä¸èµ·ä½œç”¨ï¼‰ã€‚è¦åœ¨ç¾¤èŠ/é¢‘é“ä¸­å‘é€æ–‡ä»¶ï¼Œæœºå™¨äººä¸Šä¼ åˆ° **SharePoint ç«™ç‚¹**å¹¶åˆ›å»ºå…±äº«é“¾æŽ¥ã€‚
 
-### 设置
+### è®¾ç½®
 
-1. **在 Entra ID（Azure AD）→ App Registration 中添加 Graph API 权限**：
-   - `Sites.ReadWrite.All`（Application）- 上传文件到 SharePoint
-   - `Chat.Read.All`（Application）- 可选，启用每用户共享链接
+1. **åœ¨ Entra IDï¼ˆAzure ADï¼‰â†’ App Registration ä¸­æ·»åŠ  Graph API æƒé™**ï¼š
+   - `Sites.ReadWrite.All`ï¼ˆApplicationï¼‰- ä¸Šä¼ æ–‡ä»¶åˆ° SharePoint
+   - `Chat.Read.All`ï¼ˆApplicationï¼‰- å¯é€‰ï¼Œå¯ç”¨æ¯ç”¨æˆ·å…±äº«é“¾æŽ¥
 
-2. 为租户**授予管理员同意**。
+2. ä¸ºç§Ÿæˆ·**æŽˆäºˆç®¡ç†å‘˜åŒæ„**ã€‚
 
-3. **获取你的 SharePoint 站点 ID：**
+3. **èŽ·å–ä½ çš„ SharePoint ç«™ç‚¹ IDï¼š**
 
    ```bash
-   # 通过 Graph Explorer 或带有效令牌的 curl：
+   # é€šè¿‡ Graph Explorer æˆ–å¸¦æœ‰æ•ˆä»¤ç‰Œçš„ curlï¼š
    curl -H "Authorization: Bearer $TOKEN" \
      "https://graph.microsoft.com/v1.0/sites/{hostname}:/{site-path}"
 
-   # 示例：对于 "contoso.sharepoint.com/sites/BotFiles" 的站点
+   # ç¤ºä¾‹ï¼šå¯¹äºŽ "contoso.sharepoint.com/sites/BotFiles" çš„ç«™ç‚¹
    curl -H "Authorization: Bearer $TOKEN" \
      "https://graph.microsoft.com/v1.0/sites/contoso.sharepoint.com:/sites/BotFiles"
 
-   # 响应包含："id": "contoso.sharepoint.com,guid1,guid2"
+   # å“åº”åŒ…å«ï¼š"id": "contoso.sharepoint.com,guid1,guid2"
    ```
 
-4. **配置 OpenClaw：**
+4. **é…ç½® ï¼š**
    ```json5
    {
      channels: {
        msteams: {
-         // ... 其他配置 ...
+         // ... å…¶ä»–é…ç½® ...
          sharePointSiteId: "contoso.sharepoint.com,guid1,guid2",
        },
      },
    }
    ```
 
-### 共享行为
+### å…±äº«è¡Œä¸º
 
-| 权限                                    | 共享行为                                   |
+| æƒé™                                    | å…±äº«è¡Œä¸º                                   |
 | --------------------------------------- | ------------------------------------------ |
-| 仅 `Sites.ReadWrite.All`                | 组织范围共享链接（组织中任何人都可以访问） |
-| `Sites.ReadWrite.All` + `Chat.Read.All` | 每用户共享链接（仅聊天成员可以访问）       |
+| ä»… `Sites.ReadWrite.All`                | ç»„ç»‡èŒƒå›´å…±äº«é“¾æŽ¥ï¼ˆç»„ç»‡ä¸­ä»»ä½•äººéƒ½å¯ä»¥è®¿é—®ï¼‰ |
+| `Sites.ReadWrite.All` + `Chat.Read.All` | æ¯ç”¨æˆ·å…±äº«é“¾æŽ¥ï¼ˆä»…èŠå¤©æˆå‘˜å¯ä»¥è®¿é—®ï¼‰       |
 
-每用户共享更安全，因为只有聊天参与者才能访问文件。如果缺少 `Chat.Read.All` 权限，机器人回退到组织范围共享。
+æ¯ç”¨æˆ·å…±äº«æ›´å®‰å…¨ï¼Œå› ä¸ºåªæœ‰èŠå¤©å‚ä¸Žè€…æ‰èƒ½è®¿é—®æ–‡ä»¶ã€‚å¦‚æžœç¼ºå°‘ `Chat.Read.All` æƒé™ï¼Œæœºå™¨äººå›žé€€åˆ°ç»„ç»‡èŒƒå›´å…±äº«ã€‚
 
-### 回退行为
+### å›žé€€è¡Œä¸º
 
-| 场景                                    | 结果                                             |
+| åœºæ™¯                                    | ç»“æžœ                                             |
 | --------------------------------------- | ------------------------------------------------ |
-| 群聊 + 文件 + 已配置 `sharePointSiteId` | 上传到 SharePoint，发送共享链接                  |
-| 群聊 + 文件 + 无 `sharePointSiteId`     | 尝试 OneDrive 上传（可能失败），仅发送文本       |
-| 个人聊天 + 文件                         | FileConsentCard 流程（无需 SharePoint 即可工作） |
-| 任何上下文 + 图片                       | Base64 编码内联（无需 SharePoint 即可工作）      |
+| ç¾¤èŠ + æ–‡ä»¶ + å·²é…ç½® `sharePointSiteId` | ä¸Šä¼ åˆ° SharePointï¼Œå‘é€å…±äº«é“¾æŽ¥                  |
+| ç¾¤èŠ + æ–‡ä»¶ + æ—  `sharePointSiteId`     | å°è¯• OneDrive ä¸Šä¼ ï¼ˆå¯èƒ½å¤±è´¥ï¼‰ï¼Œä»…å‘é€æ–‡æœ¬       |
+| ä¸ªäººèŠå¤© + æ–‡ä»¶                         | FileConsentCard æµç¨‹ï¼ˆæ— éœ€ SharePoint å³å¯å·¥ä½œï¼‰ |
+| ä»»ä½•ä¸Šä¸‹æ–‡ + å›¾ç‰‡                       | Base64 ç¼–ç å†…è”ï¼ˆæ— éœ€ SharePoint å³å¯å·¥ä½œï¼‰      |
 
-### 文件存储位置
+### æ–‡ä»¶å­˜å‚¨ä½ç½®
 
-上传的文件存储在配置的 SharePoint 站点默认文档库中的 `/OpenClawShared/` 文件夹中。
+ä¸Šä¼ çš„æ–‡ä»¶å­˜å‚¨åœ¨é…ç½®çš„ SharePoint ç«™ç‚¹é»˜è®¤æ–‡æ¡£åº“ä¸­çš„ `/Shared/` æ–‡ä»¶å¤¹ä¸­ã€‚
 
-## 投票（Adaptive Cards）
+## æŠ•ç¥¨ï¼ˆAdaptive Cardsï¼‰
 
-OpenClaw 将 Teams 投票作为 Adaptive Cards 发送（没有原生 Teams 投票 API）。
+ å°† Teams æŠ•ç¥¨ä½œä¸º Adaptive Cards å‘é€ï¼ˆæ²¡æœ‰åŽŸç”Ÿ Teams æŠ•ç¥¨ APIï¼‰ã€‚
 
-- CLI：`openclaw message poll --channel msteams --target conversation:<id> ...`
-- 投票由 Gateway 网关记录在 `~/.openclaw/msteams-polls.json` 中。
-- Gateway 网关必须保持在线才能记录投票。
-- 投票尚不自动发布结果摘要（如需要请检查存储文件）。
+- CLIï¼š` message poll --channel msteams --target conversation:<id> ...`
+- æŠ•ç¥¨ç”± Gateway ç½‘å…³è®°å½•åœ¨ `~/./msteams-polls.json` ä¸­ã€‚
+- Gateway ç½‘å…³å¿…é¡»ä¿æŒåœ¨çº¿æ‰èƒ½è®°å½•æŠ•ç¥¨ã€‚
+- æŠ•ç¥¨å°šä¸è‡ªåŠ¨å‘å¸ƒç»“æžœæ‘˜è¦ï¼ˆå¦‚éœ€è¦è¯·æ£€æŸ¥å­˜å‚¨æ–‡ä»¶ï¼‰ã€‚
 
-## Adaptive Cards（任意）
+## Adaptive Cardsï¼ˆä»»æ„ï¼‰
 
-使用 `message` 工具或 CLI 向 Teams 用户或会话发送任意 Adaptive Card JSON。
+ä½¿ç”¨ `message` å·¥å…·æˆ– CLI å‘ Teams ç”¨æˆ·æˆ–ä¼šè¯å‘é€ä»»æ„ Adaptive Card JSONã€‚
 
-`card` 参数接受 Adaptive Card JSON 对象。当提供 `card` 时，消息文本是可选的。
+`card` å‚æ•°æŽ¥å— Adaptive Card JSON å¯¹è±¡ã€‚å½“æä¾› `card` æ—¶ï¼Œæ¶ˆæ¯æ–‡æœ¬æ˜¯å¯é€‰çš„ã€‚
 
-**智能体工具：**
+**æ™ºèƒ½ä½“å·¥å…·ï¼š**
 
 ```json
 {
@@ -628,45 +628,45 @@ OpenClaw 将 Teams 投票作为 Adaptive Cards 发送（没有原生 Teams 投�
 }
 ```
 
-**CLI：**
+**CLIï¼š**
 
 ```bash
-openclaw message send --channel msteams \
+ message send --channel msteams \
   --target "conversation:19:abc...@thread.tacv2" \
   --card '{"type":"AdaptiveCard","version":"1.5","body":[{"type":"TextBlock","text":"Hello!"}]}'
 ```
 
-参见 [Adaptive Cards 文档](https://adaptivecards.io/)了解卡片模式和示例。目标格式详情见下方[目标格式](#target-formats)。
+å‚è§ [Adaptive Cards æ–‡æ¡£](https://adaptivecards.io/)äº†è§£å¡ç‰‡æ¨¡å¼å’Œç¤ºä¾‹ã€‚ç›®æ ‡æ ¼å¼è¯¦æƒ…è§ä¸‹æ–¹[ç›®æ ‡æ ¼å¼](#target-formats)ã€‚
 
-## 目标格式
+## ç›®æ ‡æ ¼å¼
 
-MSTeams 目标使用前缀来区分用户和会话：
+MSTeams ç›®æ ‡ä½¿ç”¨å‰ç¼€æ¥åŒºåˆ†ç”¨æˆ·å’Œä¼šè¯ï¼š
 
-| 目标类型          | 格式                             | 示例                                              |
+| ç›®æ ‡ç±»åž‹          | æ ¼å¼                             | ç¤ºä¾‹                                              |
 | ----------------- | -------------------------------- | ------------------------------------------------- |
-| 用户（按 ID）     | `user:<aad-object-id>`           | `user:40a1a0ed-4ff2-4164-a219-55518990c197`       |
-| 用户（按名称）    | `user:<display-name>`            | `user:John Smith`（需要 Graph API）               |
-| 群组/频道         | `conversation:<conversation-id>` | `conversation:19:abc123...@thread.tacv2`          |
-| 群组/频道（原始） | `<conversation-id>`              | `19:abc123...@thread.tacv2`（如果包含 `@thread`） |
+| ç”¨æˆ·ï¼ˆæŒ‰ IDï¼‰     | `user:<aad-object-id>`           | `user:40a1a0ed-4ff2-4164-a219-55518990c197`       |
+| ç”¨æˆ·ï¼ˆæŒ‰åç§°ï¼‰    | `user:<display-name>`            | `user:John Smith`ï¼ˆéœ€è¦ Graph APIï¼‰               |
+| ç¾¤ç»„/é¢‘é“         | `conversation:<conversation-id>` | `conversation:19:abc123...@thread.tacv2`          |
+| ç¾¤ç»„/é¢‘é“ï¼ˆåŽŸå§‹ï¼‰ | `<conversation-id>`              | `19:abc123...@thread.tacv2`ï¼ˆå¦‚æžœåŒ…å« `@thread`ï¼‰ |
 
-**CLI 示例：**
+**CLI ç¤ºä¾‹ï¼š**
 
 ```bash
-# 按 ID 发送给用户
-openclaw message send --channel msteams --target "user:40a1a0ed-..." --message "Hello"
+# æŒ‰ ID å‘é€ç»™ç”¨æˆ·
+ message send --channel msteams --target "user:40a1a0ed-..." --message "Hello"
 
-# 按显示名称发送给用户（触发 Graph API 查找）
-openclaw message send --channel msteams --target "user:John Smith" --message "Hello"
+# æŒ‰æ˜¾ç¤ºåç§°å‘é€ç»™ç”¨æˆ·ï¼ˆè§¦å‘ Graph API æŸ¥æ‰¾ï¼‰
+ message send --channel msteams --target "user:John Smith" --message "Hello"
 
-# 发送到群聊或频道
-openclaw message send --channel msteams --target "conversation:19:abc...@thread.tacv2" --message "Hello"
+# å‘é€åˆ°ç¾¤èŠæˆ–é¢‘é“
+ message send --channel msteams --target "conversation:19:abc...@thread.tacv2" --message "Hello"
 
-# 向会话发送 Adaptive Card
-openclaw message send --channel msteams --target "conversation:19:abc...@thread.tacv2" \
+# å‘ä¼šè¯å‘é€ Adaptive Card
+ message send --channel msteams --target "conversation:19:abc...@thread.tacv2" \
   --card '{"type":"AdaptiveCard","version":"1.5","body":[{"type":"TextBlock","text":"Hello"}]}'
 ```
 
-**智能体工具示例：**
+**æ™ºèƒ½ä½“å·¥å…·ç¤ºä¾‹ï¼š**
 
 ```json
 {
@@ -690,86 +690,87 @@ openclaw message send --channel msteams --target "conversation:19:abc...@thread.
 }
 ```
 
-注意：没有 `user:` 前缀时，名称默认解析为群组/团队。按显示名称定位人员时始终使用 `user:`。
+æ³¨æ„ï¼šæ²¡æœ‰ `user:` å‰ç¼€æ—¶ï¼Œåç§°é»˜è®¤è§£æžä¸ºç¾¤ç»„/å›¢é˜Ÿã€‚æŒ‰æ˜¾ç¤ºåç§°å®šä½äººå‘˜æ—¶å§‹ç»ˆä½¿ç”¨ `user:`ã€‚
 
-## 主动消息
+## ä¸»åŠ¨æ¶ˆæ¯
 
-- 主动消息仅在用户交互**之后**才可能，因为我们在那时存储会话引用。
-- 有关 `dmPolicy` 和允许列表控制，请参见 `/gateway/configuration`。
+- ä¸»åŠ¨æ¶ˆæ¯ä»…åœ¨ç”¨æˆ·äº¤äº’**ä¹‹åŽ**æ‰å¯èƒ½ï¼Œå› ä¸ºæˆ‘ä»¬åœ¨é‚£æ—¶å­˜å‚¨ä¼šè¯å¼•ç”¨ã€‚
+- æœ‰å…³ `dmPolicy` å’Œå…è®¸åˆ—è¡¨æŽ§åˆ¶ï¼Œè¯·å‚è§ `/gateway/configuration`ã€‚
 
-## 团队和频道 ID（常见陷阱）
+## å›¢é˜Ÿå’Œé¢‘é“ IDï¼ˆå¸¸è§é™·é˜±ï¼‰
 
-Teams URL 中的 `groupId` 查询参数**不是**用于配置的团队 ID。请从 URL 路径中提取 ID：
+Teams URL ä¸­çš„ `groupId` æŸ¥è¯¢å‚æ•°**ä¸æ˜¯**ç”¨äºŽé…ç½®çš„å›¢é˜Ÿ IDã€‚è¯·ä»Ž URL è·¯å¾„ä¸­æå– IDï¼š
 
-**团队 URL：**
+**å›¢é˜Ÿ URLï¼š**
 
 ```
 https://teams.microsoft.com/l/team/19%3ABk4j...%40thread.tacv2/conversations?groupId=...
-                                    └────────────────────────────┘
-                                    团队 ID（URL 解码此部分）
+                                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                    å›¢é˜Ÿ IDï¼ˆURL è§£ç æ­¤éƒ¨åˆ†ï¼‰
 ```
 
-**频道 URL：**
+**é¢‘é“ URLï¼š**
 
 ```
 https://teams.microsoft.com/l/channel/19%3A15bc...%40thread.tacv2/ChannelName?groupId=...
-                                      └─────────────────────────┘
-                                      频道 ID（URL 解码此部分）
+                                      â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                      é¢‘é“ IDï¼ˆURL è§£ç æ­¤éƒ¨åˆ†ï¼‰
 ```
 
-**用于配置：**
+**ç”¨äºŽé…ç½®ï¼š**
 
-- 团队 ID = `/team/` 后的路径段（URL 解码，例如 `19:Bk4j...@thread.tacv2`）
-- 频道 ID = `/channel/` 后的路径段（URL 解码）
-- **忽略** `groupId` 查询参数
+- å›¢é˜Ÿ ID = `/team/` åŽçš„è·¯å¾„æ®µï¼ˆURL è§£ç ï¼Œä¾‹å¦‚ `19:Bk4j...@thread.tacv2`ï¼‰
+- é¢‘é“ ID = `/channel/` åŽçš„è·¯å¾„æ®µï¼ˆURL è§£ç ï¼‰
+- **å¿½ç•¥** `groupId` æŸ¥è¯¢å‚æ•°
 
-## 私有频道
+## ç§æœ‰é¢‘é“
 
-机器人在私有频道中的支持有限：
+æœºå™¨äººåœ¨ç§æœ‰é¢‘é“ä¸­çš„æ”¯æŒæœ‰é™ï¼š
 
-| 功能                | 标准频道 | 私有频道         |
+| åŠŸèƒ½                | æ ‡å‡†é¢‘é“ | ç§æœ‰é¢‘é“         |
 | ------------------- | -------- | ---------------- |
-| 机器人安装          | 是       | 有限             |
-| 实时消息（webhook） | 是       | 可能不工作       |
-| RSC 权限            | 是       | 行为可能不同     |
-| @提及               | 是       | 如果机器人可访问 |
-| Graph API 历史      | 是       | 是（有权限）     |
+| æœºå™¨äººå®‰è£…          | æ˜¯       | æœ‰é™             |
+| å®žæ—¶æ¶ˆæ¯ï¼ˆwebhookï¼‰ | æ˜¯       | å¯èƒ½ä¸å·¥ä½œ       |
+| RSC æƒé™            | æ˜¯       | è¡Œä¸ºå¯èƒ½ä¸åŒ     |
+| @æåŠ               | æ˜¯       | å¦‚æžœæœºå™¨äººå¯è®¿é—® |
+| Graph API åŽ†å²      | æ˜¯       | æ˜¯ï¼ˆæœ‰æƒé™ï¼‰     |
 
-**如果私有频道不工作的变通方法：**
+**å¦‚æžœç§æœ‰é¢‘é“ä¸å·¥ä½œçš„å˜é€šæ–¹æ³•ï¼š**
 
-1. 使用标准频道进行机器人交互
-2. 使用私信 - 用户始终可以直接给机器人发消息
-3. 使用 Graph API 进行历史访问（需要 `ChannelMessage.Read.All`）
+1. ä½¿ç”¨æ ‡å‡†é¢‘é“è¿›è¡Œæœºå™¨äººäº¤äº’
+2. ä½¿ç”¨ç§ä¿¡ - ç”¨æˆ·å§‹ç»ˆå¯ä»¥ç›´æŽ¥ç»™æœºå™¨äººå‘æ¶ˆæ¯
+3. ä½¿ç”¨ Graph API è¿›è¡ŒåŽ†å²è®¿é—®ï¼ˆéœ€è¦ `ChannelMessage.Read.All`ï¼‰
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-### 常见问题
+### å¸¸è§é—®é¢˜
 
-- **频道中图片不显示：** 缺少 Graph 权限或管理员同意。重新安装 Teams 应用并完全退出/重新打开 Teams。
-- **频道中无响应：** 默认需要提及；设置 `channels.msteams.requireMention=false` 或按团队/频道配置。
-- **版本不匹配（Teams 仍显示旧清单）：** 移除 + 重新添加应用并完全退出 Teams 以刷新。
-- **来自 webhook 的 401 Unauthorized：** 在没有 Azure JWT 的情况下手动测试时属于预期情况 - 意味着端点可达但认证失败。使用 Azure Web Chat 正确测试。
+- **é¢‘é“ä¸­å›¾ç‰‡ä¸æ˜¾ç¤ºï¼š** ç¼ºå°‘ Graph æƒé™æˆ–ç®¡ç†å‘˜åŒæ„ã€‚é‡æ–°å®‰è£… Teams åº”ç”¨å¹¶å®Œå…¨é€€å‡º/é‡æ–°æ‰“å¼€ Teamsã€‚
+- **é¢‘é“ä¸­æ— å“åº”ï¼š** é»˜è®¤éœ€è¦æåŠï¼›è®¾ç½® `channels.msteams.requireMention=false` æˆ–æŒ‰å›¢é˜Ÿ/é¢‘é“é…ç½®ã€‚
+- **ç‰ˆæœ¬ä¸åŒ¹é…ï¼ˆTeams ä»æ˜¾ç¤ºæ—§æ¸…å•ï¼‰ï¼š** ç§»é™¤ + é‡æ–°æ·»åŠ åº”ç”¨å¹¶å®Œå…¨é€€å‡º Teams ä»¥åˆ·æ–°ã€‚
+- **æ¥è‡ª webhook çš„ 401 Unauthorizedï¼š** åœ¨æ²¡æœ‰ Azure JWT çš„æƒ…å†µä¸‹æ‰‹åŠ¨æµ‹è¯•æ—¶å±žäºŽé¢„æœŸæƒ…å†µ - æ„å‘³ç€ç«¯ç‚¹å¯è¾¾ä½†è®¤è¯å¤±è´¥ã€‚ä½¿ç”¨ Azure Web Chat æ­£ç¡®æµ‹è¯•ã€‚
 
-### 清单上传错误
+### æ¸…å•ä¸Šä¼ é”™è¯¯
 
-- **"Icon file cannot be empty"：** 清单引用的图标文件为 0 字节。创建有效的 PNG 图标（`outline.png` 为 32x32，`color.png` 为 192x192）。
-- **"webApplicationInfo.Id already in use"：** 应用仍安装在另一个团队/聊天中。先找到并卸载它，或等待 5-10 分钟让其传播。
-- **上传时"Something went wrong"：** 改为通过 https://admin.teams.microsoft.com 上传，打开浏览器 DevTools（F12）→ Network 选项卡，检查响应正文中的实际错误。
-- **侧载失败：** 尝试"Upload an app to your org's app catalog"而不是"Upload a custom app" - 这通常可以绕过侧载限制。
+- **"Icon file cannot be empty"ï¼š** æ¸…å•å¼•ç”¨çš„å›¾æ ‡æ–‡ä»¶ä¸º 0 å­—èŠ‚ã€‚åˆ›å»ºæœ‰æ•ˆçš„ PNG å›¾æ ‡ï¼ˆ`outline.png` ä¸º 32x32ï¼Œ`color.png` ä¸º 192x192ï¼‰ã€‚
+- **"webApplicationInfo.Id already in use"ï¼š** åº”ç”¨ä»å®‰è£…åœ¨å¦ä¸€ä¸ªå›¢é˜Ÿ/èŠå¤©ä¸­ã€‚å…ˆæ‰¾åˆ°å¹¶å¸è½½å®ƒï¼Œæˆ–ç­‰å¾… 5-10 åˆ†é’Ÿè®©å…¶ä¼ æ’­ã€‚
+- **ä¸Šä¼ æ—¶"Something went wrong"ï¼š** æ”¹ä¸ºé€šè¿‡ https://admin.teams.microsoft.com ä¸Šä¼ ï¼Œæ‰“å¼€æµè§ˆå™¨ DevToolsï¼ˆF12ï¼‰â†’ Network é€‰é¡¹å¡ï¼Œæ£€æŸ¥å“åº”æ­£æ–‡ä¸­çš„å®žé™…é”™è¯¯ã€‚
+- **ä¾§è½½å¤±è´¥ï¼š** å°è¯•"Upload an app to your org's app catalog"è€Œä¸æ˜¯"Upload a custom app" - è¿™é€šå¸¸å¯ä»¥ç»•è¿‡ä¾§è½½é™åˆ¶ã€‚
 
-### RSC 权限不工作
+### RSC æƒé™ä¸å·¥ä½œ
 
-1. 验证 `webApplicationInfo.id` 与你的机器人 App ID 完全匹配
-2. 重新上传应用并在团队/聊天中重新安装
-3. 检查你的组织管理员是否阻止了 RSC 权限
-4. 确认你使用的是正确的范围：团队使用 `ChannelMessage.Read.Group`，群聊使用 `ChatMessage.Read.Chat`
+1. éªŒè¯ `webApplicationInfo.id` ä¸Žä½ çš„æœºå™¨äºº App ID å®Œå…¨åŒ¹é…
+2. é‡æ–°ä¸Šä¼ åº”ç”¨å¹¶åœ¨å›¢é˜Ÿ/èŠå¤©ä¸­é‡æ–°å®‰è£…
+3. æ£€æŸ¥ä½ çš„ç»„ç»‡ç®¡ç†å‘˜æ˜¯å¦é˜»æ­¢äº† RSC æƒé™
+4. ç¡®è®¤ä½ ä½¿ç”¨çš„æ˜¯æ­£ç¡®çš„èŒƒå›´ï¼šå›¢é˜Ÿä½¿ç”¨ `ChannelMessage.Read.Group`ï¼Œç¾¤èŠä½¿ç”¨ `ChatMessage.Read.Chat`
 
-## 参考资料
+## å‚è€ƒèµ„æ–™
 
-- [创建 Azure Bot](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-registration) - Azure Bot 设置指南
-- [Teams 开发者门户](https://dev.teams.microsoft.com/apps) - 创建/管理 Teams 应用
-- [Teams 应用清单模式](https://learn.microsoft.com/en-us/microsoftteams/platform/resources/schema/manifest-schema)
-- [使用 RSC 接收频道消息](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/how-to/conversations/channel-messages-with-rsc)
-- [RSC 权限参考](https://learn.microsoft.com/en-us/microsoftteams/platform/graph-api/rsc/resource-specific-consent)
-- [Teams 机器人文件处理](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/how-to/bots-filesv4)（频道/群组需要 Graph）
-- [主动消息](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/how-to/conversations/send-proactive-messages)
+- [åˆ›å»º Azure Bot](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-registration) - Azure Bot è®¾ç½®æŒ‡å—
+- [Teams å¼€å‘è€…é—¨æˆ·](https://dev.teams.microsoft.com/apps) - åˆ›å»º/ç®¡ç† Teams åº”ç”¨
+- [Teams åº”ç”¨æ¸…å•æ¨¡å¼](https://learn.microsoft.com/en-us/microsoftteams/platform/resources/schema/manifest-schema)
+- [ä½¿ç”¨ RSC æŽ¥æ”¶é¢‘é“æ¶ˆæ¯](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/how-to/conversations/channel-messages-with-rsc)
+- [RSC æƒé™å‚è€ƒ](https://learn.microsoft.com/en-us/microsoftteams/platform/graph-api/rsc/resource-specific-consent)
+- [Teams æœºå™¨äººæ–‡ä»¶å¤„ç†](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/how-to/bots-filesv4)ï¼ˆé¢‘é“/ç¾¤ç»„éœ€è¦ Graphï¼‰
+- [ä¸»åŠ¨æ¶ˆæ¯](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/how-to/conversations/send-proactive-messages)
+

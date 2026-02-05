@@ -1,4 +1,4 @@
-import type WebSocket from "ws";
+﻿import type WebSocket from "ws";
 import { Buffer } from "node:buffer";
 
 export function rawDataToString(
@@ -19,3 +19,4 @@ export function rawDataToString(
   }
   return Buffer.from(String(data)).toString(encoding);
 }
+

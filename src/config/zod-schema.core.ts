@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 import { isSafeExecutableValue } from "../infra/exec-safety.js";
 
 export const ModelApiSchema = z.union([
@@ -503,3 +503,4 @@ export const ProviderCommandsSchema = z
   })
   .strict()
   .optional();
+

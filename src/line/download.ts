@@ -1,4 +1,4 @@
-import { messagingApi } from "@line/bot-sdk";
+﻿import { messagingApi } from "@line/bot-sdk";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -118,3 +118,4 @@ function getExtensionForContentType(contentType: string): string {
       return ".bin";
   }
 }
+

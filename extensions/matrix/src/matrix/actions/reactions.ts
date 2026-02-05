@@ -1,4 +1,4 @@
-import { resolveMatrixRoomId } from "../send.js";
+﻿import { resolveMatrixRoomId } from "../send.js";
 import { resolveActionClient } from "./client.js";
 import {
   EventType,
@@ -94,3 +94,4 @@ export async function removeMatrixReactions(
     }
   }
 }
+

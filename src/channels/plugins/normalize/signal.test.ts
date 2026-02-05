@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { looksLikeSignalTargetId, normalizeSignalMessagingTarget } from "./signal.js";
 
 describe("signal target normalization", () => {
@@ -29,3 +29,4 @@ describe("signal target normalization", () => {
     expect(looksLikeSignalTargetId("uuid:not-a-uuid")).toBe(false);
   });
 });
+

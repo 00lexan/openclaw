@@ -1,4 +1,4 @@
-export type DurationMsParseOptions = {
+﻿export type DurationMsParseOptions = {
   defaultUnit?: "ms" | "s" | "m" | "h" | "d";
 };
 
@@ -37,3 +37,4 @@ export function parseDurationMs(raw: string, opts?: DurationMsParseOptions): num
   }
   return ms;
 }
+

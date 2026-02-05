@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import { loadVoiceWakeConfig, setVoiceWakeTriggers } from "../../infra/voicewake.js";
 import { ErrorCodes, errorShape } from "../protocol/index.js";
 import { normalizeVoiceWakeTriggers } from "../server-utils.js";
@@ -32,3 +32,4 @@ export const voicewakeHandlers: GatewayRequestHandlers = {
     }
   },
 };
+

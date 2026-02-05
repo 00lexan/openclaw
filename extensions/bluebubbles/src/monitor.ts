@@ -1,5 +1,5 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
-import type { OpenClawConfig } from "openclaw/plugin-sdk";
+﻿import type { IncomingMessage, ServerResponse } from "node:http";
+import type { Config } from "/plugin-sdk";
 import {
   createReplyPrefixOptions,
   logAckFailure,
@@ -7,7 +7,7 @@ import {
   logTypingFailure,
   resolveAckReaction,
   resolveControlCommandGate,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { ResolvedBlueBubblesAccount } from "./accounts.js";
 import type { BlueBubblesAccountConfig, BlueBubblesAttachment } from "./types.js";
 import { downloadBlueBubblesAttachment } from "./attachments.js";
@@ -30,7 +30,7 @@ export type BlueBubblesRuntimeEnv = {
 
 export type BlueBubblesMonitorOptions = {
   account: ResolvedBlueBubblesAccount;
-  config: OpenClawConfig;
+  config: Config;
   runtime: BlueBubblesRuntimeEnv;
   abortSignal: AbortSignal;
   statusSink?: (patch: { lastInboundAt?: number; lastOutboundAt?: number }) => void;
@@ -59,7 +59,7 @@ type BlueBubblesReplyCacheEntry = {
 // Best-effort cache for resolving reply context when BlueBubbles webhooks omit sender/body.
 const blueBubblesReplyCacheByMessageId = new Map<string, BlueBubblesReplyCacheEntry>();
 
-// Bidirectional maps for short ID ↔ message GUID resolution (token savings optimization)
+// Bidirectional maps for short ID â†” message GUID resolution (token savings optimization)
 const blueBubblesShortIdToUuid = new Map<string, string>();
 const blueBubblesUuidToShortId = new Map<string, string>();
 let blueBubblesShortIdCounter = 0;
@@ -270,7 +270,7 @@ function logGroupAllowlistHint(params: {
 
 type WebhookTarget = {
   account: ResolvedBlueBubblesAccount;
-  config: OpenClawConfig;
+  config: Config;
   runtime: BlueBubblesRuntimeEnv;
   core: BlueBubblesCoreRuntime;
   path: string;
@@ -371,7 +371,7 @@ const targetDebouncers = new Map<
 >();
 
 function resolveBlueBubblesDebounceMs(
-  config: OpenClawConfig,
+  config: Config,
   core: BlueBubblesCoreRuntime,
 ): number {
   const inbound = config.messages?.inbound;
@@ -931,35 +931,35 @@ type NormalizedWebhookReaction = {
 };
 
 const REACTION_TYPE_MAP = new Map<number, { emoji: string; action: "added" | "removed" }>([
-  [2000, { emoji: "❤️", action: "added" }],
-  [2001, { emoji: "👍", action: "added" }],
-  [2002, { emoji: "👎", action: "added" }],
-  [2003, { emoji: "😂", action: "added" }],
-  [2004, { emoji: "‼️", action: "added" }],
-  [2005, { emoji: "❓", action: "added" }],
-  [3000, { emoji: "❤️", action: "removed" }],
-  [3001, { emoji: "👍", action: "removed" }],
-  [3002, { emoji: "👎", action: "removed" }],
-  [3003, { emoji: "😂", action: "removed" }],
-  [3004, { emoji: "‼️", action: "removed" }],
-  [3005, { emoji: "❓", action: "removed" }],
+  [2000, { emoji: "â¤ï¸", action: "added" }],
+  [2001, { emoji: "ðŸ‘", action: "added" }],
+  [2002, { emoji: "ðŸ‘Ž", action: "added" }],
+  [2003, { emoji: "ðŸ˜‚", action: "added" }],
+  [2004, { emoji: "â€¼ï¸", action: "added" }],
+  [2005, { emoji: "â“", action: "added" }],
+  [3000, { emoji: "â¤ï¸", action: "removed" }],
+  [3001, { emoji: "ðŸ‘", action: "removed" }],
+  [3002, { emoji: "ðŸ‘Ž", action: "removed" }],
+  [3003, { emoji: "ðŸ˜‚", action: "removed" }],
+  [3004, { emoji: "â€¼ï¸", action: "removed" }],
+  [3005, { emoji: "â“", action: "removed" }],
 ]);
 
 // Maps tapback text patterns (e.g., "Loved", "Liked") to emoji + action
 const TAPBACK_TEXT_MAP = new Map<string, { emoji: string; action: "added" | "removed" }>([
-  ["loved", { emoji: "❤️", action: "added" }],
-  ["liked", { emoji: "👍", action: "added" }],
-  ["disliked", { emoji: "👎", action: "added" }],
-  ["laughed at", { emoji: "😂", action: "added" }],
-  ["emphasized", { emoji: "‼️", action: "added" }],
-  ["questioned", { emoji: "❓", action: "added" }],
+  ["loved", { emoji: "â¤ï¸", action: "added" }],
+  ["liked", { emoji: "ðŸ‘", action: "added" }],
+  ["disliked", { emoji: "ðŸ‘Ž", action: "added" }],
+  ["laughed at", { emoji: "ðŸ˜‚", action: "added" }],
+  ["emphasized", { emoji: "â€¼ï¸", action: "added" }],
+  ["questioned", { emoji: "â“", action: "added" }],
   // Removal patterns (e.g., "Removed a heart from")
-  ["removed a heart from", { emoji: "❤️", action: "removed" }],
-  ["removed a like from", { emoji: "👍", action: "removed" }],
-  ["removed a dislike from", { emoji: "👎", action: "removed" }],
-  ["removed a laugh from", { emoji: "😂", action: "removed" }],
-  ["removed an emphasis from", { emoji: "‼️", action: "removed" }],
-  ["removed a question from", { emoji: "❓", action: "removed" }],
+  ["removed a heart from", { emoji: "â¤ï¸", action: "removed" }],
+  ["removed a like from", { emoji: "ðŸ‘", action: "removed" }],
+  ["removed a dislike from", { emoji: "ðŸ‘Ž", action: "removed" }],
+  ["removed a laugh from", { emoji: "ðŸ˜‚", action: "removed" }],
+  ["removed an emphasis from", { emoji: "â€¼ï¸", action: "removed" }],
+  ["removed a question from", { emoji: "â“", action: "removed" }],
 ]);
 
 const TAPBACK_EMOJI_REGEX =
@@ -971,7 +971,7 @@ function extractFirstEmoji(text: string): string | null {
 }
 
 function extractQuotedTapbackText(text: string): string | null {
-  const match = text.match(/[“"]([^”"]+)[”"]/s);
+  const match = text.match(/[â€œ"]([^â€"]+)[â€"]/s);
   return match ? match[1] : null;
 }
 
@@ -1032,7 +1032,7 @@ function parseTapbackText(params: {
       // Extract quoted text if present (e.g., 'Loved "hello"' -> "hello")
       const afterPattern = trimmed.slice(pattern.length).trim();
       if (params.requireQuoted) {
-        const strictMatch = afterPattern.match(/^[“"](.+)[”"]$/s);
+        const strictMatch = afterPattern.match(/^[â€œ"](.+)[â€"]$/s);
         if (!strictMatch) {
           return null;
         }
@@ -1080,7 +1080,7 @@ function maskSecret(value: string): string {
 }
 
 function resolveBlueBubblesAckReaction(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   agentId: string;
   core: BlueBubblesCoreRuntime;
   runtime: BlueBubblesRuntimeEnv;
@@ -1961,7 +1961,7 @@ async function processMessage(
   }
 
   // Use inline [[reply_to:N]] tag format
-  // For tapbacks/reactions: append at end (e.g., "reacted with ❤️ [[reply_to:4]]")
+  // For tapbacks/reactions: append at end (e.g., "reacted with â¤ï¸ [[reply_to:4]]")
   // For regular replies: prepend at start (e.g., "[[reply_to:4]] Awesome")
   const replyTag = formatReplyTag({ replyToId, replyToShortId });
   const baseBody = replyTag
@@ -2099,7 +2099,7 @@ async function processMessage(
       timestamp: Date.now(),
     });
     const displayId = cacheEntry.shortId || trimmed;
-    const preview = snippet ? ` "${snippet.slice(0, 12)}${snippet.length > 12 ? "…" : ""}"` : "";
+    const preview = snippet ? ` "${snippet.slice(0, 12)}${snippet.length > 12 ? "â€¦" : ""}"` : "";
     core.system.enqueueSystemEvent(`Assistant sent${preview} [message_id:${displayId}]`, {
       sessionKey: route.sessionKey,
       contextKey: `bluebubbles:outbound:${outboundTarget}:${trimmed}`,
@@ -2433,7 +2433,7 @@ async function processReaction(
   const chatLabel = reaction.isGroup ? ` in group:${peerId}` : "";
   // Use short ID for token savings
   const messageDisplayId = getShortIdForUuid(reaction.messageId) || reaction.messageId;
-  // Format: "Tyler reacted with ❤️ [[reply_to:5]]" or "Tyler removed ❤️ reaction [[reply_to:5]]"
+  // Format: "Tyler reacted with â¤ï¸ [[reply_to:5]]" or "Tyler removed â¤ï¸ reaction [[reply_to:5]]"
   const text =
     reaction.action === "removed"
       ? `${senderLabel} removed ${reaction.emoji} reaction [[reply_to:${messageDisplayId}]]${chatLabel}`
@@ -2497,3 +2497,4 @@ export function resolveWebhookPathFromConfig(config?: BlueBubblesAccountConfig):
   }
   return DEFAULT_WEBHOOK_PATH;
 }
+

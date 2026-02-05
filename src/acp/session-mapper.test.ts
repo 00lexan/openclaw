@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import type { GatewayClient } from "../gateway/client.js";
 import { parseSessionMeta, resolveSessionKey } from "./session-mapper.js";
 
@@ -54,3 +54,4 @@ describe("acp session mapper", () => {
     expect(request).not.toHaveBeenCalled();
   });
 });
+

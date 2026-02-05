@@ -1,4 +1,4 @@
-const CONTROL_UI_AVATAR_PREFIX = "/avatar";
+﻿const CONTROL_UI_AVATAR_PREFIX = "/avatar";
 
 export function normalizeControlUiBasePath(basePath?: string): string {
   if (!basePath) {
@@ -67,3 +67,4 @@ export function resolveAssistantAvatarUrl(params: {
 }
 
 export { CONTROL_UI_AVATAR_PREFIX };
+

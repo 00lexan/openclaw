@@ -1,4 +1,4 @@
-import {
+﻿import {
   createActionGate,
   readNumberParam,
   readStringParam,
@@ -6,7 +6,7 @@ import {
   type ChannelMessageActionContext,
   type ChannelMessageActionName,
   type ChannelToolSend,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 import type { CoreConfig } from "./types.js";
 import { resolveMatrixAccount } from "./matrix/accounts.js";
 import { handleMatrixAction } from "./tool-actions.js";
@@ -193,3 +193,4 @@ export const matrixMessageActions: ChannelMessageActionAdapter = {
     throw new Error(`Action ${action} is not supported for provider matrix.`);
   },
 };
+

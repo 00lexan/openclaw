@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { downloadTelegramFile, getTelegramFile, type TelegramFileInfo } from "./download.js";
 
 describe("telegram download", () => {
@@ -33,3 +33,4 @@ describe("telegram download", () => {
     expect(saved.contentType).toBe("image/jpeg");
   });
 });
+

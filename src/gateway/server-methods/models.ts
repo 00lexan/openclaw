@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import {
   ErrorCodes,
   errorShape,
@@ -27,3 +27,4 @@ export const modelsHandlers: GatewayRequestHandlers = {
     }
   },
 };
+

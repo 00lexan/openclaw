@@ -1,4 +1,4 @@
-import type { ErrorObject } from "ajv";
+﻿import type { ErrorObject } from "ajv";
 import { describe, expect, it } from "vitest";
 import { formatValidationErrors } from "./index.js";
 
@@ -62,3 +62,4 @@ describe("formatValidationErrors", () => {
     );
   });
 });
+

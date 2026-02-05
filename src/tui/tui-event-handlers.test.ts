@@ -1,4 +1,4 @@
-import type { TUI } from "@mariozechner/pi-tui";
+﻿import type { TUI } from "@mariozechner/pi-tui";
 import { describe, expect, it, vi } from "vitest";
 import type { ChatLog } from "./components/chat-log.js";
 import type { AgentEvent, ChatEvent, TuiStateAccess } from "./tui-types.js";
@@ -358,3 +358,4 @@ describe("tui-event-handlers: handleAgentEvent", () => {
     expect(loadHistory).toHaveBeenCalledTimes(1);
   });
 });
+

@@ -1,12 +1,12 @@
----
+﻿---
 name: eightctl
 description: Control Eight Sleep pods (status, temperature, alarms, schedules).
 homepage: https://eightctl.sh
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🎛️",
+        "emoji": "ðŸŽ›ï¸",
         "requires": { "bins": ["eightctl"] },
         "install":
           [
@@ -48,3 +48,4 @@ Notes
 
 - API is unofficial and rate-limited; avoid repeated logins.
 - Confirm before changing temperature or alarms.
+

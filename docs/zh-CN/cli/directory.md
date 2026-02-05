@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想查找某个渠道的联系人/群组/自身 ID
-  - 你正在开发渠道目录适配器
-summary: "`openclaw directory` 的 CLI 参考（self、peers、groups）"
+  - ä½ æƒ³æŸ¥æ‰¾æŸä¸ªæ¸ é“çš„è”ç³»äºº/ç¾¤ç»„/è‡ªèº« ID
+  - ä½ æ­£åœ¨å¼€å‘æ¸ é“ç›®å½•é€‚é…å™¨
+summary: "` directory` çš„ CLI å‚è€ƒï¼ˆselfã€peersã€groupsï¼‰"
 title: directory
 x-i18n:
   generated_at: "2026-02-01T19:58:58Z"
@@ -13,58 +13,59 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw directory`
+# ` directory`
 
-对支持目录功能的渠道进行查找（联系人/对等方、群组和"我"）。
+å¯¹æ”¯æŒç›®å½•åŠŸèƒ½çš„æ¸ é“è¿›è¡ŒæŸ¥æ‰¾ï¼ˆè”ç³»äºº/å¯¹ç­‰æ–¹ã€ç¾¤ç»„å’Œ"æˆ‘"ï¼‰ã€‚
 
-## 通用参数
+## é€šç”¨å‚æ•°
 
-- `--channel <name>`：渠道 ID/别名（配置了多个渠道时为必填；仅配置一个渠道时自动选择）
-- `--account <id>`：账号 ID（默认：渠道默认账号）
-- `--json`：输出 JSON 格式
+- `--channel <name>`ï¼šæ¸ é“ ID/åˆ«åï¼ˆé…ç½®äº†å¤šä¸ªæ¸ é“æ—¶ä¸ºå¿…å¡«ï¼›ä»…é…ç½®ä¸€ä¸ªæ¸ é“æ—¶è‡ªåŠ¨é€‰æ‹©ï¼‰
+- `--account <id>`ï¼šè´¦å· IDï¼ˆé»˜è®¤ï¼šæ¸ é“é»˜è®¤è´¦å·ï¼‰
+- `--json`ï¼šè¾“å‡º JSON æ ¼å¼
 
-## 说明
+## è¯´æ˜Ž
 
-- `directory` 用于帮助你查找可粘贴到其他命令中的 ID（特别是 `openclaw message send --target ...`）。
-- 对于许多渠道，结果来源于配置（允许列表/已配置的群组），而非实时的提供商目录。
-- 默认输出为以制表符分隔的 `id`（有时包含 `name`）；脚本中请使用 `--json`。
+- `directory` ç”¨äºŽå¸®åŠ©ä½ æŸ¥æ‰¾å¯ç²˜è´´åˆ°å…¶ä»–å‘½ä»¤ä¸­çš„ IDï¼ˆç‰¹åˆ«æ˜¯ ` message send --target ...`ï¼‰ã€‚
+- å¯¹äºŽè®¸å¤šæ¸ é“ï¼Œç»“æžœæ¥æºäºŽé…ç½®ï¼ˆå…è®¸åˆ—è¡¨/å·²é…ç½®çš„ç¾¤ç»„ï¼‰ï¼Œè€Œéžå®žæ—¶çš„æä¾›å•†ç›®å½•ã€‚
+- é»˜è®¤è¾“å‡ºä¸ºä»¥åˆ¶è¡¨ç¬¦åˆ†éš”çš„ `id`ï¼ˆæœ‰æ—¶åŒ…å« `name`ï¼‰ï¼›è„šæœ¬ä¸­è¯·ä½¿ç”¨ `--json`ã€‚
 
-## 将结果用于 `message send`
-
-```bash
-openclaw directory peers list --channel slack --query "U0"
-openclaw message send --channel slack --target user:U012ABCDEF --message "hello"
-```
-
-## ID 格式（按渠道）
-
-- WhatsApp：`+15551234567`（私聊），`1234567890-1234567890@g.us`（群组）
-- Telegram：`@username` 或数字聊天 ID；群组为数字 ID
-- Slack：`user:U…` 和 `channel:C…`
-- Discord：`user:<id>` 和 `channel:<id>`
-- Matrix（插件）：`user:@user:server`、`room:!roomId:server` 或 `#alias:server`
-- Microsoft Teams（插件）：`user:<id>` 和 `conversation:<id>`
-- Zalo（插件）：用户 ID（Bot API）
-- Zalo Personal / `zalouser`（插件）：来自 `zca` 的会话 ID（私聊/群组）（`me`、`friend list`、`group list`）
-
-## Self（"我"）
+## å°†ç»“æžœç”¨äºŽ `message send`
 
 ```bash
-openclaw directory self --channel zalouser
+ directory peers list --channel slack --query "U0"
+ message send --channel slack --target user:U012ABCDEF --message "hello"
 ```
 
-## Peers（联系人/用户）
+## ID æ ¼å¼ï¼ˆæŒ‰æ¸ é“ï¼‰
+
+- WhatsAppï¼š`+15551234567`ï¼ˆç§èŠï¼‰ï¼Œ`1234567890-1234567890@g.us`ï¼ˆç¾¤ç»„ï¼‰
+- Telegramï¼š`@username` æˆ–æ•°å­—èŠå¤© IDï¼›ç¾¤ç»„ä¸ºæ•°å­— ID
+- Slackï¼š`user:Uâ€¦` å’Œ `channel:Câ€¦`
+- Discordï¼š`user:<id>` å’Œ `channel:<id>`
+- Matrixï¼ˆæ’ä»¶ï¼‰ï¼š`user:@user:server`ã€`room:!roomId:server` æˆ– `#alias:server`
+- Microsoft Teamsï¼ˆæ’ä»¶ï¼‰ï¼š`user:<id>` å’Œ `conversation:<id>`
+- Zaloï¼ˆæ’ä»¶ï¼‰ï¼šç”¨æˆ· IDï¼ˆBot APIï¼‰
+- Zalo Personal / `zalouser`ï¼ˆæ’ä»¶ï¼‰ï¼šæ¥è‡ª `zca` çš„ä¼šè¯ IDï¼ˆç§èŠ/ç¾¤ç»„ï¼‰ï¼ˆ`me`ã€`friend list`ã€`group list`ï¼‰
+
+## Selfï¼ˆ"æˆ‘"ï¼‰
 
 ```bash
-openclaw directory peers list --channel zalouser
-openclaw directory peers list --channel zalouser --query "name"
-openclaw directory peers list --channel zalouser --limit 50
+ directory self --channel zalouser
 ```
 
-## 群组
+## Peersï¼ˆè”ç³»äºº/ç”¨æˆ·ï¼‰
 
 ```bash
-openclaw directory groups list --channel zalouser
-openclaw directory groups list --channel zalouser --query "work"
-openclaw directory groups members --channel zalouser --group-id <id>
+ directory peers list --channel zalouser
+ directory peers list --channel zalouser --query "name"
+ directory peers list --channel zalouser --limit 50
 ```
+
+## ç¾¤ç»„
+
+```bash
+ directory groups list --channel zalouser
+ directory groups list --channel zalouser --query "work"
+ directory groups members --channel zalouser --group-id <id>
+```
+

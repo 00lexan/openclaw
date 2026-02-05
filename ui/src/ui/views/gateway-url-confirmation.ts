@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { AppViewState } from "../app-view-state.ts";
 
 export function renderGatewayUrlConfirmation(state: AppViewState) {
@@ -38,3 +38,4 @@ export function renderGatewayUrlConfirmation(state: AppViewState) {
     </div>
   `;
 }
+

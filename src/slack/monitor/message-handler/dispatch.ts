@@ -1,4 +1,4 @@
-import type { PreparedSlackMessage } from "./types.js";
+﻿import type { PreparedSlackMessage } from "./types.js";
 import { resolveHumanDelayConfig } from "../../../agents/identity.js";
 import { dispatchInboundMessage } from "../../../auto-reply/dispatch.js";
 import { clearHistoryEntriesIfEnabled } from "../../../auto-reply/reply/history.js";
@@ -195,3 +195,4 @@ export async function dispatchPreparedSlackMessage(prepared: PreparedSlackMessag
     });
   }
 }
+

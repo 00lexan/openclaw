@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+﻿import { execFileSync } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
@@ -16,7 +16,7 @@ const mask = (value: string) => {
     return "missing";
   }
   const edge = compact.length >= 12 ? 6 : 4;
-  return `${compact.slice(0, edge)}…${compact.slice(-edge)}`;
+  return `${compact.slice(0, edge)}â€¦${compact.slice(-edge)}`;
 };
 
 const parseArgs = (): Args => {
@@ -46,9 +46,9 @@ const parseArgs = (): Args => {
 
 const loadAuthProfiles = (agentId: string) => {
   const stateRoot =
-    process.env.OPENCLAW_STATE_DIR?.trim() ||
+    process.env._STATE_DIR?.trim() ||
     process.env.CLAWDBOT_STATE_DIR?.trim() ||
-    path.join(os.homedir(), ".openclaw");
+    path.join(os.homedir(), ".");
   const authPath = path.join(stateRoot, "agents", agentId, "agent", "auth-profiles.json");
   if (!fs.existsSync(authPath)) {
     throw new Error(`Missing: ${authPath}`);
@@ -83,7 +83,7 @@ const fetchAnthropicOAuthUsage = async (token: string) => {
       Accept: "application/json",
       "anthropic-version": "2023-06-01",
       "anthropic-beta": "oauth-2025-04-20",
-      "User-Agent": "openclaw-debug",
+      "User-Agent": "-debug",
     },
   });
   const text = await res.text();
@@ -389,3 +389,4 @@ const main = async () => {
 };
 
 await main();
+

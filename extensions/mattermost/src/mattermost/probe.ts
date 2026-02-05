@@ -1,4 +1,4 @@
-import { normalizeMattermostBaseUrl, type MattermostUser } from "./client.js";
+﻿import { normalizeMattermostBaseUrl, type MattermostUser } from "./client.js";
 
 export type MattermostProbe = {
   ok: boolean;
@@ -72,3 +72,4 @@ export async function probeMattermost(
     }
   }
 }
+

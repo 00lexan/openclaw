@@ -1,10 +1,10 @@
-import type { OpenClawConfig } from "../config/config.js";
-export function normalizeLegacyConfigValues(cfg: OpenClawConfig): {
-  config: OpenClawConfig;
+﻿import type { Config } from "../config/config.js";
+export function normalizeLegacyConfigValues(cfg: Config): {
+  config: Config;
   changes: string[];
 } {
   const changes: string[] = [];
-  let next: OpenClawConfig = cfg;
+  let next: Config = cfg;
 
   const legacyAckReaction = cfg.messages?.ackReaction?.trim();
   const hasWhatsAppConfig = cfg.channels?.whatsapp !== undefined;
@@ -38,10 +38,11 @@ export function normalizeLegacyConfigValues(cfg: OpenClawConfig): {
         },
       };
       changes.push(
-        `Copied messages.ackReaction → channels.whatsapp.ackReaction (scope: ${legacyScope}).`,
+        `Copied messages.ackReaction â†’ channels.whatsapp.ackReaction (scope: ${legacyScope}).`,
       );
     }
   }
 
   return { config: next, changes };
 }
+

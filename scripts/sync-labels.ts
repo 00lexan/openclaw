@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+﻿import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -94,3 +94,4 @@ function fetchExistingLabels(repo: string): Map<string, RepoLabel> {
   const labels = JSON.parse(raw) as RepoLabel[];
   return new Map(labels.map((label) => [label.name, label]));
 }
+

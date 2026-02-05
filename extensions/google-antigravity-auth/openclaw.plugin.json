@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "google-antigravity-auth",
   "providers": ["google-antigravity"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

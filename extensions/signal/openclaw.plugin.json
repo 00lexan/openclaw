@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "signal",
   "channels": ["signal"],
   "configSchema": {
@@ -7,3 +7,4 @@
     "properties": {}
   }
 }
+

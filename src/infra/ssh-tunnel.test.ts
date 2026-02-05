@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { parseSshTarget } from "./ssh-tunnel.js";
 
 describe("parseSshTarget", () => {
@@ -24,3 +24,4 @@ describe("parseSshTarget", () => {
     expect(parseSshTarget("-oProxyCommand=echo")).toBeNull();
   });
 });
+

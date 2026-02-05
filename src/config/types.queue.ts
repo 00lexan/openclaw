@@ -1,4 +1,4 @@
-export type QueueMode =
+﻿export type QueueMode =
   | "steer"
   | "followup"
   | "collect"
@@ -19,3 +19,4 @@ export type QueueModeByProvider = {
   msteams?: QueueMode;
   webchat?: QueueMode;
 };
+

@@ -1,4 +1,4 @@
-import { Command } from "commander";
+﻿import { Command } from "commander";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 const callGatewayFromCli = vi.fn();
@@ -18,7 +18,7 @@ describe("logs cli", () => {
 
   it("writes output directly to stdout/stderr", async () => {
     callGatewayFromCli.mockResolvedValueOnce({
-      file: "/tmp/openclaw.log",
+      file: "/tmp/.log",
       cursor: 1,
       size: 123,
       lines: ["raw line"],
@@ -55,7 +55,7 @@ describe("logs cli", () => {
 
   it("warns when the output pipe closes", async () => {
     callGatewayFromCli.mockResolvedValueOnce({
-      file: "/tmp/openclaw.log",
+      file: "/tmp/.log",
       lines: ["line one"],
     });
 
@@ -83,3 +83,4 @@ describe("logs cli", () => {
     expect(stderrWrites.join("")).toContain("output stdout closed");
   });
 });
+

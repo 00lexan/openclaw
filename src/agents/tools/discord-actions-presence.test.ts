@@ -1,4 +1,4 @@
-import type { GatewayPlugin } from "@buape/carbon/gateway";
+﻿import type { GatewayPlugin } from "@buape/carbon/gateway";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { DiscordActionConfig } from "../../config/config.js";
 import type { ActionGate } from "./common.js";
@@ -208,3 +208,4 @@ describe("handleDiscordPresenceAction", () => {
     );
   });
 });
+

@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import type { NodeSession } from "../node-registry.js";
 import type { GatewayRequestHandlers } from "./types.js";
 import {
@@ -275,3 +275,4 @@ export const browserHandlers: GatewayRequestHandlers = {
     respond(true, result.body);
   },
 };
+

@@ -1,4 +1,4 @@
-export type WizardSelectOption<T = string> = {
+﻿export type WizardSelectOption<T = string> = {
   value: T;
   label: string;
   hint?: string;
@@ -50,3 +50,4 @@ export class WizardCancelledError extends Error {
     this.name = "WizardCancelledError";
   }
 }
+

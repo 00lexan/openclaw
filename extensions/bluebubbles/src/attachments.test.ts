@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+﻿import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import type { BlueBubblesAttachment } from "./types.js";
 import { downloadBlueBubblesAttachment, sendBlueBubblesAttachment } from "./attachments.js";
 
@@ -343,3 +343,4 @@ describe("sendBlueBubblesAttachment", () => {
     expect(bodyText).toContain('name="evil.mp3"');
   });
 });
+

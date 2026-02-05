@@ -1,4 +1,4 @@
-import { SILENT_REPLY_TOKEN, type PluginRuntime } from "openclaw/plugin-sdk";
+﻿import { SILENT_REPLY_TOKEN, type PluginRuntime } from "/plugin-sdk";
 import { beforeEach, describe, expect, it } from "vitest";
 import type { StoredConversationReference } from "./conversation-store.js";
 import {
@@ -246,3 +246,4 @@ describe("msteams messenger", () => {
     });
   });
 });
+

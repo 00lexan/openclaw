@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 
 const DmPolicySchema = z.enum(["open", "allowlist", "pairing", "disabled"]);
 const GroupPolicySchema = z.enum(["open", "allowlist", "disabled"]);
@@ -53,3 +53,4 @@ export const LineConfigSchema = z
   .strict();
 
 export type LineConfigSchemaType = z.infer<typeof LineConfigSchema>;
+

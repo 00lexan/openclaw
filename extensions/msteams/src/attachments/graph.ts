@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   MSTeamsAccessTokenProvider,
   MSTeamsAttachmentLike,
   MSTeamsGraphMediaResult,
@@ -351,3 +351,4 @@ export async function downloadMSTeamsGraphMedia(params: {
     messageUrl,
   };
 }
+

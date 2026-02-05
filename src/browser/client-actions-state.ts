@@ -1,4 +1,4 @@
-import type { BrowserActionOk, BrowserActionTargetOk } from "./client-actions-types.js";
+﻿import type { BrowserActionOk, BrowserActionTargetOk } from "./client-actions-types.js";
 import { fetchBrowserJson } from "./client-fetch.js";
 
 function buildProfileQuery(profile?: string): string {
@@ -293,3 +293,4 @@ export async function browserClearPermissions(
     timeoutMs: 20000,
   });
 }
+

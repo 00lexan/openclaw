@@ -1,4 +1,4 @@
-import { escapeXml } from "../voice-mapping.js";
+﻿import { escapeXml } from "../voice-mapping.js";
 
 export function generateNotifyTwiml(message: string, voice: string): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -7,3 +7,4 @@ export function generateNotifyTwiml(message: string, voice: string): string {
   <Hangup/>
 </Response>`;
 }
+

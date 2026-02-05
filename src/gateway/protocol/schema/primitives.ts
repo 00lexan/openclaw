@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { SESSION_LABEL_MAX_LENGTH } from "../../../sessions/session-label.js";
 import { GATEWAY_CLIENT_IDS, GATEWAY_CLIENT_MODES } from "../client-info.js";
 
@@ -15,3 +15,4 @@ export const GatewayClientIdSchema = Type.Union(
 export const GatewayClientModeSchema = Type.Union(
   Object.values(GATEWAY_CLIENT_MODES).map((value) => Type.Literal(value)),
 );
+

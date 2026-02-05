@@ -1,4 +1,4 @@
-// Cloud Code Assist API rejects a subset of JSON Schema keywords.
+﻿// Cloud Code Assist API rejects a subset of JSON Schema keywords.
 // This module scrubs/normalizes tool schemas to keep Gemini happy.
 
 // Keywords that Cloud Code Assist API rejects (not compliant with their JSON Schema subset)
@@ -374,3 +374,4 @@ export function cleanSchemaForGemini(schema: unknown): unknown {
   const defs = extendSchemaDefs(undefined, schema as Record<string, unknown>);
   return cleanSchemaForGeminiWithDefs(schema, defs, undefined);
 }
+

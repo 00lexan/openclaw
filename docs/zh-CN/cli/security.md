@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想对配置/状态运行快速安全审计
-  - 你想应用安全的"修复"建议（chmod、收紧默认值）
-summary: "`openclaw security` 的 CLI 参考（审计和修复常见安全隐患）"
+  - ä½ æƒ³å¯¹é…ç½®/çŠ¶æ€è¿è¡Œå¿«é€Ÿå®‰å…¨å®¡è®¡
+  - ä½ æƒ³åº”ç”¨å®‰å…¨çš„"ä¿®å¤"å»ºè®®ï¼ˆchmodã€æ”¶ç´§é»˜è®¤å€¼ï¼‰
+summary: "` security` çš„ CLI å‚è€ƒï¼ˆå®¡è®¡å’Œä¿®å¤å¸¸è§å®‰å…¨éšæ‚£ï¼‰"
 title: security
 x-i18n:
   generated_at: "2026-02-03T07:45:13Z"
@@ -13,21 +13,22 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw security`
+# ` security`
 
-安全工具（审计 + 可选修复）。
+å®‰å…¨å·¥å…·ï¼ˆå®¡è®¡ + å¯é€‰ä¿®å¤ï¼‰ã€‚
 
-相关：
+ç›¸å…³ï¼š
 
-- 安全指南：[安全](/gateway/security)
+- å®‰å…¨æŒ‡å—ï¼š[å®‰å…¨](/gateway/security)
 
-## 审计
+## å®¡è®¡
 
 ```bash
-openclaw security audit
-openclaw security audit --deep
-openclaw security audit --fix
+ security audit
+ security audit --deep
+ security audit --fix
 ```
 
-当多个私信发送者共享主会话时，审计会发出警告，并建议对共享收件箱使用 `session.dmScope="per-channel-peer"`（或多账户渠道使用 `per-account-channel-peer`）。
-当使用小模型（`<=300B`）且未启用沙箱隔离但启用了 web/browser 工具时，它也会发出警告。
+å½“å¤šä¸ªç§ä¿¡å‘é€è€…å…±äº«ä¸»ä¼šè¯æ—¶ï¼Œå®¡è®¡ä¼šå‘å‡ºè­¦å‘Šï¼Œå¹¶å»ºè®®å¯¹å…±äº«æ”¶ä»¶ç®±ä½¿ç”¨ `session.dmScope="per-channel-peer"`ï¼ˆæˆ–å¤šè´¦æˆ·æ¸ é“ä½¿ç”¨ `per-account-channel-peer`ï¼‰ã€‚
+å½“ä½¿ç”¨å°æ¨¡åž‹ï¼ˆ`<=300B`ï¼‰ä¸”æœªå¯ç”¨æ²™ç®±éš”ç¦»ä½†å¯ç”¨äº† web/browser å·¥å…·æ—¶ï¼Œå®ƒä¹Ÿä¼šå‘å‡ºè­¦å‘Šã€‚
+

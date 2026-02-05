@@ -1,4 +1,4 @@
-import type { ReplyToMode } from "../config/config.js";
+﻿import type { ReplyToMode } from "../config/config.js";
 import type { TelegramAccountConfig } from "../config/types.telegram.js";
 import type { RuntimeEnv } from "../runtime.js";
 import type { TelegramBotOptions } from "./bot.js";
@@ -90,3 +90,4 @@ export const createTelegramMessageProcessor = (deps: TelegramMessageProcessorDep
     });
   };
 };
+

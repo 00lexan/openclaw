@@ -1,4 +1,4 @@
-import type { ZcaUserInfo } from "./types.js";
+﻿import type { ZcaUserInfo } from "./types.js";
 import { runZca, parseJsonOutput } from "./zca.js";
 
 export interface ZalouserProbeResult {
@@ -26,3 +26,4 @@ export async function probeZalouser(
   }
   return { ok: true, user };
 }
+

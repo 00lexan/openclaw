@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { PluginRegistry } from "../../plugins/registry.js";
 import type { ChannelOutboundAdapter, ChannelPlugin } from "./types.js";
 import { setActivePluginRegistry } from "../../plugins/runtime.js";
@@ -69,3 +69,4 @@ describe("channel plugin loader", () => {
     expect(outbound).toBe(msteamsOutbound);
   });
 });
+

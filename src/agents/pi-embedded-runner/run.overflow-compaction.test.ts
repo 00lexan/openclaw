@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
+﻿import { describe, expect, it, vi, beforeEach } from "vitest";
 
 vi.mock("./run/attempt.js", () => ({
   runEmbeddedAttempt: vi.fn(),
@@ -35,7 +35,7 @@ vi.mock("../model-auth.js", () => ({
 }));
 
 vi.mock("../models-config.js", () => ({
-  ensureOpenClawModelsJson: vi.fn(async () => {}),
+  ensureModelsJson: vi.fn(async () => {}),
 }));
 
 vi.mock("../context-window-guard.js", () => ({
@@ -66,7 +66,7 @@ vi.mock("../../utils/message-channel.js", () => ({
 }));
 
 vi.mock("../agent-paths.js", () => ({
-  resolveOpenClawAgentDir: vi.fn(() => "/tmp/agent-dir"),
+  resolveAgentDir: vi.fn(() => "/tmp/agent-dir"),
 }));
 
 vi.mock("../auth-profiles.js", () => ({
@@ -284,3 +284,4 @@ describe("overflow compaction in run loop", () => {
     expect(result.meta.error?.kind).toBe("compaction_failure");
   });
 });
+

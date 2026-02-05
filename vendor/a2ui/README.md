@@ -1,4 +1,4 @@
-# A2UI: Agent-to-User Interface
+﻿# A2UI: Agent-to-User Interface
 
 A2UI is an open-source project, complete with a format
 optimized for representing updateable agent-generated
@@ -9,7 +9,7 @@ to generate or populate rich user interfaces.
 
 *A gallery of A2UI rendered cards, showing a variety of UI compositions that A2UI can achieve.*
 
-## ⚠️ Status: Early Stage Public Preview
+## âš ï¸ Status: Early Stage Public Preview
 
 > **Note:** A2UI is currently in **v0.8 (Public Preview)**. The specification and
 implementations are functional but are still evolving. We are opening the project to
@@ -50,15 +50,15 @@ on new user requests as the conversation progresses.
 * **Framework-agnostic and portable**: A2UI separates the UI structure from
 the UI implementation. The agent sends a description of the component tree
 and its associated data model. Your client application is responsible for
-mapping these abstract descriptions to its native widgets—be it web components,
+mapping these abstract descriptions to its native widgetsâ€”be it web components,
 Flutter widgets, React components, SwiftUI views or something else entirely.
 The same A2UI JSON payload from an agent can be rendered on multiple different
 clients built on top of different frameworks.
 * **Flexibility**: A2UI also features an open registry pattern that allows
 developers to map server-side types to custom client implementations, from
 native mobile widgets to React components. By registering a "Smart Wrapper,"
-you can connect any existing UI component—including secure iframe containers
-for legacy content—to A2UI's data binding and event system.  Crucially, this
+you can connect any existing UI componentâ€”including secure iframe containers
+for legacy contentâ€”to A2UI's data binding and event system.  Crucially, this
 places security firmly in the developer's hands, enabling them to enforce
 strict sandboxing policies and "trust ladders" directly within their custom
 component logic rather than relying solely on the core system.
@@ -160,3 +160,4 @@ A2UI is an **Apache 2.0** licensed project. We believe the future of UI is agent
 and we want to work with you to help build it.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
+

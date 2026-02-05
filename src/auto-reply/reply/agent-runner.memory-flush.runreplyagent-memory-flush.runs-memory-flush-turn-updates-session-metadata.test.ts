@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -124,7 +124,7 @@ function createBaseRun(params: {
 describe("runReplyAgent memory flush", () => {
   it("runs a memory flush turn and updates session metadata", async () => {
     runEmbeddedPiAgentMock.mockReset();
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-flush-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "-flush-"));
     const storePath = path.join(tmp, "sessions.json");
     const sessionKey = "main";
     const sessionEntry = {
@@ -186,7 +186,7 @@ describe("runReplyAgent memory flush", () => {
   });
   it("skips memory flush when disabled in config", async () => {
     runEmbeddedPiAgentMock.mockReset();
-    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-flush-"));
+    const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "-flush-"));
     const storePath = path.join(tmp, "sessions.json");
     const sessionKey = "main";
     const sessionEntry = {
@@ -246,3 +246,4 @@ describe("runReplyAgent memory flush", () => {
     expect(stored[sessionKey].memoryFlushAt).toBeUndefined();
   });
 });
+

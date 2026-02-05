@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BlockStreamingCoalesceConfig,
   DmPolicy,
   GroupPolicy,
@@ -60,7 +60,7 @@ export type SlackActionConfig = {
 export type SlackSlashCommandConfig = {
   /** Enable handling for the configured slash command (default: false). */
   enabled?: boolean;
-  /** Slash command name (default: "openclaw"). */
+  /** Slash command name (default: ""). */
   name?: string;
   /** Session key prefix for slash commands (default: "slack:slash"). */
   sessionPrefix?: string;
@@ -150,3 +150,4 @@ export type SlackConfig = {
   /** Optional per-account Slack configuration (multi-account). */
   accounts?: Record<string, SlackAccountConfig>;
 } & SlackAccountConfig;
+

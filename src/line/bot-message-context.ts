@@ -1,5 +1,5 @@
-import type { MessageEvent, StickerEventMessage, EventSource, PostbackEvent } from "@line/bot-sdk";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { MessageEvent, StickerEventMessage, EventSource, PostbackEvent } from "@line/bot-sdk";
+import type { Config } from "../config/config.js";
 import type { ResolvedLineAccount } from "./types.js";
 import { formatInboundEnvelope, resolveEnvelopeFormatOptions } from "../auto-reply/envelope.js";
 import { finalizeInboundContext } from "../auto-reply/reply/inbound-context.js";
@@ -22,7 +22,7 @@ interface MediaRef {
 interface BuildLineMessageContextParams {
   event: MessageEvent;
   allMedia: MediaRef[];
-  cfg: OpenClawConfig;
+  cfg: Config;
   account: ResolvedLineAccount;
 }
 
@@ -308,7 +308,7 @@ export async function buildLineMessageContext(params: BuildLineMessageContextPar
 
 export async function buildLinePostbackContext(params: {
   event: PostbackEvent;
-  cfg: OpenClawConfig;
+  cfg: Config;
   account: ResolvedLineAccount;
 }) {
   const { event, cfg, account } = params;
@@ -458,3 +458,4 @@ export async function buildLinePostbackContext(params: {
 export type LineMessageContext = NonNullable<Awaited<ReturnType<typeof buildLineMessageContext>>>;
 export type LinePostbackContext = NonNullable<Awaited<ReturnType<typeof buildLinePostbackContext>>>;
 export type LineInboundContext = LineMessageContext | LinePostbackContext;
+

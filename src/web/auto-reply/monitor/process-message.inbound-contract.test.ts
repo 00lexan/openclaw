@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { expectInboundContextContract } from "../../../../test/helpers/inbound-contract.js";
 
 let capturedCtx: unknown;
@@ -62,3 +62,4 @@ describe("web processMessage inbound contract", () => {
     expectInboundContextContract(capturedCtx as any);
   });
 });
+

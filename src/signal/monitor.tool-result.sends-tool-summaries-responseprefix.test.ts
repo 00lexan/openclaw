@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { OpenClawConfig } from "../config/config.js";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { Config } from "../config/config.js";
 import { resetInboundDedupe } from "../auto-reply/reply/inbound-dedupe.js";
 import { peekSystemEvents, resetSystemEventsForTest } from "../infra/system-events.js";
 import { resolveAgentRoute } from "../routing/resolve-route.js";
@@ -38,7 +38,7 @@ vi.mock("../pairing/pairing-store.js", () => ({
 }));
 
 vi.mock("../config/sessions.js", () => ({
-  resolveStorePath: vi.fn(() => "/tmp/openclaw-sessions.json"),
+  resolveStorePath: vi.fn(() => "/tmp/-sessions.json"),
   updateLastRoute: (...args: unknown[]) => updateLastRouteMock(...args),
   readSessionUpdatedAt: vi.fn(() => undefined),
   recordSessionMetaFromInbound: vi.fn().mockResolvedValue(undefined),
@@ -301,7 +301,7 @@ describe("monitorSignalProvider tool results", () => {
           sourceName: "Ada",
           timestamp: 1,
           reactionMessage: {
-            emoji: "👍",
+            emoji: "ðŸ‘",
             targetAuthor: "+15550002222",
             targetSentTimestamp: 2,
           },
@@ -327,7 +327,7 @@ describe("monitorSignalProvider tool results", () => {
     expect(updateLastRouteMock).not.toHaveBeenCalled();
   });
 
-  it("ignores reaction-only dataMessage.reaction events (don’t treat as broken attachments)", async () => {
+  it("ignores reaction-only dataMessage.reaction events (donâ€™t treat as broken attachments)", async () => {
     const abortController = new AbortController();
 
     streamMock.mockImplementation(async ({ onEvent }) => {
@@ -338,7 +338,7 @@ describe("monitorSignalProvider tool results", () => {
           timestamp: 1,
           dataMessage: {
             reaction: {
-              emoji: "👍",
+              emoji: "ðŸ‘",
               targetAuthor: "+15550002222",
               targetSentTimestamp: 2,
             },
@@ -389,7 +389,7 @@ describe("monitorSignalProvider tool results", () => {
           sourceName: "Ada",
           timestamp: 1,
           reactionMessage: {
-            emoji: "✅",
+            emoji: "âœ…",
             targetAuthor: "+15550002222",
             targetSentTimestamp: 2,
           },
@@ -411,7 +411,7 @@ describe("monitorSignalProvider tool results", () => {
     await flush();
 
     const route = resolveAgentRoute({
-      cfg: config as OpenClawConfig,
+      cfg: config as Config,
       channel: "signal",
       accountId: "default",
       peer: { kind: "dm", id: normalizeE164("+15550001111") },
@@ -444,7 +444,7 @@ describe("monitorSignalProvider tool results", () => {
           sourceName: "Ada",
           timestamp: 1,
           reactionMessage: {
-            emoji: "✅",
+            emoji: "âœ…",
             targetAuthor: "+15550002222",
             targetAuthorUuid: "123e4567-e89b-12d3-a456-426614174000",
             targetSentTimestamp: 2,
@@ -467,7 +467,7 @@ describe("monitorSignalProvider tool results", () => {
     await flush();
 
     const route = resolveAgentRoute({
-      cfg: config as OpenClawConfig,
+      cfg: config as Config,
       channel: "signal",
       accountId: "default",
       peer: { kind: "dm", id: normalizeE164("+15550001111") },
@@ -487,7 +487,7 @@ describe("monitorSignalProvider tool results", () => {
           sourceName: "Ada",
           timestamp: 1,
           reactionMessage: {
-            emoji: "👍",
+            emoji: "ðŸ‘",
             targetAuthor: "+15550002222",
             targetSentTimestamp: 2,
           },
@@ -569,3 +569,4 @@ describe("monitorSignalProvider tool results", () => {
     expect(sendMock).toHaveBeenCalledTimes(1);
   });
 });
+

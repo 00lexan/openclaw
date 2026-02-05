@@ -1,4 +1,4 @@
-export type ParsedAgentSessionKey = {
+﻿export type ParsedAgentSessionKey = {
   agentId: string;
   rest: string;
 };
@@ -73,3 +73,4 @@ export function resolveThreadParentSessionKey(
   const parent = raw.slice(0, idx).trim();
   return parent ? parent : null;
 }
+

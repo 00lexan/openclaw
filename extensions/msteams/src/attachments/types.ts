@@ -1,4 +1,4 @@
-export type MSTeamsAttachmentLike = {
+﻿export type MSTeamsAttachmentLike = {
   contentType?: string | null;
   contentUrl?: string | null;
   name?: string | null;
@@ -35,3 +35,4 @@ export type MSTeamsGraphMediaResult = {
   messageUrl?: string;
   tokenError?: boolean;
 };
+

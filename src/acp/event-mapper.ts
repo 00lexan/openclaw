@@ -1,4 +1,4 @@
-import type { ContentBlock, ImageContent, ToolKind } from "@agentclientprotocol/sdk";
+﻿import type { ContentBlock, ImageContent, ToolKind } from "@agentclientprotocol/sdk";
 
 export type GatewayAttachment = {
   type: string;
@@ -93,3 +93,4 @@ export function inferToolKind(name?: string): ToolKind {
   }
   return "other";
 }
+

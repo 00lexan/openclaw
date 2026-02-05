@@ -1,4 +1,4 @@
-import type { PluginRegistry } from "../../plugins/registry.js";
+﻿import type { PluginRegistry } from "../../plugins/registry.js";
 import type { ChannelId, ChannelPlugin } from "./types.js";
 import { getActivePluginRegistry } from "../../plugins/runtime.js";
 
@@ -27,3 +27,4 @@ export async function loadChannelPlugin(id: ChannelId): Promise<ChannelPlugin | 
   }
   return undefined;
 }
+

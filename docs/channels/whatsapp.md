@@ -1,4 +1,4 @@
----
+﻿---
 summary: "WhatsApp (web channel) integration: login, inbox, replies, media, and ops"
 read_when:
   - Working on WhatsApp/web channel behavior or inbox routing
@@ -12,8 +12,8 @@ Status: WhatsApp Web via Baileys only. Gateway owns the session(s).
 ## Quick setup (beginner)
 
 1. Use a **separate phone number** if possible (recommended).
-2. Configure WhatsApp in `~/.openclaw/openclaw.json`.
-3. Run `openclaw channels login` to scan the QR code (Linked Devices).
+2. Configure WhatsApp in `~/./.json`.
+3. Run ` channels login` to scan the QR code (Linked Devices).
 4. Start the gateway.
 
 Minimal config:
@@ -55,13 +55,13 @@ Disable with:
 
 ## Getting a phone number (two modes)
 
-WhatsApp requires a real mobile number for verification. VoIP and virtual numbers are usually blocked. There are two supported ways to run OpenClaw on WhatsApp:
+WhatsApp requires a real mobile number for verification. VoIP and virtual numbers are usually blocked. There are two supported ways to run  on WhatsApp:
 
 ### Dedicated number (recommended)
 
-Use a **separate phone number** for OpenClaw. Best UX, clean routing, no self-chat quirks. Ideal setup: **spare/old Android phone + eSIM**. Leave it on Wi‑Fi and power, and link it via QR.
+Use a **separate phone number** for . Best UX, clean routing, no self-chat quirks. Ideal setup: **spare/old Android phone + eSIM**. Leave it on Wiâ€‘Fi and power, and link it via QR.
 
-**WhatsApp Business:** You can use WhatsApp Business on the same device with a different number. Great for keeping your personal WhatsApp separate — install WhatsApp Business and register the OpenClaw number there.
+**WhatsApp Business:** You can use WhatsApp Business on the same device with a different number. Great for keeping your personal WhatsApp separate â€” install WhatsApp Business and register the  number there.
 
 **Sample config (dedicated number, single-user allowlist):**
 
@@ -78,11 +78,11 @@ Use a **separate phone number** for OpenClaw. Best UX, clean routing, no self-ch
 
 **Pairing mode (optional):**
 If you want pairing instead of allowlist, set `channels.whatsapp.dmPolicy` to `pairing`. Unknown senders get a pairing code; approve with:
-`openclaw pairing approve whatsapp <code>`
+` pairing approve whatsapp <code>`
 
 ### Personal number (fallback)
 
-Quick fallback: run OpenClaw on **your own number**. Message yourself (WhatsApp “Message yourself”) for testing so you don’t spam contacts. Expect to read verification codes on your main phone during setup and experiments. **Must enable self-chat mode.**
+Quick fallback: run  on **your own number**. Message yourself (WhatsApp â€œMessage yourselfâ€) for testing so you donâ€™t spam contacts. Expect to read verification codes on your main phone during setup and experiments. **Must enable self-chat mode.**
 When the wizard asks for your personal WhatsApp number, enter the phone you will message from (the owner/sender), not the assistant number.
 
 **Sample config (personal number, self-chat):**
@@ -97,7 +97,7 @@ When the wizard asks for your personal WhatsApp number, enter the phone you will
 }
 ```
 
-Self-chat replies default to `[{identity.name}]` when set (otherwise `[openclaw]`)
+Self-chat replies default to `[{identity.name}]` when set (otherwise `[]`)
 if `messages.responsePrefix` is unset. Set it explicitly to customize or disable
 the prefix (use `""` to remove it).
 
@@ -105,30 +105,30 @@ the prefix (use `""` to remove it).
 
 - **Local eSIM** from your country's mobile carrier (most reliable)
   - Austria: [hot.at](https://www.hot.at)
-  - UK: [giffgaff](https://www.giffgaff.com) — free SIM, no contract
-- **Prepaid SIM** — cheap, just needs to receive one SMS for verification
+  - UK: [giffgaff](https://www.giffgaff.com) â€” free SIM, no contract
+- **Prepaid SIM** â€” cheap, just needs to receive one SMS for verification
 
-**Avoid:** TextNow, Google Voice, most "free SMS" services — WhatsApp blocks these aggressively.
+**Avoid:** TextNow, Google Voice, most "free SMS" services â€” WhatsApp blocks these aggressively.
 
 **Tip:** The number only needs to receive one verification SMS. After that, WhatsApp Web sessions persist via `creds.json`.
 
 ## Why Not Twilio?
 
-- Early OpenClaw builds supported Twilio’s WhatsApp Business integration.
+- Early  builds supported Twilioâ€™s WhatsApp Business integration.
 - WhatsApp Business numbers are a poor fit for a personal assistant.
-- Meta enforces a 24‑hour reply window; if you haven’t responded in the last 24 hours, the business number can’t initiate new messages.
-- High-volume or “chatty” usage triggers aggressive blocking, because business accounts aren’t meant to send dozens of personal assistant messages.
+- Meta enforces a 24â€‘hour reply window; if you havenâ€™t responded in the last 24 hours, the business number canâ€™t initiate new messages.
+- High-volume or â€œchattyâ€ usage triggers aggressive blocking, because business accounts arenâ€™t meant to send dozens of personal assistant messages.
 - Result: unreliable delivery and frequent blocks, so support was removed.
 
 ## Login + credentials
 
-- Login command: `openclaw channels login` (QR via Linked Devices).
-- Multi-account login: `openclaw channels login --account <id>` (`<id>` = `accountId`).
+- Login command: ` channels login` (QR via Linked Devices).
+- Multi-account login: ` channels login --account <id>` (`<id>` = `accountId`).
 - Default account (when `--account` is omitted): `default` if present, otherwise the first configured account id (sorted).
-- Credentials stored in `~/.openclaw/credentials/whatsapp/<accountId>/creds.json`.
+- Credentials stored in `~/./credentials/whatsapp/<accountId>/creds.json`.
 - Backup copy at `creds.json.bak` (restored on corruption).
-- Legacy compatibility: older installs stored Baileys files directly in `~/.openclaw/credentials/`.
-- Logout: `openclaw channels logout` (or `--account <id>`) deletes WhatsApp auth state (but keeps shared `oauth.json`).
+- Legacy compatibility: older installs stored Baileys files directly in `~/./credentials/`.
+- Logout: ` channels logout` (or `--account <id>`) deletes WhatsApp auth state (but keeps shared `oauth.json`).
 - Logged-out socket => error instructs re-link.
 
 ## Inbound flow (DM + group)
@@ -138,13 +138,13 @@ the prefix (use `""` to remove it).
 - Status/broadcast chats are ignored.
 - Direct chats use E.164; groups use group JID.
 - **DM policy**: `channels.whatsapp.dmPolicy` controls direct chat access (default: `pairing`).
-  - Pairing: unknown senders get a pairing code (approve via `openclaw pairing approve whatsapp <code>`; codes expire after 1 hour).
+  - Pairing: unknown senders get a pairing code (approve via ` pairing approve whatsapp <code>`; codes expire after 1 hour).
   - Open: requires `channels.whatsapp.allowFrom` to include `"*"`.
-  - Your linked WhatsApp number is implicitly trusted, so self messages skip ⁠`channels.whatsapp.dmPolicy` and `channels.whatsapp.allowFrom` checks.
+  - Your linked WhatsApp number is implicitly trusted, so self messages skip â `channels.whatsapp.dmPolicy` and `channels.whatsapp.allowFrom` checks.
 
 ### Personal-number mode (fallback)
 
-If you run OpenClaw on your **personal WhatsApp number**, enable `channels.whatsapp.selfChatMode` (see sample above).
+If you run  on your **personal WhatsApp number**, enable `channels.whatsapp.selfChatMode` (see sample above).
 
 Behavior:
 
@@ -185,21 +185,21 @@ Notes:
 
 ## WhatsApp FAQ: sending messages + pairing
 
-**Will OpenClaw message random contacts when I link WhatsApp?**  
-No. Default DM policy is **pairing**, so unknown senders only get a pairing code and their message is **not processed**. OpenClaw only replies to chats it receives, or to sends you explicitly trigger (agent/CLI).
+**Will  message random contacts when I link WhatsApp?**  
+No. Default DM policy is **pairing**, so unknown senders only get a pairing code and their message is **not processed**.  only replies to chats it receives, or to sends you explicitly trigger (agent/CLI).
 
 **How does pairing work on WhatsApp?**  
 Pairing is a DM gate for unknown senders:
 
 - First DM from a new sender returns a short code (message is not processed).
-- Approve with: `openclaw pairing approve whatsapp <code>` (list with `openclaw pairing list whatsapp`).
+- Approve with: ` pairing approve whatsapp <code>` (list with ` pairing list whatsapp`).
 - Codes expire after 1 hour; pending requests are capped at 3 per channel.
 
-**Can multiple people use different OpenClaw instances on one WhatsApp number?**  
-Yes, by routing each sender to a different agent via `bindings` (peer `kind: "dm"`, sender E.164 like `+15551234567`). Replies still come from the **same WhatsApp account**, and direct chats collapse to each agent’s main session, so use **one agent per person**. DM access control (`dmPolicy`/`allowFrom`) is global per WhatsApp account. See [Multi-Agent Routing](/concepts/multi-agent).
+**Can multiple people use different  instances on one WhatsApp number?**  
+Yes, by routing each sender to a different agent via `bindings` (peer `kind: "dm"`, sender E.164 like `+15551234567`). Replies still come from the **same WhatsApp account**, and direct chats collapse to each agentâ€™s main session, so use **one agent per person**. DM access control (`dmPolicy`/`allowFrom`) is global per WhatsApp account. See [Multi-Agent Routing](/concepts/multi-agent).
 
 **Why do you ask for my phone number in the wizard?**  
-The wizard uses it to set your **allowlist/owner** so your own DMs are permitted. It’s not used for auto-sending. If you run on your personal WhatsApp number, use that same number and enable `channels.whatsapp.selfChatMode`.
+The wizard uses it to set your **allowlist/owner** so your own DMs are permitted. Itâ€™s not used for auto-sending. If you run on your personal WhatsApp number, use that same number and enable `channels.whatsapp.selfChatMode`.
 
 ## Message normalization (what the model sees)
 
@@ -249,7 +249,7 @@ WhatsApp can automatically send emoji reactions to incoming messages immediately
 {
   "whatsapp": {
     "ackReaction": {
-      "emoji": "👀",
+      "emoji": "ðŸ‘€",
       "direct": true,
       "group": "mentions"
     }
@@ -259,7 +259,7 @@ WhatsApp can automatically send emoji reactions to incoming messages immediately
 
 **Options:**
 
-- `emoji` (string): Emoji to use for acknowledgment (e.g., "👀", "✅", "📨"). Empty or omitted = feature disabled.
+- `emoji` (string): Emoji to use for acknowledgment (e.g., "ðŸ‘€", "âœ…", "ðŸ“¨"). Empty or omitted = feature disabled.
 - `direct` (boolean, default: `true`): Send reactions in direct/DM chats.
 - `group` (string, default: `"mentions"`): Group chat behavior:
   - `"always"`: React to all group messages (even without @mention)
@@ -274,7 +274,7 @@ WhatsApp can automatically send emoji reactions to incoming messages immediately
     "accounts": {
       "work": {
         "ackReaction": {
-          "emoji": "✅",
+          "emoji": "âœ…",
           "direct": false,
           "group": "always"
         }
@@ -316,14 +316,14 @@ WhatsApp can automatically send emoji reactions to incoming messages immediately
   - Caption only on first media item.
   - Media fetch supports HTTP(S) and local paths.
   - Animated GIFs: WhatsApp expects MP4 with `gifPlayback: true` for inline looping.
-    - CLI: `openclaw message send --media <mp4> --gif-playback`
+    - CLI: ` message send --media <mp4> --gif-playback`
     - Gateway: `send` params include `gifPlayback: true`
 
 ## Voice notes (PTT audio)
 
 WhatsApp sends audio as **voice notes** (PTT bubble).
 
-- Best results: OGG/Opus. OpenClaw rewrites `audio/ogg` to `audio/ogg; codecs=opus`.
+- Best results: OGG/Opus.  rewrites `audio/ogg` to `audio/ogg; codecs=opus`.
 - `[[audio_as_voice]]` is ignored for WhatsApp (audio already ships as voice note).
 
 ## Media limits + optimization
@@ -383,22 +383,23 @@ WhatsApp sends audio as **voice notes** (PTT bubble).
 ## Logs + troubleshooting
 
 - Subsystems: `whatsapp/inbound`, `whatsapp/outbound`, `web-heartbeat`, `web-reconnect`.
-- Log file: `/tmp/openclaw/openclaw-YYYY-MM-DD.log` (configurable).
+- Log file: `/tmp//-YYYY-MM-DD.log` (configurable).
 - Troubleshooting guide: [Gateway troubleshooting](/gateway/troubleshooting).
 
 ## Troubleshooting (quick)
 
 **Not linked / QR login required**
 
-- Symptom: `channels status` shows `linked: false` or warns “Not linked”.
-- Fix: run `openclaw channels login` on the gateway host and scan the QR (WhatsApp → Settings → Linked Devices).
+- Symptom: `channels status` shows `linked: false` or warns â€œNot linkedâ€.
+- Fix: run ` channels login` on the gateway host and scan the QR (WhatsApp â†’ Settings â†’ Linked Devices).
 
 **Linked but disconnected / reconnect loop**
 
-- Symptom: `channels status` shows `running, disconnected` or warns “Linked but disconnected”.
-- Fix: `openclaw doctor` (or restart the gateway). If it persists, relink via `channels login` and inspect `openclaw logs --follow`.
+- Symptom: `channels status` shows `running, disconnected` or warns â€œLinked but disconnectedâ€.
+- Fix: ` doctor` (or restart the gateway). If it persists, relink via `channels login` and inspect ` logs --follow`.
 
 **Bun runtime**
 
 - Bun is **not recommended**. WhatsApp (Baileys) and Telegram are unreliable on Bun.
   Run the gateway with **Node**. (See Getting Started runtime note.)
+

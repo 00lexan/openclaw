@@ -1,10 +1,10 @@
----
+﻿---
 read_when:
-  - 你想了解哪些功能可能调用付费 API
-  - 你需要审核密钥、费用和用量可见性
-  - 你正在解释 /status 或 /usage 的费用报告
-summary: 审核哪些功能会产生费用、使用了哪些密钥以及如何查看用量
-title: API 用量与费用
+  - ä½ æƒ³äº†è§£å“ªäº›åŠŸèƒ½å¯èƒ½è°ƒç”¨ä»˜è´¹ API
+  - ä½ éœ€è¦å®¡æ ¸å¯†é’¥ã€è´¹ç”¨å’Œç”¨é‡å¯è§æ€§
+  - ä½ æ­£åœ¨è§£é‡Š /status æˆ– /usage çš„è´¹ç”¨æŠ¥å‘Š
+summary: å®¡æ ¸å“ªäº›åŠŸèƒ½ä¼šäº§ç”Ÿè´¹ç”¨ã€ä½¿ç”¨äº†å“ªäº›å¯†é’¥ä»¥åŠå¦‚ä½•æŸ¥çœ‹ç”¨é‡
+title: API ç”¨é‡ä¸Žè´¹ç”¨
 x-i18n:
   generated_at: "2026-02-01T21:37:08Z"
   model: claude-opus-4-5
@@ -14,123 +14,124 @@ x-i18n:
   workflow: 15
 ---
 
-# API 用量与费用
+# API ç”¨é‡ä¸Žè´¹ç”¨
 
-本文档列出了**可能调用 API 密钥的功能**及其费用的显示位置。重点介绍 OpenClaw 中可能产生提供商用量或付费 API 调用的功能。
+æœ¬æ–‡æ¡£åˆ—å‡ºäº†**å¯èƒ½è°ƒç”¨ API å¯†é’¥çš„åŠŸèƒ½**åŠå…¶è´¹ç”¨çš„æ˜¾ç¤ºä½ç½®ã€‚é‡ç‚¹ä»‹ç»  ä¸­å¯èƒ½äº§ç”Ÿæä¾›å•†ç”¨é‡æˆ–ä»˜è´¹ API è°ƒç”¨çš„åŠŸèƒ½ã€‚
 
-## 费用显示位置（聊天 + CLI）
+## è´¹ç”¨æ˜¾ç¤ºä½ç½®ï¼ˆèŠå¤© + CLIï¼‰
 
-**每会话费用快照**
+**æ¯ä¼šè¯è´¹ç”¨å¿«ç…§**
 
-- `/status` 显示当前会话模型、上下文用量和上次响应的 token 数。
-- 如果模型使用 **API 密钥认证**，`/status` 还会显示上次回复的**预估费用**。
+- `/status` æ˜¾ç¤ºå½“å‰ä¼šè¯æ¨¡åž‹ã€ä¸Šä¸‹æ–‡ç”¨é‡å’Œä¸Šæ¬¡å“åº”çš„ token æ•°ã€‚
+- å¦‚æžœæ¨¡åž‹ä½¿ç”¨ **API å¯†é’¥è®¤è¯**ï¼Œ`/status` è¿˜ä¼šæ˜¾ç¤ºä¸Šæ¬¡å›žå¤çš„**é¢„ä¼°è´¹ç”¨**ã€‚
 
-**每条消息费用页脚**
+**æ¯æ¡æ¶ˆæ¯è´¹ç”¨é¡µè„š**
 
-- `/usage full` 在每条回复后附加用量页脚，包括**预估费用**（仅限 API 密钥）。
-- `/usage tokens` 仅显示 token 数；OAuth 流程会隐藏美元费用。
+- `/usage full` åœ¨æ¯æ¡å›žå¤åŽé™„åŠ ç”¨é‡é¡µè„šï¼ŒåŒ…æ‹¬**é¢„ä¼°è´¹ç”¨**ï¼ˆä»…é™ API å¯†é’¥ï¼‰ã€‚
+- `/usage tokens` ä»…æ˜¾ç¤º token æ•°ï¼›OAuth æµç¨‹ä¼šéšè—ç¾Žå…ƒè´¹ç”¨ã€‚
 
-**CLI 用量窗口（提供商配额）**
+**CLI ç”¨é‡çª—å£ï¼ˆæä¾›å•†é…é¢ï¼‰**
 
-- `openclaw status --usage` 和 `openclaw channels list` 显示提供商**用量窗口**（配额快照，非每条消息的费用）。
+- ` status --usage` å’Œ ` channels list` æ˜¾ç¤ºæä¾›å•†**ç”¨é‡çª—å£**ï¼ˆé…é¢å¿«ç…§ï¼Œéžæ¯æ¡æ¶ˆæ¯çš„è´¹ç”¨ï¼‰ã€‚
 
-详情和示例请参阅 [Token 用量与费用](/token-use)。
+è¯¦æƒ…å’Œç¤ºä¾‹è¯·å‚é˜… [Token ç”¨é‡ä¸Žè´¹ç”¨](/token-use)ã€‚
 
-## 密钥的发现方式
+## å¯†é’¥çš„å‘çŽ°æ–¹å¼
 
-OpenClaw 可以从以下来源获取凭据：
+ å¯ä»¥ä»Žä»¥ä¸‹æ¥æºèŽ·å–å‡­æ®ï¼š
 
-- **认证配置文件**（按智能体配置，存储在 `auth-profiles.json` 中）。
-- **环境变量**（例如 `OPENAI_API_KEY`、`BRAVE_API_KEY`、`FIRECRAWL_API_KEY`）。
-- **配置文件**（`models.providers.*.apiKey`、`tools.web.search.*`、`tools.web.fetch.firecrawl.*`、`memorySearch.*`、`talk.apiKey`）。
-- **Skills**（`skills.entries.<name>.apiKey`），可能会将密钥导出到 Skills 进程的环境变量中。
+- **è®¤è¯é…ç½®æ–‡ä»¶**ï¼ˆæŒ‰æ™ºèƒ½ä½“é…ç½®ï¼Œå­˜å‚¨åœ¨ `auth-profiles.json` ä¸­ï¼‰ã€‚
+- **çŽ¯å¢ƒå˜é‡**ï¼ˆä¾‹å¦‚ `OPENAI_API_KEY`ã€`BRAVE_API_KEY`ã€`FIRECRAWL_API_KEY`ï¼‰ã€‚
+- **é…ç½®æ–‡ä»¶**ï¼ˆ`models.providers.*.apiKey`ã€`tools.web.search.*`ã€`tools.web.fetch.firecrawl.*`ã€`memorySearch.*`ã€`talk.apiKey`ï¼‰ã€‚
+- **Skills**ï¼ˆ`skills.entries.<name>.apiKey`ï¼‰ï¼Œå¯èƒ½ä¼šå°†å¯†é’¥å¯¼å‡ºåˆ° Skills è¿›ç¨‹çš„çŽ¯å¢ƒå˜é‡ä¸­ã€‚
 
-## 可能消耗密钥的功能
+## å¯èƒ½æ¶ˆè€—å¯†é’¥çš„åŠŸèƒ½
 
-### 1）核心模型响应（聊天 + 工具）
+### 1ï¼‰æ ¸å¿ƒæ¨¡åž‹å“åº”ï¼ˆèŠå¤© + å·¥å…·ï¼‰
 
-每次回复或工具调用都使用**当前模型提供商**（OpenAI、Anthropic 等）。这是用量和费用的主要来源。
+æ¯æ¬¡å›žå¤æˆ–å·¥å…·è°ƒç”¨éƒ½ä½¿ç”¨**å½“å‰æ¨¡åž‹æä¾›å•†**ï¼ˆOpenAIã€Anthropic ç­‰ï¼‰ã€‚è¿™æ˜¯ç”¨é‡å’Œè´¹ç”¨çš„ä¸»è¦æ¥æºã€‚
 
-定价配置请参阅[模型](/providers/models)，显示方式请参阅 [Token 用量与费用](/token-use)。
+å®šä»·é…ç½®è¯·å‚é˜…[æ¨¡åž‹](/providers/models)ï¼Œæ˜¾ç¤ºæ–¹å¼è¯·å‚é˜… [Token ç”¨é‡ä¸Žè´¹ç”¨](/token-use)ã€‚
 
-### 2）媒体理解（音频/图像/视频）
+### 2ï¼‰åª’ä½“ç†è§£ï¼ˆéŸ³é¢‘/å›¾åƒ/è§†é¢‘ï¼‰
 
-入站媒体可以在回复生成前进行摘要/转录。这会使用模型/提供商 API。
+å…¥ç«™åª’ä½“å¯ä»¥åœ¨å›žå¤ç”Ÿæˆå‰è¿›è¡Œæ‘˜è¦/è½¬å½•ã€‚è¿™ä¼šä½¿ç”¨æ¨¡åž‹/æä¾›å•† APIã€‚
 
-- 音频：OpenAI / Groq / Deepgram（当密钥存在时**自动启用**）。
-- 图像：OpenAI / Anthropic / Google。
-- 视频：Google。
+- éŸ³é¢‘ï¼šOpenAI / Groq / Deepgramï¼ˆå½“å¯†é’¥å­˜åœ¨æ—¶**è‡ªåŠ¨å¯ç”¨**ï¼‰ã€‚
+- å›¾åƒï¼šOpenAI / Anthropic / Googleã€‚
+- è§†é¢‘ï¼šGoogleã€‚
 
-请参阅[媒体理解](/nodes/media-understanding)。
+è¯·å‚é˜…[åª’ä½“ç†è§£](/nodes/media-understanding)ã€‚
 
-### 3）记忆嵌入 + 语义搜索
+### 3ï¼‰è®°å¿†åµŒå…¥ + è¯­ä¹‰æœç´¢
 
-语义记忆搜索在配置为远程提供商时使用**嵌入 API**：
+è¯­ä¹‰è®°å¿†æœç´¢åœ¨é…ç½®ä¸ºè¿œç¨‹æä¾›å•†æ—¶ä½¿ç”¨**åµŒå…¥ API**ï¼š
 
-- `memorySearch.provider = "openai"` → OpenAI 嵌入
-- `memorySearch.provider = "gemini"` → Gemini 嵌入
-- 本地嵌入失败时可选回退到 OpenAI
+- `memorySearch.provider = "openai"` â†’ OpenAI åµŒå…¥
+- `memorySearch.provider = "gemini"` â†’ Gemini åµŒå…¥
+- æœ¬åœ°åµŒå…¥å¤±è´¥æ—¶å¯é€‰å›žé€€åˆ° OpenAI
 
-你可以使用 `memorySearch.provider = "local"` 保持本地运行（无 API 用量）。
+ä½ å¯ä»¥ä½¿ç”¨ `memorySearch.provider = "local"` ä¿æŒæœ¬åœ°è¿è¡Œï¼ˆæ—  API ç”¨é‡ï¼‰ã€‚
 
-请参阅[记忆](/concepts/memory)。
+è¯·å‚é˜…[è®°å¿†](/concepts/memory)ã€‚
 
-### 4）网页搜索工具（Brave / 通过 OpenRouter 使用 Perplexity）
+### 4ï¼‰ç½‘é¡µæœç´¢å·¥å…·ï¼ˆBrave / é€šè¿‡ OpenRouter ä½¿ç”¨ Perplexityï¼‰
 
-`web_search` 使用 API 密钥，可能产生使用费用：
+`web_search` ä½¿ç”¨ API å¯†é’¥ï¼Œå¯èƒ½äº§ç”Ÿä½¿ç”¨è´¹ç”¨ï¼š
 
-- **Brave Search API**：`BRAVE_API_KEY` 或 `tools.web.search.apiKey`
-- **Perplexity**（通过 OpenRouter）：`PERPLEXITY_API_KEY` 或 `OPENROUTER_API_KEY`
+- **Brave Search API**ï¼š`BRAVE_API_KEY` æˆ– `tools.web.search.apiKey`
+- **Perplexity**ï¼ˆé€šè¿‡ OpenRouterï¼‰ï¼š`PERPLEXITY_API_KEY` æˆ– `OPENROUTER_API_KEY`
 
-**Brave 免费套餐（额度充裕）：**
+**Brave å…è´¹å¥—é¤ï¼ˆé¢åº¦å……è£•ï¼‰ï¼š**
 
-- **每月 2,000 次请求**
-- **每秒 1 次请求**
-- **需要信用卡**进行验证（除非升级否则不会收费）
+- **æ¯æœˆ 2,000 æ¬¡è¯·æ±‚**
+- **æ¯ç§’ 1 æ¬¡è¯·æ±‚**
+- **éœ€è¦ä¿¡ç”¨å¡**è¿›è¡ŒéªŒè¯ï¼ˆé™¤éžå‡çº§å¦åˆ™ä¸ä¼šæ”¶è´¹ï¼‰
 
-请参阅[网页工具](/tools/web)。
+è¯·å‚é˜…[ç½‘é¡µå·¥å…·](/tools/web)ã€‚
 
-### 5）网页抓取工具（Firecrawl）
+### 5ï¼‰ç½‘é¡µæŠ“å–å·¥å…·ï¼ˆFirecrawlï¼‰
 
-`web_fetch` 在存在 API 密钥时可以调用 **Firecrawl**：
+`web_fetch` åœ¨å­˜åœ¨ API å¯†é’¥æ—¶å¯ä»¥è°ƒç”¨ **Firecrawl**ï¼š
 
-- `FIRECRAWL_API_KEY` 或 `tools.web.fetch.firecrawl.apiKey`
+- `FIRECRAWL_API_KEY` æˆ– `tools.web.fetch.firecrawl.apiKey`
 
-如果未配置 Firecrawl，该工具会回退到直接抓取 + 可读性提取（无付费 API）。
+å¦‚æžœæœªé…ç½® Firecrawlï¼Œè¯¥å·¥å…·ä¼šå›žé€€åˆ°ç›´æŽ¥æŠ“å– + å¯è¯»æ€§æå–ï¼ˆæ— ä»˜è´¹ APIï¼‰ã€‚
 
-请参阅[网页工具](/tools/web)。
+è¯·å‚é˜…[ç½‘é¡µå·¥å…·](/tools/web)ã€‚
 
-### 6）提供商用量快照（状态/健康检查）
+### 6ï¼‰æä¾›å•†ç”¨é‡å¿«ç…§ï¼ˆçŠ¶æ€/å¥åº·æ£€æŸ¥ï¼‰
 
-某些状态命令会调用**提供商用量端点**以显示配额窗口或认证健康状态。这些通常是低频调用，但仍会访问提供商 API：
+æŸäº›çŠ¶æ€å‘½ä»¤ä¼šè°ƒç”¨**æä¾›å•†ç”¨é‡ç«¯ç‚¹**ä»¥æ˜¾ç¤ºé…é¢çª—å£æˆ–è®¤è¯å¥åº·çŠ¶æ€ã€‚è¿™äº›é€šå¸¸æ˜¯ä½Žé¢‘è°ƒç”¨ï¼Œä½†ä»ä¼šè®¿é—®æä¾›å•† APIï¼š
 
-- `openclaw status --usage`
-- `openclaw models status --json`
+- ` status --usage`
+- ` models status --json`
 
-请参阅[模型 CLI](/cli/models)。
+è¯·å‚é˜…[æ¨¡åž‹ CLI](/cli/models)ã€‚
 
-### 7）压缩保护摘要
+### 7ï¼‰åŽ‹ç¼©ä¿æŠ¤æ‘˜è¦
 
-压缩保护功能可以使用**当前模型**对会话历史进行摘要，运行时会调用提供商 API。
+åŽ‹ç¼©ä¿æŠ¤åŠŸèƒ½å¯ä»¥ä½¿ç”¨**å½“å‰æ¨¡åž‹**å¯¹ä¼šè¯åŽ†å²è¿›è¡Œæ‘˜è¦ï¼Œè¿è¡Œæ—¶ä¼šè°ƒç”¨æä¾›å•† APIã€‚
 
-请参阅[会话管理 + 压缩](/reference/session-management-compaction)。
+è¯·å‚é˜…[ä¼šè¯ç®¡ç† + åŽ‹ç¼©](/reference/session-management-compaction)ã€‚
 
-### 8）模型扫描/探测
+### 8ï¼‰æ¨¡åž‹æ‰«æ/æŽ¢æµ‹
 
-`openclaw models scan` 可以探测 OpenRouter 模型，启用探测时会使用 `OPENROUTER_API_KEY`。
+` models scan` å¯ä»¥æŽ¢æµ‹ OpenRouter æ¨¡åž‹ï¼Œå¯ç”¨æŽ¢æµ‹æ—¶ä¼šä½¿ç”¨ `OPENROUTER_API_KEY`ã€‚
 
-请参阅[模型 CLI](/cli/models)。
+è¯·å‚é˜…[æ¨¡åž‹ CLI](/cli/models)ã€‚
 
-### 9）语音对话（Talk）
+### 9ï¼‰è¯­éŸ³å¯¹è¯ï¼ˆTalkï¼‰
 
-语音对话模式在配置后可以调用 **ElevenLabs**：
+è¯­éŸ³å¯¹è¯æ¨¡å¼åœ¨é…ç½®åŽå¯ä»¥è°ƒç”¨ **ElevenLabs**ï¼š
 
-- `ELEVENLABS_API_KEY` 或 `talk.apiKey`
+- `ELEVENLABS_API_KEY` æˆ– `talk.apiKey`
 
-请参阅[语音对话模式](/nodes/talk)。
+è¯·å‚é˜…[è¯­éŸ³å¯¹è¯æ¨¡å¼](/nodes/talk)ã€‚
 
-### 10）Skills（第三方 API）
+### 10ï¼‰Skillsï¼ˆç¬¬ä¸‰æ–¹ APIï¼‰
 
-Skills 可以在 `skills.entries.<name>.apiKey` 中存储 `apiKey`。如果 Skills 使用该密钥调用外部 API，则会根据 Skills 的提供商产生费用。
+Skills å¯ä»¥åœ¨ `skills.entries.<name>.apiKey` ä¸­å­˜å‚¨ `apiKey`ã€‚å¦‚æžœ Skills ä½¿ç”¨è¯¥å¯†é’¥è°ƒç”¨å¤–éƒ¨ APIï¼Œåˆ™ä¼šæ ¹æ® Skills çš„æä¾›å•†äº§ç”Ÿè´¹ç”¨ã€‚
 
-请参阅[Skills](/tools/skills)。
+è¯·å‚é˜…[Skills](/tools/skills)ã€‚
+

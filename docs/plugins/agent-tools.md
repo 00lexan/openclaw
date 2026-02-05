@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Write agent tools in a plugin (schemas, optional tools, allowlists)"
 read_when:
   - You want to add a new agent tool in a plugin
@@ -8,11 +8,11 @@ title: "Plugin Agent Tools"
 
 # Plugin agent tools
 
-OpenClaw plugins can register **agent tools** (JSON‑schema functions) that are exposed
+ plugins can register **agent tools** (JSONâ€‘schema functions) that are exposed
 to the LLM during agent runs. Tools can be **required** (always available) or
-**optional** (opt‑in).
+**optional** (optâ€‘in).
 
-Agent tools are configured under `tools` in the main config, or per‑agent under
+Agent tools are configured under `tools` in the main config, or perâ€‘agent under
 `agents.list[].tools`. The allowlist/denylist policy controls which tools the agent
 can call.
 
@@ -35,9 +35,9 @@ export default function (api) {
 }
 ```
 
-## Optional tool (opt‑in)
+## Optional tool (optâ€‘in)
 
-Optional tools are **never** auto‑enabled. Users must add them to an agent
+Optional tools are **never** autoâ€‘enabled. Users must add them to an agent
 allowlist.
 
 ```ts
@@ -88,7 +88,7 @@ Other config knobs that affect tool availability:
 - Allowlists that only name plugin tools are treated as plugin opt-ins; core tools remain
   enabled unless you also include core tools or groups in the allowlist.
 - `tools.profile` / `agents.list[].tools.profile` (base allowlist)
-- `tools.byProvider` / `agents.list[].tools.byProvider` (provider‑specific allow/deny)
+- `tools.byProvider` / `agents.list[].tools.byProvider` (providerâ€‘specific allow/deny)
 - `tools.sandbox.tools.*` (sandbox tool policy when sandboxed)
 
 ## Rules + tips
@@ -97,3 +97,4 @@ Other config knobs that affect tool availability:
 - Plugin ids used in allowlists must not clash with core tool names.
 - Prefer `optional: true` for tools that trigger side effects or require extra
   binaries/credentials.
+

@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import { createHash } from "node:crypto";
 
 export type ToolCallIdMode = "strict" | "strict9";
@@ -219,3 +219,4 @@ export function sanitizeToolCallIdsForCloudCodeAssist(
 
   return changed ? out : messages;
 }
+

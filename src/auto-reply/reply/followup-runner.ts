@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import type { TypingMode } from "../../config/types.js";
 import type { OriginatingChannelType } from "../templating.js";
 import type { GetReplyOptions, ReplyPayload } from "../types.js";
@@ -271,7 +271,7 @@ export function createFollowupRunner(params: {
         if (queued.run.verboseLevel && queued.run.verboseLevel !== "off") {
           const suffix = typeof count === "number" ? ` (count ${count})` : "";
           finalPayloads.unshift({
-            text: `🧹 Auto-compaction complete${suffix}.`,
+            text: `ðŸ§¹ Auto-compaction complete${suffix}.`,
           });
         }
       }
@@ -282,3 +282,4 @@ export function createFollowupRunner(params: {
     }
   };
 }
+

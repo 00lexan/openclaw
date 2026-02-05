@@ -1,4 +1,4 @@
-declare module "@lydell/node-pty" {
+﻿declare module "@lydell/node-pty" {
   export type PtyExitEvent = { exitCode: number; signal?: number };
   export type PtyListener<T> = (event: T) => void;
   export type PtyHandle = {
@@ -22,3 +22,4 @@ declare module "@lydell/node-pty" {
 
   export const spawn: PtySpawn;
 }
+

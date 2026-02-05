@@ -1,4 +1,4 @@
-import type { AgentMessage } from "@mariozechner/pi-agent-core";
+﻿import type { AgentMessage } from "@mariozechner/pi-agent-core";
 import type { ExtensionAPI, FileOperations } from "@mariozechner/pi-coding-agent";
 import {
   BASE_CHUNK_RATIO,
@@ -344,3 +344,4 @@ export const __testing = {
   MIN_CHUNK_RATIO,
   SAFETY_MARGIN,
 } as const;
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   countMismatches,
   countRunning,
@@ -11,11 +11,11 @@ import {
 describe("sandbox-formatters", () => {
   describe("formatStatus", () => {
     it("should format running status", () => {
-      expect(formatStatus(true)).toBe("🟢 running");
+      expect(formatStatus(true)).toBe("ðŸŸ¢ running");
     });
 
     it("should format stopped status", () => {
-      expect(formatStatus(false)).toBe("⚫ stopped");
+      expect(formatStatus(false)).toBe("âš« stopped");
     });
   });
 
@@ -31,11 +31,11 @@ describe("sandbox-formatters", () => {
 
   describe("formatImageMatch", () => {
     it("should format matching image", () => {
-      expect(formatImageMatch(true)).toBe("✓");
+      expect(formatImageMatch(true)).toBe("âœ“");
     });
 
     it("should format mismatched image", () => {
-      expect(formatImageMatch(false)).toBe("⚠️  mismatch");
+      expect(formatImageMatch(false)).toBe("âš ï¸  mismatch");
     });
   });
 
@@ -149,3 +149,4 @@ describe("sandbox-formatters", () => {
     });
   });
 });
+

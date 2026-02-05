@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString, SessionLabelString } from "./primitives.js";
 
 export const AgentEventSchema = Type.Object(
@@ -104,3 +104,4 @@ export const WakeParamsSchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

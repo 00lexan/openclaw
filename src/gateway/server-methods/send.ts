@@ -1,4 +1,4 @@
-import type { GatewayRequestContext, GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestContext, GatewayRequestHandlers } from "./types.js";
 import { resolveSessionAgentId } from "../../agents/agent-scope.js";
 import { getChannelPlugin, normalizeChannelId } from "../../channels/plugins/index.js";
 import { DEFAULT_CHAT_CHANNEL } from "../../channels/registry.js";
@@ -362,3 +362,4 @@ export const sendHandlers: GatewayRequestHandlers = {
     }
   },
 };
+

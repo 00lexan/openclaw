@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { SandboxToolPolicy } from "./types.js";
 import { isToolAllowed } from "./tool-policy.js";
 
@@ -19,3 +19,4 @@ describe("sandbox tool policy", () => {
     expect(isToolAllowed(policy, "read")).toBe(false);
   });
 });
+

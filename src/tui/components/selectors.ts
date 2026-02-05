@@ -1,4 +1,4 @@
-import { type SelectItem, SelectList, type SettingItem, SettingsList } from "@mariozechner/pi-tui";
+﻿import { type SelectItem, SelectList, type SettingItem, SettingsList } from "@mariozechner/pi-tui";
 import {
   filterableSelectListTheme,
   searchableSelectListTheme,
@@ -28,3 +28,4 @@ export function createSettingsList(
 ) {
   return new SettingsList(items, maxVisible, settingsListTheme, onChange, onCancel);
 }
+

@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BlockStreamingCoalesceConfig,
   DmPolicy,
   GroupPolicy,
@@ -77,7 +77,7 @@ export type SignalAccountConfig = {
   /**
    * Controls agent reaction behavior:
    * - "off": No reactions
-   * - "ack": Only automatic ack reactions (👀 when processing)
+   * - "ack": Only automatic ack reactions (ðŸ‘€ when processing)
    * - "minimal": Agent can react sparingly (default)
    * - "extensive": Agent can react liberally
    */
@@ -92,3 +92,4 @@ export type SignalConfig = {
   /** Optional per-account Signal configuration (multi-account). */
   accounts?: Record<string, SignalAccountConfig>;
 } & SignalAccountConfig;
+

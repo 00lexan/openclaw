@@ -1,4 +1,4 @@
-export type GatewayServiceRuntime = {
+﻿export type GatewayServiceRuntime = {
   status?: "running" | "stopped" | "unknown";
   state?: string;
   subState?: string;
@@ -11,3 +11,4 @@ export type GatewayServiceRuntime = {
   cachedLabel?: boolean;
   missingUnit?: boolean;
 };
+

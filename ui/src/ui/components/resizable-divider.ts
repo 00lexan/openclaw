@@ -1,4 +1,4 @@
-import { LitElement, css, nothing } from "lit";
+﻿import { LitElement, css, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 /**
@@ -108,3 +108,4 @@ declare global {
     "resizable-divider": ResizableDivider;
   }
 }
+

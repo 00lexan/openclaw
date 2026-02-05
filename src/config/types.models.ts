@@ -1,4 +1,4 @@
-export type ModelApi =
+﻿export type ModelApi =
   | "openai-completions"
   | "openai-responses"
   | "anthropic-messages"
@@ -57,3 +57,4 @@ export type ModelsConfig = {
   providers?: Record<string, ModelProviderConfig>;
   bedrockDiscovery?: BedrockDiscoveryConfig;
 };
+

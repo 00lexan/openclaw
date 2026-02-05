@@ -1,4 +1,4 @@
-import { getLogger, isFileLogLevelEnabled } from "./logging/logger.js";
+﻿import { getLogger, isFileLogLevelEnabled } from "./logging/logger.js";
 import { theme } from "./terminal/theme.js";
 
 let globalVerbose = false;
@@ -50,3 +50,4 @@ export const success = theme.success;
 export const warn = theme.warn;
 export const info = theme.info;
 export const danger = theme.error;
+

@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { HealthSnapshot, StatusSummary } from "../types.ts";
 
 export type DebugState = {
@@ -58,3 +58,4 @@ export async function callDebugMethod(state: DebugState) {
     state.debugCallError = String(err);
   }
 }
+

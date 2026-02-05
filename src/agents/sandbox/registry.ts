@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import {
   SANDBOX_BROWSER_REGISTRY_PATH,
   SANDBOX_REGISTRY_PATH,
@@ -114,3 +114,4 @@ export async function removeBrowserRegistryEntry(containerName: string) {
   }
   await writeBrowserRegistry({ entries: next });
 }
+

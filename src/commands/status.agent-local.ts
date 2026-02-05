@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import path from "node:path";
 import { resolveAgentWorkspaceDir } from "../agents/agent-scope.js";
 import { loadConfig } from "../config/config.js";
@@ -86,3 +86,4 @@ export async function getAgentLocalStatuses(): Promise<{
     bootstrapPendingCount,
   };
 }
+

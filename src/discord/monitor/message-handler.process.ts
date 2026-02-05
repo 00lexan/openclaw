@@ -1,4 +1,4 @@
-import { ChannelType } from "@buape/carbon";
+﻿import { ChannelType } from "@buape/carbon";
 import type { ReplyPayload } from "../../auto-reply/types.js";
 import type { DiscordMessagePreflightContext } from "./message-handler.preflight.js";
 import { resolveAckReaction, resolveHumanDelayConfig } from "../../agents/identity.js";
@@ -236,7 +236,7 @@ export async function processDiscordMessage(ctx: DiscordMessagePreflightContext)
     }
     const parentName = threadParentName ?? "parent";
     threadLabel = threadName
-      ? `Discord thread #${normalizeDiscordSlug(parentName)} › ${threadName}`
+      ? `Discord thread #${normalizeDiscordSlug(parentName)} â€º ${threadName}`
       : `Discord thread #${normalizeDiscordSlug(parentName)}`;
     if (threadParentId) {
       parentSessionKey = buildAgentSessionKey({
@@ -448,3 +448,4 @@ export async function processDiscordMessage(ctx: DiscordMessagePreflightContext)
     });
   }
 }
+

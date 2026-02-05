@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+﻿import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { sendBlueBubblesReaction } from "./reactions.js";
 
 vi.mock("./accounts.js", () => ({
@@ -122,20 +122,20 @@ describe("reactions", () => {
         { input: "lol", expected: "laugh" },
         { input: "emphasis", expected: "emphasize" },
         { input: "exclaim", expected: "emphasize" },
-        { input: "❤️", expected: "love" },
-        { input: "❤", expected: "love" },
-        { input: "♥️", expected: "love" },
-        { input: "😍", expected: "love" },
-        { input: "👍", expected: "like" },
-        { input: "👎", expected: "dislike" },
-        { input: "😂", expected: "laugh" },
-        { input: "🤣", expected: "laugh" },
-        { input: "😆", expected: "laugh" },
-        { input: "‼️", expected: "emphasize" },
-        { input: "‼", expected: "emphasize" },
-        { input: "❗", expected: "emphasize" },
-        { input: "❓", expected: "question" },
-        { input: "❔", expected: "question" },
+        { input: "â¤ï¸", expected: "love" },
+        { input: "â¤", expected: "love" },
+        { input: "â™¥ï¸", expected: "love" },
+        { input: "ðŸ˜", expected: "love" },
+        { input: "ðŸ‘", expected: "like" },
+        { input: "ðŸ‘Ž", expected: "dislike" },
+        { input: "ðŸ˜‚", expected: "laugh" },
+        { input: "ðŸ¤£", expected: "laugh" },
+        { input: "ðŸ˜†", expected: "laugh" },
+        { input: "â€¼ï¸", expected: "emphasize" },
+        { input: "â€¼", expected: "emphasize" },
+        { input: "â—", expected: "emphasize" },
+        { input: "â“", expected: "question" },
+        { input: "â”", expected: "question" },
         { input: "LOVE", expected: "love" },
         { input: "Like", expected: "like" },
       ];
@@ -355,7 +355,7 @@ describe("reactions", () => {
         await sendBlueBubblesReaction({
           chatGuid: "chat-123",
           messageGuid: "msg-123",
-          emoji: "👍",
+          emoji: "ðŸ‘",
           remove: true,
           opts: {
             serverUrl: "http://localhost:1234",
@@ -390,3 +390,4 @@ describe("reactions", () => {
     });
   });
 });
+

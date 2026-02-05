@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "diagnostics-otel",
   "configSchema": {
     "type": "object",
@@ -6,3 +6,4 @@
     "properties": {}
   }
 }
+

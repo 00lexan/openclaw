@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Voice overlay lifecycle when wake-word and push-to-talk overlap"
 read_when:
   - Adjusting voice overlay behavior
@@ -16,7 +16,7 @@ Audience: macOS app contributors. Goal: keep the voice overlay predictable when 
 
 ### Implemented (Dec 9, 2025)
 
-- Overlay sessions now carry a token per capture (wake-word or push-to-talk). Partial/final/send/dismiss/level updates are dropped when the token doesn’t match, avoiding stale callbacks.
+- Overlay sessions now carry a token per capture (wake-word or push-to-talk). Partial/final/send/dismiss/level updates are dropped when the token doesnâ€™t match, avoiding stale callbacks.
 - Push-to-talk adopts any visible overlay text as a prefix (so pressing the hotkey while the wake overlay is up keeps the text and appends new speech). It waits up to 1.5s for a final transcript before falling back to the current text.
 - Chime/overlay logging is emitted at `info` in categories `voicewake.overlay`, `voicewake.ptt`, and `voicewake.chime` (session start, partial, final, send, dismiss, chime reason).
 
@@ -33,9 +33,9 @@ Audience: macOS app contributors. Goal: keep the voice overlay predictable when 
    - `VoiceWakeOverlayView` renders only via the publisher; it never mutates global singletons directly.
    - Overlay user actions (`sendNow`, `dismiss`, `edit`) call back into the coordinator with the session token.
 4. **Unified send path**
-   - On `endCapture`: if trimmed text is empty → dismiss; else `performSend(session:)` (plays send chime once, forwards, dismisses).
+   - On `endCapture`: if trimmed text is empty â†’ dismiss; else `performSend(session:)` (plays send chime once, forwards, dismisses).
    - Push-to-talk: no delay; wake-word: optional delay for auto-send.
-   - Apply a short cooldown to the wake runtime after push-to-talk finishes so wake-word doesn’t immediately retrigger.
+   - Apply a short cooldown to the wake runtime after push-to-talk finishes so wake-word doesnâ€™t immediately retrigger.
 5. **Logging**
    - Coordinator emits `.info` logs in subsystem `bot.molt`, categories `voicewake.overlay` and `voicewake.chime`.
    - Key events: `session_started`, `adopted_by_push_to_talk`, `partial`, `finalized`, `send`, `dismiss`, `cancel`, `cooldown`.
@@ -58,3 +58,4 @@ Audience: macOS app contributors. Goal: keep the voice overlay predictable when 
 3. Refactor `VoicePushToTalk` to adopt existing sessions and call `endCapture` on release; apply runtime cooldown.
 4. Wire `VoiceWakeOverlayController` to the publisher; remove direct calls from runtime/PTT.
 5. Add integration tests for session adoption, cooldown, and empty-text dismissal.
+

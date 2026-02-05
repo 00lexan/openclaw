@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import type { MsgContext } from "../templating.js";
 import { resolveAgentConfig } from "../../agents/agent-scope.js";
 import { getChannelDock } from "../../channels/dock.js";
@@ -38,7 +38,7 @@ function normalizeMentionPatterns(patterns: string[]): string[] {
   return patterns.map(normalizeMentionPattern);
 }
 
-function resolveMentionPatterns(cfg: OpenClawConfig | undefined, agentId?: string): string[] {
+function resolveMentionPatterns(cfg: Config | undefined, agentId?: string): string[] {
   if (!cfg) {
     return [];
   }
@@ -55,7 +55,7 @@ function resolveMentionPatterns(cfg: OpenClawConfig | undefined, agentId?: strin
   return derived.length > 0 ? derived : [];
 }
 
-export function buildMentionRegexes(cfg: OpenClawConfig | undefined, agentId?: string): RegExp[] {
+export function buildMentionRegexes(cfg: Config | undefined, agentId?: string): RegExp[] {
   const patterns = normalizeMentionPatterns(resolveMentionPatterns(cfg, agentId));
   return patterns
     .map((pattern) => {
@@ -125,7 +125,7 @@ export function stripStructuralPrefixes(text: string): string {
 export function stripMentions(
   text: string,
   ctx: MsgContext,
-  cfg: OpenClawConfig | undefined,
+  cfg: Config | undefined,
   agentId?: string,
 ): string {
   let result = text;
@@ -155,3 +155,4 @@ export function stripMentions(
   result = result.replace(/@[0-9+]{5,}/g, " ");
   return result.replace(/\s+/g, " ").trim();
 }
+

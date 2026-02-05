@@ -1,4 +1,4 @@
-export function isStatusCommand(body: string) {
+﻿export function isStatusCommand(body: string) {
   const trimmed = body.trim().toLowerCase();
   if (!trimmed) {
     return false;
@@ -25,3 +25,4 @@ export function stripMentionsForCommand(
   }
   return result.replace(/\s+/g, " ").trim();
 }
+

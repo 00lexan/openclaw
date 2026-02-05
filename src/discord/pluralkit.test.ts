@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { fetchPluralKitMessageInfo } from "./pluralkit.js";
 
 type MockResponse = {
@@ -65,3 +65,4 @@ describe("fetchPluralKitMessageInfo", () => {
     expect(receivedHeaders?.Authorization).toBe("pk_test");
   });
 });
+

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Template interpolation for response prefix.
  *
  * Supports variables like `{model}`, `{provider}`, `{thinkingLevel}`, etc.
@@ -99,3 +99,4 @@ export function hasTemplateVariables(template: string | undefined): boolean {
   TEMPLATE_VAR_PATTERN.lastIndex = 0;
   return TEMPLATE_VAR_PATTERN.test(template);
 }
+

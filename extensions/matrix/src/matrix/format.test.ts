@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { markdownToMatrixHtml } from "./format.js";
 
 describe("markdownToMatrixHtml", () => {
@@ -31,3 +31,4 @@ describe("markdownToMatrixHtml", () => {
     expect(html).toContain("<br");
   });
 });
+

@@ -1,4 +1,4 @@
-import type { GroupPolicy } from "./types.base.js";
+﻿import type { GroupPolicy } from "./types.base.js";
 import type { DiscordConfig } from "./types.discord.js";
 import type { FeishuConfig } from "./types.feishu.js";
 import type { GoogleChatConfig } from "./types.googlechat.js";
@@ -37,3 +37,4 @@ export type ChannelsConfig = {
   msteams?: MSTeamsConfig;
   [key: string]: unknown;
 };
+

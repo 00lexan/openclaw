@@ -1,4 +1,4 @@
-# OpenProse Standard Library
+﻿# OpenProse Standard Library
 
 Core programs that ship with OpenProse. Production-quality, well-tested programs for common tasks.
 
@@ -27,23 +27,23 @@ Core programs that ship with OpenProse. Production-quality, well-tested programs
 The evaluation programs form a recursive improvement cycle:
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│   Run Program  ──►  Inspector  ──►  VM Improver ──► PR     │
-│        ▲                │                                   │
-│        │                ▼                                   │
-│        │         Program Improver ──► PR                    │
-│        │                │                                   │
-│        └────────────────┘                                   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                                                             â”‚
+â”‚   Run Program  â”€â”€â–º  Inspector  â”€â”€â–º  VM Improver â”€â”€â–º PR     â”‚
+â”‚        â–²                â”‚                                   â”‚
+â”‚        â”‚                â–¼                                   â”‚
+â”‚        â”‚         Program Improver â”€â”€â–º PR                    â”‚
+â”‚        â”‚                â”‚                                   â”‚
+â”‚        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                                   â”‚
+â”‚                                                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 Supporting analysis:
 
-- **cost-analyzer** — Where does the money go? Optimization opportunities.
-- **calibrator** — Are cheap evaluations reliable proxies for expensive ones?
-- **error-forensics** — Why did a run fail? Root cause analysis.
+- **cost-analyzer** â€” Where does the money go? Optimization opportunities.
+- **calibrator** â€” Are cheap evaluations reliable proxies for expensive ones?
+- **error-forensics** â€” Why did a run fail? Root cause analysis.
 
 ## Usage
 
@@ -100,9 +100,10 @@ Both recommend `--backend sqlite+` for durable persistence.
 
 ## Design Principles
 
-1. **Production-ready** — Tested, documented, handles edge cases
-2. **Composable** — Can be imported via `use` in other programs
-3. **User-scoped state** — Cross-project utilities use `persist: user`
-4. **Minimal dependencies** — No external services required
-5. **Clear contracts** — Well-defined inputs and outputs
-6. **Incremental value** — Useful in simple mode, more powerful with depth
+1. **Production-ready** â€” Tested, documented, handles edge cases
+2. **Composable** â€” Can be imported via `use` in other programs
+3. **User-scoped state** â€” Cross-project utilities use `persist: user`
+4. **Minimal dependencies** â€” No external services required
+5. **Clear contracts** â€” Well-defined inputs and outputs
+6. **Incremental value** â€” Useful in simple mode, more powerful with depth
+

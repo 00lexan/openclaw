@@ -1,4 +1,4 @@
-import type { ImageContent } from "@mariozechner/pi-ai";
+﻿import type { ImageContent } from "@mariozechner/pi-ai";
 import type { TypingController } from "./reply/typing.js";
 
 export type BlockReplyContext = {
@@ -55,3 +55,4 @@ export type ReplyPayload = {
   /** Channel-specific payload data (per-channel envelope). */
   channelData?: Record<string, unknown>;
 };
+

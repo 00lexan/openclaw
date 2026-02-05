@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 开发 Telegram 或 grammY 相关功能时
-summary: 通过 grammY 集成 Telegram Bot API，附设置说明
+  - å¼€å‘ Telegram æˆ– grammY ç›¸å…³åŠŸèƒ½æ—¶
+summary: é€šè¿‡ grammY é›†æˆ Telegram Bot APIï¼Œé™„è®¾ç½®è¯´æ˜Ž
 title: grammY
 x-i18n:
   generated_at: "2026-02-03T10:03:55Z"
@@ -12,27 +12,28 @@ x-i18n:
   workflow: 15
 ---
 
-# grammY 集成（Telegram Bot API）
+# grammY é›†æˆï¼ˆTelegram Bot APIï¼‰
 
-# 为什么选择 grammY
+# ä¸ºä»€ä¹ˆé€‰æ‹© grammY
 
-- 以 TS 为核心的 Bot API 客户端，内置长轮询 + webhook 辅助工具、中间件、错误处理和速率限制器。
-- 媒体处理辅助工具比手动编写 fetch + FormData 更简洁；支持所有 Bot API 方法。
-- 可扩展：通过自定义 fetch 支持代理，可选的会话中间件，类型安全的上下文。
+- ä»¥ TS ä¸ºæ ¸å¿ƒçš„ Bot API å®¢æˆ·ç«¯ï¼Œå†…ç½®é•¿è½®è¯¢ + webhook è¾…åŠ©å·¥å…·ã€ä¸­é—´ä»¶ã€é”™è¯¯å¤„ç†å’Œé€ŸçŽ‡é™åˆ¶å™¨ã€‚
+- åª’ä½“å¤„ç†è¾…åŠ©å·¥å…·æ¯”æ‰‹åŠ¨ç¼–å†™ fetch + FormData æ›´ç®€æ´ï¼›æ”¯æŒæ‰€æœ‰ Bot API æ–¹æ³•ã€‚
+- å¯æ‰©å±•ï¼šé€šè¿‡è‡ªå®šä¹‰ fetch æ”¯æŒä»£ç†ï¼Œå¯é€‰çš„ä¼šè¯ä¸­é—´ä»¶ï¼Œç±»åž‹å®‰å…¨çš„ä¸Šä¸‹æ–‡ã€‚
 
-# 我们发布的内容
+# æˆ‘ä»¬å‘å¸ƒçš„å†…å®¹
 
-- **单一客户端路径：** 移除了基于 fetch 的实现；grammY 现在是唯一的 Telegram 客户端（发送 + Gateway 网关），默认启用 grammY throttler。
-- **Gateway 网关：** `monitorTelegramProvider` 构建 grammY `Bot`，接入 mention/allowlist 网关控制，通过 `getFile`/`download` 下载媒体，并使用 `sendMessage/sendPhoto/sendVideo/sendAudio/sendDocument` 发送回复。通过 `webhookCallback` 支持长轮询或 webhook。
-- **代理：** 可选的 `channels.telegram.proxy` 通过 grammY 的 `client.baseFetch` 使用 `undici.ProxyAgent`。
-- **Webhook 支持：** `webhook-set.ts` 封装了 `setWebhook/deleteWebhook`；`webhook.ts` 托管回调，支持健康检查和优雅关闭。当设置了 `channels.telegram.webhookUrl` + `channels.telegram.webhookSecret` 时，Gateway 网关启用 webhook 模式（否则使用长轮询）。
-- **会话：** 私聊折叠到智能体主会话（`agent:<agentId>:<mainKey>`）；群组使用 `agent:<agentId>:telegram:group:<chatId>`；回复路由回同一渠道。
-- **配置选项：** `channels.telegram.botToken`、`channels.telegram.dmPolicy`、`channels.telegram.groups`（allowlist + mention 默认值）、`channels.telegram.allowFrom`、`channels.telegram.groupAllowFrom`、`channels.telegram.groupPolicy`、`channels.telegram.mediaMaxMb`、`channels.telegram.linkPreview`、`channels.telegram.proxy`、`channels.telegram.webhookSecret`、`channels.telegram.webhookUrl`。
-- **草稿流式传输：** 可选的 `channels.telegram.streamMode` 在私有话题聊天中使用 `sendMessageDraft`（Bot API 9.3+）。这与渠道分块流式传输是分开的。
-- **测试：** grammY mock 覆盖了私信 + 群组 mention 网关控制和出站发送；欢迎添加更多媒体/webhook 测试用例。
+- **å•ä¸€å®¢æˆ·ç«¯è·¯å¾„ï¼š** ç§»é™¤äº†åŸºäºŽ fetch çš„å®žçŽ°ï¼›grammY çŽ°åœ¨æ˜¯å”¯ä¸€çš„ Telegram å®¢æˆ·ç«¯ï¼ˆå‘é€ + Gateway ç½‘å…³ï¼‰ï¼Œé»˜è®¤å¯ç”¨ grammY throttlerã€‚
+- **Gateway ç½‘å…³ï¼š** `monitorTelegramProvider` æž„å»º grammY `Bot`ï¼ŒæŽ¥å…¥ mention/allowlist ç½‘å…³æŽ§åˆ¶ï¼Œé€šè¿‡ `getFile`/`download` ä¸‹è½½åª’ä½“ï¼Œå¹¶ä½¿ç”¨ `sendMessage/sendPhoto/sendVideo/sendAudio/sendDocument` å‘é€å›žå¤ã€‚é€šè¿‡ `webhookCallback` æ”¯æŒé•¿è½®è¯¢æˆ– webhookã€‚
+- **ä»£ç†ï¼š** å¯é€‰çš„ `channels.telegram.proxy` é€šè¿‡ grammY çš„ `client.baseFetch` ä½¿ç”¨ `undici.ProxyAgent`ã€‚
+- **Webhook æ”¯æŒï¼š** `webhook-set.ts` å°è£…äº† `setWebhook/deleteWebhook`ï¼›`webhook.ts` æ‰˜ç®¡å›žè°ƒï¼Œæ”¯æŒå¥åº·æ£€æŸ¥å’Œä¼˜é›…å…³é—­ã€‚å½“è®¾ç½®äº† `channels.telegram.webhookUrl` + `channels.telegram.webhookSecret` æ—¶ï¼ŒGateway ç½‘å…³å¯ç”¨ webhook æ¨¡å¼ï¼ˆå¦åˆ™ä½¿ç”¨é•¿è½®è¯¢ï¼‰ã€‚
+- **ä¼šè¯ï¼š** ç§èŠæŠ˜å åˆ°æ™ºèƒ½ä½“ä¸»ä¼šè¯ï¼ˆ`agent:<agentId>:<mainKey>`ï¼‰ï¼›ç¾¤ç»„ä½¿ç”¨ `agent:<agentId>:telegram:group:<chatId>`ï¼›å›žå¤è·¯ç”±å›žåŒä¸€æ¸ é“ã€‚
+- **é…ç½®é€‰é¡¹ï¼š** `channels.telegram.botToken`ã€`channels.telegram.dmPolicy`ã€`channels.telegram.groups`ï¼ˆallowlist + mention é»˜è®¤å€¼ï¼‰ã€`channels.telegram.allowFrom`ã€`channels.telegram.groupAllowFrom`ã€`channels.telegram.groupPolicy`ã€`channels.telegram.mediaMaxMb`ã€`channels.telegram.linkPreview`ã€`channels.telegram.proxy`ã€`channels.telegram.webhookSecret`ã€`channels.telegram.webhookUrl`ã€‚
+- **è‰ç¨¿æµå¼ä¼ è¾“ï¼š** å¯é€‰çš„ `channels.telegram.streamMode` åœ¨ç§æœ‰è¯é¢˜èŠå¤©ä¸­ä½¿ç”¨ `sendMessageDraft`ï¼ˆBot API 9.3+ï¼‰ã€‚è¿™ä¸Žæ¸ é“åˆ†å—æµå¼ä¼ è¾“æ˜¯åˆ†å¼€çš„ã€‚
+- **æµ‹è¯•ï¼š** grammY mock è¦†ç›–äº†ç§ä¿¡ + ç¾¤ç»„ mention ç½‘å…³æŽ§åˆ¶å’Œå‡ºç«™å‘é€ï¼›æ¬¢è¿Žæ·»åŠ æ›´å¤šåª’ä½“/webhook æµ‹è¯•ç”¨ä¾‹ã€‚
 
-待解决问题
+å¾…è§£å†³é—®é¢˜
 
-- 如果遇到 Bot API 429 错误，考虑使用可选的 grammY 插件（throttler）。
-- 添加更多结构化媒体测试（贴纸、语音消息）。
-- 使 webhook 监听端口可配置（目前固定为 8787，除非通过 Gateway 网关配置）。
+- å¦‚æžœé‡åˆ° Bot API 429 é”™è¯¯ï¼Œè€ƒè™‘ä½¿ç”¨å¯é€‰çš„ grammY æ’ä»¶ï¼ˆthrottlerï¼‰ã€‚
+- æ·»åŠ æ›´å¤šç»“æž„åŒ–åª’ä½“æµ‹è¯•ï¼ˆè´´çº¸ã€è¯­éŸ³æ¶ˆæ¯ï¼‰ã€‚
+- ä½¿ webhook ç›‘å¬ç«¯å£å¯é…ç½®ï¼ˆç›®å‰å›ºå®šä¸º 8787ï¼Œé™¤éžé€šè¿‡ Gateway ç½‘å…³é…ç½®ï¼‰ã€‚
+

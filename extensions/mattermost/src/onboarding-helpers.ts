@@ -1,12 +1,12 @@
-import type { OpenClawConfig, WizardPrompter } from "openclaw/plugin-sdk";
-import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "openclaw/plugin-sdk";
+﻿import type { Config, WizardPrompter } from "/plugin-sdk";
+import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "/plugin-sdk";
 
 type PromptAccountIdParams = {
-  cfg: OpenClawConfig;
+  cfg: Config;
   prompter: WizardPrompter;
   label: string;
   currentId?: string;
-  listAccountIds: (cfg: OpenClawConfig) => string[];
+  listAccountIds: (cfg: Config) => string[];
   defaultAccountId: string;
 };
 
@@ -42,3 +42,4 @@ export async function promptAccountId(params: PromptAccountIdParams): Promise<st
   }
   return normalized;
 }
+

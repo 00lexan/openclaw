@@ -1,5 +1,5 @@
-import type { OpenClawConfig } from "openclaw/plugin-sdk";
-import { loadWebMedia, resolveChannelMediaMaxBytes } from "openclaw/plugin-sdk";
+﻿import type { Config } from "/plugin-sdk";
+import { loadWebMedia, resolveChannelMediaMaxBytes } from "/plugin-sdk";
 import { createMSTeamsConversationStoreFs } from "./conversation-store-fs.js";
 import {
   classifyMSTeamsSendError,
@@ -21,7 +21,7 @@ import { resolveMSTeamsSendContext, type MSTeamsProactiveContext } from "./send-
 
 export type SendMSTeamsMessageParams = {
   /** Full config (for credentials) */
-  cfg: OpenClawConfig;
+  cfg: Config;
   /** Conversation ID or user ID to send to */
   to: string;
   /** Message text */
@@ -48,7 +48,7 @@ const MSTEAMS_MAX_MEDIA_BYTES = 100 * 1024 * 1024;
 
 export type SendMSTeamsPollParams = {
   /** Full config (for credentials) */
-  cfg: OpenClawConfig;
+  cfg: Config;
   /** Conversation ID or user ID to send to */
   to: string;
   /** Poll question */
@@ -67,7 +67,7 @@ export type SendMSTeamsPollResult = {
 
 export type SendMSTeamsCardParams = {
   /** Full config (for credentials) */
-  cfg: OpenClawConfig;
+  cfg: Config;
   /** Conversation ID or user ID to send to */
   to: string;
   /** Adaptive Card JSON object */
@@ -283,7 +283,7 @@ export async function sendMessageMSTeams(
       });
 
       // Send message with file link (Bot Framework doesn't support "reference" attachment type for sending)
-      const fileLink = `📎 [${uploaded.name}](${uploaded.shareUrl})`;
+      const fileLink = `ðŸ“Ž [${uploaded.name}](${uploaded.shareUrl})`;
       const activity = {
         type: "message",
         text: messageText ? `${messageText}\n\n${fileLink}` : fileLink,
@@ -517,3 +517,4 @@ export async function listMSTeamsConversations(): Promise<
     conversationType: reference.conversation?.conversationType,
   }));
 }
+

@@ -1,4 +1,4 @@
-export function parseConfigValue(raw: string): {
+﻿export function parseConfigValue(raw: string): {
   value?: unknown;
   error?: string;
 } {
@@ -46,3 +46,4 @@ export function parseConfigValue(raw: string): {
 
   return { value: trimmed };
 }
+

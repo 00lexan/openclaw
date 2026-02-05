@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
             if git -c protocol.version=2 submodule update --init --force --depth=1 --recursive; then
               exit 0
             fi
-            echo "Submodule update failed (attempt $attempt/5). Retrying…"
+            echo "Submodule update failed (attempt $attempt/5). Retryingâ€¦"
             sleep $((attempt * 10))
           done
           exit 1
@@ -103,7 +103,7 @@ jobs:
             if git -c protocol.version=2 submodule update --init --force --depth=1 --recursive; then
               exit 0
             fi
-            echo "Submodule update failed (attempt $attempt/5). Retrying…"
+            echo "Submodule update failed (attempt $attempt/5). Retryingâ€¦"
             sleep $((attempt * 10))
           done
           exit 1
@@ -216,7 +216,7 @@ jobs:
             if git -c protocol.version=2 submodule update --init --force --depth=1 --recursive; then
               exit 0
             fi
-            echo "Submodule update failed (attempt $attempt/5). Retrying…"
+            echo "Submodule update failed (attempt $attempt/5). Retryingâ€¦"
             sleep $((attempt * 10))
           done
           exit 1
@@ -292,7 +292,7 @@ jobs:
             if git -c protocol.version=2 submodule update --init --force --depth=1 --recursive; then
               exit 0
             fi
-            echo "Submodule update failed (attempt $attempt/5). Retrying…"
+            echo "Submodule update failed (attempt $attempt/5). Retryingâ€¦"
             sleep $((attempt * 10))
           done
           exit 1
@@ -359,7 +359,7 @@ jobs:
                 if swift build --package-path apps/macos --configuration release; then
                   exit 0
                 fi
-                echo "swift build failed (attempt $attempt/3). Retrying…"
+                echo "swift build failed (attempt $attempt/3). Retryingâ€¦"
                 sleep $((attempt * 20))
               done
               exit 1
@@ -370,7 +370,7 @@ jobs:
                 if swift test --package-path apps/macos --parallel --enable-code-coverage --show-codecov-path; then
                   exit 0
                 fi
-                echo "swift test failed (attempt $attempt/3). Retrying…"
+                echo "swift test failed (attempt $attempt/3). Retryingâ€¦"
                 sleep $((attempt * 20))
               done
               exit 1
@@ -388,7 +388,7 @@ jobs:
             if git -c protocol.version=2 submodule update --init --force --depth=1 --recursive; then
               exit 0
             fi
-            echo "Submodule update failed (attempt $attempt/5). Retrying…"
+            echo "Submodule update failed (attempt $attempt/5). Retryingâ€¦"
             sleep $((attempt * 10))
           done
           exit 1
@@ -427,7 +427,7 @@ jobs:
             if git -c protocol.version=2 submodule update --init --force --depth=1 --recursive; then
               exit 0
             fi
-            echo "Submodule update failed (attempt $attempt/5). Retrying…"
+            echo "Submodule update failed (attempt $attempt/5). Retryingâ€¦"
             sleep $((attempt * 10))
           done
           exit 1
@@ -607,7 +607,7 @@ jobs:
             if git -c protocol.version=2 submodule update --init --force --depth=1 --recursive; then
               exit 0
             fi
-            echo "Submodule update failed (attempt $attempt/5). Retrying…"
+            echo "Submodule update failed (attempt $attempt/5). Retryingâ€¦"
             sleep $((attempt * 10))
           done
           exit 1
@@ -639,3 +639,4 @@ jobs:
       - name: Run Android ${{ matrix.task }}
         working-directory: apps/android
         run: ${{ matrix.command }}
+

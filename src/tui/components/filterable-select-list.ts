@@ -1,4 +1,4 @@
-import type { Component } from "@mariozechner/pi-tui";
+﻿import type { Component } from "@mariozechner/pi-tui";
 import {
   Input,
   matchesKey,
@@ -69,7 +69,7 @@ export class FilterableSelectList implements Component {
     lines.push(filterLabel + inputText);
 
     // Separator
-    lines.push(chalk.dim("─".repeat(Math.max(0, width))));
+    lines.push(chalk.dim("â”€".repeat(Math.max(0, width))));
 
     // Select list
     const listLines = this.selectList.render(width);
@@ -141,3 +141,4 @@ export class FilterableSelectList implements Component {
     return this.filterText;
   }
 }
+

@@ -1,4 +1,4 @@
-import "./test-helpers.js";
+﻿import "./test-helpers.js";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -46,7 +46,7 @@ const rmDirWithRetries = async (dir: string): Promise<void> => {
 beforeEach(async () => {
   resetInboundDedupe();
   previousHome = process.env.HOME;
-  tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-web-home-"));
+  tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "-web-home-"));
   process.env.HOME = tempHome;
 });
 
@@ -61,7 +61,7 @@ afterEach(async () => {
 const _makeSessionStore = async (
   entries: Record<string, unknown> = {},
 ): Promise<{ storePath: string; cleanup: () => Promise<void> }> => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-session-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "-session-"));
   const storePath = path.join(dir, "sessions.json");
   await fs.writeFile(storePath, JSON.stringify(entries));
   const cleanup = async () => {
@@ -224,7 +224,7 @@ describe("web auto-reply", () => {
       channels: { whatsapp: { allowFrom: ["*"] } },
       messages: {
         messagePrefix: undefined,
-        responsePrefix: "🦞",
+        responsePrefix: "ðŸ¦ž",
       },
     }));
 
@@ -255,7 +255,7 @@ describe("web auto-reply", () => {
     });
 
     // Reply should have responsePrefix prepended
-    expect(reply).toHaveBeenCalledWith("🦞 hello there");
+    expect(reply).toHaveBeenCalledWith("ðŸ¦ž hello there");
     resetLoadConfigMock();
   });
   it("applies channel responsePrefix override to replies", async () => {
@@ -303,7 +303,7 @@ describe("web auto-reply", () => {
           {
             id: "main",
             default: true,
-            identity: { name: "Mainbot", emoji: "🦞", theme: "space lobster" },
+            identity: { name: "Mainbot", emoji: "ðŸ¦ž", theme: "space lobster" },
           },
         ],
       },
@@ -350,7 +350,7 @@ describe("web auto-reply", () => {
       channels: { whatsapp: { allowFrom: ["*"] } },
       messages: {
         messagePrefix: undefined,
-        responsePrefix: "🦞",
+        responsePrefix: "ðŸ¦ž",
       },
     }));
 
@@ -389,7 +389,7 @@ describe("web auto-reply", () => {
       channels: { whatsapp: { allowFrom: ["*"] } },
       messages: {
         messagePrefix: undefined,
-        responsePrefix: "🦞",
+        responsePrefix: "ðŸ¦ž",
       },
     }));
 
@@ -405,7 +405,7 @@ describe("web auto-reply", () => {
     };
 
     // Resolver returns text that already has prefix
-    const resolver = vi.fn().mockResolvedValue({ text: "🦞 already prefixed" });
+    const resolver = vi.fn().mockResolvedValue({ text: "ðŸ¦ž already prefixed" });
 
     await monitorWebChannel(false, listenerFactory, false, resolver);
     expect(capturedOnMessage).toBeDefined();
@@ -421,7 +421,8 @@ describe("web auto-reply", () => {
     });
 
     // Should not double-prefix
-    expect(reply).toHaveBeenCalledWith("🦞 already prefixed");
+    expect(reply).toHaveBeenCalledWith("ðŸ¦ž already prefixed");
     resetLoadConfigMock();
   });
 });
+

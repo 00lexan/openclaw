@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BlockStreamingChunkConfig,
   BlockStreamingCoalesceConfig,
   DmPolicy,
@@ -121,7 +121,7 @@ export type TelegramAccountConfig = {
   /**
    * Controls agent's reaction capability:
    * - "off": agent cannot react
-   * - "ack" (default): bot sends acknowledgment reactions (👀 while processing)
+   * - "ack" (default): bot sends acknowledgment reactions (ðŸ‘€ while processing)
    * - "minimal": agent can react sparingly (guideline: 1 per 5-10 exchanges)
    * - "extensive": agent can react liberally when appropriate
    */
@@ -173,3 +173,4 @@ export type TelegramConfig = {
   /** Optional per-account Telegram configuration (multi-account). */
   accounts?: Record<string, TelegramAccountConfig>;
 } & TelegramAccountConfig;
+

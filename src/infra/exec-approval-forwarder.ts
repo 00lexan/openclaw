@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import type {
   ExecApprovalForwardingConfig,
   ExecApprovalForwardTarget,
@@ -52,11 +52,11 @@ export type ExecApprovalForwarder = {
 };
 
 export type ExecApprovalForwarderDeps = {
-  getConfig?: () => OpenClawConfig;
+  getConfig?: () => Config;
   deliver?: typeof deliverOutboundPayloads;
   nowMs?: () => number;
   resolveSessionTarget?: (params: {
-    cfg: OpenClawConfig;
+    cfg: Config;
     request: ExecApprovalRequest;
   }) => ExecApprovalForwardTarget | null;
 };
@@ -116,7 +116,7 @@ function buildTargetKey(target: ExecApprovalForwardTarget): string {
 }
 
 function buildRequestMessage(request: ExecApprovalRequest, nowMs: number) {
-  const lines: string[] = ["🔒 Exec approval required", `ID: ${request.id}`];
+  const lines: string[] = ["ðŸ”’ Exec approval required", `ID: ${request.id}`];
   lines.push(`Command: ${request.request.command}`);
   if (request.request.cwd) {
     lines.push(`CWD: ${request.request.cwd}`);
@@ -150,17 +150,17 @@ function decisionLabel(decision: ExecApprovalDecision): string {
 }
 
 function buildResolvedMessage(resolved: ExecApprovalResolved) {
-  const base = `✅ Exec approval ${decisionLabel(resolved.decision)}.`;
+  const base = `âœ… Exec approval ${decisionLabel(resolved.decision)}.`;
   const by = resolved.resolvedBy ? ` Resolved by ${resolved.resolvedBy}.` : "";
   return `${base}${by} ID: ${resolved.id}`;
 }
 
 function buildExpiredMessage(request: ExecApprovalRequest) {
-  return `⏱️ Exec approval expired. ID: ${request.id}`;
+  return `â±ï¸ Exec approval expired. ID: ${request.id}`;
 }
 
 function defaultResolveSessionTarget(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   request: ExecApprovalRequest;
 }): ExecApprovalForwardTarget | null {
   const sessionKey = params.request.request.sessionKey?.trim();
@@ -191,7 +191,7 @@ function defaultResolveSessionTarget(params: {
 }
 
 async function deliverToTargets(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   targets: ForwardTarget[];
   text: string;
   deliver: typeof deliverOutboundPayloads;
@@ -332,3 +332,4 @@ export function shouldForwardExecApproval(params: {
 }): boolean {
   return shouldForward(params);
 }
+

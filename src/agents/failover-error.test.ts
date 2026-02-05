@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   coerceToFailoverError,
   describeFailoverError,
@@ -53,3 +53,4 @@ describe("failover-error", () => {
     expect(described.reason).toBeUndefined();
   });
 });
+

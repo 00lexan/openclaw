@@ -1,4 +1,4 @@
-import type { IStorageProvider, ICryptoStorageProvider } from "@vector-im/matrix-bot-sdk";
+﻿import type { IStorageProvider, ICryptoStorageProvider } from "@vector-im/matrix-bot-sdk";
 import {
   LogService,
   MatrixClient,
@@ -121,3 +121,4 @@ export async function createMatrixClient(params: {
 
   return client;
 }
+

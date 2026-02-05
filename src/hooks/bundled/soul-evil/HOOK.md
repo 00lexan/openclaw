@@ -1,15 +1,15 @@
----
+﻿---
 name: soul-evil
 description: "Swap SOUL.md with SOUL_EVIL.md during a purge window or by random chance"
-homepage: https://docs.openclaw.ai/hooks/soul-evil
+homepage: https://docs..ai/hooks/soul-evil
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "😈",
+        "emoji": "ðŸ˜ˆ",
         "events": ["agent:bootstrap"],
         "requires": { "config": ["hooks.internal.entries.soul-evil.enabled"] },
-        "install": [{ "id": "bundled", "kind": "bundled", "label": "Bundled with OpenClaw" }],
+        "install": [{ "id": "bundled", "kind": "bundled", "label": "Bundled with " }],
       },
   }
 ---
@@ -24,14 +24,14 @@ When enabled and the trigger conditions match, the hook swaps the **injected** `
 
 ## Files
 
-- `SOUL.md` — normal persona (always read)
-- `SOUL_EVIL.md` — alternate persona (read only when triggered)
+- `SOUL.md` â€” normal persona (always read)
+- `SOUL_EVIL.md` â€” alternate persona (read only when triggered)
 
 You can change the filename via hook config.
 
 ## Configuration
 
-Add this to your config (`~/.openclaw/openclaw.json`):
+Add this to your config (`~/./.json`):
 
 ```json
 {
@@ -54,7 +54,7 @@ Add this to your config (`~/.openclaw/openclaw.json`):
 ### Options
 
 - `file` (string): alternate SOUL filename (default: `SOUL_EVIL.md`)
-- `chance` (number 0–1): random chance per run to swap in SOUL_EVIL
+- `chance` (number 0â€“1): random chance per run to swap in SOUL_EVIL
 - `purge.at` (HH:mm): daily purge window start time (24h)
 - `purge.duration` (duration): window length (e.g. `30s`, `10m`, `1h`)
 
@@ -67,5 +67,6 @@ Add this to your config (`~/.openclaw/openclaw.json`):
 ## Enable
 
 ```bash
-openclaw hooks enable soul-evil
+ hooks enable soul-evil
 ```
+

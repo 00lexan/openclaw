@@ -1,5 +1,5 @@
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk";
+﻿import type { PluginApi } from "/plugin-sdk";
+import { emptyPluginConfigSchema } from "/plugin-sdk";
 import { feishuPlugin } from "./src/channel.js";
 
 const plugin = {
@@ -7,9 +7,10 @@ const plugin = {
   name: "Feishu",
   description: "Feishu (Lark) channel plugin",
   configSchema: emptyPluginConfigSchema(),
-  register(api: OpenClawPluginApi) {
+  register(api: PluginApi) {
     api.registerChannel({ plugin: feishuPlugin });
   },
 };
 
 export default plugin;
+

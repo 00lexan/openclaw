@@ -1,4 +1,4 @@
-import {
+﻿import {
   cancel,
   confirm,
   intro,
@@ -98,3 +98,4 @@ export function createClackPrompter(): WizardPrompter {
     },
   };
 }
+

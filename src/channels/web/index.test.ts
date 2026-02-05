@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import * as impl from "../../channel-web.js";
 import * as entry from "./index.js";
 
@@ -16,3 +16,4 @@ describe("channels/web entrypoint", () => {
     expect(entry.webAuthExists).toBe(impl.webAuthExists);
   });
 });
+

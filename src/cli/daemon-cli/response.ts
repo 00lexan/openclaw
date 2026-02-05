@@ -1,4 +1,4 @@
-import { Writable } from "node:stream";
+﻿import { Writable } from "node:stream";
 import type { GatewayService } from "../../daemon/service.js";
 import { defaultRuntime } from "../../runtime.js";
 
@@ -40,3 +40,4 @@ export function createNullWriter(): Writable {
     },
   });
 }
+

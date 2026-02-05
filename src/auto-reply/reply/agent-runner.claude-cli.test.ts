@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import { describe, expect, it, vi } from "vitest";
 import type { TemplateContext } from "../templating.js";
 import type { FollowupRun, QueueSettings } from "./queue.js";
@@ -137,3 +137,4 @@ describe("runReplyAgent claude-cli routing", () => {
     expect(result).toMatchObject({ text: "ok" });
   });
 });
+

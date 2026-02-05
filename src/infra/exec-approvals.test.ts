@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -27,7 +27,7 @@ function makePathEnv(binDir: string): NodeJS.ProcessEnv {
 }
 
 function makeTempDir() {
-  return fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-exec-approvals-"));
+  return fs.mkdtempSync(path.join(os.tmpdir(), "-exec-approvals-"));
 }
 
 describe("exec approvals allowlist matching", () => {
@@ -452,7 +452,7 @@ describe("exec approvals wildcard agent", () => {
     const homedirSpy = vi.spyOn(os, "homedir").mockReturnValue(dir);
 
     try {
-      const approvalsPath = path.join(dir, ".openclaw", "exec-approvals.json");
+      const approvalsPath = path.join(dir, ".", "exec-approvals.json");
       fs.mkdirSync(path.dirname(approvalsPath), { recursive: true });
       fs.writeFileSync(
         approvalsPath,
@@ -584,3 +584,4 @@ describe("exec approvals default agent migration", () => {
     expect(resolved.file.agents?.default).toBeUndefined();
   });
 });
+

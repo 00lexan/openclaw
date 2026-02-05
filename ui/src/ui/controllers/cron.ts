@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 import type { CronJob, CronRunLogEntry, CronStatus } from "../types.ts";
 import type { CronFormState } from "../ui-types.ts";
 import { toNumber } from "../format.ts";
@@ -216,3 +216,4 @@ export async function loadCronRuns(state: CronState, jobId: string) {
     state.cronError = String(err);
   }
 }
+

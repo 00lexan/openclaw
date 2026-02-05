@@ -1,4 +1,4 @@
-import type { ThemeMode } from "./theme.ts";
+﻿import type { ThemeMode } from "./theme.ts";
 
 export type ThemeTransitionContext = {
   element?: HTMLElement | null;
@@ -107,3 +107,4 @@ export const startThemeTransition = ({
   applyTheme();
   cleanupThemeTransition(root);
 };
+

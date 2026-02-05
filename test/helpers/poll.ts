@@ -1,4 +1,4 @@
-export type PollOptions = {
+﻿export type PollOptions = {
   timeoutMs?: number;
   intervalMs?: number;
 };
@@ -25,3 +25,4 @@ export async function pollUntil<T>(
 
   return undefined;
 }
+

@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BlockStreamingCoalesceConfig,
   DmPolicy,
   GroupPolicy,
@@ -27,7 +27,7 @@ export type WhatsAppConfig = {
   sendReadReceipts?: boolean;
   /**
    * Inbound message prefix (WhatsApp only).
-   * Default: `[{agents.list[].identity.name}]` (or `[openclaw]`) when allowFrom is empty, else `""`.
+   * Default: `[{agents.list[].identity.name}]` (or `[]`) when allowFrom is empty, else `""`.
    */
   messagePrefix?: string;
   /**
@@ -83,7 +83,7 @@ export type WhatsAppConfig = {
   >;
   /** Acknowledgment reaction sent immediately upon message receipt. */
   ackReaction?: {
-    /** Emoji to use for acknowledgment (e.g., "👀"). Empty = disabled. */
+    /** Emoji to use for acknowledgment (e.g., "ðŸ‘€"). Empty = disabled. */
     emoji?: string;
     /** Send reactions in direct chats. Default: true. */
     direct?: boolean;
@@ -151,7 +151,7 @@ export type WhatsAppAccountConfig = {
   >;
   /** Acknowledgment reaction sent immediately upon message receipt. */
   ackReaction?: {
-    /** Emoji to use for acknowledgment (e.g., "👀"). Empty = disabled. */
+    /** Emoji to use for acknowledgment (e.g., "ðŸ‘€"). Empty = disabled. */
     emoji?: string;
     /** Send reactions in direct chats. Default: true. */
     direct?: boolean;
@@ -169,3 +169,4 @@ export type WhatsAppAccountConfig = {
   /** Heartbeat visibility settings for this account. */
   heartbeat?: ChannelHeartbeatVisibilityConfig;
 };
+

@@ -1,4 +1,4 @@
-import type { Context, Model, Tool } from "@mariozechner/pi-ai/dist/types.js";
+﻿import type { Context, Model, Tool } from "@mariozechner/pi-ai/dist/types.js";
 import { convertMessages, convertTools } from "@mariozechner/pi-ai/dist/providers/google-shared.js";
 import { describe, expect, it } from "vitest";
 
@@ -421,3 +421,4 @@ describe("google-shared convertMessages", () => {
     expect(contents[3].role).toBe("user");
   });
 });
+

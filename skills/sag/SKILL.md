@@ -1,12 +1,12 @@
----
+﻿---
 name: sag
 description: ElevenLabs text-to-speech with mac-style say UX.
 homepage: https://sag.sh
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🗣️",
+        "emoji": "ðŸ—£ï¸",
         "requires": { "bins": ["sag"], "env": ["ELEVENLABS_API_KEY"] },
         "primaryEnv": "ELEVENLABS_API_KEY",
         "install":
@@ -85,3 +85,4 @@ Voice character tips:
 - Dramatic: Use `[sings]` or `[shouts]` sparingly
 
 Default voice for Clawd: `lj2rcrvANS3gaWWnczSX` (or just `-v Clawd`)
+

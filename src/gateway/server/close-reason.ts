@@ -1,4 +1,4 @@
-import { Buffer } from "node:buffer";
+﻿import { Buffer } from "node:buffer";
 
 const CLOSE_REASON_MAX_BYTES = 120;
 
@@ -12,3 +12,4 @@ export function truncateCloseReason(reason: string, maxBytes = CLOSE_REASON_MAX_
   }
   return buf.subarray(0, maxBytes).toString();
 }
+

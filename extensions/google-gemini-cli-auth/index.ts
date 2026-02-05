@@ -1,12 +1,12 @@
-import { emptyPluginConfigSchema } from "openclaw/plugin-sdk";
+﻿import { emptyPluginConfigSchema } from "/plugin-sdk";
 import { loginGeminiCliOAuth } from "./oauth.js";
 
 const PROVIDER_ID = "google-gemini-cli";
 const PROVIDER_LABEL = "Gemini CLI OAuth";
 const DEFAULT_MODEL = "google-gemini-cli/gemini-3-pro-preview";
 const ENV_VARS = [
-  "OPENCLAW_GEMINI_OAUTH_CLIENT_ID",
-  "OPENCLAW_GEMINI_OAUTH_CLIENT_SECRET",
+  "_GEMINI_OAUTH_CLIENT_ID",
+  "_GEMINI_OAUTH_CLIENT_SECRET",
   "GEMINI_CLI_OAUTH_CLIENT_ID",
   "GEMINI_CLI_OAUTH_CLIENT_SECRET",
 ];
@@ -30,7 +30,7 @@ const geminiCliPlugin = {
           hint: "PKCE + localhost callback",
           kind: "oauth",
           run: async (ctx) => {
-            const spin = ctx.prompter.progress("Starting Gemini CLI OAuth…");
+            const spin = ctx.prompter.progress("Starting Gemini CLI OAuthâ€¦");
             try {
               const result = await loginGeminiCliOAuth({
                 isRemote: ctx.isRemote,
@@ -86,3 +86,4 @@ const geminiCliPlugin = {
 };
 
 export default geminiCliPlugin;
+

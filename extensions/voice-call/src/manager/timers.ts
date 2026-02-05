@@ -1,4 +1,4 @@
-import type { CallManagerContext } from "./context.js";
+﻿import type { CallManagerContext } from "./context.js";
 import { TerminalStates, type CallId } from "../types.js";
 import { persistCallRecord } from "./store.js";
 
@@ -87,3 +87,4 @@ export function waitForFinalTranscript(ctx: CallManagerContext, callId: CallId):
     ctx.transcriptWaiters.set(callId, { resolve, reject, timeout });
   });
 }
+

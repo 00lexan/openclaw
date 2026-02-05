@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
@@ -11,10 +11,10 @@ import {
 
 // Mock the state directory to use a temp location
 vi.mock("../config/paths.js", () => ({
-  STATE_DIR: "/tmp/openclaw-test-sticker-cache",
+  STATE_DIR: "/tmp/-test-sticker-cache",
 }));
 
-const TEST_CACHE_DIR = "/tmp/openclaw-test-sticker-cache/telegram";
+const TEST_CACHE_DIR = "/tmp/-test-sticker-cache/telegram";
 const TEST_CACHE_FILE = path.join(TEST_CACHE_DIR, "sticker-cache.json");
 
 describe("sticker-cache", () => {
@@ -42,7 +42,7 @@ describe("sticker-cache", () => {
       const sticker = {
         fileId: "file123",
         fileUniqueId: "unique123",
-        emoji: "🎉",
+        emoji: "ðŸŽ‰",
         setName: "TestPack",
         description: "A party popper emoji sticker",
         cachedAt: "2026-01-26T12:00:00.000Z",
@@ -117,7 +117,7 @@ describe("sticker-cache", () => {
       cacheSticker({
         fileId: "fox1",
         fileUniqueId: "fox-unique-1",
-        emoji: "🦊",
+        emoji: "ðŸ¦Š",
         setName: "CuteFoxes",
         description: "A cute orange fox waving hello",
         cachedAt: "2026-01-26T10:00:00.000Z",
@@ -125,7 +125,7 @@ describe("sticker-cache", () => {
       cacheSticker({
         fileId: "fox2",
         fileUniqueId: "fox-unique-2",
-        emoji: "🦊",
+        emoji: "ðŸ¦Š",
         setName: "CuteFoxes",
         description: "A fox sleeping peacefully",
         cachedAt: "2026-01-26T11:00:00.000Z",
@@ -133,7 +133,7 @@ describe("sticker-cache", () => {
       cacheSticker({
         fileId: "cat1",
         fileUniqueId: "cat-unique-1",
-        emoji: "🐱",
+        emoji: "ðŸ±",
         setName: "FunnyCats",
         description: "A cat sitting on a keyboard",
         cachedAt: "2026-01-26T12:00:00.000Z",
@@ -141,7 +141,7 @@ describe("sticker-cache", () => {
       cacheSticker({
         fileId: "dog1",
         fileUniqueId: "dog-unique-1",
-        emoji: "🐶",
+        emoji: "ðŸ¶",
         setName: "GoodBoys",
         description: "A golden retriever playing fetch",
         cachedAt: "2026-01-26T13:00:00.000Z",
@@ -155,9 +155,9 @@ describe("sticker-cache", () => {
     });
 
     it("finds stickers by emoji", () => {
-      const results = searchStickers("🦊");
+      const results = searchStickers("ðŸ¦Š");
       expect(results).toHaveLength(2);
-      expect(results.every((s) => s.emoji === "🦊")).toBe(true);
+      expect(results.every((s) => s.emoji === "ðŸ¦Š")).toBe(true);
     });
 
     it("finds stickers by set name", () => {
@@ -255,3 +255,4 @@ describe("sticker-cache", () => {
     });
   });
 });
+

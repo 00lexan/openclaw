@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { botApi, botCtorSpy } = vi.hoisted(() => ({
   botApi: {
@@ -743,3 +743,4 @@ describe("sendStickerTelegram", () => {
     expect(sendSticker).toHaveBeenCalledWith(chatId, "fileId123", undefined);
   });
 });
+

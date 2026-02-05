@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import type { BrowserRouteContext } from "../server-context.js";
 import type { BrowserRouteRegistrar } from "./types.js";
 import { ensureMediaDir, saveMediaBuffer } from "../../media/store.js";
@@ -327,3 +327,4 @@ export function registerBrowserAgentSnapshotRoutes(
     }
   });
 }
+

@@ -1,4 +1,4 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { DiscordActionConfig } from "../../config/config.js";
 import { getPresence } from "../../discord/monitor/presence-cache.js";
 import {
@@ -505,3 +505,4 @@ export async function handleDiscordGuildAction(
       throw new Error(`Unknown action: ${action}`);
   }
 }
+

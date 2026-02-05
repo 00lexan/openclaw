@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -41,7 +41,7 @@ describe("memory index", () => {
   beforeEach(async () => {
     embedBatchCalls = 0;
     failEmbeddings = false;
-    workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-mem-"));
+    workspaceDir = await fs.mkdtemp(path.join(os.tmpdir(), "-mem-"));
     indexPath = path.join(workspaceDir, "index.sqlite");
     await fs.mkdir(path.join(workspaceDir, "memory"));
     await fs.writeFile(
@@ -487,3 +487,4 @@ describe("memory index", () => {
     }
   });
 });
+

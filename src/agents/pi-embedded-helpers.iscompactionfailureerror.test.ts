@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { isCompactionFailureError } from "./pi-embedded-helpers.js";
 import { DEFAULT_AGENTS_FILENAME } from "./workspace.js";
 
@@ -25,3 +25,4 @@ describe("isCompactionFailureError", () => {
     expect(isCompactionFailureError("rate limit exceeded")).toBe(false);
   });
 });
+

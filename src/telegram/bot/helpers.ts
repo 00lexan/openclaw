@@ -1,4 +1,4 @@
-import type { Chat, Message, MessageOrigin, User } from "@grammyjs/types";
+﻿import type { Chat, Message, MessageOrigin, User } from "@grammyjs/types";
 import type { TelegramStreamMode } from "./types.js";
 import { formatLocationText, type NormalizedLocation } from "../../channels/location.js";
 
@@ -423,3 +423,4 @@ export function extractTelegramLocation(msg: Message): NormalizedLocation | null
 
   return null;
 }
+

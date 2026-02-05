@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "memory-lancedb",
   "kind": "memory",
   "uiHints": {
@@ -15,7 +15,7 @@
     },
     "dbPath": {
       "label": "Database Path",
-      "placeholder": "~/.openclaw/memory/lancedb",
+      "placeholder": "~/./memory/lancedb",
       "advanced": true
     },
     "autoCapture": {
@@ -58,3 +58,4 @@
     "required": ["embedding"]
   }
 }
+

@@ -1,17 +1,17 @@
----
+﻿---
 title: "Node.js + npm (PATH sanity)"
 summary: "Node.js + npm install sanity: versions, PATH, and global installs"
 read_when:
-  - "You installed OpenClaw but `openclaw` is “command not found”"
-  - "You’re setting up Node.js/npm on a new machine"
+  - "You installed  but `` is â€œcommand not foundâ€"
+  - "Youâ€™re setting up Node.js/npm on a new machine"
   - "npm install -g ... fails with permissions or PATH issues"
 ---
 
 # Node.js + npm (PATH sanity)
 
-OpenClaw’s runtime baseline is **Node 22+**.
+â€™s runtime baseline is **Node 22+**.
 
-If you can run `npm install -g openclaw@latest` but later see `openclaw: command not found`, it’s almost always a **PATH** issue: the directory where npm puts global binaries isn’t on your shell’s PATH.
+If you can run `npm install -g @latest` but later see `: command not found`, itâ€™s almost always a **PATH** issue: the directory where npm puts global binaries isnâ€™t on your shellâ€™s PATH.
 
 ## Quick diagnosis
 
@@ -24,9 +24,9 @@ npm prefix -g
 echo "$PATH"
 ```
 
-If `$(npm prefix -g)/bin` (macOS/Linux) or `$(npm prefix -g)` (Windows) is **not** present inside `echo "$PATH"`, your shell can’t find global npm binaries (including `openclaw`).
+If `$(npm prefix -g)/bin` (macOS/Linux) or `$(npm prefix -g)` (Windows) is **not** present inside `echo "$PATH"`, your shell canâ€™t find global npm binaries (including ``).
 
-## Fix: put npm’s global bin dir on PATH
+## Fix: put npmâ€™s global bin dir on PATH
 
 1. Find your global npm prefix:
 
@@ -52,7 +52,7 @@ On Windows, add the output of `npm prefix -g` to your PATH.
 
 ## Fix: avoid `sudo npm install -g` / permission errors (Linux)
 
-If `npm install -g ...` fails with `EACCES`, switch npm’s global prefix to a user-writable directory:
+If `npm install -g ...` fails with `EACCES`, switch npmâ€™s global prefix to a user-writable directory:
 
 ```bash
 mkdir -p "$HOME/.npm-global"
@@ -64,7 +64,7 @@ Persist the `export PATH=...` line in your shell startup file.
 
 ## Recommended Node install options
 
-You’ll have the fewest surprises if Node/npm are installed in a way that:
+Youâ€™ll have the fewest surprises if Node/npm are installed in a way that:
 
 - keeps Node updated (22+)
 - makes the global npm bin dir stable and on PATH in new shells
@@ -75,4 +75,5 @@ Common choices:
 - Linux: your preferred version manager, or a distro-supported install that provides Node 22+
 - Windows: official Node installer, `winget`, or a Windows Node version manager
 
-If you use a version manager (nvm/fnm/asdf/etc), ensure it’s initialized in the shell you use day-to-day (zsh vs bash) so the PATH it sets is present when you run installers.
+If you use a version manager (nvm/fnm/asdf/etc), ensure itâ€™s initialized in the shell you use day-to-day (zsh vs bash) so the PATH it sets is present when you run installers.
+

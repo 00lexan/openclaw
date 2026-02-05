@@ -1,4 +1,4 @@
-import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
+﻿import type { MatrixClient } from "@vector-im/matrix-bot-sdk";
 import { LogService } from "@vector-im/matrix-bot-sdk";
 import type { CoreConfig } from "../types.js";
 import type { MatrixAuth } from "./types.js";
@@ -168,3 +168,4 @@ export function stopSharedClient(): void {
     sharedClientState = null;
   }
 }
+

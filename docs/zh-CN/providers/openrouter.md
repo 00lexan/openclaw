@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想用一个 API 密钥访问多种 LLM
-  - 你想在 OpenClaw 中通过 OpenRouter 运行模型
-summary: 使用 OpenRouter 的统一 API 在 OpenClaw 中访问多种模型
+  - ä½ æƒ³ç”¨ä¸€ä¸ª API å¯†é’¥è®¿é—®å¤šç§ LLM
+  - ä½ æƒ³åœ¨  ä¸­é€šè¿‡ OpenRouter è¿è¡Œæ¨¡åž‹
+summary: ä½¿ç”¨ OpenRouter çš„ç»Ÿä¸€ API åœ¨  ä¸­è®¿é—®å¤šç§æ¨¡åž‹
 title: OpenRouter
 x-i18n:
   generated_at: "2026-02-01T21:35:19Z"
@@ -15,15 +15,15 @@ x-i18n:
 
 # OpenRouter
 
-OpenRouter 提供了一个**统一 API**，通过单一端点和 API 密钥将请求路由到多种模型。它兼容 OpenAI，因此大多数 OpenAI SDK 只需切换 base URL 即可使用。
+OpenRouter æä¾›äº†ä¸€ä¸ª**ç»Ÿä¸€ API**ï¼Œé€šè¿‡å•ä¸€ç«¯ç‚¹å’Œ API å¯†é’¥å°†è¯·æ±‚è·¯ç”±åˆ°å¤šç§æ¨¡åž‹ã€‚å®ƒå…¼å®¹ OpenAIï¼Œå› æ­¤å¤§å¤šæ•° OpenAI SDK åªéœ€åˆ‡æ¢ base URL å³å¯ä½¿ç”¨ã€‚
 
-## CLI 设置
+## CLI è®¾ç½®
 
 ```bash
-openclaw onboard --auth-choice apiKey --token-provider openrouter --token "$OPENROUTER_API_KEY"
+ onboard --auth-choice apiKey --token-provider openrouter --token "$OPENROUTER_API_KEY"
 ```
 
-## 配置片段
+## é…ç½®ç‰‡æ®µ
 
 ```json5
 {
@@ -36,8 +36,9 @@ openclaw onboard --auth-choice apiKey --token-provider openrouter --token "$OPEN
 }
 ```
 
-## 注意事项
+## æ³¨æ„äº‹é¡¹
 
-- 模型引用格式为 `openrouter/<provider>/<model>`。
-- 更多模型/提供商选项，请参阅[模型提供商](/concepts/model-providers)。
-- OpenRouter 底层使用 Bearer 令牌和你的 API 密钥进行认证。
+- æ¨¡åž‹å¼•ç”¨æ ¼å¼ä¸º `openrouter/<provider>/<model>`ã€‚
+- æ›´å¤šæ¨¡åž‹/æä¾›å•†é€‰é¡¹ï¼Œè¯·å‚é˜…[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)ã€‚
+- OpenRouter åº•å±‚ä½¿ç”¨ Bearer ä»¤ç‰Œå’Œä½ çš„ API å¯†é’¥è¿›è¡Œè®¤è¯ã€‚
+

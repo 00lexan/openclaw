@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你想选择一个模型提供商
-  - 你需要快速了解支持的 LLM 后端
-summary: OpenClaw 支持的模型提供商（LLM）
-title: 模型提供商
+  - ä½ æƒ³é€‰æ‹©ä¸€ä¸ªæ¨¡åž‹æä¾›å•†
+  - ä½ éœ€è¦å¿«é€Ÿäº†è§£æ”¯æŒçš„ LLM åŽç«¯
+summary:  æ”¯æŒçš„æ¨¡åž‹æä¾›å•†ï¼ˆLLMï¼‰
+title: æ¨¡åž‹æä¾›å•†
 x-i18n:
   generated_at: "2026-02-03T07:53:32Z"
   model: claude-opus-4-5
@@ -13,25 +13,25 @@ x-i18n:
   workflow: 15
 ---
 
-# 模型提供商
+# æ¨¡åž‹æä¾›å•†
 
-OpenClaw 可以使用许多 LLM 提供商。选择一个提供商，进行认证，然后将默认模型设置为 `provider/model`。
+ å¯ä»¥ä½¿ç”¨è®¸å¤š LLM æä¾›å•†ã€‚é€‰æ‹©ä¸€ä¸ªæä¾›å•†ï¼Œè¿›è¡Œè®¤è¯ï¼Œç„¶åŽå°†é»˜è®¤æ¨¡åž‹è®¾ç½®ä¸º `provider/model`ã€‚
 
-正在寻找聊天渠道文档（WhatsApp/Telegram/Discord/Slack/Mattermost（插件）等）？参见[渠道](/channels)。
+æ­£åœ¨å¯»æ‰¾èŠå¤©æ¸ é“æ–‡æ¡£ï¼ˆWhatsApp/Telegram/Discord/Slack/Mattermostï¼ˆæ’ä»¶ï¼‰ç­‰ï¼‰ï¼Ÿå‚è§[æ¸ é“](/channels)ã€‚
 
-## 亮点：Venice（Venice AI）
+## äº®ç‚¹ï¼šVeniceï¼ˆVenice AIï¼‰
 
-Venice 是我们推荐的 Venice AI 设置，用于隐私优先的推理，并可选择使用 Opus 处理困难任务。
+Venice æ˜¯æˆ‘ä»¬æŽ¨èçš„ Venice AI è®¾ç½®ï¼Œç”¨äºŽéšç§ä¼˜å…ˆçš„æŽ¨ç†ï¼Œå¹¶å¯é€‰æ‹©ä½¿ç”¨ Opus å¤„ç†å›°éš¾ä»»åŠ¡ã€‚
 
-- 默认：`venice/llama-3.3-70b`
-- 最佳综合：`venice/claude-opus-45`（Opus 仍然是最强的）
+- é»˜è®¤ï¼š`venice/llama-3.3-70b`
+- æœ€ä½³ç»¼åˆï¼š`venice/claude-opus-45`ï¼ˆOpus ä»ç„¶æ˜¯æœ€å¼ºçš„ï¼‰
 
-参见 [Venice AI](/providers/venice)。
+å‚è§ [Venice AI](/providers/venice)ã€‚
 
-## 快速开始
+## å¿«é€Ÿå¼€å§‹
 
-1. 与提供商进行认证（通常通过 `openclaw onboard`）。
-2. 设置默认模型：
+1. ä¸Žæä¾›å•†è¿›è¡Œè®¤è¯ï¼ˆé€šå¸¸é€šè¿‡ ` onboard`ï¼‰ã€‚
+2. è®¾ç½®é»˜è®¤æ¨¡åž‹ï¼š
 
 ```json5
 {
@@ -39,30 +39,31 @@ Venice 是我们推荐的 Venice AI 设置，用于隐私优先的推理，并�
 }
 ```
 
-## 提供商文档
+## æä¾›å•†æ–‡æ¡£
 
-- [OpenAI（API + Codex）](/providers/openai)
-- [Anthropic（API + Claude Code CLI）](/providers/anthropic)
-- [Qwen（OAuth）](/providers/qwen)
+- [OpenAIï¼ˆAPI + Codexï¼‰](/providers/openai)
+- [Anthropicï¼ˆAPI + Claude Code CLIï¼‰](/providers/anthropic)
+- [Qwenï¼ˆOAuthï¼‰](/providers/qwen)
 - [OpenRouter](/providers/openrouter)
 - [Vercel AI Gateway](/providers/vercel-ai-gateway)
-- [Moonshot AI（Kimi + Kimi Coding）](/providers/moonshot)
+- [Moonshot AIï¼ˆKimi + Kimi Codingï¼‰](/providers/moonshot)
 - [OpenCode Zen](/providers/opencode)
 - [Amazon Bedrock](/bedrock)
 - [Z.AI](/providers/zai)
 - [Xiaomi](/providers/xiaomi)
-- [GLM 模型](/providers/glm)
+- [GLM æ¨¡åž‹](/providers/glm)
 - [MiniMax](/providers/minimax)
-- [Venice（Venice AI，注重隐私）](/providers/venice)
-- [Ollama（本地模型）](/providers/ollama)
+- [Veniceï¼ˆVenice AIï¼Œæ³¨é‡éšç§ï¼‰](/providers/venice)
+- [Ollamaï¼ˆæœ¬åœ°æ¨¡åž‹ï¼‰](/providers/ollama)
 
-## 转录提供商
+## è½¬å½•æä¾›å•†
 
-- [Deepgram（音频转录）](/providers/deepgram)
+- [Deepgramï¼ˆéŸ³é¢‘è½¬å½•ï¼‰](/providers/deepgram)
 
-## 社区工具
+## ç¤¾åŒºå·¥å…·
 
-- [Claude Max API Proxy](/providers/claude-max-api-proxy) - 将 Claude Max/Pro 订阅作为 OpenAI 兼容的 API 端点使用
+- [Claude Max API Proxy](/providers/claude-max-api-proxy) - å°† Claude Max/Pro è®¢é˜…ä½œä¸º OpenAI å…¼å®¹çš„ API ç«¯ç‚¹ä½¿ç”¨
 
-有关完整的提供商目录（xAI、Groq、Mistral 等）和高级配置，
-参见[模型提供商](/concepts/model-providers)。
+æœ‰å…³å®Œæ•´çš„æä¾›å•†ç›®å½•ï¼ˆxAIã€Groqã€Mistral ç­‰ï¼‰å’Œé«˜çº§é…ç½®ï¼Œ
+å‚è§[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)ã€‚
+

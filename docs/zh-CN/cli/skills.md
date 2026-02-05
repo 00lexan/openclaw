@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想查看哪些 Skills 可用并准备好运行
-  - 你想调试 Skills 缺少的二进制文件/环境变量/配置
-summary: "`openclaw skills` 的 CLI 参考（列出/信息/检查）和 skill 资格"
+  - ä½ æƒ³æŸ¥çœ‹å“ªäº› Skills å¯ç”¨å¹¶å‡†å¤‡å¥½è¿è¡Œ
+  - ä½ æƒ³è°ƒè¯• Skills ç¼ºå°‘çš„äºŒè¿›åˆ¶æ–‡ä»¶/çŽ¯å¢ƒå˜é‡/é…ç½®
+summary: "` skills` çš„ CLI å‚è€ƒï¼ˆåˆ—å‡º/ä¿¡æ¯/æ£€æŸ¥ï¼‰å’Œ skill èµ„æ ¼"
 title: skills
 x-i18n:
   generated_at: "2026-02-03T07:45:14Z"
@@ -13,21 +13,22 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw skills`
+# ` skills`
 
-检查 Skills（内置 + 工作区 + 托管覆盖）并查看哪些符合条件，哪些缺少要求。
+æ£€æŸ¥ Skillsï¼ˆå†…ç½® + å·¥ä½œåŒº + æ‰˜ç®¡è¦†ç›–ï¼‰å¹¶æŸ¥çœ‹å“ªäº›ç¬¦åˆæ¡ä»¶ï¼Œå“ªäº›ç¼ºå°‘è¦æ±‚ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- Skills 系统：[Skills](/tools/skills)
-- Skills 配置：[Skills 配置](/tools/skills-config)
-- ClawHub 安装：[ClawHub](/tools/clawhub)
+- Skills ç³»ç»Ÿï¼š[Skills](/tools/skills)
+- Skills é…ç½®ï¼š[Skills é…ç½®](/tools/skills-config)
+- ClawHub å®‰è£…ï¼š[ClawHub](/tools/clawhub)
 
-## 命令
+## å‘½ä»¤
 
 ```bash
-openclaw skills list
-openclaw skills list --eligible
-openclaw skills info <name>
-openclaw skills check
+ skills list
+ skills list --eligible
+ skills info <name>
+ skills check
 ```
+

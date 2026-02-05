@@ -1,12 +1,12 @@
----
+﻿---
 name: ordercli
 description: Foodora-only CLI for checking past orders and active order status (Deliveroo WIP).
 homepage: https://ordercli.sh
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🛵",
+        "emoji": "ðŸ›µ",
         "requires": { "bins": ["ordercli"] },
         "install":
           [
@@ -76,3 +76,4 @@ Notes
 
 - Use `--config /tmp/ordercli.json` for testing.
 - Confirm before any reorder or cart-changing action.
+

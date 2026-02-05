@@ -1,4 +1,4 @@
----
+﻿---
 role: sqlite-state-management
 status: experimental
 summary: |
@@ -51,9 +51,9 @@ The database lives within the standard run directory:
 
 ```
 .prose/runs/{YYYYMMDD}-{HHMMSS}-{random}/
-├── state.db          # SQLite database (this file)
-├── program.prose     # Copy of running program
-└── attachments/      # Large outputs that don't fit in DB (optional)
+â”œâ”€â”€ state.db          # SQLite database (this file)
+â”œâ”€â”€ program.prose     # Copy of running program
+â””â”€â”€ attachments/      # Large outputs that don't fit in DB (optional)
 ```
 
 **Run ID format:** Same as filesystem state: `{YYYYMMDD}-{HHMMSS}-{random6}`
@@ -68,17 +68,17 @@ For project-scoped agents, use a separate database:
 
 ```
 .prose/
-├── agents.db                 # Project-scoped agent memory (survives runs)
-└── runs/
-    └── {id}/
-        └── state.db          # Execution-scoped state (dies with run)
+â”œâ”€â”€ agents.db                 # Project-scoped agent memory (survives runs)
+â””â”€â”€ runs/
+    â””â”€â”€ {id}/
+        â””â”€â”€ state.db          # Execution-scoped state (dies with run)
 ```
 
 For user-scoped agents, use a database in the home directory:
 
 ```
 ~/.prose/
-└── agents.db                 # User-scoped agent memory (survives across projects)
+â””â”€â”€ agents.db                 # User-scoped agent memory (survives across projects)
 ```
 
 The `agents` and `agent_segments` tables for project-scoped agents live in `.prose/agents.db`, and for user-scoped agents live in `~/.prose/agents.db`. The VM initializes these databases on first use and provides the correct path to subagents.
@@ -121,9 +121,9 @@ Subagents (sessions spawned by the VM) are responsible for:
 
 **Critical:** Subagents write ONLY to `bindings`, `agents`, and `agent_segments` tables. The VM owns the `execution` table entirely. Completion signaling happens through the substrate (Task tool return), not database updates.
 
-**Critical:** Subagents must write their outputs directly to the database. The VM does not write subagent outputs—it only reads them after the subagent completes.
+**Critical:** Subagents must write their outputs directly to the database. The VM does not write subagent outputsâ€”it only reads them after the subagent completes.
 
-**What subagents return to the VM:** A confirmation message with the binding location—not the full content:
+**What subagents return to the VM:** A confirmation message with the binding locationâ€”not the full content:
 
 **Root scope:**
 
@@ -157,7 +157,7 @@ The VM tracks locations, not values. This keeps the VM's context lean and enable
 
 ## Core Schema
 
-The VM initializes these tables. This is a **minimum viable schema**—extend freely.
+The VM initializes these tables. This is a **minimum viable schema**â€”extend freely.
 
 ```sql
 -- Run metadata
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS imports (
 - **Extension tables**: Prefix with `x_` (e.g., `x_metrics`, `x_audit_log`)
 - **Anonymous bindings**: Sessions without explicit capture (`session "..."` without `let x =`) use auto-generated names: `anon_001`, `anon_002`, etc.
 - **Import bindings**: Prefix with import alias for scoping: `research.findings`, `research.sources`
-- **Scoped bindings**: Use `execution_id` column—NULL for root scope, non-null for block invocations
+- **Scoped bindings**: Use `execution_id` columnâ€”NULL for root scope, non-null for block invocations
 
 ### Scope Resolution Query
 
@@ -569,6 +569,7 @@ SQLite state management:
 4. Supports **atomic transactions** for reliable updates
 5. Allows **flexible schema evolution** as needed
 6. Requires the **sqlite3 CLI** tool
-7. Is **experimental**—expect changes
+7. Is **experimental**â€”expect changes
 
 The core contract: the VM manages execution flow and spawns subagents; subagents write their own outputs directly to the database. Both maintain the principle that what happens is recorded, and what is recorded can be queried.
+

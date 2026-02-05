@@ -1,4 +1,4 @@
-import { truncateText } from "./format.ts";
+﻿import { truncateText } from "./format.ts";
 
 const TOOL_STREAM_LIMIT = 50;
 const TOOL_STREAM_THROTTLE_MS = 80;
@@ -89,7 +89,7 @@ function formatToolOutput(value: unknown): string | null {
   if (!truncated.truncated) {
     return truncated.text;
   }
-  return `${truncated.text}\n\n… truncated (${truncated.total} chars, showing first ${truncated.text.length}).`;
+  return `${truncated.text}\n\nâ€¦ truncated (${truncated.total} chars, showing first ${truncated.text.length}).`;
 }
 
 function buildToolStreamMessage(entry: ToolStreamEntry): Record<string, unknown> {
@@ -279,3 +279,4 @@ export function handleAgentEvent(host: ToolStreamHost, payload?: AgentEventPaylo
   trimToolStream(host);
   scheduleToolStreamSync(host, phase === "result");
 }
+

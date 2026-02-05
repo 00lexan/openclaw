@@ -1,4 +1,4 @@
-export type ExtractMode = "markdown" | "text";
+﻿export type ExtractMode = "markdown" | "text";
 
 function decodeEntities(value: string): string {
   return value
@@ -120,3 +120,4 @@ export async function extractReadableContent(params: {
     return fallback();
   }
 }
+

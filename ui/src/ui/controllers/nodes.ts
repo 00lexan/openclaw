@@ -1,4 +1,4 @@
-import type { GatewayBrowserClient } from "../gateway.ts";
+﻿import type { GatewayBrowserClient } from "../gateway.ts";
 
 export type NodesState = {
   client: GatewayBrowserClient | null;
@@ -30,3 +30,4 @@ export async function loadNodes(state: NodesState, opts?: { quiet?: boolean }) {
     state.nodesLoading = false;
   }
 }
+

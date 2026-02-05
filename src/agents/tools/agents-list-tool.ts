@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import type { AnyAgentTool } from "./common.js";
 import { loadConfig } from "../../config/config.js";
 import {
@@ -95,3 +95,4 @@ export function createAgentsListTool(opts?: {
     },
   };
 }
+

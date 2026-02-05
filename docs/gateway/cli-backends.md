@@ -1,4 +1,4 @@
----
+﻿---
 summary: "CLI backends: text-only fallback via local AI CLIs"
 read_when:
   - You want a reliable fallback when API providers fail
@@ -9,29 +9,29 @@ title: "CLI Backends"
 
 # CLI backends (fallback runtime)
 
-OpenClaw can run **local AI CLIs** as a **text-only fallback** when API providers are down,
+ can run **local AI CLIs** as a **text-only fallback** when API providers are down,
 rate-limited, or temporarily misbehaving. This is intentionally conservative:
 
 - **Tools are disabled** (no tool calls).
-- **Text in → text out** (reliable).
+- **Text in â†’ text out** (reliable).
 - **Sessions are supported** (so follow-up turns stay coherent).
 - **Images can be passed through** if the CLI accepts image paths.
 
 This is designed as a **safety net** rather than a primary path. Use it when you
-want “always works” text responses without relying on external APIs.
+want â€œalways worksâ€ text responses without relying on external APIs.
 
 ## Beginner-friendly quick start
 
-You can use Claude Code CLI **without any config** (OpenClaw ships a built-in default):
+You can use Claude Code CLI **without any config** ( ships a built-in default):
 
 ```bash
-openclaw agent --message "hi" --model claude-cli/opus-4.5
+ agent --message "hi" --model claude-cli/opus-4.5
 ```
 
 Codex CLI also works out of the box:
 
 ```bash
-openclaw agent --message "hi" --model codex-cli/gpt-5.2-codex
+ agent --message "hi" --model codex-cli/gpt-5.2-codex
 ```
 
 If your gateway runs under launchd/systemd and PATH is minimal, add just the
@@ -51,7 +51,7 @@ command path:
 }
 ```
 
-That’s it. No keys, no extra auth config needed beyond the CLI itself.
+Thatâ€™s it. No keys, no extra auth config needed beyond the CLI itself.
 
 ## Using it as a fallback
 
@@ -77,7 +77,7 @@ Add a CLI backend to your fallback list so it only runs when primary models fail
 Notes:
 
 - If you use `agents.defaults.models` (allowlist), you must include `claude-cli/...`.
-- If the primary provider fails (auth, rate limits, timeouts), OpenClaw will
+- If the primary provider fails (auth, rate limits, timeouts),  will
   try the CLI backend next.
 
 ## Configuration overview
@@ -133,7 +133,7 @@ The provider id becomes the left side of your model ref:
 ## How it works
 
 1. **Selects a backend** based on the provider prefix (`claude-cli/...`).
-2. **Builds a system prompt** using the same OpenClaw prompt + workspace context.
+2. **Builds a system prompt** using the same  prompt + workspace context.
 3. **Executes the CLI** with a session id (if supported) so history stays consistent.
 4. **Parses output** (JSON or plain text) and returns the final text.
 5. **Persists session ids** per backend, so follow-ups reuse the same CLI session.
@@ -160,8 +160,8 @@ imageArg: "--image",
 imageMode: "repeat"
 ```
 
-OpenClaw will write base64 images to temp files. If `imageArg` is set, those
-paths are passed as CLI args. If `imageArg` is missing, OpenClaw appends the
+ will write base64 images to temp files. If `imageArg` is set, those
+paths are passed as CLI args. If `imageArg` is missing,  appends the
 file paths to the prompt (path injection), which is enough for CLIs that auto-
 load local files from plain paths (Claude Code CLI behavior).
 
@@ -180,7 +180,7 @@ Input modes:
 
 ## Defaults (built-in)
 
-OpenClaw ships a default for `claude-cli`:
+ ships a default for `claude-cli`:
 
 - `command: "claude"`
 - `args: ["-p", "--output-format", "json", "--dangerously-skip-permissions"]`
@@ -191,7 +191,7 @@ OpenClaw ships a default for `claude-cli`:
 - `systemPromptWhen: "first"`
 - `sessionMode: "always"`
 
-OpenClaw also ships a default for `codex-cli`:
+ also ships a default for `codex-cli`:
 
 - `command: "codex"`
 - `args: ["exec","--json","--color","never","--sandbox","read-only","--skip-git-repo-check"]`
@@ -206,18 +206,19 @@ Override only if needed (common: absolute `command` path).
 
 ## Limitations
 
-- **No OpenClaw tools** (the CLI backend never receives tool calls). Some CLIs
+- **No  tools** (the CLI backend never receives tool calls). Some CLIs
   may still run their own agent tooling.
 - **No streaming** (CLI output is collected then returned).
-- **Structured outputs** depend on the CLI’s JSON format.
+- **Structured outputs** depend on the CLIâ€™s JSON format.
 - **Codex CLI sessions** resume via text output (no JSONL), which is less
-  structured than the initial `--json` run. OpenClaw sessions still work
+  structured than the initial `--json` run.  sessions still work
   normally.
 
 ## Troubleshooting
 
 - **CLI not found**: set `command` to a full path.
-- **Wrong model name**: use `modelAliases` to map `provider/model` → CLI model.
+- **Wrong model name**: use `modelAliases` to map `provider/model` â†’ CLI model.
 - **No session continuity**: ensure `sessionArg` is set and `sessionMode` is not
   `none` (Codex CLI currently cannot resume with JSON output).
 - **Images ignored**: set `imageArg` (and verify CLI supports file paths).
+

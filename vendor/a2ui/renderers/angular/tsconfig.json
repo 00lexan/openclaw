@@ -1,4 +1,4 @@
-{
+﻿{
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
@@ -21,3 +21,4 @@
     "strictTemplates": true
   }
 }
+

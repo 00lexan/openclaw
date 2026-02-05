@@ -1,4 +1,4 @@
-# Himalaya Configuration Reference
+﻿# Himalaya Configuration Reference
 
 Configuration file location: `~/.config/himalaya/config.toml`
 
@@ -182,3 +182,4 @@ Set via environment variable:
 ```bash
 export EDITOR="vim"
 ```
+

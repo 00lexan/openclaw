@@ -1,4 +1,4 @@
-import type { PromptAccountId, PromptAccountIdParams } from "../onboarding-types.js";
+﻿import type { PromptAccountId, PromptAccountIdParams } from "../onboarding-types.js";
 import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../../../routing/session-key.js";
 
 export const promptAccountId: PromptAccountId = async (params: PromptAccountIdParams) => {
@@ -43,3 +43,4 @@ export function addWildcardAllowFrom(
   }
   return next;
 }
+

@@ -1,4 +1,4 @@
-import { html, type TemplateResult } from "lit";
+﻿import { html, type TemplateResult } from "lit";
 
 // Lucide-style SVG icons
 // All icons use currentColor for stroke
@@ -254,3 +254,4 @@ export function setEmojiIcon(target: HTMLElement | null, icon: string): void {
   }
   target.textContent = icon;
 }
+

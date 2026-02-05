@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { Config } from "../../config/config.js";
 import { setCliSessionId } from "../../agents/cli-session.js";
 import { lookupContextTokens } from "../../agents/context.js";
 import { DEFAULT_CONTEXT_TOKENS } from "../../agents/defaults.js";
@@ -11,7 +11,7 @@ type RunResult = Awaited<
 >;
 
 export async function updateSessionStoreAfterAgentRun(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   contextTokensOverride?: number;
   sessionId: string;
   sessionKey: string;
@@ -74,3 +74,4 @@ export async function updateSessionStoreAfterAgentRun(params: {
     store[sessionKey] = next;
   });
 }
+

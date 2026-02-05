@@ -1,4 +1,4 @@
-import type { AnyAgentTool } from "./pi-tools.types.js";
+﻿import type { AnyAgentTool } from "./pi-tools.types.js";
 
 function throwAbortError(): never {
   const err = new Error("Aborted");
@@ -64,3 +64,4 @@ export function wrapToolWithAbortSignal(
     },
   };
 }
+

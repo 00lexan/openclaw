@@ -1,4 +1,4 @@
-import { ProxyAgent, fetch as undiciFetch } from "undici";
+﻿import { ProxyAgent, fetch as undiciFetch } from "undici";
 import { wrapFetchWithAbortSignal } from "../infra/fetch.js";
 
 export function makeProxyFetch(proxyUrl: string): typeof fetch {
@@ -12,3 +12,4 @@ export function makeProxyFetch(proxyUrl: string): typeof fetch {
     }) as unknown as Promise<Response>) as typeof fetch;
   return wrapFetchWithAbortSignal(fetcher);
 }
+

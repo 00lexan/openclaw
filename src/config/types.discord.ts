@@ -1,4 +1,4 @@
-import type { DiscordPluralKitConfig } from "../discord/pluralkit.js";
+﻿import type { DiscordPluralKitConfig } from "../discord/pluralkit.js";
 import type {
   BlockStreamingCoalesceConfig,
   DmPolicy,
@@ -165,3 +165,4 @@ export type DiscordConfig = {
   /** Optional per-account Discord configuration (multi-account). */
   accounts?: Record<string, DiscordAccountConfig>;
 } & DiscordAccountConfig;
+

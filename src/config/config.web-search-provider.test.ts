@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { validateConfigObject } from "./config.js";
 
 describe("web search provider config", () => {
@@ -22,3 +22,4 @@ describe("web search provider config", () => {
     expect(res.ok).toBe(true);
   });
 });
+

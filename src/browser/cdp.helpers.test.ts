@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { appendCdpPath, getHeadersWithAuth } from "./cdp.helpers.js";
 
 describe("cdp.helpers", () => {
@@ -24,3 +24,4 @@ describe("cdp.helpers", () => {
     expect(headers.Authorization).toBe("Bearer token");
   });
 });
+

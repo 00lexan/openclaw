@@ -1,4 +1,4 @@
-import JSZip from "jszip";
+﻿import JSZip from "jszip";
 import { describe, expect, it } from "vitest";
 import { detectMime, extensionForMime, imageMimeFromFormat } from "./mime.js";
 
@@ -96,3 +96,4 @@ describe("extensionForMime", () => {
     expect(extensionForMime(undefined)).toBeUndefined();
   });
 });
+

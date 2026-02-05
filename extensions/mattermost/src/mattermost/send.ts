@@ -1,4 +1,4 @@
-import { getMattermostRuntime } from "../runtime.js";
+﻿import { getMattermostRuntime } from "../runtime.js";
 import { resolveMattermostAccount } from "./accounts.js";
 import {
   createMattermostClient,
@@ -229,3 +229,4 @@ export async function sendMessageMattermost(
     channelId,
   };
 }
+

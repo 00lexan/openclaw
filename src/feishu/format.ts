@@ -1,4 +1,4 @@
-import type { MarkdownTableMode } from "../config/types.base.js";
+﻿import type { MarkdownTableMode } from "../config/types.base.js";
 import {
   chunkMarkdownIR,
   markdownToIR,
@@ -217,7 +217,7 @@ export function markdownToFeishuPost(
   const ir = markdownToIR(markdown ?? "", {
     linkify: true,
     headingStyle: "bold",
-    blockquotePrefix: "｜ ",
+    blockquotePrefix: "ï½œ ",
     tableMode: options.tableMode,
   });
   return renderFeishuPost(ir);
@@ -234,7 +234,7 @@ export function markdownToFeishuChunks(
   const ir = markdownToIR(markdown ?? "", {
     linkify: true,
     headingStyle: "bold",
-    blockquotePrefix: "｜ ",
+    blockquotePrefix: "ï½œ ",
     tableMode: options.tableMode,
   });
   const chunks = chunkMarkdownIR(ir, limit);
@@ -265,3 +265,4 @@ export function containsMarkdown(text: string): boolean {
   ];
   return markdownPatterns.some((pattern) => pattern.test(text));
 }
+

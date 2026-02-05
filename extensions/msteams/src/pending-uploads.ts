@@ -1,4 +1,4 @@
-/**
+﻿/**
  * In-memory storage for files awaiting user consent in the FileConsentCard flow.
  *
  * When sending large files (>=4MB) in personal chats, Teams requires user consent
@@ -87,3 +87,4 @@ export function getPendingUploadCount(): number {
 export function clearPendingUploads(): void {
   pendingUploads.clear();
 }
+

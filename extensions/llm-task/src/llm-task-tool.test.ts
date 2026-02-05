@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+﻿import { describe, it, expect, vi, beforeEach } from "vitest";
 
 vi.mock("../../../src/agents/pi-embedded-runner.js", () => {
   return {
@@ -136,3 +136,4 @@ describe("llm-task tool (json-only)", () => {
     expect(call.disableTools).toBe(true);
   });
 });
+

@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 添加或修改渠道位置解析
-  - 在智能体提示或工具中使用位置上下文字段
-summary: 入站渠道位置解析（Telegram + WhatsApp）及上下文字段
-title: 渠道位置解析
+  - æ·»åŠ æˆ–ä¿®æ”¹æ¸ é“ä½ç½®è§£æž
+  - åœ¨æ™ºèƒ½ä½“æç¤ºæˆ–å·¥å…·ä¸­ä½¿ç”¨ä½ç½®ä¸Šä¸‹æ–‡å­—æ®µ
+summary: å…¥ç«™æ¸ é“ä½ç½®è§£æžï¼ˆTelegram + WhatsAppï¼‰åŠä¸Šä¸‹æ–‡å­—æ®µ
+title: æ¸ é“ä½ç½®è§£æž
 x-i18n:
   generated_at: "2026-02-01T19:21:46Z"
   model: claude-opus-4-5
@@ -13,51 +13,52 @@ x-i18n:
   workflow: 14
 ---
 
-# 渠道位置解析
+# æ¸ é“ä½ç½®è§£æž
 
-OpenClaw 将聊天渠道中分享的位置标准化为：
+ å°†èŠå¤©æ¸ é“ä¸­åˆ†äº«çš„ä½ç½®æ ‡å‡†åŒ–ä¸ºï¼š
 
-- 附加到入站消息体的可读文本，以及
-- 自动回复上下文负载中的结构化字段。
+- é™„åŠ åˆ°å…¥ç«™æ¶ˆæ¯ä½“çš„å¯è¯»æ–‡æœ¬ï¼Œä»¥åŠ
+- è‡ªåŠ¨å›žå¤ä¸Šä¸‹æ–‡è´Ÿè½½ä¸­çš„ç»“æž„åŒ–å­—æ®µã€‚
 
-目前支持：
+ç›®å‰æ”¯æŒï¼š
 
-- **Telegram**（位置图钉 + 地点 + 实时位置）
-- **WhatsApp**（locationMessage + liveLocationMessage）
-- **Matrix**（`m.location` 配合 `geo_uri`）
+- **Telegram**ï¼ˆä½ç½®å›¾é’‰ + åœ°ç‚¹ + å®žæ—¶ä½ç½®ï¼‰
+- **WhatsApp**ï¼ˆlocationMessage + liveLocationMessageï¼‰
+- **Matrix**ï¼ˆ`m.location` é…åˆ `geo_uri`ï¼‰
 
-## 文本格式
+## æ–‡æœ¬æ ¼å¼
 
-位置以友好的行格式呈现，不带括号：
+ä½ç½®ä»¥å‹å¥½çš„è¡Œæ ¼å¼å‘ˆçŽ°ï¼Œä¸å¸¦æ‹¬å·ï¼š
 
-- 图钉：
-  - `📍 48.858844, 2.294351 ±12m`
-- 命名地点：
-  - `📍 Eiffel Tower — Champ de Mars, Paris (48.858844, 2.294351 ±12m)`
-- 实时分享：
-  - `🛰 Live location: 48.858844, 2.294351 ±12m`
+- å›¾é’‰ï¼š
+  - `ðŸ“ 48.858844, 2.294351 Â±12m`
+- å‘½ååœ°ç‚¹ï¼š
+  - `ðŸ“ Eiffel Tower â€” Champ de Mars, Paris (48.858844, 2.294351 Â±12m)`
+- å®žæ—¶åˆ†äº«ï¼š
+  - `ðŸ›° Live location: 48.858844, 2.294351 Â±12m`
 
-如果渠道包含标题/评论，会附加在下一行：
+å¦‚æžœæ¸ é“åŒ…å«æ ‡é¢˜/è¯„è®ºï¼Œä¼šé™„åŠ åœ¨ä¸‹ä¸€è¡Œï¼š
 
 ```
-📍 48.858844, 2.294351 ±12m
+ðŸ“ 48.858844, 2.294351 Â±12m
 Meet here
 ```
 
-## 上下文字段
+## ä¸Šä¸‹æ–‡å­—æ®µ
 
-当存在位置信息时，以下字段会被添加到 `ctx` 中：
+å½“å­˜åœ¨ä½ç½®ä¿¡æ¯æ—¶ï¼Œä»¥ä¸‹å­—æ®µä¼šè¢«æ·»åŠ åˆ° `ctx` ä¸­ï¼š
 
-- `LocationLat`（数字）
-- `LocationLon`（数字）
-- `LocationAccuracy`（数字，米；可选）
-- `LocationName`（字符串；可选）
-- `LocationAddress`（字符串；可选）
-- `LocationSource`（`pin | place | live`）
-- `LocationIsLive`（布尔值）
+- `LocationLat`ï¼ˆæ•°å­—ï¼‰
+- `LocationLon`ï¼ˆæ•°å­—ï¼‰
+- `LocationAccuracy`ï¼ˆæ•°å­—ï¼Œç±³ï¼›å¯é€‰ï¼‰
+- `LocationName`ï¼ˆå­—ç¬¦ä¸²ï¼›å¯é€‰ï¼‰
+- `LocationAddress`ï¼ˆå­—ç¬¦ä¸²ï¼›å¯é€‰ï¼‰
+- `LocationSource`ï¼ˆ`pin | place | live`ï¼‰
+- `LocationIsLive`ï¼ˆå¸ƒå°”å€¼ï¼‰
 
-## 渠道说明
+## æ¸ é“è¯´æ˜Ž
 
-- **Telegram**：地点映射到 `LocationName/LocationAddress`；实时位置使用 `live_period`。
-- **WhatsApp**：`locationMessage.comment` 和 `liveLocationMessage.caption` 作为标题行附加。
-- **Matrix**：`geo_uri` 解析为图钉位置；忽略海拔高度，`LocationIsLive` 始终为 false。
+- **Telegram**ï¼šåœ°ç‚¹æ˜ å°„åˆ° `LocationName/LocationAddress`ï¼›å®žæ—¶ä½ç½®ä½¿ç”¨ `live_period`ã€‚
+- **WhatsApp**ï¼š`locationMessage.comment` å’Œ `liveLocationMessage.caption` ä½œä¸ºæ ‡é¢˜è¡Œé™„åŠ ã€‚
+- **Matrix**ï¼š`geo_uri` è§£æžä¸ºå›¾é’‰ä½ç½®ï¼›å¿½ç•¥æµ·æ‹”é«˜åº¦ï¼Œ`LocationIsLive` å§‹ç»ˆä¸º falseã€‚
+

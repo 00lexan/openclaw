@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Gateway-owned node pairing (Option B) for iOS and other remote nodes"
 read_when:
   - Implementing node pairing approvals without macOS UI
@@ -29,19 +29,19 @@ Only clients that explicitly call `node.pair.*` use this flow.
 1. A node connects to the Gateway WS and requests pairing.
 2. The Gateway stores a **pending request** and emits `node.pair.requested`.
 3. You approve or reject the request (CLI or UI).
-4. On approval, the Gateway issues a **new token** (tokens are rotated on re‑pair).
-5. The node reconnects using the token and is now “paired”.
+4. On approval, the Gateway issues a **new token** (tokens are rotated on reâ€‘pair).
+5. The node reconnects using the token and is now â€œpairedâ€.
 
 Pending requests expire automatically after **5 minutes**.
 
 ## CLI workflow (headless friendly)
 
 ```bash
-openclaw nodes pending
-openclaw nodes approve <requestId>
-openclaw nodes reject <requestId>
-openclaw nodes status
-openclaw nodes rename --node <id|name|ip> --name "Living Room iPad"
+ nodes pending
+ nodes approve <requestId>
+ nodes reject <requestId>
+ nodes status
+ nodes rename --node <id|name|ip> --name "Living Room iPad"
 ```
 
 `nodes status` shows paired/connected nodes and their capabilities.
@@ -50,16 +50,16 @@ openclaw nodes rename --node <id|name|ip> --name "Living Room iPad"
 
 Events:
 
-- `node.pair.requested` — emitted when a new pending request is created.
-- `node.pair.resolved` — emitted when a request is approved/rejected/expired.
+- `node.pair.requested` â€” emitted when a new pending request is created.
+- `node.pair.resolved` â€” emitted when a request is approved/rejected/expired.
 
 Methods:
 
-- `node.pair.request` — create or reuse a pending request.
-- `node.pair.list` — list pending + paired nodes.
-- `node.pair.approve` — approve a pending request (issues token).
-- `node.pair.reject` — reject a pending request.
-- `node.pair.verify` — verify `{ nodeId, token }`.
+- `node.pair.request` â€” create or reuse a pending request.
+- `node.pair.list` â€” list pending + paired nodes.
+- `node.pair.approve` â€” approve a pending request (issues token).
+- `node.pair.reject` â€” reject a pending request.
+- `node.pair.verify` â€” verify `{ nodeId, token }`.
 
 Notes:
 
@@ -76,16 +76,16 @@ The macOS app can optionally attempt a **silent approval** when:
 - the request is marked `silent`, and
 - the app can verify an SSH connection to the gateway host using the same user.
 
-If silent approval fails, it falls back to the normal “Approve/Reject” prompt.
+If silent approval fails, it falls back to the normal â€œApprove/Rejectâ€ prompt.
 
 ## Storage (local, private)
 
-Pairing state is stored under the Gateway state directory (default `~/.openclaw`):
+Pairing state is stored under the Gateway state directory (default `~/.`):
 
-- `~/.openclaw/nodes/paired.json`
-- `~/.openclaw/nodes/pending.json`
+- `~/./nodes/paired.json`
+- `~/./nodes/pending.json`
 
-If you override `OPENCLAW_STATE_DIR`, the `nodes/` folder moves with it.
+If you override `_STATE_DIR`, the `nodes/` folder moves with it.
 
 Security notes:
 
@@ -96,4 +96,5 @@ Security notes:
 
 - The transport is **stateless**; it does not store membership.
 - If the Gateway is offline or pairing is disabled, nodes cannot pair.
-- If the Gateway is in remote mode, pairing still happens against the remote Gateway’s store.
+- If the Gateway is in remote mode, pairing still happens against the remote Gatewayâ€™s store.
+

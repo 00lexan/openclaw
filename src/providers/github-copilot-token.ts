@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import { resolveStateDir } from "../config/paths.js";
 import { loadJsonFile, saveJsonFile } from "../infra/json-file.js";
 
@@ -130,3 +130,4 @@ export async function resolveCopilotApiToken(params: {
     baseUrl: deriveCopilotApiBaseUrlFromToken(payload.token) ?? DEFAULT_COPILOT_API_BASE_URL,
   };
 }
+

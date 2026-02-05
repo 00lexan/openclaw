@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { stripReasoningTagsFromText } from "./reasoning-tags.js";
 
 describe("stripReasoningTagsFromText", () => {
@@ -150,8 +150,8 @@ describe("stripReasoningTagsFromText", () => {
     });
 
     it("handles unicode content inside and around tags", () => {
-      const input = "你好 <think>思考 🤔</think> 世界";
-      expect(stripReasoningTagsFromText(input)).toBe("你好  世界");
+      const input = "ä½ å¥½ <think>æ€è€ƒ ðŸ¤”</think> ä¸–ç•Œ";
+      expect(stripReasoningTagsFromText(input)).toBe("ä½ å¥½  ä¸–ç•Œ");
     });
 
     it("handles very long content between tags efficiently", () => {
@@ -216,3 +216,4 @@ describe("stripReasoningTagsFromText", () => {
     });
   });
 });
+

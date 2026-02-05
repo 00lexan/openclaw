@@ -1,4 +1,4 @@
-export type NodesRpcOpts = {
+﻿export type NodesRpcOpts = {
   url?: string;
   token?: string;
   timeout?: string;
@@ -94,3 +94,4 @@ export type PairingList = {
   pending: PendingRequest[];
   paired: PairedNode[];
 };
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import { formatDocsLink } from "../../terminal/links.js";
 import { theme } from "../../terminal/theme.js";
 import { registerNodesCameraCommands } from "./register.camera.js";
@@ -17,7 +17,7 @@ export function registerNodesCli(program: Command) {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/nodes", "docs.openclaw.ai/cli/nodes")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/nodes", "docs..ai/cli/nodes")}\n`,
     );
 
   registerNodesStatusCommands(nodes);
@@ -29,3 +29,4 @@ export function registerNodesCli(program: Command) {
   registerNodesScreenCommands(nodes);
   registerNodesLocationCommands(nodes);
 }
+

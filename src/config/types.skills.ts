@@ -1,4 +1,4 @@
-export type SkillConfig = {
+﻿export type SkillConfig = {
   enabled?: boolean;
   apiKey?: string;
   env?: Record<string, string>;
@@ -29,3 +29,4 @@ export type SkillsConfig = {
   install?: SkillsInstallConfig;
   entries?: Record<string, SkillConfig>;
 };
+

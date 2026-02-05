@@ -1,4 +1,4 @@
-export const loggingState = {
+﻿export const loggingState = {
   cachedLogger: null as unknown,
   cachedSettings: null as unknown,
   cachedConsoleSettings: null as unknown,
@@ -15,3 +15,4 @@ export const loggingState = {
     error: typeof console.error;
   } | null,
 };
+

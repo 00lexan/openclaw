@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 import { registerSlackMonitorSlashCommands } from "./slash.js";
 
 const dispatchMock = vi.fn();
@@ -69,7 +69,7 @@ function createHarness() {
     channelsConfig: undefined,
     slashCommand: {
       enabled: true,
-      name: "openclaw",
+      name: "",
       ephemeral: true,
       sessionPrefix: "slack:slash",
     },
@@ -132,7 +132,7 @@ describe("Slack native command argument menus", () => {
     const { actions, ctx, account } = createHarness();
     registerSlackMonitorSlashCommands({ ctx: ctx as never, account: account as never });
 
-    const handler = actions.get("openclaw_cmdarg");
+    const handler = actions.get("_cmdarg");
     if (!handler) {
       throw new Error("Missing arg-menu action handler");
     }
@@ -160,7 +160,7 @@ describe("Slack native command argument menus", () => {
     const { actions, ctx, account } = createHarness();
     registerSlackMonitorSlashCommands({ ctx: ctx as never, account: account as never });
 
-    const handler = actions.get("openclaw_cmdarg");
+    const handler = actions.get("_cmdarg");
     if (!handler) {
       throw new Error("Missing arg-menu action handler");
     }
@@ -190,7 +190,7 @@ describe("Slack native command argument menus", () => {
     const { actions, postEphemeral, ctx, account } = createHarness();
     registerSlackMonitorSlashCommands({ ctx: ctx as never, account: account as never });
 
-    const handler = actions.get("openclaw_cmdarg");
+    const handler = actions.get("_cmdarg");
     if (!handler) {
       throw new Error("Missing arg-menu action handler");
     }
@@ -214,7 +214,7 @@ describe("Slack native command argument menus", () => {
     const { actions, postEphemeral, ctx, account } = createHarness();
     registerSlackMonitorSlashCommands({ ctx: ctx as never, account: account as never });
 
-    const handler = actions.get("openclaw_cmdarg");
+    const handler = actions.get("_cmdarg");
     if (!handler) {
       throw new Error("Missing arg-menu action handler");
     }
@@ -235,3 +235,4 @@ describe("Slack native command argument menus", () => {
     );
   });
 });
+

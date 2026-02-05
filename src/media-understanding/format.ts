@@ -1,4 +1,4 @@
-import type { MediaUnderstandingOutput } from "./types.js";
+﻿import type { MediaUnderstandingOutput } from "./types.js";
 
 const MEDIA_PLACEHOLDER_RE = /^<media:[^>]+>(\s*\([^)]*\))?$/i;
 const MEDIA_PLACEHOLDER_TOKEN_RE = /^<media:[^>]+>(\s*\([^)]*\))?\s*/i;
@@ -96,3 +96,4 @@ export function formatAudioTranscripts(outputs: MediaUnderstandingOutput[]): str
   }
   return outputs.map((output, index) => `Audio ${index + 1}:\n${output.text}`).join("\n\n");
 }
+

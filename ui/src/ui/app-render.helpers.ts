@@ -1,4 +1,4 @@
-import { html } from "lit";
+﻿import { html } from "lit";
 import { repeat } from "lit/directives/repeat.js";
 import type { AppViewState } from "./app-view-state.ts";
 import type { ThemeTransitionContext } from "./theme-transition.ts";
@@ -6,7 +6,7 @@ import type { ThemeMode } from "./theme.ts";
 import type { SessionsListResult } from "./types.ts";
 import { refreshChat } from "./app-chat.ts";
 import { syncUrlWithSessionKey } from "./app-settings.ts";
-import { OpenClawApp } from "./app.ts";
+import { App } from "./app.ts";
 import { ChatState, loadChatHistory } from "./controllers/chat.ts";
 import { icons } from "./icons.ts";
 import { iconForTab, pathForTab, titleForTab, type Tab } from "./navigation.ts";
@@ -95,10 +95,10 @@ export function renderChatControls(state: AppViewState) {
             state.sessionKey = next;
             state.chatMessage = "";
             state.chatStream = null;
-            (state as unknown as OpenClawApp).chatStreamStartedAt = null;
+            (state as unknown as App).chatStreamStartedAt = null;
             state.chatRunId = null;
-            (state as unknown as OpenClawApp).resetToolStream();
-            (state as unknown as OpenClawApp).resetChatScroll();
+            (state as unknown as App).resetToolStream();
+            (state as unknown as App).resetChatScroll();
             state.applySettings({
               ...state.settings,
               sessionKey: next,
@@ -123,7 +123,7 @@ export function renderChatControls(state: AppViewState) {
         class="btn btn--sm btn--icon"
         ?disabled=${state.chatLoading || !state.connected}
         @click=${() => {
-          (state as unknown as OpenClawApp).resetToolStream();
+          (state as unknown as App).resetToolStream();
           void refreshChat(state as unknown as Parameters<typeof refreshChat>[0]);
         }}
         title="Refresh chat data"
@@ -343,3 +343,4 @@ function renderMonitorIcon() {
     </svg>
   `;
 }
+

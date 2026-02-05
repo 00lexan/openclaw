@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 你需要按提供商分类的模型设置参考
-  - 你需要模型提供商的示例配置或 CLI 新手引导命令
-summary: 模型提供商概述，包含示例配置和 CLI 流程
-title: 模型提供商
+  - ä½ éœ€è¦æŒ‰æä¾›å•†åˆ†ç±»çš„æ¨¡åž‹è®¾ç½®å‚è€ƒ
+  - ä½ éœ€è¦æ¨¡åž‹æä¾›å•†çš„ç¤ºä¾‹é…ç½®æˆ– CLI æ–°æ‰‹å¼•å¯¼å‘½ä»¤
+summary: æ¨¡åž‹æä¾›å•†æ¦‚è¿°ï¼ŒåŒ…å«ç¤ºä¾‹é…ç½®å’Œ CLI æµç¨‹
+title: æ¨¡åž‹æä¾›å•†
 x-i18n:
   generated_at: "2026-02-03T07:46:28Z"
   model: claude-opus-4-5
@@ -13,27 +13,27 @@ x-i18n:
   workflow: 15
 ---
 
-# 模型提供商
+# æ¨¡åž‹æä¾›å•†
 
-本页介绍 **LLM/模型提供商**（不是 WhatsApp/Telegram 等聊天渠道）。
-关于模型选择规则，请参阅 [/concepts/models](/concepts/models)。
+æœ¬é¡µä»‹ç» **LLM/æ¨¡åž‹æä¾›å•†**ï¼ˆä¸æ˜¯ WhatsApp/Telegram ç­‰èŠå¤©æ¸ é“ï¼‰ã€‚
+å…³äºŽæ¨¡åž‹é€‰æ‹©è§„åˆ™ï¼Œè¯·å‚é˜… [/concepts/models](/concepts/models)ã€‚
 
-## 快速规则
+## å¿«é€Ÿè§„åˆ™
 
-- 模型引用使用 `provider/model` 格式（例如：`opencode/claude-opus-4-5`）。
-- 如果设置了 `agents.defaults.models`，它将成为允许列表。
-- CLI 辅助工具：`openclaw onboard`、`openclaw models list`、`openclaw models set <provider/model>`。
+- æ¨¡åž‹å¼•ç”¨ä½¿ç”¨ `provider/model` æ ¼å¼ï¼ˆä¾‹å¦‚ï¼š`opencode/claude-opus-4-5`ï¼‰ã€‚
+- å¦‚æžœè®¾ç½®äº† `agents.defaults.models`ï¼Œå®ƒå°†æˆä¸ºå…è®¸åˆ—è¡¨ã€‚
+- CLI è¾…åŠ©å·¥å…·ï¼š` onboard`ã€` models list`ã€` models set <provider/model>`ã€‚
 
-## 内置提供商（pi-ai 目录）
+## å†…ç½®æä¾›å•†ï¼ˆpi-ai ç›®å½•ï¼‰
 
-OpenClaw 附带 pi-ai 目录。这些提供商**不需要** `models.providers` 配置；只需设置认证 + 选择模型。
+ é™„å¸¦ pi-ai ç›®å½•ã€‚è¿™äº›æä¾›å•†**ä¸éœ€è¦** `models.providers` é…ç½®ï¼›åªéœ€è®¾ç½®è®¤è¯ + é€‰æ‹©æ¨¡åž‹ã€‚
 
 ### OpenAI
 
-- 提供商：`openai`
-- 认证：`OPENAI_API_KEY`
-- 示例模型：`openai/gpt-5.2`
-- CLI：`openclaw onboard --auth-choice openai-api-key`
+- æä¾›å•†ï¼š`openai`
+- è®¤è¯ï¼š`OPENAI_API_KEY`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`openai/gpt-5.2`
+- CLIï¼š` onboard --auth-choice openai-api-key`
 
 ```json5
 {
@@ -43,10 +43,10 @@ OpenClaw 附带 pi-ai 目录。这些提供商**不需要** `models.providers` �
 
 ### Anthropic
 
-- 提供商：`anthropic`
-- 认证：`ANTHROPIC_API_KEY` 或 `claude setup-token`
-- 示例模型：`anthropic/claude-opus-4-5`
-- CLI：`openclaw onboard --auth-choice token`（粘贴 setup-token）或 `openclaw models auth paste-token --provider anthropic`
+- æä¾›å•†ï¼š`anthropic`
+- è®¤è¯ï¼š`ANTHROPIC_API_KEY` æˆ– `claude setup-token`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`anthropic/claude-opus-4-5`
+- CLIï¼š` onboard --auth-choice token`ï¼ˆç²˜è´´ setup-tokenï¼‰æˆ– ` models auth paste-token --provider anthropic`
 
 ```json5
 {
@@ -56,10 +56,10 @@ OpenClaw 附带 pi-ai 目录。这些提供商**不需要** `models.providers` �
 
 ### OpenAI Code (Codex)
 
-- 提供商：`openai-codex`
-- 认证：OAuth (ChatGPT)
-- 示例模型：`openai-codex/gpt-5.2`
-- CLI：`openclaw onboard --auth-choice openai-codex` 或 `openclaw models auth login --provider openai-codex`
+- æä¾›å•†ï¼š`openai-codex`
+- è®¤è¯ï¼šOAuth (ChatGPT)
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`openai-codex/gpt-5.2`
+- CLIï¼š` onboard --auth-choice openai-codex` æˆ– ` models auth login --provider openai-codex`
 
 ```json5
 {
@@ -69,10 +69,10 @@ OpenClaw 附带 pi-ai 目录。这些提供商**不需要** `models.providers` �
 
 ### OpenCode Zen
 
-- 提供商：`opencode`
-- 认证：`OPENCODE_API_KEY`（或 `OPENCODE_ZEN_API_KEY`）
-- 示例模型：`opencode/claude-opus-4-5`
-- CLI：`openclaw onboard --auth-choice opencode-zen`
+- æä¾›å•†ï¼š`opencode`
+- è®¤è¯ï¼š`OPENCODE_API_KEY`ï¼ˆæˆ– `OPENCODE_ZEN_API_KEY`ï¼‰
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`opencode/claude-opus-4-5`
+- CLIï¼š` onboard --auth-choice opencode-zen`
 
 ```json5
 {
@@ -80,65 +80,65 @@ OpenClaw 附带 pi-ai 目录。这些提供商**不需要** `models.providers` �
 }
 ```
 
-### Google Gemini（API 密钥）
+### Google Geminiï¼ˆAPI å¯†é’¥ï¼‰
 
-- 提供商：`google`
-- 认证：`GEMINI_API_KEY`
-- 示例模型：`google/gemini-3-pro-preview`
-- CLI：`openclaw onboard --auth-choice gemini-api-key`
+- æä¾›å•†ï¼š`google`
+- è®¤è¯ï¼š`GEMINI_API_KEY`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`google/gemini-3-pro-preview`
+- CLIï¼š` onboard --auth-choice gemini-api-key`
 
-### Google Vertex、Antigravity 和 Gemini CLI
+### Google Vertexã€Antigravity å’Œ Gemini CLI
 
-- 提供商：`google-vertex`、`google-antigravity`、`google-gemini-cli`
-- 认证：Vertex 使用 gcloud ADC；Antigravity/Gemini CLI 使用各自的认证流程
-- Antigravity OAuth 作为捆绑插件提供（`google-antigravity-auth`，默认禁用）。
-  - 启用：`openclaw plugins enable google-antigravity-auth`
-  - 登录：`openclaw models auth login --provider google-antigravity --set-default`
-- Gemini CLI OAuth 作为捆绑插件提供（`google-gemini-cli-auth`，默认禁用）。
-  - 启用：`openclaw plugins enable google-gemini-cli-auth`
-  - 登录：`openclaw models auth login --provider google-gemini-cli --set-default`
-  - 注意：你**不需要**将客户端 ID 或密钥粘贴到 `openclaw.json` 中。CLI 登录流程将令牌存储在 Gateway 网关主机的认证配置文件中。
+- æä¾›å•†ï¼š`google-vertex`ã€`google-antigravity`ã€`google-gemini-cli`
+- è®¤è¯ï¼šVertex ä½¿ç”¨ gcloud ADCï¼›Antigravity/Gemini CLI ä½¿ç”¨å„è‡ªçš„è®¤è¯æµç¨‹
+- Antigravity OAuth ä½œä¸ºæ†ç»‘æ’ä»¶æä¾›ï¼ˆ`google-antigravity-auth`ï¼Œé»˜è®¤ç¦ç”¨ï¼‰ã€‚
+  - å¯ç”¨ï¼š` plugins enable google-antigravity-auth`
+  - ç™»å½•ï¼š` models auth login --provider google-antigravity --set-default`
+- Gemini CLI OAuth ä½œä¸ºæ†ç»‘æ’ä»¶æä¾›ï¼ˆ`google-gemini-cli-auth`ï¼Œé»˜è®¤ç¦ç”¨ï¼‰ã€‚
+  - å¯ç”¨ï¼š` plugins enable google-gemini-cli-auth`
+  - ç™»å½•ï¼š` models auth login --provider google-gemini-cli --set-default`
+  - æ³¨æ„ï¼šä½ **ä¸éœ€è¦**å°†å®¢æˆ·ç«¯ ID æˆ–å¯†é’¥ç²˜è´´åˆ° `.json` ä¸­ã€‚CLI ç™»å½•æµç¨‹å°†ä»¤ç‰Œå­˜å‚¨åœ¨ Gateway ç½‘å…³ä¸»æœºçš„è®¤è¯é…ç½®æ–‡ä»¶ä¸­ã€‚
 
 ### Z.AI (GLM)
 
-- 提供商：`zai`
-- 认证：`ZAI_API_KEY`
-- 示例模型：`zai/glm-4.7`
-- CLI：`openclaw onboard --auth-choice zai-api-key`
-  - 别名：`z.ai/*` 和 `z-ai/*` 规范化为 `zai/*`
+- æä¾›å•†ï¼š`zai`
+- è®¤è¯ï¼š`ZAI_API_KEY`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`zai/glm-4.7`
+- CLIï¼š` onboard --auth-choice zai-api-key`
+  - åˆ«åï¼š`z.ai/*` å’Œ `z-ai/*` è§„èŒƒåŒ–ä¸º `zai/*`
 
 ### Vercel AI Gateway
 
-- 提供商：`vercel-ai-gateway`
-- 认证：`AI_GATEWAY_API_KEY`
-- 示例模型：`vercel-ai-gateway/anthropic/claude-opus-4.5`
-- CLI：`openclaw onboard --auth-choice ai-gateway-api-key`
+- æä¾›å•†ï¼š`vercel-ai-gateway`
+- è®¤è¯ï¼š`AI_GATEWAY_API_KEY`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`vercel-ai-gateway/anthropic/claude-opus-4.5`
+- CLIï¼š` onboard --auth-choice ai-gateway-api-key`
 
-### 其他内置提供商
+### å…¶ä»–å†…ç½®æä¾›å•†
 
-- OpenRouter：`openrouter`（`OPENROUTER_API_KEY`）
-- 示例模型：`openrouter/anthropic/claude-sonnet-4-5`
-- xAI：`xai`（`XAI_API_KEY`）
-- Groq：`groq`（`GROQ_API_KEY`）
-- Cerebras：`cerebras`（`CEREBRAS_API_KEY`）
-  - Cerebras 上的 GLM 模型使用 ID `zai-glm-4.7` 和 `zai-glm-4.6`。
-  - OpenAI 兼容的基础 URL：`https://api.cerebras.ai/v1`。
-- Mistral：`mistral`（`MISTRAL_API_KEY`）
-- GitHub Copilot：`github-copilot`（`COPILOT_GITHUB_TOKEN` / `GH_TOKEN` / `GITHUB_TOKEN`）
+- OpenRouterï¼š`openrouter`ï¼ˆ`OPENROUTER_API_KEY`ï¼‰
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`openrouter/anthropic/claude-sonnet-4-5`
+- xAIï¼š`xai`ï¼ˆ`XAI_API_KEY`ï¼‰
+- Groqï¼š`groq`ï¼ˆ`GROQ_API_KEY`ï¼‰
+- Cerebrasï¼š`cerebras`ï¼ˆ`CEREBRAS_API_KEY`ï¼‰
+  - Cerebras ä¸Šçš„ GLM æ¨¡åž‹ä½¿ç”¨ ID `zai-glm-4.7` å’Œ `zai-glm-4.6`ã€‚
+  - OpenAI å…¼å®¹çš„åŸºç¡€ URLï¼š`https://api.cerebras.ai/v1`ã€‚
+- Mistralï¼š`mistral`ï¼ˆ`MISTRAL_API_KEY`ï¼‰
+- GitHub Copilotï¼š`github-copilot`ï¼ˆ`COPILOT_GITHUB_TOKEN` / `GH_TOKEN` / `GITHUB_TOKEN`ï¼‰
 
-## 通过 `models.providers` 配置的提供商（自定义/基础 URL）
+## é€šè¿‡ `models.providers` é…ç½®çš„æä¾›å•†ï¼ˆè‡ªå®šä¹‰/åŸºç¡€ URLï¼‰
 
-使用 `models.providers`（或 `models.json`）添加**自定义**提供商或 OpenAI/Anthropic 兼容的代理。
+ä½¿ç”¨ `models.providers`ï¼ˆæˆ– `models.json`ï¼‰æ·»åŠ **è‡ªå®šä¹‰**æä¾›å•†æˆ– OpenAI/Anthropic å…¼å®¹çš„ä»£ç†ã€‚
 
 ### Moonshot AI (Kimi)
 
-Moonshot 使用 OpenAI 兼容端点，因此将其配置为自定义提供商：
+Moonshot ä½¿ç”¨ OpenAI å…¼å®¹ç«¯ç‚¹ï¼Œå› æ­¤å°†å…¶é…ç½®ä¸ºè‡ªå®šä¹‰æä¾›å•†ï¼š
 
-- 提供商：`moonshot`
-- 认证：`MOONSHOT_API_KEY`
-- 示例模型：`moonshot/kimi-k2.5`
+- æä¾›å•†ï¼š`moonshot`
+- è®¤è¯ï¼š`MOONSHOT_API_KEY`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`moonshot/kimi-k2.5`
 
-Kimi K2 模型 ID：
+Kimi K2 æ¨¡åž‹ IDï¼š
 
 {/_ moonshot-kimi-k2-model-refs:start _/ && null}
 
@@ -170,11 +170,11 @@ Kimi K2 模型 ID：
 
 ### Kimi Coding
 
-Kimi Coding 使用 Moonshot AI 的 Anthropic 兼容端点：
+Kimi Coding ä½¿ç”¨ Moonshot AI çš„ Anthropic å…¼å®¹ç«¯ç‚¹ï¼š
 
-- 提供商：`kimi-coding`
-- 认证：`KIMI_API_KEY`
-- 示例模型：`kimi-coding/k2p5`
+- æä¾›å•†ï¼š`kimi-coding`
+- è®¤è¯ï¼š`KIMI_API_KEY`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`kimi-coding/k2p5`
 
 ```json5
 {
@@ -185,31 +185,31 @@ Kimi Coding 使用 Moonshot AI 的 Anthropic 兼容端点：
 }
 ```
 
-### Qwen OAuth（免费层级）
+### Qwen OAuthï¼ˆå…è´¹å±‚çº§ï¼‰
 
-Qwen 通过设备码流程提供对 Qwen Coder + Vision 的 OAuth 访问。
-启用捆绑插件，然后登录：
+Qwen é€šè¿‡è®¾å¤‡ç æµç¨‹æä¾›å¯¹ Qwen Coder + Vision çš„ OAuth è®¿é—®ã€‚
+å¯ç”¨æ†ç»‘æ’ä»¶ï¼Œç„¶åŽç™»å½•ï¼š
 
 ```bash
-openclaw plugins enable qwen-portal-auth
-openclaw models auth login --provider qwen-portal --set-default
+ plugins enable qwen-portal-auth
+ models auth login --provider qwen-portal --set-default
 ```
 
-模型引用：
+æ¨¡åž‹å¼•ç”¨ï¼š
 
 - `qwen-portal/coder-model`
 - `qwen-portal/vision-model`
 
-参见 [/providers/qwen](/providers/qwen) 了解设置详情和注意事项。
+å‚è§ [/providers/qwen](/providers/qwen) äº†è§£è®¾ç½®è¯¦æƒ…å’Œæ³¨æ„äº‹é¡¹ã€‚
 
 ### Synthetic
 
-Synthetic 通过 `synthetic` 提供商提供 Anthropic 兼容模型：
+Synthetic é€šè¿‡ `synthetic` æä¾›å•†æä¾› Anthropic å…¼å®¹æ¨¡åž‹ï¼š
 
-- 提供商：`synthetic`
-- 认证：`SYNTHETIC_API_KEY`
-- 示例模型：`synthetic/hf:MiniMaxAI/MiniMax-M2.1`
-- CLI：`openclaw onboard --auth-choice synthetic-api-key`
+- æä¾›å•†ï¼š`synthetic`
+- è®¤è¯ï¼š`SYNTHETIC_API_KEY`
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`synthetic/hf:MiniMaxAI/MiniMax-M2.1`
+- CLIï¼š` onboard --auth-choice synthetic-api-key`
 
 ```json5
 {
@@ -232,21 +232,21 @@ Synthetic 通过 `synthetic` 提供商提供 Anthropic 兼容模型：
 
 ### MiniMax
 
-MiniMax 通过 `models.providers` 配置，因为它使用自定义端点：
+MiniMax é€šè¿‡ `models.providers` é…ç½®ï¼Œå› ä¸ºå®ƒä½¿ç”¨è‡ªå®šä¹‰ç«¯ç‚¹ï¼š
 
-- MiniMax（Anthropic 兼容）：`--auth-choice minimax-api`
-- 认证：`MINIMAX_API_KEY`
+- MiniMaxï¼ˆAnthropic å…¼å®¹ï¼‰ï¼š`--auth-choice minimax-api`
+- è®¤è¯ï¼š`MINIMAX_API_KEY`
 
-参见 [/providers/minimax](/providers/minimax) 了解设置详情、模型选项和配置片段。
+å‚è§ [/providers/minimax](/providers/minimax) äº†è§£è®¾ç½®è¯¦æƒ…ã€æ¨¡åž‹é€‰é¡¹å’Œé…ç½®ç‰‡æ®µã€‚
 
 ### Ollama
 
-Ollama 是提供 OpenAI 兼容 API 的本地 LLM 运行时：
+Ollama æ˜¯æä¾› OpenAI å…¼å®¹ API çš„æœ¬åœ° LLM è¿è¡Œæ—¶ï¼š
 
-- 提供商：`ollama`
-- 认证：无需（本地服务器）
-- 示例模型：`ollama/llama3.3`
-- 安装：https://ollama.ai
+- æä¾›å•†ï¼š`ollama`
+- è®¤è¯ï¼šæ— éœ€ï¼ˆæœ¬åœ°æœåŠ¡å™¨ï¼‰
+- ç¤ºä¾‹æ¨¡åž‹ï¼š`ollama/llama3.3`
+- å®‰è£…ï¼šhttps://ollama.ai
 
 ```bash
 # Install Ollama, then pull a model:
@@ -261,11 +261,11 @@ ollama pull llama3.3
 }
 ```
 
-当 Ollama 在本地 `http://127.0.0.1:11434/v1` 运行时会自动检测。参见 [/providers/ollama](/providers/ollama) 了解模型推荐和自定义配置。
+å½“ Ollama åœ¨æœ¬åœ° `http://127.0.0.1:11434/v1` è¿è¡Œæ—¶ä¼šè‡ªåŠ¨æ£€æµ‹ã€‚å‚è§ [/providers/ollama](/providers/ollama) äº†è§£æ¨¡åž‹æŽ¨èå’Œè‡ªå®šä¹‰é…ç½®ã€‚
 
-### 本地代理（LM Studio、vLLM、LiteLLM 等）
+### æœ¬åœ°ä»£ç†ï¼ˆLM Studioã€vLLMã€LiteLLM ç­‰ï¼‰
 
-示例（OpenAI 兼容）：
+ç¤ºä¾‹ï¼ˆOpenAI å…¼å®¹ï¼‰ï¼š
 
 ```json5
 {
@@ -298,23 +298,24 @@ ollama pull llama3.3
 }
 ```
 
-注意事项：
+æ³¨æ„äº‹é¡¹ï¼š
 
-- 对于自定义提供商，`reasoning`、`input`、`cost`、`contextWindow` 和 `maxTokens` 是可选的。
-  省略时，OpenClaw 默认为：
+- å¯¹äºŽè‡ªå®šä¹‰æä¾›å•†ï¼Œ`reasoning`ã€`input`ã€`cost`ã€`contextWindow` å’Œ `maxTokens` æ˜¯å¯é€‰çš„ã€‚
+  çœç•¥æ—¶ï¼Œ é»˜è®¤ä¸ºï¼š
   - `reasoning: false`
   - `input: ["text"]`
   - `cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 }`
   - `contextWindow: 200000`
   - `maxTokens: 8192`
-- 建议：设置与你的代理/模型限制匹配的显式值。
+- å»ºè®®ï¼šè®¾ç½®ä¸Žä½ çš„ä»£ç†/æ¨¡åž‹é™åˆ¶åŒ¹é…çš„æ˜¾å¼å€¼ã€‚
 
-## CLI 示例
+## CLI ç¤ºä¾‹
 
 ```bash
-openclaw onboard --auth-choice opencode-zen
-openclaw models set opencode/claude-opus-4-5
-openclaw models list
+ onboard --auth-choice opencode-zen
+ models set opencode/claude-opus-4-5
+ models list
 ```
 
-另请参阅：[/gateway/configuration](/gateway/configuration) 了解完整配置示例。
+å¦è¯·å‚é˜…ï¼š[/gateway/configuration](/gateway/configuration) äº†è§£å®Œæ•´é…ç½®ç¤ºä¾‹ã€‚
+

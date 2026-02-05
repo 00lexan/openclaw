@@ -1,4 +1,4 @@
-import type { GatewayWsClient } from "./server/ws-types.js";
+﻿import type { GatewayWsClient } from "./server/ws-types.js";
 import { MAX_BUFFERED_BYTES } from "./server-constants.js";
 import { logWs, summarizeAgentEventForWsLog } from "./ws-log.js";
 
@@ -118,3 +118,4 @@ export function createGatewayBroadcaster(params: { clients: Set<GatewayWsClient>
 
   return { broadcast, broadcastToConnIds };
 }
+

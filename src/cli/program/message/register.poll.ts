@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { MessageCliHelpers } from "./helpers.js";
 import { collectOption } from "../helpers.js";
 
@@ -21,3 +21,4 @@ export function registerMessagePollCommand(message: Command, helpers: MessageCli
       await helpers.runMessageAction("poll", opts);
     });
 }
+

@@ -1,4 +1,4 @@
-import * as Lark from "@larksuiteoapi/node-sdk";
+﻿import * as Lark from "@larksuiteoapi/node-sdk";
 import { formatErrorMessage } from "../infra/errors.js";
 import { getChildLogger } from "../logging.js";
 import { getFeishuClient } from "./client.js";
@@ -56,3 +56,4 @@ export async function startFeishuBot(bot: ReturnType<typeof createFeishuBot>) {
     eventDispatcher: bot.eventDispatcher,
   });
 }
+

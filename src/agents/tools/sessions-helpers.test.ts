@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { extractAssistantText, sanitizeTextContent } from "./sessions-helpers.js";
 
 describe("sanitizeTextContent", () => {
@@ -31,3 +31,4 @@ describe("extractAssistantText", () => {
     expect(extractAssistantText(message)).toBe("Hi there");
   });
 });
+

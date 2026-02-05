@@ -1,4 +1,4 @@
-import { html, nothing, type TemplateResult } from "lit";
+﻿import { html, nothing, type TemplateResult } from "lit";
 import type { ConfigUiHints } from "../types.ts";
 import {
   defaultValue,
@@ -312,7 +312,7 @@ function renderTextInput(params: {
     hint?.placeholder ??
     // oxlint-disable typescript/no-base-to-string
     (isSensitive
-      ? "••••"
+      ? "â€¢â€¢â€¢â€¢"
       : schema.default !== undefined
         ? `Default: ${String(schema.default)}`
         : "");
@@ -359,7 +359,7 @@ function renderTextInput(params: {
             title="Reset to default"
             ?disabled=${disabled}
             @click=${() => onPatch(path, schema.default)}
-          >↺</button>
+          >â†º</button>
         `
             : nothing
         }
@@ -395,7 +395,7 @@ function renderNumberInput(params: {
           class="cfg-number__btn"
           ?disabled=${disabled}
           @click=${() => onPatch(path, numValue - 1)}
-        >−</button>
+        >âˆ’</button>
         <input
           type="number"
           class="cfg-number__input"
@@ -800,3 +800,4 @@ function renderMapField(params: {
     </div>
   `;
 }
+

@@ -1,4 +1,4 @@
----
+﻿---
 name: Feature request
 about: Suggest an idea or improvement for Clawdbot.
 title: "[Feature]: "
@@ -20,3 +20,4 @@ Any other approaches you have considered?
 ## Additional context
 
 Links, screenshots, or related issues.
+

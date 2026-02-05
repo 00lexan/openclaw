@@ -1,4 +1,4 @@
-import { completeSimple } from "@mariozechner/pi-ai";
+﻿import { completeSimple } from "@mariozechner/pi-ai";
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { getApiKeyForModel } from "../agents/model-auth.js";
 import { resolveModel } from "../agents/pi-embedded-runner/model.js";
@@ -447,8 +447,8 @@ describe("tts", () => {
     };
 
     it("skips auto-TTS when inbound audio gating is on and the message is not audio", async () => {
-      const prevPrefs = process.env.OPENCLAW_TTS_PREFS;
-      process.env.OPENCLAW_TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
+      const prevPrefs = process.env._TTS_PREFS;
+      process.env._TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
       const originalFetch = globalThis.fetch;
       const fetchMock = vi.fn(async () => ({
         ok: true,
@@ -468,12 +468,12 @@ describe("tts", () => {
       expect(fetchMock).not.toHaveBeenCalled();
 
       globalThis.fetch = originalFetch;
-      process.env.OPENCLAW_TTS_PREFS = prevPrefs;
+      process.env._TTS_PREFS = prevPrefs;
     });
 
     it("attempts auto-TTS when inbound audio gating is on and the message is audio", async () => {
-      const prevPrefs = process.env.OPENCLAW_TTS_PREFS;
-      process.env.OPENCLAW_TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
+      const prevPrefs = process.env._TTS_PREFS;
+      process.env._TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
       const originalFetch = globalThis.fetch;
       const fetchMock = vi.fn(async () => ({
         ok: true,
@@ -492,12 +492,12 @@ describe("tts", () => {
       expect(fetchMock).toHaveBeenCalledTimes(1);
 
       globalThis.fetch = originalFetch;
-      process.env.OPENCLAW_TTS_PREFS = prevPrefs;
+      process.env._TTS_PREFS = prevPrefs;
     });
 
     it("skips auto-TTS in tagged mode unless a tts tag is present", async () => {
-      const prevPrefs = process.env.OPENCLAW_TTS_PREFS;
-      process.env.OPENCLAW_TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
+      const prevPrefs = process.env._TTS_PREFS;
+      process.env._TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
       const originalFetch = globalThis.fetch;
       const fetchMock = vi.fn(async () => ({
         ok: true,
@@ -524,12 +524,12 @@ describe("tts", () => {
       expect(fetchMock).not.toHaveBeenCalled();
 
       globalThis.fetch = originalFetch;
-      process.env.OPENCLAW_TTS_PREFS = prevPrefs;
+      process.env._TTS_PREFS = prevPrefs;
     });
 
     it("runs auto-TTS in tagged mode when tags are present", async () => {
-      const prevPrefs = process.env.OPENCLAW_TTS_PREFS;
-      process.env.OPENCLAW_TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
+      const prevPrefs = process.env._TTS_PREFS;
+      process.env._TTS_PREFS = `/tmp/tts-test-${Date.now()}.json`;
       const originalFetch = globalThis.fetch;
       const fetchMock = vi.fn(async () => ({
         ok: true,
@@ -555,7 +555,8 @@ describe("tts", () => {
       expect(fetchMock).toHaveBeenCalledTimes(1);
 
       globalThis.fetch = originalFetch;
-      process.env.OPENCLAW_TTS_PREFS = prevPrefs;
+      process.env._TTS_PREFS = prevPrefs;
     });
   });
 });
+

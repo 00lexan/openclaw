@@ -1,12 +1,12 @@
-{
-  "name": "@openclaw/line",
+﻿{
+  "name": "@/line",
   "version": "2026.2.4",
-  "description": "OpenClaw LINE channel plugin",
+  "description": " LINE channel plugin",
   "type": "module",
   "devDependencies": {
-    "openclaw": "workspace:*"
+    "": "workspace:*"
   },
-  "openclaw": {
+  "": {
     "extensions": [
       "./index.ts"
     ],
@@ -21,9 +21,10 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/line",
+      "npmSpec": "@/line",
       "localPath": "extensions/line",
       "defaultChoice": "npm"
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import type { AgentToolResult } from "@mariozechner/pi-agent-core";
+﻿import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { ChannelMessageActionContext } from "../../types.js";
 import {
   readNumberParam,
@@ -244,3 +244,4 @@ export async function handleDiscordMessageAction(
 
   throw new Error(`Action ${String(action)} is not supported for provider ${providerId}.`);
 }
+

@@ -1,4 +1,4 @@
-import type { Client } from "@buape/carbon";
+﻿import type { Client } from "@buape/carbon";
 import type { HistoryEntry } from "../../auto-reply/reply/history.js";
 import type { ReplyToMode } from "../../config/config.js";
 import type { RuntimeEnv } from "../../runtime.js";
@@ -16,7 +16,7 @@ import { resolveDiscordMessageText } from "./message-utils.js";
 
 type LoadedConfig = ReturnType<typeof import("../../config/config.js").loadConfig>;
 type DiscordConfig = NonNullable<
-  import("../../config/config.js").OpenClawConfig["channels"]
+  import("../../config/config.js").Config["channels"]
 >["discord"];
 
 export function createDiscordMessageHandler(params: {
@@ -144,3 +144,4 @@ export function createDiscordMessageHandler(params: {
     }
   };
 }
+

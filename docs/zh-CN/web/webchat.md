@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 调试或配置 WebChat 访问
-summary: 用于聊天 UI 的 loopback WebChat 静态主机和 Gateway 网关 WS 使用
+  - è°ƒè¯•æˆ–é…ç½® WebChat è®¿é—®
+summary: ç”¨äºŽèŠå¤© UI çš„ loopback WebChat é™æ€ä¸»æœºå’Œ Gateway ç½‘å…³ WS ä½¿ç”¨
 title: WebChat
 x-i18n:
   generated_at: "2026-02-03T10:13:28Z"
@@ -12,45 +12,46 @@ x-i18n:
   workflow: 15
 ---
 
-# WebChat（Gateway 网关 WebSocket UI）
+# WebChatï¼ˆGateway ç½‘å…³ WebSocket UIï¼‰
 
-状态：macOS/iOS SwiftUI 聊天 UI 直接与 Gateway 网关 WebSocket 通信。
+çŠ¶æ€ï¼šmacOS/iOS SwiftUI èŠå¤© UI ç›´æŽ¥ä¸Ž Gateway ç½‘å…³ WebSocket é€šä¿¡ã€‚
 
-## 它是什么
+## å®ƒæ˜¯ä»€ä¹ˆ
 
-- Gateway 网关的原生聊天 UI（无嵌入式浏览器，无本地静态服务器）。
-- 使用与其他渠道相同的会话和路由规则。
-- 确定性路由：回复始终返回到 WebChat。
+- Gateway ç½‘å…³çš„åŽŸç”ŸèŠå¤© UIï¼ˆæ— åµŒå…¥å¼æµè§ˆå™¨ï¼Œæ— æœ¬åœ°é™æ€æœåŠ¡å™¨ï¼‰ã€‚
+- ä½¿ç”¨ä¸Žå…¶ä»–æ¸ é“ç›¸åŒçš„ä¼šè¯å’Œè·¯ç”±è§„åˆ™ã€‚
+- ç¡®å®šæ€§è·¯ç”±ï¼šå›žå¤å§‹ç»ˆè¿”å›žåˆ° WebChatã€‚
 
-## 快速开始
+## å¿«é€Ÿå¼€å§‹
 
-1. 启动 Gateway 网关。
-2. 打开 WebChat UI（macOS/iOS 应用）或控制 UI 聊天标签页。
-3. 确保已配置 Gateway 网关认证（默认需要，即使在 loopback 上）。
+1. å¯åŠ¨ Gateway ç½‘å…³ã€‚
+2. æ‰“å¼€ WebChat UIï¼ˆmacOS/iOS åº”ç”¨ï¼‰æˆ–æŽ§åˆ¶ UI èŠå¤©æ ‡ç­¾é¡µã€‚
+3. ç¡®ä¿å·²é…ç½® Gateway ç½‘å…³è®¤è¯ï¼ˆé»˜è®¤éœ€è¦ï¼Œå³ä½¿åœ¨ loopback ä¸Šï¼‰ã€‚
 
-## 工作原理（行为）
+## å·¥ä½œåŽŸç†ï¼ˆè¡Œä¸ºï¼‰
 
-- UI 连接到 Gateway 网关 WebSocket 并使用 `chat.history`、`chat.send` 和 `chat.inject`。
-- `chat.inject` 直接将助手注释追加到转录并广播到 UI（无智能体运行）。
-- 历史记录始终从 Gateway 网关获取（无本地文件监听）。
-- 如果 Gateway 网关不可达，WebChat 为只读模式。
+- UI è¿žæŽ¥åˆ° Gateway ç½‘å…³ WebSocket å¹¶ä½¿ç”¨ `chat.history`ã€`chat.send` å’Œ `chat.inject`ã€‚
+- `chat.inject` ç›´æŽ¥å°†åŠ©æ‰‹æ³¨é‡Šè¿½åŠ åˆ°è½¬å½•å¹¶å¹¿æ’­åˆ° UIï¼ˆæ— æ™ºèƒ½ä½“è¿è¡Œï¼‰ã€‚
+- åŽ†å²è®°å½•å§‹ç»ˆä»Ž Gateway ç½‘å…³èŽ·å–ï¼ˆæ— æœ¬åœ°æ–‡ä»¶ç›‘å¬ï¼‰ã€‚
+- å¦‚æžœ Gateway ç½‘å…³ä¸å¯è¾¾ï¼ŒWebChat ä¸ºåªè¯»æ¨¡å¼ã€‚
 
-## 远程使用
+## è¿œç¨‹ä½¿ç”¨
 
-- 远程模式通过 SSH/Tailscale 隧道传输 Gateway 网关 WebSocket。
-- 你不需要运行单独的 WebChat 服务器。
+- è¿œç¨‹æ¨¡å¼é€šè¿‡ SSH/Tailscale éš§é“ä¼ è¾“ Gateway ç½‘å…³ WebSocketã€‚
+- ä½ ä¸éœ€è¦è¿è¡Œå•ç‹¬çš„ WebChat æœåŠ¡å™¨ã€‚
 
-## 配置参考（WebChat）
+## é…ç½®å‚è€ƒï¼ˆWebChatï¼‰
 
-完整配置：[配置](/gateway/configuration)
+å®Œæ•´é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-渠道选项：
+æ¸ é“é€‰é¡¹ï¼š
 
-- 没有专用的 `webchat.*` 块。WebChat 使用下面的 Gateway 网关端点 + 认证设置。
+- æ²¡æœ‰ä¸“ç”¨çš„ `webchat.*` å—ã€‚WebChat ä½¿ç”¨ä¸‹é¢çš„ Gateway ç½‘å…³ç«¯ç‚¹ + è®¤è¯è®¾ç½®ã€‚
 
-相关的全局选项：
+ç›¸å…³çš„å…¨å±€é€‰é¡¹ï¼š
 
-- `gateway.port`、`gateway.bind`：WebSocket 主机/端口。
-- `gateway.auth.mode`、`gateway.auth.token`、`gateway.auth.password`：WebSocket 认证。
-- `gateway.remote.url`、`gateway.remote.token`、`gateway.remote.password`：远程 Gateway 网关目标。
-- `session.*`：会话存储和主键默认值。
+- `gateway.port`ã€`gateway.bind`ï¼šWebSocket ä¸»æœº/ç«¯å£ã€‚
+- `gateway.auth.mode`ã€`gateway.auth.token`ã€`gateway.auth.password`ï¼šWebSocket è®¤è¯ã€‚
+- `gateway.remote.url`ã€`gateway.remote.token`ã€`gateway.remote.password`ï¼šè¿œç¨‹ Gateway ç½‘å…³ç›®æ ‡ã€‚
+- `session.*`ï¼šä¼šè¯å­˜å‚¨å’Œä¸»é”®é»˜è®¤å€¼ã€‚
+

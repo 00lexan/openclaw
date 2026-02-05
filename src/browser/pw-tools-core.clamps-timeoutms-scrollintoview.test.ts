@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 let currentPage: Record<string, unknown> | null = null;
 let currentRefLocator: Record<string, unknown> | null = null;
@@ -146,3 +146,4 @@ describe("pw-tools-core", () => {
     ).rejects.toThrow(/not interactable/i);
   });
 });
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { extractLinksFromMessage } from "./detect.js";
 
 describe("extractLinksFromMessage", () => {
@@ -24,3 +24,4 @@ describe("extractLinksFromMessage", () => {
     expect(links).toEqual(["https://ok.test"]);
   });
 });
+

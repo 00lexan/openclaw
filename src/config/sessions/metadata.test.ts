@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { deriveSessionMetaPatch } from "./metadata.js";
 
 describe("deriveSessionMetaPatch", () => {
@@ -20,3 +20,4 @@ describe("deriveSessionMetaPatch", () => {
     expect(patch?.groupId).toBe("123@g.us");
   });
 });
+

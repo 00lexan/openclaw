@@ -1,4 +1,4 @@
-# zizmor configuration
+﻿# zizmor configuration
 # https://docs.zizmor.sh/configuration/
 
 rules:
@@ -15,3 +15,4 @@ rules:
   # Disable artipacked (persist-credentials) - low confidence finding
   artipacked:
     disable: true
+

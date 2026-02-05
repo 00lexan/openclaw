@@ -1,4 +1,4 @@
-// Type for raw Matrix event from @vector-im/matrix-bot-sdk
+﻿// Type for raw Matrix event from @vector-im/matrix-bot-sdk
 type MatrixRawEvent = {
   event_id: string;
   sender: string;
@@ -66,3 +66,4 @@ export function resolveMatrixThreadRootId(params: {
   }
   return undefined;
 }
+

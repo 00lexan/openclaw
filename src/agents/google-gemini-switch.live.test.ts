@@ -1,4 +1,4 @@
-import { completeSimple, getModel } from "@mariozechner/pi-ai";
+﻿import { completeSimple, getModel } from "@mariozechner/pi-ai";
 import { describe, expect, it } from "vitest";
 import { isTruthyEnvValue } from "../infra/env.js";
 
@@ -77,3 +77,4 @@ describeLive("gemini live switch", () => {
     expect(res.stopReason).not.toBe("error");
   }, 20000);
 });
+

@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 添加或修改配置字段时
-summary: ~/.openclaw/openclaw.json 的所有配置选项及示例
-title: 配置
+  - æ·»åŠ æˆ–ä¿®æ”¹é…ç½®å­—æ®µæ—¶
+summary: ~/./.json çš„æ‰€æœ‰é…ç½®é€‰é¡¹åŠç¤ºä¾‹
+title: é…ç½®
 x-i18n:
   generated_at: "2026-02-01T21:29:41Z"
   model: claude-opus-4-5
@@ -12,97 +12,97 @@ x-i18n:
   workflow: 15
 ---
 
-# 配置 🔧
+# é…ç½® ðŸ”§
 
-OpenClaw 从 `~/.openclaw/openclaw.json` 读取可选的 **JSON5** 配置（支持注释和尾逗号）。
+ ä»Ž `~/./.json` è¯»å–å¯é€‰çš„ **JSON5** é…ç½®ï¼ˆæ”¯æŒæ³¨é‡Šå’Œå°¾é€—å·ï¼‰ã€‚
 
-如果文件不存在，OpenClaw 使用安全的默认值（内置 Pi 智能体 + 按发送者分会话 + 工作区 `~/.openclaw/workspace`）。通常只在以下情况需要配置：
+å¦‚æžœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œ ä½¿ç”¨å®‰å…¨çš„é»˜è®¤å€¼ï¼ˆå†…ç½® Pi æ™ºèƒ½ä½“ + æŒ‰å‘é€è€…åˆ†ä¼šè¯ + å·¥ä½œåŒº `~/./workspace`ï¼‰ã€‚é€šå¸¸åªåœ¨ä»¥ä¸‹æƒ…å†µéœ€è¦é…ç½®ï¼š
 
-- 限制谁可以触发机器人（`channels.whatsapp.allowFrom`、`channels.telegram.allowFrom` 等）
-- 控制群组白名单 + 提及行为（`channels.whatsapp.groups`、`channels.telegram.groups`、`channels.discord.guilds`、`agents.list[].groupChat`）
-- 自定义消息前缀（`messages`）
-- 设置智能体工作区（`agents.defaults.workspace` 或 `agents.list[].workspace`）
-- 调整内置智能体默认值（`agents.defaults`）和会话行为（`session`）
-- 设置每个智能体的身份标识（`agents.list[].identity`）
+- é™åˆ¶è°å¯ä»¥è§¦å‘æœºå™¨äººï¼ˆ`channels.whatsapp.allowFrom`ã€`channels.telegram.allowFrom` ç­‰ï¼‰
+- æŽ§åˆ¶ç¾¤ç»„ç™½åå• + æåŠè¡Œä¸ºï¼ˆ`channels.whatsapp.groups`ã€`channels.telegram.groups`ã€`channels.discord.guilds`ã€`agents.list[].groupChat`ï¼‰
+- è‡ªå®šä¹‰æ¶ˆæ¯å‰ç¼€ï¼ˆ`messages`ï¼‰
+- è®¾ç½®æ™ºèƒ½ä½“å·¥ä½œåŒºï¼ˆ`agents.defaults.workspace` æˆ– `agents.list[].workspace`ï¼‰
+- è°ƒæ•´å†…ç½®æ™ºèƒ½ä½“é»˜è®¤å€¼ï¼ˆ`agents.defaults`ï¼‰å’Œä¼šè¯è¡Œä¸ºï¼ˆ`session`ï¼‰
+- è®¾ç½®æ¯ä¸ªæ™ºèƒ½ä½“çš„èº«ä»½æ ‡è¯†ï¼ˆ`agents.list[].identity`ï¼‰
 
-> **初次接触配置？** 请查阅[配置示例](/gateway/configuration-examples)指南，获取带有详细说明的完整示例！
+> **åˆæ¬¡æŽ¥è§¦é…ç½®ï¼Ÿ** è¯·æŸ¥é˜…[é…ç½®ç¤ºä¾‹](/gateway/configuration-examples)æŒ‡å—ï¼ŒèŽ·å–å¸¦æœ‰è¯¦ç»†è¯´æ˜Žçš„å®Œæ•´ç¤ºä¾‹ï¼
 
-## 严格配置验证
+## ä¸¥æ ¼é…ç½®éªŒè¯
 
-OpenClaw 只接受完全匹配 schema 的配置。
-未知键、类型错误或无效值会导致 Gateway 网关 **拒绝启动**以确保安全。
+ åªæŽ¥å—å®Œå…¨åŒ¹é… schema çš„é…ç½®ã€‚
+æœªçŸ¥é”®ã€ç±»åž‹é”™è¯¯æˆ–æ— æ•ˆå€¼ä¼šå¯¼è‡´ Gateway ç½‘å…³ **æ‹’ç»å¯åŠ¨**ä»¥ç¡®ä¿å®‰å…¨ã€‚
 
-验证失败时：
+éªŒè¯å¤±è´¥æ—¶ï¼š
 
-- Gateway 网关不会启动。
-- 只允许诊断命令（例如：`openclaw doctor`、`openclaw logs`、`openclaw health`、`openclaw status`、`openclaw service`、`openclaw help`）。
-- 运行 `openclaw doctor` 查看具体问题。
-- 运行 `openclaw doctor --fix`（或 `--yes`）应用迁移/修复。
+- Gateway ç½‘å…³ä¸ä¼šå¯åŠ¨ã€‚
+- åªå…è®¸è¯Šæ–­å‘½ä»¤ï¼ˆä¾‹å¦‚ï¼š` doctor`ã€` logs`ã€` health`ã€` status`ã€` service`ã€` help`ï¼‰ã€‚
+- è¿è¡Œ ` doctor` æŸ¥çœ‹å…·ä½“é—®é¢˜ã€‚
+- è¿è¡Œ ` doctor --fix`ï¼ˆæˆ– `--yes`ï¼‰åº”ç”¨è¿ç§»/ä¿®å¤ã€‚
 
-Doctor 不会写入任何更改，除非你明确选择了 `--fix`/`--yes`。
+Doctor ä¸ä¼šå†™å…¥ä»»ä½•æ›´æ”¹ï¼Œé™¤éžä½ æ˜Žç¡®é€‰æ‹©äº† `--fix`/`--yes`ã€‚
 
-## Schema + UI 提示
+## Schema + UI æç¤º
 
-Gateway 网关通过 `config.schema` 暴露配置的 JSON Schema 表示，供 UI 编辑器使用。
-控制台 UI 根据此 schema 渲染表单，并提供 **Raw JSON** 编辑器作为应急手段。
+Gateway ç½‘å…³é€šè¿‡ `config.schema` æš´éœ²é…ç½®çš„ JSON Schema è¡¨ç¤ºï¼Œä¾› UI ç¼–è¾‘å™¨ä½¿ç”¨ã€‚
+æŽ§åˆ¶å° UI æ ¹æ®æ­¤ schema æ¸²æŸ“è¡¨å•ï¼Œå¹¶æä¾› **Raw JSON** ç¼–è¾‘å™¨ä½œä¸ºåº”æ€¥æ‰‹æ®µã€‚
 
-渠道插件和扩展可以为其配置注册 schema + UI 提示，因此渠道设置
-在各应用间保持 schema 驱动，无需硬编码表单。
+æ¸ é“æ’ä»¶å’Œæ‰©å±•å¯ä»¥ä¸ºå…¶é…ç½®æ³¨å†Œ schema + UI æç¤ºï¼Œå› æ­¤æ¸ é“è®¾ç½®
+åœ¨å„åº”ç”¨é—´ä¿æŒ schema é©±åŠ¨ï¼Œæ— éœ€ç¡¬ç¼–ç è¡¨å•ã€‚
 
-提示信息（标签、分组、敏感字段）随 schema 一起提供，客户端无需硬编码配置知识即可渲染更好的表单。
+æç¤ºä¿¡æ¯ï¼ˆæ ‡ç­¾ã€åˆ†ç»„ã€æ•æ„Ÿå­—æ®µï¼‰éš schema ä¸€èµ·æä¾›ï¼Œå®¢æˆ·ç«¯æ— éœ€ç¡¬ç¼–ç é…ç½®çŸ¥è¯†å³å¯æ¸²æŸ“æ›´å¥½çš„è¡¨å•ã€‚
 
-## 应用 + 重启（RPC）
+## åº”ç”¨ + é‡å¯ï¼ˆRPCï¼‰
 
-使用 `config.apply` 在一步中验证 + 写入完整配置并重启 Gateway 网关。
-它会写入重启哨兵文件，并在 Gateway 网关恢复后 ping 最后活跃的会话。
+ä½¿ç”¨ `config.apply` åœ¨ä¸€æ­¥ä¸­éªŒè¯ + å†™å…¥å®Œæ•´é…ç½®å¹¶é‡å¯ Gateway ç½‘å…³ã€‚
+å®ƒä¼šå†™å…¥é‡å¯å“¨å…µæ–‡ä»¶ï¼Œå¹¶åœ¨ Gateway ç½‘å…³æ¢å¤åŽ ping æœ€åŽæ´»è·ƒçš„ä¼šè¯ã€‚
 
-警告：`config.apply` 会替换**整个配置**。如果你只想更改部分键，
-请使用 `config.patch` 或 `openclaw config set`。请备份 `~/.openclaw/openclaw.json`。
+è­¦å‘Šï¼š`config.apply` ä¼šæ›¿æ¢**æ•´ä¸ªé…ç½®**ã€‚å¦‚æžœä½ åªæƒ³æ›´æ”¹éƒ¨åˆ†é”®ï¼Œ
+è¯·ä½¿ç”¨ `config.patch` æˆ– ` config set`ã€‚è¯·å¤‡ä»½ `~/./.json`ã€‚
 
-参数：
+å‚æ•°ï¼š
 
-- `raw`（字符串）— 整个配置的 JSON5 负载
-- `baseHash`（可选）— 来自 `config.get` 的配置哈希（当配置已存在时为必需）
-- `sessionKey`（可选）— 最后活跃会话的键，用于唤醒 ping
-- `note`（可选）— 包含在重启哨兵中的备注
-- `restartDelayMs`（可选）— 重启前的延迟（默认 2000）
+- `raw`ï¼ˆå­—ç¬¦ä¸²ï¼‰â€” æ•´ä¸ªé…ç½®çš„ JSON5 è´Ÿè½½
+- `baseHash`ï¼ˆå¯é€‰ï¼‰â€” æ¥è‡ª `config.get` çš„é…ç½®å“ˆå¸Œï¼ˆå½“é…ç½®å·²å­˜åœ¨æ—¶ä¸ºå¿…éœ€ï¼‰
+- `sessionKey`ï¼ˆå¯é€‰ï¼‰â€” æœ€åŽæ´»è·ƒä¼šè¯çš„é”®ï¼Œç”¨äºŽå”¤é†’ ping
+- `note`ï¼ˆå¯é€‰ï¼‰â€” åŒ…å«åœ¨é‡å¯å“¨å…µä¸­çš„å¤‡æ³¨
+- `restartDelayMs`ï¼ˆå¯é€‰ï¼‰â€” é‡å¯å‰çš„å»¶è¿Ÿï¼ˆé»˜è®¤ 2000ï¼‰
 
-示例（通过 `gateway call`）：
+ç¤ºä¾‹ï¼ˆé€šè¿‡ `gateway call`ï¼‰ï¼š
 
 ```bash
-openclaw gateway call config.get --params '{}' # capture payload.hash
-openclaw gateway call config.apply --params '{
-  "raw": "{\\n  agents: { defaults: { workspace: \\"~/.openclaw/workspace\\" } }\\n}\\n",
+ gateway call config.get --params '{}' # capture payload.hash
+ gateway call config.apply --params '{
+  "raw": "{\\n  agents: { defaults: { workspace: \\"~/./workspace\\" } }\\n}\\n",
   "baseHash": "<hash-from-config.get>",
   "sessionKey": "agent:main:whatsapp:dm:+15555550123",
   "restartDelayMs": 1000
 }'
 ```
 
-## 部分更新（RPC）
+## éƒ¨åˆ†æ›´æ–°ï¼ˆRPCï¼‰
 
-使用 `config.patch` 将部分更新合并到现有配置中，而不会覆盖
-无关的键。它采用 JSON merge patch 语义：
+ä½¿ç”¨ `config.patch` å°†éƒ¨åˆ†æ›´æ–°åˆå¹¶åˆ°çŽ°æœ‰é…ç½®ä¸­ï¼Œè€Œä¸ä¼šè¦†ç›–
+æ— å…³çš„é”®ã€‚å®ƒé‡‡ç”¨ JSON merge patch è¯­ä¹‰ï¼š
 
-- 对象递归合并
-- `null` 删除键
-- 数组替换
-  与 `config.apply` 类似，它会验证、写入配置、存储重启哨兵，并调度
-  Gateway 网关重启（当提供 `sessionKey` 时可选择唤醒）。
+- å¯¹è±¡é€’å½’åˆå¹¶
+- `null` åˆ é™¤é”®
+- æ•°ç»„æ›¿æ¢
+  ä¸Ž `config.apply` ç±»ä¼¼ï¼Œå®ƒä¼šéªŒè¯ã€å†™å…¥é…ç½®ã€å­˜å‚¨é‡å¯å“¨å…µï¼Œå¹¶è°ƒåº¦
+  Gateway ç½‘å…³é‡å¯ï¼ˆå½“æä¾› `sessionKey` æ—¶å¯é€‰æ‹©å”¤é†’ï¼‰ã€‚
 
-参数：
+å‚æ•°ï¼š
 
-- `raw`（字符串）— 仅包含要更改的键的 JSON5 负载
-- `baseHash`（必需）— 来自 `config.get` 的配置哈希
-- `sessionKey`（可选）— 最后活跃会话的键，用于唤醒 ping
-- `note`（可选）— 包含在重启哨兵中的备注
-- `restartDelayMs`（可选）— 重启前的延迟（默认 2000）
+- `raw`ï¼ˆå­—ç¬¦ä¸²ï¼‰â€” ä»…åŒ…å«è¦æ›´æ”¹çš„é”®çš„ JSON5 è´Ÿè½½
+- `baseHash`ï¼ˆå¿…éœ€ï¼‰â€” æ¥è‡ª `config.get` çš„é…ç½®å“ˆå¸Œ
+- `sessionKey`ï¼ˆå¯é€‰ï¼‰â€” æœ€åŽæ´»è·ƒä¼šè¯çš„é”®ï¼Œç”¨äºŽå”¤é†’ ping
+- `note`ï¼ˆå¯é€‰ï¼‰â€” åŒ…å«åœ¨é‡å¯å“¨å…µä¸­çš„å¤‡æ³¨
+- `restartDelayMs`ï¼ˆå¯é€‰ï¼‰â€” é‡å¯å‰çš„å»¶è¿Ÿï¼ˆé»˜è®¤ 2000ï¼‰
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```bash
-openclaw gateway call config.get --params '{}' # capture payload.hash
-openclaw gateway call config.patch --params '{
+ gateway call config.get --params '{}' # capture payload.hash
+ gateway call config.patch --params '{
   "raw": "{\\n  channels: { telegram: { groups: { \\"*\\": { requireMention: false } } } }\\n}\\n",
   "baseHash": "<hash-from-config.get>",
   "sessionKey": "agent:main:whatsapp:dm:+15555550123",
@@ -110,39 +110,39 @@ openclaw gateway call config.patch --params '{
 }'
 ```
 
-## 最小配置（推荐起点）
+## æœ€å°é…ç½®ï¼ˆæŽ¨èèµ·ç‚¹ï¼‰
 
 ```json5
 {
-  agents: { defaults: { workspace: "~/.openclaw/workspace" } },
+  agents: { defaults: { workspace: "~/./workspace" } },
   channels: { whatsapp: { allowFrom: ["+15555550123"] } },
 }
 ```
 
-首次构建默认镜像：
+é¦–æ¬¡æž„å»ºé»˜è®¤é•œåƒï¼š
 
 ```bash
 scripts/sandbox-setup.sh
 ```
 
-## 自聊天模式（推荐用于群组控制）
+## è‡ªèŠå¤©æ¨¡å¼ï¼ˆæŽ¨èç”¨äºŽç¾¤ç»„æŽ§åˆ¶ï¼‰
 
-防止机器人在群组中响应 WhatsApp @提及（仅响应特定文本触发器）：
+é˜²æ­¢æœºå™¨äººåœ¨ç¾¤ç»„ä¸­å“åº” WhatsApp @æåŠï¼ˆä»…å“åº”ç‰¹å®šæ–‡æœ¬è§¦å‘å™¨ï¼‰ï¼š
 
 ```json5
 {
   agents: {
-    defaults: { workspace: "~/.openclaw/workspace" },
+    defaults: { workspace: "~/./workspace" },
     list: [
       {
         id: "main",
-        groupChat: { mentionPatterns: ["@openclaw", "reisponde"] },
+        groupChat: { mentionPatterns: ["@", "reisponde"] },
       },
     ],
   },
   channels: {
     whatsapp: {
-      // 白名单仅适用于私聊；包含你自己的号码可启用自聊天模式。
+      // ç™½åå•ä»…é€‚ç”¨äºŽç§èŠï¼›åŒ…å«ä½ è‡ªå·±çš„å·ç å¯å¯ç”¨è‡ªèŠå¤©æ¨¡å¼ã€‚
       allowFrom: ["+15555550123"],
       groups: { "*": { requireMention: true } },
     },
@@ -150,25 +150,25 @@ scripts/sandbox-setup.sh
 }
 ```
 
-## 配置包含（`$include`）
+## é…ç½®åŒ…å«ï¼ˆ`$include`ï¼‰
 
-使用 `$include` 指令将配置拆分为多个文件。适用于：
+ä½¿ç”¨ `$include` æŒ‡ä»¤å°†é…ç½®æ‹†åˆ†ä¸ºå¤šä¸ªæ–‡ä»¶ã€‚é€‚ç”¨äºŽï¼š
 
-- 组织大型配置（例如按客户定义智能体）
-- 跨环境共享通用设置
-- 将敏感配置单独存放
+- ç»„ç»‡å¤§åž‹é…ç½®ï¼ˆä¾‹å¦‚æŒ‰å®¢æˆ·å®šä¹‰æ™ºèƒ½ä½“ï¼‰
+- è·¨çŽ¯å¢ƒå…±äº«é€šç”¨è®¾ç½®
+- å°†æ•æ„Ÿé…ç½®å•ç‹¬å­˜æ”¾
 
-### 基本用法
+### åŸºæœ¬ç”¨æ³•
 
 ```json5
-// ~/.openclaw/openclaw.json
+// ~/./.json
 {
   gateway: { port: 18789 },
 
-  // 包含单个文件（替换该键的值）
+  // åŒ…å«å•ä¸ªæ–‡ä»¶ï¼ˆæ›¿æ¢è¯¥é”®çš„å€¼ï¼‰
   agents: { $include: "./agents.json5" },
 
-  // 包含多个文件（按顺序深度合并）
+  // åŒ…å«å¤šä¸ªæ–‡ä»¶ï¼ˆæŒ‰é¡ºåºæ·±åº¦åˆå¹¶ï¼‰
   broadcast: {
     $include: ["./clients/mueller.json5", "./clients/schmidt.json5"],
   },
@@ -176,31 +176,31 @@ scripts/sandbox-setup.sh
 ```
 
 ```json5
-// ~/.openclaw/agents.json5
+// ~/./agents.json5
 {
   defaults: { sandbox: { mode: "all", scope: "session" } },
-  list: [{ id: "main", workspace: "~/.openclaw/workspace" }],
+  list: [{ id: "main", workspace: "~/./workspace" }],
 }
 ```
 
-### 合并行为
+### åˆå¹¶è¡Œä¸º
 
-- **单个文件**：替换包含 `$include` 的对象
-- **文件数组**：按顺序深度合并（后面的文件覆盖前面的）
-- **带兄弟键**：兄弟键在包含之后合并（覆盖被包含的值）
-- **兄弟键 + 数组/原始值**：不支持（被包含的内容必须是对象）
+- **å•ä¸ªæ–‡ä»¶**ï¼šæ›¿æ¢åŒ…å« `$include` çš„å¯¹è±¡
+- **æ–‡ä»¶æ•°ç»„**ï¼šæŒ‰é¡ºåºæ·±åº¦åˆå¹¶ï¼ˆåŽé¢çš„æ–‡ä»¶è¦†ç›–å‰é¢çš„ï¼‰
+- **å¸¦å…„å¼Ÿé”®**ï¼šå…„å¼Ÿé”®åœ¨åŒ…å«ä¹‹åŽåˆå¹¶ï¼ˆè¦†ç›–è¢«åŒ…å«çš„å€¼ï¼‰
+- **å…„å¼Ÿé”® + æ•°ç»„/åŽŸå§‹å€¼**ï¼šä¸æ”¯æŒï¼ˆè¢«åŒ…å«çš„å†…å®¹å¿…é¡»æ˜¯å¯¹è±¡ï¼‰
 
 ```json5
-// 兄弟键覆盖被包含的值
+// å…„å¼Ÿé”®è¦†ç›–è¢«åŒ…å«çš„å€¼
 {
   $include: "./base.json5", // { a: 1, b: 2 }
-  b: 99, // 结果：{ a: 1, b: 99 }
+  b: 99, // ç»“æžœï¼š{ a: 1, b: 99 }
 }
 ```
 
-### 嵌套包含
+### åµŒå¥—åŒ…å«
 
-被包含的文件本身可以包含 `$include` 指令（最多 10 层深度）：
+è¢«åŒ…å«çš„æ–‡ä»¶æœ¬èº«å¯ä»¥åŒ…å« `$include` æŒ‡ä»¤ï¼ˆæœ€å¤š 10 å±‚æ·±åº¦ï¼‰ï¼š
 
 ```json5
 // clients/mueller.json5
@@ -210,41 +210,41 @@ scripts/sandbox-setup.sh
 }
 ```
 
-### 路径解析
+### è·¯å¾„è§£æž
 
-- **相对路径**：相对于包含文件解析
-- **绝对路径**：直接使用
-- **父目录**：`../` 引用按预期工作
+- **ç›¸å¯¹è·¯å¾„**ï¼šç›¸å¯¹äºŽåŒ…å«æ–‡ä»¶è§£æž
+- **ç»å¯¹è·¯å¾„**ï¼šç›´æŽ¥ä½¿ç”¨
+- **çˆ¶ç›®å½•**ï¼š`../` å¼•ç”¨æŒ‰é¢„æœŸå·¥ä½œ
 
 ```json5
-{ "$include": "./sub/config.json5" }      // 相对路径
-{ "$include": "/etc/openclaw/base.json5" } // 绝对路径
-{ "$include": "../shared/common.json5" }   // 父目录
+{ "$include": "./sub/config.json5" }      // ç›¸å¯¹è·¯å¾„
+{ "$include": "/etc//base.json5" } // ç»å¯¹è·¯å¾„
+{ "$include": "../shared/common.json5" }   // çˆ¶ç›®å½•
 ```
 
-### 错误处理
+### é”™è¯¯å¤„ç†
 
-- **文件缺失**：显示清晰的错误及解析后的路径
-- **解析错误**：显示哪个被包含的文件出错
-- **循环包含**：检测并报告包含链
+- **æ–‡ä»¶ç¼ºå¤±**ï¼šæ˜¾ç¤ºæ¸…æ™°çš„é”™è¯¯åŠè§£æžåŽçš„è·¯å¾„
+- **è§£æžé”™è¯¯**ï¼šæ˜¾ç¤ºå“ªä¸ªè¢«åŒ…å«çš„æ–‡ä»¶å‡ºé”™
+- **å¾ªçŽ¯åŒ…å«**ï¼šæ£€æµ‹å¹¶æŠ¥å‘ŠåŒ…å«é“¾
 
-### 示例：多客户法律事务设置
+### ç¤ºä¾‹ï¼šå¤šå®¢æˆ·æ³•å¾‹äº‹åŠ¡è®¾ç½®
 
 ```json5
-// ~/.openclaw/openclaw.json
+// ~/./.json
 {
   gateway: { port: 18789, auth: { token: "secret" } },
 
-  // 通用智能体默认值
+  // é€šç”¨æ™ºèƒ½ä½“é»˜è®¤å€¼
   agents: {
     defaults: {
       sandbox: { mode: "all", scope: "session" },
     },
-    // 合并所有客户的智能体列表
+    // åˆå¹¶æ‰€æœ‰å®¢æˆ·çš„æ™ºèƒ½ä½“åˆ—è¡¨
     list: { $include: ["./clients/mueller/agents.json5", "./clients/schmidt/agents.json5"] },
   },
 
-  // 合并广播配置
+  // åˆå¹¶å¹¿æ’­é…ç½®
   broadcast: {
     $include: ["./clients/mueller/broadcast.json5", "./clients/schmidt/broadcast.json5"],
   },
@@ -254,7 +254,7 @@ scripts/sandbox-setup.sh
 ```
 
 ```json5
-// ~/.openclaw/clients/mueller/agents.json5
+// ~/./clients/mueller/agents.json5
 [
   { id: "mueller-transcribe", workspace: "~/clients/mueller/transcribe" },
   { id: "mueller-docs", workspace: "~/clients/mueller/docs" },
@@ -262,26 +262,26 @@ scripts/sandbox-setup.sh
 ```
 
 ```json5
-// ~/.openclaw/clients/mueller/broadcast.json5
+// ~/./clients/mueller/broadcast.json5
 {
   "120363403215116621@g.us": ["mueller-transcribe", "mueller-docs"],
 }
 ```
 
-## 常用选项
+## å¸¸ç”¨é€‰é¡¹
 
-### 环境变量 + `.env`
+### çŽ¯å¢ƒå˜é‡ + `.env`
 
-OpenClaw 从父进程（shell、launchd/systemd、CI 等）读取环境变量。
+ ä»Žçˆ¶è¿›ç¨‹ï¼ˆshellã€launchd/systemdã€CI ç­‰ï¼‰è¯»å–çŽ¯å¢ƒå˜é‡ã€‚
 
-此外，它还会加载：
+æ­¤å¤–ï¼Œå®ƒè¿˜ä¼šåŠ è½½ï¼š
 
-- 当前工作目录中的 `.env`（如果存在）
-- `~/.openclaw/.env`（即 `$OPENCLAW_STATE_DIR/.env`）作为全局回退 `.env`
+- å½“å‰å·¥ä½œç›®å½•ä¸­çš„ `.env`ï¼ˆå¦‚æžœå­˜åœ¨ï¼‰
+- `~/./.env`ï¼ˆå³ `$_STATE_DIR/.env`ï¼‰ä½œä¸ºå…¨å±€å›žé€€ `.env`
 
-两个 `.env` 文件都不会覆盖已有的环境变量。
+ä¸¤ä¸ª `.env` æ–‡ä»¶éƒ½ä¸ä¼šè¦†ç›–å·²æœ‰çš„çŽ¯å¢ƒå˜é‡ã€‚
 
-你也可以在配置中提供内联环境变量。这些仅在进程环境中缺少该键时应用（相同的不覆盖规则）：
+ä½ ä¹Ÿå¯ä»¥åœ¨é…ç½®ä¸­æä¾›å†…è”çŽ¯å¢ƒå˜é‡ã€‚è¿™äº›ä»…åœ¨è¿›ç¨‹çŽ¯å¢ƒä¸­ç¼ºå°‘è¯¥é”®æ—¶åº”ç”¨ï¼ˆç›¸åŒçš„ä¸è¦†ç›–è§„åˆ™ï¼‰ï¼š
 
 ```json5
 {
@@ -294,12 +294,12 @@ OpenClaw 从父进程（shell、launchd/systemd、CI 等）读取环境变量。
 }
 ```
 
-参见 [/environment](/environment) 了解优先级和来源详情。
+å‚è§ [/environment](/environment) äº†è§£ä¼˜å…ˆçº§å’Œæ¥æºè¯¦æƒ…ã€‚
 
-### `env.shellEnv`（可选）
+### `env.shellEnv`ï¼ˆå¯é€‰ï¼‰
 
-可选便利功能：如果启用且预期键均未设置，OpenClaw 会运行你的登录 shell 并仅导入缺失的预期键（不会覆盖）。
-这实际上会 source 你的 shell 配置文件。
+å¯é€‰ä¾¿åˆ©åŠŸèƒ½ï¼šå¦‚æžœå¯ç”¨ä¸”é¢„æœŸé”®å‡æœªè®¾ç½®ï¼Œ ä¼šè¿è¡Œä½ çš„ç™»å½• shell å¹¶ä»…å¯¼å…¥ç¼ºå¤±çš„é¢„æœŸé”®ï¼ˆä¸ä¼šè¦†ç›–ï¼‰ã€‚
+è¿™å®žé™…ä¸Šä¼š source ä½ çš„ shell é…ç½®æ–‡ä»¶ã€‚
 
 ```json5
 {
@@ -312,14 +312,14 @@ OpenClaw 从父进程（shell、launchd/systemd、CI 等）读取环境变量。
 }
 ```
 
-等效环境变量：
+ç­‰æ•ˆçŽ¯å¢ƒå˜é‡ï¼š
 
-- `OPENCLAW_LOAD_SHELL_ENV=1`
-- `OPENCLAW_SHELL_ENV_TIMEOUT_MS=15000`
+- `_LOAD_SHELL_ENV=1`
+- `_SHELL_ENV_TIMEOUT_MS=15000`
 
-### 配置中的环境变量替换
+### é…ç½®ä¸­çš„çŽ¯å¢ƒå˜é‡æ›¿æ¢
 
-你可以在任何配置字符串值中使用 `${VAR_NAME}` 语法直接引用环境变量。变量在配置加载时、验证之前进行替换。
+ä½ å¯ä»¥åœ¨ä»»ä½•é…ç½®å­—ç¬¦ä¸²å€¼ä¸­ä½¿ç”¨ `${VAR_NAME}` è¯­æ³•ç›´æŽ¥å¼•ç”¨çŽ¯å¢ƒå˜é‡ã€‚å˜é‡åœ¨é…ç½®åŠ è½½æ—¶ã€éªŒè¯ä¹‹å‰è¿›è¡Œæ›¿æ¢ã€‚
 
 ```json5
 {
@@ -332,63 +332,63 @@ OpenClaw 从父进程（shell、launchd/systemd、CI 等）读取环境变量。
   },
   gateway: {
     auth: {
-      token: "${OPENCLAW_GATEWAY_TOKEN}",
+      token: "${_GATEWAY_TOKEN}",
     },
   },
 }
 ```
 
-**规则：**
+**è§„åˆ™ï¼š**
 
-- 仅匹配大写环境变量名：`[A-Z_][A-Z0-9_]*`
-- 缺失或为空的环境变量在配置加载时会抛出错误
-- 使用 `$${VAR}` 转义以输出字面量 `${VAR}`
-- 与 `$include` 配合使用（被包含的文件也会进行替换）
+- ä»…åŒ¹é…å¤§å†™çŽ¯å¢ƒå˜é‡åï¼š`[A-Z_][A-Z0-9_]*`
+- ç¼ºå¤±æˆ–ä¸ºç©ºçš„çŽ¯å¢ƒå˜é‡åœ¨é…ç½®åŠ è½½æ—¶ä¼šæŠ›å‡ºé”™è¯¯
+- ä½¿ç”¨ `$${VAR}` è½¬ä¹‰ä»¥è¾“å‡ºå­—é¢é‡ `${VAR}`
+- ä¸Ž `$include` é…åˆä½¿ç”¨ï¼ˆè¢«åŒ…å«çš„æ–‡ä»¶ä¹Ÿä¼šè¿›è¡Œæ›¿æ¢ï¼‰
 
-**内联替换：**
+**å†…è”æ›¿æ¢ï¼š**
 
 ```json5
 {
   models: {
     providers: {
       custom: {
-        baseUrl: "${CUSTOM_API_BASE}/v1", // → "https://api.example.com/v1"
+        baseUrl: "${CUSTOM_API_BASE}/v1", // â†’ "https://api.example.com/v1"
       },
     },
   },
 }
 ```
 
-### 认证存储（OAuth + API 密钥）
+### è®¤è¯å­˜å‚¨ï¼ˆOAuth + API å¯†é’¥ï¼‰
 
-OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth + API 密钥）：
+ åœ¨ä»¥ä¸‹ä½ç½®å­˜å‚¨**æ¯ä¸ªæ™ºèƒ½ä½“çš„**è®¤è¯é…ç½®æ–‡ä»¶ï¼ˆOAuth + API å¯†é’¥ï¼‰ï¼š
 
-- `<agentDir>/auth-profiles.json`（默认：`~/.openclaw/agents/<agentId>/agent/auth-profiles.json`）
+- `<agentDir>/auth-profiles.json`ï¼ˆé»˜è®¤ï¼š`~/./agents/<agentId>/agent/auth-profiles.json`ï¼‰
 
-另请参阅：[/concepts/oauth](/concepts/oauth)
+å¦è¯·å‚é˜…ï¼š[/concepts/oauth](/concepts/oauth)
 
-旧版 OAuth 导入：
+æ—§ç‰ˆ OAuth å¯¼å…¥ï¼š
 
-- `~/.openclaw/credentials/oauth.json`（或 `$OPENCLAW_STATE_DIR/credentials/oauth.json`）
+- `~/./credentials/oauth.json`ï¼ˆæˆ– `$_STATE_DIR/credentials/oauth.json`ï¼‰
 
-内置 Pi 智能体在以下位置维护运行时缓存：
+å†…ç½® Pi æ™ºèƒ½ä½“åœ¨ä»¥ä¸‹ä½ç½®ç»´æŠ¤è¿è¡Œæ—¶ç¼“å­˜ï¼š
 
-- `<agentDir>/auth.json`（自动管理；请勿手动编辑）
+- `<agentDir>/auth.json`ï¼ˆè‡ªåŠ¨ç®¡ç†ï¼›è¯·å‹¿æ‰‹åŠ¨ç¼–è¾‘ï¼‰
 
-旧版智能体目录（多智能体之前）：
+æ—§ç‰ˆæ™ºèƒ½ä½“ç›®å½•ï¼ˆå¤šæ™ºèƒ½ä½“ä¹‹å‰ï¼‰ï¼š
 
-- `~/.openclaw/agent/*`（由 `openclaw doctor` 迁移到 `~/.openclaw/agents/<defaultAgentId>/agent/*`）
+- `~/./agent/*`ï¼ˆç”± ` doctor` è¿ç§»åˆ° `~/./agents/<defaultAgentId>/agent/*`ï¼‰
 
-覆盖：
+è¦†ç›–ï¼š
 
-- OAuth 目录（仅旧版导入）：`OPENCLAW_OAUTH_DIR`
-- 智能体目录（默认智能体根目录覆盖）：`OPENCLAW_AGENT_DIR`（推荐）、`PI_CODING_AGENT_DIR`（旧版）
+- OAuth ç›®å½•ï¼ˆä»…æ—§ç‰ˆå¯¼å…¥ï¼‰ï¼š`_OAUTH_DIR`
+- æ™ºèƒ½ä½“ç›®å½•ï¼ˆé»˜è®¤æ™ºèƒ½ä½“æ ¹ç›®å½•è¦†ç›–ï¼‰ï¼š`_AGENT_DIR`ï¼ˆæŽ¨èï¼‰ã€`PI_CODING_AGENT_DIR`ï¼ˆæ—§ç‰ˆï¼‰
 
-首次使用时，OpenClaw 会将 `oauth.json` 条目导入到 `auth-profiles.json` 中。
+é¦–æ¬¡ä½¿ç”¨æ—¶ï¼Œ ä¼šå°† `oauth.json` æ¡ç›®å¯¼å…¥åˆ° `auth-profiles.json` ä¸­ã€‚
 
 ### `auth`
 
-认证配置文件的可选元数据。这**不**存储密钥；它将配置文件 ID 映射到提供商 + 模式（以及可选的邮箱），并定义用于故障转移的提供商轮换顺序。
+è®¤è¯é…ç½®æ–‡ä»¶çš„å¯é€‰å…ƒæ•°æ®ã€‚è¿™**ä¸**å­˜å‚¨å¯†é’¥ï¼›å®ƒå°†é…ç½®æ–‡ä»¶ ID æ˜ å°„åˆ°æä¾›å•† + æ¨¡å¼ï¼ˆä»¥åŠå¯é€‰çš„é‚®ç®±ï¼‰ï¼Œå¹¶å®šä¹‰ç”¨äºŽæ•…éšœè½¬ç§»çš„æä¾›å•†è½®æ¢é¡ºåºã€‚
 
 ```json5
 {
@@ -406,17 +406,17 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 
 ### `agents.list[].identity`
 
-用于默认值和用户体验的可选每智能体身份标识。由 macOS 新手引导助手写入。
+ç”¨äºŽé»˜è®¤å€¼å’Œç”¨æˆ·ä½“éªŒçš„å¯é€‰æ¯æ™ºèƒ½ä½“èº«ä»½æ ‡è¯†ã€‚ç”± macOS æ–°æ‰‹å¼•å¯¼åŠ©æ‰‹å†™å…¥ã€‚
 
-如果设置了，OpenClaw 会推导默认值（仅在你未明确设置时）：
+å¦‚æžœè®¾ç½®äº†ï¼Œ ä¼šæŽ¨å¯¼é»˜è®¤å€¼ï¼ˆä»…åœ¨ä½ æœªæ˜Žç¡®è®¾ç½®æ—¶ï¼‰ï¼š
 
-- `messages.ackReaction` 来自**活跃智能体**的 `identity.emoji`（回退到 👀）
-- `agents.list[].groupChat.mentionPatterns` 来自智能体的 `identity.name`/`identity.emoji`（因此 "@Samantha" 在 Telegram/Slack/Discord/Google Chat/iMessage/WhatsApp 的群组中均可使用）
-- `identity.avatar` 接受工作区相对图片路径或远程 URL/data URL。本地文件必须位于智能体工作区内。
+- `messages.ackReaction` æ¥è‡ª**æ´»è·ƒæ™ºèƒ½ä½“**çš„ `identity.emoji`ï¼ˆå›žé€€åˆ° ðŸ‘€ï¼‰
+- `agents.list[].groupChat.mentionPatterns` æ¥è‡ªæ™ºèƒ½ä½“çš„ `identity.name`/`identity.emoji`ï¼ˆå› æ­¤ "@Samantha" åœ¨ Telegram/Slack/Discord/Google Chat/iMessage/WhatsApp çš„ç¾¤ç»„ä¸­å‡å¯ä½¿ç”¨ï¼‰
+- `identity.avatar` æŽ¥å—å·¥ä½œåŒºç›¸å¯¹å›¾ç‰‡è·¯å¾„æˆ–è¿œç¨‹ URL/data URLã€‚æœ¬åœ°æ–‡ä»¶å¿…é¡»ä½äºŽæ™ºèƒ½ä½“å·¥ä½œåŒºå†…ã€‚
 
-`identity.avatar` 接受：
+`identity.avatar` æŽ¥å—ï¼š
 
-- 工作区相对路径（必须在智能体工作区内）
+- å·¥ä½œåŒºç›¸å¯¹è·¯å¾„ï¼ˆå¿…é¡»åœ¨æ™ºèƒ½ä½“å·¥ä½œåŒºå†…ï¼‰
 - `http(s)` URL
 - `data:` URI
 
@@ -429,7 +429,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
         identity: {
           name: "Samantha",
           theme: "helpful sloth",
-          emoji: "🦥",
+          emoji: "ðŸ¦¥",
           avatar: "avatars/samantha.png",
         },
       },
@@ -440,7 +440,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 
 ### `wizard`
 
-由 CLI 向导（`onboard`、`configure`、`doctor`）写入的元数据。
+ç”± CLI å‘å¯¼ï¼ˆ`onboard`ã€`configure`ã€`doctor`ï¼‰å†™å…¥çš„å…ƒæ•°æ®ã€‚
 
 ```json5
 {
@@ -456,25 +456,25 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 
 ### `logging`
 
-- 默认日志文件：`/tmp/openclaw/openclaw-YYYY-MM-DD.log`
-- 如需稳定路径，将 `logging.file` 设为 `/tmp/openclaw/openclaw.log`。
-- 控制台输出可通过以下方式单独调整：
-  - `logging.consoleLevel`（默认 `info`，使用 `--verbose` 时提升为 `debug`）
-  - `logging.consoleStyle`（`pretty` | `compact` | `json`）
-- 工具摘要可以脱敏以避免泄露密钥：
-  - `logging.redactSensitive`（`off` | `tools`，默认：`tools`）
-  - `logging.redactPatterns`（正则表达式字符串数组；覆盖默认值）
+- é»˜è®¤æ—¥å¿—æ–‡ä»¶ï¼š`/tmp//-YYYY-MM-DD.log`
+- å¦‚éœ€ç¨³å®šè·¯å¾„ï¼Œå°† `logging.file` è®¾ä¸º `/tmp//.log`ã€‚
+- æŽ§åˆ¶å°è¾“å‡ºå¯é€šè¿‡ä»¥ä¸‹æ–¹å¼å•ç‹¬è°ƒæ•´ï¼š
+  - `logging.consoleLevel`ï¼ˆé»˜è®¤ `info`ï¼Œä½¿ç”¨ `--verbose` æ—¶æå‡ä¸º `debug`ï¼‰
+  - `logging.consoleStyle`ï¼ˆ`pretty` | `compact` | `json`ï¼‰
+- å·¥å…·æ‘˜è¦å¯ä»¥è„±æ•ä»¥é¿å…æ³„éœ²å¯†é’¥ï¼š
+  - `logging.redactSensitive`ï¼ˆ`off` | `tools`ï¼Œé»˜è®¤ï¼š`tools`ï¼‰
+  - `logging.redactPatterns`ï¼ˆæ­£åˆ™è¡¨è¾¾å¼å­—ç¬¦ä¸²æ•°ç»„ï¼›è¦†ç›–é»˜è®¤å€¼ï¼‰
 
 ```json5
 {
   logging: {
     level: "info",
-    file: "/tmp/openclaw/openclaw.log",
+    file: "/tmp//.log",
     consoleLevel: "info",
     consoleStyle: "pretty",
     redactSensitive: "tools",
     redactPatterns: [
-      // 示例：用自定义规则覆盖默认值。
+      // ç¤ºä¾‹ï¼šç”¨è‡ªå®šä¹‰è§„åˆ™è¦†ç›–é»˜è®¤å€¼ã€‚
       "\\bTOKEN\\b\\s*[=:]\\s*([\"']?)([^\\s\"']+)\\1",
       "/\\bsk-[A-Za-z0-9_-]{8,}\\b/gi",
     ],
@@ -484,25 +484,25 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 
 ### `channels.whatsapp.dmPolicy`
 
-控制 WhatsApp 私聊（私信）的处理方式：
+æŽ§åˆ¶ WhatsApp ç§èŠï¼ˆç§ä¿¡ï¼‰çš„å¤„ç†æ–¹å¼ï¼š
 
-- `"pairing"`（默认）：未知发送者会收到配对码；所有者必须批准
-- `"allowlist"`：仅允许 `channels.whatsapp.allowFrom`（或已配对的允许存储）中的发送者
-- `"open"`：允许所有入站私聊（**需要** `channels.whatsapp.allowFrom` 包含 `"*"`）
-- `"disabled"`：忽略所有入站私聊
+- `"pairing"`ï¼ˆé»˜è®¤ï¼‰ï¼šæœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼›æ‰€æœ‰è€…å¿…é¡»æ‰¹å‡†
+- `"allowlist"`ï¼šä»…å…è®¸ `channels.whatsapp.allowFrom`ï¼ˆæˆ–å·²é…å¯¹çš„å…è®¸å­˜å‚¨ï¼‰ä¸­çš„å‘é€è€…
+- `"open"`ï¼šå…è®¸æ‰€æœ‰å…¥ç«™ç§èŠï¼ˆ**éœ€è¦** `channels.whatsapp.allowFrom` åŒ…å« `"*"`ï¼‰
+- `"disabled"`ï¼šå¿½ç•¥æ‰€æœ‰å…¥ç«™ç§èŠ
 
-配对码在 1 小时后过期；机器人仅在创建新请求时发送配对码。待处理的私聊配对请求默认每个渠道上限为 **3 个**。
+é…å¯¹ç åœ¨ 1 å°æ—¶åŽè¿‡æœŸï¼›æœºå™¨äººä»…åœ¨åˆ›å»ºæ–°è¯·æ±‚æ—¶å‘é€é…å¯¹ç ã€‚å¾…å¤„ç†çš„ç§èŠé…å¯¹è¯·æ±‚é»˜è®¤æ¯ä¸ªæ¸ é“ä¸Šé™ä¸º **3 ä¸ª**ã€‚
 
-配对批准：
+é…å¯¹æ‰¹å‡†ï¼š
 
-- `openclaw pairing list whatsapp`
-- `openclaw pairing approve whatsapp <code>`
+- ` pairing list whatsapp`
+- ` pairing approve whatsapp <code>`
 
 ### `channels.whatsapp.allowFrom`
 
-允许触发 WhatsApp 自动回复的 E.164 电话号码白名单（**仅限私聊**）。
-如果为空且 `channels.whatsapp.dmPolicy="pairing"`，未知发送者将收到配对码。
-对于群组，使用 `channels.whatsapp.groupPolicy` + `channels.whatsapp.groupAllowFrom`。
+å…è®¸è§¦å‘ WhatsApp è‡ªåŠ¨å›žå¤çš„ E.164 ç”µè¯å·ç ç™½åå•ï¼ˆ**ä»…é™ç§èŠ**ï¼‰ã€‚
+å¦‚æžœä¸ºç©ºä¸” `channels.whatsapp.dmPolicy="pairing"`ï¼ŒæœªçŸ¥å‘é€è€…å°†æ”¶åˆ°é…å¯¹ç ã€‚
+å¯¹äºŽç¾¤ç»„ï¼Œä½¿ç”¨ `channels.whatsapp.groupPolicy` + `channels.whatsapp.groupAllowFrom`ã€‚
 
 ```json5
 {
@@ -510,9 +510,9 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
     whatsapp: {
       dmPolicy: "pairing", // pairing | allowlist | open | disabled
       allowFrom: ["+15555550123", "+447700900123"],
-      textChunkLimit: 4000, // 可选的出站分块大小（字符数）
-      chunkMode: "length", // 可选的分块模式（length | newline）
-      mediaMaxMb: 50, // 可选的入站媒体上限（MB）
+      textChunkLimit: 4000, // å¯é€‰çš„å‡ºç«™åˆ†å—å¤§å°ï¼ˆå­—ç¬¦æ•°ï¼‰
+      chunkMode: "length", // å¯é€‰çš„åˆ†å—æ¨¡å¼ï¼ˆlength | newlineï¼‰
+      mediaMaxMb: 50, // å¯é€‰çš„å…¥ç«™åª’ä½“ä¸Šé™ï¼ˆMBï¼‰
     },
   },
 }
@@ -520,11 +520,11 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 
 ### `channels.whatsapp.sendReadReceipts`
 
-控制入站 WhatsApp 消息是否标记为已读（蓝色双勾）。默认：`true`。
+æŽ§åˆ¶å…¥ç«™ WhatsApp æ¶ˆæ¯æ˜¯å¦æ ‡è®°ä¸ºå·²è¯»ï¼ˆè“è‰²åŒå‹¾ï¼‰ã€‚é»˜è®¤ï¼š`true`ã€‚
 
-自聊天模式始终跳过已读回执，即使已启用。
+è‡ªèŠå¤©æ¨¡å¼å§‹ç»ˆè·³è¿‡å·²è¯»å›žæ‰§ï¼Œå³ä½¿å·²å¯ç”¨ã€‚
 
-每账号覆盖：`channels.whatsapp.accounts.<id>.sendReadReceipts`。
+æ¯è´¦å·è¦†ç›–ï¼š`channels.whatsapp.accounts.<id>.sendReadReceipts`ã€‚
 
 ```json5
 {
@@ -534,20 +534,20 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-### `channels.whatsapp.accounts`（多账号）
+### `channels.whatsapp.accounts`ï¼ˆå¤šè´¦å·ï¼‰
 
-在一个 Gateway 网关中运行多个 WhatsApp 账号：
+åœ¨ä¸€ä¸ª Gateway ç½‘å…³ä¸­è¿è¡Œå¤šä¸ª WhatsApp è´¦å·ï¼š
 
 ```json5
 {
   channels: {
     whatsapp: {
       accounts: {
-        default: {}, // 可选；保持默认 id 稳定
+        default: {}, // å¯é€‰ï¼›ä¿æŒé»˜è®¤ id ç¨³å®š
         personal: {},
         biz: {
-          // 可选覆盖。默认：~/.openclaw/credentials/whatsapp/biz
-          // authDir: "~/.openclaw/credentials/whatsapp/biz",
+          // å¯é€‰è¦†ç›–ã€‚é»˜è®¤ï¼š~/./credentials/whatsapp/biz
+          // authDir: "~/./credentials/whatsapp/biz",
         },
       },
     },
@@ -555,14 +555,14 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 出站命令默认使用 `default` 账号（如果存在）；否则使用第一个配置的账号 id（排序后）。
-- 旧版单账号 Baileys 认证目录由 `openclaw doctor` 迁移到 `whatsapp/default`。
+- å‡ºç«™å‘½ä»¤é»˜è®¤ä½¿ç”¨ `default` è´¦å·ï¼ˆå¦‚æžœå­˜åœ¨ï¼‰ï¼›å¦åˆ™ä½¿ç”¨ç¬¬ä¸€ä¸ªé…ç½®çš„è´¦å· idï¼ˆæŽ’åºåŽï¼‰ã€‚
+- æ—§ç‰ˆå•è´¦å· Baileys è®¤è¯ç›®å½•ç”± ` doctor` è¿ç§»åˆ° `whatsapp/default`ã€‚
 
 ### `channels.telegram.accounts` / `channels.discord.accounts` / `channels.googlechat.accounts` / `channels.slack.accounts` / `channels.mattermost.accounts` / `channels.signal.accounts` / `channels.imessage.accounts`
 
-每个渠道运行多个账号（每个账号有自己的 `accountId` 和可选的 `name`）：
+æ¯ä¸ªæ¸ é“è¿è¡Œå¤šä¸ªè´¦å·ï¼ˆæ¯ä¸ªè´¦å·æœ‰è‡ªå·±çš„ `accountId` å’Œå¯é€‰çš„ `name`ï¼‰ï¼š
 
 ```json5
 {
@@ -583,22 +583,22 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 省略 `accountId` 时使用 `default`（CLI + 路由）。
-- 环境变量 token 仅适用于**默认**账号。
-- 基础渠道设置（群组策略、提及门控等）适用于所有账号，除非在每个账号中单独覆盖。
-- 使用 `bindings[].match.accountId` 将每个账号路由到不同的 agents.defaults。
+- çœç•¥ `accountId` æ—¶ä½¿ç”¨ `default`ï¼ˆCLI + è·¯ç”±ï¼‰ã€‚
+- çŽ¯å¢ƒå˜é‡ token ä»…é€‚ç”¨äºŽ**é»˜è®¤**è´¦å·ã€‚
+- åŸºç¡€æ¸ é“è®¾ç½®ï¼ˆç¾¤ç»„ç­–ç•¥ã€æåŠé—¨æŽ§ç­‰ï¼‰é€‚ç”¨äºŽæ‰€æœ‰è´¦å·ï¼Œé™¤éžåœ¨æ¯ä¸ªè´¦å·ä¸­å•ç‹¬è¦†ç›–ã€‚
+- ä½¿ç”¨ `bindings[].match.accountId` å°†æ¯ä¸ªè´¦å·è·¯ç”±åˆ°ä¸åŒçš„ agents.defaultsã€‚
 
-### 群聊提及门控（`agents.list[].groupChat` + `messages.groupChat`）
+### ç¾¤èŠæåŠé—¨æŽ§ï¼ˆ`agents.list[].groupChat` + `messages.groupChat`ï¼‰
 
-群消息默认**需要提及**（元数据提及或正则模式）。适用于 WhatsApp、Telegram、Discord、Google Chat 和 iMessage 群聊。
+ç¾¤æ¶ˆæ¯é»˜è®¤**éœ€è¦æåŠ**ï¼ˆå…ƒæ•°æ®æåŠæˆ–æ­£åˆ™æ¨¡å¼ï¼‰ã€‚é€‚ç”¨äºŽ WhatsAppã€Telegramã€Discordã€Google Chat å’Œ iMessage ç¾¤èŠã€‚
 
-**提及类型：**
+**æåŠç±»åž‹ï¼š**
 
-- **元数据提及**：原生平台 @提及（例如 WhatsApp 点按提及）。在 WhatsApp 自聊天模式中被忽略（参见 `channels.whatsapp.allowFrom`）。
-- **文本模式**：在 `agents.list[].groupChat.mentionPatterns` 中定义的正则模式。无论自聊天模式如何始终检查。
-- 提及门控仅在可以检测提及时执行（原生提及或至少一个 `mentionPattern`）。
+- **å…ƒæ•°æ®æåŠ**ï¼šåŽŸç”Ÿå¹³å° @æåŠï¼ˆä¾‹å¦‚ WhatsApp ç‚¹æŒ‰æåŠï¼‰ã€‚åœ¨ WhatsApp è‡ªèŠå¤©æ¨¡å¼ä¸­è¢«å¿½ç•¥ï¼ˆå‚è§ `channels.whatsapp.allowFrom`ï¼‰ã€‚
+- **æ–‡æœ¬æ¨¡å¼**ï¼šåœ¨ `agents.list[].groupChat.mentionPatterns` ä¸­å®šä¹‰çš„æ­£åˆ™æ¨¡å¼ã€‚æ— è®ºè‡ªèŠå¤©æ¨¡å¼å¦‚ä½•å§‹ç»ˆæ£€æŸ¥ã€‚
+- æåŠé—¨æŽ§ä»…åœ¨å¯ä»¥æ£€æµ‹æåŠæ—¶æ‰§è¡Œï¼ˆåŽŸç”ŸæåŠæˆ–è‡³å°‘ä¸€ä¸ª `mentionPattern`ï¼‰ã€‚
 
 ```json5
 {
@@ -606,39 +606,39 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
     groupChat: { historyLimit: 50 },
   },
   agents: {
-    list: [{ id: "main", groupChat: { mentionPatterns: ["@openclaw", "openclaw"] } }],
+    list: [{ id: "main", groupChat: { mentionPatterns: ["@", ""] } }],
   },
 }
 ```
 
-`messages.groupChat.historyLimit` 设置群组历史上下文的全局默认值。渠道可以通过 `channels.<channel>.historyLimit`（或多账号的 `channels.<channel>.accounts.*.historyLimit`）覆盖。设为 `0` 禁用历史包装。
+`messages.groupChat.historyLimit` è®¾ç½®ç¾¤ç»„åŽ†å²ä¸Šä¸‹æ–‡çš„å…¨å±€é»˜è®¤å€¼ã€‚æ¸ é“å¯ä»¥é€šè¿‡ `channels.<channel>.historyLimit`ï¼ˆæˆ–å¤šè´¦å·çš„ `channels.<channel>.accounts.*.historyLimit`ï¼‰è¦†ç›–ã€‚è®¾ä¸º `0` ç¦ç”¨åŽ†å²åŒ…è£…ã€‚
 
-#### 私聊历史限制
+#### ç§èŠåŽ†å²é™åˆ¶
 
-私聊对话使用由智能体管理的基于会话的历史。你可以限制每个私聊会话保留的用户轮次数：
+ç§èŠå¯¹è¯ä½¿ç”¨ç”±æ™ºèƒ½ä½“ç®¡ç†çš„åŸºäºŽä¼šè¯çš„åŽ†å²ã€‚ä½ å¯ä»¥é™åˆ¶æ¯ä¸ªç§èŠä¼šè¯ä¿ç•™çš„ç”¨æˆ·è½®æ¬¡æ•°ï¼š
 
 ```json5
 {
   channels: {
     telegram: {
-      dmHistoryLimit: 30, // 将私聊会话限制为 30 个用户轮次
+      dmHistoryLimit: 30, // å°†ç§èŠä¼šè¯é™åˆ¶ä¸º 30 ä¸ªç”¨æˆ·è½®æ¬¡
       dms: {
-        "123456789": { historyLimit: 50 }, // 每用户覆盖（用户 ID）
+        "123456789": { historyLimit: 50 }, // æ¯ç”¨æˆ·è¦†ç›–ï¼ˆç”¨æˆ· IDï¼‰
       },
     },
   },
 }
 ```
 
-解析顺序：
+è§£æžé¡ºåºï¼š
 
-1. 每私聊覆盖：`channels.<provider>.dms[userId].historyLimit`
-2. 提供商默认值：`channels.<provider>.dmHistoryLimit`
-3. 无限制（保留所有历史）
+1. æ¯ç§èŠè¦†ç›–ï¼š`channels.<provider>.dms[userId].historyLimit`
+2. æä¾›å•†é»˜è®¤å€¼ï¼š`channels.<provider>.dmHistoryLimit`
+3. æ— é™åˆ¶ï¼ˆä¿ç•™æ‰€æœ‰åŽ†å²ï¼‰
 
-支持的提供商：`telegram`、`whatsapp`、`discord`、`slack`、`signal`、`imessage`、`msteams`。
+æ”¯æŒçš„æä¾›å•†ï¼š`telegram`ã€`whatsapp`ã€`discord`ã€`slack`ã€`signal`ã€`imessage`ã€`msteams`ã€‚
 
-每智能体覆盖（设置后优先，即使为 `[]`）：
+æ¯æ™ºèƒ½ä½“è¦†ç›–ï¼ˆè®¾ç½®åŽä¼˜å…ˆï¼Œå³ä½¿ä¸º `[]`ï¼‰ï¼š
 
 ```json5
 {
@@ -651,15 +651,15 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-提及门控默认值按渠道设置（`channels.whatsapp.groups`、`channels.telegram.groups`、`channels.imessage.groups`、`channels.discord.guilds`）。当设置了 `*.groups` 时，它也充当群组白名单；包含 `"*"` 以允许所有群组。
+æåŠé—¨æŽ§é»˜è®¤å€¼æŒ‰æ¸ é“è®¾ç½®ï¼ˆ`channels.whatsapp.groups`ã€`channels.telegram.groups`ã€`channels.imessage.groups`ã€`channels.discord.guilds`ï¼‰ã€‚å½“è®¾ç½®äº† `*.groups` æ—¶ï¼Œå®ƒä¹Ÿå……å½“ç¾¤ç»„ç™½åå•ï¼›åŒ…å« `"*"` ä»¥å…è®¸æ‰€æœ‰ç¾¤ç»„ã€‚
 
-仅响应特定文本触发器（忽略原生 @提及）：
+ä»…å“åº”ç‰¹å®šæ–‡æœ¬è§¦å‘å™¨ï¼ˆå¿½ç•¥åŽŸç”Ÿ @æåŠï¼‰ï¼š
 
 ```json5
 {
   channels: {
     whatsapp: {
-      // 包含你自己的号码以启用自聊天模式（忽略原生 @提及）。
+      // åŒ…å«ä½ è‡ªå·±çš„å·ç ä»¥å¯ç”¨è‡ªèŠå¤©æ¨¡å¼ï¼ˆå¿½ç•¥åŽŸç”Ÿ @æåŠï¼‰ã€‚
       allowFrom: ["+15555550123"],
       groups: { "*": { requireMention: true } },
     },
@@ -669,8 +669,8 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
       {
         id: "main",
         groupChat: {
-          // 仅这些文本模式会触发响应
-          mentionPatterns: ["reisponde", "@openclaw"],
+          // ä»…è¿™äº›æ–‡æœ¬æ¨¡å¼ä¼šè§¦å‘å“åº”
+          mentionPatterns: ["reisponde", "@"],
         },
       },
     ],
@@ -678,9 +678,9 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-### 群组策略（按渠道）
+### ç¾¤ç»„ç­–ç•¥ï¼ˆæŒ‰æ¸ é“ï¼‰
 
-使用 `channels.*.groupPolicy` 控制是否接受群组/房间消息：
+ä½¿ç”¨ `channels.*.groupPolicy` æŽ§åˆ¶æ˜¯å¦æŽ¥å—ç¾¤ç»„/æˆ¿é—´æ¶ˆæ¯ï¼š
 
 ```json5
 {
@@ -721,77 +721,77 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- `"open"`：群组绕过白名单；提及门控仍然适用。
-- `"disabled"`：阻止所有群组/房间消息。
-- `"allowlist"`：仅允许匹配配置白名单的群组/房间。
-- `channels.defaults.groupPolicy` 设置提供商的 `groupPolicy` 未设置时的默认值。
-- WhatsApp/Telegram/Signal/iMessage/Microsoft Teams 使用 `groupAllowFrom`（回退：显式 `allowFrom`）。
-- Discord/Slack 使用渠道白名单（`channels.discord.guilds.*.channels`、`channels.slack.channels`）。
-- 群组私聊（Discord/Slack）仍由 `dm.groupEnabled` + `dm.groupChannels` 控制。
-- 默认为 `groupPolicy: "allowlist"`（除非被 `channels.defaults.groupPolicy` 覆盖）；如果未配置白名单，群组消息将被阻止。
+- `"open"`ï¼šç¾¤ç»„ç»•è¿‡ç™½åå•ï¼›æåŠé—¨æŽ§ä»ç„¶é€‚ç”¨ã€‚
+- `"disabled"`ï¼šé˜»æ­¢æ‰€æœ‰ç¾¤ç»„/æˆ¿é—´æ¶ˆæ¯ã€‚
+- `"allowlist"`ï¼šä»…å…è®¸åŒ¹é…é…ç½®ç™½åå•çš„ç¾¤ç»„/æˆ¿é—´ã€‚
+- `channels.defaults.groupPolicy` è®¾ç½®æä¾›å•†çš„ `groupPolicy` æœªè®¾ç½®æ—¶çš„é»˜è®¤å€¼ã€‚
+- WhatsApp/Telegram/Signal/iMessage/Microsoft Teams ä½¿ç”¨ `groupAllowFrom`ï¼ˆå›žé€€ï¼šæ˜¾å¼ `allowFrom`ï¼‰ã€‚
+- Discord/Slack ä½¿ç”¨æ¸ é“ç™½åå•ï¼ˆ`channels.discord.guilds.*.channels`ã€`channels.slack.channels`ï¼‰ã€‚
+- ç¾¤ç»„ç§èŠï¼ˆDiscord/Slackï¼‰ä»ç”± `dm.groupEnabled` + `dm.groupChannels` æŽ§åˆ¶ã€‚
+- é»˜è®¤ä¸º `groupPolicy: "allowlist"`ï¼ˆé™¤éžè¢« `channels.defaults.groupPolicy` è¦†ç›–ï¼‰ï¼›å¦‚æžœæœªé…ç½®ç™½åå•ï¼Œç¾¤ç»„æ¶ˆæ¯å°†è¢«é˜»æ­¢ã€‚
 
-### 多智能体路由（`agents.list` + `bindings`）
+### å¤šæ™ºèƒ½ä½“è·¯ç”±ï¼ˆ`agents.list` + `bindings`ï¼‰
 
-在一个 Gateway 网关中运行多个隔离的智能体（独立的工作区、`agentDir`、会话）。
-入站消息通过绑定路由到智能体。
+åœ¨ä¸€ä¸ª Gateway ç½‘å…³ä¸­è¿è¡Œå¤šä¸ªéš”ç¦»çš„æ™ºèƒ½ä½“ï¼ˆç‹¬ç«‹çš„å·¥ä½œåŒºã€`agentDir`ã€ä¼šè¯ï¼‰ã€‚
+å…¥ç«™æ¶ˆæ¯é€šè¿‡ç»‘å®šè·¯ç”±åˆ°æ™ºèƒ½ä½“ã€‚
 
-- `agents.list[]`：每智能体覆盖。
-  - `id`：稳定的智能体 id（必需）。
-  - `default`：可选；当设置多个时，第一个获胜并记录警告。
-    如果未设置，列表中的**第一个条目**为默认智能体。
-  - `name`：智能体的显示名称。
-  - `workspace`：默认 `~/.openclaw/workspace-<agentId>`（对于 `main`，回退到 `agents.defaults.workspace`）。
-  - `agentDir`：默认 `~/.openclaw/agents/<agentId>/agent`。
-  - `model`：每智能体默认模型，覆盖该智能体的 `agents.defaults.model`。
-    - 字符串形式：`"provider/model"`，仅覆盖 `agents.defaults.model.primary`
-    - 对象形式：`{ primary, fallbacks }`（fallbacks 覆盖 `agents.defaults.model.fallbacks`；`[]` 为该智能体禁用全局回退）
-  - `identity`：每智能体的名称/主题/表情（用于提及模式 + 确认反应）。
-  - `groupChat`：每智能体的提及门控（`mentionPatterns`）。
-  - `sandbox`：每智能体的沙箱配置（覆盖 `agents.defaults.sandbox`）。
-    - `mode`：`"off"` | `"non-main"` | `"all"`
-    - `workspaceAccess`：`"none"` | `"ro"` | `"rw"`
-    - `scope`：`"session"` | `"agent"` | `"shared"`
-    - `workspaceRoot`：自定义沙箱工作区根目录
-    - `docker`：每智能体 docker 覆盖（例如 `image`、`network`、`env`、`setupCommand`、限制；`scope: "shared"` 时忽略）
-    - `browser`：每智能体沙箱浏览器覆盖（`scope: "shared"` 时忽略）
-    - `prune`：每智能体沙箱清理覆盖（`scope: "shared"` 时忽略）
-  - `subagents`：每智能体子智能体默认值。
-    - `allowAgents`：允许从此智能体执行 `sessions_spawn` 的智能体 id 白名单（`["*"]` = 允许任何；默认：仅同一智能体）
-  - `tools`：每智能体工具限制（在沙箱工具策略之前应用）。
-    - `profile`：基础工具配置文件（在 allow/deny 之前应用）
-    - `allow`：允许的工具名称数组
-    - `deny`：拒绝的工具名称数组（deny 优先）
-- `agents.defaults`：共享的智能体默认值（模型、工作区、沙箱等）。
-- `bindings[]`：将入站消息路由到 `agentId`。
-  - `match.channel`（必需）
-  - `match.accountId`（可选；`*` = 任何账号；省略 = 默认账号）
-  - `match.peer`（可选；`{ kind: dm|group|channel, id }`）
-  - `match.guildId` / `match.teamId`（可选；渠道特定）
+- `agents.list[]`ï¼šæ¯æ™ºèƒ½ä½“è¦†ç›–ã€‚
+  - `id`ï¼šç¨³å®šçš„æ™ºèƒ½ä½“ idï¼ˆå¿…éœ€ï¼‰ã€‚
+  - `default`ï¼šå¯é€‰ï¼›å½“è®¾ç½®å¤šä¸ªæ—¶ï¼Œç¬¬ä¸€ä¸ªèŽ·èƒœå¹¶è®°å½•è­¦å‘Šã€‚
+    å¦‚æžœæœªè®¾ç½®ï¼Œåˆ—è¡¨ä¸­çš„**ç¬¬ä¸€ä¸ªæ¡ç›®**ä¸ºé»˜è®¤æ™ºèƒ½ä½“ã€‚
+  - `name`ï¼šæ™ºèƒ½ä½“çš„æ˜¾ç¤ºåç§°ã€‚
+  - `workspace`ï¼šé»˜è®¤ `~/./workspace-<agentId>`ï¼ˆå¯¹äºŽ `main`ï¼Œå›žé€€åˆ° `agents.defaults.workspace`ï¼‰ã€‚
+  - `agentDir`ï¼šé»˜è®¤ `~/./agents/<agentId>/agent`ã€‚
+  - `model`ï¼šæ¯æ™ºèƒ½ä½“é»˜è®¤æ¨¡åž‹ï¼Œè¦†ç›–è¯¥æ™ºèƒ½ä½“çš„ `agents.defaults.model`ã€‚
+    - å­—ç¬¦ä¸²å½¢å¼ï¼š`"provider/model"`ï¼Œä»…è¦†ç›– `agents.defaults.model.primary`
+    - å¯¹è±¡å½¢å¼ï¼š`{ primary, fallbacks }`ï¼ˆfallbacks è¦†ç›– `agents.defaults.model.fallbacks`ï¼›`[]` ä¸ºè¯¥æ™ºèƒ½ä½“ç¦ç”¨å…¨å±€å›žé€€ï¼‰
+  - `identity`ï¼šæ¯æ™ºèƒ½ä½“çš„åç§°/ä¸»é¢˜/è¡¨æƒ…ï¼ˆç”¨äºŽæåŠæ¨¡å¼ + ç¡®è®¤ååº”ï¼‰ã€‚
+  - `groupChat`ï¼šæ¯æ™ºèƒ½ä½“çš„æåŠé—¨æŽ§ï¼ˆ`mentionPatterns`ï¼‰ã€‚
+  - `sandbox`ï¼šæ¯æ™ºèƒ½ä½“çš„æ²™ç®±é…ç½®ï¼ˆè¦†ç›– `agents.defaults.sandbox`ï¼‰ã€‚
+    - `mode`ï¼š`"off"` | `"non-main"` | `"all"`
+    - `workspaceAccess`ï¼š`"none"` | `"ro"` | `"rw"`
+    - `scope`ï¼š`"session"` | `"agent"` | `"shared"`
+    - `workspaceRoot`ï¼šè‡ªå®šä¹‰æ²™ç®±å·¥ä½œåŒºæ ¹ç›®å½•
+    - `docker`ï¼šæ¯æ™ºèƒ½ä½“ docker è¦†ç›–ï¼ˆä¾‹å¦‚ `image`ã€`network`ã€`env`ã€`setupCommand`ã€é™åˆ¶ï¼›`scope: "shared"` æ—¶å¿½ç•¥ï¼‰
+    - `browser`ï¼šæ¯æ™ºèƒ½ä½“æ²™ç®±æµè§ˆå™¨è¦†ç›–ï¼ˆ`scope: "shared"` æ—¶å¿½ç•¥ï¼‰
+    - `prune`ï¼šæ¯æ™ºèƒ½ä½“æ²™ç®±æ¸…ç†è¦†ç›–ï¼ˆ`scope: "shared"` æ—¶å¿½ç•¥ï¼‰
+  - `subagents`ï¼šæ¯æ™ºèƒ½ä½“å­æ™ºèƒ½ä½“é»˜è®¤å€¼ã€‚
+    - `allowAgents`ï¼šå…è®¸ä»Žæ­¤æ™ºèƒ½ä½“æ‰§è¡Œ `sessions_spawn` çš„æ™ºèƒ½ä½“ id ç™½åå•ï¼ˆ`["*"]` = å…è®¸ä»»ä½•ï¼›é»˜è®¤ï¼šä»…åŒä¸€æ™ºèƒ½ä½“ï¼‰
+  - `tools`ï¼šæ¯æ™ºèƒ½ä½“å·¥å…·é™åˆ¶ï¼ˆåœ¨æ²™ç®±å·¥å…·ç­–ç•¥ä¹‹å‰åº”ç”¨ï¼‰ã€‚
+    - `profile`ï¼šåŸºç¡€å·¥å…·é…ç½®æ–‡ä»¶ï¼ˆåœ¨ allow/deny ä¹‹å‰åº”ç”¨ï¼‰
+    - `allow`ï¼šå…è®¸çš„å·¥å…·åç§°æ•°ç»„
+    - `deny`ï¼šæ‹’ç»çš„å·¥å…·åç§°æ•°ç»„ï¼ˆdeny ä¼˜å…ˆï¼‰
+- `agents.defaults`ï¼šå…±äº«çš„æ™ºèƒ½ä½“é»˜è®¤å€¼ï¼ˆæ¨¡åž‹ã€å·¥ä½œåŒºã€æ²™ç®±ç­‰ï¼‰ã€‚
+- `bindings[]`ï¼šå°†å…¥ç«™æ¶ˆæ¯è·¯ç”±åˆ° `agentId`ã€‚
+  - `match.channel`ï¼ˆå¿…éœ€ï¼‰
+  - `match.accountId`ï¼ˆå¯é€‰ï¼›`*` = ä»»ä½•è´¦å·ï¼›çœç•¥ = é»˜è®¤è´¦å·ï¼‰
+  - `match.peer`ï¼ˆå¯é€‰ï¼›`{ kind: dm|group|channel, id }`ï¼‰
+  - `match.guildId` / `match.teamId`ï¼ˆå¯é€‰ï¼›æ¸ é“ç‰¹å®šï¼‰
 
-确定性匹配顺序：
+ç¡®å®šæ€§åŒ¹é…é¡ºåºï¼š
 
 1. `match.peer`
 2. `match.guildId`
 3. `match.teamId`
-4. `match.accountId`（精确匹配，无 peer/guild/team）
-5. `match.accountId: "*"`（渠道范围，无 peer/guild/team）
-6. 默认智能体（`agents.list[].default`，否则第一个列表条目，否则 `"main"`）
+4. `match.accountId`ï¼ˆç²¾ç¡®åŒ¹é…ï¼Œæ—  peer/guild/teamï¼‰
+5. `match.accountId: "*"`ï¼ˆæ¸ é“èŒƒå›´ï¼Œæ—  peer/guild/teamï¼‰
+6. é»˜è®¤æ™ºèƒ½ä½“ï¼ˆ`agents.list[].default`ï¼Œå¦åˆ™ç¬¬ä¸€ä¸ªåˆ—è¡¨æ¡ç›®ï¼Œå¦åˆ™ `"main"`ï¼‰
 
-在每个匹配层级内，`bindings` 中的第一个匹配条目获胜。
+åœ¨æ¯ä¸ªåŒ¹é…å±‚çº§å†…ï¼Œ`bindings` ä¸­çš„ç¬¬ä¸€ä¸ªåŒ¹é…æ¡ç›®èŽ·èƒœã€‚
 
-#### 每智能体访问配置（多智能体）
+#### æ¯æ™ºèƒ½ä½“è®¿é—®é…ç½®ï¼ˆå¤šæ™ºèƒ½ä½“ï¼‰
 
-每个智能体可以携带自己的沙箱 + 工具策略。用于在一个 Gateway 网关中混合访问级别：
+æ¯ä¸ªæ™ºèƒ½ä½“å¯ä»¥æºå¸¦è‡ªå·±çš„æ²™ç®± + å·¥å…·ç­–ç•¥ã€‚ç”¨äºŽåœ¨ä¸€ä¸ª Gateway ç½‘å…³ä¸­æ··åˆè®¿é—®çº§åˆ«ï¼š
 
-- **完全访问**（个人智能体）
-- **只读**工具 + 工作区
-- **无文件系统访问**（仅消息/会话工具）
+- **å®Œå…¨è®¿é—®**ï¼ˆä¸ªäººæ™ºèƒ½ä½“ï¼‰
+- **åªè¯»**å·¥å…· + å·¥ä½œåŒº
+- **æ— æ–‡ä»¶ç³»ç»Ÿè®¿é—®**ï¼ˆä»…æ¶ˆæ¯/ä¼šè¯å·¥å…·ï¼‰
 
-参见[多智能体沙箱与工具](/multi-agent-sandbox-tools)了解优先级和更多示例。
+å‚è§[å¤šæ™ºèƒ½ä½“æ²™ç®±ä¸Žå·¥å…·](/multi-agent-sandbox-tools)äº†è§£ä¼˜å…ˆçº§å’Œæ›´å¤šç¤ºä¾‹ã€‚
 
-完全访问（无沙箱）：
+å®Œå…¨è®¿é—®ï¼ˆæ— æ²™ç®±ï¼‰ï¼š
 
 ```json5
 {
@@ -799,7 +799,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
     list: [
       {
         id: "personal",
-        workspace: "~/.openclaw/workspace-personal",
+        workspace: "~/./workspace-personal",
         sandbox: { mode: "off" },
       },
     ],
@@ -807,7 +807,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-只读工具 + 只读工作区：
+åªè¯»å·¥å…· + åªè¯»å·¥ä½œåŒºï¼š
 
 ```json5
 {
@@ -815,7 +815,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
     list: [
       {
         id: "family",
-        workspace: "~/.openclaw/workspace-family",
+        workspace: "~/./workspace-family",
         sandbox: {
           mode: "all",
           scope: "agent",
@@ -838,7 +838,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-无文件系统访问（启用消息/会话工具）：
+æ— æ–‡ä»¶ç³»ç»Ÿè®¿é—®ï¼ˆå¯ç”¨æ¶ˆæ¯/ä¼šè¯å·¥å…·ï¼‰ï¼š
 
 ```json5
 {
@@ -846,7 +846,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
     list: [
       {
         id: "public",
-        workspace: "~/.openclaw/workspace-public",
+        workspace: "~/./workspace-public",
         sandbox: {
           mode: "all",
           scope: "agent",
@@ -886,14 +886,14 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-示例：两个 WhatsApp 账号 → 两个智能体：
+ç¤ºä¾‹ï¼šä¸¤ä¸ª WhatsApp è´¦å· â†’ ä¸¤ä¸ªæ™ºèƒ½ä½“ï¼š
 
 ```json5
 {
   agents: {
     list: [
-      { id: "home", default: true, workspace: "~/.openclaw/workspace-home" },
-      { id: "work", workspace: "~/.openclaw/workspace-work" },
+      { id: "home", default: true, workspace: "~/./workspace-home" },
+      { id: "work", workspace: "~/./workspace-work" },
     ],
   },
   bindings: [
@@ -911,9 +911,9 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-### `tools.agentToAgent`（可选）
+### `tools.agentToAgent`ï¼ˆå¯é€‰ï¼‰
 
-智能体间消息传递为可选功能：
+æ™ºèƒ½ä½“é—´æ¶ˆæ¯ä¼ é€’ä¸ºå¯é€‰åŠŸèƒ½ï¼š
 
 ```json5
 {
@@ -928,7 +928,7 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 
 ### `messages.queue`
 
-控制智能体运行已在执行时入站消息的行为。
+æŽ§åˆ¶æ™ºèƒ½ä½“è¿è¡Œå·²åœ¨æ‰§è¡Œæ—¶å…¥ç«™æ¶ˆæ¯çš„è¡Œä¸ºã€‚
 
 ```json5
 {
@@ -952,13 +952,13 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 
 ### `messages.inbound`
 
-防抖**同一发送者**的快速入站消息，使多条连续消息合并为一个智能体轮次。防抖按渠道 + 对话进行范围限定，并使用最新消息进行回复线程/ID。
+é˜²æŠ–**åŒä¸€å‘é€è€…**çš„å¿«é€Ÿå…¥ç«™æ¶ˆæ¯ï¼Œä½¿å¤šæ¡è¿žç»­æ¶ˆæ¯åˆå¹¶ä¸ºä¸€ä¸ªæ™ºèƒ½ä½“è½®æ¬¡ã€‚é˜²æŠ–æŒ‰æ¸ é“ + å¯¹è¯è¿›è¡ŒèŒƒå›´é™å®šï¼Œå¹¶ä½¿ç”¨æœ€æ–°æ¶ˆæ¯è¿›è¡Œå›žå¤çº¿ç¨‹/IDã€‚
 
 ```json5
 {
   messages: {
     inbound: {
-      debounceMs: 2000, // 0 禁用
+      debounceMs: 2000, // 0 ç¦ç”¨
       byChannel: {
         whatsapp: 5000,
         slack: 1500,
@@ -969,50 +969,50 @@ OpenClaw 在以下位置存储**每个智能体的**认证配置文件（OAuth +
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 防抖仅批量处理**纯文本**消息；媒体/附件立即刷新。
-- 控制命令（例如 `/queue`、`/new`）绕过防抖，保持独立。
+- é˜²æŠ–ä»…æ‰¹é‡å¤„ç†**çº¯æ–‡æœ¬**æ¶ˆæ¯ï¼›åª’ä½“/é™„ä»¶ç«‹å³åˆ·æ–°ã€‚
+- æŽ§åˆ¶å‘½ä»¤ï¼ˆä¾‹å¦‚ `/queue`ã€`/new`ï¼‰ç»•è¿‡é˜²æŠ–ï¼Œä¿æŒç‹¬ç«‹ã€‚
 
-### `commands`（聊天命令处理）
+### `commands`ï¼ˆèŠå¤©å‘½ä»¤å¤„ç†ï¼‰
 
-控制跨连接器的聊天命令启用方式。
+æŽ§åˆ¶è·¨è¿žæŽ¥å™¨çš„èŠå¤©å‘½ä»¤å¯ç”¨æ–¹å¼ã€‚
 
 ```json5
 {
   commands: {
-    native: "auto", // 在支持的平台上注册原生命令（auto）
-    text: true, // 解析聊天消息中的斜杠命令
-    bash: false, // 允许 !（别名：/bash）（仅限主机；需要 tools.elevated 白名单）
-    bashForegroundMs: 2000, // bash 前台窗口（0 立即后台运行）
-    config: false, // 允许 /config（写入磁盘）
-    debug: false, // 允许 /debug（仅运行时覆盖）
-    restart: false, // 允许 /restart + gateway 重启工具
-    useAccessGroups: true, // 对命令执行访问组白名单/策略
+    native: "auto", // åœ¨æ”¯æŒçš„å¹³å°ä¸Šæ³¨å†ŒåŽŸç”Ÿå‘½ä»¤ï¼ˆautoï¼‰
+    text: true, // è§£æžèŠå¤©æ¶ˆæ¯ä¸­çš„æ–œæ å‘½ä»¤
+    bash: false, // å…è®¸ !ï¼ˆåˆ«åï¼š/bashï¼‰ï¼ˆä»…é™ä¸»æœºï¼›éœ€è¦ tools.elevated ç™½åå•ï¼‰
+    bashForegroundMs: 2000, // bash å‰å°çª—å£ï¼ˆ0 ç«‹å³åŽå°è¿è¡Œï¼‰
+    config: false, // å…è®¸ /configï¼ˆå†™å…¥ç£ç›˜ï¼‰
+    debug: false, // å…è®¸ /debugï¼ˆä»…è¿è¡Œæ—¶è¦†ç›–ï¼‰
+    restart: false, // å…è®¸ /restart + gateway é‡å¯å·¥å…·
+    useAccessGroups: true, // å¯¹å‘½ä»¤æ‰§è¡Œè®¿é—®ç»„ç™½åå•/ç­–ç•¥
   },
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 文本命令必须作为**独立**消息发送，并使用前导 `/`（无纯文本别名）。
-- `commands.text: false` 禁用解析聊天消息中的命令。
-- `commands.native: "auto"`（默认）为 Discord/Telegram 启用原生命令，Slack 保持关闭；不支持的渠道保持纯文本。
-- 设为 `commands.native: true|false` 强制全部开启或关闭，或按渠道覆盖 `channels.discord.commands.native`、`channels.telegram.commands.native`、`channels.slack.commands.native`（bool 或 `"auto"`）。`false` 在启动时清除 Discord/Telegram 上先前注册的命令；Slack 命令在 Slack 应用中管理。
-- `channels.telegram.customCommands` 添加额外的 Telegram 机器人菜单项。名称会被规范化；与原生命令冲突的会被忽略。
-- `commands.bash: true` 启用 `! <cmd>` 运行主机 shell 命令（`/bash <cmd>` 也可作为别名）。需要 `tools.elevated.enabled` 并在 `tools.elevated.allowFrom.<channel>` 中添加发送者白名单。
-- `commands.bashForegroundMs` 控制 bash 在后台运行前等待的时间。当 bash 任务正在运行时，新的 `! <cmd>` 请求会被拒绝（一次一个）。
-- `commands.config: true` 启用 `/config`（读写 `openclaw.json`）。
-- `channels.<provider>.configWrites` 控制由该渠道发起的配置变更（默认：true）。适用于 `/config set|unset` 以及提供商特定的自动迁移（Telegram 超级群组 ID 变更、Slack 频道 ID 变更）。
-- `commands.debug: true` 启用 `/debug`（仅运行时覆盖）。
-- `commands.restart: true` 启用 `/restart` 和 gateway 工具重启动作。
-- `commands.useAccessGroups: false` 允许命令绕过访问组白名单/策略。
-- 斜杠命令和指令仅对**已授权发送者**有效。授权来自渠道白名单/配对以及 `commands.useAccessGroups`。
+- æ–‡æœ¬å‘½ä»¤å¿…é¡»ä½œä¸º**ç‹¬ç«‹**æ¶ˆæ¯å‘é€ï¼Œå¹¶ä½¿ç”¨å‰å¯¼ `/`ï¼ˆæ— çº¯æ–‡æœ¬åˆ«åï¼‰ã€‚
+- `commands.text: false` ç¦ç”¨è§£æžèŠå¤©æ¶ˆæ¯ä¸­çš„å‘½ä»¤ã€‚
+- `commands.native: "auto"`ï¼ˆé»˜è®¤ï¼‰ä¸º Discord/Telegram å¯ç”¨åŽŸç”Ÿå‘½ä»¤ï¼ŒSlack ä¿æŒå…³é—­ï¼›ä¸æ”¯æŒçš„æ¸ é“ä¿æŒçº¯æ–‡æœ¬ã€‚
+- è®¾ä¸º `commands.native: true|false` å¼ºåˆ¶å…¨éƒ¨å¼€å¯æˆ–å…³é—­ï¼Œæˆ–æŒ‰æ¸ é“è¦†ç›– `channels.discord.commands.native`ã€`channels.telegram.commands.native`ã€`channels.slack.commands.native`ï¼ˆbool æˆ– `"auto"`ï¼‰ã€‚`false` åœ¨å¯åŠ¨æ—¶æ¸…é™¤ Discord/Telegram ä¸Šå…ˆå‰æ³¨å†Œçš„å‘½ä»¤ï¼›Slack å‘½ä»¤åœ¨ Slack åº”ç”¨ä¸­ç®¡ç†ã€‚
+- `channels.telegram.customCommands` æ·»åŠ é¢å¤–çš„ Telegram æœºå™¨äººèœå•é¡¹ã€‚åç§°ä¼šè¢«è§„èŒƒåŒ–ï¼›ä¸ŽåŽŸç”Ÿå‘½ä»¤å†²çªçš„ä¼šè¢«å¿½ç•¥ã€‚
+- `commands.bash: true` å¯ç”¨ `! <cmd>` è¿è¡Œä¸»æœº shell å‘½ä»¤ï¼ˆ`/bash <cmd>` ä¹Ÿå¯ä½œä¸ºåˆ«åï¼‰ã€‚éœ€è¦ `tools.elevated.enabled` å¹¶åœ¨ `tools.elevated.allowFrom.<channel>` ä¸­æ·»åŠ å‘é€è€…ç™½åå•ã€‚
+- `commands.bashForegroundMs` æŽ§åˆ¶ bash åœ¨åŽå°è¿è¡Œå‰ç­‰å¾…çš„æ—¶é—´ã€‚å½“ bash ä»»åŠ¡æ­£åœ¨è¿è¡Œæ—¶ï¼Œæ–°çš„ `! <cmd>` è¯·æ±‚ä¼šè¢«æ‹’ç»ï¼ˆä¸€æ¬¡ä¸€ä¸ªï¼‰ã€‚
+- `commands.config: true` å¯ç”¨ `/config`ï¼ˆè¯»å†™ `.json`ï¼‰ã€‚
+- `channels.<provider>.configWrites` æŽ§åˆ¶ç”±è¯¥æ¸ é“å‘èµ·çš„é…ç½®å˜æ›´ï¼ˆé»˜è®¤ï¼štrueï¼‰ã€‚é€‚ç”¨äºŽ `/config set|unset` ä»¥åŠæä¾›å•†ç‰¹å®šçš„è‡ªåŠ¨è¿ç§»ï¼ˆTelegram è¶…çº§ç¾¤ç»„ ID å˜æ›´ã€Slack é¢‘é“ ID å˜æ›´ï¼‰ã€‚
+- `commands.debug: true` å¯ç”¨ `/debug`ï¼ˆä»…è¿è¡Œæ—¶è¦†ç›–ï¼‰ã€‚
+- `commands.restart: true` å¯ç”¨ `/restart` å’Œ gateway å·¥å…·é‡å¯åŠ¨ä½œã€‚
+- `commands.useAccessGroups: false` å…è®¸å‘½ä»¤ç»•è¿‡è®¿é—®ç»„ç™½åå•/ç­–ç•¥ã€‚
+- æ–œæ å‘½ä»¤å’ŒæŒ‡ä»¤ä»…å¯¹**å·²æŽˆæƒå‘é€è€…**æœ‰æ•ˆã€‚æŽˆæƒæ¥è‡ªæ¸ é“ç™½åå•/é…å¯¹ä»¥åŠ `commands.useAccessGroups`ã€‚
 
-### `web`（WhatsApp Web 渠道运行时）
+### `web`ï¼ˆWhatsApp Web æ¸ é“è¿è¡Œæ—¶ï¼‰
 
-WhatsApp 通过 Gateway 网关的 Web 渠道（Baileys Web）运行。当存在已链接的会话时自动启动。
-设置 `web.enabled: false` 使其默认关闭。
+WhatsApp é€šè¿‡ Gateway ç½‘å…³çš„ Web æ¸ é“ï¼ˆBaileys Webï¼‰è¿è¡Œã€‚å½“å­˜åœ¨å·²é“¾æŽ¥çš„ä¼šè¯æ—¶è‡ªåŠ¨å¯åŠ¨ã€‚
+è®¾ç½® `web.enabled: false` ä½¿å…¶é»˜è®¤å…³é—­ã€‚
 
 ```json5
 {
@@ -1030,12 +1030,12 @@ WhatsApp 通过 Gateway 网关的 Web 渠道（Baileys Web）运行。当存在�
 }
 ```
 
-### `channels.telegram`（机器人传输）
+### `channels.telegram`ï¼ˆæœºå™¨äººä¼ è¾“ï¼‰
 
-OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器人 token 从 `channels.telegram.botToken`（或 `channels.telegram.tokenFile`）解析，`TELEGRAM_BOT_TOKEN` 作为默认账号的回退。
-设置 `channels.telegram.enabled: false` 禁用自动启动。
-多账号支持在 `channels.telegram.accounts` 下（参见上方多账号部分）。环境变量 token 仅适用于默认账号。
-设置 `channels.telegram.configWrites: false` 阻止 Telegram 发起的配置写入（包括超级群组 ID 迁移和 `/config set|unset`）。
+ ä»…åœ¨å­˜åœ¨ `channels.telegram` é…ç½®æ®µæ—¶å¯åŠ¨ Telegramã€‚æœºå™¨äºº token ä»Ž `channels.telegram.botToken`ï¼ˆæˆ– `channels.telegram.tokenFile`ï¼‰è§£æžï¼Œ`TELEGRAM_BOT_TOKEN` ä½œä¸ºé»˜è®¤è´¦å·çš„å›žé€€ã€‚
+è®¾ç½® `channels.telegram.enabled: false` ç¦ç”¨è‡ªåŠ¨å¯åŠ¨ã€‚
+å¤šè´¦å·æ”¯æŒåœ¨ `channels.telegram.accounts` ä¸‹ï¼ˆå‚è§ä¸Šæ–¹å¤šè´¦å·éƒ¨åˆ†ï¼‰ã€‚çŽ¯å¢ƒå˜é‡ token ä»…é€‚ç”¨äºŽé»˜è®¤è´¦å·ã€‚
+è®¾ç½® `channels.telegram.configWrites: false` é˜»æ­¢ Telegram å‘èµ·çš„é…ç½®å†™å…¥ï¼ˆåŒ…æ‹¬è¶…çº§ç¾¤ç»„ ID è¿ç§»å’Œ `/config set|unset`ï¼‰ã€‚
 
 ```json5
 {
@@ -1044,7 +1044,7 @@ OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器�
       enabled: true,
       botToken: "your-bot-token",
       dmPolicy: "pairing", // pairing | allowlist | open | disabled
-      allowFrom: ["tg:123456789"], // 可选；"open" 需要 ["*"]
+      allowFrom: ["tg:123456789"], // å¯é€‰ï¼›"open" éœ€è¦ ["*"]
       groups: {
         "*": { requireMention: true },
         "-1001234567890": {
@@ -1063,32 +1063,32 @@ OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器�
         { command: "backup", description: "Git backup" },
         { command: "generate", description: "Create an image" },
       ],
-      historyLimit: 50, // 包含最近 N 条群消息作为上下文（0 禁用）
+      historyLimit: 50, // åŒ…å«æœ€è¿‘ N æ¡ç¾¤æ¶ˆæ¯ä½œä¸ºä¸Šä¸‹æ–‡ï¼ˆ0 ç¦ç”¨ï¼‰
       replyToMode: "first", // off | first | all
-      linkPreview: true, // 切换出站链接预览
-      streamMode: "partial", // off | partial | block（草稿流式传输；与分块流式传输分开）
+      linkPreview: true, // åˆ‡æ¢å‡ºç«™é“¾æŽ¥é¢„è§ˆ
+      streamMode: "partial", // off | partial | blockï¼ˆè‰ç¨¿æµå¼ä¼ è¾“ï¼›ä¸Žåˆ†å—æµå¼ä¼ è¾“åˆ†å¼€ï¼‰
       draftChunk: {
-        // 可选；仅用于 streamMode=block
+        // å¯é€‰ï¼›ä»…ç”¨äºŽ streamMode=block
         minChars: 200,
         maxChars: 800,
         breakPreference: "paragraph", // paragraph | newline | sentence
       },
-      actions: { reactions: true, sendMessage: true }, // 工具动作开关（false 禁用）
+      actions: { reactions: true, sendMessage: true }, // å·¥å…·åŠ¨ä½œå¼€å…³ï¼ˆfalse ç¦ç”¨ï¼‰
       reactionNotifications: "own", // off | own | all
       mediaMaxMb: 5,
       retry: {
-        // 出站重试策略
+        // å‡ºç«™é‡è¯•ç­–ç•¥
         attempts: 3,
         minDelayMs: 400,
         maxDelayMs: 30000,
         jitter: 0.1,
       },
       network: {
-        // 传输覆盖
+        // ä¼ è¾“è¦†ç›–
         autoSelectFamily: false,
       },
       proxy: "socks5://localhost:9050",
-      webhookUrl: "https://example.com/telegram-webhook", // 需要 webhookSecret
+      webhookUrl: "https://example.com/telegram-webhook", // éœ€è¦ webhookSecret
       webhookSecret: "secret",
       webhookPath: "/telegram-webhook",
     },
@@ -1096,17 +1096,17 @@ OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器�
 }
 ```
 
-草稿流式传输说明：
+è‰ç¨¿æµå¼ä¼ è¾“è¯´æ˜Žï¼š
 
-- 使用 Telegram `sendMessageDraft`（草稿气泡，不是真正的消息）。
-- 需要**私聊话题**（私信 中的 message_thread_id；机器人已启用话题）。
-- `/reasoning stream` 将推理过程流式传输到草稿中，然后发送最终答案。
-  重试策略默认值和行为记录在[重试策略](/concepts/retry)中。
+- ä½¿ç”¨ Telegram `sendMessageDraft`ï¼ˆè‰ç¨¿æ°”æ³¡ï¼Œä¸æ˜¯çœŸæ­£çš„æ¶ˆæ¯ï¼‰ã€‚
+- éœ€è¦**ç§èŠè¯é¢˜**ï¼ˆç§ä¿¡ ä¸­çš„ message_thread_idï¼›æœºå™¨äººå·²å¯ç”¨è¯é¢˜ï¼‰ã€‚
+- `/reasoning stream` å°†æŽ¨ç†è¿‡ç¨‹æµå¼ä¼ è¾“åˆ°è‰ç¨¿ä¸­ï¼Œç„¶åŽå‘é€æœ€ç»ˆç­”æ¡ˆã€‚
+  é‡è¯•ç­–ç•¥é»˜è®¤å€¼å’Œè¡Œä¸ºè®°å½•åœ¨[é‡è¯•ç­–ç•¥](/concepts/retry)ä¸­ã€‚
 
-### `channels.discord`（机器人传输）
+### `channels.discord`ï¼ˆæœºå™¨äººä¼ è¾“ï¼‰
 
-通过设置机器人 token 和可选的门控配置 Discord 机器人：
-多账号支持在 `channels.discord.accounts` 下（参见上方多账号部分）。环境变量 token 仅适用于默认账号。
+é€šè¿‡è®¾ç½®æœºå™¨äºº token å’Œå¯é€‰çš„é—¨æŽ§é…ç½® Discord æœºå™¨äººï¼š
+å¤šè´¦å·æ”¯æŒåœ¨ `channels.discord.accounts` ä¸‹ï¼ˆå‚è§ä¸Šæ–¹å¤šè´¦å·éƒ¨åˆ†ï¼‰ã€‚çŽ¯å¢ƒå˜é‡ token ä»…é€‚ç”¨äºŽé»˜è®¤è´¦å·ã€‚
 
 ```json5
 {
@@ -1114,10 +1114,10 @@ OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器�
     discord: {
       enabled: true,
       token: "your-bot-token",
-      mediaMaxMb: 8, // 限制入站媒体大小
-      allowBots: false, // 允许机器人发送的消息
+      mediaMaxMb: 8, // é™åˆ¶å…¥ç«™åª’ä½“å¤§å°
+      allowBots: false, // å…è®¸æœºå™¨äººå‘é€çš„æ¶ˆæ¯
       actions: {
-        // 工具动作开关（false 禁用）
+        // å·¥å…·åŠ¨ä½œå¼€å…³ï¼ˆfalse ç¦ç”¨ï¼‰
         reactions: true,
         stickers: true,
         polls: true,
@@ -1136,19 +1136,19 @@ OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器�
       },
       replyToMode: "off", // off | first | all
       dm: {
-        enabled: true, // 设为 false 时禁用所有私聊
+        enabled: true, // è®¾ä¸º false æ—¶ç¦ç”¨æ‰€æœ‰ç§èŠ
         policy: "pairing", // pairing | allowlist | open | disabled
-        allowFrom: ["1234567890", "steipete"], // 可选私聊白名单（"open" 需要 ["*"]）
-        groupEnabled: false, // 启用群组私聊
-        groupChannels: ["openclaw-dm"], // 可选群组私聊白名单
+        allowFrom: ["1234567890", "steipete"], // å¯é€‰ç§èŠç™½åå•ï¼ˆ"open" éœ€è¦ ["*"]ï¼‰
+        groupEnabled: false, // å¯ç”¨ç¾¤ç»„ç§èŠ
+        groupChannels: ["-dm"], // å¯é€‰ç¾¤ç»„ç§èŠç™½åå•
       },
       guilds: {
         "123456789012345678": {
-          // 服务器 id（推荐）或 slug
-          slug: "friends-of-openclaw",
-          requireMention: false, // 每服务器默认值
+          // æœåŠ¡å™¨ idï¼ˆæŽ¨èï¼‰æˆ– slug
+          slug: "friends-of-",
+          requireMention: false, // æ¯æœåŠ¡å™¨é»˜è®¤å€¼
           reactionNotifications: "own", // off | own | all | allowlist
-          users: ["987654321098765432"], // 可选的每服务器用户白名单
+          users: ["987654321098765432"], // å¯é€‰çš„æ¯æœåŠ¡å™¨ç”¨æˆ·ç™½åå•
           channels: {
             general: { allow: true },
             help: {
@@ -1161,12 +1161,12 @@ OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器�
           },
         },
       },
-      historyLimit: 20, // 包含最近 N 条服务器消息作为上下文
-      textChunkLimit: 2000, // 可选出站文本分块大小（字符数）
-      chunkMode: "length", // 可选分块模式（length | newline）
-      maxLinesPerMessage: 17, // 每条消息的软最大行数（Discord UI 裁剪）
+      historyLimit: 20, // åŒ…å«æœ€è¿‘ N æ¡æœåŠ¡å™¨æ¶ˆæ¯ä½œä¸ºä¸Šä¸‹æ–‡
+      textChunkLimit: 2000, // å¯é€‰å‡ºç«™æ–‡æœ¬åˆ†å—å¤§å°ï¼ˆå­—ç¬¦æ•°ï¼‰
+      chunkMode: "length", // å¯é€‰åˆ†å—æ¨¡å¼ï¼ˆlength | newlineï¼‰
+      maxLinesPerMessage: 17, // æ¯æ¡æ¶ˆæ¯çš„è½¯æœ€å¤§è¡Œæ•°ï¼ˆDiscord UI è£å‰ªï¼‰
       retry: {
-        // 出站重试策略
+        // å‡ºç«™é‡è¯•ç­–ç•¥
         attempts: 3,
         minDelayMs: 500,
         maxDelayMs: 30000,
@@ -1177,22 +1177,22 @@ OpenClaw 仅在存在 `channels.telegram` 配置段时启动 Telegram。机器�
 }
 ```
 
-OpenClaw 仅在存在 `channels.discord` 配置段时启动 Discord。token 从 `channels.discord.token` 解析，`DISCORD_BOT_TOKEN` 作为默认账号的回退（除非 `channels.discord.enabled` 为 `false`）。在为 cron/CLI 命令指定投递目标时，使用 `user:<id>`（私聊）或 `channel:<id>`（服务器频道）；裸数字 ID 有歧义会被拒绝。
-服务器 slug 为小写，空格替换为 `-`；频道键使用 slug 化的频道名称（无前导 `#`）。建议使用服务器 id 作为键以避免重命名歧义。
-机器人发送的消息默认被忽略。通过 `channels.discord.allowBots` 启用（自身消息仍会被过滤以防止自回复循环）。
-反应通知模式：
+ ä»…åœ¨å­˜åœ¨ `channels.discord` é…ç½®æ®µæ—¶å¯åŠ¨ Discordã€‚token ä»Ž `channels.discord.token` è§£æžï¼Œ`DISCORD_BOT_TOKEN` ä½œä¸ºé»˜è®¤è´¦å·çš„å›žé€€ï¼ˆé™¤éž `channels.discord.enabled` ä¸º `false`ï¼‰ã€‚åœ¨ä¸º cron/CLI å‘½ä»¤æŒ‡å®šæŠ•é€’ç›®æ ‡æ—¶ï¼Œä½¿ç”¨ `user:<id>`ï¼ˆç§èŠï¼‰æˆ– `channel:<id>`ï¼ˆæœåŠ¡å™¨é¢‘é“ï¼‰ï¼›è£¸æ•°å­— ID æœ‰æ­§ä¹‰ä¼šè¢«æ‹’ç»ã€‚
+æœåŠ¡å™¨ slug ä¸ºå°å†™ï¼Œç©ºæ ¼æ›¿æ¢ä¸º `-`ï¼›é¢‘é“é”®ä½¿ç”¨ slug åŒ–çš„é¢‘é“åç§°ï¼ˆæ— å‰å¯¼ `#`ï¼‰ã€‚å»ºè®®ä½¿ç”¨æœåŠ¡å™¨ id ä½œä¸ºé”®ä»¥é¿å…é‡å‘½åæ­§ä¹‰ã€‚
+æœºå™¨äººå‘é€çš„æ¶ˆæ¯é»˜è®¤è¢«å¿½ç•¥ã€‚é€šè¿‡ `channels.discord.allowBots` å¯ç”¨ï¼ˆè‡ªèº«æ¶ˆæ¯ä»ä¼šè¢«è¿‡æ»¤ä»¥é˜²æ­¢è‡ªå›žå¤å¾ªçŽ¯ï¼‰ã€‚
+ååº”é€šçŸ¥æ¨¡å¼ï¼š
 
-- `off`：无反应事件。
-- `own`：机器人自身消息上的反应（默认）。
-- `all`：所有消息上的所有反应。
-- `allowlist`：`guilds.<id>.users` 中的用户在所有消息上的反应（空列表禁用）。
-  出站文本按 `channels.discord.textChunkLimit`（默认 2000）分块。设置 `channels.discord.chunkMode="newline"` 在长度分块前按空行（段落边界）分割。Discord 客户端可能裁剪过高的消息，因此 `channels.discord.maxLinesPerMessage`（默认 17）即使在 2000 字符以内也会分割长多行回复。
-  重试策略默认值和行为记录在[重试策略](/concepts/retry)中。
+- `off`ï¼šæ— ååº”äº‹ä»¶ã€‚
+- `own`ï¼šæœºå™¨äººè‡ªèº«æ¶ˆæ¯ä¸Šçš„ååº”ï¼ˆé»˜è®¤ï¼‰ã€‚
+- `all`ï¼šæ‰€æœ‰æ¶ˆæ¯ä¸Šçš„æ‰€æœ‰ååº”ã€‚
+- `allowlist`ï¼š`guilds.<id>.users` ä¸­çš„ç”¨æˆ·åœ¨æ‰€æœ‰æ¶ˆæ¯ä¸Šçš„ååº”ï¼ˆç©ºåˆ—è¡¨ç¦ç”¨ï¼‰ã€‚
+  å‡ºç«™æ–‡æœ¬æŒ‰ `channels.discord.textChunkLimit`ï¼ˆé»˜è®¤ 2000ï¼‰åˆ†å—ã€‚è®¾ç½® `channels.discord.chunkMode="newline"` åœ¨é•¿åº¦åˆ†å—å‰æŒ‰ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰åˆ†å‰²ã€‚Discord å®¢æˆ·ç«¯å¯èƒ½è£å‰ªè¿‡é«˜çš„æ¶ˆæ¯ï¼Œå› æ­¤ `channels.discord.maxLinesPerMessage`ï¼ˆé»˜è®¤ 17ï¼‰å³ä½¿åœ¨ 2000 å­—ç¬¦ä»¥å†…ä¹Ÿä¼šåˆ†å‰²é•¿å¤šè¡Œå›žå¤ã€‚
+  é‡è¯•ç­–ç•¥é»˜è®¤å€¼å’Œè¡Œä¸ºè®°å½•åœ¨[é‡è¯•ç­–ç•¥](/concepts/retry)ä¸­ã€‚
 
-### `channels.googlechat`（Chat API webhook）
+### `channels.googlechat`ï¼ˆChat API webhookï¼‰
 
-Google Chat 通过 HTTP webhook 运行，使用应用级认证（服务账号）。
-多账号支持在 `channels.googlechat.accounts` 下（参见上方多账号部分）。环境变量仅适用于默认账号。
+Google Chat é€šè¿‡ HTTP webhook è¿è¡Œï¼Œä½¿ç”¨åº”ç”¨çº§è®¤è¯ï¼ˆæœåŠ¡è´¦å·ï¼‰ã€‚
+å¤šè´¦å·æ”¯æŒåœ¨ `channels.googlechat.accounts` ä¸‹ï¼ˆå‚è§ä¸Šæ–¹å¤šè´¦å·éƒ¨åˆ†ï¼‰ã€‚çŽ¯å¢ƒå˜é‡ä»…é€‚ç”¨äºŽé»˜è®¤è´¦å·ã€‚
 
 ```json5
 {
@@ -1203,11 +1203,11 @@ Google Chat 通过 HTTP webhook 运行，使用应用级认证（服务账号）
       audienceType: "app-url", // app-url | project-number
       audience: "https://gateway.example.com/googlechat",
       webhookPath: "/googlechat",
-      botUser: "users/1234567890", // 可选；改善提及检测
+      botUser: "users/1234567890", // å¯é€‰ï¼›æ”¹å–„æåŠæ£€æµ‹
       dm: {
         enabled: true,
         policy: "pairing", // pairing | allowlist | open | disabled
-        allowFrom: ["users/1234567890"], // 可选；"open" 需要 ["*"]
+        allowFrom: ["users/1234567890"], // å¯é€‰ï¼›"open" éœ€è¦ ["*"]
       },
       groupPolicy: "allowlist",
       groups: {
@@ -1221,16 +1221,16 @@ Google Chat 通过 HTTP webhook 运行，使用应用级认证（服务账号）
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 服务账号 JSON 可以内联（`serviceAccount`）或基于文件（`serviceAccountFile`）。
-- 默认账号的环境变量回退：`GOOGLE_CHAT_SERVICE_ACCOUNT` 或 `GOOGLE_CHAT_SERVICE_ACCOUNT_FILE`。
-- `audienceType` + `audience` 必须与 Chat 应用的 webhook 认证配置匹配。
-- 设置投递目标时使用 `spaces/<spaceId>` 或 `users/<userId|email>`。
+- æœåŠ¡è´¦å· JSON å¯ä»¥å†…è”ï¼ˆ`serviceAccount`ï¼‰æˆ–åŸºäºŽæ–‡ä»¶ï¼ˆ`serviceAccountFile`ï¼‰ã€‚
+- é»˜è®¤è´¦å·çš„çŽ¯å¢ƒå˜é‡å›žé€€ï¼š`GOOGLE_CHAT_SERVICE_ACCOUNT` æˆ– `GOOGLE_CHAT_SERVICE_ACCOUNT_FILE`ã€‚
+- `audienceType` + `audience` å¿…é¡»ä¸Ž Chat åº”ç”¨çš„ webhook è®¤è¯é…ç½®åŒ¹é…ã€‚
+- è®¾ç½®æŠ•é€’ç›®æ ‡æ—¶ä½¿ç”¨ `spaces/<spaceId>` æˆ– `users/<userId|email>`ã€‚
 
-### `channels.slack`（socket 模式）
+### `channels.slack`ï¼ˆsocket æ¨¡å¼ï¼‰
 
-Slack 以 Socket Mode 运行，需要机器人 token 和应用 token：
+Slack ä»¥ Socket Mode è¿è¡Œï¼Œéœ€è¦æœºå™¨äºº token å’Œåº”ç”¨ tokenï¼š
 
 ```json5
 {
@@ -1242,7 +1242,7 @@ Slack 以 Socket Mode 运行，需要机器人 token 和应用 token：
       dm: {
         enabled: true,
         policy: "pairing", // pairing | allowlist | open | disabled
-        allowFrom: ["U123", "U456", "*"], // 可选；"open" 需要 ["*"]
+        allowFrom: ["U123", "U456", "*"], // å¯é€‰ï¼›"open" éœ€è¦ ["*"]
         groupEnabled: false,
         groupChannels: ["G123"],
       },
@@ -1257,7 +1257,7 @@ Slack 以 Socket Mode 运行，需要机器人 token 和应用 token：
           systemPrompt: "Short answers only.",
         },
       },
-      historyLimit: 50, // 包含最近 N 条频道/群组消息作为上下文（0 禁用）
+      historyLimit: 50, // åŒ…å«æœ€è¿‘ N æ¡é¢‘é“/ç¾¤ç»„æ¶ˆæ¯ä½œä¸ºä¸Šä¸‹æ–‡ï¼ˆ0 ç¦ç”¨ï¼‰
       allowBots: false,
       reactionNotifications: "own", // off | own | all | allowlist
       reactionAllowlist: ["U123"],
@@ -1275,7 +1275,7 @@ Slack 以 Socket Mode 运行，需要机器人 token 和应用 token：
       },
       slashCommand: {
         enabled: true,
-        name: "openclaw",
+        name: "",
         sessionPrefix: "slack:slash",
         ephemeral: true,
       },
@@ -1287,40 +1287,40 @@ Slack 以 Socket Mode 运行，需要机器人 token 和应用 token：
 }
 ```
 
-多账号支持在 `channels.slack.accounts` 下（参见上方多账号部分）。环境变量 token 仅适用于默认账号。
+å¤šè´¦å·æ”¯æŒåœ¨ `channels.slack.accounts` ä¸‹ï¼ˆå‚è§ä¸Šæ–¹å¤šè´¦å·éƒ¨åˆ†ï¼‰ã€‚çŽ¯å¢ƒå˜é‡ token ä»…é€‚ç”¨äºŽé»˜è®¤è´¦å·ã€‚
 
-OpenClaw 在提供商启用且两个 token 都已设置时启动 Slack（通过配置或 `SLACK_BOT_TOKEN` + `SLACK_APP_TOKEN`）。在为 cron/CLI 命令指定投递目标时使用 `user:<id>`（私聊）或 `channel:<id>`。
-设置 `channels.slack.configWrites: false` 阻止 Slack 发起的配置写入（包括频道 ID 迁移和 `/config set|unset`）。
+ åœ¨æä¾›å•†å¯ç”¨ä¸”ä¸¤ä¸ª token éƒ½å·²è®¾ç½®æ—¶å¯åŠ¨ Slackï¼ˆé€šè¿‡é…ç½®æˆ– `SLACK_BOT_TOKEN` + `SLACK_APP_TOKEN`ï¼‰ã€‚åœ¨ä¸º cron/CLI å‘½ä»¤æŒ‡å®šæŠ•é€’ç›®æ ‡æ—¶ä½¿ç”¨ `user:<id>`ï¼ˆç§èŠï¼‰æˆ– `channel:<id>`ã€‚
+è®¾ç½® `channels.slack.configWrites: false` é˜»æ­¢ Slack å‘èµ·çš„é…ç½®å†™å…¥ï¼ˆåŒ…æ‹¬é¢‘é“ ID è¿ç§»å’Œ `/config set|unset`ï¼‰ã€‚
 
-机器人发送的消息默认被忽略。通过 `channels.slack.allowBots` 或 `channels.slack.channels.<id>.allowBots` 启用。
+æœºå™¨äººå‘é€çš„æ¶ˆæ¯é»˜è®¤è¢«å¿½ç•¥ã€‚é€šè¿‡ `channels.slack.allowBots` æˆ– `channels.slack.channels.<id>.allowBots` å¯ç”¨ã€‚
 
-反应通知模式：
+ååº”é€šçŸ¥æ¨¡å¼ï¼š
 
-- `off`：无反应事件。
-- `own`：机器人自身消息上的反应（默认）。
-- `all`：所有消息上的所有反应。
-- `allowlist`：`channels.slack.reactionAllowlist` 中的用户在所有消息上的反应（空列表禁用）。
+- `off`ï¼šæ— ååº”äº‹ä»¶ã€‚
+- `own`ï¼šæœºå™¨äººè‡ªèº«æ¶ˆæ¯ä¸Šçš„ååº”ï¼ˆé»˜è®¤ï¼‰ã€‚
+- `all`ï¼šæ‰€æœ‰æ¶ˆæ¯ä¸Šçš„æ‰€æœ‰ååº”ã€‚
+- `allowlist`ï¼š`channels.slack.reactionAllowlist` ä¸­çš„ç”¨æˆ·åœ¨æ‰€æœ‰æ¶ˆæ¯ä¸Šçš„ååº”ï¼ˆç©ºåˆ—è¡¨ç¦ç”¨ï¼‰ã€‚
 
-线程会话隔离：
+çº¿ç¨‹ä¼šè¯éš”ç¦»ï¼š
 
-- `channels.slack.thread.historyScope` 控制线程历史是按线程（`thread`，默认）还是跨频道共享（`channel`）。
-- `channels.slack.thread.inheritParent` 控制新线程会话是否继承父频道的记录（默认：false）。
+- `channels.slack.thread.historyScope` æŽ§åˆ¶çº¿ç¨‹åŽ†å²æ˜¯æŒ‰çº¿ç¨‹ï¼ˆ`thread`ï¼Œé»˜è®¤ï¼‰è¿˜æ˜¯è·¨é¢‘é“å…±äº«ï¼ˆ`channel`ï¼‰ã€‚
+- `channels.slack.thread.inheritParent` æŽ§åˆ¶æ–°çº¿ç¨‹ä¼šè¯æ˜¯å¦ç»§æ‰¿çˆ¶é¢‘é“çš„è®°å½•ï¼ˆé»˜è®¤ï¼šfalseï¼‰ã€‚
 
-Slack 动作组（控制 `slack` 工具动作）：
-| 动作组 | 默认 | 说明 |
+Slack åŠ¨ä½œç»„ï¼ˆæŽ§åˆ¶ `slack` å·¥å…·åŠ¨ä½œï¼‰ï¼š
+| åŠ¨ä½œç»„ | é»˜è®¤ | è¯´æ˜Ž |
 | --- | --- | --- |
-| reactions | 已启用 | 反应 + 列出反应 |
-| messages | 已启用 | 读取/发送/编辑/删除 |
-| pins | 已启用 | 固定/取消固定/列出 |
-| memberInfo | 已启用 | 成员信息 |
-| emojiList | 已启用 | 自定义表情列表 |
+| reactions | å·²å¯ç”¨ | ååº” + åˆ—å‡ºååº” |
+| messages | å·²å¯ç”¨ | è¯»å–/å‘é€/ç¼–è¾‘/åˆ é™¤ |
+| pins | å·²å¯ç”¨ | å›ºå®š/å–æ¶ˆå›ºå®š/åˆ—å‡º |
+| memberInfo | å·²å¯ç”¨ | æˆå‘˜ä¿¡æ¯ |
+| emojiList | å·²å¯ç”¨ | è‡ªå®šä¹‰è¡¨æƒ…åˆ—è¡¨ |
 
-### `channels.mattermost`（机器人 token）
+### `channels.mattermost`ï¼ˆæœºå™¨äºº tokenï¼‰
 
-Mattermost 作为插件提供，不包含在核心安装中。
-请先安装：`openclaw plugins install @openclaw/mattermost`（或从 git checkout 使用 `./extensions/mattermost`）。
+Mattermost ä½œä¸ºæ’ä»¶æä¾›ï¼Œä¸åŒ…å«åœ¨æ ¸å¿ƒå®‰è£…ä¸­ã€‚
+è¯·å…ˆå®‰è£…ï¼š` plugins install @/mattermost`ï¼ˆæˆ–ä»Ž git checkout ä½¿ç”¨ `./extensions/mattermost`ï¼‰ã€‚
 
-Mattermost 需要机器人 token 加上服务器的基础 URL：
+Mattermost éœ€è¦æœºå™¨äºº token åŠ ä¸ŠæœåŠ¡å™¨çš„åŸºç¡€ URLï¼š
 
 ```json5
 {
@@ -1339,26 +1339,26 @@ Mattermost 需要机器人 token 加上服务器的基础 URL：
 }
 ```
 
-OpenClaw 在账号已配置（机器人 token + 基础 URL）且已启用时启动 Mattermost。token + 基础 URL 从 `channels.mattermost.botToken` + `channels.mattermost.baseUrl` 或默认账号的 `MATTERMOST_BOT_TOKEN` + `MATTERMOST_URL` 解析（除非 `channels.mattermost.enabled` 为 `false`）。
+ åœ¨è´¦å·å·²é…ç½®ï¼ˆæœºå™¨äºº token + åŸºç¡€ URLï¼‰ä¸”å·²å¯ç”¨æ—¶å¯åŠ¨ Mattermostã€‚token + åŸºç¡€ URL ä»Ž `channels.mattermost.botToken` + `channels.mattermost.baseUrl` æˆ–é»˜è®¤è´¦å·çš„ `MATTERMOST_BOT_TOKEN` + `MATTERMOST_URL` è§£æžï¼ˆé™¤éž `channels.mattermost.enabled` ä¸º `false`ï¼‰ã€‚
 
-聊天模式：
+èŠå¤©æ¨¡å¼ï¼š
 
-- `oncall`（默认）：仅在被 @提及时响应频道消息。
-- `onmessage`：响应每条频道消息。
-- `onchar`：当消息以触发前缀开头时响应（`channels.mattermost.oncharPrefixes`，默认 `[">", "!"]`）。
+- `oncall`ï¼ˆé»˜è®¤ï¼‰ï¼šä»…åœ¨è¢« @æåŠæ—¶å“åº”é¢‘é“æ¶ˆæ¯ã€‚
+- `onmessage`ï¼šå“åº”æ¯æ¡é¢‘é“æ¶ˆæ¯ã€‚
+- `onchar`ï¼šå½“æ¶ˆæ¯ä»¥è§¦å‘å‰ç¼€å¼€å¤´æ—¶å“åº”ï¼ˆ`channels.mattermost.oncharPrefixes`ï¼Œé»˜è®¤ `[">", "!"]`ï¼‰ã€‚
 
-访问控制：
+è®¿é—®æŽ§åˆ¶ï¼š
 
-- 默认私聊：`channels.mattermost.dmPolicy="pairing"`（未知发送者收到配对码）。
-- 公开私聊：`channels.mattermost.dmPolicy="open"` 加上 `channels.mattermost.allowFrom=["*"]`。
-- 群组：`channels.mattermost.groupPolicy="allowlist"` 为默认值（提及门控）。使用 `channels.mattermost.groupAllowFrom` 限制发送者。
+- é»˜è®¤ç§èŠï¼š`channels.mattermost.dmPolicy="pairing"`ï¼ˆæœªçŸ¥å‘é€è€…æ”¶åˆ°é…å¯¹ç ï¼‰ã€‚
+- å…¬å¼€ç§èŠï¼š`channels.mattermost.dmPolicy="open"` åŠ ä¸Š `channels.mattermost.allowFrom=["*"]`ã€‚
+- ç¾¤ç»„ï¼š`channels.mattermost.groupPolicy="allowlist"` ä¸ºé»˜è®¤å€¼ï¼ˆæåŠé—¨æŽ§ï¼‰ã€‚ä½¿ç”¨ `channels.mattermost.groupAllowFrom` é™åˆ¶å‘é€è€…ã€‚
 
-多账号支持在 `channels.mattermost.accounts` 下（参见上方多账号部分）。环境变量仅适用于默认账号。
-指定投递目标时使用 `channel:<id>` 或 `user:<id>`（或 `@username`）；裸 id 被视为频道 id。
+å¤šè´¦å·æ”¯æŒåœ¨ `channels.mattermost.accounts` ä¸‹ï¼ˆå‚è§ä¸Šæ–¹å¤šè´¦å·éƒ¨åˆ†ï¼‰ã€‚çŽ¯å¢ƒå˜é‡ä»…é€‚ç”¨äºŽé»˜è®¤è´¦å·ã€‚
+æŒ‡å®šæŠ•é€’ç›®æ ‡æ—¶ä½¿ç”¨ `channel:<id>` æˆ– `user:<id>`ï¼ˆæˆ– `@username`ï¼‰ï¼›è£¸ id è¢«è§†ä¸ºé¢‘é“ idã€‚
 
-### `channels.signal`（signal-cli）
+### `channels.signal`ï¼ˆsignal-cliï¼‰
 
-Signal 反应可以发出系统事件（共享反应工具）：
+Signal ååº”å¯ä»¥å‘å‡ºç³»ç»Ÿäº‹ä»¶ï¼ˆå…±äº«ååº”å·¥å…·ï¼‰ï¼š
 
 ```json5
 {
@@ -1366,22 +1366,22 @@ Signal 反应可以发出系统事件（共享反应工具）：
     signal: {
       reactionNotifications: "own", // off | own | all | allowlist
       reactionAllowlist: ["+15551234567", "uuid:123e4567-e89b-12d3-a456-426614174000"],
-      historyLimit: 50, // 包含最近 N 条群消息作为上下文（0 禁用）
+      historyLimit: 50, // åŒ…å«æœ€è¿‘ N æ¡ç¾¤æ¶ˆæ¯ä½œä¸ºä¸Šä¸‹æ–‡ï¼ˆ0 ç¦ç”¨ï¼‰
     },
   },
 }
 ```
 
-反应通知模式：
+ååº”é€šçŸ¥æ¨¡å¼ï¼š
 
-- `off`：无反应事件。
-- `own`：机器人自身消息上的反应（默认）。
-- `all`：所有消息上的所有反应。
-- `allowlist`：`channels.signal.reactionAllowlist` 中的用户在所有消息上的反应（空列表禁用）。
+- `off`ï¼šæ— ååº”äº‹ä»¶ã€‚
+- `own`ï¼šæœºå™¨äººè‡ªèº«æ¶ˆæ¯ä¸Šçš„ååº”ï¼ˆé»˜è®¤ï¼‰ã€‚
+- `all`ï¼šæ‰€æœ‰æ¶ˆæ¯ä¸Šçš„æ‰€æœ‰ååº”ã€‚
+- `allowlist`ï¼š`channels.signal.reactionAllowlist` ä¸­çš„ç”¨æˆ·åœ¨æ‰€æœ‰æ¶ˆæ¯ä¸Šçš„ååº”ï¼ˆç©ºåˆ—è¡¨ç¦ç”¨ï¼‰ã€‚
 
-### `channels.imessage`（imsg CLI）
+### `channels.imessage`ï¼ˆimsg CLIï¼‰
 
-OpenClaw 会生成 `imsg rpc`（通过 stdio 的 JSON-RPC）。无需守护进程或端口。
+ ä¼šç”Ÿæˆ `imsg rpc`ï¼ˆé€šè¿‡ stdio çš„ JSON-RPCï¼‰ã€‚æ— éœ€å®ˆæŠ¤è¿›ç¨‹æˆ–ç«¯å£ã€‚
 
 ```json5
 {
@@ -1390,10 +1390,10 @@ OpenClaw 会生成 `imsg rpc`（通过 stdio 的 JSON-RPC）。无需守护进�
       enabled: true,
       cliPath: "imsg",
       dbPath: "~/Library/Messages/chat.db",
-      remoteHost: "user@gateway-host", // 使用 SSH 包装器时通过 SCP 获取远程附件
+      remoteHost: "user@gateway-host", // ä½¿ç”¨ SSH åŒ…è£…å™¨æ—¶é€šè¿‡ SCP èŽ·å–è¿œç¨‹é™„ä»¶
       dmPolicy: "pairing", // pairing | allowlist | open | disabled
       allowFrom: ["+15555550123", "user@example.com", "chat_id:123"],
-      historyLimit: 50, // 包含最近 N 条群消息作为上下文（0 禁用）
+      historyLimit: 50, // åŒ…å«æœ€è¿‘ N æ¡ç¾¤æ¶ˆæ¯ä½œä¸ºä¸Šä¸‹æ–‡ï¼ˆ0 ç¦ç”¨ï¼‰
       includeAttachments: false,
       mediaMaxMb: 16,
       service: "auto",
@@ -1403,17 +1403,17 @@ OpenClaw 会生成 `imsg rpc`（通过 stdio 的 JSON-RPC）。无需守护进�
 }
 ```
 
-多账号支持在 `channels.imessage.accounts` 下（参见上方多账号部分）。
+å¤šè´¦å·æ”¯æŒåœ¨ `channels.imessage.accounts` ä¸‹ï¼ˆå‚è§ä¸Šæ–¹å¤šè´¦å·éƒ¨åˆ†ï¼‰ã€‚
 
-说明：
+è¯´æ˜Žï¼š
 
-- 需要对消息数据库的完全磁盘访问权限。
-- 首次发送时会提示请求消息自动化权限。
-- 建议使用 `chat_id:<id>` 目标。使用 `imsg chats --limit 20` 列出聊天。
-- `channels.imessage.cliPath` 可以指向包装脚本（例如 `ssh` 到另一台运行 `imsg rpc` 的 Mac）；使用 SSH 密钥避免密码提示。
-- 对于远程 SSH 包装器，设置 `channels.imessage.remoteHost` 以便在启用 `includeAttachments` 时通过 SCP 获取附件。
+- éœ€è¦å¯¹æ¶ˆæ¯æ•°æ®åº“çš„å®Œå…¨ç£ç›˜è®¿é—®æƒé™ã€‚
+- é¦–æ¬¡å‘é€æ—¶ä¼šæç¤ºè¯·æ±‚æ¶ˆæ¯è‡ªåŠ¨åŒ–æƒé™ã€‚
+- å»ºè®®ä½¿ç”¨ `chat_id:<id>` ç›®æ ‡ã€‚ä½¿ç”¨ `imsg chats --limit 20` åˆ—å‡ºèŠå¤©ã€‚
+- `channels.imessage.cliPath` å¯ä»¥æŒ‡å‘åŒ…è£…è„šæœ¬ï¼ˆä¾‹å¦‚ `ssh` åˆ°å¦ä¸€å°è¿è¡Œ `imsg rpc` çš„ Macï¼‰ï¼›ä½¿ç”¨ SSH å¯†é’¥é¿å…å¯†ç æç¤ºã€‚
+- å¯¹äºŽè¿œç¨‹ SSH åŒ…è£…å™¨ï¼Œè®¾ç½® `channels.imessage.remoteHost` ä»¥ä¾¿åœ¨å¯ç”¨ `includeAttachments` æ—¶é€šè¿‡ SCP èŽ·å–é™„ä»¶ã€‚
 
-示例包装器：
+ç¤ºä¾‹åŒ…è£…å™¨ï¼š
 
 ```bash
 #!/usr/bin/env bash
@@ -1422,33 +1422,33 @@ exec ssh -T gateway-host imsg "$@"
 
 ### `agents.defaults.workspace`
 
-设置智能体用于文件操作的**单一全局工作区目录**。
+è®¾ç½®æ™ºèƒ½ä½“ç”¨äºŽæ–‡ä»¶æ“ä½œçš„**å•ä¸€å…¨å±€å·¥ä½œåŒºç›®å½•**ã€‚
 
-默认：`~/.openclaw/workspace`。
+é»˜è®¤ï¼š`~/./workspace`ã€‚
 
 ```json5
 {
-  agents: { defaults: { workspace: "~/.openclaw/workspace" } },
+  agents: { defaults: { workspace: "~/./workspace" } },
 }
 ```
 
-如果启用了 `agents.defaults.sandbox`，非主会话可以在 `agents.defaults.sandbox.workspaceRoot` 下使用各自的每范围工作区来覆盖此设置。
+å¦‚æžœå¯ç”¨äº† `agents.defaults.sandbox`ï¼Œéžä¸»ä¼šè¯å¯ä»¥åœ¨ `agents.defaults.sandbox.workspaceRoot` ä¸‹ä½¿ç”¨å„è‡ªçš„æ¯èŒƒå›´å·¥ä½œåŒºæ¥è¦†ç›–æ­¤è®¾ç½®ã€‚
 
 ### `agents.defaults.repoRoot`
 
-在系统提示的 Runtime 行中显示的可选仓库根目录。如果未设置，OpenClaw 会从工作区（和当前工作目录）向上查找 `.git` 目录进行检测。路径必须存在才能使用。
+åœ¨ç³»ç»Ÿæç¤ºçš„ Runtime è¡Œä¸­æ˜¾ç¤ºçš„å¯é€‰ä»“åº“æ ¹ç›®å½•ã€‚å¦‚æžœæœªè®¾ç½®ï¼Œ ä¼šä»Žå·¥ä½œåŒºï¼ˆå’Œå½“å‰å·¥ä½œç›®å½•ï¼‰å‘ä¸ŠæŸ¥æ‰¾ `.git` ç›®å½•è¿›è¡Œæ£€æµ‹ã€‚è·¯å¾„å¿…é¡»å­˜åœ¨æ‰èƒ½ä½¿ç”¨ã€‚
 
 ```json5
 {
-  agents: { defaults: { repoRoot: "~/Projects/openclaw" } },
+  agents: { defaults: { repoRoot: "~/Projects/" } },
 }
 ```
 
 ### `agents.defaults.skipBootstrap`
 
-禁用自动创建工作区引导文件（`AGENTS.md`、`SOUL.md`、`TOOLS.md`、`IDENTITY.md`、`USER.md` 和 `BOOTSTRAP.md`）。
+ç¦ç”¨è‡ªåŠ¨åˆ›å»ºå·¥ä½œåŒºå¼•å¯¼æ–‡ä»¶ï¼ˆ`AGENTS.md`ã€`SOUL.md`ã€`TOOLS.md`ã€`IDENTITY.md`ã€`USER.md` å’Œ `BOOTSTRAP.md`ï¼‰ã€‚
 
-适用于工作区文件来自仓库的预置部署。
+é€‚ç”¨äºŽå·¥ä½œåŒºæ–‡ä»¶æ¥è‡ªä»“åº“çš„é¢„ç½®éƒ¨ç½²ã€‚
 
 ```json5
 {
@@ -1458,9 +1458,9 @@ exec ssh -T gateway-host imsg "$@"
 
 ### `agents.defaults.bootstrapMaxChars`
 
-注入系统提示前每个工作区引导文件截断前的最大字符数。默认：`20000`。
+æ³¨å…¥ç³»ç»Ÿæç¤ºå‰æ¯ä¸ªå·¥ä½œåŒºå¼•å¯¼æ–‡ä»¶æˆªæ–­å‰çš„æœ€å¤§å­—ç¬¦æ•°ã€‚é»˜è®¤ï¼š`20000`ã€‚
 
-当文件超过此限制时，OpenClaw 会记录警告并注入带标记的头尾截断内容。
+å½“æ–‡ä»¶è¶…è¿‡æ­¤é™åˆ¶æ—¶ï¼Œ ä¼šè®°å½•è­¦å‘Šå¹¶æ³¨å…¥å¸¦æ ‡è®°çš„å¤´å°¾æˆªæ–­å†…å®¹ã€‚
 
 ```json5
 {
@@ -1470,7 +1470,7 @@ exec ssh -T gateway-host imsg "$@"
 
 ### `agents.defaults.userTimezone`
 
-设置用户时区用于**系统提示上下文**（不用于消息信封中的时间戳）。如果未设置，OpenClaw 在运行时使用主机时区。
+è®¾ç½®ç”¨æˆ·æ—¶åŒºç”¨äºŽ**ç³»ç»Ÿæç¤ºä¸Šä¸‹æ–‡**ï¼ˆä¸ç”¨äºŽæ¶ˆæ¯ä¿¡å°ä¸­çš„æ—¶é—´æˆ³ï¼‰ã€‚å¦‚æžœæœªè®¾ç½®ï¼Œ åœ¨è¿è¡Œæ—¶ä½¿ç”¨ä¸»æœºæ—¶åŒºã€‚
 
 ```json5
 {
@@ -1480,8 +1480,8 @@ exec ssh -T gateway-host imsg "$@"
 
 ### `agents.defaults.timeFormat`
 
-控制系统提示中"当前日期和时间"部分显示的**时间格式**。
-默认：`auto`（操作系统偏好）。
+æŽ§åˆ¶ç³»ç»Ÿæç¤ºä¸­"å½“å‰æ—¥æœŸå’Œæ—¶é—´"éƒ¨åˆ†æ˜¾ç¤ºçš„**æ—¶é—´æ ¼å¼**ã€‚
+é»˜è®¤ï¼š`auto`ï¼ˆæ“ä½œç³»ç»Ÿåå¥½ï¼‰ã€‚
 
 ```json5
 {
@@ -1491,39 +1491,39 @@ exec ssh -T gateway-host imsg "$@"
 
 ### `messages`
 
-控制入站/出站前缀和可选的确认反应。
-参见[消息](/concepts/messages)了解排队、会话和流式上下文。
+æŽ§åˆ¶å…¥ç«™/å‡ºç«™å‰ç¼€å’Œå¯é€‰çš„ç¡®è®¤ååº”ã€‚
+å‚è§[æ¶ˆæ¯](/concepts/messages)äº†è§£æŽ’é˜Ÿã€ä¼šè¯å’Œæµå¼ä¸Šä¸‹æ–‡ã€‚
 
 ```json5
 {
   messages: {
-    responsePrefix: "🦞", // 或 "auto"
-    ackReaction: "👀",
+    responsePrefix: "ðŸ¦ž", // æˆ– "auto"
+    ackReaction: "ðŸ‘€",
     ackReactionScope: "group-mentions",
     removeAckAfterReply: false,
   },
 }
 ```
 
-`responsePrefix` 应用于跨渠道的**所有出站回复**（工具摘要、分块流式传输、最终回复），除非已存在。
+`responsePrefix` åº”ç”¨äºŽè·¨æ¸ é“çš„**æ‰€æœ‰å‡ºç«™å›žå¤**ï¼ˆå·¥å…·æ‘˜è¦ã€åˆ†å—æµå¼ä¼ è¾“ã€æœ€ç»ˆå›žå¤ï¼‰ï¼Œé™¤éžå·²å­˜åœ¨ã€‚
 
-如果未设置 `messages.responsePrefix`，默认不应用前缀。WhatsApp 自聊天回复是例外：它们在设置时默认为 `[{identity.name}]`，否则为 `[openclaw]`，以保持同一手机上的对话可读性。
-设为 `"auto"` 可为路由的智能体推导 `[{identity.name}]`（当设置时）。
+å¦‚æžœæœªè®¾ç½® `messages.responsePrefix`ï¼Œé»˜è®¤ä¸åº”ç”¨å‰ç¼€ã€‚WhatsApp è‡ªèŠå¤©å›žå¤æ˜¯ä¾‹å¤–ï¼šå®ƒä»¬åœ¨è®¾ç½®æ—¶é»˜è®¤ä¸º `[{identity.name}]`ï¼Œå¦åˆ™ä¸º `[]`ï¼Œä»¥ä¿æŒåŒä¸€æ‰‹æœºä¸Šçš„å¯¹è¯å¯è¯»æ€§ã€‚
+è®¾ä¸º `"auto"` å¯ä¸ºè·¯ç”±çš„æ™ºèƒ½ä½“æŽ¨å¯¼ `[{identity.name}]`ï¼ˆå½“è®¾ç½®æ—¶ï¼‰ã€‚
 
-#### 模板变量
+#### æ¨¡æ¿å˜é‡
 
-`responsePrefix` 字符串可以包含动态解析的模板变量：
+`responsePrefix` å­—ç¬¦ä¸²å¯ä»¥åŒ…å«åŠ¨æ€è§£æžçš„æ¨¡æ¿å˜é‡ï¼š
 
-| 变量              | 描述           | 示例                        |
+| å˜é‡              | æè¿°           | ç¤ºä¾‹                        |
 | ----------------- | -------------- | --------------------------- |
-| `{model}`         | 短模型名称     | `claude-opus-4-5`、`gpt-4o` |
-| `{modelFull}`     | 完整模型标识符 | `anthropic/claude-opus-4-5` |
-| `{provider}`      | 提供商名称     | `anthropic`、`openai`       |
-| `{thinkingLevel}` | 当前思考级别   | `high`、`low`、`off`        |
-| `{identity.name}` | 智能体身份名称 | （与 `"auto"` 模式相同）    |
+| `{model}`         | çŸ­æ¨¡åž‹åç§°     | `claude-opus-4-5`ã€`gpt-4o` |
+| `{modelFull}`     | å®Œæ•´æ¨¡åž‹æ ‡è¯†ç¬¦ | `anthropic/claude-opus-4-5` |
+| `{provider}`      | æä¾›å•†åç§°     | `anthropic`ã€`openai`       |
+| `{thinkingLevel}` | å½“å‰æ€è€ƒçº§åˆ«   | `high`ã€`low`ã€`off`        |
+| `{identity.name}` | æ™ºèƒ½ä½“èº«ä»½åç§° | ï¼ˆä¸Ž `"auto"` æ¨¡å¼ç›¸åŒï¼‰    |
 
-变量不区分大小写（`{MODEL}` = `{model}`）。`{think}` 是 `{thinkingLevel}` 的别名。
-未解析的变量保持为字面文本。
+å˜é‡ä¸åŒºåˆ†å¤§å°å†™ï¼ˆ`{MODEL}` = `{model}`ï¼‰ã€‚`{think}` æ˜¯ `{thinkingLevel}` çš„åˆ«åã€‚
+æœªè§£æžçš„å˜é‡ä¿æŒä¸ºå­—é¢æ–‡æœ¬ã€‚
 
 ```json5
 {
@@ -1533,31 +1533,31 @@ exec ssh -T gateway-host imsg "$@"
 }
 ```
 
-输出示例：`[claude-opus-4-5 | think:high] Here's my response...`
+è¾“å‡ºç¤ºä¾‹ï¼š`[claude-opus-4-5 | think:high] Here's my response...`
 
-WhatsApp 入站前缀通过 `channels.whatsapp.messagePrefix` 配置（已弃用：`messages.messagePrefix`）。默认保持**不变**：当 `channels.whatsapp.allowFrom` 为空时为 `"[openclaw]"`，否则为 `""`（无前缀）。使用 `"[openclaw]"` 时，如果路由的智能体设置了 `identity.name`，OpenClaw 会改用 `[{identity.name}]`。
+WhatsApp å…¥ç«™å‰ç¼€é€šè¿‡ `channels.whatsapp.messagePrefix` é…ç½®ï¼ˆå·²å¼ƒç”¨ï¼š`messages.messagePrefix`ï¼‰ã€‚é»˜è®¤ä¿æŒ**ä¸å˜**ï¼šå½“ `channels.whatsapp.allowFrom` ä¸ºç©ºæ—¶ä¸º `"[]"`ï¼Œå¦åˆ™ä¸º `""`ï¼ˆæ— å‰ç¼€ï¼‰ã€‚ä½¿ç”¨ `"[]"` æ—¶ï¼Œå¦‚æžœè·¯ç”±çš„æ™ºèƒ½ä½“è®¾ç½®äº† `identity.name`ï¼Œ ä¼šæ”¹ç”¨ `[{identity.name}]`ã€‚
 
-`ackReaction` 在支持反应的渠道（Slack/Discord/Telegram/Google Chat）上发送尽力而为的表情反应来确认入站消息。设置时默认为活跃智能体的 `identity.emoji`，否则为 `"👀"`。设为 `""` 禁用。
+`ackReaction` åœ¨æ”¯æŒååº”çš„æ¸ é“ï¼ˆSlack/Discord/Telegram/Google Chatï¼‰ä¸Šå‘é€å°½åŠ›è€Œä¸ºçš„è¡¨æƒ…ååº”æ¥ç¡®è®¤å…¥ç«™æ¶ˆæ¯ã€‚è®¾ç½®æ—¶é»˜è®¤ä¸ºæ´»è·ƒæ™ºèƒ½ä½“çš„ `identity.emoji`ï¼Œå¦åˆ™ä¸º `"ðŸ‘€"`ã€‚è®¾ä¸º `""` ç¦ç”¨ã€‚
 
-`ackReactionScope` 控制反应触发时机：
+`ackReactionScope` æŽ§åˆ¶ååº”è§¦å‘æ—¶æœºï¼š
 
-- `group-mentions`（默认）：仅在群组/房间要求提及**且**机器人被提及时
-- `group-all`：所有群组/房间消息
-- `direct`：仅私聊消息
-- `all`：所有消息
+- `group-mentions`ï¼ˆé»˜è®¤ï¼‰ï¼šä»…åœ¨ç¾¤ç»„/æˆ¿é—´è¦æ±‚æåŠ**ä¸”**æœºå™¨äººè¢«æåŠæ—¶
+- `group-all`ï¼šæ‰€æœ‰ç¾¤ç»„/æˆ¿é—´æ¶ˆæ¯
+- `direct`ï¼šä»…ç§èŠæ¶ˆæ¯
+- `all`ï¼šæ‰€æœ‰æ¶ˆæ¯
 
-`removeAckAfterReply` 在发送回复后移除机器人的确认反应（仅 Slack/Discord/Telegram/Google Chat）。默认：`false`。
+`removeAckAfterReply` åœ¨å‘é€å›žå¤åŽç§»é™¤æœºå™¨äººçš„ç¡®è®¤ååº”ï¼ˆä»… Slack/Discord/Telegram/Google Chatï¼‰ã€‚é»˜è®¤ï¼š`false`ã€‚
 
 #### `messages.tts`
 
-为出站回复启用文字转语音。开启后，OpenClaw 使用 ElevenLabs 或 OpenAI 生成音频并附加到回复中。Telegram 使用 Opus 语音消息；其他渠道发送 MP3 音频。
+ä¸ºå‡ºç«™å›žå¤å¯ç”¨æ–‡å­—è½¬è¯­éŸ³ã€‚å¼€å¯åŽï¼Œ ä½¿ç”¨ ElevenLabs æˆ– OpenAI ç”ŸæˆéŸ³é¢‘å¹¶é™„åŠ åˆ°å›žå¤ä¸­ã€‚Telegram ä½¿ç”¨ Opus è¯­éŸ³æ¶ˆæ¯ï¼›å…¶ä»–æ¸ é“å‘é€ MP3 éŸ³é¢‘ã€‚
 
 ```json5
 {
   messages: {
     tts: {
       auto: "always", // off | always | inbound | tagged
-      mode: "final", // final | all（包含工具/块回复）
+      mode: "final", // final | allï¼ˆåŒ…å«å·¥å…·/å—å›žå¤ï¼‰
       provider: "elevenlabs",
       summaryModel: "openai/gpt-4.1-mini",
       modelOverrides: {
@@ -1565,7 +1565,7 @@ WhatsApp 入站前缀通过 `channels.whatsapp.messagePrefix` 配置（已弃用
       },
       maxTextLength: 4000,
       timeoutMs: 30000,
-      prefsPath: "~/.openclaw/settings/tts.json",
+      prefsPath: "~/./settings/tts.json",
       elevenlabs: {
         apiKey: "elevenlabs_api_key",
         baseUrl: "https://api.elevenlabs.io",
@@ -1592,27 +1592,27 @@ WhatsApp 入站前缀通过 `channels.whatsapp.messagePrefix` 配置（已弃用
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- `messages.tts.auto` 控制自动 TTS（`off`、`always`、`inbound`、`tagged`）。
-- `/tts off|always|inbound|tagged` 设置每会话的自动模式（覆盖配置）。
-- `messages.tts.enabled` 为旧版；doctor 会将其迁移为 `messages.tts.auto`。
-- `prefsPath` 存储本地覆盖（提供商/限制/摘要）。
-- `maxTextLength` 是 TTS 输入的硬上限；摘要会被截断以适应。
-- `summaryModel` 覆盖自动摘要的 `agents.defaults.model.primary`。
-  - 接受 `provider/model` 或来自 `agents.defaults.models` 的别名。
-- `modelOverrides` 启用模型驱动的覆盖如 `[[tts:...]]` 标签（默认开启）。
-- `/tts limit` 和 `/tts summary` 控制每用户的摘要设置。
-- `apiKey` 值回退到 `ELEVENLABS_API_KEY`/`XI_API_KEY` 和 `OPENAI_API_KEY`。
-- `elevenlabs.baseUrl` 覆盖 ElevenLabs API 基础 URL。
-- `elevenlabs.voiceSettings` 支持 `stability`/`similarityBoost`/`style`（0..1）、
-  `useSpeakerBoost` 和 `speed`（0.5..2.0）。
+- `messages.tts.auto` æŽ§åˆ¶è‡ªåŠ¨ TTSï¼ˆ`off`ã€`always`ã€`inbound`ã€`tagged`ï¼‰ã€‚
+- `/tts off|always|inbound|tagged` è®¾ç½®æ¯ä¼šè¯çš„è‡ªåŠ¨æ¨¡å¼ï¼ˆè¦†ç›–é…ç½®ï¼‰ã€‚
+- `messages.tts.enabled` ä¸ºæ—§ç‰ˆï¼›doctor ä¼šå°†å…¶è¿ç§»ä¸º `messages.tts.auto`ã€‚
+- `prefsPath` å­˜å‚¨æœ¬åœ°è¦†ç›–ï¼ˆæä¾›å•†/é™åˆ¶/æ‘˜è¦ï¼‰ã€‚
+- `maxTextLength` æ˜¯ TTS è¾“å…¥çš„ç¡¬ä¸Šé™ï¼›æ‘˜è¦ä¼šè¢«æˆªæ–­ä»¥é€‚åº”ã€‚
+- `summaryModel` è¦†ç›–è‡ªåŠ¨æ‘˜è¦çš„ `agents.defaults.model.primary`ã€‚
+  - æŽ¥å— `provider/model` æˆ–æ¥è‡ª `agents.defaults.models` çš„åˆ«åã€‚
+- `modelOverrides` å¯ç”¨æ¨¡åž‹é©±åŠ¨çš„è¦†ç›–å¦‚ `[[tts:...]]` æ ‡ç­¾ï¼ˆé»˜è®¤å¼€å¯ï¼‰ã€‚
+- `/tts limit` å’Œ `/tts summary` æŽ§åˆ¶æ¯ç”¨æˆ·çš„æ‘˜è¦è®¾ç½®ã€‚
+- `apiKey` å€¼å›žé€€åˆ° `ELEVENLABS_API_KEY`/`XI_API_KEY` å’Œ `OPENAI_API_KEY`ã€‚
+- `elevenlabs.baseUrl` è¦†ç›– ElevenLabs API åŸºç¡€ URLã€‚
+- `elevenlabs.voiceSettings` æ”¯æŒ `stability`/`similarityBoost`/`style`ï¼ˆ0..1ï¼‰ã€
+  `useSpeakerBoost` å’Œ `speed`ï¼ˆ0.5..2.0ï¼‰ã€‚
 
 ### `talk`
 
-Talk 模式（macOS/iOS/Android）的默认值。语音 ID 在未设置时回退到 `ELEVENLABS_VOICE_ID` 或 `SAG_VOICE_ID`。
-`apiKey` 在未设置时回退到 `ELEVENLABS_API_KEY`（或 Gateway 网关的 shell 配置文件）。
-`voiceAliases` 允许 Talk 指令使用友好名称（例如 `"voice":"Clawd"`）。
+Talk æ¨¡å¼ï¼ˆmacOS/iOS/Androidï¼‰çš„é»˜è®¤å€¼ã€‚è¯­éŸ³ ID åœ¨æœªè®¾ç½®æ—¶å›žé€€åˆ° `ELEVENLABS_VOICE_ID` æˆ– `SAG_VOICE_ID`ã€‚
+`apiKey` åœ¨æœªè®¾ç½®æ—¶å›žé€€åˆ° `ELEVENLABS_API_KEY`ï¼ˆæˆ– Gateway ç½‘å…³çš„ shell é…ç½®æ–‡ä»¶ï¼‰ã€‚
+`voiceAliases` å…è®¸ Talk æŒ‡ä»¤ä½¿ç”¨å‹å¥½åç§°ï¼ˆä¾‹å¦‚ `"voice":"Clawd"`ï¼‰ã€‚
 
 ```json5
 {
@@ -1632,18 +1632,18 @@ Talk 模式（macOS/iOS/Android）的默认值。语音 ID 在未设置时回退
 
 ### `agents.defaults`
 
-控制内置智能体运行时（模型/思考/详细/超时）。
-`agents.defaults.models` 定义已配置的模型目录（也充当 `/model` 的白名单）。
-`agents.defaults.model.primary` 设置默认模型；`agents.defaults.model.fallbacks` 是全局故障转移。
-`agents.defaults.imageModel` 是可选的，**仅在主模型缺少图像输入时使用**。
-每个 `agents.defaults.models` 条目可以包含：
+æŽ§åˆ¶å†…ç½®æ™ºèƒ½ä½“è¿è¡Œæ—¶ï¼ˆæ¨¡åž‹/æ€è€ƒ/è¯¦ç»†/è¶…æ—¶ï¼‰ã€‚
+`agents.defaults.models` å®šä¹‰å·²é…ç½®çš„æ¨¡åž‹ç›®å½•ï¼ˆä¹Ÿå……å½“ `/model` çš„ç™½åå•ï¼‰ã€‚
+`agents.defaults.model.primary` è®¾ç½®é»˜è®¤æ¨¡åž‹ï¼›`agents.defaults.model.fallbacks` æ˜¯å…¨å±€æ•…éšœè½¬ç§»ã€‚
+`agents.defaults.imageModel` æ˜¯å¯é€‰çš„ï¼Œ**ä»…åœ¨ä¸»æ¨¡åž‹ç¼ºå°‘å›¾åƒè¾“å…¥æ—¶ä½¿ç”¨**ã€‚
+æ¯ä¸ª `agents.defaults.models` æ¡ç›®å¯ä»¥åŒ…å«ï¼š
 
-- `alias`（可选的模型快捷方式，例如 `/opus`）。
-- `params`（可选的提供商特定 API 参数，传递给模型请求）。
+- `alias`ï¼ˆå¯é€‰çš„æ¨¡åž‹å¿«æ·æ–¹å¼ï¼Œä¾‹å¦‚ `/opus`ï¼‰ã€‚
+- `params`ï¼ˆå¯é€‰çš„æä¾›å•†ç‰¹å®š API å‚æ•°ï¼Œä¼ é€’ç»™æ¨¡åž‹è¯·æ±‚ï¼‰ã€‚
 
-`params` 也应用于流式运行（内置智能体 + 压缩）。目前支持的键：`temperature`、`maxTokens`。这些与调用时选项合并；调用方提供的值优先。`temperature` 是高级旋钮——除非你了解模型的默认值且需要更改，否则不要设置。
+`params` ä¹Ÿåº”ç”¨äºŽæµå¼è¿è¡Œï¼ˆå†…ç½®æ™ºèƒ½ä½“ + åŽ‹ç¼©ï¼‰ã€‚ç›®å‰æ”¯æŒçš„é”®ï¼š`temperature`ã€`maxTokens`ã€‚è¿™äº›ä¸Žè°ƒç”¨æ—¶é€‰é¡¹åˆå¹¶ï¼›è°ƒç”¨æ–¹æä¾›çš„å€¼ä¼˜å…ˆã€‚`temperature` æ˜¯é«˜çº§æ—‹é’®â€”â€”é™¤éžä½ äº†è§£æ¨¡åž‹çš„é»˜è®¤å€¼ä¸”éœ€è¦æ›´æ”¹ï¼Œå¦åˆ™ä¸è¦è®¾ç½®ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -1662,12 +1662,12 @@ Talk 模式（macOS/iOS/Android）的默认值。语音 ID 在未设置时回退
 }
 ```
 
-Z.AI GLM-4.x 模型会自动启用思考模式，除非你：
+Z.AI GLM-4.x æ¨¡åž‹ä¼šè‡ªåŠ¨å¯ç”¨æ€è€ƒæ¨¡å¼ï¼Œé™¤éžä½ ï¼š
 
-- 设置 `--thinking off`，或
-- 自行定义 `agents.defaults.models["zai/<model>"].params.thinking`。
+- è®¾ç½® `--thinking off`ï¼Œæˆ–
+- è‡ªè¡Œå®šä¹‰ `agents.defaults.models["zai/<model>"].params.thinking`ã€‚
 
-OpenClaw 还内置了一些别名快捷方式。默认值仅在模型已存在于 `agents.defaults.models` 中时才应用：
+ è¿˜å†…ç½®äº†ä¸€äº›åˆ«åå¿«æ·æ–¹å¼ã€‚é»˜è®¤å€¼ä»…åœ¨æ¨¡åž‹å·²å­˜åœ¨äºŽ `agents.defaults.models` ä¸­æ—¶æ‰åº”ç”¨ï¼š
 
 - `opus` -> `anthropic/claude-opus-4-5`
 - `sonnet` -> `anthropic/claude-sonnet-4-5`
@@ -1676,9 +1676,9 @@ OpenClaw 还内置了一些别名快捷方式。默认值仅在模型已存在�
 - `gemini` -> `google/gemini-3-pro-preview`
 - `gemini-flash` -> `google/gemini-3-flash-preview`
 
-如果你配置了相同的别名（不区分大小写），你的值优先（默认值不会覆盖）。
+å¦‚æžœä½ é…ç½®äº†ç›¸åŒçš„åˆ«åï¼ˆä¸åŒºåˆ†å¤§å°å†™ï¼‰ï¼Œä½ çš„å€¼ä¼˜å…ˆï¼ˆé»˜è®¤å€¼ä¸ä¼šè¦†ç›–ï¼‰ã€‚
 
-示例：Opus 4.5 主模型，MiniMax M2.1 回退（托管 MiniMax）：
+ç¤ºä¾‹ï¼šOpus 4.5 ä¸»æ¨¡åž‹ï¼ŒMiniMax M2.1 å›žé€€ï¼ˆæ‰˜ç®¡ MiniMaxï¼‰ï¼š
 
 ```json5
 {
@@ -1697,19 +1697,19 @@ OpenClaw 还内置了一些别名快捷方式。默认值仅在模型已存在�
 }
 ```
 
-MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.providers.minimax`。
+MiniMax è®¤è¯ï¼šè®¾ç½® `MINIMAX_API_KEY`ï¼ˆçŽ¯å¢ƒå˜é‡ï¼‰æˆ–é…ç½® `models.providers.minimax`ã€‚
 
-#### `agents.defaults.cliBackends`（CLI 回退）
+#### `agents.defaults.cliBackends`ï¼ˆCLI å›žé€€ï¼‰
 
-可选的 CLI 后端用于纯文本回退运行（无工具调用）。当 API 提供商失败时可作为备用路径。当你配置了接受文件路径的 `imageArg` 时支持图像透传。
+å¯é€‰çš„ CLI åŽç«¯ç”¨äºŽçº¯æ–‡æœ¬å›žé€€è¿è¡Œï¼ˆæ— å·¥å…·è°ƒç”¨ï¼‰ã€‚å½“ API æä¾›å•†å¤±è´¥æ—¶å¯ä½œä¸ºå¤‡ç”¨è·¯å¾„ã€‚å½“ä½ é…ç½®äº†æŽ¥å—æ–‡ä»¶è·¯å¾„çš„ `imageArg` æ—¶æ”¯æŒå›¾åƒé€ä¼ ã€‚
 
-说明：
+è¯´æ˜Žï¼š
 
-- CLI 后端**以文本为主**；工具始终禁用。
-- 设置 `sessionArg` 时支持会话；会话 id 按后端持久化。
-- 对于 `claude-cli`，默认值已内置。如果 PATH 不完整（launchd/systemd），请覆盖命令路径。
+- CLI åŽç«¯**ä»¥æ–‡æœ¬ä¸ºä¸»**ï¼›å·¥å…·å§‹ç»ˆç¦ç”¨ã€‚
+- è®¾ç½® `sessionArg` æ—¶æ”¯æŒä¼šè¯ï¼›ä¼šè¯ id æŒ‰åŽç«¯æŒä¹…åŒ–ã€‚
+- å¯¹äºŽ `claude-cli`ï¼Œé»˜è®¤å€¼å·²å†…ç½®ã€‚å¦‚æžœ PATH ä¸å®Œæ•´ï¼ˆlaunchd/systemdï¼‰ï¼Œè¯·è¦†ç›–å‘½ä»¤è·¯å¾„ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -1792,40 +1792,40 @@ MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.pro
 }
 ```
 
-#### `agents.defaults.contextPruning`（工具结果裁剪）
+#### `agents.defaults.contextPruning`ï¼ˆå·¥å…·ç»“æžœè£å‰ªï¼‰
 
-`agents.defaults.contextPruning` 在请求发送到 LLM 之前裁剪内存上下文中的**旧工具结果**。
-它**不会**修改磁盘上的会话历史（`*.jsonl` 保持完整）。
+`agents.defaults.contextPruning` åœ¨è¯·æ±‚å‘é€åˆ° LLM ä¹‹å‰è£å‰ªå†…å­˜ä¸Šä¸‹æ–‡ä¸­çš„**æ—§å·¥å…·ç»“æžœ**ã€‚
+å®ƒ**ä¸ä¼š**ä¿®æ”¹ç£ç›˜ä¸Šçš„ä¼šè¯åŽ†å²ï¼ˆ`*.jsonl` ä¿æŒå®Œæ•´ï¼‰ã€‚
 
-这旨在减少随时间积累大量工具输出的智能体的 token 消耗。
+è¿™æ—¨åœ¨å‡å°‘éšæ—¶é—´ç§¯ç´¯å¤§é‡å·¥å…·è¾“å‡ºçš„æ™ºèƒ½ä½“çš„ token æ¶ˆè€—ã€‚
 
-概述：
+æ¦‚è¿°ï¼š
 
-- 不触及用户/助手消息。
-- 保护最后 `keepLastAssistants` 条助手消息（该点之后的工具结果不会被裁剪）。
-- 保护引导前缀（第一条用户消息之前的内容不会被裁剪）。
-- 模式：
-  - `adaptive`：当估计的上下文比率超过 `softTrimRatio` 时，软裁剪过大的工具结果（保留头尾）。
-    然后当估计的上下文比率超过 `hardClearRatio` **且**有足够的可裁剪工具结果量（`minPrunableToolChars`）时，硬清除最旧的符合条件的工具结果。
-  - `aggressive`：始终用 `hardClear.placeholder` 替换截止点之前符合条件的工具结果（不做比率检查）。
+- ä¸è§¦åŠç”¨æˆ·/åŠ©æ‰‹æ¶ˆæ¯ã€‚
+- ä¿æŠ¤æœ€åŽ `keepLastAssistants` æ¡åŠ©æ‰‹æ¶ˆæ¯ï¼ˆè¯¥ç‚¹ä¹‹åŽçš„å·¥å…·ç»“æžœä¸ä¼šè¢«è£å‰ªï¼‰ã€‚
+- ä¿æŠ¤å¼•å¯¼å‰ç¼€ï¼ˆç¬¬ä¸€æ¡ç”¨æˆ·æ¶ˆæ¯ä¹‹å‰çš„å†…å®¹ä¸ä¼šè¢«è£å‰ªï¼‰ã€‚
+- æ¨¡å¼ï¼š
+  - `adaptive`ï¼šå½“ä¼°è®¡çš„ä¸Šä¸‹æ–‡æ¯”çŽ‡è¶…è¿‡ `softTrimRatio` æ—¶ï¼Œè½¯è£å‰ªè¿‡å¤§çš„å·¥å…·ç»“æžœï¼ˆä¿ç•™å¤´å°¾ï¼‰ã€‚
+    ç„¶åŽå½“ä¼°è®¡çš„ä¸Šä¸‹æ–‡æ¯”çŽ‡è¶…è¿‡ `hardClearRatio` **ä¸”**æœ‰è¶³å¤Ÿçš„å¯è£å‰ªå·¥å…·ç»“æžœé‡ï¼ˆ`minPrunableToolChars`ï¼‰æ—¶ï¼Œç¡¬æ¸…é™¤æœ€æ—§çš„ç¬¦åˆæ¡ä»¶çš„å·¥å…·ç»“æžœã€‚
+  - `aggressive`ï¼šå§‹ç»ˆç”¨ `hardClear.placeholder` æ›¿æ¢æˆªæ­¢ç‚¹ä¹‹å‰ç¬¦åˆæ¡ä»¶çš„å·¥å…·ç»“æžœï¼ˆä¸åšæ¯”çŽ‡æ£€æŸ¥ï¼‰ã€‚
 
-软裁剪 vs 硬裁剪（发送给 LLM 的上下文中的变化）：
+è½¯è£å‰ª vs ç¡¬è£å‰ªï¼ˆå‘é€ç»™ LLM çš„ä¸Šä¸‹æ–‡ä¸­çš„å˜åŒ–ï¼‰ï¼š
 
-- **软裁剪**：仅针对*过大*的工具结果。保留开头 + 结尾，在中间插入 `...`。
-  - 之前：`toolResult("…很长的输出…")`
-  - 之后：`toolResult("HEAD…\n...\n…TAIL\n\n[Tool result trimmed: …]")`
-- **硬清除**：用占位符替换整个工具结果。
-  - 之前：`toolResult("…很长的输出…")`
-  - 之后：`toolResult("[Old tool result content cleared]")`
+- **è½¯è£å‰ª**ï¼šä»…é’ˆå¯¹*è¿‡å¤§*çš„å·¥å…·ç»“æžœã€‚ä¿ç•™å¼€å¤´ + ç»“å°¾ï¼Œåœ¨ä¸­é—´æ’å…¥ `...`ã€‚
+  - ä¹‹å‰ï¼š`toolResult("â€¦å¾ˆé•¿çš„è¾“å‡ºâ€¦")`
+  - ä¹‹åŽï¼š`toolResult("HEADâ€¦\n...\nâ€¦TAIL\n\n[Tool result trimmed: â€¦]")`
+- **ç¡¬æ¸…é™¤**ï¼šç”¨å ä½ç¬¦æ›¿æ¢æ•´ä¸ªå·¥å…·ç»“æžœã€‚
+  - ä¹‹å‰ï¼š`toolResult("â€¦å¾ˆé•¿çš„è¾“å‡ºâ€¦")`
+  - ä¹‹åŽï¼š`toolResult("[Old tool result content cleared]")`
 
-说明 / 当前限制：
+è¯´æ˜Ž / å½“å‰é™åˆ¶ï¼š
 
-- 目前包含**图像块的工具结果会被跳过**（不会被裁剪/清除）。
-- 估计的"上下文比率"基于**字符**（近似值），不是精确的 token 数。
-- 如果会话尚未包含至少 `keepLastAssistants` 条助手消息，则跳过裁剪。
-- 在 `aggressive` 模式下，`hardClear.enabled` 被忽略（符合条件的工具结果始终被替换为 `hardClear.placeholder`）。
+- ç›®å‰åŒ…å«**å›¾åƒå—çš„å·¥å…·ç»“æžœä¼šè¢«è·³è¿‡**ï¼ˆä¸ä¼šè¢«è£å‰ª/æ¸…é™¤ï¼‰ã€‚
+- ä¼°è®¡çš„"ä¸Šä¸‹æ–‡æ¯”çŽ‡"åŸºäºŽ**å­—ç¬¦**ï¼ˆè¿‘ä¼¼å€¼ï¼‰ï¼Œä¸æ˜¯ç²¾ç¡®çš„ token æ•°ã€‚
+- å¦‚æžœä¼šè¯å°šæœªåŒ…å«è‡³å°‘ `keepLastAssistants` æ¡åŠ©æ‰‹æ¶ˆæ¯ï¼Œåˆ™è·³è¿‡è£å‰ªã€‚
+- åœ¨ `aggressive` æ¨¡å¼ä¸‹ï¼Œ`hardClear.enabled` è¢«å¿½ç•¥ï¼ˆç¬¦åˆæ¡ä»¶çš„å·¥å…·ç»“æžœå§‹ç»ˆè¢«æ›¿æ¢ä¸º `hardClear.placeholder`ï¼‰ã€‚
 
-默认值（adaptive）：
+é»˜è®¤å€¼ï¼ˆadaptiveï¼‰ï¼š
 
 ```json5
 {
@@ -1833,7 +1833,7 @@ MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.pro
 }
 ```
 
-禁用：
+ç¦ç”¨ï¼š
 
 ```json5
 {
@@ -1841,16 +1841,16 @@ MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.pro
 }
 ```
 
-默认值（当 `mode` 为 `"adaptive"` 或 `"aggressive"` 时）：
+é»˜è®¤å€¼ï¼ˆå½“ `mode` ä¸º `"adaptive"` æˆ– `"aggressive"` æ—¶ï¼‰ï¼š
 
-- `keepLastAssistants`：`3`
-- `softTrimRatio`：`0.3`（仅 adaptive）
-- `hardClearRatio`：`0.5`（仅 adaptive）
-- `minPrunableToolChars`：`50000`（仅 adaptive）
-- `softTrim`：`{ maxChars: 4000, headChars: 1500, tailChars: 1500 }`（仅 adaptive）
-- `hardClear`：`{ enabled: true, placeholder: "[Old tool result content cleared]" }`
+- `keepLastAssistants`ï¼š`3`
+- `softTrimRatio`ï¼š`0.3`ï¼ˆä»… adaptiveï¼‰
+- `hardClearRatio`ï¼š`0.5`ï¼ˆä»… adaptiveï¼‰
+- `minPrunableToolChars`ï¼š`50000`ï¼ˆä»… adaptiveï¼‰
+- `softTrim`ï¼š`{ maxChars: 4000, headChars: 1500, tailChars: 1500 }`ï¼ˆä»… adaptiveï¼‰
+- `hardClear`ï¼š`{ enabled: true, placeholder: "[Old tool result content cleared]" }`
 
-示例（aggressive，最小化）：
+ç¤ºä¾‹ï¼ˆaggressiveï¼Œæœ€å°åŒ–ï¼‰ï¼š
 
 ```json5
 {
@@ -1858,7 +1858,7 @@ MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.pro
 }
 ```
 
-示例（调优的 adaptive）：
+ç¤ºä¾‹ï¼ˆè°ƒä¼˜çš„ adaptiveï¼‰ï¼š
 
 ```json5
 {
@@ -1872,7 +1872,7 @@ MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.pro
         minPrunableToolChars: 50000,
         softTrim: { maxChars: 4000, headChars: 1500, tailChars: 1500 },
         hardClear: { enabled: true, placeholder: "[Old tool result content cleared]" },
-        // 可选：限制裁剪仅针对特定工具（deny 优先；支持 "*" 通配符）
+        // å¯é€‰ï¼šé™åˆ¶è£å‰ªä»…é’ˆå¯¹ç‰¹å®šå·¥å…·ï¼ˆdeny ä¼˜å…ˆï¼›æ”¯æŒ "*" é€šé…ç¬¦ï¼‰
         tools: { deny: ["browser", "canvas"] },
       },
     },
@@ -1880,24 +1880,24 @@ MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.pro
 }
 ```
 
-参见 [/concepts/session-pruning](/concepts/session-pruning) 了解行为细节。
+å‚è§ [/concepts/session-pruning](/concepts/session-pruning) äº†è§£è¡Œä¸ºç»†èŠ‚ã€‚
 
-#### `agents.defaults.compaction`（预留空间 + 记忆刷新）
+#### `agents.defaults.compaction`ï¼ˆé¢„ç•™ç©ºé—´ + è®°å¿†åˆ·æ–°ï¼‰
 
-`agents.defaults.compaction.mode` 选择压缩摘要策略。默认为 `default`；设为 `safeguard` 可为超长历史启用分块摘要。参见 [/concepts/compaction](/concepts/compaction)。
+`agents.defaults.compaction.mode` é€‰æ‹©åŽ‹ç¼©æ‘˜è¦ç­–ç•¥ã€‚é»˜è®¤ä¸º `default`ï¼›è®¾ä¸º `safeguard` å¯ä¸ºè¶…é•¿åŽ†å²å¯ç”¨åˆ†å—æ‘˜è¦ã€‚å‚è§ [/concepts/compaction](/concepts/compaction)ã€‚
 
-`agents.defaults.compaction.reserveTokensFloor` 为 Pi 压缩强制一个最小 `reserveTokens` 值（默认：`20000`）。设为 `0` 禁用此底线。
+`agents.defaults.compaction.reserveTokensFloor` ä¸º Pi åŽ‹ç¼©å¼ºåˆ¶ä¸€ä¸ªæœ€å° `reserveTokens` å€¼ï¼ˆé»˜è®¤ï¼š`20000`ï¼‰ã€‚è®¾ä¸º `0` ç¦ç”¨æ­¤åº•çº¿ã€‚
 
-`agents.defaults.compaction.memoryFlush` 在自动压缩前运行一个**静默**智能体轮次，指示模型将持久记忆存储到磁盘（例如 `memory/YYYY-MM-DD.md`）。当会话 token 估计值超过压缩限制以下的软阈值时触发。
+`agents.defaults.compaction.memoryFlush` åœ¨è‡ªåŠ¨åŽ‹ç¼©å‰è¿è¡Œä¸€ä¸ª**é™é»˜**æ™ºèƒ½ä½“è½®æ¬¡ï¼ŒæŒ‡ç¤ºæ¨¡åž‹å°†æŒä¹…è®°å¿†å­˜å‚¨åˆ°ç£ç›˜ï¼ˆä¾‹å¦‚ `memory/YYYY-MM-DD.md`ï¼‰ã€‚å½“ä¼šè¯ token ä¼°è®¡å€¼è¶…è¿‡åŽ‹ç¼©é™åˆ¶ä»¥ä¸‹çš„è½¯é˜ˆå€¼æ—¶è§¦å‘ã€‚
 
-旧版默认值：
+æ—§ç‰ˆé»˜è®¤å€¼ï¼š
 
-- `memoryFlush.enabled`：`true`
-- `memoryFlush.softThresholdTokens`：`4000`
-- `memoryFlush.prompt` / `memoryFlush.systemPrompt`：带 `NO_REPLY` 的内置默认值
-- 注意：当会话工作区为只读时跳过记忆刷新（`agents.defaults.sandbox.workspaceAccess: "ro"` 或 `"none"`）。
+- `memoryFlush.enabled`ï¼š`true`
+- `memoryFlush.softThresholdTokens`ï¼š`4000`
+- `memoryFlush.prompt` / `memoryFlush.systemPrompt`ï¼šå¸¦ `NO_REPLY` çš„å†…ç½®é»˜è®¤å€¼
+- æ³¨æ„ï¼šå½“ä¼šè¯å·¥ä½œåŒºä¸ºåªè¯»æ—¶è·³è¿‡è®°å¿†åˆ·æ–°ï¼ˆ`agents.defaults.sandbox.workspaceAccess: "ro"` æˆ– `"none"`ï¼‰ã€‚
 
-示例（调优）：
+ç¤ºä¾‹ï¼ˆè°ƒä¼˜ï¼‰ï¼š
 
 ```json5
 {
@@ -1918,135 +1918,135 @@ MiniMax 认证：设置 `MINIMAX_API_KEY`（环境变量）或配置 `models.pro
 }
 ```
 
-分块流式传输：
+åˆ†å—æµå¼ä¼ è¾“ï¼š
 
-- `agents.defaults.blockStreamingDefault`：`"on"`/`"off"`（默认 off）。
-- 渠道覆盖：`*.blockStreaming`（及每账号变体）强制分块流式传输开/关。
-  非 Telegram 渠道需要显式设置 `*.blockStreaming: true` 来启用块回复。
-- `agents.defaults.blockStreamingBreak`：`"text_end"` 或 `"message_end"`（默认：text_end）。
-- `agents.defaults.blockStreamingChunk`：流式块的软分块。默认 800–1200 字符，优先段落分隔（`\n\n`），然后换行，然后句子。
-  示例：
+- `agents.defaults.blockStreamingDefault`ï¼š`"on"`/`"off"`ï¼ˆé»˜è®¤ offï¼‰ã€‚
+- æ¸ é“è¦†ç›–ï¼š`*.blockStreaming`ï¼ˆåŠæ¯è´¦å·å˜ä½“ï¼‰å¼ºåˆ¶åˆ†å—æµå¼ä¼ è¾“å¼€/å…³ã€‚
+  éž Telegram æ¸ é“éœ€è¦æ˜¾å¼è®¾ç½® `*.blockStreaming: true` æ¥å¯ç”¨å—å›žå¤ã€‚
+- `agents.defaults.blockStreamingBreak`ï¼š`"text_end"` æˆ– `"message_end"`ï¼ˆé»˜è®¤ï¼štext_endï¼‰ã€‚
+- `agents.defaults.blockStreamingChunk`ï¼šæµå¼å—çš„è½¯åˆ†å—ã€‚é»˜è®¤ 800â€“1200 å­—ç¬¦ï¼Œä¼˜å…ˆæ®µè½åˆ†éš”ï¼ˆ`\n\n`ï¼‰ï¼Œç„¶åŽæ¢è¡Œï¼Œç„¶åŽå¥å­ã€‚
+  ç¤ºä¾‹ï¼š
   ```json5
   {
     agents: { defaults: { blockStreamingChunk: { minChars: 800, maxChars: 1200 } } },
   }
   ```
-- `agents.defaults.blockStreamingCoalesce`：发送前合并流式块。
-  默认为 `{ idleMs: 1000 }`，从 `blockStreamingChunk` 继承 `minChars`，
-  `maxChars` 上限为渠道文本限制。Signal/Slack/Discord/Google Chat 默认
-  `minChars: 1500`，除非被覆盖。
-  渠道覆盖：`channels.whatsapp.blockStreamingCoalesce`、`channels.telegram.blockStreamingCoalesce`、
-  `channels.discord.blockStreamingCoalesce`、`channels.slack.blockStreamingCoalesce`、`channels.mattermost.blockStreamingCoalesce`、
-  `channels.signal.blockStreamingCoalesce`、`channels.imessage.blockStreamingCoalesce`、`channels.msteams.blockStreamingCoalesce`、
+- `agents.defaults.blockStreamingCoalesce`ï¼šå‘é€å‰åˆå¹¶æµå¼å—ã€‚
+  é»˜è®¤ä¸º `{ idleMs: 1000 }`ï¼Œä»Ž `blockStreamingChunk` ç»§æ‰¿ `minChars`ï¼Œ
+  `maxChars` ä¸Šé™ä¸ºæ¸ é“æ–‡æœ¬é™åˆ¶ã€‚Signal/Slack/Discord/Google Chat é»˜è®¤
+  `minChars: 1500`ï¼Œé™¤éžè¢«è¦†ç›–ã€‚
+  æ¸ é“è¦†ç›–ï¼š`channels.whatsapp.blockStreamingCoalesce`ã€`channels.telegram.blockStreamingCoalesce`ã€
+  `channels.discord.blockStreamingCoalesce`ã€`channels.slack.blockStreamingCoalesce`ã€`channels.mattermost.blockStreamingCoalesce`ã€
+  `channels.signal.blockStreamingCoalesce`ã€`channels.imessage.blockStreamingCoalesce`ã€`channels.msteams.blockStreamingCoalesce`ã€
   `channels.googlechat.blockStreamingCoalesce`
-  （及每账号变体）。
-- `agents.defaults.humanDelay`：第一条之后**块回复**之间的随机延迟。
-  模式：`off`（默认）、`natural`（800–2500ms）、`custom`（使用 `minMs`/`maxMs`）。
-  每智能体覆盖：`agents.list[].humanDelay`。
-  示例：
+  ï¼ˆåŠæ¯è´¦å·å˜ä½“ï¼‰ã€‚
+- `agents.defaults.humanDelay`ï¼šç¬¬ä¸€æ¡ä¹‹åŽ**å—å›žå¤**ä¹‹é—´çš„éšæœºå»¶è¿Ÿã€‚
+  æ¨¡å¼ï¼š`off`ï¼ˆé»˜è®¤ï¼‰ã€`natural`ï¼ˆ800â€“2500msï¼‰ã€`custom`ï¼ˆä½¿ç”¨ `minMs`/`maxMs`ï¼‰ã€‚
+  æ¯æ™ºèƒ½ä½“è¦†ç›–ï¼š`agents.list[].humanDelay`ã€‚
+  ç¤ºä¾‹ï¼š
   ```json5
   {
     agents: { defaults: { humanDelay: { mode: "natural" } } },
   }
   ```
-  参见 [/concepts/streaming](/concepts/streaming) 了解行为 + 分块细节。
+  å‚è§ [/concepts/streaming](/concepts/streaming) äº†è§£è¡Œä¸º + åˆ†å—ç»†èŠ‚ã€‚
 
-输入指示器：
+è¾“å…¥æŒ‡ç¤ºå™¨ï¼š
 
-- `agents.defaults.typingMode`：`"never" | "instant" | "thinking" | "message"`。私聊/提及默认为
-  `instant`，未被提及的群聊默认为 `message`。
-- `session.typingMode`：每会话的模式覆盖。
-- `agents.defaults.typingIntervalSeconds`：输入信号刷新频率（默认：6s）。
-- `session.typingIntervalSeconds`：每会话的刷新间隔覆盖。
-  参见 [/concepts/typing-indicators](/concepts/typing-indicators) 了解行为细节。
+- `agents.defaults.typingMode`ï¼š`"never" | "instant" | "thinking" | "message"`ã€‚ç§èŠ/æåŠé»˜è®¤ä¸º
+  `instant`ï¼Œæœªè¢«æåŠçš„ç¾¤èŠé»˜è®¤ä¸º `message`ã€‚
+- `session.typingMode`ï¼šæ¯ä¼šè¯çš„æ¨¡å¼è¦†ç›–ã€‚
+- `agents.defaults.typingIntervalSeconds`ï¼šè¾“å…¥ä¿¡å·åˆ·æ–°é¢‘çŽ‡ï¼ˆé»˜è®¤ï¼š6sï¼‰ã€‚
+- `session.typingIntervalSeconds`ï¼šæ¯ä¼šè¯çš„åˆ·æ–°é—´éš”è¦†ç›–ã€‚
+  å‚è§ [/concepts/typing-indicators](/concepts/typing-indicators) äº†è§£è¡Œä¸ºç»†èŠ‚ã€‚
 
-`agents.defaults.model.primary` 应设为 `provider/model`（例如 `anthropic/claude-opus-4-5`）。
-别名来自 `agents.defaults.models.*.alias`（例如 `Opus`）。
-如果省略提供商，OpenClaw 目前假定 `anthropic` 作为临时弃用回退。
-Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环境中设置
-`ZAI_API_KEY`（或旧版 `Z_AI_API_KEY`）。
+`agents.defaults.model.primary` åº”è®¾ä¸º `provider/model`ï¼ˆä¾‹å¦‚ `anthropic/claude-opus-4-5`ï¼‰ã€‚
+åˆ«åæ¥è‡ª `agents.defaults.models.*.alias`ï¼ˆä¾‹å¦‚ `Opus`ï¼‰ã€‚
+å¦‚æžœçœç•¥æä¾›å•†ï¼Œ ç›®å‰å‡å®š `anthropic` ä½œä¸ºä¸´æ—¶å¼ƒç”¨å›žé€€ã€‚
+Z.AI æ¨¡åž‹å¯é€šè¿‡ `zai/<model>` ä½¿ç”¨ï¼ˆä¾‹å¦‚ `zai/glm-4.7`ï¼‰ï¼Œéœ€è¦çŽ¯å¢ƒä¸­è®¾ç½®
+`ZAI_API_KEY`ï¼ˆæˆ–æ—§ç‰ˆ `Z_AI_API_KEY`ï¼‰ã€‚
 
-`agents.defaults.heartbeat` 配置定期心跳运行：
+`agents.defaults.heartbeat` é…ç½®å®šæœŸå¿ƒè·³è¿è¡Œï¼š
 
-- `every`：持续时间字符串（`ms`、`s`、`m`、`h`）；默认单位分钟。默认：
-  `30m`。设为 `0m` 禁用。
-- `model`：可选的心跳运行覆盖模型（`provider/model`）。
-- `includeReasoning`：为 `true` 时，心跳也会传递单独的 `Reasoning:` 消息（与 `/reasoning on` 相同形式）。默认：`false`。
-- `session`：可选的会话键，控制心跳在哪个会话中运行。默认：`main`。
-- `to`：可选的收件人覆盖（渠道特定 id，例如 WhatsApp 的 E.164，Telegram 的聊天 id）。
-- `target`：可选的投递渠道（`last`、`whatsapp`、`telegram`、`discord`、`slack`、`msteams`、`signal`、`imessage`、`none`）。默认：`last`。
-- `prompt`：可选的心跳内容覆盖（默认：`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`）。覆盖值按原样发送；如果仍需读取文件，请包含 `Read HEARTBEAT.md` 行。
-- `ackMaxChars`：`HEARTBEAT_OK` 之后投递前允许的最大字符数（默认：300）。
+- `every`ï¼šæŒç»­æ—¶é—´å­—ç¬¦ä¸²ï¼ˆ`ms`ã€`s`ã€`m`ã€`h`ï¼‰ï¼›é»˜è®¤å•ä½åˆ†é’Ÿã€‚é»˜è®¤ï¼š
+  `30m`ã€‚è®¾ä¸º `0m` ç¦ç”¨ã€‚
+- `model`ï¼šå¯é€‰çš„å¿ƒè·³è¿è¡Œè¦†ç›–æ¨¡åž‹ï¼ˆ`provider/model`ï¼‰ã€‚
+- `includeReasoning`ï¼šä¸º `true` æ—¶ï¼Œå¿ƒè·³ä¹Ÿä¼šä¼ é€’å•ç‹¬çš„ `Reasoning:` æ¶ˆæ¯ï¼ˆä¸Ž `/reasoning on` ç›¸åŒå½¢å¼ï¼‰ã€‚é»˜è®¤ï¼š`false`ã€‚
+- `session`ï¼šå¯é€‰çš„ä¼šè¯é”®ï¼ŒæŽ§åˆ¶å¿ƒè·³åœ¨å“ªä¸ªä¼šè¯ä¸­è¿è¡Œã€‚é»˜è®¤ï¼š`main`ã€‚
+- `to`ï¼šå¯é€‰çš„æ”¶ä»¶äººè¦†ç›–ï¼ˆæ¸ é“ç‰¹å®š idï¼Œä¾‹å¦‚ WhatsApp çš„ E.164ï¼ŒTelegram çš„èŠå¤© idï¼‰ã€‚
+- `target`ï¼šå¯é€‰çš„æŠ•é€’æ¸ é“ï¼ˆ`last`ã€`whatsapp`ã€`telegram`ã€`discord`ã€`slack`ã€`msteams`ã€`signal`ã€`imessage`ã€`none`ï¼‰ã€‚é»˜è®¤ï¼š`last`ã€‚
+- `prompt`ï¼šå¯é€‰çš„å¿ƒè·³å†…å®¹è¦†ç›–ï¼ˆé»˜è®¤ï¼š`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`ï¼‰ã€‚è¦†ç›–å€¼æŒ‰åŽŸæ ·å‘é€ï¼›å¦‚æžœä»éœ€è¯»å–æ–‡ä»¶ï¼Œè¯·åŒ…å« `Read HEARTBEAT.md` è¡Œã€‚
+- `ackMaxChars`ï¼š`HEARTBEAT_OK` ä¹‹åŽæŠ•é€’å‰å…è®¸çš„æœ€å¤§å­—ç¬¦æ•°ï¼ˆé»˜è®¤ï¼š300ï¼‰ã€‚
 
-每智能体心跳：
+æ¯æ™ºèƒ½ä½“å¿ƒè·³ï¼š
 
-- 设置 `agents.list[].heartbeat` 为特定智能体启用或覆盖心跳设置。
-- 如果任何智能体条目定义了 `heartbeat`，**仅那些智能体**运行心跳；默认值
-  成为那些智能体的共享基线。
+- è®¾ç½® `agents.list[].heartbeat` ä¸ºç‰¹å®šæ™ºèƒ½ä½“å¯ç”¨æˆ–è¦†ç›–å¿ƒè·³è®¾ç½®ã€‚
+- å¦‚æžœä»»ä½•æ™ºèƒ½ä½“æ¡ç›®å®šä¹‰äº† `heartbeat`ï¼Œ**ä»…é‚£äº›æ™ºèƒ½ä½“**è¿è¡Œå¿ƒè·³ï¼›é»˜è®¤å€¼
+  æˆä¸ºé‚£äº›æ™ºèƒ½ä½“çš„å…±äº«åŸºçº¿ã€‚
 
-心跳运行完整的智能体轮次。较短的间隔消耗更多 token；请注意
-`every`，保持 `HEARTBEAT.md` 精简，和/或选择更便宜的 `model`。
+å¿ƒè·³è¿è¡Œå®Œæ•´çš„æ™ºèƒ½ä½“è½®æ¬¡ã€‚è¾ƒçŸ­çš„é—´éš”æ¶ˆè€—æ›´å¤š tokenï¼›è¯·æ³¨æ„
+`every`ï¼Œä¿æŒ `HEARTBEAT.md` ç²¾ç®€ï¼Œå’Œ/æˆ–é€‰æ‹©æ›´ä¾¿å®œçš„ `model`ã€‚
 
-`tools.exec` 配置后台执行默认值：
+`tools.exec` é…ç½®åŽå°æ‰§è¡Œé»˜è®¤å€¼ï¼š
 
-- `backgroundMs`：自动后台化前的时间（ms，默认 10000）
-- `timeoutSec`：超过此运行时间后自动终止（秒，默认 1800）
-- `cleanupMs`：完成的会话在内存中保留多久（ms，默认 1800000）
-- `notifyOnExit`：后台执行退出时加入系统事件 + 请求心跳（默认 true）
-- `applyPatch.enabled`：启用实验性 `apply_patch`（仅 OpenAI/OpenAI Codex；默认 false）
-- `applyPatch.allowModels`：可选的模型 id 白名单（例如 `gpt-5.2` 或 `openai/gpt-5.2`）
-  注意：`applyPatch` 仅在 `tools.exec` 下。
+- `backgroundMs`ï¼šè‡ªåŠ¨åŽå°åŒ–å‰çš„æ—¶é—´ï¼ˆmsï¼Œé»˜è®¤ 10000ï¼‰
+- `timeoutSec`ï¼šè¶…è¿‡æ­¤è¿è¡Œæ—¶é—´åŽè‡ªåŠ¨ç»ˆæ­¢ï¼ˆç§’ï¼Œé»˜è®¤ 1800ï¼‰
+- `cleanupMs`ï¼šå®Œæˆçš„ä¼šè¯åœ¨å†…å­˜ä¸­ä¿ç•™å¤šä¹…ï¼ˆmsï¼Œé»˜è®¤ 1800000ï¼‰
+- `notifyOnExit`ï¼šåŽå°æ‰§è¡Œé€€å‡ºæ—¶åŠ å…¥ç³»ç»Ÿäº‹ä»¶ + è¯·æ±‚å¿ƒè·³ï¼ˆé»˜è®¤ trueï¼‰
+- `applyPatch.enabled`ï¼šå¯ç”¨å®žéªŒæ€§ `apply_patch`ï¼ˆä»… OpenAI/OpenAI Codexï¼›é»˜è®¤ falseï¼‰
+- `applyPatch.allowModels`ï¼šå¯é€‰çš„æ¨¡åž‹ id ç™½åå•ï¼ˆä¾‹å¦‚ `gpt-5.2` æˆ– `openai/gpt-5.2`ï¼‰
+  æ³¨æ„ï¼š`applyPatch` ä»…åœ¨ `tools.exec` ä¸‹ã€‚
 
-`tools.web` 配置 Web 搜索 + 获取工具：
+`tools.web` é…ç½® Web æœç´¢ + èŽ·å–å·¥å…·ï¼š
 
-- `tools.web.search.enabled`（默认：有密钥时为 true）
-- `tools.web.search.apiKey`（推荐：通过 `openclaw configure --section web` 设置，或使用 `BRAVE_API_KEY` 环境变量）
-- `tools.web.search.maxResults`（1–10，默认 5）
-- `tools.web.search.timeoutSeconds`（默认 30）
-- `tools.web.search.cacheTtlMinutes`（默认 15）
-- `tools.web.fetch.enabled`（默认 true）
-- `tools.web.fetch.maxChars`（默认 50000）
-- `tools.web.fetch.timeoutSeconds`（默认 30）
-- `tools.web.fetch.cacheTtlMinutes`（默认 15）
-- `tools.web.fetch.userAgent`（可选覆盖）
-- `tools.web.fetch.readability`（默认 true；禁用后仅使用基本 HTML 清理）
-- `tools.web.fetch.firecrawl.enabled`（默认：设置了 API 密钥时为 true）
-- `tools.web.fetch.firecrawl.apiKey`（可选；默认为 `FIRECRAWL_API_KEY`）
-- `tools.web.fetch.firecrawl.baseUrl`（默认 https://api.firecrawl.dev）
-- `tools.web.fetch.firecrawl.onlyMainContent`（默认 true）
-- `tools.web.fetch.firecrawl.maxAgeMs`（可选）
-- `tools.web.fetch.firecrawl.timeoutSeconds`（可选）
+- `tools.web.search.enabled`ï¼ˆé»˜è®¤ï¼šæœ‰å¯†é’¥æ—¶ä¸º trueï¼‰
+- `tools.web.search.apiKey`ï¼ˆæŽ¨èï¼šé€šè¿‡ ` configure --section web` è®¾ç½®ï¼Œæˆ–ä½¿ç”¨ `BRAVE_API_KEY` çŽ¯å¢ƒå˜é‡ï¼‰
+- `tools.web.search.maxResults`ï¼ˆ1â€“10ï¼Œé»˜è®¤ 5ï¼‰
+- `tools.web.search.timeoutSeconds`ï¼ˆé»˜è®¤ 30ï¼‰
+- `tools.web.search.cacheTtlMinutes`ï¼ˆé»˜è®¤ 15ï¼‰
+- `tools.web.fetch.enabled`ï¼ˆé»˜è®¤ trueï¼‰
+- `tools.web.fetch.maxChars`ï¼ˆé»˜è®¤ 50000ï¼‰
+- `tools.web.fetch.timeoutSeconds`ï¼ˆé»˜è®¤ 30ï¼‰
+- `tools.web.fetch.cacheTtlMinutes`ï¼ˆé»˜è®¤ 15ï¼‰
+- `tools.web.fetch.userAgent`ï¼ˆå¯é€‰è¦†ç›–ï¼‰
+- `tools.web.fetch.readability`ï¼ˆé»˜è®¤ trueï¼›ç¦ç”¨åŽä»…ä½¿ç”¨åŸºæœ¬ HTML æ¸…ç†ï¼‰
+- `tools.web.fetch.firecrawl.enabled`ï¼ˆé»˜è®¤ï¼šè®¾ç½®äº† API å¯†é’¥æ—¶ä¸º trueï¼‰
+- `tools.web.fetch.firecrawl.apiKey`ï¼ˆå¯é€‰ï¼›é»˜è®¤ä¸º `FIRECRAWL_API_KEY`ï¼‰
+- `tools.web.fetch.firecrawl.baseUrl`ï¼ˆé»˜è®¤ https://api.firecrawl.devï¼‰
+- `tools.web.fetch.firecrawl.onlyMainContent`ï¼ˆé»˜è®¤ trueï¼‰
+- `tools.web.fetch.firecrawl.maxAgeMs`ï¼ˆå¯é€‰ï¼‰
+- `tools.web.fetch.firecrawl.timeoutSeconds`ï¼ˆå¯é€‰ï¼‰
 
-`tools.media` 配置入站媒体理解（图片/音频/视频）：
+`tools.media` é…ç½®å…¥ç«™åª’ä½“ç†è§£ï¼ˆå›¾ç‰‡/éŸ³é¢‘/è§†é¢‘ï¼‰ï¼š
 
-- `tools.media.models`：共享模型列表（按能力标记；在每能力列表之后使用）。
-- `tools.media.concurrency`：最大并发能力运行数（默认 2）。
-- `tools.media.image` / `tools.media.audio` / `tools.media.video`：
-  - `enabled`：选择退出开关（配置了模型时默认为 true）。
-  - `prompt`：可选的提示覆盖（图片/视频自动附加 `maxChars` 提示）。
-  - `maxChars`：最大输出字符数（图片/视频默认 500；音频未设置）。
-  - `maxBytes`：发送的最大媒体大小（默认：图片 10MB，音频 20MB，视频 50MB）。
-  - `timeoutSeconds`：请求超时（默认：图片 60s，音频 60s，视频 120s）。
-  - `language`：可选的音频提示。
-  - `attachments`：附件策略（`mode`、`maxAttachments`、`prefer`）。
-  - `scope`：可选的门控（第一个匹配获胜），带 `match.channel`、`match.chatType` 或 `match.keyPrefix`。
-  - `models`：有序的模型条目列表；失败或超大媒体回退到下一个条目。
-- 每个 `models[]` 条目：
-  - 提供商条目（`type: "provider"` 或省略）：
-    - `provider`：API 提供商 id（`openai`、`anthropic`、`google`/`gemini`、`groq` 等）。
-    - `model`：模型 id 覆盖（图片必需；音频提供商默认为 `gpt-4o-mini-transcribe`/`whisper-large-v3-turbo`，视频默认为 `gemini-3-flash-preview`）。
-    - `profile` / `preferredProfile`：认证配置文件选择。
-  - CLI 条目（`type: "cli"`）：
-    - `command`：要运行的可执行文件。
-    - `args`：模板化参数（支持 `{{MediaPath}}`、`{{Prompt}}`、`{{MaxChars}}` 等）。
-  - `capabilities`：可选的能力列表（`image`、`audio`、`video`）用于门控共享条目。省略时的默认值：`openai`/`anthropic`/`minimax` → image，`google` → image+audio+video，`groq` → audio。
-  - `prompt`、`maxChars`、`maxBytes`、`timeoutSeconds`、`language` 可在每个条目中覆盖。
+- `tools.media.models`ï¼šå…±äº«æ¨¡åž‹åˆ—è¡¨ï¼ˆæŒ‰èƒ½åŠ›æ ‡è®°ï¼›åœ¨æ¯èƒ½åŠ›åˆ—è¡¨ä¹‹åŽä½¿ç”¨ï¼‰ã€‚
+- `tools.media.concurrency`ï¼šæœ€å¤§å¹¶å‘èƒ½åŠ›è¿è¡Œæ•°ï¼ˆé»˜è®¤ 2ï¼‰ã€‚
+- `tools.media.image` / `tools.media.audio` / `tools.media.video`ï¼š
+  - `enabled`ï¼šé€‰æ‹©é€€å‡ºå¼€å…³ï¼ˆé…ç½®äº†æ¨¡åž‹æ—¶é»˜è®¤ä¸º trueï¼‰ã€‚
+  - `prompt`ï¼šå¯é€‰çš„æç¤ºè¦†ç›–ï¼ˆå›¾ç‰‡/è§†é¢‘è‡ªåŠ¨é™„åŠ  `maxChars` æç¤ºï¼‰ã€‚
+  - `maxChars`ï¼šæœ€å¤§è¾“å‡ºå­—ç¬¦æ•°ï¼ˆå›¾ç‰‡/è§†é¢‘é»˜è®¤ 500ï¼›éŸ³é¢‘æœªè®¾ç½®ï¼‰ã€‚
+  - `maxBytes`ï¼šå‘é€çš„æœ€å¤§åª’ä½“å¤§å°ï¼ˆé»˜è®¤ï¼šå›¾ç‰‡ 10MBï¼ŒéŸ³é¢‘ 20MBï¼Œè§†é¢‘ 50MBï¼‰ã€‚
+  - `timeoutSeconds`ï¼šè¯·æ±‚è¶…æ—¶ï¼ˆé»˜è®¤ï¼šå›¾ç‰‡ 60sï¼ŒéŸ³é¢‘ 60sï¼Œè§†é¢‘ 120sï¼‰ã€‚
+  - `language`ï¼šå¯é€‰çš„éŸ³é¢‘æç¤ºã€‚
+  - `attachments`ï¼šé™„ä»¶ç­–ç•¥ï¼ˆ`mode`ã€`maxAttachments`ã€`prefer`ï¼‰ã€‚
+  - `scope`ï¼šå¯é€‰çš„é—¨æŽ§ï¼ˆç¬¬ä¸€ä¸ªåŒ¹é…èŽ·èƒœï¼‰ï¼Œå¸¦ `match.channel`ã€`match.chatType` æˆ– `match.keyPrefix`ã€‚
+  - `models`ï¼šæœ‰åºçš„æ¨¡åž‹æ¡ç›®åˆ—è¡¨ï¼›å¤±è´¥æˆ–è¶…å¤§åª’ä½“å›žé€€åˆ°ä¸‹ä¸€ä¸ªæ¡ç›®ã€‚
+- æ¯ä¸ª `models[]` æ¡ç›®ï¼š
+  - æä¾›å•†æ¡ç›®ï¼ˆ`type: "provider"` æˆ–çœç•¥ï¼‰ï¼š
+    - `provider`ï¼šAPI æä¾›å•† idï¼ˆ`openai`ã€`anthropic`ã€`google`/`gemini`ã€`groq` ç­‰ï¼‰ã€‚
+    - `model`ï¼šæ¨¡åž‹ id è¦†ç›–ï¼ˆå›¾ç‰‡å¿…éœ€ï¼›éŸ³é¢‘æä¾›å•†é»˜è®¤ä¸º `gpt-4o-mini-transcribe`/`whisper-large-v3-turbo`ï¼Œè§†é¢‘é»˜è®¤ä¸º `gemini-3-flash-preview`ï¼‰ã€‚
+    - `profile` / `preferredProfile`ï¼šè®¤è¯é…ç½®æ–‡ä»¶é€‰æ‹©ã€‚
+  - CLI æ¡ç›®ï¼ˆ`type: "cli"`ï¼‰ï¼š
+    - `command`ï¼šè¦è¿è¡Œçš„å¯æ‰§è¡Œæ–‡ä»¶ã€‚
+    - `args`ï¼šæ¨¡æ¿åŒ–å‚æ•°ï¼ˆæ”¯æŒ `{{MediaPath}}`ã€`{{Prompt}}`ã€`{{MaxChars}}` ç­‰ï¼‰ã€‚
+  - `capabilities`ï¼šå¯é€‰çš„èƒ½åŠ›åˆ—è¡¨ï¼ˆ`image`ã€`audio`ã€`video`ï¼‰ç”¨äºŽé—¨æŽ§å…±äº«æ¡ç›®ã€‚çœç•¥æ—¶çš„é»˜è®¤å€¼ï¼š`openai`/`anthropic`/`minimax` â†’ imageï¼Œ`google` â†’ image+audio+videoï¼Œ`groq` â†’ audioã€‚
+  - `prompt`ã€`maxChars`ã€`maxBytes`ã€`timeoutSeconds`ã€`language` å¯åœ¨æ¯ä¸ªæ¡ç›®ä¸­è¦†ç›–ã€‚
 
-如果未配置模型（或 `enabled: false`），理解将被跳过；模型仍会接收原始附件。
+å¦‚æžœæœªé…ç½®æ¨¡åž‹ï¼ˆæˆ– `enabled: false`ï¼‰ï¼Œç†è§£å°†è¢«è·³è¿‡ï¼›æ¨¡åž‹ä»ä¼šæŽ¥æ”¶åŽŸå§‹é™„ä»¶ã€‚
 
-提供商认证遵循标准模型认证顺序（认证配置文件、环境变量如 `OPENAI_API_KEY`/`GROQ_API_KEY`/`GEMINI_API_KEY`，或 `models.providers.*.apiKey`）。
+æä¾›å•†è®¤è¯éµå¾ªæ ‡å‡†æ¨¡åž‹è®¤è¯é¡ºåºï¼ˆè®¤è¯é…ç½®æ–‡ä»¶ã€çŽ¯å¢ƒå˜é‡å¦‚ `OPENAI_API_KEY`/`GROQ_API_KEY`/`GEMINI_API_KEY`ï¼Œæˆ– `models.providers.*.apiKey`ï¼‰ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -2074,23 +2074,23 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-`agents.defaults.subagents` 配置子智能体默认值：
+`agents.defaults.subagents` é…ç½®å­æ™ºèƒ½ä½“é»˜è®¤å€¼ï¼š
 
-- `model`：生成的子智能体的默认模型（字符串或 `{ primary, fallbacks }`）。如果省略，子智能体继承调用者的模型，除非按智能体或按调用覆盖。
-- `maxConcurrent`：最大并发子智能体运行数（默认 1）
-- `archiveAfterMinutes`：N 分钟后自动归档子智能体会话（默认 60；设为 `0` 禁用）
-- 每子智能体工具策略：`tools.subagents.tools.allow` / `tools.subagents.tools.deny`（deny 优先）
+- `model`ï¼šç”Ÿæˆçš„å­æ™ºèƒ½ä½“çš„é»˜è®¤æ¨¡åž‹ï¼ˆå­—ç¬¦ä¸²æˆ– `{ primary, fallbacks }`ï¼‰ã€‚å¦‚æžœçœç•¥ï¼Œå­æ™ºèƒ½ä½“ç»§æ‰¿è°ƒç”¨è€…çš„æ¨¡åž‹ï¼Œé™¤éžæŒ‰æ™ºèƒ½ä½“æˆ–æŒ‰è°ƒç”¨è¦†ç›–ã€‚
+- `maxConcurrent`ï¼šæœ€å¤§å¹¶å‘å­æ™ºèƒ½ä½“è¿è¡Œæ•°ï¼ˆé»˜è®¤ 1ï¼‰
+- `archiveAfterMinutes`ï¼šN åˆ†é’ŸåŽè‡ªåŠ¨å½’æ¡£å­æ™ºèƒ½ä½“ä¼šè¯ï¼ˆé»˜è®¤ 60ï¼›è®¾ä¸º `0` ç¦ç”¨ï¼‰
+- æ¯å­æ™ºèƒ½ä½“å·¥å…·ç­–ç•¥ï¼š`tools.subagents.tools.allow` / `tools.subagents.tools.deny`ï¼ˆdeny ä¼˜å…ˆï¼‰
 
-`tools.profile` 设置 `tools.allow`/`tools.deny` 之前的**基础工具白名单**：
+`tools.profile` è®¾ç½® `tools.allow`/`tools.deny` ä¹‹å‰çš„**åŸºç¡€å·¥å…·ç™½åå•**ï¼š
 
-- `minimal`：仅 `session_status`
-- `coding`：`group:fs`、`group:runtime`、`group:sessions`、`group:memory`、`image`
-- `messaging`：`group:messaging`、`sessions_list`、`sessions_history`、`sessions_send`、`session_status`
-- `full`：无限制（与未设置相同）
+- `minimal`ï¼šä»… `session_status`
+- `coding`ï¼š`group:fs`ã€`group:runtime`ã€`group:sessions`ã€`group:memory`ã€`image`
+- `messaging`ï¼š`group:messaging`ã€`sessions_list`ã€`sessions_history`ã€`sessions_send`ã€`session_status`
+- `full`ï¼šæ— é™åˆ¶ï¼ˆä¸Žæœªè®¾ç½®ç›¸åŒï¼‰
 
-每智能体覆盖：`agents.list[].tools.profile`。
+æ¯æ™ºèƒ½ä½“è¦†ç›–ï¼š`agents.list[].tools.profile`ã€‚
 
-示例（默认仅消息传递，另外允许 Slack + Discord 工具）：
+ç¤ºä¾‹ï¼ˆé»˜è®¤ä»…æ¶ˆæ¯ä¼ é€’ï¼Œå¦å¤–å…è®¸ Slack + Discord å·¥å…·ï¼‰ï¼š
 
 ```json5
 {
@@ -2101,7 +2101,7 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-示例（编码配置文件，但全局拒绝 exec/process）：
+ç¤ºä¾‹ï¼ˆç¼–ç é…ç½®æ–‡ä»¶ï¼Œä½†å…¨å±€æ‹’ç» exec/processï¼‰ï¼š
 
 ```json5
 {
@@ -2112,14 +2112,14 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-`tools.byProvider` 允许你为特定提供商（或单个 `provider/model`）**进一步限制**工具。
-每智能体覆盖：`agents.list[].tools.byProvider`。
+`tools.byProvider` å…è®¸ä½ ä¸ºç‰¹å®šæä¾›å•†ï¼ˆæˆ–å•ä¸ª `provider/model`ï¼‰**è¿›ä¸€æ­¥é™åˆ¶**å·¥å…·ã€‚
+æ¯æ™ºèƒ½ä½“è¦†ç›–ï¼š`agents.list[].tools.byProvider`ã€‚
 
-顺序：基础配置文件 → 提供商配置文件 → allow/deny 策略。
-提供商键接受 `provider`（例如 `google-antigravity`）或 `provider/model`
-（例如 `openai/gpt-5.2`）。
+é¡ºåºï¼šåŸºç¡€é…ç½®æ–‡ä»¶ â†’ æä¾›å•†é…ç½®æ–‡ä»¶ â†’ allow/deny ç­–ç•¥ã€‚
+æä¾›å•†é”®æŽ¥å— `provider`ï¼ˆä¾‹å¦‚ `google-antigravity`ï¼‰æˆ– `provider/model`
+ï¼ˆä¾‹å¦‚ `openai/gpt-5.2`ï¼‰ã€‚
 
-示例（保持全局编码配置文件，但为 Google Antigravity 使用最小工具）：
+ç¤ºä¾‹ï¼ˆä¿æŒå…¨å±€ç¼–ç é…ç½®æ–‡ä»¶ï¼Œä½†ä¸º Google Antigravity ä½¿ç”¨æœ€å°å·¥å…·ï¼‰ï¼š
 
 ```json5
 {
@@ -2132,7 +2132,7 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-示例（提供商/模型特定白名单）：
+ç¤ºä¾‹ï¼ˆæä¾›å•†/æ¨¡åž‹ç‰¹å®šç™½åå•ï¼‰ï¼š
 
 ```json5
 {
@@ -2145,11 +2145,11 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-`tools.allow` / `tools.deny` 配置全局工具允许/拒绝策略（deny 优先）。
-匹配不区分大小写并支持 `*` 通配符（`"*"` 表示所有工具）。
-即使 Docker 沙箱**关闭**，此策略也会应用。
+`tools.allow` / `tools.deny` é…ç½®å…¨å±€å·¥å…·å…è®¸/æ‹’ç»ç­–ç•¥ï¼ˆdeny ä¼˜å…ˆï¼‰ã€‚
+åŒ¹é…ä¸åŒºåˆ†å¤§å°å†™å¹¶æ”¯æŒ `*` é€šé…ç¬¦ï¼ˆ`"*"` è¡¨ç¤ºæ‰€æœ‰å·¥å…·ï¼‰ã€‚
+å³ä½¿ Docker æ²™ç®±**å…³é—­**ï¼Œæ­¤ç­–ç•¥ä¹Ÿä¼šåº”ç”¨ã€‚
 
-示例（全局禁用 browser/canvas）：
+ç¤ºä¾‹ï¼ˆå…¨å±€ç¦ç”¨ browser/canvasï¼‰ï¼š
 
 ```json5
 {
@@ -2157,31 +2157,31 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-工具组（简写）在**全局**和**每智能体**工具策略中可用：
+å·¥å…·ç»„ï¼ˆç®€å†™ï¼‰åœ¨**å…¨å±€**å’Œ**æ¯æ™ºèƒ½ä½“**å·¥å…·ç­–ç•¥ä¸­å¯ç”¨ï¼š
 
-- `group:runtime`：`exec`、`bash`、`process`
-- `group:fs`：`read`、`write`、`edit`、`apply_patch`
-- `group:sessions`：`sessions_list`、`sessions_history`、`sessions_send`、`sessions_spawn`、`session_status`
-- `group:memory`：`memory_search`、`memory_get`
-- `group:web`：`web_search`、`web_fetch`
-- `group:ui`：`browser`、`canvas`
-- `group:automation`：`cron`、`gateway`
-- `group:messaging`：`message`
-- `group:nodes`：`nodes`
-- `group:openclaw`：所有内置 OpenClaw 工具（不包含提供商插件）
+- `group:runtime`ï¼š`exec`ã€`bash`ã€`process`
+- `group:fs`ï¼š`read`ã€`write`ã€`edit`ã€`apply_patch`
+- `group:sessions`ï¼š`sessions_list`ã€`sessions_history`ã€`sessions_send`ã€`sessions_spawn`ã€`session_status`
+- `group:memory`ï¼š`memory_search`ã€`memory_get`
+- `group:web`ï¼š`web_search`ã€`web_fetch`
+- `group:ui`ï¼š`browser`ã€`canvas`
+- `group:automation`ï¼š`cron`ã€`gateway`
+- `group:messaging`ï¼š`message`
+- `group:nodes`ï¼š`nodes`
+- `group:`ï¼šæ‰€æœ‰å†…ç½®  å·¥å…·ï¼ˆä¸åŒ…å«æä¾›å•†æ’ä»¶ï¼‰
 
-`tools.elevated` 控制提升（主机）执行访问：
+`tools.elevated` æŽ§åˆ¶æå‡ï¼ˆä¸»æœºï¼‰æ‰§è¡Œè®¿é—®ï¼š
 
-- `enabled`：允许提升模式（默认 true）
-- `allowFrom`：每渠道白名单（空 = 禁用）
-  - `whatsapp`：E.164 号码
-  - `telegram`：聊天 id 或用户名
-  - `discord`：用户 id 或用户名（省略时回退到 `channels.discord.dm.allowFrom`）
-  - `signal`：E.164 号码
-  - `imessage`：句柄/聊天 id
-  - `webchat`：会话 id 或用户名
+- `enabled`ï¼šå…è®¸æå‡æ¨¡å¼ï¼ˆé»˜è®¤ trueï¼‰
+- `allowFrom`ï¼šæ¯æ¸ é“ç™½åå•ï¼ˆç©º = ç¦ç”¨ï¼‰
+  - `whatsapp`ï¼šE.164 å·ç 
+  - `telegram`ï¼šèŠå¤© id æˆ–ç”¨æˆ·å
+  - `discord`ï¼šç”¨æˆ· id æˆ–ç”¨æˆ·åï¼ˆçœç•¥æ—¶å›žé€€åˆ° `channels.discord.dm.allowFrom`ï¼‰
+  - `signal`ï¼šE.164 å·ç 
+  - `imessage`ï¼šå¥æŸ„/èŠå¤© id
+  - `webchat`ï¼šä¼šè¯ id æˆ–ç”¨æˆ·å
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -2197,7 +2197,7 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-每智能体覆盖（进一步限制）：
+æ¯æ™ºèƒ½ä½“è¦†ç›–ï¼ˆè¿›ä¸€æ­¥é™åˆ¶ï¼‰ï¼š
 
 ```json5
 {
@@ -2214,42 +2214,42 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- `tools.elevated` 是全局基线。`agents.list[].tools.elevated` 只能进一步限制（两者都必须允许）。
-- `/elevated on|off|ask|full` 按会话键存储状态；内联指令仅应用于单条消息。
-- 提升的 `exec` 在主机上运行并绕过沙箱。
-- 工具策略仍然适用；如果 `exec` 被拒绝，则无法使用提升。
+- `tools.elevated` æ˜¯å…¨å±€åŸºçº¿ã€‚`agents.list[].tools.elevated` åªèƒ½è¿›ä¸€æ­¥é™åˆ¶ï¼ˆä¸¤è€…éƒ½å¿…é¡»å…è®¸ï¼‰ã€‚
+- `/elevated on|off|ask|full` æŒ‰ä¼šè¯é”®å­˜å‚¨çŠ¶æ€ï¼›å†…è”æŒ‡ä»¤ä»…åº”ç”¨äºŽå•æ¡æ¶ˆæ¯ã€‚
+- æå‡çš„ `exec` åœ¨ä¸»æœºä¸Šè¿è¡Œå¹¶ç»•è¿‡æ²™ç®±ã€‚
+- å·¥å…·ç­–ç•¥ä»ç„¶é€‚ç”¨ï¼›å¦‚æžœ `exec` è¢«æ‹’ç»ï¼Œåˆ™æ— æ³•ä½¿ç”¨æå‡ã€‚
 
-`agents.defaults.maxConcurrent` 设置跨会话可并行执行的内置智能体运行的最大数量。每个会话仍然是串行的（每个会话键同时只有一个运行）。默认：1。
+`agents.defaults.maxConcurrent` è®¾ç½®è·¨ä¼šè¯å¯å¹¶è¡Œæ‰§è¡Œçš„å†…ç½®æ™ºèƒ½ä½“è¿è¡Œçš„æœ€å¤§æ•°é‡ã€‚æ¯ä¸ªä¼šè¯ä»ç„¶æ˜¯ä¸²è¡Œçš„ï¼ˆæ¯ä¸ªä¼šè¯é”®åŒæ—¶åªæœ‰ä¸€ä¸ªè¿è¡Œï¼‰ã€‚é»˜è®¤ï¼š1ã€‚
 
 ### `agents.defaults.sandbox`
 
-为内置智能体提供可选的 **Docker 沙箱**。适用于非主会话，使其无法访问你的主机系统。
+ä¸ºå†…ç½®æ™ºèƒ½ä½“æä¾›å¯é€‰çš„ **Docker æ²™ç®±**ã€‚é€‚ç”¨äºŽéžä¸»ä¼šè¯ï¼Œä½¿å…¶æ— æ³•è®¿é—®ä½ çš„ä¸»æœºç³»ç»Ÿã€‚
 
-详情：[沙箱](/gateway/sandboxing)
+è¯¦æƒ…ï¼š[æ²™ç®±](/gateway/sandboxing)
 
-默认值（如果启用）：
+é»˜è®¤å€¼ï¼ˆå¦‚æžœå¯ç”¨ï¼‰ï¼š
 
-- scope：`"agent"`（每个智能体一个容器 + 工作区）
-- 基于 Debian bookworm-slim 的镜像
-- 智能体工作区访问：`workspaceAccess: "none"`（默认）
-  - `"none"`：在 `~/.openclaw/sandboxes` 下使用每范围的沙箱工作区
-- `"ro"`：将沙箱工作区保持在 `/workspace`，智能体工作区以只读方式挂载到 `/agent`（禁用 `write`/`edit`/`apply_patch`）
-  - `"rw"`：将智能体工作区以读写方式挂载到 `/workspace`
-- 自动清理：空闲超过 24h 或存在超过 7d
-- 工具策略：仅允许 `exec`、`process`、`read`、`write`、`edit`、`apply_patch`、`sessions_list`、`sessions_history`、`sessions_send`、`sessions_spawn`、`session_status`（deny 优先）
-  - 通过 `tools.sandbox.tools` 配置，通过 `agents.list[].tools.sandbox.tools` 进行每智能体覆盖
-  - 沙箱策略中支持工具组简写：`group:runtime`、`group:fs`、`group:sessions`、`group:memory`（参见[沙箱 vs 工具策略 vs 提升](/gateway/sandbox-vs-tool-policy-vs-elevated#tool-groups-shorthands)）
-- 可选的沙箱浏览器（Chromium + CDP，noVNC 观察器）
-- 加固旋钮：`network`、`user`、`pidsLimit`、`memory`、`cpus`、`ulimits`、`seccompProfile`、`apparmorProfile`
+- scopeï¼š`"agent"`ï¼ˆæ¯ä¸ªæ™ºèƒ½ä½“ä¸€ä¸ªå®¹å™¨ + å·¥ä½œåŒºï¼‰
+- åŸºäºŽ Debian bookworm-slim çš„é•œåƒ
+- æ™ºèƒ½ä½“å·¥ä½œåŒºè®¿é—®ï¼š`workspaceAccess: "none"`ï¼ˆé»˜è®¤ï¼‰
+  - `"none"`ï¼šåœ¨ `~/./sandboxes` ä¸‹ä½¿ç”¨æ¯èŒƒå›´çš„æ²™ç®±å·¥ä½œåŒº
+- `"ro"`ï¼šå°†æ²™ç®±å·¥ä½œåŒºä¿æŒåœ¨ `/workspace`ï¼Œæ™ºèƒ½ä½“å·¥ä½œåŒºä»¥åªè¯»æ–¹å¼æŒ‚è½½åˆ° `/agent`ï¼ˆç¦ç”¨ `write`/`edit`/`apply_patch`ï¼‰
+  - `"rw"`ï¼šå°†æ™ºèƒ½ä½“å·¥ä½œåŒºä»¥è¯»å†™æ–¹å¼æŒ‚è½½åˆ° `/workspace`
+- è‡ªåŠ¨æ¸…ç†ï¼šç©ºé—²è¶…è¿‡ 24h æˆ–å­˜åœ¨è¶…è¿‡ 7d
+- å·¥å…·ç­–ç•¥ï¼šä»…å…è®¸ `exec`ã€`process`ã€`read`ã€`write`ã€`edit`ã€`apply_patch`ã€`sessions_list`ã€`sessions_history`ã€`sessions_send`ã€`sessions_spawn`ã€`session_status`ï¼ˆdeny ä¼˜å…ˆï¼‰
+  - é€šè¿‡ `tools.sandbox.tools` é…ç½®ï¼Œé€šè¿‡ `agents.list[].tools.sandbox.tools` è¿›è¡Œæ¯æ™ºèƒ½ä½“è¦†ç›–
+  - æ²™ç®±ç­–ç•¥ä¸­æ”¯æŒå·¥å…·ç»„ç®€å†™ï¼š`group:runtime`ã€`group:fs`ã€`group:sessions`ã€`group:memory`ï¼ˆå‚è§[æ²™ç®± vs å·¥å…·ç­–ç•¥ vs æå‡](/gateway/sandbox-vs-tool-policy-vs-elevated#tool-groups-shorthands)ï¼‰
+- å¯é€‰çš„æ²™ç®±æµè§ˆå™¨ï¼ˆChromium + CDPï¼ŒnoVNC è§‚å¯Ÿå™¨ï¼‰
+- åŠ å›ºæ—‹é’®ï¼š`network`ã€`user`ã€`pidsLimit`ã€`memory`ã€`cpus`ã€`ulimits`ã€`seccompProfile`ã€`apparmorProfile`
 
-警告：`scope: "shared"` 意味着共享容器和共享工作区。无跨会话隔离。使用 `scope: "session"` 获得每会话隔离。
+è­¦å‘Šï¼š`scope: "shared"` æ„å‘³ç€å…±äº«å®¹å™¨å’Œå…±äº«å·¥ä½œåŒºã€‚æ— è·¨ä¼šè¯éš”ç¦»ã€‚ä½¿ç”¨ `scope: "session"` èŽ·å¾—æ¯ä¼šè¯éš”ç¦»ã€‚
 
-旧版：`perSession` 仍然支持（`true` → `scope: "session"`，`false` → `scope: "shared"`）。
+æ—§ç‰ˆï¼š`perSession` ä»ç„¶æ”¯æŒï¼ˆ`true` â†’ `scope: "session"`ï¼Œ`false` â†’ `scope: "shared"`ï¼‰ã€‚
 
-`setupCommand` 在容器创建后**运行一次**（在容器内通过 `sh -lc` 执行）。
-对于包安装，确保网络出口、可写根文件系统和 root 用户。
+`setupCommand` åœ¨å®¹å™¨åˆ›å»ºåŽ**è¿è¡Œä¸€æ¬¡**ï¼ˆåœ¨å®¹å™¨å†…é€šè¿‡ `sh -lc` æ‰§è¡Œï¼‰ã€‚
+å¯¹äºŽåŒ…å®‰è£…ï¼Œç¡®ä¿ç½‘ç»œå‡ºå£ã€å¯å†™æ ¹æ–‡ä»¶ç³»ç»Ÿå’Œ root ç”¨æˆ·ã€‚
 
 ```json5
 {
@@ -2257,12 +2257,12 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
     defaults: {
       sandbox: {
         mode: "non-main", // off | non-main | all
-        scope: "agent", // session | agent | shared（agent 为默认）
+        scope: "agent", // session | agent | sharedï¼ˆagent ä¸ºé»˜è®¤ï¼‰
         workspaceAccess: "none", // none | ro | rw
-        workspaceRoot: "~/.openclaw/sandboxes",
+        workspaceRoot: "~/./sandboxes",
         docker: {
-          image: "openclaw-sandbox:bookworm-slim",
-          containerPrefix: "openclaw-sbx-",
+          image: "-sandbox:bookworm-slim",
+          containerPrefix: "-sbx-",
           workdir: "/workspace",
           readOnlyRoot: true,
           tmpfs: ["/tmp", "/var/tmp", "/run"],
@@ -2271,7 +2271,7 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
           capDrop: ["ALL"],
           env: { LANG: "C.UTF-8" },
           setupCommand: "apt-get update && apt-get install -y git curl jq",
-          // 每智能体覆盖（多智能体）：agents.list[].sandbox.docker.*
+          // æ¯æ™ºèƒ½ä½“è¦†ç›–ï¼ˆå¤šæ™ºèƒ½ä½“ï¼‰ï¼šagents.list[].sandbox.docker.*
           pidsLimit: 256,
           memory: "1g",
           memorySwap: "2g",
@@ -2281,15 +2281,15 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
             nproc: 256,
           },
           seccompProfile: "/path/to/seccomp.json",
-          apparmorProfile: "openclaw-sandbox",
+          apparmorProfile: "-sandbox",
           dns: ["1.1.1.1", "8.8.8.8"],
           extraHosts: ["internal.service:10.0.0.5"],
           binds: ["/var/run/docker.sock:/var/run/docker.sock", "/home/user/source:/source:rw"],
         },
         browser: {
           enabled: false,
-          image: "openclaw-sandbox-browser:bookworm-slim",
-          containerPrefix: "openclaw-sbx-browser-",
+          image: "-sandbox-browser:bookworm-slim",
+          containerPrefix: "-sbx-browser-",
           cdpPort: 9222,
           vncPort: 5900,
           noVncPort: 6080,
@@ -2303,8 +2303,8 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
           autoStartTimeoutMs: 12000,
         },
         prune: {
-          idleHours: 24, // 0 禁用空闲清理
-          maxAgeDays: 7, // 0 禁用最大存活时间清理
+          idleHours: 24, // 0 ç¦ç”¨ç©ºé—²æ¸…ç†
+          maxAgeDays: 7, // 0 ç¦ç”¨æœ€å¤§å­˜æ´»æ—¶é—´æ¸…ç†
         },
       },
     },
@@ -2332,53 +2332,53 @@ Z.AI 模型可通过 `zai/<model>` 使用（例如 `zai/glm-4.7`），需要环�
 }
 ```
 
-首次构建默认沙箱镜像：
+é¦–æ¬¡æž„å»ºé»˜è®¤æ²™ç®±é•œåƒï¼š
 
 ```bash
 scripts/sandbox-setup.sh
 ```
 
-注意：沙箱容器默认为 `network: "none"`；如果智能体需要出站访问，请将 `agents.defaults.sandbox.docker.network` 设为 `"bridge"`（或你的自定义网络）。
+æ³¨æ„ï¼šæ²™ç®±å®¹å™¨é»˜è®¤ä¸º `network: "none"`ï¼›å¦‚æžœæ™ºèƒ½ä½“éœ€è¦å‡ºç«™è®¿é—®ï¼Œè¯·å°† `agents.defaults.sandbox.docker.network` è®¾ä¸º `"bridge"`ï¼ˆæˆ–ä½ çš„è‡ªå®šä¹‰ç½‘ç»œï¼‰ã€‚
 
-注意：入站附件会暂存到活跃工作区的 `media/inbound/*` 中。使用 `workspaceAccess: "rw"` 时，文件会写入智能体工作区。
+æ³¨æ„ï¼šå…¥ç«™é™„ä»¶ä¼šæš‚å­˜åˆ°æ´»è·ƒå·¥ä½œåŒºçš„ `media/inbound/*` ä¸­ã€‚ä½¿ç”¨ `workspaceAccess: "rw"` æ—¶ï¼Œæ–‡ä»¶ä¼šå†™å…¥æ™ºèƒ½ä½“å·¥ä½œåŒºã€‚
 
-注意：`docker.binds` 挂载额外的主机目录；全局和每智能体的 binds 会合并。
+æ³¨æ„ï¼š`docker.binds` æŒ‚è½½é¢å¤–çš„ä¸»æœºç›®å½•ï¼›å…¨å±€å’Œæ¯æ™ºèƒ½ä½“çš„ binds ä¼šåˆå¹¶ã€‚
 
-构建可选的浏览器镜像：
+æž„å»ºå¯é€‰çš„æµè§ˆå™¨é•œåƒï¼š
 
 ```bash
 scripts/sandbox-browser-setup.sh
 ```
 
-当 `agents.defaults.sandbox.browser.enabled=true` 时，浏览器工具使用沙箱化的
-Chromium 实例（CDP）。如果启用了 noVNC（headless=false 时默认启用），
-noVNC URL 会注入系统提示中，以便智能体可以引用它。
-这不需要主配置中的 `browser.enabled`；沙箱控制 URL 按会话注入。
+å½“ `agents.defaults.sandbox.browser.enabled=true` æ—¶ï¼Œæµè§ˆå™¨å·¥å…·ä½¿ç”¨æ²™ç®±åŒ–çš„
+Chromium å®žä¾‹ï¼ˆCDPï¼‰ã€‚å¦‚æžœå¯ç”¨äº† noVNCï¼ˆheadless=false æ—¶é»˜è®¤å¯ç”¨ï¼‰ï¼Œ
+noVNC URL ä¼šæ³¨å…¥ç³»ç»Ÿæç¤ºä¸­ï¼Œä»¥ä¾¿æ™ºèƒ½ä½“å¯ä»¥å¼•ç”¨å®ƒã€‚
+è¿™ä¸éœ€è¦ä¸»é…ç½®ä¸­çš„ `browser.enabled`ï¼›æ²™ç®±æŽ§åˆ¶ URL æŒ‰ä¼šè¯æ³¨å…¥ã€‚
 
-`agents.defaults.sandbox.browser.allowHostControl`（默认：false）允许
-沙箱会话通过浏览器工具显式访问**主机**浏览器控制服务器
-（`target: "host"`）。如果你需要严格的沙箱隔离，请保持关闭。
+`agents.defaults.sandbox.browser.allowHostControl`ï¼ˆé»˜è®¤ï¼šfalseï¼‰å…è®¸
+æ²™ç®±ä¼šè¯é€šè¿‡æµè§ˆå™¨å·¥å…·æ˜¾å¼è®¿é—®**ä¸»æœº**æµè§ˆå™¨æŽ§åˆ¶æœåŠ¡å™¨
+ï¼ˆ`target: "host"`ï¼‰ã€‚å¦‚æžœä½ éœ€è¦ä¸¥æ ¼çš„æ²™ç®±éš”ç¦»ï¼Œè¯·ä¿æŒå…³é—­ã€‚
 
-远程控制白名单：
+è¿œç¨‹æŽ§åˆ¶ç™½åå•ï¼š
 
-- `allowedControlUrls`：`target: "custom"` 允许的精确控制 URL。
-- `allowedControlHosts`：允许的主机名（仅主机名，无端口）。
-- `allowedControlPorts`：允许的端口（默认：http=80，https=443）。
-  默认：所有白名单未设置（无限制）。`allowHostControl` 默认为 false。
+- `allowedControlUrls`ï¼š`target: "custom"` å…è®¸çš„ç²¾ç¡®æŽ§åˆ¶ URLã€‚
+- `allowedControlHosts`ï¼šå…è®¸çš„ä¸»æœºåï¼ˆä»…ä¸»æœºåï¼Œæ— ç«¯å£ï¼‰ã€‚
+- `allowedControlPorts`ï¼šå…è®¸çš„ç«¯å£ï¼ˆé»˜è®¤ï¼šhttp=80ï¼Œhttps=443ï¼‰ã€‚
+  é»˜è®¤ï¼šæ‰€æœ‰ç™½åå•æœªè®¾ç½®ï¼ˆæ— é™åˆ¶ï¼‰ã€‚`allowHostControl` é»˜è®¤ä¸º falseã€‚
 
-### `models`（自定义提供商 + 基础 URL）
+### `models`ï¼ˆè‡ªå®šä¹‰æä¾›å•† + åŸºç¡€ URLï¼‰
 
-OpenClaw 使用 **pi-coding-agent** 模型目录。你可以通过编写
-`~/.openclaw/agents/<agentId>/agent/models.json` 或在 OpenClaw 配置中的 `models.providers` 下定义相同的 schema 来添加自定义提供商（LiteLLM、本地 OpenAI 兼容服务器、Anthropic 代理等）。
-按提供商的概述 + 示例：[/concepts/model-providers](/concepts/model-providers)。
+ ä½¿ç”¨ **pi-coding-agent** æ¨¡åž‹ç›®å½•ã€‚ä½ å¯ä»¥é€šè¿‡ç¼–å†™
+`~/./agents/<agentId>/agent/models.json` æˆ–åœ¨  é…ç½®ä¸­çš„ `models.providers` ä¸‹å®šä¹‰ç›¸åŒçš„ schema æ¥æ·»åŠ è‡ªå®šä¹‰æä¾›å•†ï¼ˆLiteLLMã€æœ¬åœ° OpenAI å…¼å®¹æœåŠ¡å™¨ã€Anthropic ä»£ç†ç­‰ï¼‰ã€‚
+æŒ‰æä¾›å•†çš„æ¦‚è¿° + ç¤ºä¾‹ï¼š[/concepts/model-providers](/concepts/model-providers)ã€‚
 
-当存在 `models.providers` 时，OpenClaw 在启动时将 `models.json` 写入/合并到
-`~/.openclaw/agents/<agentId>/agent/`：
+å½“å­˜åœ¨ `models.providers` æ—¶ï¼Œ åœ¨å¯åŠ¨æ—¶å°† `models.json` å†™å…¥/åˆå¹¶åˆ°
+`~/./agents/<agentId>/agent/`ï¼š
 
-- 默认行为：**合并**（保留现有提供商，按名称覆盖）
-- 设为 `models.mode: "replace"` 覆盖文件内容
+- é»˜è®¤è¡Œä¸ºï¼š**åˆå¹¶**ï¼ˆä¿ç•™çŽ°æœ‰æä¾›å•†ï¼ŒæŒ‰åç§°è¦†ç›–ï¼‰
+- è®¾ä¸º `models.mode: "replace"` è¦†ç›–æ–‡ä»¶å†…å®¹
 
-通过 `agents.defaults.model.primary`（provider/model）选择模型。
+é€šè¿‡ `agents.defaults.model.primary`ï¼ˆprovider/modelï¼‰é€‰æ‹©æ¨¡åž‹ã€‚
 
 ```json5
 {
@@ -2414,17 +2414,17 @@ OpenClaw 使用 **pi-coding-agent** 模型目录。你可以通过编写
 }
 ```
 
-### OpenCode Zen（多模型代理）
+### OpenCode Zenï¼ˆå¤šæ¨¡åž‹ä»£ç†ï¼‰
 
-OpenCode Zen 是一个具有每模型端点的多模型网关。OpenClaw 使用
-pi-ai 内置的 `opencode` 提供商；从 https://opencode.ai/auth 设置 `OPENCODE_API_KEY`（或
-`OPENCODE_ZEN_API_KEY`）。
+OpenCode Zen æ˜¯ä¸€ä¸ªå…·æœ‰æ¯æ¨¡åž‹ç«¯ç‚¹çš„å¤šæ¨¡åž‹ç½‘å…³ã€‚ ä½¿ç”¨
+pi-ai å†…ç½®çš„ `opencode` æä¾›å•†ï¼›ä»Ž https://opencode.ai/auth è®¾ç½® `OPENCODE_API_KEY`ï¼ˆæˆ–
+`OPENCODE_ZEN_API_KEY`ï¼‰ã€‚
 
-说明：
+è¯´æ˜Žï¼š
 
-- 模型引用使用 `opencode/<modelId>`（示例：`opencode/claude-opus-4-5`）。
-- 如果你通过 `agents.defaults.models` 启用白名单，请添加你计划使用的每个模型。
-- 快捷方式：`openclaw onboard --auth-choice opencode-zen`。
+- æ¨¡åž‹å¼•ç”¨ä½¿ç”¨ `opencode/<modelId>`ï¼ˆç¤ºä¾‹ï¼š`opencode/claude-opus-4-5`ï¼‰ã€‚
+- å¦‚æžœä½ é€šè¿‡ `agents.defaults.models` å¯ç”¨ç™½åå•ï¼Œè¯·æ·»åŠ ä½ è®¡åˆ’ä½¿ç”¨çš„æ¯ä¸ªæ¨¡åž‹ã€‚
+- å¿«æ·æ–¹å¼ï¼š` onboard --auth-choice opencode-zen`ã€‚
 
 ```json5
 {
@@ -2437,12 +2437,12 @@ pi-ai 内置的 `opencode` 提供商；从 https://opencode.ai/auth 设置 `OPEN
 }
 ```
 
-### Z.AI（GLM-4.7）— 提供商别名支持
+### Z.AIï¼ˆGLM-4.7ï¼‰â€” æä¾›å•†åˆ«åæ”¯æŒ
 
-Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_KEY`
-并通过 provider/model 引用模型。
+Z.AI æ¨¡åž‹é€šè¿‡å†…ç½®çš„ `zai` æä¾›å•†æä¾›ã€‚åœ¨çŽ¯å¢ƒä¸­è®¾ç½® `ZAI_API_KEY`
+å¹¶é€šè¿‡ provider/model å¼•ç”¨æ¨¡åž‹ã€‚
 
-快捷方式：`openclaw onboard --auth-choice zai-api-key`。
+å¿«æ·æ–¹å¼ï¼š` onboard --auth-choice zai-api-key`ã€‚
 
 ```json5
 {
@@ -2455,21 +2455,21 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- `z.ai/*` 和 `z-ai/*` 是接受的别名，规范化为 `zai/*`。
-- 如果缺少 `ZAI_API_KEY`，对 `zai/*` 的请求将在运行时因认证错误失败。
-- 示例错误：`No API key found for provider "zai".`
-- Z.AI 的通用 API 端点是 `https://api.z.ai/api/paas/v4`。GLM 编码
-  请求使用专用编码端点 `https://api.z.ai/api/coding/paas/v4`。
-  内置的 `zai` 提供商使用编码端点。如果你需要通用
-  端点，请在 `models.providers` 中定义自定义提供商并覆盖基础 URL
-  （参见上方自定义提供商部分）。
-- 在文档/配置中使用假占位符；切勿提交真实 API 密钥。
+- `z.ai/*` å’Œ `z-ai/*` æ˜¯æŽ¥å—çš„åˆ«åï¼Œè§„èŒƒåŒ–ä¸º `zai/*`ã€‚
+- å¦‚æžœç¼ºå°‘ `ZAI_API_KEY`ï¼Œå¯¹ `zai/*` çš„è¯·æ±‚å°†åœ¨è¿è¡Œæ—¶å› è®¤è¯é”™è¯¯å¤±è´¥ã€‚
+- ç¤ºä¾‹é”™è¯¯ï¼š`No API key found for provider "zai".`
+- Z.AI çš„é€šç”¨ API ç«¯ç‚¹æ˜¯ `https://api.z.ai/api/paas/v4`ã€‚GLM ç¼–ç 
+  è¯·æ±‚ä½¿ç”¨ä¸“ç”¨ç¼–ç ç«¯ç‚¹ `https://api.z.ai/api/coding/paas/v4`ã€‚
+  å†…ç½®çš„ `zai` æä¾›å•†ä½¿ç”¨ç¼–ç ç«¯ç‚¹ã€‚å¦‚æžœä½ éœ€è¦é€šç”¨
+  ç«¯ç‚¹ï¼Œè¯·åœ¨ `models.providers` ä¸­å®šä¹‰è‡ªå®šä¹‰æä¾›å•†å¹¶è¦†ç›–åŸºç¡€ URL
+  ï¼ˆå‚è§ä¸Šæ–¹è‡ªå®šä¹‰æä¾›å•†éƒ¨åˆ†ï¼‰ã€‚
+- åœ¨æ–‡æ¡£/é…ç½®ä¸­ä½¿ç”¨å‡å ä½ç¬¦ï¼›åˆ‡å‹¿æäº¤çœŸå®ž API å¯†é’¥ã€‚
 
-### Moonshot AI（Kimi）
+### Moonshot AIï¼ˆKimiï¼‰
 
-使用 Moonshot 的 OpenAI 兼容端点：
+ä½¿ç”¨ Moonshot çš„ OpenAI å…¼å®¹ç«¯ç‚¹ï¼š
 
 ```json5
 {
@@ -2504,15 +2504,15 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 在环境中设置 `MOONSHOT_API_KEY` 或使用 `openclaw onboard --auth-choice moonshot-api-key`。
-- 模型引用：`moonshot/kimi-k2.5`。
-- 如需中国端点，使用 `https://api.moonshot.cn/v1`。
+- åœ¨çŽ¯å¢ƒä¸­è®¾ç½® `MOONSHOT_API_KEY` æˆ–ä½¿ç”¨ ` onboard --auth-choice moonshot-api-key`ã€‚
+- æ¨¡åž‹å¼•ç”¨ï¼š`moonshot/kimi-k2.5`ã€‚
+- å¦‚éœ€ä¸­å›½ç«¯ç‚¹ï¼Œä½¿ç”¨ `https://api.moonshot.cn/v1`ã€‚
 
 ### Kimi Coding
 
-使用 Moonshot AI 的 Kimi Coding 端点（Anthropic 兼容，内置提供商）：
+ä½¿ç”¨ Moonshot AI çš„ Kimi Coding ç«¯ç‚¹ï¼ˆAnthropic å…¼å®¹ï¼Œå†…ç½®æä¾›å•†ï¼‰ï¼š
 
 ```json5
 {
@@ -2526,14 +2526,14 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 在环境中设置 `KIMI_API_KEY` 或使用 `openclaw onboard --auth-choice kimi-code-api-key`。
-- 模型引用：`kimi-coding/k2p5`。
+- åœ¨çŽ¯å¢ƒä¸­è®¾ç½® `KIMI_API_KEY` æˆ–ä½¿ç”¨ ` onboard --auth-choice kimi-code-api-key`ã€‚
+- æ¨¡åž‹å¼•ç”¨ï¼š`kimi-coding/k2p5`ã€‚
 
-### Synthetic（Anthropic 兼容）
+### Syntheticï¼ˆAnthropic å…¼å®¹ï¼‰
 
-使用 Synthetic 的 Anthropic 兼容端点：
+ä½¿ç”¨ Synthetic çš„ Anthropic å…¼å®¹ç«¯ç‚¹ï¼š
 
 ```json5
 {
@@ -2568,19 +2568,19 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 设置 `SYNTHETIC_API_KEY` 或使用 `openclaw onboard --auth-choice synthetic-api-key`。
-- 模型引用：`synthetic/hf:MiniMaxAI/MiniMax-M2.1`。
-- 基础 URL 应省略 `/v1`，因为 Anthropic 客户端会自动附加。
+- è®¾ç½® `SYNTHETIC_API_KEY` æˆ–ä½¿ç”¨ ` onboard --auth-choice synthetic-api-key`ã€‚
+- æ¨¡åž‹å¼•ç”¨ï¼š`synthetic/hf:MiniMaxAI/MiniMax-M2.1`ã€‚
+- åŸºç¡€ URL åº”çœç•¥ `/v1`ï¼Œå› ä¸º Anthropic å®¢æˆ·ç«¯ä¼šè‡ªåŠ¨é™„åŠ ã€‚
 
-### 本地模型（LM Studio）— 推荐设置
+### æœ¬åœ°æ¨¡åž‹ï¼ˆLM Studioï¼‰â€” æŽ¨èè®¾ç½®
 
-参见 [/gateway/local-models](/gateway/local-models) 了解当前本地指南。简而言之：在高性能硬件上通过 LM Studio Responses API 运行 MiniMax M2.1；保留托管模型合并作为回退。
+å‚è§ [/gateway/local-models](/gateway/local-models) äº†è§£å½“å‰æœ¬åœ°æŒ‡å—ã€‚ç®€è€Œè¨€ä¹‹ï¼šåœ¨é«˜æ€§èƒ½ç¡¬ä»¶ä¸Šé€šè¿‡ LM Studio Responses API è¿è¡Œ MiniMax M2.1ï¼›ä¿ç•™æ‰˜ç®¡æ¨¡åž‹åˆå¹¶ä½œä¸ºå›žé€€ã€‚
 
 ### MiniMax M2.1
 
-不通过 LM Studio 直接使用 MiniMax M2.1：
+ä¸é€šè¿‡ LM Studio ç›´æŽ¥ä½¿ç”¨ MiniMax M2.1ï¼š
 
 ```json5
 {
@@ -2604,7 +2604,7 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
             name: "MiniMax M2.1",
             reasoning: false,
             input: ["text"],
-            // 定价：如需精确费用跟踪，请在 models.json 中更新。
+            // å®šä»·ï¼šå¦‚éœ€ç²¾ç¡®è´¹ç”¨è·Ÿè¸ªï¼Œè¯·åœ¨ models.json ä¸­æ›´æ–°ã€‚
             cost: { input: 15, output: 60, cacheRead: 2, cacheWrite: 10 },
             contextWindow: 200000,
             maxTokens: 8192,
@@ -2616,15 +2616,15 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- 设置 `MINIMAX_API_KEY` 环境变量或使用 `openclaw onboard --auth-choice minimax-api`。
-- 可用模型：`MiniMax-M2.1`（默认）。
-- 如需精确费用跟踪，请在 `models.json` 中更新定价。
+- è®¾ç½® `MINIMAX_API_KEY` çŽ¯å¢ƒå˜é‡æˆ–ä½¿ç”¨ ` onboard --auth-choice minimax-api`ã€‚
+- å¯ç”¨æ¨¡åž‹ï¼š`MiniMax-M2.1`ï¼ˆé»˜è®¤ï¼‰ã€‚
+- å¦‚éœ€ç²¾ç¡®è´¹ç”¨è·Ÿè¸ªï¼Œè¯·åœ¨ `models.json` ä¸­æ›´æ–°å®šä»·ã€‚
 
-### Cerebras（GLM 4.6 / 4.7）
+### Cerebrasï¼ˆGLM 4.6 / 4.7ï¼‰
 
-通过 Cerebras 的 OpenAI 兼容端点使用：
+é€šè¿‡ Cerebras çš„ OpenAI å…¼å®¹ç«¯ç‚¹ä½¿ç”¨ï¼š
 
 ```json5
 {
@@ -2658,21 +2658,21 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-说明：
+è¯´æ˜Žï¼š
 
-- Cerebras 使用 `cerebras/zai-glm-4.7`；Z.AI 直连使用 `zai/glm-4.7`。
-- 在环境或配置中设置 `CEREBRAS_API_KEY`。
+- Cerebras ä½¿ç”¨ `cerebras/zai-glm-4.7`ï¼›Z.AI ç›´è¿žä½¿ç”¨ `zai/glm-4.7`ã€‚
+- åœ¨çŽ¯å¢ƒæˆ–é…ç½®ä¸­è®¾ç½® `CEREBRAS_API_KEY`ã€‚
 
-说明：
+è¯´æ˜Žï¼š
 
-- 支持的 API：`openai-completions`、`openai-responses`、`anthropic-messages`、
+- æ”¯æŒçš„ APIï¼š`openai-completions`ã€`openai-responses`ã€`anthropic-messages`ã€
   `google-generative-ai`
-- 对于自定义认证需求使用 `authHeader: true` + `headers`。
-- 如果你希望 `models.json` 存储在其他位置，请使用 `OPENCLAW_AGENT_DIR`（或 `PI_CODING_AGENT_DIR`）覆盖智能体配置根目录（默认：`~/.openclaw/agents/main/agent`）。
+- å¯¹äºŽè‡ªå®šä¹‰è®¤è¯éœ€æ±‚ä½¿ç”¨ `authHeader: true` + `headers`ã€‚
+- å¦‚æžœä½ å¸Œæœ› `models.json` å­˜å‚¨åœ¨å…¶ä»–ä½ç½®ï¼Œè¯·ä½¿ç”¨ `_AGENT_DIR`ï¼ˆæˆ– `PI_CODING_AGENT_DIR`ï¼‰è¦†ç›–æ™ºèƒ½ä½“é…ç½®æ ¹ç›®å½•ï¼ˆé»˜è®¤ï¼š`~/./agents/main/agent`ï¼‰ã€‚
 
 ### `session`
 
-控制会话作用域、重置策略、重置触发器以及会话存储的写入位置。
+æŽ§åˆ¶ä¼šè¯ä½œç”¨åŸŸã€é‡ç½®ç­–ç•¥ã€é‡ç½®è§¦å‘å™¨ä»¥åŠä¼šè¯å­˜å‚¨çš„å†™å…¥ä½ç½®ã€‚
 
 ```json5
 {
@@ -2693,13 +2693,13 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
       group: { mode: "idle", idleMinutes: 120 },
     },
     resetTriggers: ["/new", "/reset"],
-    // 默认已按智能体存储在 ~/.openclaw/agents/<agentId>/sessions/sessions.json
-    // 你可以使用 {agentId} 模板进行覆盖：
-    store: "~/.openclaw/agents/{agentId}/sessions/sessions.json",
-    // 私聊折叠到 agent:<agentId>:<mainKey>（默认："main"）。
+    // é»˜è®¤å·²æŒ‰æ™ºèƒ½ä½“å­˜å‚¨åœ¨ ~/./agents/<agentId>/sessions/sessions.json
+    // ä½ å¯ä»¥ä½¿ç”¨ {agentId} æ¨¡æ¿è¿›è¡Œè¦†ç›–ï¼š
+    store: "~/./agents/{agentId}/sessions/sessions.json",
+    // ç§èŠæŠ˜å åˆ° agent:<agentId>:<mainKey>ï¼ˆé»˜è®¤ï¼š"main"ï¼‰ã€‚
     mainKey: "main",
     agentToAgent: {
-      // 请求者/目标之间的最大乒乓回复轮次（0–5）。
+      // è¯·æ±‚è€…/ç›®æ ‡ä¹‹é—´çš„æœ€å¤§ä¹’ä¹“å›žå¤è½®æ¬¡ï¼ˆ0â€“5ï¼‰ã€‚
       maxPingPongTurns: 5,
     },
     sendPolicy: {
@@ -2710,47 +2710,47 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-字段：
+å­—æ®µï¼š
 
-- `mainKey`：私聊桶键（默认：`"main"`）。当你想"重命名"主私聊线程而不更改 `agentId` 时有用。
-  - 沙箱说明：`agents.defaults.sandbox.mode: "non-main"` 使用此键检测主会话。任何不匹配 `mainKey` 的会话键（群组/频道）都会被沙箱化。
-- `dmScope`：私聊会话如何分组（默认：`"main"`）。
-  - `main`：所有私聊共享主会话以保持连续性。
-  - `per-peer`：按发送者 id 跨渠道隔离私聊。
-  - `per-channel-peer`：按渠道 + 发送者隔离私聊（推荐用于多用户收件箱）。
-  - `per-account-channel-peer`：按账号 + 渠道 + 发送者隔离私聊（推荐用于多账号收件箱）。
-- `identityLinks`：将规范 id 映射到提供商前缀的对等方，以便在使用 `per-peer`、`per-channel-peer` 或 `per-account-channel-peer` 时同一人跨渠道共享私聊会话。
-  - 示例：`alice: ["telegram:123456789", "discord:987654321012345678"]`。
-- `reset`：主重置策略。默认为 Gateway 网关主机上本地时间凌晨 4:00 每日重置。
-  - `mode`：`daily` 或 `idle`（当存在 `reset` 时默认：`daily`）。
-  - `atHour`：本地小时（0-23）作为每日重置边界。
-  - `idleMinutes`：滑动空闲窗口（分钟）。当 daily + idle 都配置时，先到期的获胜。
-- `resetByType`：`dm`、`group` 和 `thread` 的每会话覆盖。
-  - 如果你只设置了旧版 `session.idleMinutes` 而没有任何 `reset`/`resetByType`，OpenClaw 保持仅空闲模式以向后兼容。
-- `heartbeatIdleMinutes`：可选的心跳检查空闲覆盖（启用时每日重置仍然适用）。
-- `agentToAgent.maxPingPongTurns`：请求者/目标之间的最大回复轮次（0–5，默认 5）。
-- `sendPolicy.default`：无规则匹配时的 `allow` 或 `deny` 回退。
-- `sendPolicy.rules[]`：按 `channel`、`chatType`（`direct|group|room`）或 `keyPrefix`（例如 `cron:`）匹配。第一个 deny 获胜；否则 allow。
+- `mainKey`ï¼šç§èŠæ¡¶é”®ï¼ˆé»˜è®¤ï¼š`"main"`ï¼‰ã€‚å½“ä½ æƒ³"é‡å‘½å"ä¸»ç§èŠçº¿ç¨‹è€Œä¸æ›´æ”¹ `agentId` æ—¶æœ‰ç”¨ã€‚
+  - æ²™ç®±è¯´æ˜Žï¼š`agents.defaults.sandbox.mode: "non-main"` ä½¿ç”¨æ­¤é”®æ£€æµ‹ä¸»ä¼šè¯ã€‚ä»»ä½•ä¸åŒ¹é… `mainKey` çš„ä¼šè¯é”®ï¼ˆç¾¤ç»„/é¢‘é“ï¼‰éƒ½ä¼šè¢«æ²™ç®±åŒ–ã€‚
+- `dmScope`ï¼šç§èŠä¼šè¯å¦‚ä½•åˆ†ç»„ï¼ˆé»˜è®¤ï¼š`"main"`ï¼‰ã€‚
+  - `main`ï¼šæ‰€æœ‰ç§èŠå…±äº«ä¸»ä¼šè¯ä»¥ä¿æŒè¿žç»­æ€§ã€‚
+  - `per-peer`ï¼šæŒ‰å‘é€è€… id è·¨æ¸ é“éš”ç¦»ç§èŠã€‚
+  - `per-channel-peer`ï¼šæŒ‰æ¸ é“ + å‘é€è€…éš”ç¦»ç§èŠï¼ˆæŽ¨èç”¨äºŽå¤šç”¨æˆ·æ”¶ä»¶ç®±ï¼‰ã€‚
+  - `per-account-channel-peer`ï¼šæŒ‰è´¦å· + æ¸ é“ + å‘é€è€…éš”ç¦»ç§èŠï¼ˆæŽ¨èç”¨äºŽå¤šè´¦å·æ”¶ä»¶ç®±ï¼‰ã€‚
+- `identityLinks`ï¼šå°†è§„èŒƒ id æ˜ å°„åˆ°æä¾›å•†å‰ç¼€çš„å¯¹ç­‰æ–¹ï¼Œä»¥ä¾¿åœ¨ä½¿ç”¨ `per-peer`ã€`per-channel-peer` æˆ– `per-account-channel-peer` æ—¶åŒä¸€äººè·¨æ¸ é“å…±äº«ç§èŠä¼šè¯ã€‚
+  - ç¤ºä¾‹ï¼š`alice: ["telegram:123456789", "discord:987654321012345678"]`ã€‚
+- `reset`ï¼šä¸»é‡ç½®ç­–ç•¥ã€‚é»˜è®¤ä¸º Gateway ç½‘å…³ä¸»æœºä¸Šæœ¬åœ°æ—¶é—´å‡Œæ™¨ 4:00 æ¯æ—¥é‡ç½®ã€‚
+  - `mode`ï¼š`daily` æˆ– `idle`ï¼ˆå½“å­˜åœ¨ `reset` æ—¶é»˜è®¤ï¼š`daily`ï¼‰ã€‚
+  - `atHour`ï¼šæœ¬åœ°å°æ—¶ï¼ˆ0-23ï¼‰ä½œä¸ºæ¯æ—¥é‡ç½®è¾¹ç•Œã€‚
+  - `idleMinutes`ï¼šæ»‘åŠ¨ç©ºé—²çª—å£ï¼ˆåˆ†é’Ÿï¼‰ã€‚å½“ daily + idle éƒ½é…ç½®æ—¶ï¼Œå…ˆåˆ°æœŸçš„èŽ·èƒœã€‚
+- `resetByType`ï¼š`dm`ã€`group` å’Œ `thread` çš„æ¯ä¼šè¯è¦†ç›–ã€‚
+  - å¦‚æžœä½ åªè®¾ç½®äº†æ—§ç‰ˆ `session.idleMinutes` è€Œæ²¡æœ‰ä»»ä½• `reset`/`resetByType`ï¼Œ ä¿æŒä»…ç©ºé—²æ¨¡å¼ä»¥å‘åŽå…¼å®¹ã€‚
+- `heartbeatIdleMinutes`ï¼šå¯é€‰çš„å¿ƒè·³æ£€æŸ¥ç©ºé—²è¦†ç›–ï¼ˆå¯ç”¨æ—¶æ¯æ—¥é‡ç½®ä»ç„¶é€‚ç”¨ï¼‰ã€‚
+- `agentToAgent.maxPingPongTurns`ï¼šè¯·æ±‚è€…/ç›®æ ‡ä¹‹é—´çš„æœ€å¤§å›žå¤è½®æ¬¡ï¼ˆ0â€“5ï¼Œé»˜è®¤ 5ï¼‰ã€‚
+- `sendPolicy.default`ï¼šæ— è§„åˆ™åŒ¹é…æ—¶çš„ `allow` æˆ– `deny` å›žé€€ã€‚
+- `sendPolicy.rules[]`ï¼šæŒ‰ `channel`ã€`chatType`ï¼ˆ`direct|group|room`ï¼‰æˆ– `keyPrefix`ï¼ˆä¾‹å¦‚ `cron:`ï¼‰åŒ¹é…ã€‚ç¬¬ä¸€ä¸ª deny èŽ·èƒœï¼›å¦åˆ™ allowã€‚
 
-### `skills`（Skills 配置）
+### `skills`ï¼ˆSkills é…ç½®ï¼‰
 
-控制内置白名单、安装偏好、额外 Skills 文件夹和每 Skills 覆盖。适用于**内置**Skills 和 `~/.openclaw/skills`（工作区 Skills 在名称冲突时仍然优先）。
+æŽ§åˆ¶å†…ç½®ç™½åå•ã€å®‰è£…åå¥½ã€é¢å¤– Skills æ–‡ä»¶å¤¹å’Œæ¯ Skills è¦†ç›–ã€‚é€‚ç”¨äºŽ**å†…ç½®**Skills å’Œ `~/./skills`ï¼ˆå·¥ä½œåŒº Skills åœ¨åç§°å†²çªæ—¶ä»ç„¶ä¼˜å…ˆï¼‰ã€‚
 
-字段：
+å­—æ®µï¼š
 
-- `allowBundled`：可选的**仅内置**Skills 白名单。如果设置，仅那些内置 Skills 符合条件（管理/工作区 Skills 不受影响）。
-- `load.extraDirs`：额外要扫描的 Skills 目录（最低优先级）。
-- `install.preferBrew`：可用时优先使用 brew 安装程序（默认：true）。
-- `install.nodeManager`：node 安装偏好（`npm` | `pnpm` | `yarn`，默认：npm）。
-- `entries.<skillKey>`：每 Skills 配置覆盖。
+- `allowBundled`ï¼šå¯é€‰çš„**ä»…å†…ç½®**Skills ç™½åå•ã€‚å¦‚æžœè®¾ç½®ï¼Œä»…é‚£äº›å†…ç½® Skills ç¬¦åˆæ¡ä»¶ï¼ˆç®¡ç†/å·¥ä½œåŒº Skills ä¸å—å½±å“ï¼‰ã€‚
+- `load.extraDirs`ï¼šé¢å¤–è¦æ‰«æçš„ Skills ç›®å½•ï¼ˆæœ€ä½Žä¼˜å…ˆçº§ï¼‰ã€‚
+- `install.preferBrew`ï¼šå¯ç”¨æ—¶ä¼˜å…ˆä½¿ç”¨ brew å®‰è£…ç¨‹åºï¼ˆé»˜è®¤ï¼štrueï¼‰ã€‚
+- `install.nodeManager`ï¼šnode å®‰è£…åå¥½ï¼ˆ`npm` | `pnpm` | `yarn`ï¼Œé»˜è®¤ï¼šnpmï¼‰ã€‚
+- `entries.<skillKey>`ï¼šæ¯ Skills é…ç½®è¦†ç›–ã€‚
 
-每 Skills 字段：
+æ¯ Skills å­—æ®µï¼š
 
-- `enabled`：设为 `false` 禁用 Skills，即使它是内置/已安装的。
-- `env`：为智能体运行注入的环境变量（仅在尚未设置时）。
-- `apiKey`：对于声明了主环境变量的 Skills 的可选便利字段（例如 `nano-banana-pro` → `GEMINI_API_KEY`）。
+- `enabled`ï¼šè®¾ä¸º `false` ç¦ç”¨ Skillsï¼Œå³ä½¿å®ƒæ˜¯å†…ç½®/å·²å®‰è£…çš„ã€‚
+- `env`ï¼šä¸ºæ™ºèƒ½ä½“è¿è¡Œæ³¨å…¥çš„çŽ¯å¢ƒå˜é‡ï¼ˆä»…åœ¨å°šæœªè®¾ç½®æ—¶ï¼‰ã€‚
+- `apiKey`ï¼šå¯¹äºŽå£°æ˜Žäº†ä¸»çŽ¯å¢ƒå˜é‡çš„ Skills çš„å¯é€‰ä¾¿åˆ©å­—æ®µï¼ˆä¾‹å¦‚ `nano-banana-pro` â†’ `GEMINI_API_KEY`ï¼‰ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -2777,22 +2777,22 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-### `plugins`（扩展）
+### `plugins`ï¼ˆæ‰©å±•ï¼‰
 
-控制插件发现、允许/拒绝和每插件配置。插件从 `~/.openclaw/extensions`、`<workspace>/.openclaw/extensions` 以及任何 `plugins.load.paths` 条目加载。**配置更改需要重启 Gateway 网关。**
-参见 [/plugin](/plugin) 了解详情。
+æŽ§åˆ¶æ’ä»¶å‘çŽ°ã€å…è®¸/æ‹’ç»å’Œæ¯æ’ä»¶é…ç½®ã€‚æ’ä»¶ä»Ž `~/./extensions`ã€`<workspace>/./extensions` ä»¥åŠä»»ä½• `plugins.load.paths` æ¡ç›®åŠ è½½ã€‚**é…ç½®æ›´æ”¹éœ€è¦é‡å¯ Gateway ç½‘å…³ã€‚**
+å‚è§ [/plugin](/plugin) äº†è§£è¯¦æƒ…ã€‚
 
-字段：
+å­—æ®µï¼š
 
-- `enabled`：插件加载的主开关（默认：true）。
-- `allow`：可选的插件 id 白名单；设置后仅加载列出的插件。
-- `deny`：可选的插件 id 拒绝列表（deny 优先）。
-- `load.paths`：要加载的额外插件文件或目录（绝对路径或 `~`）。
-- `entries.<pluginId>`：每插件覆盖。
-  - `enabled`：设为 `false` 禁用。
-  - `config`：插件特定的配置对象（如果提供，由插件验证）。
+- `enabled`ï¼šæ’ä»¶åŠ è½½çš„ä¸»å¼€å…³ï¼ˆé»˜è®¤ï¼štrueï¼‰ã€‚
+- `allow`ï¼šå¯é€‰çš„æ’ä»¶ id ç™½åå•ï¼›è®¾ç½®åŽä»…åŠ è½½åˆ—å‡ºçš„æ’ä»¶ã€‚
+- `deny`ï¼šå¯é€‰çš„æ’ä»¶ id æ‹’ç»åˆ—è¡¨ï¼ˆdeny ä¼˜å…ˆï¼‰ã€‚
+- `load.paths`ï¼šè¦åŠ è½½çš„é¢å¤–æ’ä»¶æ–‡ä»¶æˆ–ç›®å½•ï¼ˆç»å¯¹è·¯å¾„æˆ– `~`ï¼‰ã€‚
+- `entries.<pluginId>`ï¼šæ¯æ’ä»¶è¦†ç›–ã€‚
+  - `enabled`ï¼šè®¾ä¸º `false` ç¦ç”¨ã€‚
+  - `config`ï¼šæ’ä»¶ç‰¹å®šçš„é…ç½®å¯¹è±¡ï¼ˆå¦‚æžœæä¾›ï¼Œç”±æ’ä»¶éªŒè¯ï¼‰ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```json5
 {
@@ -2814,148 +2814,148 @@ Z.AI 模型通过内置的 `zai` 提供商提供。在环境中设置 `ZAI_API_K
 }
 ```
 
-### `browser`（OpenClaw 管理的浏览器）
+### `browser`ï¼ˆ ç®¡ç†çš„æµè§ˆå™¨ï¼‰
 
-OpenClaw 可以为 OpenClaw 启动一个**专用、隔离的** Chrome/Brave/Edge/Chromium 实例并暴露一个小型 local loopback 控制服务。
-配置文件可以通过 `profiles.<name>.cdpUrl` 指向**远程** Chromium 浏览器。远程配置文件为仅附加模式（start/stop/reset 被禁用）。
+ å¯ä»¥ä¸º  å¯åŠ¨ä¸€ä¸ª**ä¸“ç”¨ã€éš”ç¦»çš„** Chrome/Brave/Edge/Chromium å®žä¾‹å¹¶æš´éœ²ä¸€ä¸ªå°åž‹ local loopback æŽ§åˆ¶æœåŠ¡ã€‚
+é…ç½®æ–‡ä»¶å¯ä»¥é€šè¿‡ `profiles.<name>.cdpUrl` æŒ‡å‘**è¿œç¨‹** Chromium æµè§ˆå™¨ã€‚è¿œç¨‹é…ç½®æ–‡ä»¶ä¸ºä»…é™„åŠ æ¨¡å¼ï¼ˆstart/stop/reset è¢«ç¦ç”¨ï¼‰ã€‚
 
-`browser.cdpUrl` 保留用于旧版单配置文件配置，以及作为仅设置 `cdpPort` 的配置文件的基础 scheme/host。
+`browser.cdpUrl` ä¿ç•™ç”¨äºŽæ—§ç‰ˆå•é…ç½®æ–‡ä»¶é…ç½®ï¼Œä»¥åŠä½œä¸ºä»…è®¾ç½® `cdpPort` çš„é…ç½®æ–‡ä»¶çš„åŸºç¡€ scheme/hostã€‚
 
-默认值：
+é»˜è®¤å€¼ï¼š
 
-- enabled：`true`
-- evaluateEnabled：`true`（设为 `false` 禁用 `act:evaluate` 和 `wait --fn`）
-- 控制服务：仅 local loopback（端口从 `gateway.port` 派生，默认 `18791`）
-- CDP URL：`http://127.0.0.1:18792`（控制服务 + 1，旧版单配置文件）
-- 配置文件颜色：`#FF4500`（龙虾橙）
-- 注意：控制服务器由运行中的 Gateway 网关（OpenClaw.app 菜单栏或 `openclaw gateway`）启动。
-- 自动检测顺序：如果为 Chromium 内核则使用默认浏览器；否则 Chrome → Brave → Edge → Chromium → Chrome Canary。
+- enabledï¼š`true`
+- evaluateEnabledï¼š`true`ï¼ˆè®¾ä¸º `false` ç¦ç”¨ `act:evaluate` å’Œ `wait --fn`ï¼‰
+- æŽ§åˆ¶æœåŠ¡ï¼šä»… local loopbackï¼ˆç«¯å£ä»Ž `gateway.port` æ´¾ç”Ÿï¼Œé»˜è®¤ `18791`ï¼‰
+- CDP URLï¼š`http://127.0.0.1:18792`ï¼ˆæŽ§åˆ¶æœåŠ¡ + 1ï¼Œæ—§ç‰ˆå•é…ç½®æ–‡ä»¶ï¼‰
+- é…ç½®æ–‡ä»¶é¢œè‰²ï¼š`#FF4500`ï¼ˆé¾™è™¾æ©™ï¼‰
+- æ³¨æ„ï¼šæŽ§åˆ¶æœåŠ¡å™¨ç”±è¿è¡Œä¸­çš„ Gateway ç½‘å…³ï¼ˆ.app èœå•æ æˆ– ` gateway`ï¼‰å¯åŠ¨ã€‚
+- è‡ªåŠ¨æ£€æµ‹é¡ºåºï¼šå¦‚æžœä¸º Chromium å†…æ ¸åˆ™ä½¿ç”¨é»˜è®¤æµè§ˆå™¨ï¼›å¦åˆ™ Chrome â†’ Brave â†’ Edge â†’ Chromium â†’ Chrome Canaryã€‚
 
 ```json5
 {
   browser: {
     enabled: true,
     evaluateEnabled: true,
-    // cdpUrl: "http://127.0.0.1:18792", // 旧版单配置文件覆盖
+    // cdpUrl: "http://127.0.0.1:18792", // æ—§ç‰ˆå•é…ç½®æ–‡ä»¶è¦†ç›–
     defaultProfile: "chrome",
     profiles: {
-      openclaw: { cdpPort: 18800, color: "#FF4500" },
+      : { cdpPort: 18800, color: "#FF4500" },
       work: { cdpPort: 18801, color: "#0066CC" },
       remote: { cdpUrl: "http://10.0.0.42:9222", color: "#00AA00" },
     },
     color: "#FF4500",
-    // 高级：
+    // é«˜çº§ï¼š
     // headless: false,
     // noSandbox: false,
     // executablePath: "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
-    // attachOnly: false, // 将远程 CDP 隧道到 localhost 时设为 true
+    // attachOnly: false, // å°†è¿œç¨‹ CDP éš§é“åˆ° localhost æ—¶è®¾ä¸º true
   },
 }
 ```
 
-### `ui`（外观）
+### `ui`ï¼ˆå¤–è§‚ï¼‰
 
-原生应用用于 UI 外观的可选强调色（例如 Talk 模式气泡着色）。
+åŽŸç”Ÿåº”ç”¨ç”¨äºŽ UI å¤–è§‚çš„å¯é€‰å¼ºè°ƒè‰²ï¼ˆä¾‹å¦‚ Talk æ¨¡å¼æ°”æ³¡ç€è‰²ï¼‰ã€‚
 
-如果未设置，客户端回退到柔和的浅蓝色。
+å¦‚æžœæœªè®¾ç½®ï¼Œå®¢æˆ·ç«¯å›žé€€åˆ°æŸ”å’Œçš„æµ…è“è‰²ã€‚
 
 ```json5
 {
   ui: {
-    seamColor: "#FF4500", // 十六进制（RRGGBB 或 #RRGGBB）
-    // 可选：控制台 UI 助手身份覆盖。
-    // 如果未设置，控制台 UI 使用活跃智能体的身份（配置或 IDENTITY.md）。
+    seamColor: "#FF4500", // åå…­è¿›åˆ¶ï¼ˆRRGGBB æˆ– #RRGGBBï¼‰
+    // å¯é€‰ï¼šæŽ§åˆ¶å° UI åŠ©æ‰‹èº«ä»½è¦†ç›–ã€‚
+    // å¦‚æžœæœªè®¾ç½®ï¼ŒæŽ§åˆ¶å° UI ä½¿ç”¨æ´»è·ƒæ™ºèƒ½ä½“çš„èº«ä»½ï¼ˆé…ç½®æˆ– IDENTITY.mdï¼‰ã€‚
     assistant: {
-      name: "OpenClaw",
-      avatar: "CB", // 表情、短文本，或图片 URL/data URI
+      name: "",
+      avatar: "CB", // è¡¨æƒ…ã€çŸ­æ–‡æœ¬ï¼Œæˆ–å›¾ç‰‡ URL/data URI
     },
   },
 }
 ```
 
-### `gateway`（Gateway 网关服务器模式 + 绑定）
+### `gateway`ï¼ˆGateway ç½‘å…³æœåŠ¡å™¨æ¨¡å¼ + ç»‘å®šï¼‰
 
-使用 `gateway.mode` 明确声明此机器是否应运行 Gateway 网关。
+ä½¿ç”¨ `gateway.mode` æ˜Žç¡®å£°æ˜Žæ­¤æœºå™¨æ˜¯å¦åº”è¿è¡Œ Gateway ç½‘å…³ã€‚
 
-默认值：
+é»˜è®¤å€¼ï¼š
 
-- mode：**未设置**（视为"不自动启动"）
-- bind：`loopback`
-- port：`18789`（WS + HTTP 单端口）
+- modeï¼š**æœªè®¾ç½®**ï¼ˆè§†ä¸º"ä¸è‡ªåŠ¨å¯åŠ¨"ï¼‰
+- bindï¼š`loopback`
+- portï¼š`18789`ï¼ˆWS + HTTP å•ç«¯å£ï¼‰
 
 ```json5
 {
   gateway: {
-    mode: "local", // 或 "remote"
-    port: 18789, // WS + HTTP 多路复用
+    mode: "local", // æˆ– "remote"
+    port: 18789, // WS + HTTP å¤šè·¯å¤ç”¨
     bind: "loopback",
-    // controlUi: { enabled: true, basePath: "/openclaw" }
-    // auth: { mode: "token", token: "your-token" } // token 控制 WS + 控制台 UI 访问
+    // controlUi: { enabled: true, basePath: "/" }
+    // auth: { mode: "token", token: "your-token" } // token æŽ§åˆ¶ WS + æŽ§åˆ¶å° UI è®¿é—®
     // tailscale: { mode: "off" | "serve" | "funnel" }
   },
 }
 ```
 
-控制台 UI 基础路径：
+æŽ§åˆ¶å° UI åŸºç¡€è·¯å¾„ï¼š
 
-- `gateway.controlUi.basePath` 设置控制台 UI 提供服务的 URL 前缀。
-- 示例：`"/ui"`、`"/openclaw"`、`"/apps/openclaw"`。
-- 默认：根路径（`/`）（不变）。
-- `gateway.controlUi.root` 设置控制台 UI 资产的文件系统根目录（默认：`dist/control-ui`）。
-- `gateway.controlUi.allowInsecureAuth` 允许在省略设备身份时对控制台 UI 进行仅 token 认证（通常通过 HTTP）。默认：`false`。建议使用 HTTPS（Tailscale Serve）或 `127.0.0.1`。
-- `gateway.controlUi.dangerouslyDisableDeviceAuth` 禁用控制台 UI 的设备身份检查（仅 token/密码）。默认：`false`。仅用于紧急情况。
+- `gateway.controlUi.basePath` è®¾ç½®æŽ§åˆ¶å° UI æä¾›æœåŠ¡çš„ URL å‰ç¼€ã€‚
+- ç¤ºä¾‹ï¼š`"/ui"`ã€`"/"`ã€`"/apps/"`ã€‚
+- é»˜è®¤ï¼šæ ¹è·¯å¾„ï¼ˆ`/`ï¼‰ï¼ˆä¸å˜ï¼‰ã€‚
+- `gateway.controlUi.root` è®¾ç½®æŽ§åˆ¶å° UI èµ„äº§çš„æ–‡ä»¶ç³»ç»Ÿæ ¹ç›®å½•ï¼ˆé»˜è®¤ï¼š`dist/control-ui`ï¼‰ã€‚
+- `gateway.controlUi.allowInsecureAuth` å…è®¸åœ¨çœç•¥è®¾å¤‡èº«ä»½æ—¶å¯¹æŽ§åˆ¶å° UI è¿›è¡Œä»… token è®¤è¯ï¼ˆé€šå¸¸é€šè¿‡ HTTPï¼‰ã€‚é»˜è®¤ï¼š`false`ã€‚å»ºè®®ä½¿ç”¨ HTTPSï¼ˆTailscale Serveï¼‰æˆ– `127.0.0.1`ã€‚
+- `gateway.controlUi.dangerouslyDisableDeviceAuth` ç¦ç”¨æŽ§åˆ¶å° UI çš„è®¾å¤‡èº«ä»½æ£€æŸ¥ï¼ˆä»… token/å¯†ç ï¼‰ã€‚é»˜è®¤ï¼š`false`ã€‚ä»…ç”¨äºŽç´§æ€¥æƒ…å†µã€‚
 
-相关文档：
+ç›¸å…³æ–‡æ¡£ï¼š
 
-- [控制台 UI](/web/control-ui)
-- [Web 概述](/web)
+- [æŽ§åˆ¶å° UI](/web/control-ui)
+- [Web æ¦‚è¿°](/web)
 - [Tailscale](/gateway/tailscale)
-- [远程访问](/gateway/remote)
+- [è¿œç¨‹è®¿é—®](/gateway/remote)
 
-信任的代理：
+ä¿¡ä»»çš„ä»£ç†ï¼š
 
-- `gateway.trustedProxies`：在 Gateway 网关前面终止 TLS 的反向代理 IP 列表。
-- 当连接来自这些 IP 之一时，OpenClaw 使用 `x-forwarded-for`（或 `x-real-ip`）来确定客户端 IP，用于本地配对检查和 HTTP 认证/本地检查。
-- 仅列出你完全控制的代理，并确保它们**覆盖**传入的 `x-forwarded-for`。
+- `gateway.trustedProxies`ï¼šåœ¨ Gateway ç½‘å…³å‰é¢ç»ˆæ­¢ TLS çš„åå‘ä»£ç† IP åˆ—è¡¨ã€‚
+- å½“è¿žæŽ¥æ¥è‡ªè¿™äº› IP ä¹‹ä¸€æ—¶ï¼Œ ä½¿ç”¨ `x-forwarded-for`ï¼ˆæˆ– `x-real-ip`ï¼‰æ¥ç¡®å®šå®¢æˆ·ç«¯ IPï¼Œç”¨äºŽæœ¬åœ°é…å¯¹æ£€æŸ¥å’Œ HTTP è®¤è¯/æœ¬åœ°æ£€æŸ¥ã€‚
+- ä»…åˆ—å‡ºä½ å®Œå…¨æŽ§åˆ¶çš„ä»£ç†ï¼Œå¹¶ç¡®ä¿å®ƒä»¬**è¦†ç›–**ä¼ å…¥çš„ `x-forwarded-for`ã€‚
 
-说明：
+è¯´æ˜Žï¼š
 
-- `openclaw gateway` 拒绝启动，除非 `gateway.mode` 设为 `local`（或你传递了覆盖标志）。
-- `gateway.port` 控制用于 WebSocket + HTTP（控制台 UI、hooks、A2UI）的单一多路复用端口。
-- OpenAI Chat Completions 端点：**默认禁用**；通过 `gateway.http.endpoints.chatCompletions.enabled: true` 启用。
-- 优先级：`--port` > `OPENCLAW_GATEWAY_PORT` > `gateway.port` > 默认 `18789`。
-- 默认需要 Gateway 网关认证（token/密码或 Tailscale Serve 身份）。非 local loopback 绑定需要共享 token/密码。
-- 新手引导向导默认生成 gateway token（即使在 local loopback 上）。
-- `gateway.remote.token` **仅**用于远程 CLI 调用；它不启用本地 gateway 认证。`gateway.token` 被忽略。
+- ` gateway` æ‹’ç»å¯åŠ¨ï¼Œé™¤éž `gateway.mode` è®¾ä¸º `local`ï¼ˆæˆ–ä½ ä¼ é€’äº†è¦†ç›–æ ‡å¿—ï¼‰ã€‚
+- `gateway.port` æŽ§åˆ¶ç”¨äºŽ WebSocket + HTTPï¼ˆæŽ§åˆ¶å° UIã€hooksã€A2UIï¼‰çš„å•ä¸€å¤šè·¯å¤ç”¨ç«¯å£ã€‚
+- OpenAI Chat Completions ç«¯ç‚¹ï¼š**é»˜è®¤ç¦ç”¨**ï¼›é€šè¿‡ `gateway.http.endpoints.chatCompletions.enabled: true` å¯ç”¨ã€‚
+- ä¼˜å…ˆçº§ï¼š`--port` > `_GATEWAY_PORT` > `gateway.port` > é»˜è®¤ `18789`ã€‚
+- é»˜è®¤éœ€è¦ Gateway ç½‘å…³è®¤è¯ï¼ˆtoken/å¯†ç æˆ– Tailscale Serve èº«ä»½ï¼‰ã€‚éž local loopback ç»‘å®šéœ€è¦å…±äº« token/å¯†ç ã€‚
+- æ–°æ‰‹å¼•å¯¼å‘å¯¼é»˜è®¤ç”Ÿæˆ gateway tokenï¼ˆå³ä½¿åœ¨ local loopback ä¸Šï¼‰ã€‚
+- `gateway.remote.token` **ä»…**ç”¨äºŽè¿œç¨‹ CLI è°ƒç”¨ï¼›å®ƒä¸å¯ç”¨æœ¬åœ° gateway è®¤è¯ã€‚`gateway.token` è¢«å¿½ç•¥ã€‚
 
-认证和 Tailscale：
+è®¤è¯å’Œ Tailscaleï¼š
 
-- `gateway.auth.mode` 设置握手要求（`token` 或 `password`）。未设置时，假定 token 认证。
-- `gateway.auth.token` 存储 token 认证的共享 token（同一机器上的 CLI 使用）。
-- 当设置了 `gateway.auth.mode` 时，仅接受该方法（加上可选的 Tailscale 头部）。
-- `gateway.auth.password` 可在此设置，或通过 `OPENCLAW_GATEWAY_PASSWORD`（推荐）。
-- `gateway.auth.allowTailscale` 允许 Tailscale Serve 身份头部
-  （`tailscale-user-login`）在请求通过 local loopback 到达且带有 `x-forwarded-for`、
-  `x-forwarded-proto` 和 `x-forwarded-host` 时满足认证。OpenClaw 在接受之前
-  通过 `tailscale whois` 解析 `x-forwarded-for` 地址来验证身份。为 `true` 时，
-  Serve 请求不需要 token/密码；设为 `false` 要求显式凭据。当
-  `tailscale.mode = "serve"` 且认证模式不是 `password` 时默认为 `true`。
-- `gateway.tailscale.mode: "serve"` 使用 Tailscale Serve（仅 tailnet，local loopback 绑定）。
-- `gateway.tailscale.mode: "funnel"` 公开暴露仪表板；需要认证。
-- `gateway.tailscale.resetOnExit` 在关闭时重置 Serve/Funnel 配置。
+- `gateway.auth.mode` è®¾ç½®æ¡æ‰‹è¦æ±‚ï¼ˆ`token` æˆ– `password`ï¼‰ã€‚æœªè®¾ç½®æ—¶ï¼Œå‡å®š token è®¤è¯ã€‚
+- `gateway.auth.token` å­˜å‚¨ token è®¤è¯çš„å…±äº« tokenï¼ˆåŒä¸€æœºå™¨ä¸Šçš„ CLI ä½¿ç”¨ï¼‰ã€‚
+- å½“è®¾ç½®äº† `gateway.auth.mode` æ—¶ï¼Œä»…æŽ¥å—è¯¥æ–¹æ³•ï¼ˆåŠ ä¸Šå¯é€‰çš„ Tailscale å¤´éƒ¨ï¼‰ã€‚
+- `gateway.auth.password` å¯åœ¨æ­¤è®¾ç½®ï¼Œæˆ–é€šè¿‡ `_GATEWAY_PASSWORD`ï¼ˆæŽ¨èï¼‰ã€‚
+- `gateway.auth.allowTailscale` å…è®¸ Tailscale Serve èº«ä»½å¤´éƒ¨
+  ï¼ˆ`tailscale-user-login`ï¼‰åœ¨è¯·æ±‚é€šè¿‡ local loopback åˆ°è¾¾ä¸”å¸¦æœ‰ `x-forwarded-for`ã€
+  `x-forwarded-proto` å’Œ `x-forwarded-host` æ—¶æ»¡è¶³è®¤è¯ã€‚ åœ¨æŽ¥å—ä¹‹å‰
+  é€šè¿‡ `tailscale whois` è§£æž `x-forwarded-for` åœ°å€æ¥éªŒè¯èº«ä»½ã€‚ä¸º `true` æ—¶ï¼Œ
+  Serve è¯·æ±‚ä¸éœ€è¦ token/å¯†ç ï¼›è®¾ä¸º `false` è¦æ±‚æ˜¾å¼å‡­æ®ã€‚å½“
+  `tailscale.mode = "serve"` ä¸”è®¤è¯æ¨¡å¼ä¸æ˜¯ `password` æ—¶é»˜è®¤ä¸º `true`ã€‚
+- `gateway.tailscale.mode: "serve"` ä½¿ç”¨ Tailscale Serveï¼ˆä»… tailnetï¼Œlocal loopback ç»‘å®šï¼‰ã€‚
+- `gateway.tailscale.mode: "funnel"` å…¬å¼€æš´éœ²ä»ªè¡¨æ¿ï¼›éœ€è¦è®¤è¯ã€‚
+- `gateway.tailscale.resetOnExit` åœ¨å…³é—­æ—¶é‡ç½® Serve/Funnel é…ç½®ã€‚
 
-远程客户端默认值（CLI）：
+è¿œç¨‹å®¢æˆ·ç«¯é»˜è®¤å€¼ï¼ˆCLIï¼‰ï¼š
 
-- `gateway.remote.url` 设置 `gateway.mode = "remote"` 时 CLI 调用的默认 Gateway 网关 WebSocket URL。
-- `gateway.remote.transport` 选择 macOS 远程传输（`ssh` 默认，`direct` 用于 ws/wss）。使用 `direct` 时，`gateway.remote.url` 必须为 `ws://` 或 `wss://`。`ws://host` 默认端口 `18789`。
-- `gateway.remote.token` 提供远程调用的 token（不需要认证时留空）。
-- `gateway.remote.password` 提供远程调用的密码（不需要认证时留空）。
+- `gateway.remote.url` è®¾ç½® `gateway.mode = "remote"` æ—¶ CLI è°ƒç”¨çš„é»˜è®¤ Gateway ç½‘å…³ WebSocket URLã€‚
+- `gateway.remote.transport` é€‰æ‹© macOS è¿œç¨‹ä¼ è¾“ï¼ˆ`ssh` é»˜è®¤ï¼Œ`direct` ç”¨äºŽ ws/wssï¼‰ã€‚ä½¿ç”¨ `direct` æ—¶ï¼Œ`gateway.remote.url` å¿…é¡»ä¸º `ws://` æˆ– `wss://`ã€‚`ws://host` é»˜è®¤ç«¯å£ `18789`ã€‚
+- `gateway.remote.token` æä¾›è¿œç¨‹è°ƒç”¨çš„ tokenï¼ˆä¸éœ€è¦è®¤è¯æ—¶ç•™ç©ºï¼‰ã€‚
+- `gateway.remote.password` æä¾›è¿œç¨‹è°ƒç”¨çš„å¯†ç ï¼ˆä¸éœ€è¦è®¤è¯æ—¶ç•™ç©ºï¼‰ã€‚
 
-macOS 应用行为：
+macOS åº”ç”¨è¡Œä¸ºï¼š
 
-- OpenClaw.app 监视 `~/.openclaw/openclaw.json`，当 `gateway.mode` 或 `gateway.remote.url` 变更时实时切换模式。
-- 如果 `gateway.mode` 未设置但 `gateway.remote.url` 已设置，macOS 应用将其视为远程模式。
-- 当你在 macOS 应用中更改连接模式时，它会将 `gateway.mode`（以及远程模式下的 `gateway.remote.url` + `gateway.remote.transport`）写回配置文件。
+- .app ç›‘è§† `~/./.json`ï¼Œå½“ `gateway.mode` æˆ– `gateway.remote.url` å˜æ›´æ—¶å®žæ—¶åˆ‡æ¢æ¨¡å¼ã€‚
+- å¦‚æžœ `gateway.mode` æœªè®¾ç½®ä½† `gateway.remote.url` å·²è®¾ç½®ï¼ŒmacOS åº”ç”¨å°†å…¶è§†ä¸ºè¿œç¨‹æ¨¡å¼ã€‚
+- å½“ä½ åœ¨ macOS åº”ç”¨ä¸­æ›´æ”¹è¿žæŽ¥æ¨¡å¼æ—¶ï¼Œå®ƒä¼šå°† `gateway.mode`ï¼ˆä»¥åŠè¿œç¨‹æ¨¡å¼ä¸‹çš„ `gateway.remote.url` + `gateway.remote.transport`ï¼‰å†™å›žé…ç½®æ–‡ä»¶ã€‚
 
 ```json5
 {
@@ -2970,7 +2970,7 @@ macOS 应用行为：
 }
 ```
 
-直连传输示例（macOS 应用）：
+ç›´è¿žä¼ è¾“ç¤ºä¾‹ï¼ˆmacOS åº”ç”¨ï¼‰ï¼š
 
 ```json5
 {
@@ -2985,16 +2985,16 @@ macOS 应用行为：
 }
 ```
 
-### `gateway.reload`（配置热重载）
+### `gateway.reload`ï¼ˆé…ç½®çƒ­é‡è½½ï¼‰
 
-Gateway 网关监视 `~/.openclaw/openclaw.json`（或 `OPENCLAW_CONFIG_PATH`）并自动应用更改。
+Gateway ç½‘å…³ç›‘è§† `~/./.json`ï¼ˆæˆ– `_CONFIG_PATH`ï¼‰å¹¶è‡ªåŠ¨åº”ç”¨æ›´æ”¹ã€‚
 
-模式：
+æ¨¡å¼ï¼š
 
-- `hybrid`（默认）：安全更改热应用；关键更改重启 Gateway 网关。
-- `hot`：仅应用热安全更改；需要重启时记录日志。
-- `restart`：任何配置更改都重启 Gateway 网关。
-- `off`：禁用热重载。
+- `hybrid`ï¼ˆé»˜è®¤ï¼‰ï¼šå®‰å…¨æ›´æ”¹çƒ­åº”ç”¨ï¼›å…³é”®æ›´æ”¹é‡å¯ Gateway ç½‘å…³ã€‚
+- `hot`ï¼šä»…åº”ç”¨çƒ­å®‰å…¨æ›´æ”¹ï¼›éœ€è¦é‡å¯æ—¶è®°å½•æ—¥å¿—ã€‚
+- `restart`ï¼šä»»ä½•é…ç½®æ›´æ”¹éƒ½é‡å¯ Gateway ç½‘å…³ã€‚
+- `off`ï¼šç¦ç”¨çƒ­é‡è½½ã€‚
 
 ```json5
 {
@@ -3007,65 +3007,65 @@ Gateway 网关监视 `~/.openclaw/openclaw.json`（或 `OPENCLAW_CONFIG_PATH`）
 }
 ```
 
-#### 热重载矩阵（文件 + 影响）
+#### çƒ­é‡è½½çŸ©é˜µï¼ˆæ–‡ä»¶ + å½±å“ï¼‰
 
-监视的文件：
+ç›‘è§†çš„æ–‡ä»¶ï¼š
 
-- `~/.openclaw/openclaw.json`（或 `OPENCLAW_CONFIG_PATH`）
+- `~/./.json`ï¼ˆæˆ– `_CONFIG_PATH`ï¼‰
 
-热应用（无需完全重启 Gateway 网关）：
+çƒ­åº”ç”¨ï¼ˆæ— éœ€å®Œå…¨é‡å¯ Gateway ç½‘å…³ï¼‰ï¼š
 
-- `hooks`（webhook 认证/路径/映射）+ `hooks.gmail`（Gmail 监视器重启）
-- `browser`（浏览器控制服务器重启）
-- `cron`（cron 服务重启 + 并发更新）
-- `agents.defaults.heartbeat`（心跳运行器重启）
-- `web`（WhatsApp Web 渠道重启）
-- `telegram`、`discord`、`signal`、`imessage`（渠道重启）
-- `agent`、`models`、`routing`、`messages`、`session`、`whatsapp`、`logging`、`skills`、`ui`、`talk`、`identity`、`wizard`（动态读取）
+- `hooks`ï¼ˆwebhook è®¤è¯/è·¯å¾„/æ˜ å°„ï¼‰+ `hooks.gmail`ï¼ˆGmail ç›‘è§†å™¨é‡å¯ï¼‰
+- `browser`ï¼ˆæµè§ˆå™¨æŽ§åˆ¶æœåŠ¡å™¨é‡å¯ï¼‰
+- `cron`ï¼ˆcron æœåŠ¡é‡å¯ + å¹¶å‘æ›´æ–°ï¼‰
+- `agents.defaults.heartbeat`ï¼ˆå¿ƒè·³è¿è¡Œå™¨é‡å¯ï¼‰
+- `web`ï¼ˆWhatsApp Web æ¸ é“é‡å¯ï¼‰
+- `telegram`ã€`discord`ã€`signal`ã€`imessage`ï¼ˆæ¸ é“é‡å¯ï¼‰
+- `agent`ã€`models`ã€`routing`ã€`messages`ã€`session`ã€`whatsapp`ã€`logging`ã€`skills`ã€`ui`ã€`talk`ã€`identity`ã€`wizard`ï¼ˆåŠ¨æ€è¯»å–ï¼‰
 
-需要完全重启 Gateway 网关：
+éœ€è¦å®Œå…¨é‡å¯ Gateway ç½‘å…³ï¼š
 
-- `gateway`（端口/绑定/认证/控制台 UI/tailscale）
-- `bridge`（旧版）
+- `gateway`ï¼ˆç«¯å£/ç»‘å®š/è®¤è¯/æŽ§åˆ¶å° UI/tailscaleï¼‰
+- `bridge`ï¼ˆæ—§ç‰ˆï¼‰
 - `discovery`
 - `canvasHost`
 - `plugins`
-- 任何未知/不支持的配置路径（为安全默认重启）
+- ä»»ä½•æœªçŸ¥/ä¸æ”¯æŒçš„é…ç½®è·¯å¾„ï¼ˆä¸ºå®‰å…¨é»˜è®¤é‡å¯ï¼‰
 
-### 多实例隔离
+### å¤šå®žä¾‹éš”ç¦»
 
-要在一台主机上运行多个 Gateway 网关（用于冗余或救援机器人），请隔离每个实例的状态 + 配置并使用唯一端口：
+è¦åœ¨ä¸€å°ä¸»æœºä¸Šè¿è¡Œå¤šä¸ª Gateway ç½‘å…³ï¼ˆç”¨äºŽå†—ä½™æˆ–æ•‘æ´æœºå™¨äººï¼‰ï¼Œè¯·éš”ç¦»æ¯ä¸ªå®žä¾‹çš„çŠ¶æ€ + é…ç½®å¹¶ä½¿ç”¨å”¯ä¸€ç«¯å£ï¼š
 
-- `OPENCLAW_CONFIG_PATH`（每实例配置）
-- `OPENCLAW_STATE_DIR`（会话/凭据）
-- `agents.defaults.workspace`（记忆）
-- `gateway.port`（每实例唯一）
+- `_CONFIG_PATH`ï¼ˆæ¯å®žä¾‹é…ç½®ï¼‰
+- `_STATE_DIR`ï¼ˆä¼šè¯/å‡­æ®ï¼‰
+- `agents.defaults.workspace`ï¼ˆè®°å¿†ï¼‰
+- `gateway.port`ï¼ˆæ¯å®žä¾‹å”¯ä¸€ï¼‰
 
-便利标志（CLI）：
+ä¾¿åˆ©æ ‡å¿—ï¼ˆCLIï¼‰ï¼š
 
-- `openclaw --dev …` → 使用 `~/.openclaw-dev` + 端口从基础 `19001` 偏移
-- `openclaw --profile <name> …` → 使用 `~/.openclaw-<name>`（端口通过配置/环境变量/标志）
+- ` --dev â€¦` â†’ ä½¿ç”¨ `~/.-dev` + ç«¯å£ä»ŽåŸºç¡€ `19001` åç§»
+- ` --profile <name> â€¦` â†’ ä½¿ç”¨ `~/.-<name>`ï¼ˆç«¯å£é€šè¿‡é…ç½®/çŽ¯å¢ƒå˜é‡/æ ‡å¿—ï¼‰
 
-参见 [Gateway 网关运维手册](/gateway) 了解派生的端口映射（gateway/browser/canvas）。
-参见[多 Gateway 网关](/gateway/multiple-gateways) 了解浏览器/CDP 端口隔离细节。
+å‚è§ [Gateway ç½‘å…³è¿ç»´æ‰‹å†Œ](/gateway) äº†è§£æ´¾ç”Ÿçš„ç«¯å£æ˜ å°„ï¼ˆgateway/browser/canvasï¼‰ã€‚
+å‚è§[å¤š Gateway ç½‘å…³](/gateway/multiple-gateways) äº†è§£æµè§ˆå™¨/CDP ç«¯å£éš”ç¦»ç»†èŠ‚ã€‚
 
-示例：
+ç¤ºä¾‹ï¼š
 
 ```bash
-OPENCLAW_CONFIG_PATH=~/.openclaw/a.json \
-OPENCLAW_STATE_DIR=~/.openclaw-a \
-openclaw gateway --port 19001
+_CONFIG_PATH=~/./a.json \
+_STATE_DIR=~/.-a \
+ gateway --port 19001
 ```
 
-### `hooks`（Gateway 网关 webhook）
+### `hooks`ï¼ˆGateway ç½‘å…³ webhookï¼‰
 
-在 Gateway 网关 HTTP 服务器上启用简单的 HTTP webhook 端点。
+åœ¨ Gateway ç½‘å…³ HTTP æœåŠ¡å™¨ä¸Šå¯ç”¨ç®€å•çš„ HTTP webhook ç«¯ç‚¹ã€‚
 
-默认值：
+é»˜è®¤å€¼ï¼š
 
-- enabled：`false`
-- path：`/hooks`
-- maxBodyBytes：`262144`（256 KB）
+- enabledï¼š`false`
+- pathï¼š`/hooks`
+- maxBodyBytesï¼š`262144`ï¼ˆ256 KBï¼‰
 
 ```json5
 {
@@ -3074,7 +3074,7 @@ openclaw gateway --port 19001
     token: "shared-secret",
     path: "/hooks",
     presets: ["gmail"],
-    transformsDir: "~/.openclaw/hooks",
+    transformsDir: "~/./hooks",
     mappings: [
       {
         match: { path: "gmail" },
@@ -3092,37 +3092,37 @@ openclaw gateway --port 19001
 }
 ```
 
-请求必须包含 hook token：
+è¯·æ±‚å¿…é¡»åŒ…å« hook tokenï¼š
 
-- `Authorization: Bearer <token>` **或**
-- `x-openclaw-token: <token>` **或**
+- `Authorization: Bearer <token>` **æˆ–**
+- `x--token: <token>` **æˆ–**
 - `?token=<token>`
 
-端点：
+ç«¯ç‚¹ï¼š
 
-- `POST /hooks/wake` → `{ text, mode?: "now"|"next-heartbeat" }`
-- `POST /hooks/agent` → `{ message, name?, sessionKey?, wakeMode?, deliver?, channel?, to?, model?, thinking?, timeoutSeconds? }`
-- `POST /hooks/<name>` → 通过 `hooks.mappings` 解析
+- `POST /hooks/wake` â†’ `{ text, mode?: "now"|"next-heartbeat" }`
+- `POST /hooks/agent` â†’ `{ message, name?, sessionKey?, wakeMode?, deliver?, channel?, to?, model?, thinking?, timeoutSeconds? }`
+- `POST /hooks/<name>` â†’ é€šè¿‡ `hooks.mappings` è§£æž
 
-`/hooks/agent` 始终将摘要发布到主会话（并可通过 `wakeMode: "now"` 可选地触发即时心跳）。
+`/hooks/agent` å§‹ç»ˆå°†æ‘˜è¦å‘å¸ƒåˆ°ä¸»ä¼šè¯ï¼ˆå¹¶å¯é€šè¿‡ `wakeMode: "now"` å¯é€‰åœ°è§¦å‘å³æ—¶å¿ƒè·³ï¼‰ã€‚
 
-映射说明：
+æ˜ å°„è¯´æ˜Žï¼š
 
-- `match.path` 匹配 `/hooks` 之后的子路径（例如 `/hooks/gmail` → `gmail`）。
-- `match.source` 匹配负载字段（例如 `{ source: "gmail" }`），以便使用通用的 `/hooks/ingest` 路径。
-- `{{messages[0].subject}}` 等模板从负载中读取。
-- `transform` 可以指向返回 hook 动作的 JS/TS 模块。
-- `deliver: true` 将最终回复发送到渠道；`channel` 默认为 `last`（回退到 WhatsApp）。
-- 如果没有先前的投递路由，请显式设置 `channel` + `to`（Telegram/Discord/Google Chat/Slack/Signal/iMessage/MS Teams 必需）。
-- `model` 覆盖此 hook 运行的 LLM（`provider/model` 或别名；如果设置了 `agents.defaults.models` 则必须被允许）。
+- `match.path` åŒ¹é… `/hooks` ä¹‹åŽçš„å­è·¯å¾„ï¼ˆä¾‹å¦‚ `/hooks/gmail` â†’ `gmail`ï¼‰ã€‚
+- `match.source` åŒ¹é…è´Ÿè½½å­—æ®µï¼ˆä¾‹å¦‚ `{ source: "gmail" }`ï¼‰ï¼Œä»¥ä¾¿ä½¿ç”¨é€šç”¨çš„ `/hooks/ingest` è·¯å¾„ã€‚
+- `{{messages[0].subject}}` ç­‰æ¨¡æ¿ä»Žè´Ÿè½½ä¸­è¯»å–ã€‚
+- `transform` å¯ä»¥æŒ‡å‘è¿”å›ž hook åŠ¨ä½œçš„ JS/TS æ¨¡å—ã€‚
+- `deliver: true` å°†æœ€ç»ˆå›žå¤å‘é€åˆ°æ¸ é“ï¼›`channel` é»˜è®¤ä¸º `last`ï¼ˆå›žé€€åˆ° WhatsAppï¼‰ã€‚
+- å¦‚æžœæ²¡æœ‰å…ˆå‰çš„æŠ•é€’è·¯ç”±ï¼Œè¯·æ˜¾å¼è®¾ç½® `channel` + `to`ï¼ˆTelegram/Discord/Google Chat/Slack/Signal/iMessage/MS Teams å¿…éœ€ï¼‰ã€‚
+- `model` è¦†ç›–æ­¤ hook è¿è¡Œçš„ LLMï¼ˆ`provider/model` æˆ–åˆ«åï¼›å¦‚æžœè®¾ç½®äº† `agents.defaults.models` åˆ™å¿…é¡»è¢«å…è®¸ï¼‰ã€‚
 
-Gmail 辅助配置（由 `openclaw webhooks gmail setup` / `run` 使用）：
+Gmail è¾…åŠ©é…ç½®ï¼ˆç”± ` webhooks gmail setup` / `run` ä½¿ç”¨ï¼‰ï¼š
 
 ```json5
 {
   hooks: {
     gmail: {
-      account: "openclaw@gmail.com",
+      account: "@gmail.com",
       topic: "projects/<project-id>/topics/gog-gmail-watch",
       subscription: "gog-gmail-watch-push",
       pushToken: "shared-push-token",
@@ -3133,107 +3133,107 @@ Gmail 辅助配置（由 `openclaw webhooks gmail setup` / `run` 使用）：
       serve: { bind: "127.0.0.1", port: 8788, path: "/" },
       tailscale: { mode: "funnel", path: "/gmail-pubsub" },
 
-      // 可选：为 Gmail hook 处理使用更便宜的模型
-      // 在认证/速率限制/超时时回退到 agents.defaults.model.fallbacks，然后 primary
+      // å¯é€‰ï¼šä¸º Gmail hook å¤„ç†ä½¿ç”¨æ›´ä¾¿å®œçš„æ¨¡åž‹
+      // åœ¨è®¤è¯/é€ŸçŽ‡é™åˆ¶/è¶…æ—¶æ—¶å›žé€€åˆ° agents.defaults.model.fallbacksï¼Œç„¶åŽ primary
       model: "openrouter/meta-llama/llama-3.3-70b-instruct:free",
-      // 可选：Gmail hook 的默认思考级别
+      // å¯é€‰ï¼šGmail hook çš„é»˜è®¤æ€è€ƒçº§åˆ«
       thinking: "off",
     },
   },
 }
 ```
 
-Gmail hook 的模型覆盖：
+Gmail hook çš„æ¨¡åž‹è¦†ç›–ï¼š
 
-- `hooks.gmail.model` 指定用于 Gmail hook 处理的模型（默认为会话主模型）。
-- 接受 `provider/model` 引用或来自 `agents.defaults.models` 的别名。
-- 在认证/速率限制/超时时回退到 `agents.defaults.model.fallbacks`，然后 `agents.defaults.model.primary`。
-- 如果设置了 `agents.defaults.models`，请将 hooks 模型包含在白名单中。
-- 启动时，如果配置的模型不在模型目录或白名单中，会发出警告。
-- `hooks.gmail.thinking` 设置 Gmail hook 的默认思考级别，被每 hook 的 `thinking` 覆盖。
+- `hooks.gmail.model` æŒ‡å®šç”¨äºŽ Gmail hook å¤„ç†çš„æ¨¡åž‹ï¼ˆé»˜è®¤ä¸ºä¼šè¯ä¸»æ¨¡åž‹ï¼‰ã€‚
+- æŽ¥å— `provider/model` å¼•ç”¨æˆ–æ¥è‡ª `agents.defaults.models` çš„åˆ«åã€‚
+- åœ¨è®¤è¯/é€ŸçŽ‡é™åˆ¶/è¶…æ—¶æ—¶å›žé€€åˆ° `agents.defaults.model.fallbacks`ï¼Œç„¶åŽ `agents.defaults.model.primary`ã€‚
+- å¦‚æžœè®¾ç½®äº† `agents.defaults.models`ï¼Œè¯·å°† hooks æ¨¡åž‹åŒ…å«åœ¨ç™½åå•ä¸­ã€‚
+- å¯åŠ¨æ—¶ï¼Œå¦‚æžœé…ç½®çš„æ¨¡åž‹ä¸åœ¨æ¨¡åž‹ç›®å½•æˆ–ç™½åå•ä¸­ï¼Œä¼šå‘å‡ºè­¦å‘Šã€‚
+- `hooks.gmail.thinking` è®¾ç½® Gmail hook çš„é»˜è®¤æ€è€ƒçº§åˆ«ï¼Œè¢«æ¯ hook çš„ `thinking` è¦†ç›–ã€‚
 
-Gateway 网关自动启动：
+Gateway ç½‘å…³è‡ªåŠ¨å¯åŠ¨ï¼š
 
-- 如果 `hooks.enabled=true` 且 `hooks.gmail.account` 已设置，Gateway 网关在启动时
-  启动 `gog gmail watch serve` 并自动续期监视。
-- 设置 `OPENCLAW_SKIP_GMAIL_WATCHER=1` 禁用自动启动（用于手动运行）。
-- 避免在 Gateway 网关旁边单独运行 `gog gmail watch serve`；它会
-  因 `listen tcp 127.0.0.1:8788: bind: address already in use` 而失败。
+- å¦‚æžœ `hooks.enabled=true` ä¸” `hooks.gmail.account` å·²è®¾ç½®ï¼ŒGateway ç½‘å…³åœ¨å¯åŠ¨æ—¶
+  å¯åŠ¨ `gog gmail watch serve` å¹¶è‡ªåŠ¨ç»­æœŸç›‘è§†ã€‚
+- è®¾ç½® `_SKIP_GMAIL_WATCHER=1` ç¦ç”¨è‡ªåŠ¨å¯åŠ¨ï¼ˆç”¨äºŽæ‰‹åŠ¨è¿è¡Œï¼‰ã€‚
+- é¿å…åœ¨ Gateway ç½‘å…³æ—è¾¹å•ç‹¬è¿è¡Œ `gog gmail watch serve`ï¼›å®ƒä¼š
+  å›  `listen tcp 127.0.0.1:8788: bind: address already in use` è€Œå¤±è´¥ã€‚
 
-注意：当 `tailscale.mode` 开启时，OpenClaw 将 `serve.path` 默认为 `/`，以便
-Tailscale 可以正确代理 `/gmail-pubsub`（它会去除设置的路径前缀）。
-如果你需要后端接收带前缀的路径，请将
-`hooks.gmail.tailscale.target` 设为完整 URL（并对齐 `serve.path`）。
+æ³¨æ„ï¼šå½“ `tailscale.mode` å¼€å¯æ—¶ï¼Œ å°† `serve.path` é»˜è®¤ä¸º `/`ï¼Œä»¥ä¾¿
+Tailscale å¯ä»¥æ­£ç¡®ä»£ç† `/gmail-pubsub`ï¼ˆå®ƒä¼šåŽ»é™¤è®¾ç½®çš„è·¯å¾„å‰ç¼€ï¼‰ã€‚
+å¦‚æžœä½ éœ€è¦åŽç«¯æŽ¥æ”¶å¸¦å‰ç¼€çš„è·¯å¾„ï¼Œè¯·å°†
+`hooks.gmail.tailscale.target` è®¾ä¸ºå®Œæ•´ URLï¼ˆå¹¶å¯¹é½ `serve.path`ï¼‰ã€‚
 
-### `canvasHost`（LAN/tailnet Canvas 文件服务器 + 实时重载）
+### `canvasHost`ï¼ˆLAN/tailnet Canvas æ–‡ä»¶æœåŠ¡å™¨ + å®žæ—¶é‡è½½ï¼‰
 
-Gateway 网关通过 HTTP 提供 HTML/CSS/JS 目录服务，以便 iOS/Android 节点可以简单地 `canvas.navigate` 到它。
+Gateway ç½‘å…³é€šè¿‡ HTTP æä¾› HTML/CSS/JS ç›®å½•æœåŠ¡ï¼Œä»¥ä¾¿ iOS/Android èŠ‚ç‚¹å¯ä»¥ç®€å•åœ° `canvas.navigate` åˆ°å®ƒã€‚
 
-默认根目录：`~/.openclaw/workspace/canvas`
-默认端口：`18793`（选择此端口以避免 OpenClaw 浏览器 CDP 端口 `18792`）
-服务器监听 **Gateway 网关绑定主机**（LAN 或 Tailnet），以便节点可以访问。
+é»˜è®¤æ ¹ç›®å½•ï¼š`~/./workspace/canvas`
+é»˜è®¤ç«¯å£ï¼š`18793`ï¼ˆé€‰æ‹©æ­¤ç«¯å£ä»¥é¿å…  æµè§ˆå™¨ CDP ç«¯å£ `18792`ï¼‰
+æœåŠ¡å™¨ç›‘å¬ **Gateway ç½‘å…³ç»‘å®šä¸»æœº**ï¼ˆLAN æˆ– Tailnetï¼‰ï¼Œä»¥ä¾¿èŠ‚ç‚¹å¯ä»¥è®¿é—®ã€‚
 
-服务器：
+æœåŠ¡å™¨ï¼š
 
-- 提供 `canvasHost.root` 下的文件
-- 向提供的 HTML 注入微型实时重载客户端
-- 监视目录并通过 `/__openclaw__/ws` 的 WebSocket 端点广播重载
-- 目录为空时自动创建起始 `index.html`（以便你立即看到内容）
-- 同时在 `/__openclaw__/a2ui/` 提供 A2UI，并作为 `canvasHostUrl` 通告给节点
-  （节点始终使用它来访问 Canvas/A2UI）
+- æä¾› `canvasHost.root` ä¸‹çš„æ–‡ä»¶
+- å‘æä¾›çš„ HTML æ³¨å…¥å¾®åž‹å®žæ—¶é‡è½½å®¢æˆ·ç«¯
+- ç›‘è§†ç›®å½•å¹¶é€šè¿‡ `/____/ws` çš„ WebSocket ç«¯ç‚¹å¹¿æ’­é‡è½½
+- ç›®å½•ä¸ºç©ºæ—¶è‡ªåŠ¨åˆ›å»ºèµ·å§‹ `index.html`ï¼ˆä»¥ä¾¿ä½ ç«‹å³çœ‹åˆ°å†…å®¹ï¼‰
+- åŒæ—¶åœ¨ `/____/a2ui/` æä¾› A2UIï¼Œå¹¶ä½œä¸º `canvasHostUrl` é€šå‘Šç»™èŠ‚ç‚¹
+  ï¼ˆèŠ‚ç‚¹å§‹ç»ˆä½¿ç”¨å®ƒæ¥è®¿é—® Canvas/A2UIï¼‰
 
-如果目录很大或遇到 `EMFILE`，请禁用实时重载（和文件监视）：
+å¦‚æžœç›®å½•å¾ˆå¤§æˆ–é‡åˆ° `EMFILE`ï¼Œè¯·ç¦ç”¨å®žæ—¶é‡è½½ï¼ˆå’Œæ–‡ä»¶ç›‘è§†ï¼‰ï¼š
 
-- 配置：`canvasHost: { liveReload: false }`
+- é…ç½®ï¼š`canvasHost: { liveReload: false }`
 
 ```json5
 {
   canvasHost: {
-    root: "~/.openclaw/workspace/canvas",
+    root: "~/./workspace/canvas",
     port: 18793,
     liveReload: true,
   },
 }
 ```
 
-`canvasHost.*` 的更改需要重启 Gateway 网关（配置重载会触发重启）。
+`canvasHost.*` çš„æ›´æ”¹éœ€è¦é‡å¯ Gateway ç½‘å…³ï¼ˆé…ç½®é‡è½½ä¼šè§¦å‘é‡å¯ï¼‰ã€‚
 
-禁用方式：
+ç¦ç”¨æ–¹å¼ï¼š
 
-- 配置：`canvasHost: { enabled: false }`
-- 环境变量：`OPENCLAW_SKIP_CANVAS_HOST=1`
+- é…ç½®ï¼š`canvasHost: { enabled: false }`
+- çŽ¯å¢ƒå˜é‡ï¼š`_SKIP_CANVAS_HOST=1`
 
-### `bridge`（旧版 TCP 桥接，已移除）
+### `bridge`ï¼ˆæ—§ç‰ˆ TCP æ¡¥æŽ¥ï¼Œå·²ç§»é™¤ï¼‰
 
-当前版本不再包含 TCP 桥接监听器；`bridge.*` 配置键会被忽略。
-节点通过 Gateway 网关 WebSocket 连接。此部分仅保留供历史参考。
+å½“å‰ç‰ˆæœ¬ä¸å†åŒ…å« TCP æ¡¥æŽ¥ç›‘å¬å™¨ï¼›`bridge.*` é…ç½®é”®ä¼šè¢«å¿½ç•¥ã€‚
+èŠ‚ç‚¹é€šè¿‡ Gateway ç½‘å…³ WebSocket è¿žæŽ¥ã€‚æ­¤éƒ¨åˆ†ä»…ä¿ç•™ä¾›åŽ†å²å‚è€ƒã€‚
 
-旧版行为：
+æ—§ç‰ˆè¡Œä¸ºï¼š
 
-- Gateway 网关可以为节点（iOS/Android）暴露简单的 TCP 桥接，通常在端口 `18790`。
+- Gateway ç½‘å…³å¯ä»¥ä¸ºèŠ‚ç‚¹ï¼ˆiOS/Androidï¼‰æš´éœ²ç®€å•çš„ TCP æ¡¥æŽ¥ï¼Œé€šå¸¸åœ¨ç«¯å£ `18790`ã€‚
 
-默认值：
+é»˜è®¤å€¼ï¼š
 
-- enabled：`true`
-- port：`18790`
-- bind：`lan`（绑定到 `0.0.0.0`）
+- enabledï¼š`true`
+- portï¼š`18790`
+- bindï¼š`lan`ï¼ˆç»‘å®šåˆ° `0.0.0.0`ï¼‰
 
-绑定模式：
+ç»‘å®šæ¨¡å¼ï¼š
 
-- `lan`：`0.0.0.0`（可通过任何接口访问，包括 LAN/Wi‑Fi 和 Tailscale）
-- `tailnet`：仅绑定到机器的 Tailscale IP（推荐用于跨地域访问）
-- `loopback`：`127.0.0.1`（仅本地）
-- `auto`：如果存在 tailnet IP 则优先使用，否则 `lan`
+- `lan`ï¼š`0.0.0.0`ï¼ˆå¯é€šè¿‡ä»»ä½•æŽ¥å£è®¿é—®ï¼ŒåŒ…æ‹¬ LAN/Wiâ€‘Fi å’Œ Tailscaleï¼‰
+- `tailnet`ï¼šä»…ç»‘å®šåˆ°æœºå™¨çš„ Tailscale IPï¼ˆæŽ¨èç”¨äºŽè·¨åœ°åŸŸè®¿é—®ï¼‰
+- `loopback`ï¼š`127.0.0.1`ï¼ˆä»…æœ¬åœ°ï¼‰
+- `auto`ï¼šå¦‚æžœå­˜åœ¨ tailnet IP åˆ™ä¼˜å…ˆä½¿ç”¨ï¼Œå¦åˆ™ `lan`
 
-TLS：
+TLSï¼š
 
-- `bridge.tls.enabled`：为桥接连接启用 TLS（启用时仅 TLS）。
-- `bridge.tls.autoGenerate`：当无证书/密钥时生成自签名证书（默认：true）。
-- `bridge.tls.certPath` / `bridge.tls.keyPath`：桥接证书 + 私钥的 PEM 路径。
-- `bridge.tls.caPath`：可选的 PEM CA 捆绑包（自定义根证书或未来的 mTLS）。
+- `bridge.tls.enabled`ï¼šä¸ºæ¡¥æŽ¥è¿žæŽ¥å¯ç”¨ TLSï¼ˆå¯ç”¨æ—¶ä»… TLSï¼‰ã€‚
+- `bridge.tls.autoGenerate`ï¼šå½“æ— è¯ä¹¦/å¯†é’¥æ—¶ç”Ÿæˆè‡ªç­¾åè¯ä¹¦ï¼ˆé»˜è®¤ï¼štrueï¼‰ã€‚
+- `bridge.tls.certPath` / `bridge.tls.keyPath`ï¼šæ¡¥æŽ¥è¯ä¹¦ + ç§é’¥çš„ PEM è·¯å¾„ã€‚
+- `bridge.tls.caPath`ï¼šå¯é€‰çš„ PEM CA æ†ç»‘åŒ…ï¼ˆè‡ªå®šä¹‰æ ¹è¯ä¹¦æˆ–æœªæ¥çš„ mTLSï¼‰ã€‚
 
-启用 TLS 后，Gateway 网关在发现 TXT 记录中通告 `bridgeTls=1` 和 `bridgeTlsSha256`，以便节点可以固定证书。如果尚未存储指纹，手动连接使用首次信任。
-自动生成的证书需要 PATH 中有 `openssl`；如果生成失败，桥接不会启动。
+å¯ç”¨ TLS åŽï¼ŒGateway ç½‘å…³åœ¨å‘çŽ° TXT è®°å½•ä¸­é€šå‘Š `bridgeTls=1` å’Œ `bridgeTlsSha256`ï¼Œä»¥ä¾¿èŠ‚ç‚¹å¯ä»¥å›ºå®šè¯ä¹¦ã€‚å¦‚æžœå°šæœªå­˜å‚¨æŒ‡çº¹ï¼Œæ‰‹åŠ¨è¿žæŽ¥ä½¿ç”¨é¦–æ¬¡ä¿¡ä»»ã€‚
+è‡ªåŠ¨ç”Ÿæˆçš„è¯ä¹¦éœ€è¦ PATH ä¸­æœ‰ `openssl`ï¼›å¦‚æžœç”Ÿæˆå¤±è´¥ï¼Œæ¡¥æŽ¥ä¸ä¼šå¯åŠ¨ã€‚
 
 ```json5
 {
@@ -3243,22 +3243,22 @@ TLS：
     bind: "tailnet",
     tls: {
       enabled: true,
-      // 省略时使用 ~/.openclaw/bridge/tls/bridge-{cert,key}.pem。
-      // certPath: "~/.openclaw/bridge/tls/bridge-cert.pem",
-      // keyPath: "~/.openclaw/bridge/tls/bridge-key.pem"
+      // çœç•¥æ—¶ä½¿ç”¨ ~/./bridge/tls/bridge-{cert,key}.pemã€‚
+      // certPath: "~/./bridge/tls/bridge-cert.pem",
+      // keyPath: "~/./bridge/tls/bridge-key.pem"
     },
   },
 }
 ```
 
-### `discovery.mdns`（Bonjour / mDNS 广播模式）
+### `discovery.mdns`ï¼ˆBonjour / mDNS å¹¿æ’­æ¨¡å¼ï¼‰
 
-控制 LAN mDNS 发现广播（`_openclaw-gw._tcp`）。
+æŽ§åˆ¶ LAN mDNS å‘çŽ°å¹¿æ’­ï¼ˆ`_-gw._tcp`ï¼‰ã€‚
 
-- `minimal`（默认）：从 TXT 记录中省略 `cliPath` + `sshPort`
-- `full`：在 TXT 记录中包含 `cliPath` + `sshPort`
-- `off`：完全禁用 mDNS 广播
-- 主机名：默认为 `openclaw`（通告 `openclaw.local`）。通过 `OPENCLAW_MDNS_HOSTNAME` 覆盖。
+- `minimal`ï¼ˆé»˜è®¤ï¼‰ï¼šä»Ž TXT è®°å½•ä¸­çœç•¥ `cliPath` + `sshPort`
+- `full`ï¼šåœ¨ TXT è®°å½•ä¸­åŒ…å« `cliPath` + `sshPort`
+- `off`ï¼šå®Œå…¨ç¦ç”¨ mDNS å¹¿æ’­
+- ä¸»æœºåï¼šé»˜è®¤ä¸º ``ï¼ˆé€šå‘Š `.local`ï¼‰ã€‚é€šè¿‡ `_MDNS_HOSTNAME` è¦†ç›–ã€‚
 
 ```json5
 {
@@ -3266,19 +3266,19 @@ TLS：
 }
 ```
 
-### `discovery.wideArea`（广域 Bonjour / 单播 DNS‑SD）
+### `discovery.wideArea`ï¼ˆå¹¿åŸŸ Bonjour / å•æ’­ DNSâ€‘SDï¼‰
 
-启用后，Gateway 网关在 `~/.openclaw/dns/` 下使用配置的发现域（示例：`openclaw.internal.`）为 `_openclaw-gw._tcp` 写入单播 DNS-SD 区域。
+å¯ç”¨åŽï¼ŒGateway ç½‘å…³åœ¨ `~/./dns/` ä¸‹ä½¿ç”¨é…ç½®çš„å‘çŽ°åŸŸï¼ˆç¤ºä¾‹ï¼š`.internal.`ï¼‰ä¸º `_-gw._tcp` å†™å…¥å•æ’­ DNS-SD åŒºåŸŸã€‚
 
-要使 iOS/Android 跨网络发现（跨地域访问），请配合以下使用：
+è¦ä½¿ iOS/Android è·¨ç½‘ç»œå‘çŽ°ï¼ˆè·¨åœ°åŸŸè®¿é—®ï¼‰ï¼Œè¯·é…åˆä»¥ä¸‹ä½¿ç”¨ï¼š
 
-- 在 Gateway 网关主机上运行 DNS 服务器，为你选择的域名提供服务（推荐 CoreDNS）
-- Tailscale **split DNS**，使客户端通过 Gateway 网关 DNS 服务器解析该域名
+- åœ¨ Gateway ç½‘å…³ä¸»æœºä¸Šè¿è¡Œ DNS æœåŠ¡å™¨ï¼Œä¸ºä½ é€‰æ‹©çš„åŸŸåæä¾›æœåŠ¡ï¼ˆæŽ¨è CoreDNSï¼‰
+- Tailscale **split DNS**ï¼Œä½¿å®¢æˆ·ç«¯é€šè¿‡ Gateway ç½‘å…³ DNS æœåŠ¡å™¨è§£æžè¯¥åŸŸå
 
-一次性设置助手（Gateway 网关主机）：
+ä¸€æ¬¡æ€§è®¾ç½®åŠ©æ‰‹ï¼ˆGateway ç½‘å…³ä¸»æœºï¼‰ï¼š
 
 ```bash
-openclaw dns setup --apply
+ dns setup --apply
 ```
 
 ```json5
@@ -3287,36 +3287,36 @@ openclaw dns setup --apply
 }
 ```
 
-## 模板变量
+## æ¨¡æ¿å˜é‡
 
-模板占位符在 `tools.media.*.models[].args` 和 `tools.media.models[].args`（以及未来任何模板化参数字段）中展开。
+æ¨¡æ¿å ä½ç¬¦åœ¨ `tools.media.*.models[].args` å’Œ `tools.media.models[].args`ï¼ˆä»¥åŠæœªæ¥ä»»ä½•æ¨¡æ¿åŒ–å‚æ•°å­—æ®µï¼‰ä¸­å±•å¼€ã€‚
 
-| 变量               | 描述                                                  |
+| å˜é‡               | æè¿°                                                  |
 | ------------------ | ----------------------------------------------------- | -------- | ------- | ---------- | ----- | ------ | -------- | ------- | ------- | --- |
-| `{{Body}}`         | 完整的入站消息正文                                    |
-| `{{RawBody}}`      | 原始入站消息正文（无历史/发送者包装；最适合命令解析） |
-| `{{BodyStripped}}` | 去除群组提及的正文（最适合智能体的默认值）            |
-| `{{From}}`         | 发送者标识符（WhatsApp 为 E.164；按渠道可能不同）     |
-| `{{To}}`           | 目标标识符                                            |
-| `{{MessageSid}}`   | 渠道消息 id（如果可用）                               |
-| `{{SessionId}}`    | 当前会话 UUID                                         |
-| `{{IsNewSession}}` | 创建新会话时为 `"true"`                               |
-| `{{MediaUrl}}`     | 入站媒体伪 URL（如果存在）                            |
-| `{{MediaPath}}`    | 本地媒体路径（如果已下载）                            |
-| `{{MediaType}}`    | 媒体类型（image/audio/document/…）                    |
-| `{{Transcript}}`   | 音频转录（启用时）                                    |
-| `{{Prompt}}`       | CLI 条目的已解析媒体提示                              |
-| `{{MaxChars}}`     | CLI 条目的已解析最大输出字符数                        |
-| `{{ChatType}}`     | `"direct"` 或 `"group"`                               |
-| `{{GroupSubject}}` | 群组主题（尽力而为）                                  |
-| `{{GroupMembers}}` | 群组成员预览（尽力而为）                              |
-| `{{SenderName}}`   | 发送者显示名称（尽力而为）                            |
-| `{{SenderE164}}`   | 发送者电话号码（尽力而为）                            |
-| `{{Provider}}`     | 提供商提示（whatsapp                                  | telegram | discord | googlechat | slack | signal | imessage | msteams | webchat | …） |
+| `{{Body}}`         | å®Œæ•´çš„å…¥ç«™æ¶ˆæ¯æ­£æ–‡                                    |
+| `{{RawBody}}`      | åŽŸå§‹å…¥ç«™æ¶ˆæ¯æ­£æ–‡ï¼ˆæ— åŽ†å²/å‘é€è€…åŒ…è£…ï¼›æœ€é€‚åˆå‘½ä»¤è§£æžï¼‰ |
+| `{{BodyStripped}}` | åŽ»é™¤ç¾¤ç»„æåŠçš„æ­£æ–‡ï¼ˆæœ€é€‚åˆæ™ºèƒ½ä½“çš„é»˜è®¤å€¼ï¼‰            |
+| `{{From}}`         | å‘é€è€…æ ‡è¯†ç¬¦ï¼ˆWhatsApp ä¸º E.164ï¼›æŒ‰æ¸ é“å¯èƒ½ä¸åŒï¼‰     |
+| `{{To}}`           | ç›®æ ‡æ ‡è¯†ç¬¦                                            |
+| `{{MessageSid}}`   | æ¸ é“æ¶ˆæ¯ idï¼ˆå¦‚æžœå¯ç”¨ï¼‰                               |
+| `{{SessionId}}`    | å½“å‰ä¼šè¯ UUID                                         |
+| `{{IsNewSession}}` | åˆ›å»ºæ–°ä¼šè¯æ—¶ä¸º `"true"`                               |
+| `{{MediaUrl}}`     | å…¥ç«™åª’ä½“ä¼ª URLï¼ˆå¦‚æžœå­˜åœ¨ï¼‰                            |
+| `{{MediaPath}}`    | æœ¬åœ°åª’ä½“è·¯å¾„ï¼ˆå¦‚æžœå·²ä¸‹è½½ï¼‰                            |
+| `{{MediaType}}`    | åª’ä½“ç±»åž‹ï¼ˆimage/audio/document/â€¦ï¼‰                    |
+| `{{Transcript}}`   | éŸ³é¢‘è½¬å½•ï¼ˆå¯ç”¨æ—¶ï¼‰                                    |
+| `{{Prompt}}`       | CLI æ¡ç›®çš„å·²è§£æžåª’ä½“æç¤º                              |
+| `{{MaxChars}}`     | CLI æ¡ç›®çš„å·²è§£æžæœ€å¤§è¾“å‡ºå­—ç¬¦æ•°                        |
+| `{{ChatType}}`     | `"direct"` æˆ– `"group"`                               |
+| `{{GroupSubject}}` | ç¾¤ç»„ä¸»é¢˜ï¼ˆå°½åŠ›è€Œä¸ºï¼‰                                  |
+| `{{GroupMembers}}` | ç¾¤ç»„æˆå‘˜é¢„è§ˆï¼ˆå°½åŠ›è€Œä¸ºï¼‰                              |
+| `{{SenderName}}`   | å‘é€è€…æ˜¾ç¤ºåç§°ï¼ˆå°½åŠ›è€Œä¸ºï¼‰                            |
+| `{{SenderE164}}`   | å‘é€è€…ç”µè¯å·ç ï¼ˆå°½åŠ›è€Œä¸ºï¼‰                            |
+| `{{Provider}}`     | æä¾›å•†æç¤ºï¼ˆwhatsapp                                  | telegram | discord | googlechat | slack | signal | imessage | msteams | webchat | â€¦ï¼‰ |
 
-## Cron（Gateway 网关调度器）
+## Cronï¼ˆGateway ç½‘å…³è°ƒåº¦å™¨ï¼‰
 
-Cron 是 Gateway 网关自有的唤醒和定时任务调度器。参见 [Cron 任务](/automation/cron-jobs) 了解功能概述和 CLI 示例。
+Cron æ˜¯ Gateway ç½‘å…³è‡ªæœ‰çš„å”¤é†’å’Œå®šæ—¶ä»»åŠ¡è°ƒåº¦å™¨ã€‚å‚è§ [Cron ä»»åŠ¡](/automation/cron-jobs) äº†è§£åŠŸèƒ½æ¦‚è¿°å’Œ CLI ç¤ºä¾‹ã€‚
 
 ```json5
 {
@@ -3329,4 +3329,5 @@ Cron 是 Gateway 网关自有的唤醒和定时任务调度器。参见 [Cron �
 
 ---
 
-_下一步：[智能体运行时](/concepts/agent)_ 🦞
+_ä¸‹ä¸€æ­¥ï¼š[æ™ºèƒ½ä½“è¿è¡Œæ—¶](/concepts/agent)_ ðŸ¦ž
+

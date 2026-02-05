@@ -1,4 +1,4 @@
-import type { SessionScope } from "./types.js";
+﻿import type { SessionScope } from "./types.js";
 import {
   buildAgentMainSessionKey,
   DEFAULT_AGENT_ID,
@@ -77,3 +77,4 @@ export function canonicalizeMainSessionAlias(params: {
   }
   return raw;
 }
+

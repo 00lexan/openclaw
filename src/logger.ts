@@ -1,4 +1,4 @@
-import { danger, info, logVerboseConsole, success, warn } from "./globals.js";
+﻿import { danger, info, logVerboseConsole, success, warn } from "./globals.js";
 import { getLogger } from "./logging/logger.js";
 import { createSubsystemLogger } from "./logging/subsystem.js";
 import { defaultRuntime, type RuntimeEnv } from "./runtime.js";
@@ -59,3 +59,4 @@ export function logDebug(message: string) {
   getLogger().debug(message);
   logVerboseConsole(message);
 }
+

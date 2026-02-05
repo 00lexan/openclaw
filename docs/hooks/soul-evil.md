@@ -1,4 +1,4 @@
----
+﻿---
 summary: "SOUL Evil hook (swap SOUL.md with SOUL_EVIL.md)"
 read_when:
   - You want to enable or tune the SOUL Evil hook
@@ -15,7 +15,7 @@ a purge window or by random chance. It does **not** modify files on disk.
 
 When `agent:bootstrap` runs, the hook can replace the `SOUL.md` content in memory
 before the system prompt is assembled. If `SOUL_EVIL.md` is missing or empty,
-OpenClaw logs a warning and keeps the normal `SOUL.md`.
+ logs a warning and keeps the normal `SOUL.md`.
 
 Sub-agent runs do **not** include `SOUL.md` in their bootstrap files, so this hook
 has no effect on sub-agents.
@@ -23,7 +23,7 @@ has no effect on sub-agents.
 ## Enable
 
 ```bash
-openclaw hooks enable soul-evil
+ hooks enable soul-evil
 ```
 
 Then set the config:
@@ -51,7 +51,7 @@ Create `SOUL_EVIL.md` in the agent workspace root (next to `SOUL.md`).
 ## Options
 
 - `file` (string): alternate SOUL filename (default: `SOUL_EVIL.md`)
-- `chance` (number 0–1): random chance per run to use `SOUL_EVIL.md`
+- `chance` (number 0â€“1): random chance per run to use `SOUL_EVIL.md`
 - `purge.at` (HH:mm): daily purge start (24-hour clock)
 - `purge.duration` (duration): window length (e.g. `30s`, `10m`, `1h`)
 
@@ -67,3 +67,4 @@ Create `SOUL_EVIL.md` in the agent workspace root (next to `SOUL.md`).
 ## See Also
 
 - [Hooks](/hooks)
+

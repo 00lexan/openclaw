@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import {
   ErrorCodes,
   errorShape,
@@ -36,3 +36,4 @@ export const talkHandlers: GatewayRequestHandlers = {
     respond(true, payload, undefined);
   },
 };
+

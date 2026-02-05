@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -111,3 +111,4 @@ export class Modal extends DynamicComponent<Types.ModalNode> {
     this.showDialog.set(false);
   }
 }
+

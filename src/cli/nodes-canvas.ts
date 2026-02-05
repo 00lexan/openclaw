@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+﻿import { randomUUID } from "node:crypto";
 import * as os from "node:os";
 import * as path from "node:path";
 import { resolveCliName } from "./cli-name.js";
@@ -33,3 +33,4 @@ export function canvasSnapshotTempPath(opts: { ext: string; tmpDir?: string; id?
   const cliName = resolveCliName();
   return path.join(tmpDir, `${cliName}-canvas-snapshot-${id}${ext}`);
 }
+

@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "../../auto-reply/types.js";
+﻿import type { ReplyPayload } from "../../auto-reply/types.js";
 import type { MarkdownTableMode } from "../../config/types.base.js";
 import type { WebInboundMsg } from "./types.js";
 import { chunkMarkdownTextWithMode, type ChunkMode } from "../../auto-reply/chunk.js";
@@ -170,7 +170,7 @@ export async function deliverWebReply(params: {
       replyLogger.warn({ err, mediaUrl }, "failed to send web media reply");
       if (index === 0) {
         const warning =
-          err instanceof Error ? `⚠️ Media failed: ${err.message}` : "⚠️ Media failed.";
+          err instanceof Error ? `âš ï¸ Media failed: ${err.message}` : "âš ï¸ Media failed.";
         const fallbackTextParts = [remainingText.shift() ?? caption ?? "", warning].filter(Boolean);
         const fallbackText = fallbackTextParts.join("\n");
         if (fallbackText) {
@@ -186,3 +186,4 @@ export async function deliverWebReply(params: {
     await msg.reply(chunk);
   }
 }
+

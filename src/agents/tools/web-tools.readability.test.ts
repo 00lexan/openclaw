@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { extractReadableContent } from "./web-tools.js";
 
 const SAMPLE_HTML = `<!doctype html>
@@ -46,3 +46,4 @@ describe("web fetch readability", () => {
     expect(result?.title).toBe("Example Article");
   });
 });
+

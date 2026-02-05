@@ -1,4 +1,4 @@
-import { verifyEvent, getPublicKey } from "nostr-tools";
+﻿import { verifyEvent, getPublicKey } from "nostr-tools";
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import type { NostrProfile } from "./config-schema.js";
 import {
@@ -356,27 +356,27 @@ describe("sanitizeProfileForDisplay", () => {
 describe("edge cases", () => {
   it("handles emoji in profile fields", () => {
     const profile: NostrProfile = {
-      name: "🤖 Bot",
-      about: "I am a 🤖 robot! 🎉",
+      name: "ðŸ¤– Bot",
+      about: "I am a ðŸ¤– robot! ðŸŽ‰",
     };
 
     const content = profileToContent(profile);
-    expect(content.name).toBe("🤖 Bot");
-    expect(content.about).toBe("I am a 🤖 robot! 🎉");
+    expect(content.name).toBe("ðŸ¤– Bot");
+    expect(content.about).toBe("I am a ðŸ¤– robot! ðŸŽ‰");
 
     const event = createProfileEvent(TEST_SK, profile);
     const parsed = JSON.parse(event.content) as ProfileContent;
-    expect(parsed.name).toBe("🤖 Bot");
+    expect(parsed.name).toBe("ðŸ¤– Bot");
   });
 
   it("handles unicode in profile fields", () => {
     const profile: NostrProfile = {
-      name: "日本語ユーザー",
-      about: "Привет мир! 你好世界!",
+      name: "æ—¥æœ¬èªžãƒ¦ãƒ¼ã‚¶ãƒ¼",
+      about: "ÐŸÑ€Ð¸Ð²ÐµÑ‚ Ð¼Ð¸Ñ€! ä½ å¥½ä¸–ç•Œ!",
     };
 
     const content = profileToContent(profile);
-    expect(content.name).toBe("日本語ユーザー");
+    expect(content.name).toBe("æ—¥æœ¬èªžãƒ¦ãƒ¼ã‚¶ãƒ¼");
 
     const event = createProfileEvent(TEST_SK, profile);
     expect(verifyEvent(event)).toBe(true);
@@ -408,3 +408,4 @@ describe("edge cases", () => {
     expect(verifyEvent(event)).toBe(true);
   });
 });
+

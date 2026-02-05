@@ -1,4 +1,4 @@
-{
+﻿{
   "images" : [
     { "filename" : "icon-20@1x.png",   "idiom" : "ipad",  "scale" : "1x", "size" : "20x20" },
     { "filename" : "icon-20@2x.png",   "idiom" : "ipad",  "scale" : "2x", "size" : "20x20" },
@@ -29,3 +29,4 @@
     "version" : 1
   }
 }
+

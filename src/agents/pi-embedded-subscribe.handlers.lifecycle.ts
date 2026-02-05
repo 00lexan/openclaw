@@ -1,4 +1,4 @@
-import type { AgentEvent } from "@mariozechner/pi-agent-core";
+﻿import type { AgentEvent } from "@mariozechner/pi-agent-core";
 import type { EmbeddedPiSubscribeContext } from "./pi-embedded-subscribe.handlers.types.js";
 import { emitAgentEvent } from "../infra/agent-events.js";
 import { createInlineCodeState } from "../markdown/code-spans.js";
@@ -93,3 +93,4 @@ export function handleAgentEnd(ctx: EmbeddedPiSubscribeContext) {
     ctx.maybeResolveCompactionWait();
   }
 }
+

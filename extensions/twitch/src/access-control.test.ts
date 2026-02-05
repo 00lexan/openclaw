@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { TwitchAccountConfig, TwitchChatMessage } from "./types.js";
 import { checkTwitchAccessControl, extractMentions } from "./access-control.js";
 
@@ -487,3 +487,4 @@ describe("extractMentions", () => {
     expect(mentions).toEqual([]);
   });
 });
+

@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { BrowserParentOpts } from "../browser-cli-shared.js";
 import { registerBrowserElementCommands } from "./register.element.js";
 import { registerBrowserFilesAndDownloadsCommands } from "./register.files-downloads.js";
@@ -14,3 +14,4 @@ export function registerBrowserActionInputCommands(
   registerBrowserFilesAndDownloadsCommands(browser, parentOpts);
   registerBrowserFormWaitEvalCommands(browser, parentOpts);
 }
+

@@ -1,4 +1,4 @@
-import { listChannelPluginCatalogEntries } from "../channels/plugins/catalog.js";
+﻿import { listChannelPluginCatalogEntries } from "../channels/plugins/catalog.js";
 import { listChannelPlugins } from "../channels/plugins/index.js";
 import { CHAT_CHANNEL_ORDER } from "../channels/registry.js";
 import { isTruthyEnvValue } from "../infra/env.js";
@@ -20,7 +20,7 @@ function dedupe(values: string[]): string[] {
 export function resolveCliChannelOptions(): string[] {
   const catalog = listChannelPluginCatalogEntries().map((entry) => entry.id);
   const base = dedupe([...CHAT_CHANNEL_ORDER, ...catalog]);
-  if (isTruthyEnvValue(process.env.OPENCLAW_EAGER_CHANNEL_OPTIONS)) {
+  if (isTruthyEnvValue(process.env._EAGER_CHANNEL_OPTIONS)) {
     ensurePluginRegistryLoaded();
     const pluginIds = listChannelPlugins().map((plugin) => plugin.id);
     return dedupe([...base, ...pluginIds]);
@@ -31,3 +31,4 @@ export function resolveCliChannelOptions(): string[] {
 export function formatCliChannelOptions(extra: string[] = []): string {
   return [...extra, ...resolveCliChannelOptions()].join("|");
 }
+

@@ -1,4 +1,4 @@
-import {
+﻿import {
   composeThinkingAndContent,
   extractContentFromMessage,
   extractThinkingFromMessage,
@@ -76,3 +76,4 @@ export class TuiStreamAssembler {
     this.runs.delete(runId);
   }
 }
+

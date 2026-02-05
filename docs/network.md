@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Network hub: gateway surfaces, pairing, discovery, and security"
 read_when:
   - You need the network architecture + security overview
@@ -9,7 +9,7 @@ title: "Network"
 
 # Network hub
 
-This hub links the core docs for how OpenClaw connects, pairs, and secures
+This hub links the core docs for how  connects, pairs, and secures
 devices across localhost, LAN, and tailnet.
 
 ## Core model
@@ -28,9 +28,9 @@ devices across localhost, LAN, and tailnet.
 
 Local trust:
 
-- Local connections (loopback or the gateway host’s own tailnet address) can be
-  auto‑approved for pairing to keep same‑host UX smooth.
-- Non‑local tailnet/LAN clients still require explicit pairing approval.
+- Local connections (loopback or the gateway hostâ€™s own tailnet address) can be
+  autoâ€‘approved for pairing to keep sameâ€‘host UX smooth.
+- Nonâ€‘local tailnet/LAN clients still require explicit pairing approval.
 
 ## Discovery + transports
 
@@ -52,3 +52,4 @@ Local trust:
 - [Gateway config reference](/gateway/configuration)
 - [Troubleshooting](/gateway/troubleshooting)
 - [Doctor](/gateway/doctor)
+

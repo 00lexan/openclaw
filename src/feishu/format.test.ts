@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { containsMarkdown, markdownToFeishuPost } from "./format.js";
 
 describe("containsMarkdown", () => {
@@ -92,3 +92,4 @@ describe("markdownToFeishuPost", () => {
     expect(result.zh_cn?.content).toBeDefined();
   });
 });
+

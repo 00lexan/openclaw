@@ -1,4 +1,4 @@
-# OpenProse Help
+﻿# OpenProse Help
 
 Load this file when a user invokes `prose help` or asks about OpenProse.
 
@@ -59,8 +59,8 @@ prose run examples/01-hello-world.prose
 
 ```
 prose help
-→ Select "Build something new"
-→ Describe what you want to automate
+â†’ Select "Build something new"
+â†’ Describe what you want to automate
 ```
 
 ---
@@ -73,27 +73,27 @@ Claude Code, OpenCode, and Amp. Any harness that runs a sufficiently intelligent
 
 ### How is this a VM?
 
-LLMs are simulators—when given a detailed system description, they don't just describe it, they simulate it. The `prose.md` spec describes a VM with enough fidelity that reading it induces simulation. But simulation with sufficient fidelity is implementation: each session spawns a real subagent, outputs are real artifacts, state persists in conversation history or files. The simulation is the execution.
+LLMs are simulatorsâ€”when given a detailed system description, they don't just describe it, they simulate it. The `prose.md` spec describes a VM with enough fidelity that reading it induces simulation. But simulation with sufficient fidelity is implementation: each session spawns a real subagent, outputs are real artifacts, state persists in conversation history or files. The simulation is the execution.
 
 ### What's "intelligent IoC"?
 
-Traditional IoC containers (Spring, Guice) wire up dependencies from configuration files. OpenProse's container is an AI session that wires up agents using understanding. It doesn't just match names—it understands context, intent, and can make intelligent decisions about execution.
+Traditional IoC containers (Spring, Guice) wire up dependencies from configuration files. OpenProse's container is an AI session that wires up agents using understanding. It doesn't just match namesâ€”it understands context, intent, and can make intelligent decisions about execution.
 
 ### This looks like Python.
 
-The syntax is intentionally familiar—Python's indentation-based structure is readable and self-evident. But the semantics are entirely different. OpenProse has no functions, no classes, no general-purpose computation. It has agents, sessions, and control flow. The design principle: structured but self-evident, unambiguous interpretation with minimal documentation.
+The syntax is intentionally familiarâ€”Python's indentation-based structure is readable and self-evident. But the semantics are entirely different. OpenProse has no functions, no classes, no general-purpose computation. It has agents, sessions, and control flow. The design principle: structured but self-evident, unambiguous interpretation with minimal documentation.
 
 ### Why not English?
 
-English is already an agent framework—we're not replacing it, we're structuring it. Plain English doesn't distinguish sequential from parallel, doesn't specify retry counts, doesn't scope variables. OpenProse uses English exactly where ambiguity is a feature (inside `**...**`), and structure everywhere else. The fourth wall syntax lets you lean on AI judgment precisely when you want to.
+English is already an agent frameworkâ€”we're not replacing it, we're structuring it. Plain English doesn't distinguish sequential from parallel, doesn't specify retry counts, doesn't scope variables. OpenProse uses English exactly where ambiguity is a feature (inside `**...**`), and structure everywhere else. The fourth wall syntax lets you lean on AI judgment precisely when you want to.
 
 ### Why not YAML?
 
-We started with YAML. The problem: loops, conditionals, and variable declarations aren't self-evident in YAML—and when you try to make them self-evident, it gets verbose and ugly. More fundamentally, YAML optimizes for machine parseability. OpenProse optimizes for intelligent machine legibility. It doesn't need to be parsed—it needs to be understood. That's a different design target entirely.
+We started with YAML. The problem: loops, conditionals, and variable declarations aren't self-evident in YAMLâ€”and when you try to make them self-evident, it gets verbose and ugly. More fundamentally, YAML optimizes for machine parseability. OpenProse optimizes for intelligent machine legibility. It doesn't need to be parsedâ€”it needs to be understood. That's a different design target entirely.
 
 ### Why not LangChain/CrewAI/AutoGen?
 
-Those are orchestration libraries—they coordinate agents from outside. OpenProse runs inside the agent session—the session itself is the IoC container. This means zero external dependencies and portability across any AI assistant. Switch from Claude Code to Codex? Your .prose files still work.
+Those are orchestration librariesâ€”they coordinate agents from outside. OpenProse runs inside the agent sessionâ€”the session itself is the IoC container. This means zero external dependencies and portability across any AI assistant. Switch from Claude Code to Codex? Your .prose files still work.
 
 ---
 
@@ -142,3 +142,4 @@ The `examples/` directory contains 37 example programs:
 - `01-hello-world.prose` - Simplest possible program
 - `16-parallel-reviews.prose` - See parallel execution
 - `37-the-forge.prose` - Watch AI build a web browser
+

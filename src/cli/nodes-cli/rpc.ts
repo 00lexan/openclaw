@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import type { NodeListNode, NodesRpcOpts } from "./types.js";
 import { callGateway } from "../../gateway/call.js";
 import { GATEWAY_CLIENT_MODES, GATEWAY_CLIENT_NAMES } from "../../utils/message-channel.js";
@@ -111,3 +111,4 @@ export async function resolveNodeId(opts: NodesRpcOpts, query: string) {
       .join(", ")})`,
   );
 }
+

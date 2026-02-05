@@ -1,9 +1,9 @@
----
+﻿---
 read_when:
-  - 不运行完整智能体回合直接调用工具
-  - 构建需要工具策略强制执行的自动化
-summary: 通过 Gateway 网关 HTTP 端点直接调用单个工具
-title: 工具调用 API
+  - ä¸è¿è¡Œå®Œæ•´æ™ºèƒ½ä½“å›žåˆç›´æŽ¥è°ƒç”¨å·¥å…·
+  - æž„å»ºéœ€è¦å·¥å…·ç­–ç•¥å¼ºåˆ¶æ‰§è¡Œçš„è‡ªåŠ¨åŒ–
+summary: é€šè¿‡ Gateway ç½‘å…³ HTTP ç«¯ç‚¹ç›´æŽ¥è°ƒç”¨å•ä¸ªå·¥å…·
+title: å·¥å…·è°ƒç”¨ API
 x-i18n:
   generated_at: "2026-02-03T07:48:58Z"
   model: claude-opus-4-5
@@ -13,27 +13,27 @@ x-i18n:
   workflow: 15
 ---
 
-# 工具调用（HTTP）
+# å·¥å…·è°ƒç”¨ï¼ˆHTTPï¼‰
 
-OpenClaw 的 Gateway 网关暴露了一个简单的 HTTP 端点用于直接调用单个工具。它始终启用，但受 Gateway 网关认证和工具策略限制。
+ çš„ Gateway ç½‘å…³æš´éœ²äº†ä¸€ä¸ªç®€å•çš„ HTTP ç«¯ç‚¹ç”¨äºŽç›´æŽ¥è°ƒç”¨å•ä¸ªå·¥å…·ã€‚å®ƒå§‹ç»ˆå¯ç”¨ï¼Œä½†å— Gateway ç½‘å…³è®¤è¯å’Œå·¥å…·ç­–ç•¥é™åˆ¶ã€‚
 
 - `POST /tools/invoke`
-- 与 Gateway 网关相同的端口（WS + HTTP 多路复用）：`http://<gateway-host>:<port>/tools/invoke`
+- ä¸Ž Gateway ç½‘å…³ç›¸åŒçš„ç«¯å£ï¼ˆWS + HTTP å¤šè·¯å¤ç”¨ï¼‰ï¼š`http://<gateway-host>:<port>/tools/invoke`
 
-默认最大负载大小为 2 MB。
+é»˜è®¤æœ€å¤§è´Ÿè½½å¤§å°ä¸º 2 MBã€‚
 
-## 认证
+## è®¤è¯
 
-使用 Gateway 网关认证配置。发送 bearer 令牌：
+ä½¿ç”¨ Gateway ç½‘å…³è®¤è¯é…ç½®ã€‚å‘é€ bearer ä»¤ç‰Œï¼š
 
 - `Authorization: Bearer <token>`
 
-说明：
+è¯´æ˜Žï¼š
 
-- 当 `gateway.auth.mode="token"` 时，使用 `gateway.auth.token`（或 `OPENCLAW_GATEWAY_TOKEN`）。
-- 当 `gateway.auth.mode="password"` 时，使用 `gateway.auth.password`（或 `OPENCLAW_GATEWAY_PASSWORD`）。
+- å½“ `gateway.auth.mode="token"` æ—¶ï¼Œä½¿ç”¨ `gateway.auth.token`ï¼ˆæˆ– `_GATEWAY_TOKEN`ï¼‰ã€‚
+- å½“ `gateway.auth.mode="password"` æ—¶ï¼Œä½¿ç”¨ `gateway.auth.password`ï¼ˆæˆ– `_GATEWAY_PASSWORD`ï¼‰ã€‚
 
-## 请求体
+## è¯·æ±‚ä½“
 
 ```json
 {
@@ -45,40 +45,40 @@ OpenClaw 的 Gateway 网关暴露了一个简单的 HTTP 端点用于直接调�
 }
 ```
 
-字段：
+å­—æ®µï¼š
 
-- `tool`（string，必需）：要调用的工具名称。
-- `action`（string，可选）：如果工具 schema 支持 `action` 且 args 负载省略了它，则映射到 args。
-- `args`（object，可选）：工具特定的参数。
-- `sessionKey`（string，可选）：目标会话键。如果省略或为 `"main"`，Gateway 网关使用配置的主会话键（遵循 `session.mainKey` 和默认智能体，或在全局范围中使用 `global`）。
-- `dryRun`（boolean，可选）：保留供将来使用；当前忽略。
+- `tool`ï¼ˆstringï¼Œå¿…éœ€ï¼‰ï¼šè¦è°ƒç”¨çš„å·¥å…·åç§°ã€‚
+- `action`ï¼ˆstringï¼Œå¯é€‰ï¼‰ï¼šå¦‚æžœå·¥å…· schema æ”¯æŒ `action` ä¸” args è´Ÿè½½çœç•¥äº†å®ƒï¼Œåˆ™æ˜ å°„åˆ° argsã€‚
+- `args`ï¼ˆobjectï¼Œå¯é€‰ï¼‰ï¼šå·¥å…·ç‰¹å®šçš„å‚æ•°ã€‚
+- `sessionKey`ï¼ˆstringï¼Œå¯é€‰ï¼‰ï¼šç›®æ ‡ä¼šè¯é”®ã€‚å¦‚æžœçœç•¥æˆ–ä¸º `"main"`ï¼ŒGateway ç½‘å…³ä½¿ç”¨é…ç½®çš„ä¸»ä¼šè¯é”®ï¼ˆéµå¾ª `session.mainKey` å’Œé»˜è®¤æ™ºèƒ½ä½“ï¼Œæˆ–åœ¨å…¨å±€èŒƒå›´ä¸­ä½¿ç”¨ `global`ï¼‰ã€‚
+- `dryRun`ï¼ˆbooleanï¼Œå¯é€‰ï¼‰ï¼šä¿ç•™ä¾›å°†æ¥ä½¿ç”¨ï¼›å½“å‰å¿½ç•¥ã€‚
 
-## 策略 + 路由行为
+## ç­–ç•¥ + è·¯ç”±è¡Œä¸º
 
-工具可用性通过 Gateway 网关智能体使用的相同策略链过滤：
+å·¥å…·å¯ç”¨æ€§é€šè¿‡ Gateway ç½‘å…³æ™ºèƒ½ä½“ä½¿ç”¨çš„ç›¸åŒç­–ç•¥é“¾è¿‡æ»¤ï¼š
 
 - `tools.profile` / `tools.byProvider.profile`
 - `tools.allow` / `tools.byProvider.allow`
 - `agents.<id>.tools.allow` / `agents.<id>.tools.byProvider.allow`
-- 群组策略（如果会话键映射到群组或渠道）
-- 子智能体策略（使用子智能体会话键调用时）
+- ç¾¤ç»„ç­–ç•¥ï¼ˆå¦‚æžœä¼šè¯é”®æ˜ å°„åˆ°ç¾¤ç»„æˆ–æ¸ é“ï¼‰
+- å­æ™ºèƒ½ä½“ç­–ç•¥ï¼ˆä½¿ç”¨å­æ™ºèƒ½ä½“ä¼šè¯é”®è°ƒç”¨æ—¶ï¼‰
 
-如果工具不被策略允许，端点返回 **404**。
+å¦‚æžœå·¥å…·ä¸è¢«ç­–ç•¥å…è®¸ï¼Œç«¯ç‚¹è¿”å›ž **404**ã€‚
 
-为帮助群组策略解析上下文，你可以选择设置：
+ä¸ºå¸®åŠ©ç¾¤ç»„ç­–ç•¥è§£æžä¸Šä¸‹æ–‡ï¼Œä½ å¯ä»¥é€‰æ‹©è®¾ç½®ï¼š
 
-- `x-openclaw-message-channel: <channel>`（示例：`slack`、`telegram`）
-- `x-openclaw-account-id: <accountId>`（当存在多个账户时）
+- `x--message-channel: <channel>`ï¼ˆç¤ºä¾‹ï¼š`slack`ã€`telegram`ï¼‰
+- `x--account-id: <accountId>`ï¼ˆå½“å­˜åœ¨å¤šä¸ªè´¦æˆ·æ—¶ï¼‰
 
-## 响应
+## å“åº”
 
-- `200` → `{ ok: true, result }`
-- `400` → `{ ok: false, error: { type, message } }`（无效请求或工具错误）
-- `401` → 未授权
-- `404` → 工具不可用（未找到或未在允许列表中）
-- `405` → 方法不允许
+- `200` â†’ `{ ok: true, result }`
+- `400` â†’ `{ ok: false, error: { type, message } }`ï¼ˆæ— æ•ˆè¯·æ±‚æˆ–å·¥å…·é”™è¯¯ï¼‰
+- `401` â†’ æœªæŽˆæƒ
+- `404` â†’ å·¥å…·ä¸å¯ç”¨ï¼ˆæœªæ‰¾åˆ°æˆ–æœªåœ¨å…è®¸åˆ—è¡¨ä¸­ï¼‰
+- `405` â†’ æ–¹æ³•ä¸å…è®¸
 
-## 示例
+## ç¤ºä¾‹
 
 ```bash
 curl -sS http://127.0.0.1:18789/tools/invoke \
@@ -90,3 +90,4 @@ curl -sS http://127.0.0.1:18789/tools/invoke \
     "args": {}
   }'
 ```
+

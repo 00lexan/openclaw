@@ -1,4 +1,4 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import {
   channelsAddCommand,
   channelsCapabilitiesCommand,
@@ -76,7 +76,7 @@ export function registerChannelsCli(program: Command) {
       () =>
         `\n${theme.muted("Docs:")} ${formatDocsLink(
           "/cli/channels",
-          "docs.openclaw.ai/cli/channels",
+          "docs..ai/cli/channels",
         )}\n`,
     );
 
@@ -245,3 +245,4 @@ export function registerChannelsCli(program: Command) {
       }, "Channel logout failed");
     });
 }
+

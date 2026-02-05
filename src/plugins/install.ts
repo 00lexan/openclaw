@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+﻿import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { MANIFEST_KEY } from "../compat/legacy-names.js";
@@ -69,14 +69,14 @@ function validatePluginId(pluginId: string): string | null {
   return null;
 }
 
-async function ensureOpenClawExtensions(manifest: PackageManifest) {
+async function ensureExtensions(manifest: PackageManifest) {
   const extensions = manifest[MANIFEST_KEY]?.extensions;
   if (!Array.isArray(extensions)) {
-    throw new Error("package.json missing openclaw.extensions");
+    throw new Error("package.json missing .extensions");
   }
   const list = extensions.map((e) => (typeof e === "string" ? e.trim() : "")).filter(Boolean);
   if (list.length === 0) {
-    throw new Error("package.json openclaw.extensions is empty");
+    throw new Error("package.json .extensions is empty");
   }
   return list;
 }
@@ -143,7 +143,7 @@ async function installPluginFromPackageDir(params: {
 
   let extensions: string[];
   try {
-    extensions = await ensureOpenClawExtensions(manifest);
+    extensions = await ensureExtensions(manifest);
   } catch (err) {
     return { ok: false, error: String(err) };
   }
@@ -190,7 +190,7 @@ async function installPluginFromPackageDir(params: {
     };
   }
 
-  logger.info?.(`Installing to ${targetDir}…`);
+  logger.info?.(`Installing to ${targetDir}â€¦`);
   let backupDir: string | null = null;
   if (mode === "update" && (await fileExists(targetDir))) {
     backupDir = `${targetDir}.backup-${Date.now()}`;
@@ -216,7 +216,7 @@ async function installPluginFromPackageDir(params: {
   const deps = manifest.dependencies ?? {};
   const hasDeps = Object.keys(deps).length > 0;
   if (hasDeps) {
-    logger.info?.("Installing plugin dependencies…");
+    logger.info?.("Installing plugin dependenciesâ€¦");
     const npmRes = await runCommandWithTimeout(["npm", "install", "--omit=dev", "--silent"], {
       timeoutMs: Math.max(timeoutMs, 300_000),
       cwd: targetDir,
@@ -269,11 +269,11 @@ export async function installPluginFromArchive(params: {
     return { ok: false, error: `unsupported archive: ${archivePath}` };
   }
 
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-plugin-"));
+  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "-plugin-"));
   const extractDir = path.join(tmpDir, "extract");
   await fs.mkdir(extractDir, { recursive: true });
 
-  logger.info?.(`Extracting ${archivePath}…`);
+  logger.info?.(`Extracting ${archivePath}â€¦`);
   try {
     await extractArchive({
       archivePath,
@@ -376,7 +376,7 @@ export async function installPluginFromFile(params: {
     };
   }
 
-  logger.info?.(`Installing to ${targetFile}…`);
+  logger.info?.(`Installing to ${targetFile}â€¦`);
   await fs.copyFile(filePath, targetFile);
 
   return {
@@ -408,8 +408,8 @@ export async function installPluginFromNpmSpec(params: {
     return { ok: false, error: "missing npm spec" };
   }
 
-  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-npm-pack-"));
-  logger.info?.(`Downloading ${spec}…`);
+  const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "-npm-pack-"));
+  logger.info?.(`Downloading ${spec}â€¦`);
   const res = await runCommandWithTimeout(["npm", "pack", spec], {
     timeoutMs: Math.max(timeoutMs, 300_000),
     cwd: tmpDir,
@@ -491,3 +491,4 @@ export async function installPluginFromPath(params: {
     dryRun: params.dryRun,
   });
 }
+

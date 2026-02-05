@@ -1,5 +1,5 @@
-import type { AssistantMessage } from "@mariozechner/pi-ai";
-import type { OpenClawConfig } from "../../config/config.js";
+﻿import type { AssistantMessage } from "@mariozechner/pi-ai";
+import type { Config } from "../../config/config.js";
 import type { FailoverReason } from "./types.js";
 import { formatSandboxToolPolicyBlockedMessage } from "../sandbox.js";
 
@@ -302,12 +302,12 @@ export function formatRawAssistantErrorForUi(raw?: string): string {
     return `${prefix}${type}: ${info.message}${requestId}`;
   }
 
-  return trimmed.length > 600 ? `${trimmed.slice(0, 600)}…` : trimmed;
+  return trimmed.length > 600 ? `${trimmed.slice(0, 600)}â€¦` : trimmed;
 }
 
 export function formatAssistantErrorText(
   msg: AssistantMessage,
-  opts?: { cfg?: OpenClawConfig; sessionKey?: string },
+  opts?: { cfg?: Config; sessionKey?: string },
 ): string | undefined {
   // Also format errors if errorMessage is present, even if stopReason isn't "error"
   const raw = (msg.errorMessage ?? "").trim();
@@ -376,7 +376,7 @@ export function formatAssistantErrorText(
   if (raw.length > 600) {
     console.warn("[formatAssistantErrorText] Long error truncated:", raw.slice(0, 200));
   }
-  return raw.length > 600 ? `${raw.slice(0, 600)}…` : raw;
+  return raw.length > 600 ? `${raw.slice(0, 600)}â€¦` : raw;
 }
 
 export function sanitizeUserFacingText(text: string): string {
@@ -641,3 +641,4 @@ export function isFailoverAssistantError(msg: AssistantMessage | undefined): boo
   }
   return isFailoverErrorMessage(msg.errorMessage ?? "");
 }
+

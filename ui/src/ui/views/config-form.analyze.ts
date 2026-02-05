@@ -1,4 +1,4 @@
-import { pathKey, schemaType, type JsonSchema } from "./config-form.shared.ts";
+﻿import { pathKey, schemaType, type JsonSchema } from "./config-form.shared.ts";
 
 export type ConfigSchemaAnalysis = {
   schema: JsonSchema | null;
@@ -206,3 +206,4 @@ function normalizeUnion(
 
   return null;
 }
+

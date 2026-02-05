@@ -1,4 +1,4 @@
-import type { CallId, CallRecord } from "../types.js";
+﻿import type { CallId, CallRecord } from "../types.js";
 
 export function getCallByProviderCallId(params: {
   activeCalls: Map<CallId, CallRecord>;
@@ -33,3 +33,4 @@ export function findCall(params: {
     providerCallId: params.callIdOrProviderCallId,
   });
 }
+

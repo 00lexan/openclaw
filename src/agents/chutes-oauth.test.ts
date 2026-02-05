@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   CHUTES_TOKEN_ENDPOINT,
   CHUTES_USERINFO_ENDPOINT,
@@ -95,3 +95,4 @@ describe("chutes-oauth", () => {
     expect(refreshed.expires).toBe(now + 1800 * 1000 - 5 * 60 * 1000);
   });
 });
+

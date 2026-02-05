@@ -1,6 +1,6 @@
-import { createRequire } from "node:module";
+﻿import { createRequire } from "node:module";
 import util from "node:util";
-import type { OpenClawConfig } from "../config/types.js";
+import type { Config } from "../config/types.js";
 import { isVerbose } from "../globals.js";
 import { stripAnsi } from "../terminal/ansi.js";
 import { readLoggingConfig } from "./config.js";
@@ -35,7 +35,7 @@ function normalizeConsoleStyle(style?: string): ConsoleStyle {
 }
 
 function resolveConsoleSettings(): ConsoleSettings {
-  let cfg: OpenClawConfig["logging"] | undefined =
+  let cfg: Config["logging"] | undefined =
     (loggingState.overrideSettings as LoggerSettings | null) ?? readLoggingConfig();
   if (!cfg) {
     if (loggingState.resolvingConsoleSettings) {
@@ -44,7 +44,7 @@ function resolveConsoleSettings(): ConsoleSettings {
       loggingState.resolvingConsoleSettings = true;
       try {
         const loaded = requireConfig("../config/config.js") as {
-          loadConfig?: () => OpenClawConfig;
+          loadConfig?: () => Config;
         };
         cfg = loaded.loadConfig?.().logging;
       } catch {
@@ -270,3 +270,4 @@ export function enableConsoleCapture(): void {
   console.debug = forward("debug", original.debug);
   console.trace = forward("trace", original.trace);
 }
+

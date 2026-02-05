@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+﻿import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const agentSpy = vi.fn(async () => ({ runId: "run-main", status: "ok" }));
 const embeddedRunMock = {
@@ -395,3 +395,4 @@ describe("subagent announce formatting", () => {
     expect(agentSpy).toHaveBeenCalledTimes(2);
   });
 });
+

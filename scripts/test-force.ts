@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --import tsx
+﻿#!/usr/bin/env -S node --import tsx
 import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
@@ -27,13 +27,13 @@ function killGatewayListeners(port: number): PortProcess[] {
 
 function runTests() {
   const isolatedLock =
-    process.env.OPENCLAW_GATEWAY_LOCK ??
-    path.join(os.tmpdir(), `openclaw-gateway.lock.test.${Date.now()}`);
+    process.env._GATEWAY_LOCK ??
+    path.join(os.tmpdir(), `-gateway.lock.test.${Date.now()}`);
   const result = spawnSync("pnpm", ["vitest", "run"], {
     stdio: "inherit",
     env: {
       ...process.env,
-      OPENCLAW_GATEWAY_LOCK: isolatedLock,
+      _GATEWAY_LOCK: isolatedLock,
     },
   });
   if (result.error) {
@@ -44,16 +44,17 @@ function runTests() {
 }
 
 function main() {
-  const port = Number.parseInt(process.env.OPENCLAW_GATEWAY_PORT ?? `${DEFAULT_PORT}`, 10);
+  const port = Number.parseInt(process.env._GATEWAY_PORT ?? `${DEFAULT_PORT}`, 10);
 
-  console.log(`🧹 test:force - clearing gateway on port ${port}`);
+  console.log(`ðŸ§¹ test:force - clearing gateway on port ${port}`);
   const killed = killGatewayListeners(port);
   if (killed.length === 0) {
     console.log("no listeners to kill");
   }
 
-  console.log("running pnpm test…");
+  console.log("running pnpm testâ€¦");
   runTests();
 }
 
 main();
+

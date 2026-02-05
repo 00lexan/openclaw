@@ -1,4 +1,4 @@
----
+﻿---
 summary: "Web search + fetch tools (Brave Search API, Perplexity direct/OpenRouter)"
 read_when:
   - You want to enable web_search or web_fetch
@@ -9,10 +9,10 @@ title: "Web Tools"
 
 # Web tools
 
-OpenClaw ships two lightweight web tools:
+ ships two lightweight web tools:
 
-- `web_search` — Search the web via Brave Search API (default) or Perplexity Sonar (direct or via OpenRouter).
-- `web_fetch` — HTTP fetch + readable extraction (HTML → markdown/text).
+- `web_search` â€” Search the web via Brave Search API (default) or Perplexity Sonar (direct or via OpenRouter).
+- `web_fetch` â€” HTTP fetch + readable extraction (HTML â†’ markdown/text).
 
 These are **not** browser automation. For JS-heavy sites or logins, use the
 [Browser tool](/tools/browser).
@@ -24,7 +24,7 @@ These are **not** browser automation. For JS-heavy sites or logins, use the
   - **Perplexity**: returns AI-synthesized answers with citations from real-time web search.
 - Results are cached by query for 15 minutes (configurable).
 - `web_fetch` does a plain HTTP GET and extracts readable content
-  (HTML → markdown/text). It does **not** execute JavaScript.
+  (HTML â†’ markdown/text). It does **not** execute JavaScript.
 - `web_fetch` is enabled by default (unless explicitly disabled).
 
 ## Choosing a search provider
@@ -72,20 +72,20 @@ Example: switch to Perplexity Sonar (direct API):
 ## Getting a Brave API key
 
 1. Create a Brave Search API account at https://brave.com/search/api/
-2. In the dashboard, choose the **Data for Search** plan (not “Data for AI”) and generate an API key.
-3. Run `openclaw configure --section web` to store the key in config (recommended), or set `BRAVE_API_KEY` in your environment.
+2. In the dashboard, choose the **Data for Search** plan (not â€œData for AIâ€) and generate an API key.
+3. Run ` configure --section web` to store the key in config (recommended), or set `BRAVE_API_KEY` in your environment.
 
 Brave provides a free tier plus paid plans; check the Brave API portal for the
 current limits and pricing.
 
 ### Where to set the key (recommended)
 
-**Recommended:** run `openclaw configure --section web`. It stores the key in
-`~/.openclaw/openclaw.json` under `tools.web.search.apiKey`.
+**Recommended:** run ` configure --section web`. It stores the key in
+`~/./.json` under `tools.web.search.apiKey`.
 
 **Environment alternative:** set `BRAVE_API_KEY` in the Gateway process
-environment. For a gateway install, put it in `~/.openclaw/.env` (or your
-service environment). See [Env vars](/help/faq#how-does-openclaw-load-environment-variables).
+environment. For a gateway install, put it in `~/./.env` (or your
+service environment). See [Env vars](/help/faq#how-does--load-environment-variables).
 
 ## Using Perplexity (direct or via OpenRouter)
 
@@ -123,13 +123,13 @@ crypto/prepaid).
 ```
 
 **Environment alternative:** set `OPENROUTER_API_KEY` or `PERPLEXITY_API_KEY` in the Gateway
-environment. For a gateway install, put it in `~/.openclaw/.env`.
+environment. For a gateway install, put it in `~/./.env`.
 
-If no base URL is set, OpenClaw chooses a default based on the API key source:
+If no base URL is set,  chooses a default based on the API key source:
 
-- `PERPLEXITY_API_KEY` or `pplx-...` → `https://api.perplexity.ai`
-- `OPENROUTER_API_KEY` or `sk-or-...` → `https://openrouter.ai/api/v1`
-- Unknown key formats → OpenRouter (safe fallback)
+- `PERPLEXITY_API_KEY` or `pplx-...` â†’ `https://api.perplexity.ai`
+- `OPENROUTER_API_KEY` or `sk-or-...` â†’ `https://openrouter.ai/api/v1`
+- Unknown key formats â†’ OpenRouter (safe fallback)
 
 ### Available Perplexity models
 
@@ -171,7 +171,7 @@ Search the web using your configured provider.
 ### Tool parameters
 
 - `query` (required)
-- `count` (1–10; default from config)
+- `count` (1â€“10; default from config)
 - `country` (optional): 2-letter country code for region-specific results (e.g., "DE", "US", "ALL"). If omitted, Brave chooses its default region.
 - `search_lang` (optional): ISO language code for search results (e.g., "de", "en", "fr")
 - `ui_lang` (optional): ISO language code for UI elements
@@ -190,7 +190,7 @@ await web_search({
 
 // French search with French UI
 await web_search({
-  query: "actualités",
+  query: "actualitÃ©s",
   country: "FR",
   search_lang: "fr",
   ui_lang: "fr",
@@ -259,3 +259,4 @@ Notes:
 - Responses are cached (default 15 minutes) to reduce repeated fetches.
 - If you use tool profiles/allowlists, add `web_search`/`web_fetch` or `group:web`.
 - If the Brave key is missing, `web_search` returns a short setup hint with a docs link.
+

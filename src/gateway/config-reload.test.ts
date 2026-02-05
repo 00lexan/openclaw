@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+﻿import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { ChannelPlugin } from "../channels/plugins/types.js";
 import { listChannelPlugins } from "../channels/plugins/index.js";
 import { setActivePluginRegistry } from "../plugins/runtime.js";
@@ -121,3 +121,4 @@ describe("resolveGatewayReloadSettings", () => {
     expect(settings.debounceMs).toBe(300);
   });
 });
+

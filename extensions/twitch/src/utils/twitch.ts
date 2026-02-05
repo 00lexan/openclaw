@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Twitch-specific utility functions
  */
 
@@ -76,3 +76,4 @@ export function isAccountConfigured(
   const token = resolvedToken ?? account?.accessToken;
   return Boolean(account?.username && token && account?.clientId);
 }
+

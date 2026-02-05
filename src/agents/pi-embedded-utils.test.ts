@@ -1,4 +1,4 @@
-import type { AssistantMessage } from "@mariozechner/pi-ai";
+﻿import type { AssistantMessage } from "@mariozechner/pi-ai";
 import { describe, expect, it } from "vitest";
 import { extractAssistantText, formatReasoningMessage } from "./pi-embedded-utils.js";
 
@@ -386,14 +386,14 @@ File contents here`,
       content: [
         {
           type: "text",
-          text: "<think>El usuario quiere retomar una tarea...</think>Aquí está tu respuesta.",
+          text: "<think>El usuario quiere retomar una tarea...</think>AquÃ­ estÃ¡ tu respuesta.",
         },
       ],
       timestamp: Date.now(),
     };
 
     const result = extractAssistantText(msg);
-    expect(result).toBe("Aquí está tu respuesta.");
+    expect(result).toBe("AquÃ­ estÃ¡ tu respuesta.");
   });
 
   it("strips thinking tags with attributes", () => {
@@ -546,3 +546,4 @@ describe("formatReasoningMessage", () => {
     );
   });
 });
+

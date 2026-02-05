@@ -1,4 +1,4 @@
-import fs from "node:fs";
+﻿import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
@@ -6,7 +6,7 @@ import { resetInboundDedupe } from "../auto-reply/reply/inbound-dedupe.js";
 import { createTelegramBot } from "./bot.js";
 
 const { sessionStorePath } = vi.hoisted(() => ({
-  sessionStorePath: `/tmp/openclaw-telegram-reply-threading-${Math.random()
+  sessionStorePath: `/tmp/-telegram-reply-threading-${Math.random()
     .toString(16)
     .slice(2)}.json`,
 }));
@@ -180,7 +180,7 @@ describe("createTelegramBot", () => {
         date: 1736380800,
         message_id: 101,
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
@@ -208,7 +208,7 @@ describe("createTelegramBot", () => {
         date: 1736380800,
         message_id: 101,
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
@@ -240,7 +240,7 @@ describe("createTelegramBot", () => {
         text: "hi",
         date: 1736380800,
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
@@ -266,7 +266,7 @@ describe("createTelegramBot", () => {
         date: 1736380800,
         message_id: 101,
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
@@ -295,10 +295,10 @@ describe("createTelegramBot", () => {
     await handler({
       message: {
         chat: { id: 456, type: "group", title: "Ops" },
-        text: "@openclaw_bot hello",
+        text: "@_bot hello",
         date: 1736380800,
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
@@ -323,7 +323,7 @@ describe("createTelegramBot", () => {
         text: "hello",
         date: 1736380800,
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
@@ -333,7 +333,7 @@ describe("createTelegramBot", () => {
     onSpy.mockReset();
     const replySpy = replyModule.__replySpy as unknown as ReturnType<typeof vi.fn>;
     replySpy.mockReset();
-    const storeDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-telegram-"));
+    const storeDir = fs.mkdtempSync(path.join(os.tmpdir(), "-telegram-"));
     const storePath = path.join(storeDir, "sessions.json");
     fs.writeFileSync(
       storePath,
@@ -370,10 +370,11 @@ describe("createTelegramBot", () => {
         text: "hello",
         date: 1736380800,
       },
-      me: { username: "openclaw_bot" },
+      me: { username: "_bot" },
       getFile: async () => ({ download: async () => new Uint8Array() }),
     });
 
     expect(replySpy).toHaveBeenCalledTimes(1);
   });
 });
+

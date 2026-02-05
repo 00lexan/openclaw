@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 开发 Zalo 功能或 webhooks
-summary: Zalo bot 支持状态、功能和配置
+  - å¼€å‘ Zalo åŠŸèƒ½æˆ– webhooks
+summary: Zalo bot æ”¯æŒçŠ¶æ€ã€åŠŸèƒ½å’Œé…ç½®
 title: Zalo
 x-i18n:
   generated_at: "2026-02-03T07:44:44Z"
@@ -14,63 +14,29 @@ x-i18n:
 
 # Zalo (Bot API)
 
-状态：实验性。仅支持私信；根据 Zalo 文档，群组即将推出。
+çŠ¶æ€ï¼šå®žéªŒæ€§ã€‚ä»…æ”¯æŒç§ä¿¡ï¼›æ ¹æ® Zalo æ–‡æ¡£ï¼Œç¾¤ç»„å³å°†æŽ¨å‡ºã€‚
 
-## 需要插件
+## éœ€è¦æ’ä»¶
 
-Zalo 以插件形式提供，不包含在核心安装中。
+Zalo ä»¥æ’ä»¶å½¢å¼æä¾›ï¼Œä¸åŒ…å«åœ¨æ ¸å¿ƒå®‰è£…ä¸­ã€‚
 
-- 通过 CLI 安装：`openclaw plugins install @openclaw/zalo`
-- 或在新手引导期间选择 **Zalo** 并确认安装提示
-- 详情：[插件](/plugin)
+- é€šè¿‡ CLI å®‰è£…ï¼š` plugins install @/zalo`
+- æˆ–åœ¨æ–°æ‰‹å¼•å¯¼æœŸé—´é€‰æ‹© **Zalo** å¹¶ç¡®è®¤å®‰è£…æç¤º
+- è¯¦æƒ…ï¼š[æ’ä»¶](/plugin)
 
-## 快速设置（初学者）
+## å¿«é€Ÿè®¾ç½®ï¼ˆåˆå­¦è€…ï¼‰
 
-1. 安装 Zalo 插件：
-   - 从源代码检出：`openclaw plugins install ./extensions/zalo`
-   - 从 npm（如果已发布）：`openclaw plugins install @openclaw/zalo`
-   - 或在新手引导中选择 **Zalo** 并确认安装提示
-2. 设置 token：
-   - 环境变量：`ZALO_BOT_TOKEN=...`
-   - 或配置：`channels.zalo.botToken: "..."`。
-3. 重启 Gateway 网关（或完成新手引导）。
-4. 私信访问默认为配对模式；首次联系时批准配对码。
+1. å®‰è£… Zalo æ’ä»¶ï¼š
+   - ä»Žæºä»£ç æ£€å‡ºï¼š` plugins install ./extensions/zalo`
+   - ä»Ž npmï¼ˆå¦‚æžœå·²å‘å¸ƒï¼‰ï¼š` plugins install @/zalo`
+   - æˆ–åœ¨æ–°æ‰‹å¼•å¯¼ä¸­é€‰æ‹© **Zalo** å¹¶ç¡®è®¤å®‰è£…æç¤º
+2. è®¾ç½® tokenï¼š
+   - çŽ¯å¢ƒå˜é‡ï¼š`ZALO_BOT_TOKEN=...`
+   - æˆ–é…ç½®ï¼š`channels.zalo.botToken: "..."`ã€‚
+3. é‡å¯ Gateway ç½‘å…³ï¼ˆæˆ–å®Œæˆæ–°æ‰‹å¼•å¯¼ï¼‰ã€‚
+4. ç§ä¿¡è®¿é—®é»˜è®¤ä¸ºé…å¯¹æ¨¡å¼ï¼›é¦–æ¬¡è”ç³»æ—¶æ‰¹å‡†é…å¯¹ç ã€‚
 
-最小配置：
-
-```json5
-{
-  channels: {
-    zalo: {
-      enabled: true,
-      botToken: "12345689:abc-xyz",
-      dmPolicy: "pairing",
-    },
-  },
-}
-```
-
-## 它是什么
-
-Zalo 是一款专注于越南市场的即时通讯应用；其 Bot API 让 Gateway 网关可以运行一个用于一对一对话的 bot。
-它非常适合需要确定性路由回 Zalo 的支持或通知场景。
-
-- 由 Gateway 网关拥有的 Zalo Bot API 渠道。
-- 确定性路由：回复返回到 Zalo；模型不会选择渠道。
-- 私信共享智能体的主会话。
-- 群组尚不支持（Zalo 文档标注"即将推出"）。
-
-## 设置（快速路径）
-
-### 1）创建 bot token（Zalo Bot 平台）
-
-1. 前往 **https://bot.zaloplatforms.com** 并登录。
-2. 创建新 bot 并配置其设置。
-3. 复制 bot token（格式：`12345689:abc-xyz`）。
-
-### 2）配置 token（环境变量或配置）
-
-示例：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -84,113 +50,148 @@ Zalo 是一款专注于越南市场的即时通讯应用；其 Bot API 让 Gatew
 }
 ```
 
-环境变量选项：`ZALO_BOT_TOKEN=...`（仅适用于默认账户）。
+## å®ƒæ˜¯ä»€ä¹ˆ
 
-多账户支持：使用 `channels.zalo.accounts` 配置每账户 token 和可选的 `name`。
+Zalo æ˜¯ä¸€æ¬¾ä¸“æ³¨äºŽè¶Šå—å¸‚åœºçš„å³æ—¶é€šè®¯åº”ç”¨ï¼›å…¶ Bot API è®© Gateway ç½‘å…³å¯ä»¥è¿è¡Œä¸€ä¸ªç”¨äºŽä¸€å¯¹ä¸€å¯¹è¯çš„ botã€‚
+å®ƒéžå¸¸é€‚åˆéœ€è¦ç¡®å®šæ€§è·¯ç”±å›ž Zalo çš„æ”¯æŒæˆ–é€šçŸ¥åœºæ™¯ã€‚
 
-3. 重启 Gateway 网关。当 token 被解析（环境变量或配置）时，Zalo 启动。
-4. 私信访问默认为配对模式。当 bot 首次被联系时批准配对码。
+- ç”± Gateway ç½‘å…³æ‹¥æœ‰çš„ Zalo Bot API æ¸ é“ã€‚
+- ç¡®å®šæ€§è·¯ç”±ï¼šå›žå¤è¿”å›žåˆ° Zaloï¼›æ¨¡åž‹ä¸ä¼šé€‰æ‹©æ¸ é“ã€‚
+- ç§ä¿¡å…±äº«æ™ºèƒ½ä½“çš„ä¸»ä¼šè¯ã€‚
+- ç¾¤ç»„å°šä¸æ”¯æŒï¼ˆZalo æ–‡æ¡£æ ‡æ³¨"å³å°†æŽ¨å‡º"ï¼‰ã€‚
 
-## 工作原理（行为）
+## è®¾ç½®ï¼ˆå¿«é€Ÿè·¯å¾„ï¼‰
 
-- 入站消息被规范化为带有媒体占位符的共享渠道信封。
-- 回复始终路由回同一 Zalo 聊天。
-- 默认使用长轮询；可通过 `channels.zalo.webhookUrl` 启用 webhook 模式。
+### 1ï¼‰åˆ›å»º bot tokenï¼ˆZalo Bot å¹³å°ï¼‰
 
-## 限制
+1. å‰å¾€ **https://bot.zaloplatforms.com** å¹¶ç™»å½•ã€‚
+2. åˆ›å»ºæ–° bot å¹¶é…ç½®å…¶è®¾ç½®ã€‚
+3. å¤åˆ¶ bot tokenï¼ˆæ ¼å¼ï¼š`12345689:abc-xyz`ï¼‰ã€‚
 
-- 出站文本按 2000 字符分块（Zalo API 限制）。
-- 媒体下载/上传受 `channels.zalo.mediaMaxMb` 限制（默认 5）。
-- 由于 2000 字符限制使流式传输效果不佳，默认阻止流式传输。
+### 2ï¼‰é…ç½® tokenï¼ˆçŽ¯å¢ƒå˜é‡æˆ–é…ç½®ï¼‰
 
-## 访问控制（私信）
+ç¤ºä¾‹ï¼š
 
-### 私信访问
+```json5
+{
+  channels: {
+    zalo: {
+      enabled: true,
+      botToken: "12345689:abc-xyz",
+      dmPolicy: "pairing",
+    },
+  },
+}
+```
 
-- 默认：`channels.zalo.dmPolicy = "pairing"`。未知发送者会收到配对码；消息在批准前会被忽略（配对码 1 小时后过期）。
-- 通过以下方式批准：
-  - `openclaw pairing list zalo`
-  - `openclaw pairing approve zalo <CODE>`
-- 配对是默认的令牌交换方式。详情：[配对](/start/pairing)
-- `channels.zalo.allowFrom` 接受数字用户 ID（无用户名查找功能）。
+çŽ¯å¢ƒå˜é‡é€‰é¡¹ï¼š`ZALO_BOT_TOKEN=...`ï¼ˆä»…é€‚ç”¨äºŽé»˜è®¤è´¦æˆ·ï¼‰ã€‚
 
-## 长轮询与 webhook
+å¤šè´¦æˆ·æ”¯æŒï¼šä½¿ç”¨ `channels.zalo.accounts` é…ç½®æ¯è´¦æˆ· token å’Œå¯é€‰çš„ `name`ã€‚
 
-- 默认：长轮询（不需要公共 URL）。
-- Webhook 模式：设置 `channels.zalo.webhookUrl` 和 `channels.zalo.webhookSecret`。
-  - Webhook secret 必须为 8-256 个字符。
-  - Webhook URL 必须使用 HTTPS。
-  - Zalo 发送事件时带有 `X-Bot-Api-Secret-Token` 头用于验证。
-  - Gateway 网关 HTTP 在 `channels.zalo.webhookPath` 处理 webhook 请求（默认为 webhook URL 路径）。
+3. é‡å¯ Gateway ç½‘å…³ã€‚å½“ token è¢«è§£æžï¼ˆçŽ¯å¢ƒå˜é‡æˆ–é…ç½®ï¼‰æ—¶ï¼ŒZalo å¯åŠ¨ã€‚
+4. ç§ä¿¡è®¿é—®é»˜è®¤ä¸ºé…å¯¹æ¨¡å¼ã€‚å½“ bot é¦–æ¬¡è¢«è”ç³»æ—¶æ‰¹å‡†é…å¯¹ç ã€‚
 
-**注意：** 根据 Zalo API 文档，getUpdates（轮询）和 webhook 是互斥的。
+## å·¥ä½œåŽŸç†ï¼ˆè¡Œä¸ºï¼‰
 
-## 支持的消息类型
+- å…¥ç«™æ¶ˆæ¯è¢«è§„èŒƒåŒ–ä¸ºå¸¦æœ‰åª’ä½“å ä½ç¬¦çš„å…±äº«æ¸ é“ä¿¡å°ã€‚
+- å›žå¤å§‹ç»ˆè·¯ç”±å›žåŒä¸€ Zalo èŠå¤©ã€‚
+- é»˜è®¤ä½¿ç”¨é•¿è½®è¯¢ï¼›å¯é€šè¿‡ `channels.zalo.webhookUrl` å¯ç”¨ webhook æ¨¡å¼ã€‚
 
-- **文本消息**：完全支持，2000 字符分块。
-- **图片消息**：下载和处理入站图片；通过 `sendPhoto` 发送图片。
-- **贴纸**：已记录但未完全处理（无智能体响应）。
-- **不支持的类型**：已记录（例如来自受保护用户的消息）。
+## é™åˆ¶
 
-## 功能
+- å‡ºç«™æ–‡æœ¬æŒ‰ 2000 å­—ç¬¦åˆ†å—ï¼ˆZalo API é™åˆ¶ï¼‰ã€‚
+- åª’ä½“ä¸‹è½½/ä¸Šä¼ å— `channels.zalo.mediaMaxMb` é™åˆ¶ï¼ˆé»˜è®¤ 5ï¼‰ã€‚
+- ç”±äºŽ 2000 å­—ç¬¦é™åˆ¶ä½¿æµå¼ä¼ è¾“æ•ˆæžœä¸ä½³ï¼Œé»˜è®¤é˜»æ­¢æµå¼ä¼ è¾“ã€‚
 
-| 功能         | 状态                          |
+## è®¿é—®æŽ§åˆ¶ï¼ˆç§ä¿¡ï¼‰
+
+### ç§ä¿¡è®¿é—®
+
+- é»˜è®¤ï¼š`channels.zalo.dmPolicy = "pairing"`ã€‚æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼›æ¶ˆæ¯åœ¨æ‰¹å‡†å‰ä¼šè¢«å¿½ç•¥ï¼ˆé…å¯¹ç  1 å°æ—¶åŽè¿‡æœŸï¼‰ã€‚
+- é€šè¿‡ä»¥ä¸‹æ–¹å¼æ‰¹å‡†ï¼š
+  - ` pairing list zalo`
+  - ` pairing approve zalo <CODE>`
+- é…å¯¹æ˜¯é»˜è®¤çš„ä»¤ç‰Œäº¤æ¢æ–¹å¼ã€‚è¯¦æƒ…ï¼š[é…å¯¹](/start/pairing)
+- `channels.zalo.allowFrom` æŽ¥å—æ•°å­—ç”¨æˆ· IDï¼ˆæ— ç”¨æˆ·åæŸ¥æ‰¾åŠŸèƒ½ï¼‰ã€‚
+
+## é•¿è½®è¯¢ä¸Ž webhook
+
+- é»˜è®¤ï¼šé•¿è½®è¯¢ï¼ˆä¸éœ€è¦å…¬å…± URLï¼‰ã€‚
+- Webhook æ¨¡å¼ï¼šè®¾ç½® `channels.zalo.webhookUrl` å’Œ `channels.zalo.webhookSecret`ã€‚
+  - Webhook secret å¿…é¡»ä¸º 8-256 ä¸ªå­—ç¬¦ã€‚
+  - Webhook URL å¿…é¡»ä½¿ç”¨ HTTPSã€‚
+  - Zalo å‘é€äº‹ä»¶æ—¶å¸¦æœ‰ `X-Bot-Api-Secret-Token` å¤´ç”¨äºŽéªŒè¯ã€‚
+  - Gateway ç½‘å…³ HTTP åœ¨ `channels.zalo.webhookPath` å¤„ç† webhook è¯·æ±‚ï¼ˆé»˜è®¤ä¸º webhook URL è·¯å¾„ï¼‰ã€‚
+
+**æ³¨æ„ï¼š** æ ¹æ® Zalo API æ–‡æ¡£ï¼ŒgetUpdatesï¼ˆè½®è¯¢ï¼‰å’Œ webhook æ˜¯äº’æ–¥çš„ã€‚
+
+## æ”¯æŒçš„æ¶ˆæ¯ç±»åž‹
+
+- **æ–‡æœ¬æ¶ˆæ¯**ï¼šå®Œå…¨æ”¯æŒï¼Œ2000 å­—ç¬¦åˆ†å—ã€‚
+- **å›¾ç‰‡æ¶ˆæ¯**ï¼šä¸‹è½½å’Œå¤„ç†å…¥ç«™å›¾ç‰‡ï¼›é€šè¿‡ `sendPhoto` å‘é€å›¾ç‰‡ã€‚
+- **è´´çº¸**ï¼šå·²è®°å½•ä½†æœªå®Œå…¨å¤„ç†ï¼ˆæ— æ™ºèƒ½ä½“å“åº”ï¼‰ã€‚
+- **ä¸æ”¯æŒçš„ç±»åž‹**ï¼šå·²è®°å½•ï¼ˆä¾‹å¦‚æ¥è‡ªå—ä¿æŠ¤ç”¨æˆ·çš„æ¶ˆæ¯ï¼‰ã€‚
+
+## åŠŸèƒ½
+
+| åŠŸèƒ½         | çŠ¶æ€                          |
 | ------------ | ----------------------------- |
-| 私信         | ✅ 支持                       |
-| 群组         | ❌ 即将推出（根据 Zalo 文档） |
-| 媒体（图片） | ✅ 支持                       |
-| 表情回应     | ❌ 不支持                     |
-| 主题         | ❌ 不支持                     |
-| 投票         | ❌ 不支持                     |
-| 原生命令     | ❌ 不支持                     |
-| 流式传输     | ⚠️ 已阻止（2000 字符限制）    |
+| ç§ä¿¡         | âœ… æ”¯æŒ                       |
+| ç¾¤ç»„         | âŒ å³å°†æŽ¨å‡ºï¼ˆæ ¹æ® Zalo æ–‡æ¡£ï¼‰ |
+| åª’ä½“ï¼ˆå›¾ç‰‡ï¼‰ | âœ… æ”¯æŒ                       |
+| è¡¨æƒ…å›žåº”     | âŒ ä¸æ”¯æŒ                     |
+| ä¸»é¢˜         | âŒ ä¸æ”¯æŒ                     |
+| æŠ•ç¥¨         | âŒ ä¸æ”¯æŒ                     |
+| åŽŸç”Ÿå‘½ä»¤     | âŒ ä¸æ”¯æŒ                     |
+| æµå¼ä¼ è¾“     | âš ï¸ å·²é˜»æ­¢ï¼ˆ2000 å­—ç¬¦é™åˆ¶ï¼‰    |
 
-## 投递目标（CLI/cron）
+## æŠ•é€’ç›®æ ‡ï¼ˆCLI/cronï¼‰
 
-- 使用聊天 id 作为目标。
-- 示例：`openclaw message send --channel zalo --target 123456789 --message "hi"`。
+- ä½¿ç”¨èŠå¤© id ä½œä¸ºç›®æ ‡ã€‚
+- ç¤ºä¾‹ï¼š` message send --channel zalo --target 123456789 --message "hi"`ã€‚
 
-## 故障排除
+## æ•…éšœæŽ’é™¤
 
-**Bot 不响应：**
+**Bot ä¸å“åº”ï¼š**
 
-- 检查 token 是否有效：`openclaw channels status --probe`
-- 验证发送者已被批准（配对或 allowFrom）
-- 检查 Gateway 网关日志：`openclaw logs --follow`
+- æ£€æŸ¥ token æ˜¯å¦æœ‰æ•ˆï¼š` channels status --probe`
+- éªŒè¯å‘é€è€…å·²è¢«æ‰¹å‡†ï¼ˆé…å¯¹æˆ– allowFromï¼‰
+- æ£€æŸ¥ Gateway ç½‘å…³æ—¥å¿—ï¼š` logs --follow`
 
-**Webhook 未收到事件：**
+**Webhook æœªæ”¶åˆ°äº‹ä»¶ï¼š**
 
-- 确保 webhook URL 使用 HTTPS
-- 验证 secret token 为 8-256 个字符
-- 确认 Gateway 网关 HTTP 端点在配置的路径上可访问
-- 检查 getUpdates 轮询未在运行（它们是互斥的）
+- ç¡®ä¿ webhook URL ä½¿ç”¨ HTTPS
+- éªŒè¯ secret token ä¸º 8-256 ä¸ªå­—ç¬¦
+- ç¡®è®¤ Gateway ç½‘å…³ HTTP ç«¯ç‚¹åœ¨é…ç½®çš„è·¯å¾„ä¸Šå¯è®¿é—®
+- æ£€æŸ¥ getUpdates è½®è¯¢æœªåœ¨è¿è¡Œï¼ˆå®ƒä»¬æ˜¯äº’æ–¥çš„ï¼‰
 
-## 配置参考（Zalo）
+## é…ç½®å‚è€ƒï¼ˆZaloï¼‰
 
-完整配置：[配置](/gateway/configuration)
+å®Œæ•´é…ç½®ï¼š[é…ç½®](/gateway/configuration)
 
-提供商选项：
+æä¾›å•†é€‰é¡¹ï¼š
 
-- `channels.zalo.enabled`：启用/禁用渠道启动。
-- `channels.zalo.botToken`：来自 Zalo Bot 平台的 bot token。
-- `channels.zalo.tokenFile`：从文件路径读取 token。
-- `channels.zalo.dmPolicy`：`pairing | allowlist | open | disabled`（默认：pairing）。
-- `channels.zalo.allowFrom`：私信允许列表（用户 ID）。`open` 需要 `"*"`。向导会询问数字 ID。
-- `channels.zalo.mediaMaxMb`：入站/出站媒体上限（MB，默认 5）。
-- `channels.zalo.webhookUrl`：启用 webhook 模式（需要 HTTPS）。
-- `channels.zalo.webhookSecret`：webhook secret（8-256 字符）。
-- `channels.zalo.webhookPath`：Gateway 网关 HTTP 服务器上的 webhook 路径。
-- `channels.zalo.proxy`：API 请求的代理 URL。
+- `channels.zalo.enabled`ï¼šå¯ç”¨/ç¦ç”¨æ¸ é“å¯åŠ¨ã€‚
+- `channels.zalo.botToken`ï¼šæ¥è‡ª Zalo Bot å¹³å°çš„ bot tokenã€‚
+- `channels.zalo.tokenFile`ï¼šä»Žæ–‡ä»¶è·¯å¾„è¯»å– tokenã€‚
+- `channels.zalo.dmPolicy`ï¼š`pairing | allowlist | open | disabled`ï¼ˆé»˜è®¤ï¼špairingï¼‰ã€‚
+- `channels.zalo.allowFrom`ï¼šç§ä¿¡å…è®¸åˆ—è¡¨ï¼ˆç”¨æˆ· IDï¼‰ã€‚`open` éœ€è¦ `"*"`ã€‚å‘å¯¼ä¼šè¯¢é—®æ•°å­— IDã€‚
+- `channels.zalo.mediaMaxMb`ï¼šå…¥ç«™/å‡ºç«™åª’ä½“ä¸Šé™ï¼ˆMBï¼Œé»˜è®¤ 5ï¼‰ã€‚
+- `channels.zalo.webhookUrl`ï¼šå¯ç”¨ webhook æ¨¡å¼ï¼ˆéœ€è¦ HTTPSï¼‰ã€‚
+- `channels.zalo.webhookSecret`ï¼šwebhook secretï¼ˆ8-256 å­—ç¬¦ï¼‰ã€‚
+- `channels.zalo.webhookPath`ï¼šGateway ç½‘å…³ HTTP æœåŠ¡å™¨ä¸Šçš„ webhook è·¯å¾„ã€‚
+- `channels.zalo.proxy`ï¼šAPI è¯·æ±‚çš„ä»£ç† URLã€‚
 
-多账户选项：
+å¤šè´¦æˆ·é€‰é¡¹ï¼š
 
-- `channels.zalo.accounts.<id>.botToken`：每账户 token。
-- `channels.zalo.accounts.<id>.tokenFile`：每账户 token 文件。
-- `channels.zalo.accounts.<id>.name`：显示名称。
-- `channels.zalo.accounts.<id>.enabled`：启用/禁用账户。
-- `channels.zalo.accounts.<id>.dmPolicy`：每账户私信策略。
-- `channels.zalo.accounts.<id>.allowFrom`：每账户允许列表。
-- `channels.zalo.accounts.<id>.webhookUrl`：每账户 webhook URL。
-- `channels.zalo.accounts.<id>.webhookSecret`：每账户 webhook secret。
-- `channels.zalo.accounts.<id>.webhookPath`：每账户 webhook 路径。
-- `channels.zalo.accounts.<id>.proxy`：每账户代理 URL。
+- `channels.zalo.accounts.<id>.botToken`ï¼šæ¯è´¦æˆ· tokenã€‚
+- `channels.zalo.accounts.<id>.tokenFile`ï¼šæ¯è´¦æˆ· token æ–‡ä»¶ã€‚
+- `channels.zalo.accounts.<id>.name`ï¼šæ˜¾ç¤ºåç§°ã€‚
+- `channels.zalo.accounts.<id>.enabled`ï¼šå¯ç”¨/ç¦ç”¨è´¦æˆ·ã€‚
+- `channels.zalo.accounts.<id>.dmPolicy`ï¼šæ¯è´¦æˆ·ç§ä¿¡ç­–ç•¥ã€‚
+- `channels.zalo.accounts.<id>.allowFrom`ï¼šæ¯è´¦æˆ·å…è®¸åˆ—è¡¨ã€‚
+- `channels.zalo.accounts.<id>.webhookUrl`ï¼šæ¯è´¦æˆ· webhook URLã€‚
+- `channels.zalo.accounts.<id>.webhookSecret`ï¼šæ¯è´¦æˆ· webhook secretã€‚
+- `channels.zalo.accounts.<id>.webhookPath`ï¼šæ¯è´¦æˆ· webhook è·¯å¾„ã€‚
+- `channels.zalo.accounts.<id>.proxy`ï¼šæ¯è´¦æˆ·ä»£ç† URLã€‚
+

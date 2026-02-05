@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你想列出已存储的会话并查看近期活动
-summary: "`openclaw sessions`（列出已存储的会话及使用情况）的 CLI 参考"
+  - ä½ æƒ³åˆ—å‡ºå·²å­˜å‚¨çš„ä¼šè¯å¹¶æŸ¥çœ‹è¿‘æœŸæ´»åŠ¨
+summary: "` sessions`ï¼ˆåˆ—å‡ºå·²å­˜å‚¨çš„ä¼šè¯åŠä½¿ç”¨æƒ…å†µï¼‰çš„ CLI å‚è€ƒ"
 title: sessions
 x-i18n:
   generated_at: "2026-02-01T20:21:25Z"
@@ -12,12 +12,13 @@ x-i18n:
   workflow: 14
 ---
 
-# `openclaw sessions`
+# ` sessions`
 
-列出已存储的对话会话。
+åˆ—å‡ºå·²å­˜å‚¨çš„å¯¹è¯ä¼šè¯ã€‚
 
 ```bash
-openclaw sessions
-openclaw sessions --active 120
-openclaw sessions --json
+ sessions
+ sessions --active 120
+ sessions --json
 ```
+

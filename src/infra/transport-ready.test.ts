@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+﻿import { describe, expect, it, vi } from "vitest";
 import { waitForTransportReady } from "./transport-ready.js";
 
 describe("waitForTransportReady", () => {
@@ -53,3 +53,4 @@ describe("waitForTransportReady", () => {
     expect(runtime.error).not.toHaveBeenCalled();
   });
 });
+

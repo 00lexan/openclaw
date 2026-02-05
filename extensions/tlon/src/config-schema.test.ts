@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { TlonAuthorizationSchema, TlonConfigSchema } from "./config-schema.js";
 
 describe("Tlon config schema", () => {
@@ -29,3 +29,4 @@ describe("Tlon config schema", () => {
     expect(parsed.accounts?.primary?.ship).toBe("~zod");
   });
 });
+

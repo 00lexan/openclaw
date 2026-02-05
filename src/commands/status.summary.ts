@@ -1,4 +1,4 @@
-import type { HeartbeatStatus, SessionStatus, StatusSummary } from "./status.types.js";
+﻿import type { HeartbeatStatus, SessionStatus, StatusSummary } from "./status.types.js";
 import { lookupContextTokens } from "../agents/context.js";
 import { DEFAULT_CONTEXT_TOKENS, DEFAULT_MODEL, DEFAULT_PROVIDER } from "../agents/defaults.js";
 import { resolveConfiguredModelRef } from "../agents/model-selection.js";
@@ -203,3 +203,4 @@ export async function getStatusSummary(): Promise<StatusSummary> {
     },
   };
 }
+

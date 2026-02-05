@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Shared fuzzy filtering utilities for select list components.
  */
 
@@ -136,3 +136,4 @@ export function prepareSearchItems<
     return { ...item, searchTextLower: parts.join(" ").toLowerCase() };
   });
 }
+

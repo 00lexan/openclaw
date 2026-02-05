@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,3 +18,4 @@ import { createContext } from "@lit/context";
 import { type Theme } from "../../types/types.js";
 
 export const themeContext = createContext<Theme | undefined>("A2UITheme");
+

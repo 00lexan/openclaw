@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 开发 Discord 渠道功能时
-summary: Discord 机器人支持状态、功能和配置
+  - å¼€å‘ Discord æ¸ é“åŠŸèƒ½æ—¶
+summary: Discord æœºå™¨äººæ”¯æŒçŠ¶æ€ã€åŠŸèƒ½å’Œé…ç½®
 title: Discord
 x-i18n:
   generated_at: "2026-02-03T07:45:45Z"
@@ -12,23 +12,23 @@ x-i18n:
   workflow: 15
 ---
 
-# Discord（Bot API）
+# Discordï¼ˆBot APIï¼‰
 
-状态：已支持通过官方 Discord 机器人网关进行私信和服务器文字频道通信。
+çŠ¶æ€ï¼šå·²æ”¯æŒé€šè¿‡å®˜æ–¹ Discord æœºå™¨äººç½‘å…³è¿›è¡Œç§ä¿¡å’ŒæœåŠ¡å™¨æ–‡å­—é¢‘é“é€šä¿¡ã€‚
 
-## 快速设置（新手）
+## å¿«é€Ÿè®¾ç½®ï¼ˆæ–°æ‰‹ï¼‰
 
-1. 创建 Discord 机器人并复制机器人令牌。
-2. 在 Discord 应用设置中启用 **Message Content Intent**（如果你计划使用允许列表或名称查找，还需启用 **Server Members Intent**）。
-3. 为 OpenClaw 设置令牌：
-   - 环境变量：`DISCORD_BOT_TOKEN=...`
-   - 或配置：`channels.discord.token: "..."`。
-   - 如果两者都设置，配置优先（环境变量回退仅适用于默认账户）。
-4. 使用消息权限邀请机器人到你的服务器（如果你只想使用私信，可以创建一个私人服务器）。
-5. 启动 Gateway 网关。
-6. 私信访问默认采用配对模式；首次联系时需批准配对码。
+1. åˆ›å»º Discord æœºå™¨äººå¹¶å¤åˆ¶æœºå™¨äººä»¤ç‰Œã€‚
+2. åœ¨ Discord åº”ç”¨è®¾ç½®ä¸­å¯ç”¨ **Message Content Intent**ï¼ˆå¦‚æžœä½ è®¡åˆ’ä½¿ç”¨å…è®¸åˆ—è¡¨æˆ–åç§°æŸ¥æ‰¾ï¼Œè¿˜éœ€å¯ç”¨ **Server Members Intent**ï¼‰ã€‚
+3. ä¸º  è®¾ç½®ä»¤ç‰Œï¼š
+   - çŽ¯å¢ƒå˜é‡ï¼š`DISCORD_BOT_TOKEN=...`
+   - æˆ–é…ç½®ï¼š`channels.discord.token: "..."`ã€‚
+   - å¦‚æžœä¸¤è€…éƒ½è®¾ç½®ï¼Œé…ç½®ä¼˜å…ˆï¼ˆçŽ¯å¢ƒå˜é‡å›žé€€ä»…é€‚ç”¨äºŽé»˜è®¤è´¦æˆ·ï¼‰ã€‚
+4. ä½¿ç”¨æ¶ˆæ¯æƒé™é‚€è¯·æœºå™¨äººåˆ°ä½ çš„æœåŠ¡å™¨ï¼ˆå¦‚æžœä½ åªæƒ³ä½¿ç”¨ç§ä¿¡ï¼Œå¯ä»¥åˆ›å»ºä¸€ä¸ªç§äººæœåŠ¡å™¨ï¼‰ã€‚
+5. å¯åŠ¨ Gateway ç½‘å…³ã€‚
+6. ç§ä¿¡è®¿é—®é»˜è®¤é‡‡ç”¨é…å¯¹æ¨¡å¼ï¼›é¦–æ¬¡è”ç³»æ—¶éœ€æ‰¹å‡†é…å¯¹ç ã€‚
 
-最小配置：
+æœ€å°é…ç½®ï¼š
 
 ```json5
 {
@@ -41,45 +41,45 @@ x-i18n:
 }
 ```
 
-## 目标
+## ç›®æ ‡
 
-- 通过 Discord 私信或服务器频道与 OpenClaw 对话。
-- 直接聊天会合并到智能体的主会话（默认 `agent:main:main`）；服务器频道保持隔离为 `agent:<agentId>:discord:channel:<channelId>`（显示名称使用 `discord:<guildSlug>#<channelSlug>`）。
-- 群组私信默认被忽略；通过 `channels.discord.dm.groupEnabled` 启用，并可选择通过 `channels.discord.dm.groupChannels` 进行限制。
-- 保持路由确定性：回复始终返回到消息来源的渠道。
+- é€šè¿‡ Discord ç§ä¿¡æˆ–æœåŠ¡å™¨é¢‘é“ä¸Ž  å¯¹è¯ã€‚
+- ç›´æŽ¥èŠå¤©ä¼šåˆå¹¶åˆ°æ™ºèƒ½ä½“çš„ä¸»ä¼šè¯ï¼ˆé»˜è®¤ `agent:main:main`ï¼‰ï¼›æœåŠ¡å™¨é¢‘é“ä¿æŒéš”ç¦»ä¸º `agent:<agentId>:discord:channel:<channelId>`ï¼ˆæ˜¾ç¤ºåç§°ä½¿ç”¨ `discord:<guildSlug>#<channelSlug>`ï¼‰ã€‚
+- ç¾¤ç»„ç§ä¿¡é»˜è®¤è¢«å¿½ç•¥ï¼›é€šè¿‡ `channels.discord.dm.groupEnabled` å¯ç”¨ï¼Œå¹¶å¯é€‰æ‹©é€šè¿‡ `channels.discord.dm.groupChannels` è¿›è¡Œé™åˆ¶ã€‚
+- ä¿æŒè·¯ç”±ç¡®å®šæ€§ï¼šå›žå¤å§‹ç»ˆè¿”å›žåˆ°æ¶ˆæ¯æ¥æºçš„æ¸ é“ã€‚
 
-## 工作原理
+## å·¥ä½œåŽŸç†
 
-1. 创建 Discord 应用程序 → Bot，启用你需要的意图（私信 + 服务器消息 + 消息内容），并获取机器人令牌。
-2. 使用所需权限邀请机器人到你的服务器，以便在你想使用的地方读取/发送消息。
-3. 使用 `channels.discord.token` 配置 OpenClaw（或使用 `DISCORD_BOT_TOKEN` 作为回退）。
-4. 运行 Gateway 网关；当令牌可用（配置优先，环境变量回退）且 `channels.discord.enabled` 不为 `false` 时，它会自动启动 Discord 渠道。
-   - 如果你更喜欢使用环境变量，设置 `DISCORD_BOT_TOKEN`（配置块是可选的）。
-5. 直接聊天：发送时使用 `user:<id>`（或 `<@id>` 提及）；所有对话都进入共享的 `main` 会话。纯数字 ID 是模糊的，会被拒绝。
-6. 服务器频道：发送时使用 `channel:<channelId>`。默认需要提及，可以按服务器或按频道设置。
-7. 直接聊天：默认通过 `channels.discord.dm.policy` 进行安全保护（默认：`"pairing"`）。未知发送者会收到配对码（1 小时后过期）；通过 `openclaw pairing approve discord <code>` 批准。
-   - 要保持旧的"对任何人开放"行为：设置 `channels.discord.dm.policy="open"` 和 `channels.discord.dm.allowFrom=["*"]`。
-   - 要使用硬编码允许列表：设置 `channels.discord.dm.policy="allowlist"` 并在 `channels.discord.dm.allowFrom` 中列出发送者。
-   - 要忽略所有私信：设置 `channels.discord.dm.enabled=false` 或 `channels.discord.dm.policy="disabled"`。
-8. 群组私信默认被忽略；通过 `channels.discord.dm.groupEnabled` 启用，并可选择通过 `channels.discord.dm.groupChannels` 进行限制。
-9. 可选服务器规则：设置 `channels.discord.guilds`，以服务器 ID（首选）或 slug 为键，并包含每个频道的规则。
-10. 可选原生命令：`commands.native` 默认为 `"auto"`（Discord/Telegram 开启，Slack 关闭）。使用 `channels.discord.commands.native: true|false|"auto"` 覆盖；`false` 会清除之前注册的命令。文本命令由 `commands.text` 控制，必须作为独立的 `/...` 消息发送。使用 `commands.useAccessGroups: false` 可跳过命令的访问组检查。
-    - 完整命令列表 + 配置：[斜杠命令](/tools/slash-commands)
-11. 可选服务器上下文历史：设置 `channels.discord.historyLimit`（默认 20，回退到 `messages.groupChat.historyLimit`）以在回复提及时包含最近 N 条服务器消息作为上下文。设置 `0` 禁用。
-12. 表情反应：智能体可以通过 `discord` 工具触发表情反应（受 `channels.discord.actions.*` 控制）。
-    - 表情反应移除语义：参见 [/tools/reactions](/tools/reactions)。
-    - `discord` 工具仅在当前渠道是 Discord 时暴露。
-13. 原生命令使用隔离的会话键（`agent:<agentId>:discord:slash:<userId>`）而不是共享的 `main` 会话。
+1. åˆ›å»º Discord åº”ç”¨ç¨‹åº â†’ Botï¼Œå¯ç”¨ä½ éœ€è¦çš„æ„å›¾ï¼ˆç§ä¿¡ + æœåŠ¡å™¨æ¶ˆæ¯ + æ¶ˆæ¯å†…å®¹ï¼‰ï¼Œå¹¶èŽ·å–æœºå™¨äººä»¤ç‰Œã€‚
+2. ä½¿ç”¨æ‰€éœ€æƒé™é‚€è¯·æœºå™¨äººåˆ°ä½ çš„æœåŠ¡å™¨ï¼Œä»¥ä¾¿åœ¨ä½ æƒ³ä½¿ç”¨çš„åœ°æ–¹è¯»å–/å‘é€æ¶ˆæ¯ã€‚
+3. ä½¿ç”¨ `channels.discord.token` é…ç½® ï¼ˆæˆ–ä½¿ç”¨ `DISCORD_BOT_TOKEN` ä½œä¸ºå›žé€€ï¼‰ã€‚
+4. è¿è¡Œ Gateway ç½‘å…³ï¼›å½“ä»¤ç‰Œå¯ç”¨ï¼ˆé…ç½®ä¼˜å…ˆï¼ŒçŽ¯å¢ƒå˜é‡å›žé€€ï¼‰ä¸” `channels.discord.enabled` ä¸ä¸º `false` æ—¶ï¼Œå®ƒä¼šè‡ªåŠ¨å¯åŠ¨ Discord æ¸ é“ã€‚
+   - å¦‚æžœä½ æ›´å–œæ¬¢ä½¿ç”¨çŽ¯å¢ƒå˜é‡ï¼Œè®¾ç½® `DISCORD_BOT_TOKEN`ï¼ˆé…ç½®å—æ˜¯å¯é€‰çš„ï¼‰ã€‚
+5. ç›´æŽ¥èŠå¤©ï¼šå‘é€æ—¶ä½¿ç”¨ `user:<id>`ï¼ˆæˆ– `<@id>` æåŠï¼‰ï¼›æ‰€æœ‰å¯¹è¯éƒ½è¿›å…¥å…±äº«çš„ `main` ä¼šè¯ã€‚çº¯æ•°å­— ID æ˜¯æ¨¡ç³Šçš„ï¼Œä¼šè¢«æ‹’ç»ã€‚
+6. æœåŠ¡å™¨é¢‘é“ï¼šå‘é€æ—¶ä½¿ç”¨ `channel:<channelId>`ã€‚é»˜è®¤éœ€è¦æåŠï¼Œå¯ä»¥æŒ‰æœåŠ¡å™¨æˆ–æŒ‰é¢‘é“è®¾ç½®ã€‚
+7. ç›´æŽ¥èŠå¤©ï¼šé»˜è®¤é€šè¿‡ `channels.discord.dm.policy` è¿›è¡Œå®‰å…¨ä¿æŠ¤ï¼ˆé»˜è®¤ï¼š`"pairing"`ï¼‰ã€‚æœªçŸ¥å‘é€è€…ä¼šæ”¶åˆ°é…å¯¹ç ï¼ˆ1 å°æ—¶åŽè¿‡æœŸï¼‰ï¼›é€šè¿‡ ` pairing approve discord <code>` æ‰¹å‡†ã€‚
+   - è¦ä¿æŒæ—§çš„"å¯¹ä»»ä½•äººå¼€æ”¾"è¡Œä¸ºï¼šè®¾ç½® `channels.discord.dm.policy="open"` å’Œ `channels.discord.dm.allowFrom=["*"]`ã€‚
+   - è¦ä½¿ç”¨ç¡¬ç¼–ç å…è®¸åˆ—è¡¨ï¼šè®¾ç½® `channels.discord.dm.policy="allowlist"` å¹¶åœ¨ `channels.discord.dm.allowFrom` ä¸­åˆ—å‡ºå‘é€è€…ã€‚
+   - è¦å¿½ç•¥æ‰€æœ‰ç§ä¿¡ï¼šè®¾ç½® `channels.discord.dm.enabled=false` æˆ– `channels.discord.dm.policy="disabled"`ã€‚
+8. ç¾¤ç»„ç§ä¿¡é»˜è®¤è¢«å¿½ç•¥ï¼›é€šè¿‡ `channels.discord.dm.groupEnabled` å¯ç”¨ï¼Œå¹¶å¯é€‰æ‹©é€šè¿‡ `channels.discord.dm.groupChannels` è¿›è¡Œé™åˆ¶ã€‚
+9. å¯é€‰æœåŠ¡å™¨è§„åˆ™ï¼šè®¾ç½® `channels.discord.guilds`ï¼Œä»¥æœåŠ¡å™¨ IDï¼ˆé¦–é€‰ï¼‰æˆ– slug ä¸ºé”®ï¼Œå¹¶åŒ…å«æ¯ä¸ªé¢‘é“çš„è§„åˆ™ã€‚
+10. å¯é€‰åŽŸç”Ÿå‘½ä»¤ï¼š`commands.native` é»˜è®¤ä¸º `"auto"`ï¼ˆDiscord/Telegram å¼€å¯ï¼ŒSlack å…³é—­ï¼‰ã€‚ä½¿ç”¨ `channels.discord.commands.native: true|false|"auto"` è¦†ç›–ï¼›`false` ä¼šæ¸…é™¤ä¹‹å‰æ³¨å†Œçš„å‘½ä»¤ã€‚æ–‡æœ¬å‘½ä»¤ç”± `commands.text` æŽ§åˆ¶ï¼Œå¿…é¡»ä½œä¸ºç‹¬ç«‹çš„ `/...` æ¶ˆæ¯å‘é€ã€‚ä½¿ç”¨ `commands.useAccessGroups: false` å¯è·³è¿‡å‘½ä»¤çš„è®¿é—®ç»„æ£€æŸ¥ã€‚
+    - å®Œæ•´å‘½ä»¤åˆ—è¡¨ + é…ç½®ï¼š[æ–œæ å‘½ä»¤](/tools/slash-commands)
+11. å¯é€‰æœåŠ¡å™¨ä¸Šä¸‹æ–‡åŽ†å²ï¼šè®¾ç½® `channels.discord.historyLimit`ï¼ˆé»˜è®¤ 20ï¼Œå›žé€€åˆ° `messages.groupChat.historyLimit`ï¼‰ä»¥åœ¨å›žå¤æåŠæ—¶åŒ…å«æœ€è¿‘ N æ¡æœåŠ¡å™¨æ¶ˆæ¯ä½œä¸ºä¸Šä¸‹æ–‡ã€‚è®¾ç½® `0` ç¦ç”¨ã€‚
+12. è¡¨æƒ…ååº”ï¼šæ™ºèƒ½ä½“å¯ä»¥é€šè¿‡ `discord` å·¥å…·è§¦å‘è¡¨æƒ…ååº”ï¼ˆå— `channels.discord.actions.*` æŽ§åˆ¶ï¼‰ã€‚
+    - è¡¨æƒ…ååº”ç§»é™¤è¯­ä¹‰ï¼šå‚è§ [/tools/reactions](/tools/reactions)ã€‚
+    - `discord` å·¥å…·ä»…åœ¨å½“å‰æ¸ é“æ˜¯ Discord æ—¶æš´éœ²ã€‚
+13. åŽŸç”Ÿå‘½ä»¤ä½¿ç”¨éš”ç¦»çš„ä¼šè¯é”®ï¼ˆ`agent:<agentId>:discord:slash:<userId>`ï¼‰è€Œä¸æ˜¯å…±äº«çš„ `main` ä¼šè¯ã€‚
 
-注意：名称 → ID 解析使用服务器成员搜索，需要 Server Members Intent；如果机器人无法搜索成员，请使用 ID 或 `<@id>` 提及。
-注意：Slug 为小写，空格替换为 `-`。频道名称的 slug 不包含前导 `#`。
-注意：服务器上下文 `[from:]` 行包含 `author.tag` + `id`，便于进行可提及的回复。
+æ³¨æ„ï¼šåç§° â†’ ID è§£æžä½¿ç”¨æœåŠ¡å™¨æˆå‘˜æœç´¢ï¼Œéœ€è¦ Server Members Intentï¼›å¦‚æžœæœºå™¨äººæ— æ³•æœç´¢æˆå‘˜ï¼Œè¯·ä½¿ç”¨ ID æˆ– `<@id>` æåŠã€‚
+æ³¨æ„ï¼šSlug ä¸ºå°å†™ï¼Œç©ºæ ¼æ›¿æ¢ä¸º `-`ã€‚é¢‘é“åç§°çš„ slug ä¸åŒ…å«å‰å¯¼ `#`ã€‚
+æ³¨æ„ï¼šæœåŠ¡å™¨ä¸Šä¸‹æ–‡ `[from:]` è¡ŒåŒ…å« `author.tag` + `id`ï¼Œä¾¿äºŽè¿›è¡Œå¯æåŠçš„å›žå¤ã€‚
 
-## 配置写入
+## é…ç½®å†™å…¥
 
-默认情况下，允许 Discord 写入由 `/config set|unset` 触发的配置更新（需要 `commands.config: true`）。
+é»˜è®¤æƒ…å†µä¸‹ï¼Œå…è®¸ Discord å†™å…¥ç”± `/config set|unset` è§¦å‘çš„é…ç½®æ›´æ–°ï¼ˆéœ€è¦ `commands.config: true`ï¼‰ã€‚
 
-禁用方式：
+ç¦ç”¨æ–¹å¼ï¼š
 
 ```json5
 {
@@ -87,70 +87,70 @@ x-i18n:
 }
 ```
 
-## 如何创建自己的机器人
+## å¦‚ä½•åˆ›å»ºè‡ªå·±çš„æœºå™¨äºº
 
-这是在服务器（guild）频道（如 `#help`）中运行 OpenClaw 的"Discord 开发者门户"设置。
+è¿™æ˜¯åœ¨æœåŠ¡å™¨ï¼ˆguildï¼‰é¢‘é“ï¼ˆå¦‚ `#help`ï¼‰ä¸­è¿è¡Œ  çš„"Discord å¼€å‘è€…é—¨æˆ·"è®¾ç½®ã€‚
 
-### 1）创建 Discord 应用 + 机器人用户
+### 1ï¼‰åˆ›å»º Discord åº”ç”¨ + æœºå™¨äººç”¨æˆ·
 
-1. Discord 开发者门户 → **Applications** → **New Application**
-2. 在你的应用中：
-   - **Bot** → **Add Bot**
-   - 复制 **Bot Token**（这是你放入 `DISCORD_BOT_TOKEN` 的内容）
+1. Discord å¼€å‘è€…é—¨æˆ· â†’ **Applications** â†’ **New Application**
+2. åœ¨ä½ çš„åº”ç”¨ä¸­ï¼š
+   - **Bot** â†’ **Add Bot**
+   - å¤åˆ¶ **Bot Token**ï¼ˆè¿™æ˜¯ä½ æ”¾å…¥ `DISCORD_BOT_TOKEN` çš„å†…å®¹ï¼‰
 
-### 2）启用 OpenClaw 需要的网关意图
+### 2ï¼‰å¯ç”¨  éœ€è¦çš„ç½‘å…³æ„å›¾
 
-Discord 会阻止"特权意图"，除非你明确启用它们。
+Discord ä¼šé˜»æ­¢"ç‰¹æƒæ„å›¾"ï¼Œé™¤éžä½ æ˜Žç¡®å¯ç”¨å®ƒä»¬ã€‚
 
-在 **Bot** → **Privileged Gateway Intents** 中启用：
+åœ¨ **Bot** â†’ **Privileged Gateway Intents** ä¸­å¯ç”¨ï¼š
 
-- **Message Content Intent**（在大多数服务器中读取消息文本所必需；没有它你会看到"Used disallowed intents"或机器人会连接但不响应消息）
-- **Server Members Intent**（推荐；服务器中的某些成员/用户查找和允许列表匹配需要）
+- **Message Content Intent**ï¼ˆåœ¨å¤§å¤šæ•°æœåŠ¡å™¨ä¸­è¯»å–æ¶ˆæ¯æ–‡æœ¬æ‰€å¿…éœ€ï¼›æ²¡æœ‰å®ƒä½ ä¼šçœ‹åˆ°"Used disallowed intents"æˆ–æœºå™¨äººä¼šè¿žæŽ¥ä½†ä¸å“åº”æ¶ˆæ¯ï¼‰
+- **Server Members Intent**ï¼ˆæŽ¨èï¼›æœåŠ¡å™¨ä¸­çš„æŸäº›æˆå‘˜/ç”¨æˆ·æŸ¥æ‰¾å’Œå…è®¸åˆ—è¡¨åŒ¹é…éœ€è¦ï¼‰
 
-你通常**不需要** **Presence Intent**。
+ä½ é€šå¸¸**ä¸éœ€è¦** **Presence Intent**ã€‚
 
-### 3）生成邀请 URL（OAuth2 URL Generator）
+### 3ï¼‰ç”Ÿæˆé‚€è¯· URLï¼ˆOAuth2 URL Generatorï¼‰
 
-在你的应用中：**OAuth2** → **URL Generator**
+åœ¨ä½ çš„åº”ç”¨ä¸­ï¼š**OAuth2** â†’ **URL Generator**
 
 **Scopes**
 
-- ✅ `bot`
-- ✅ `applications.commands`（原生命令所需）
+- âœ… `bot`
+- âœ… `applications.commands`ï¼ˆåŽŸç”Ÿå‘½ä»¤æ‰€éœ€ï¼‰
 
-**Bot Permissions**（最小基线）
+**Bot Permissions**ï¼ˆæœ€å°åŸºçº¿ï¼‰
 
-- ✅ View Channels
-- ✅ Send Messages
-- ✅ Read Message History
-- ✅ Embed Links
-- ✅ Attach Files
-- ✅ Add Reactions（可选但推荐）
-- ✅ Use External Emojis / Stickers（可选；仅当你需要时）
+- âœ… View Channels
+- âœ… Send Messages
+- âœ… Read Message History
+- âœ… Embed Links
+- âœ… Attach Files
+- âœ… Add Reactionsï¼ˆå¯é€‰ä½†æŽ¨èï¼‰
+- âœ… Use External Emojis / Stickersï¼ˆå¯é€‰ï¼›ä»…å½“ä½ éœ€è¦æ—¶ï¼‰
 
-除非你在调试并完全信任机器人，否则避免使用 **Administrator**。
+é™¤éžä½ åœ¨è°ƒè¯•å¹¶å®Œå…¨ä¿¡ä»»æœºå™¨äººï¼Œå¦åˆ™é¿å…ä½¿ç”¨ **Administrator**ã€‚
 
-复制生成的 URL，打开它，选择你的服务器，然后安装机器人。
+å¤åˆ¶ç”Ÿæˆçš„ URLï¼Œæ‰“å¼€å®ƒï¼Œé€‰æ‹©ä½ çš„æœåŠ¡å™¨ï¼Œç„¶åŽå®‰è£…æœºå™¨äººã€‚
 
-### 4）获取 ID（服务器/用户/频道）
+### 4ï¼‰èŽ·å– IDï¼ˆæœåŠ¡å™¨/ç”¨æˆ·/é¢‘é“ï¼‰
 
-Discord 到处使用数字 ID；OpenClaw 配置优先使用 ID。
+Discord åˆ°å¤„ä½¿ç”¨æ•°å­— IDï¼› é…ç½®ä¼˜å…ˆä½¿ç”¨ IDã€‚
 
-1. Discord（桌面/网页）→ **用户设置** → **高级** → 启用 **开发者模式**
-2. 右键点击：
-   - 服务器名称 → **复制服务器 ID**（服务器 ID）
-   - 频道（例如 `#help`）→ **复制频道 ID**
-   - 你的用户 → **复制用户 ID**
+1. Discordï¼ˆæ¡Œé¢/ç½‘é¡µï¼‰â†’ **ç”¨æˆ·è®¾ç½®** â†’ **é«˜çº§** â†’ å¯ç”¨ **å¼€å‘è€…æ¨¡å¼**
+2. å³é”®ç‚¹å‡»ï¼š
+   - æœåŠ¡å™¨åç§° â†’ **å¤åˆ¶æœåŠ¡å™¨ ID**ï¼ˆæœåŠ¡å™¨ IDï¼‰
+   - é¢‘é“ï¼ˆä¾‹å¦‚ `#help`ï¼‰â†’ **å¤åˆ¶é¢‘é“ ID**
+   - ä½ çš„ç”¨æˆ· â†’ **å¤åˆ¶ç”¨æˆ· ID**
 
-### 5）配置 OpenClaw
+### 5ï¼‰é…ç½® 
 
-#### 令牌
+#### ä»¤ç‰Œ
 
-通过环境变量设置机器人令牌（服务器上推荐）：
+é€šè¿‡çŽ¯å¢ƒå˜é‡è®¾ç½®æœºå™¨äººä»¤ç‰Œï¼ˆæœåŠ¡å™¨ä¸ŠæŽ¨èï¼‰ï¼š
 
 - `DISCORD_BOT_TOKEN=...`
 
-或通过配置：
+æˆ–é€šè¿‡é…ç½®ï¼š
 
 ```json5
 {
@@ -163,11 +163,11 @@ Discord 到处使用数字 ID；OpenClaw 配置优先使用 ID。
 }
 ```
 
-多账户支持：使用 `channels.discord.accounts`，每个账户有自己的令牌和可选的 `name`。参见 [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) 了解通用模式。
+å¤šè´¦æˆ·æ”¯æŒï¼šä½¿ç”¨ `channels.discord.accounts`ï¼Œæ¯ä¸ªè´¦æˆ·æœ‰è‡ªå·±çš„ä»¤ç‰Œå’Œå¯é€‰çš„ `name`ã€‚å‚è§ [`gateway/configuration`](/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) äº†è§£é€šç”¨æ¨¡å¼ã€‚
 
-#### 允许列表 + 频道路由
+#### å…è®¸åˆ—è¡¨ + é¢‘é“è·¯ç”±
 
-示例"单服务器，只允许我，只允许 #help"：
+ç¤ºä¾‹"å•æœåŠ¡å™¨ï¼Œåªå…è®¸æˆ‘ï¼Œåªå…è®¸ #help"ï¼š
 
 ```json5
 {
@@ -195,59 +195,59 @@ Discord 到处使用数字 ID；OpenClaw 配置优先使用 ID。
 }
 ```
 
-注意：
+æ³¨æ„ï¼š
 
-- `requireMention: true` 意味着机器人只在被提及时回复（推荐用于共享频道）。
-- `agents.list[].groupChat.mentionPatterns`（或 `messages.groupChat.mentionPatterns`）对于服务器消息也算作提及。
-- 多智能体覆盖：在 `agents.list[].groupChat.mentionPatterns` 上设置每个智能体的模式。
-- 如果存在 `channels`，任何未列出的频道默认被拒绝。
-- 使用 `"*"` 频道条目在所有频道应用默认值；显式频道条目覆盖通配符。
-- 话题继承父频道配置（允许列表、`requireMention`、Skills、提示词等），除非你显式添加话题频道 ID。
-- 机器人发送的消息默认被忽略；设置 `channels.discord.allowBots=true` 允许它们（自己的消息仍被过滤）。
-- 警告：如果你允许回复其他机器人（`channels.discord.allowBots=true`），请使用 `requireMention`、`channels.discord.guilds.*.channels.<id>.users` 允许列表和/或在 `AGENTS.md` 和 `SOUL.md` 中设置明确的防护措施来防止机器人之间的回复循环。
+- `requireMention: true` æ„å‘³ç€æœºå™¨äººåªåœ¨è¢«æåŠæ—¶å›žå¤ï¼ˆæŽ¨èç”¨äºŽå…±äº«é¢‘é“ï¼‰ã€‚
+- `agents.list[].groupChat.mentionPatterns`ï¼ˆæˆ– `messages.groupChat.mentionPatterns`ï¼‰å¯¹äºŽæœåŠ¡å™¨æ¶ˆæ¯ä¹Ÿç®—ä½œæåŠã€‚
+- å¤šæ™ºèƒ½ä½“è¦†ç›–ï¼šåœ¨ `agents.list[].groupChat.mentionPatterns` ä¸Šè®¾ç½®æ¯ä¸ªæ™ºèƒ½ä½“çš„æ¨¡å¼ã€‚
+- å¦‚æžœå­˜åœ¨ `channels`ï¼Œä»»ä½•æœªåˆ—å‡ºçš„é¢‘é“é»˜è®¤è¢«æ‹’ç»ã€‚
+- ä½¿ç”¨ `"*"` é¢‘é“æ¡ç›®åœ¨æ‰€æœ‰é¢‘é“åº”ç”¨é»˜è®¤å€¼ï¼›æ˜¾å¼é¢‘é“æ¡ç›®è¦†ç›–é€šé…ç¬¦ã€‚
+- è¯é¢˜ç»§æ‰¿çˆ¶é¢‘é“é…ç½®ï¼ˆå…è®¸åˆ—è¡¨ã€`requireMention`ã€Skillsã€æç¤ºè¯ç­‰ï¼‰ï¼Œé™¤éžä½ æ˜¾å¼æ·»åŠ è¯é¢˜é¢‘é“ IDã€‚
+- æœºå™¨äººå‘é€çš„æ¶ˆæ¯é»˜è®¤è¢«å¿½ç•¥ï¼›è®¾ç½® `channels.discord.allowBots=true` å…è®¸å®ƒä»¬ï¼ˆè‡ªå·±çš„æ¶ˆæ¯ä»è¢«è¿‡æ»¤ï¼‰ã€‚
+- è­¦å‘Šï¼šå¦‚æžœä½ å…è®¸å›žå¤å…¶ä»–æœºå™¨äººï¼ˆ`channels.discord.allowBots=true`ï¼‰ï¼Œè¯·ä½¿ç”¨ `requireMention`ã€`channels.discord.guilds.*.channels.<id>.users` å…è®¸åˆ—è¡¨å’Œ/æˆ–åœ¨ `AGENTS.md` å’Œ `SOUL.md` ä¸­è®¾ç½®æ˜Žç¡®çš„é˜²æŠ¤æŽªæ–½æ¥é˜²æ­¢æœºå™¨äººä¹‹é—´çš„å›žå¤å¾ªçŽ¯ã€‚
 
-### 6）验证是否工作
+### 6ï¼‰éªŒè¯æ˜¯å¦å·¥ä½œ
 
-1. 启动 Gateway 网关。
-2. 在你的服务器频道中发送：`@Krill hello`（或你的机器人名称）。
-3. 如果没有反应：查看下面的**故障排除**。
+1. å¯åŠ¨ Gateway ç½‘å…³ã€‚
+2. åœ¨ä½ çš„æœåŠ¡å™¨é¢‘é“ä¸­å‘é€ï¼š`@Krill hello`ï¼ˆæˆ–ä½ çš„æœºå™¨äººåç§°ï¼‰ã€‚
+3. å¦‚æžœæ²¡æœ‰ååº”ï¼šæŸ¥çœ‹ä¸‹é¢çš„**æ•…éšœæŽ’é™¤**ã€‚
 
-### 故障排除
+### æ•…éšœæŽ’é™¤
 
-- 首先：运行 `openclaw doctor` 和 `openclaw channels status --probe`（可操作的警告 + 快速审计）。
-- **"Used disallowed intents"**：在开发者门户中启用 **Message Content Intent**（可能还需要 **Server Members Intent**），然后重启 Gateway 网关。
-- **机器人连接但从不在服务器频道回复**：
-  - 缺少 **Message Content Intent**，或
-  - 机器人缺少频道权限（View/Send/Read History），或
-  - 你的配置需要提及但你没有提及它，或
-  - 你的服务器/频道允许列表拒绝了该频道/用户。
-- **`requireMention: false` 但仍然没有回复**：
-- `channels.discord.groupPolicy` 默认为 **allowlist**；将其设置为 `"open"` 或在 `channels.discord.guilds` 下添加服务器条目（可选择在 `channels.discord.guilds.<id>.channels` 下列出频道以进行限制）。
-  - 如果你只设置了 `DISCORD_BOT_TOKEN` 而从未创建 `channels.discord` 部分，运行时会将 `groupPolicy` 默认为 `open`。添加 `channels.discord.groupPolicy`、`channels.defaults.groupPolicy` 或服务器/频道允许列表来锁定它。
-- `requireMention` 必须位于 `channels.discord.guilds`（或特定频道）下。顶层的 `channels.discord.requireMention` 会被忽略。
-- **权限审计**（`channels status --probe`）只检查数字频道 ID。如果你使用 slug/名称作为 `channels.discord.guilds.*.channels` 键，审计无法验证权限。
-- **私信不工作**：`channels.discord.dm.enabled=false`、`channels.discord.dm.policy="disabled"`，或者你尚未被批准（`channels.discord.dm.policy="pairing"`）。
-- **Discord 中的执行审批**：Discord 支持私信中执行审批的**按钮 UI**（允许一次 / 始终允许 / 拒绝）。`/approve <id> ...` 仅用于转发的审批，不会解析 Discord 的按钮提示。如果你看到 `❌ Failed to submit approval: Error: unknown approval id` 或 UI 从未出现，请检查：
-  - 你的配置中有 `channels.discord.execApprovals.enabled: true`。
-  - 你的 Discord 用户 ID 在 `channels.discord.execApprovals.approvers` 中列出（UI 仅发送给审批者）。
-  - 使用私信提示中的按钮（**Allow once**、**Always allow**、**Deny**）。
-  - 参见[执行审批](/tools/exec-approvals)和[斜杠命令](/tools/slash-commands)了解更广泛的审批和命令流程。
+- é¦–å…ˆï¼šè¿è¡Œ ` doctor` å’Œ ` channels status --probe`ï¼ˆå¯æ“ä½œçš„è­¦å‘Š + å¿«é€Ÿå®¡è®¡ï¼‰ã€‚
+- **"Used disallowed intents"**ï¼šåœ¨å¼€å‘è€…é—¨æˆ·ä¸­å¯ç”¨ **Message Content Intent**ï¼ˆå¯èƒ½è¿˜éœ€è¦ **Server Members Intent**ï¼‰ï¼Œç„¶åŽé‡å¯ Gateway ç½‘å…³ã€‚
+- **æœºå™¨äººè¿žæŽ¥ä½†ä»Žä¸åœ¨æœåŠ¡å™¨é¢‘é“å›žå¤**ï¼š
+  - ç¼ºå°‘ **Message Content Intent**ï¼Œæˆ–
+  - æœºå™¨äººç¼ºå°‘é¢‘é“æƒé™ï¼ˆView/Send/Read Historyï¼‰ï¼Œæˆ–
+  - ä½ çš„é…ç½®éœ€è¦æåŠä½†ä½ æ²¡æœ‰æåŠå®ƒï¼Œæˆ–
+  - ä½ çš„æœåŠ¡å™¨/é¢‘é“å…è®¸åˆ—è¡¨æ‹’ç»äº†è¯¥é¢‘é“/ç”¨æˆ·ã€‚
+- **`requireMention: false` ä½†ä»ç„¶æ²¡æœ‰å›žå¤**ï¼š
+- `channels.discord.groupPolicy` é»˜è®¤ä¸º **allowlist**ï¼›å°†å…¶è®¾ç½®ä¸º `"open"` æˆ–åœ¨ `channels.discord.guilds` ä¸‹æ·»åŠ æœåŠ¡å™¨æ¡ç›®ï¼ˆå¯é€‰æ‹©åœ¨ `channels.discord.guilds.<id>.channels` ä¸‹åˆ—å‡ºé¢‘é“ä»¥è¿›è¡Œé™åˆ¶ï¼‰ã€‚
+  - å¦‚æžœä½ åªè®¾ç½®äº† `DISCORD_BOT_TOKEN` è€Œä»Žæœªåˆ›å»º `channels.discord` éƒ¨åˆ†ï¼Œè¿è¡Œæ—¶ä¼šå°† `groupPolicy` é»˜è®¤ä¸º `open`ã€‚æ·»åŠ  `channels.discord.groupPolicy`ã€`channels.defaults.groupPolicy` æˆ–æœåŠ¡å™¨/é¢‘é“å…è®¸åˆ—è¡¨æ¥é”å®šå®ƒã€‚
+- `requireMention` å¿…é¡»ä½äºŽ `channels.discord.guilds`ï¼ˆæˆ–ç‰¹å®šé¢‘é“ï¼‰ä¸‹ã€‚é¡¶å±‚çš„ `channels.discord.requireMention` ä¼šè¢«å¿½ç•¥ã€‚
+- **æƒé™å®¡è®¡**ï¼ˆ`channels status --probe`ï¼‰åªæ£€æŸ¥æ•°å­—é¢‘é“ IDã€‚å¦‚æžœä½ ä½¿ç”¨ slug/åç§°ä½œä¸º `channels.discord.guilds.*.channels` é”®ï¼Œå®¡è®¡æ— æ³•éªŒè¯æƒé™ã€‚
+- **ç§ä¿¡ä¸å·¥ä½œ**ï¼š`channels.discord.dm.enabled=false`ã€`channels.discord.dm.policy="disabled"`ï¼Œæˆ–è€…ä½ å°šæœªè¢«æ‰¹å‡†ï¼ˆ`channels.discord.dm.policy="pairing"`ï¼‰ã€‚
+- **Discord ä¸­çš„æ‰§è¡Œå®¡æ‰¹**ï¼šDiscord æ”¯æŒç§ä¿¡ä¸­æ‰§è¡Œå®¡æ‰¹çš„**æŒ‰é’® UI**ï¼ˆå…è®¸ä¸€æ¬¡ / å§‹ç»ˆå…è®¸ / æ‹’ç»ï¼‰ã€‚`/approve <id> ...` ä»…ç”¨äºŽè½¬å‘çš„å®¡æ‰¹ï¼Œä¸ä¼šè§£æž Discord çš„æŒ‰é’®æç¤ºã€‚å¦‚æžœä½ çœ‹åˆ° `âŒ Failed to submit approval: Error: unknown approval id` æˆ– UI ä»Žæœªå‡ºçŽ°ï¼Œè¯·æ£€æŸ¥ï¼š
+  - ä½ çš„é…ç½®ä¸­æœ‰ `channels.discord.execApprovals.enabled: true`ã€‚
+  - ä½ çš„ Discord ç”¨æˆ· ID åœ¨ `channels.discord.execApprovals.approvers` ä¸­åˆ—å‡ºï¼ˆUI ä»…å‘é€ç»™å®¡æ‰¹è€…ï¼‰ã€‚
+  - ä½¿ç”¨ç§ä¿¡æç¤ºä¸­çš„æŒ‰é’®ï¼ˆ**Allow once**ã€**Always allow**ã€**Deny**ï¼‰ã€‚
+  - å‚è§[æ‰§è¡Œå®¡æ‰¹](/tools/exec-approvals)å’Œ[æ–œæ å‘½ä»¤](/tools/slash-commands)äº†è§£æ›´å¹¿æ³›çš„å®¡æ‰¹å’Œå‘½ä»¤æµç¨‹ã€‚
 
-## 功能和限制
+## åŠŸèƒ½å’Œé™åˆ¶
 
-- 支持私信和服务器文字频道（话题被视为独立频道；不支持语音）。
-- 打字指示器尽力发送；消息分块使用 `channels.discord.textChunkLimit`（默认 2000），并按行数分割长回复（`channels.discord.maxLinesPerMessage`，默认 17）。
-- 可选换行分块：设置 `channels.discord.chunkMode="newline"` 以在空行（段落边界）处分割，然后再进行长度分块。
-- 支持文件上传，最大 `channels.discord.mediaMaxMb`（默认 8 MB）。
-- 默认服务器回复需要提及，以避免嘈杂的机器人。
-- 当消息引用另一条消息时，会注入回复上下文（引用内容 + ID）。
-- 原生回复线程**默认关闭**；使用 `channels.discord.replyToMode` 和回复标签启用。
+- æ”¯æŒç§ä¿¡å’ŒæœåŠ¡å™¨æ–‡å­—é¢‘é“ï¼ˆè¯é¢˜è¢«è§†ä¸ºç‹¬ç«‹é¢‘é“ï¼›ä¸æ”¯æŒè¯­éŸ³ï¼‰ã€‚
+- æ‰“å­—æŒ‡ç¤ºå™¨å°½åŠ›å‘é€ï¼›æ¶ˆæ¯åˆ†å—ä½¿ç”¨ `channels.discord.textChunkLimit`ï¼ˆé»˜è®¤ 2000ï¼‰ï¼Œå¹¶æŒ‰è¡Œæ•°åˆ†å‰²é•¿å›žå¤ï¼ˆ`channels.discord.maxLinesPerMessage`ï¼Œé»˜è®¤ 17ï¼‰ã€‚
+- å¯é€‰æ¢è¡Œåˆ†å—ï¼šè®¾ç½® `channels.discord.chunkMode="newline"` ä»¥åœ¨ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰å¤„åˆ†å‰²ï¼Œç„¶åŽå†è¿›è¡Œé•¿åº¦åˆ†å—ã€‚
+- æ”¯æŒæ–‡ä»¶ä¸Šä¼ ï¼Œæœ€å¤§ `channels.discord.mediaMaxMb`ï¼ˆé»˜è®¤ 8 MBï¼‰ã€‚
+- é»˜è®¤æœåŠ¡å™¨å›žå¤éœ€è¦æåŠï¼Œä»¥é¿å…å˜ˆæ‚çš„æœºå™¨äººã€‚
+- å½“æ¶ˆæ¯å¼•ç”¨å¦ä¸€æ¡æ¶ˆæ¯æ—¶ï¼Œä¼šæ³¨å…¥å›žå¤ä¸Šä¸‹æ–‡ï¼ˆå¼•ç”¨å†…å®¹ + IDï¼‰ã€‚
+- åŽŸç”Ÿå›žå¤çº¿ç¨‹**é»˜è®¤å…³é—­**ï¼›ä½¿ç”¨ `channels.discord.replyToMode` å’Œå›žå¤æ ‡ç­¾å¯ç”¨ã€‚
 
-## 重试策略
+## é‡è¯•ç­–ç•¥
 
-出站 Discord API 调用在速率限制（429）时使用 Discord `retry_after`（如果可用）进行重试，采用指数退避和抖动。通过 `channels.discord.retry` 配置。参见[重试策略](/concepts/retry)。
+å‡ºç«™ Discord API è°ƒç”¨åœ¨é€ŸçŽ‡é™åˆ¶ï¼ˆ429ï¼‰æ—¶ä½¿ç”¨ Discord `retry_after`ï¼ˆå¦‚æžœå¯ç”¨ï¼‰è¿›è¡Œé‡è¯•ï¼Œé‡‡ç”¨æŒ‡æ•°é€€é¿å’ŒæŠ–åŠ¨ã€‚é€šè¿‡ `channels.discord.retry` é…ç½®ã€‚å‚è§[é‡è¯•ç­–ç•¥](/concepts/retry)ã€‚
 
-## 配置
+## é…ç½®
 
 ```json5
 {
@@ -290,12 +290,12 @@ Discord 到处使用数字 ID；OpenClaw 配置优先使用 ID。
         policy: "pairing", // pairing | allowlist | open | disabled
         allowFrom: ["123456789012345678", "steipete"],
         groupEnabled: false,
-        groupChannels: ["openclaw-dm"],
+        groupChannels: ["-dm"],
       },
       guilds: {
         "*": { requireMention: true },
         "123456789012345678": {
-          slug: "friends-of-openclaw",
+          slug: "friends-of-",
           requireMention: false,
           reactionNotifications: "own",
           users: ["987654321098765432", "steipete"],
@@ -316,58 +316,58 @@ Discord 到处使用数字 ID；OpenClaw 配置优先使用 ID。
 }
 ```
 
-确认表情反应通过 `messages.ackReaction` + `messages.ackReactionScope` 全局控制。使用 `messages.removeAckAfterReply` 在机器人回复后清除确认表情反应。
+ç¡®è®¤è¡¨æƒ…ååº”é€šè¿‡ `messages.ackReaction` + `messages.ackReactionScope` å…¨å±€æŽ§åˆ¶ã€‚ä½¿ç”¨ `messages.removeAckAfterReply` åœ¨æœºå™¨äººå›žå¤åŽæ¸…é™¤ç¡®è®¤è¡¨æƒ…ååº”ã€‚
 
-- `dm.enabled`：设置 `false` 忽略所有私信（默认 `true`）。
-- `dm.policy`：私信访问控制（推荐 `pairing`）。`"open"` 需要 `dm.allowFrom=["*"]`。
-- `dm.allowFrom`：私信允许列表（用户 ID 或名称）。用于 `dm.policy="allowlist"` 和 `dm.policy="open"` 验证。向导接受用户名，并在机器人可以搜索成员时将其解析为 ID。
-- `dm.groupEnabled`：启用群组私信（默认 `false`）。
-- `dm.groupChannels`：群组私信频道 ID 或 slug 的可选允许列表。
-- `groupPolicy`：控制服务器频道处理（`open|disabled|allowlist`）；`allowlist` 需要频道允许列表。
-- `guilds`：按服务器规则，以服务器 ID（首选）或 slug 为键。
-- `guilds."*"`：当没有显式条目时应用的默认每服务器设置。
-- `guilds.<id>.slug`：用于显示名称的可选友好 slug。
-- `guilds.<id>.users`：可选的每服务器用户允许列表（ID 或名称）。
-- `guilds.<id>.tools`：可选的每服务器工具策略覆盖（`allow`/`deny`/`alsoAllow`），在频道覆盖缺失时使用。
-- `guilds.<id>.toolsBySender`：服务器级别的可选每发送者工具策略覆盖（在频道覆盖缺失时应用；支持 `"*"` 通配符）。
-- `guilds.<id>.channels.<channel>.allow`：当 `groupPolicy="allowlist"` 时允许/拒绝频道。
-- `guilds.<id>.channels.<channel>.requireMention`：频道的提及限制。
-- `guilds.<id>.channels.<channel>.tools`：可选的每频道工具策略覆盖（`allow`/`deny`/`alsoAllow`）。
-- `guilds.<id>.channels.<channel>.toolsBySender`：频道内的可选每发送者工具策略覆盖（支持 `"*"` 通配符）。
-- `guilds.<id>.channels.<channel>.users`：可选的每频道用户允许列表。
-- `guilds.<id>.channels.<channel>.skills`：Skills 过滤器（省略 = 所有 Skills，空 = 无）。
-- `guilds.<id>.channels.<channel>.systemPrompt`：频道的额外系统提示词（与频道主题组合）。
-- `guilds.<id>.channels.<channel>.enabled`：设置 `false` 禁用频道。
-- `guilds.<id>.channels`：频道规则（键为频道 slug 或 ID）。
-- `guilds.<id>.requireMention`：每服务器提及要求（可按频道覆盖）。
-- `guilds.<id>.reactionNotifications`：表情反应系统事件模式（`off`、`own`、`all`、`allowlist`）。
-- `textChunkLimit`：出站文本块大小（字符）。默认：2000。
-- `chunkMode`：`length`（默认）仅在超过 `textChunkLimit` 时分割；`newline` 在空行（段落边界）处分割，然后再进行长度分块。
-- `maxLinesPerMessage`：每条消息的软最大行数。默认：17。
-- `mediaMaxMb`：限制保存到磁盘的入站媒体大小。
-- `historyLimit`：回复提及时作为上下文包含的最近服务器消息数量（默认 20；回退到 `messages.groupChat.historyLimit`；`0` 禁用）。
-- `dmHistoryLimit`：私信历史限制（用户轮次）。每用户覆盖：`dms["<user_id>"].historyLimit`。
-- `retry`：出站 Discord API 调用的重试策略（attempts、minDelayMs、maxDelayMs、jitter）。
-- `pluralkit`：解析 PluralKit 代理消息，使系统成员显示为不同的发送者。
-- `actions`：每操作工具门控；省略允许所有（设置 `false` 禁用）。
-  - `reactions`（涵盖表情反应 + 读取表情反应）
-  - `stickers`、`emojiUploads`、`stickerUploads`、`polls`、`permissions`、`messages`、`threads`、`pins`、`search`
-  - `memberInfo`、`roleInfo`、`channelInfo`、`voiceStatus`、`events`
-  - `channels`（创建/编辑/删除频道 + 类别 + 权限）
-  - `roles`（角色添加/移除，默认 `false`）
-  - `moderation`（超时/踢出/封禁，默认 `false`）
-- `execApprovals`：Discord 专用执行审批私信（按钮 UI）。支持 `enabled`、`approvers`、`agentFilter`、`sessionFilter`。
+- `dm.enabled`ï¼šè®¾ç½® `false` å¿½ç•¥æ‰€æœ‰ç§ä¿¡ï¼ˆé»˜è®¤ `true`ï¼‰ã€‚
+- `dm.policy`ï¼šç§ä¿¡è®¿é—®æŽ§åˆ¶ï¼ˆæŽ¨è `pairing`ï¼‰ã€‚`"open"` éœ€è¦ `dm.allowFrom=["*"]`ã€‚
+- `dm.allowFrom`ï¼šç§ä¿¡å…è®¸åˆ—è¡¨ï¼ˆç”¨æˆ· ID æˆ–åç§°ï¼‰ã€‚ç”¨äºŽ `dm.policy="allowlist"` å’Œ `dm.policy="open"` éªŒè¯ã€‚å‘å¯¼æŽ¥å—ç”¨æˆ·åï¼Œå¹¶åœ¨æœºå™¨äººå¯ä»¥æœç´¢æˆå‘˜æ—¶å°†å…¶è§£æžä¸º IDã€‚
+- `dm.groupEnabled`ï¼šå¯ç”¨ç¾¤ç»„ç§ä¿¡ï¼ˆé»˜è®¤ `false`ï¼‰ã€‚
+- `dm.groupChannels`ï¼šç¾¤ç»„ç§ä¿¡é¢‘é“ ID æˆ– slug çš„å¯é€‰å…è®¸åˆ—è¡¨ã€‚
+- `groupPolicy`ï¼šæŽ§åˆ¶æœåŠ¡å™¨é¢‘é“å¤„ç†ï¼ˆ`open|disabled|allowlist`ï¼‰ï¼›`allowlist` éœ€è¦é¢‘é“å…è®¸åˆ—è¡¨ã€‚
+- `guilds`ï¼šæŒ‰æœåŠ¡å™¨è§„åˆ™ï¼Œä»¥æœåŠ¡å™¨ IDï¼ˆé¦–é€‰ï¼‰æˆ– slug ä¸ºé”®ã€‚
+- `guilds."*"`ï¼šå½“æ²¡æœ‰æ˜¾å¼æ¡ç›®æ—¶åº”ç”¨çš„é»˜è®¤æ¯æœåŠ¡å™¨è®¾ç½®ã€‚
+- `guilds.<id>.slug`ï¼šç”¨äºŽæ˜¾ç¤ºåç§°çš„å¯é€‰å‹å¥½ slugã€‚
+- `guilds.<id>.users`ï¼šå¯é€‰çš„æ¯æœåŠ¡å™¨ç”¨æˆ·å…è®¸åˆ—è¡¨ï¼ˆID æˆ–åç§°ï¼‰ã€‚
+- `guilds.<id>.tools`ï¼šå¯é€‰çš„æ¯æœåŠ¡å™¨å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆ`allow`/`deny`/`alsoAllow`ï¼‰ï¼Œåœ¨é¢‘é“è¦†ç›–ç¼ºå¤±æ—¶ä½¿ç”¨ã€‚
+- `guilds.<id>.toolsBySender`ï¼šæœåŠ¡å™¨çº§åˆ«çš„å¯é€‰æ¯å‘é€è€…å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆåœ¨é¢‘é“è¦†ç›–ç¼ºå¤±æ—¶åº”ç”¨ï¼›æ”¯æŒ `"*"` é€šé…ç¬¦ï¼‰ã€‚
+- `guilds.<id>.channels.<channel>.allow`ï¼šå½“ `groupPolicy="allowlist"` æ—¶å…è®¸/æ‹’ç»é¢‘é“ã€‚
+- `guilds.<id>.channels.<channel>.requireMention`ï¼šé¢‘é“çš„æåŠé™åˆ¶ã€‚
+- `guilds.<id>.channels.<channel>.tools`ï¼šå¯é€‰çš„æ¯é¢‘é“å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆ`allow`/`deny`/`alsoAllow`ï¼‰ã€‚
+- `guilds.<id>.channels.<channel>.toolsBySender`ï¼šé¢‘é“å†…çš„å¯é€‰æ¯å‘é€è€…å·¥å…·ç­–ç•¥è¦†ç›–ï¼ˆæ”¯æŒ `"*"` é€šé…ç¬¦ï¼‰ã€‚
+- `guilds.<id>.channels.<channel>.users`ï¼šå¯é€‰çš„æ¯é¢‘é“ç”¨æˆ·å…è®¸åˆ—è¡¨ã€‚
+- `guilds.<id>.channels.<channel>.skills`ï¼šSkills è¿‡æ»¤å™¨ï¼ˆçœç•¥ = æ‰€æœ‰ Skillsï¼Œç©º = æ— ï¼‰ã€‚
+- `guilds.<id>.channels.<channel>.systemPrompt`ï¼šé¢‘é“çš„é¢å¤–ç³»ç»Ÿæç¤ºè¯ï¼ˆä¸Žé¢‘é“ä¸»é¢˜ç»„åˆï¼‰ã€‚
+- `guilds.<id>.channels.<channel>.enabled`ï¼šè®¾ç½® `false` ç¦ç”¨é¢‘é“ã€‚
+- `guilds.<id>.channels`ï¼šé¢‘é“è§„åˆ™ï¼ˆé”®ä¸ºé¢‘é“ slug æˆ– IDï¼‰ã€‚
+- `guilds.<id>.requireMention`ï¼šæ¯æœåŠ¡å™¨æåŠè¦æ±‚ï¼ˆå¯æŒ‰é¢‘é“è¦†ç›–ï¼‰ã€‚
+- `guilds.<id>.reactionNotifications`ï¼šè¡¨æƒ…ååº”ç³»ç»Ÿäº‹ä»¶æ¨¡å¼ï¼ˆ`off`ã€`own`ã€`all`ã€`allowlist`ï¼‰ã€‚
+- `textChunkLimit`ï¼šå‡ºç«™æ–‡æœ¬å—å¤§å°ï¼ˆå­—ç¬¦ï¼‰ã€‚é»˜è®¤ï¼š2000ã€‚
+- `chunkMode`ï¼š`length`ï¼ˆé»˜è®¤ï¼‰ä»…åœ¨è¶…è¿‡ `textChunkLimit` æ—¶åˆ†å‰²ï¼›`newline` åœ¨ç©ºè¡Œï¼ˆæ®µè½è¾¹ç•Œï¼‰å¤„åˆ†å‰²ï¼Œç„¶åŽå†è¿›è¡Œé•¿åº¦åˆ†å—ã€‚
+- `maxLinesPerMessage`ï¼šæ¯æ¡æ¶ˆæ¯çš„è½¯æœ€å¤§è¡Œæ•°ã€‚é»˜è®¤ï¼š17ã€‚
+- `mediaMaxMb`ï¼šé™åˆ¶ä¿å­˜åˆ°ç£ç›˜çš„å…¥ç«™åª’ä½“å¤§å°ã€‚
+- `historyLimit`ï¼šå›žå¤æåŠæ—¶ä½œä¸ºä¸Šä¸‹æ–‡åŒ…å«çš„æœ€è¿‘æœåŠ¡å™¨æ¶ˆæ¯æ•°é‡ï¼ˆé»˜è®¤ 20ï¼›å›žé€€åˆ° `messages.groupChat.historyLimit`ï¼›`0` ç¦ç”¨ï¼‰ã€‚
+- `dmHistoryLimit`ï¼šç§ä¿¡åŽ†å²é™åˆ¶ï¼ˆç”¨æˆ·è½®æ¬¡ï¼‰ã€‚æ¯ç”¨æˆ·è¦†ç›–ï¼š`dms["<user_id>"].historyLimit`ã€‚
+- `retry`ï¼šå‡ºç«™ Discord API è°ƒç”¨çš„é‡è¯•ç­–ç•¥ï¼ˆattemptsã€minDelayMsã€maxDelayMsã€jitterï¼‰ã€‚
+- `pluralkit`ï¼šè§£æž PluralKit ä»£ç†æ¶ˆæ¯ï¼Œä½¿ç³»ç»Ÿæˆå‘˜æ˜¾ç¤ºä¸ºä¸åŒçš„å‘é€è€…ã€‚
+- `actions`ï¼šæ¯æ“ä½œå·¥å…·é—¨æŽ§ï¼›çœç•¥å…è®¸æ‰€æœ‰ï¼ˆè®¾ç½® `false` ç¦ç”¨ï¼‰ã€‚
+  - `reactions`ï¼ˆæ¶µç›–è¡¨æƒ…ååº” + è¯»å–è¡¨æƒ…ååº”ï¼‰
+  - `stickers`ã€`emojiUploads`ã€`stickerUploads`ã€`polls`ã€`permissions`ã€`messages`ã€`threads`ã€`pins`ã€`search`
+  - `memberInfo`ã€`roleInfo`ã€`channelInfo`ã€`voiceStatus`ã€`events`
+  - `channels`ï¼ˆåˆ›å»º/ç¼–è¾‘/åˆ é™¤é¢‘é“ + ç±»åˆ« + æƒé™ï¼‰
+  - `roles`ï¼ˆè§’è‰²æ·»åŠ /ç§»é™¤ï¼Œé»˜è®¤ `false`ï¼‰
+  - `moderation`ï¼ˆè¶…æ—¶/è¸¢å‡º/å°ç¦ï¼Œé»˜è®¤ `false`ï¼‰
+- `execApprovals`ï¼šDiscord ä¸“ç”¨æ‰§è¡Œå®¡æ‰¹ç§ä¿¡ï¼ˆæŒ‰é’® UIï¼‰ã€‚æ”¯æŒ `enabled`ã€`approvers`ã€`agentFilter`ã€`sessionFilter`ã€‚
 
-表情反应通知使用 `guilds.<id>.reactionNotifications`：
+è¡¨æƒ…ååº”é€šçŸ¥ä½¿ç”¨ `guilds.<id>.reactionNotifications`ï¼š
 
-- `off`：无表情反应事件。
-- `own`：机器人自己消息上的表情反应（默认）。
-- `all`：所有消息上的所有表情反应。
-- `allowlist`：来自 `guilds.<id>.users` 的用户在所有消息上的表情反应（空列表禁用）。
+- `off`ï¼šæ— è¡¨æƒ…ååº”äº‹ä»¶ã€‚
+- `own`ï¼šæœºå™¨äººè‡ªå·±æ¶ˆæ¯ä¸Šçš„è¡¨æƒ…ååº”ï¼ˆé»˜è®¤ï¼‰ã€‚
+- `all`ï¼šæ‰€æœ‰æ¶ˆæ¯ä¸Šçš„æ‰€æœ‰è¡¨æƒ…ååº”ã€‚
+- `allowlist`ï¼šæ¥è‡ª `guilds.<id>.users` çš„ç”¨æˆ·åœ¨æ‰€æœ‰æ¶ˆæ¯ä¸Šçš„è¡¨æƒ…ååº”ï¼ˆç©ºåˆ—è¡¨ç¦ç”¨ï¼‰ã€‚
 
-### PluralKit（PK）支持
+### PluralKitï¼ˆPKï¼‰æ”¯æŒ
 
-启用 PK 查找，以便代理消息解析到底层系统 + 成员。启用后，OpenClaw 使用成员身份进行允许列表匹配，并将发送者标记为 `Member (PK:System)` 以避免意外的 Discord 提及。
+å¯ç”¨ PK æŸ¥æ‰¾ï¼Œä»¥ä¾¿ä»£ç†æ¶ˆæ¯è§£æžåˆ°åº•å±‚ç³»ç»Ÿ + æˆå‘˜ã€‚å¯ç”¨åŽï¼Œ ä½¿ç”¨æˆå‘˜èº«ä»½è¿›è¡Œå…è®¸åˆ—è¡¨åŒ¹é…ï¼Œå¹¶å°†å‘é€è€…æ ‡è®°ä¸º `Member (PK:System)` ä»¥é¿å…æ„å¤–çš„ Discord æåŠã€‚
 
 ```json5
 {
@@ -375,94 +375,95 @@ Discord 到处使用数字 ID；OpenClaw 配置优先使用 ID。
     discord: {
       pluralkit: {
         enabled: true,
-        token: "pk_live_...", // 可选；私有系统需要
+        token: "pk_live_...", // å¯é€‰ï¼›ç§æœ‰ç³»ç»Ÿéœ€è¦
       },
     },
   },
 }
 ```
 
-允许列表注意事项（启用 PK 时）：
+å…è®¸åˆ—è¡¨æ³¨æ„äº‹é¡¹ï¼ˆå¯ç”¨ PK æ—¶ï¼‰ï¼š
 
-- 在 `dm.allowFrom`、`guilds.<id>.users` 或每频道 `users` 中使用 `pk:<memberId>`。
-- 成员显示名称也按名称/slug 匹配。
-- 查找使用**原始** Discord 消息 ID（代理前的消息），因此 PK API 只在其 30 分钟窗口内解析它。
-- 如果 PK 查找失败（例如，没有令牌的私有系统），代理消息会被视为机器人消息并被丢弃，除非 `channels.discord.allowBots=true`。
+- åœ¨ `dm.allowFrom`ã€`guilds.<id>.users` æˆ–æ¯é¢‘é“ `users` ä¸­ä½¿ç”¨ `pk:<memberId>`ã€‚
+- æˆå‘˜æ˜¾ç¤ºåç§°ä¹ŸæŒ‰åç§°/slug åŒ¹é…ã€‚
+- æŸ¥æ‰¾ä½¿ç”¨**åŽŸå§‹** Discord æ¶ˆæ¯ IDï¼ˆä»£ç†å‰çš„æ¶ˆæ¯ï¼‰ï¼Œå› æ­¤ PK API åªåœ¨å…¶ 30 åˆ†é’Ÿçª—å£å†…è§£æžå®ƒã€‚
+- å¦‚æžœ PK æŸ¥æ‰¾å¤±è´¥ï¼ˆä¾‹å¦‚ï¼Œæ²¡æœ‰ä»¤ç‰Œçš„ç§æœ‰ç³»ç»Ÿï¼‰ï¼Œä»£ç†æ¶ˆæ¯ä¼šè¢«è§†ä¸ºæœºå™¨äººæ¶ˆæ¯å¹¶è¢«ä¸¢å¼ƒï¼Œé™¤éž `channels.discord.allowBots=true`ã€‚
 
-### 工具操作默认值
+### å·¥å…·æ“ä½œé»˜è®¤å€¼
 
-| 操作组         | 默认 | 说明                                |
+| æ“ä½œç»„         | é»˜è®¤ | è¯´æ˜Ž                                |
 | -------------- | ---- | ----------------------------------- |
-| reactions      | 启用 | 表情反应 + 列出表情反应 + emojiList |
-| stickers       | 启用 | 发送贴纸                            |
-| emojiUploads   | 启用 | 上传表情                            |
-| stickerUploads | 启用 | 上传贴纸                            |
-| polls          | 启用 | 创建投票                            |
-| permissions    | 启用 | 频道权限快照                        |
-| messages       | 启用 | 读取/发送/编辑/删除                 |
-| threads        | 启用 | 创建/列出/回复                      |
-| pins           | 启用 | 置顶/取消置顶/列出                  |
-| search         | 启用 | 消息搜索（预览功能）                |
-| memberInfo     | 启用 | 成员信息                            |
-| roleInfo       | 启用 | 角色列表                            |
-| channelInfo    | 启用 | 频道信息 + 列表                     |
-| channels       | 启用 | 频道/类别管理                       |
-| voiceStatus    | 启用 | 语音状态查询                        |
-| events         | 启用 | 列出/创建预定事件                   |
-| roles          | 禁用 | 角色添加/移除                       |
-| moderation     | 禁用 | 超时/踢出/封禁                      |
+| reactions      | å¯ç”¨ | è¡¨æƒ…ååº” + åˆ—å‡ºè¡¨æƒ…ååº” + emojiList |
+| stickers       | å¯ç”¨ | å‘é€è´´çº¸                            |
+| emojiUploads   | å¯ç”¨ | ä¸Šä¼ è¡¨æƒ…                            |
+| stickerUploads | å¯ç”¨ | ä¸Šä¼ è´´çº¸                            |
+| polls          | å¯ç”¨ | åˆ›å»ºæŠ•ç¥¨                            |
+| permissions    | å¯ç”¨ | é¢‘é“æƒé™å¿«ç…§                        |
+| messages       | å¯ç”¨ | è¯»å–/å‘é€/ç¼–è¾‘/åˆ é™¤                 |
+| threads        | å¯ç”¨ | åˆ›å»º/åˆ—å‡º/å›žå¤                      |
+| pins           | å¯ç”¨ | ç½®é¡¶/å–æ¶ˆç½®é¡¶/åˆ—å‡º                  |
+| search         | å¯ç”¨ | æ¶ˆæ¯æœç´¢ï¼ˆé¢„è§ˆåŠŸèƒ½ï¼‰                |
+| memberInfo     | å¯ç”¨ | æˆå‘˜ä¿¡æ¯                            |
+| roleInfo       | å¯ç”¨ | è§’è‰²åˆ—è¡¨                            |
+| channelInfo    | å¯ç”¨ | é¢‘é“ä¿¡æ¯ + åˆ—è¡¨                     |
+| channels       | å¯ç”¨ | é¢‘é“/ç±»åˆ«ç®¡ç†                       |
+| voiceStatus    | å¯ç”¨ | è¯­éŸ³çŠ¶æ€æŸ¥è¯¢                        |
+| events         | å¯ç”¨ | åˆ—å‡º/åˆ›å»ºé¢„å®šäº‹ä»¶                   |
+| roles          | ç¦ç”¨ | è§’è‰²æ·»åŠ /ç§»é™¤                       |
+| moderation     | ç¦ç”¨ | è¶…æ—¶/è¸¢å‡º/å°ç¦                      |
 
-- `replyToMode`：`off`（默认）、`first` 或 `all`。仅在模型包含回复标签时适用。
+- `replyToMode`ï¼š`off`ï¼ˆé»˜è®¤ï¼‰ã€`first` æˆ– `all`ã€‚ä»…åœ¨æ¨¡åž‹åŒ…å«å›žå¤æ ‡ç­¾æ—¶é€‚ç”¨ã€‚
 
-## 回复标签
+## å›žå¤æ ‡ç­¾
 
-要请求线程回复，模型可以在其输出中包含一个标签：
+è¦è¯·æ±‚çº¿ç¨‹å›žå¤ï¼Œæ¨¡åž‹å¯ä»¥åœ¨å…¶è¾“å‡ºä¸­åŒ…å«ä¸€ä¸ªæ ‡ç­¾ï¼š
 
-- `[[reply_to_current]]` — 回复触发的 Discord 消息。
-- `[[reply_to:<id>]]` — 回复上下文/历史中的特定消息 ID。当前消息 ID 作为 `[message_id: …]` 附加到提示词；历史条目已包含 ID。
+- `[[reply_to_current]]` â€” å›žå¤è§¦å‘çš„ Discord æ¶ˆæ¯ã€‚
+- `[[reply_to:<id>]]` â€” å›žå¤ä¸Šä¸‹æ–‡/åŽ†å²ä¸­çš„ç‰¹å®šæ¶ˆæ¯ IDã€‚å½“å‰æ¶ˆæ¯ ID ä½œä¸º `[message_id: â€¦]` é™„åŠ åˆ°æç¤ºè¯ï¼›åŽ†å²æ¡ç›®å·²åŒ…å« IDã€‚
 
-行为由 `channels.discord.replyToMode` 控制：
+è¡Œä¸ºç”± `channels.discord.replyToMode` æŽ§åˆ¶ï¼š
 
-- `off`：忽略标签。
-- `first`：只有第一个出站块/附件是回复。
-- `all`：每个出站块/附件都是回复。
+- `off`ï¼šå¿½ç•¥æ ‡ç­¾ã€‚
+- `first`ï¼šåªæœ‰ç¬¬ä¸€ä¸ªå‡ºç«™å—/é™„ä»¶æ˜¯å›žå¤ã€‚
+- `all`ï¼šæ¯ä¸ªå‡ºç«™å—/é™„ä»¶éƒ½æ˜¯å›žå¤ã€‚
 
-允许列表匹配注意事项：
+å…è®¸åˆ—è¡¨åŒ¹é…æ³¨æ„äº‹é¡¹ï¼š
 
-- `allowFrom`/`users`/`groupChannels` 接受 ID、名称、标签或像 `<@id>` 这样的提及。
-- 支持 `discord:`/`user:`（用户）和 `channel:`（群组私信）等前缀。
-- 使用 `*` 允许任何发送者/频道。
-- 当存在 `guilds.<id>.channels` 时，未列出的频道默认被拒绝。
-- 当省略 `guilds.<id>.channels` 时，允许列表中服务器的所有频道都被允许。
-- 要**不允许任何频道**，设置 `channels.discord.groupPolicy: "disabled"`（或保持空允许列表）。
-- 配置向导接受 `Guild/Channel` 名称（公开 + 私有）并在可能时将其解析为 ID。
-- 启动时，OpenClaw 将允许列表中的频道/用户名称解析为 ID（当机器人可以搜索成员时）并记录映射；未解析的条目保持原样。
+- `allowFrom`/`users`/`groupChannels` æŽ¥å— IDã€åç§°ã€æ ‡ç­¾æˆ–åƒ `<@id>` è¿™æ ·çš„æåŠã€‚
+- æ”¯æŒ `discord:`/`user:`ï¼ˆç”¨æˆ·ï¼‰å’Œ `channel:`ï¼ˆç¾¤ç»„ç§ä¿¡ï¼‰ç­‰å‰ç¼€ã€‚
+- ä½¿ç”¨ `*` å…è®¸ä»»ä½•å‘é€è€…/é¢‘é“ã€‚
+- å½“å­˜åœ¨ `guilds.<id>.channels` æ—¶ï¼Œæœªåˆ—å‡ºçš„é¢‘é“é»˜è®¤è¢«æ‹’ç»ã€‚
+- å½“çœç•¥ `guilds.<id>.channels` æ—¶ï¼Œå…è®¸åˆ—è¡¨ä¸­æœåŠ¡å™¨çš„æ‰€æœ‰é¢‘é“éƒ½è¢«å…è®¸ã€‚
+- è¦**ä¸å…è®¸ä»»ä½•é¢‘é“**ï¼Œè®¾ç½® `channels.discord.groupPolicy: "disabled"`ï¼ˆæˆ–ä¿æŒç©ºå…è®¸åˆ—è¡¨ï¼‰ã€‚
+- é…ç½®å‘å¯¼æŽ¥å— `Guild/Channel` åç§°ï¼ˆå…¬å¼€ + ç§æœ‰ï¼‰å¹¶åœ¨å¯èƒ½æ—¶å°†å…¶è§£æžä¸º IDã€‚
+- å¯åŠ¨æ—¶ï¼Œ å°†å…è®¸åˆ—è¡¨ä¸­çš„é¢‘é“/ç”¨æˆ·åç§°è§£æžä¸º IDï¼ˆå½“æœºå™¨äººå¯ä»¥æœç´¢æˆå‘˜æ—¶ï¼‰å¹¶è®°å½•æ˜ å°„ï¼›æœªè§£æžçš„æ¡ç›®ä¿æŒåŽŸæ ·ã€‚
 
-原生命令注意事项：
+åŽŸç”Ÿå‘½ä»¤æ³¨æ„äº‹é¡¹ï¼š
 
-- 注册的命令镜像 OpenClaw 的聊天命令。
-- 原生命令遵循与私信/服务器消息相同的允许列表（`channels.discord.dm.allowFrom`、`channels.discord.guilds`、每频道规则）。
-- 斜杠命令可能在 Discord UI 中对未在允许列表中的用户仍然可见；OpenClaw 在执行时强制执行允许列表并回复"未授权"。
+- æ³¨å†Œçš„å‘½ä»¤é•œåƒ  çš„èŠå¤©å‘½ä»¤ã€‚
+- åŽŸç”Ÿå‘½ä»¤éµå¾ªä¸Žç§ä¿¡/æœåŠ¡å™¨æ¶ˆæ¯ç›¸åŒçš„å…è®¸åˆ—è¡¨ï¼ˆ`channels.discord.dm.allowFrom`ã€`channels.discord.guilds`ã€æ¯é¢‘é“è§„åˆ™ï¼‰ã€‚
+- æ–œæ å‘½ä»¤å¯èƒ½åœ¨ Discord UI ä¸­å¯¹æœªåœ¨å…è®¸åˆ—è¡¨ä¸­çš„ç”¨æˆ·ä»ç„¶å¯è§ï¼› åœ¨æ‰§è¡Œæ—¶å¼ºåˆ¶æ‰§è¡Œå…è®¸åˆ—è¡¨å¹¶å›žå¤"æœªæŽˆæƒ"ã€‚
 
-## 工具操作
+## å·¥å…·æ“ä½œ
 
-智能体可以使用以下操作调用 `discord`：
+æ™ºèƒ½ä½“å¯ä»¥ä½¿ç”¨ä»¥ä¸‹æ“ä½œè°ƒç”¨ `discord`ï¼š
 
-- `react` / `reactions`（添加或列出表情反应）
-- `sticker`、`poll`、`permissions`
-- `readMessages`、`sendMessage`、`editMessage`、`deleteMessage`
-- 读取/搜索/置顶工具负载包含规范化的 `timestampMs`（UTC 纪元毫秒）和 `timestampUtc` 以及原始 Discord `timestamp`。
-- `threadCreate`、`threadList`、`threadReply`
-- `pinMessage`、`unpinMessage`、`listPins`
-- `searchMessages`、`memberInfo`、`roleInfo`、`roleAdd`、`roleRemove`、`emojiList`
-- `channelInfo`、`channelList`、`voiceStatus`、`eventList`、`eventCreate`
-- `timeout`、`kick`、`ban`
+- `react` / `reactions`ï¼ˆæ·»åŠ æˆ–åˆ—å‡ºè¡¨æƒ…ååº”ï¼‰
+- `sticker`ã€`poll`ã€`permissions`
+- `readMessages`ã€`sendMessage`ã€`editMessage`ã€`deleteMessage`
+- è¯»å–/æœç´¢/ç½®é¡¶å·¥å…·è´Ÿè½½åŒ…å«è§„èŒƒåŒ–çš„ `timestampMs`ï¼ˆUTC çºªå…ƒæ¯«ç§’ï¼‰å’Œ `timestampUtc` ä»¥åŠåŽŸå§‹ Discord `timestamp`ã€‚
+- `threadCreate`ã€`threadList`ã€`threadReply`
+- `pinMessage`ã€`unpinMessage`ã€`listPins`
+- `searchMessages`ã€`memberInfo`ã€`roleInfo`ã€`roleAdd`ã€`roleRemove`ã€`emojiList`
+- `channelInfo`ã€`channelList`ã€`voiceStatus`ã€`eventList`ã€`eventCreate`
+- `timeout`ã€`kick`ã€`ban`
 
-Discord 消息 ID 在注入的上下文中显示（`[discord message id: …]` 和历史行），以便智能体可以定位它们。
-表情可以是 unicode（例如 `✅`）或自定义表情语法如 `<:party_blob:1234567890>`。
+Discord æ¶ˆæ¯ ID åœ¨æ³¨å…¥çš„ä¸Šä¸‹æ–‡ä¸­æ˜¾ç¤ºï¼ˆ`[discord message id: â€¦]` å’ŒåŽ†å²è¡Œï¼‰ï¼Œä»¥ä¾¿æ™ºèƒ½ä½“å¯ä»¥å®šä½å®ƒä»¬ã€‚
+è¡¨æƒ…å¯ä»¥æ˜¯ unicodeï¼ˆä¾‹å¦‚ `âœ…`ï¼‰æˆ–è‡ªå®šä¹‰è¡¨æƒ…è¯­æ³•å¦‚ `<:party_blob:1234567890>`ã€‚
 
-## 安全与运维
+## å®‰å…¨ä¸Žè¿ç»´
 
-- 像对待密码一样对待机器人令牌；在受监督的主机上优先使用 `DISCORD_BOT_TOKEN` 环境变量，或锁定配置文件权限。
-- 只授予机器人所需的权限（通常是读取/发送消息）。
-- 如果机器人卡住或受到速率限制，在确认没有其他进程拥有 Discord 会话后重启 Gateway 网关（`openclaw gateway --force`）。
+- åƒå¯¹å¾…å¯†ç ä¸€æ ·å¯¹å¾…æœºå™¨äººä»¤ç‰Œï¼›åœ¨å—ç›‘ç£çš„ä¸»æœºä¸Šä¼˜å…ˆä½¿ç”¨ `DISCORD_BOT_TOKEN` çŽ¯å¢ƒå˜é‡ï¼Œæˆ–é”å®šé…ç½®æ–‡ä»¶æƒé™ã€‚
+- åªæŽˆäºˆæœºå™¨äººæ‰€éœ€çš„æƒé™ï¼ˆé€šå¸¸æ˜¯è¯»å–/å‘é€æ¶ˆæ¯ï¼‰ã€‚
+- å¦‚æžœæœºå™¨äººå¡ä½æˆ–å—åˆ°é€ŸçŽ‡é™åˆ¶ï¼Œåœ¨ç¡®è®¤æ²¡æœ‰å…¶ä»–è¿›ç¨‹æ‹¥æœ‰ Discord ä¼šè¯åŽé‡å¯ Gateway ç½‘å…³ï¼ˆ` gateway --force`ï¼‰ã€‚
+

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 import { createTelegramRetryRunner } from "./retry-policy.js";
 
 describe("createTelegramRetryRunner", () => {
@@ -24,3 +24,4 @@ describe("createTelegramRetryRunner", () => {
     expect(fn).toHaveBeenCalledTimes(2);
   });
 });
+

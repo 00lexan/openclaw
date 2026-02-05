@@ -1,36 +1,36 @@
-# Contributing to OpenClaw
+﻿# Contributing to 
 
-Welcome to the lobster tank! 🦞
+Welcome to the lobster tank! ðŸ¦ž
 
 ## Quick Links
 
-- **GitHub:** https://github.com/openclaw/openclaw
+- **GitHub:** https://github.com//
 - **Discord:** https://discord.gg/qkhbAGHRBT
-- **X/Twitter:** [@steipete](https://x.com/steipete) / [@openclaw](https://x.com/openclaw)
+- **X/Twitter:** [@steipete](https://x.com/steipete) / [@](https://x.com/)
 
 ## Maintainers
 
 - **Peter Steinberger** - Benevolent Dictator
-  - GitHub: [@steipete](https://github.com/steipete) · X: [@steipete](https://x.com/steipete)
+  - GitHub: [@steipete](https://github.com/steipete) Â· X: [@steipete](https://x.com/steipete)
 
 - **Shadow** - Discord + Slack subsystem
-  - GitHub: [@thewilloftheshadow](https://github.com/thewilloftheshadow) · X: [@4shad0wed](https://x.com/4shad0wed)
+  - GitHub: [@thewilloftheshadow](https://github.com/thewilloftheshadow) Â· X: [@4shad0wed](https://x.com/4shad0wed)
 
 - **Jos** - Telegram, API, Nix mode
-  - GitHub: [@joshp123](https://github.com/joshp123) · X: [@jjpcodes](https://x.com/jjpcodes)
+  - GitHub: [@joshp123](https://github.com/joshp123) Â· X: [@jjpcodes](https://x.com/jjpcodes)
 
 - **Christoph Nakazawa** - JS Infra
-  - GitHub: [@cpojer](https://github.com/cpojer) · X: [@cnakazawa](https://x.com/cnakazawa)
+  - GitHub: [@cpojer](https://github.com/cpojer) Â· X: [@cnakazawa](https://x.com/cnakazawa)
 
 ## How to Contribute
 
-1. **Bugs & small fixes** → Open a PR!
-2. **New features / architecture** → Start a [GitHub Discussion](https://github.com/openclaw/openclaw/discussions) or ask in Discord first
-3. **Questions** → Discord #setup-help
+1. **Bugs & small fixes** â†’ Open a PR!
+2. **New features / architecture** â†’ Start a [GitHub Discussion](https://github.com///discussions) or ask in Discord first
+3. **Questions** â†’ Discord #setup-help
 
 ## Before You PR
 
-- Test locally with your OpenClaw instance
+- Test locally with your  instance
 - Run tests: `pnpm build && pnpm check && pnpm test`
 - Keep PRs focused (one thing per PR)
 - Describe what & why
@@ -50,7 +50,7 @@ The root `tsconfig.json` is configured for legacy decorators (`experimentalDecor
 with `useDefineForClassFields: false`. Avoid flipping these unless you are also updating the UI
 build tooling to support standard decorators.
 
-## AI/Vibe-Coded PRs Welcome! 🤖
+## AI/Vibe-Coded PRs Welcome! ðŸ¤–
 
 Built with Codex, Claude, or other AI tools? **Awesome - just mark it!**
 
@@ -63,7 +63,7 @@ Please include in your PR:
 
 AI PRs are first-class citizens here. We just want transparency so reviewers know what to look for.
 
-## Current Focus & Roadmap 🗺
+## Current Focus & Roadmap ðŸ—º
 
 We are currently prioritizing:
 
@@ -72,4 +72,5 @@ We are currently prioritizing:
 - **Skills**: Expanding the library of bundled skills and improving the Skill Creation developer experience.
 - **Performance**: Optimizing token usage and compaction logic.
 
-Check the [GitHub Issues](https://github.com/openclaw/openclaw/issues) for "good first issue" labels!
+Check the [GitHub Issues](https://github.com///issues) for "good first issue" labels!
+

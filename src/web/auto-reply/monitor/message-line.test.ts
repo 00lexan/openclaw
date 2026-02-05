@@ -1,11 +1,11 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { buildInboundLine } from "./message-line.js";
 
 describe("buildInboundLine", () => {
   it("prefixes group messages with sender", () => {
     const line = buildInboundLine({
       cfg: {
-        agents: { defaults: { workspace: "/tmp/openclaw" } },
+        agents: { defaults: { workspace: "/tmp/" } },
         channels: { whatsapp: { messagePrefix: "" } },
       } as never,
       agentId: "main",
@@ -31,3 +31,4 @@ describe("buildInboundLine", () => {
     expect(line).toContain("ping");
   });
 });
+

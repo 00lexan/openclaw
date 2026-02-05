@@ -1,8 +1,8 @@
-import type { Command } from "commander";
+﻿import type { Command } from "commander";
 import fs from "node:fs";
 import fsp from "node:fs/promises";
 import path from "node:path";
-import type { OpenClawConfig } from "../config/config.js";
+import type { Config } from "../config/config.js";
 import type { HookEntry } from "../hooks/types.js";
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent-scope.js";
 import { loadConfig, writeConfigFile } from "../config/io.js";
@@ -57,7 +57,7 @@ function mergeHookEntries(pluginEntries: HookEntry[], workspaceEntries: HookEntr
   return Array.from(merged.values());
 }
 
-function buildHooksReport(config: OpenClawConfig): HookStatusReport {
+function buildHooksReport(config: Config): HookStatusReport {
   const workspaceDir = resolveAgentWorkspaceDir(config, resolveDefaultAgentId(config));
   const workspaceEntries = loadWorkspaceHookEntries(workspaceDir, { config });
   const pluginReport = buildPluginStatusReport({ config, workspaceDir });
@@ -68,16 +68,16 @@ function buildHooksReport(config: OpenClawConfig): HookStatusReport {
 
 function formatHookStatus(hook: HookStatusEntry): string {
   if (hook.eligible) {
-    return theme.success("✓ ready");
+    return theme.success("âœ“ ready");
   }
   if (hook.disabled) {
-    return theme.warn("⏸ disabled");
+    return theme.warn("â¸ disabled");
   }
-  return theme.error("✗ missing");
+  return theme.error("âœ— missing");
 }
 
 function formatHookName(hook: HookStatusEntry): string {
-  const emoji = hook.emoji ?? "🔗";
+  const emoji = hook.emoji ?? "ðŸ”—";
   return `${emoji} ${theme.command(hook.name)}`;
 }
 
@@ -147,7 +147,7 @@ export function formatHooksList(report: HookStatusReport, opts: HooksListOptions
 
   if (hooks.length === 0) {
     const message = opts.eligible
-      ? `No eligible hooks found. Run \`${formatCliCommand("openclaw hooks list")}\` to see all hooks.`
+      ? `No eligible hooks found. Run \`${formatCliCommand(" hooks list")}\` to see all hooks.`
       : "No hooks found.";
     return message;
   }
@@ -203,7 +203,7 @@ export function formatHookInfo(
     if (opts.json) {
       return JSON.stringify({ error: "not found", hook: hookName }, null, 2);
     }
-    return `Hook "${hookName}" not found. Run \`${formatCliCommand("openclaw hooks list")}\` to see available hooks.`;
+    return `Hook "${hookName}" not found. Run \`${formatCliCommand(" hooks list")}\` to see available hooks.`;
   }
 
   if (opts.json) {
@@ -211,12 +211,12 @@ export function formatHookInfo(
   }
 
   const lines: string[] = [];
-  const emoji = hook.emoji ?? "🔗";
+  const emoji = hook.emoji ?? "ðŸ”—";
   const status = hook.eligible
-    ? theme.success("✓ Ready")
+    ? theme.success("âœ“ Ready")
     : hook.disabled
-      ? theme.warn("⏸ Disabled")
-      : theme.error("✗ Missing requirements");
+      ? theme.warn("â¸ Disabled")
+      : theme.error("âœ— Missing requirements");
 
   lines.push(`${emoji} ${theme.heading(hook.name)} ${status}`);
   lines.push("");
@@ -256,35 +256,35 @@ export function formatHookInfo(
     if (hook.requirements.bins.length > 0) {
       const binsStatus = hook.requirements.bins.map((bin) => {
         const missing = hook.missing.bins.includes(bin);
-        return missing ? theme.error(`✗ ${bin}`) : theme.success(`✓ ${bin}`);
+        return missing ? theme.error(`âœ— ${bin}`) : theme.success(`âœ“ ${bin}`);
       });
       lines.push(`${theme.muted("  Binaries:")} ${binsStatus.join(", ")}`);
     }
     if (hook.requirements.anyBins.length > 0) {
       const anyBinsStatus =
         hook.missing.anyBins.length > 0
-          ? theme.error(`✗ (any of: ${hook.requirements.anyBins.join(", ")})`)
-          : theme.success(`✓ (any of: ${hook.requirements.anyBins.join(", ")})`);
+          ? theme.error(`âœ— (any of: ${hook.requirements.anyBins.join(", ")})`)
+          : theme.success(`âœ“ (any of: ${hook.requirements.anyBins.join(", ")})`);
       lines.push(`${theme.muted("  Any binary:")} ${anyBinsStatus}`);
     }
     if (hook.requirements.env.length > 0) {
       const envStatus = hook.requirements.env.map((env) => {
         const missing = hook.missing.env.includes(env);
-        return missing ? theme.error(`✗ ${env}`) : theme.success(`✓ ${env}`);
+        return missing ? theme.error(`âœ— ${env}`) : theme.success(`âœ“ ${env}`);
       });
       lines.push(`${theme.muted("  Environment:")} ${envStatus.join(", ")}`);
     }
     if (hook.requirements.config.length > 0) {
       const configStatus = hook.configChecks.map((check) => {
-        return check.satisfied ? theme.success(`✓ ${check.path}`) : theme.error(`✗ ${check.path}`);
+        return check.satisfied ? theme.success(`âœ“ ${check.path}`) : theme.error(`âœ— ${check.path}`);
       });
       lines.push(`${theme.muted("  Config:")} ${configStatus.join(", ")}`);
     }
     if (hook.requirements.os.length > 0) {
       const osStatus =
         hook.missing.os.length > 0
-          ? theme.error(`✗ (${hook.requirements.os.join(", ")})`)
-          : theme.success(`✓ (${hook.requirements.os.join(", ")})`);
+          ? theme.error(`âœ— (${hook.requirements.os.join(", ")})`)
+          : theme.success(`âœ“ (${hook.requirements.os.join(", ")})`);
       lines.push(`${theme.muted("  OS:")} ${osStatus}`);
     }
   }
@@ -350,7 +350,7 @@ export function formatHooksCheck(report: HookStatusReport, opts: HooksCheckOptio
       if (hook.missing.os.length > 0) {
         reasons.push(`os: ${hook.missing.os.join(", ")}`);
       }
-      lines.push(`  ${hook.emoji ?? "🔗"} ${hook.name} - ${reasons.join("; ")}`);
+      lines.push(`  ${hook.emoji ?? "ðŸ”—"} ${hook.name} - ${reasons.join("; ")}`);
     }
   }
 
@@ -394,7 +394,7 @@ export async function enableHook(hookName: string): Promise<void> {
 
   await writeConfigFile(nextConfig);
   defaultRuntime.log(
-    `${theme.success("✓")} Enabled hook: ${hook.emoji ?? "🔗"} ${theme.command(hookName)}`,
+    `${theme.success("âœ“")} Enabled hook: ${hook.emoji ?? "ðŸ”—"} ${theme.command(hookName)}`,
   );
 }
 
@@ -430,7 +430,7 @@ export async function disableHook(hookName: string): Promise<void> {
 
   await writeConfigFile(nextConfig);
   defaultRuntime.log(
-    `${theme.warn("⏸")} Disabled hook: ${hook.emoji ?? "🔗"} ${theme.command(hookName)}`,
+    `${theme.warn("â¸")} Disabled hook: ${hook.emoji ?? "ðŸ”—"} ${theme.command(hookName)}`,
   );
 }
 
@@ -441,7 +441,7 @@ export function registerHooksCli(program: Command): void {
     .addHelpText(
       "after",
       () =>
-        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/hooks", "docs.openclaw.ai/cli/hooks")}\n`,
+        `\n${theme.muted("Docs:")} ${formatDocsLink("/cli/hooks", "docs..ai/cli/hooks")}\n`,
     );
 
   hooks
@@ -550,7 +550,7 @@ export function registerHooksCli(program: Command): void {
             process.exit(1);
           }
 
-          let next: OpenClawConfig = {
+          let next: Config = {
             ...cfg,
             hooks: {
               ...cfg.hooks,
@@ -611,7 +611,7 @@ export function registerHooksCli(program: Command): void {
           process.exit(1);
         }
 
-        let next: OpenClawConfig = {
+        let next: Config = {
           ...cfg,
           hooks: {
             ...cfg.hooks,
@@ -691,7 +691,7 @@ export function registerHooksCli(program: Command): void {
         process.exit(1);
       }
 
-      let next: OpenClawConfig = {
+      let next: Config = {
         ...cfg,
         hooks: {
           ...cfg.hooks,
@@ -801,7 +801,7 @@ export function registerHooksCli(program: Command): void {
           if (currentVersion && probe.version && currentVersion === probe.version) {
             defaultRuntime.log(`${hookId} is up to date (${currentLabel}).`);
           } else {
-            defaultRuntime.log(`Would update ${hookId}: ${currentLabel} → ${nextVersion}.`);
+            defaultRuntime.log(`Would update ${hookId}: ${currentLabel} â†’ ${nextVersion}.`);
           }
           continue;
         }
@@ -836,7 +836,7 @@ export function registerHooksCli(program: Command): void {
         if (currentVersion && nextVersion && currentVersion === nextVersion) {
           defaultRuntime.log(`${hookId} already at ${currentLabel}.`);
         } else {
-          defaultRuntime.log(`Updated ${hookId}: ${currentLabel} → ${nextLabel}.`);
+          defaultRuntime.log(`Updated ${hookId}: ${currentLabel} â†’ ${nextLabel}.`);
         }
       }
 
@@ -859,3 +859,4 @@ export function registerHooksCli(program: Command): void {
     }
   });
 }
+

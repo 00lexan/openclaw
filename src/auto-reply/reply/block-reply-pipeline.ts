@@ -1,4 +1,4 @@
-import type { ReplyPayload } from "../types.js";
+﻿import type { ReplyPayload } from "../types.js";
 import type { BlockStreamingCoalescing } from "./block-streaming.js";
 import { logVerbose } from "../../globals.js";
 import { createBlockReplyCoalescer } from "./block-reply-coalescer.js";
@@ -240,3 +240,4 @@ export function createBlockReplyPipeline(params: {
     },
   };
 }
+

@@ -1,4 +1,4 @@
-import type { ChannelMeta } from "./plugins/types.js";
+﻿import type { ChannelMeta } from "./plugins/types.js";
 import type { ChannelId } from "./plugins/types.js";
 import { requireActivePluginRegistry } from "../plugins/runtime.js";
 
@@ -22,7 +22,7 @@ export const DEFAULT_CHAT_CHANNEL: ChatChannelId = "whatsapp";
 
 export type ChatChannelMeta = ChannelMeta;
 
-const WEBSITE_URL = "https://openclaw.ai";
+const WEBSITE_URL = "https://.ai";
 
 const CHAT_CHANNEL_META: Record<ChatChannelId, ChannelMeta> = {
   telegram: {
@@ -32,7 +32,7 @@ const CHAT_CHANNEL_META: Record<ChatChannelId, ChannelMeta> = {
     detailLabel: "Telegram Bot",
     docsPath: "/channels/telegram",
     docsLabel: "telegram",
-    blurb: "simplest way to get started — register a bot with @BotFather and get going.",
+    blurb: "simplest way to get started â€” register a bot with @BotFather and get going.",
     systemImage: "paperplane",
     selectionDocsPrefix: "",
     selectionDocsOmitLabel: true,
@@ -175,5 +175,6 @@ export function formatChannelSelectionLine(
     ? docsLink(meta.docsPath)
     : docsLink(meta.docsPath, docsLabel);
   const extras = (meta.selectionExtras ?? []).filter(Boolean).join(" ");
-  return `${meta.label} — ${meta.blurb} ${docsPrefix ? `${docsPrefix} ` : ""}${docs}${extras ? ` ${extras}` : ""}`;
+  return `${meta.label} â€” ${meta.blurb} ${docsPrefix ? `${docsPrefix} ` : ""}${docs}${extras ? ` ${extras}` : ""}`;
 }
+

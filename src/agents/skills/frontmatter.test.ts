@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { resolveSkillInvocationPolicy } from "./frontmatter.js";
 
 describe("resolveSkillInvocationPolicy", () => {
@@ -17,3 +17,4 @@ describe("resolveSkillInvocationPolicy", () => {
     expect(policy.disableModelInvocation).toBe(true);
   });
 });
+

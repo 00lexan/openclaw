@@ -1,9 +1,9 @@
-import type {
+﻿import type {
   BlockStreamingCoalesceConfig,
   DmConfig,
   DmPolicy,
   GroupPolicy,
-} from "openclaw/plugin-sdk";
+} from "/plugin-sdk";
 
 export type NextcloudTalkRoomConfig = {
   requireMention?: boolean;
@@ -179,3 +179,4 @@ export type NextcloudTalkSendOptions = {
   message: string;
   replyTo?: string;
 };
+

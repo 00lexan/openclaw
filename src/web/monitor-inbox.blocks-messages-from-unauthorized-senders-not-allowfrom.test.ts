@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+﻿import { vi } from "vitest";
 
 vi.mock("../media/store.js", () => ({
   saveMediaBuffer: vi.fn().mockResolvedValue({
@@ -86,7 +86,7 @@ describe("web monitor inbox", () => {
       created: true,
     });
     resetWebInboundDedupe();
-    authDir = fsSync.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-"));
+    authDir = fsSync.mkdtempSync(path.join(os.tmpdir(), "-auth-"));
   });
 
   afterEach(() => {
@@ -538,3 +538,4 @@ describe("web monitor inbox", () => {
     await listener.close();
   });
 });
+

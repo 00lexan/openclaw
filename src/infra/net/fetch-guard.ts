@@ -1,4 +1,4 @@
-import type { Dispatcher } from "undici";
+﻿import type { Dispatcher } from "undici";
 import {
   closeDispatcher,
   createPinnedDispatcher,
@@ -169,3 +169,4 @@ export async function fetchWithSsrFGuard(params: GuardedFetchOptions): Promise<G
     }
   }
 }
+

@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+﻿import { Type } from "@sinclair/typebox";
 import { NonEmptyString } from "./primitives.js";
 
 export const ExecApprovalsAllowlistEntrySchema = Type.Object(
@@ -110,3 +110,4 @@ export const ExecApprovalResolveParamsSchema = Type.Object(
   },
   { additionalProperties: false },
 );
+

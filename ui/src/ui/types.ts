@@ -1,4 +1,4 @@
-export type ChannelsStatusSnapshot = {
+﻿export type ChannelsStatusSnapshot = {
   ts: number;
   channelOrder: string[];
   channelLabels: Record<string, string>;
@@ -553,3 +553,4 @@ export type LogEntry = {
   message?: string | null;
   meta?: Record<string, unknown> | null;
 };
+

@@ -1,4 +1,4 @@
-import { getPublicKeyAsync, signAsync, utils } from "@noble/ed25519";
+﻿import { getPublicKeyAsync, signAsync, utils } from "@noble/ed25519";
 
 type StoredIdentity = {
   version: 1;
@@ -14,7 +14,7 @@ export type DeviceIdentity = {
   privateKey: string;
 };
 
-const STORAGE_KEY = "openclaw-device-identity-v1";
+const STORAGE_KEY = "-device-identity-v1";
 
 function base64UrlEncode(bytes: Uint8Array): string {
   let binary = "";
@@ -110,3 +110,4 @@ export async function signDevicePayload(privateKeyBase64Url: string, payload: st
   const sig = await signAsync(data, key);
   return base64UrlEncode(sig);
 }
+

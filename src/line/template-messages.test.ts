@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   createConfirmTemplate,
   createButtonTemplate,
@@ -389,3 +389,4 @@ describe("createProductCarousel", () => {
     expect(columns.length).toBe(10);
   });
 });
+

@@ -1,12 +1,12 @@
-import type { StreamFn } from "@mariozechner/pi-agent-core";
+﻿import type { StreamFn } from "@mariozechner/pi-agent-core";
 import type { SimpleStreamOptions } from "@mariozechner/pi-ai";
 import { streamSimple } from "@mariozechner/pi-ai";
-import type { OpenClawConfig } from "../../config/config.js";
+import type { Config } from "../../config/config.js";
 import { log } from "./logger.js";
 
 const OPENROUTER_APP_HEADERS: Record<string, string> = {
-  "HTTP-Referer": "https://openclaw.ai",
-  "X-Title": "OpenClaw",
+  "HTTP-Referer": "https://.ai",
+  "X-Title": "",
 };
 
 /**
@@ -16,7 +16,7 @@ const OPENROUTER_APP_HEADERS: Record<string, string> = {
  * @internal Exported for testing only
  */
 export function resolveExtraParams(params: {
-  cfg: OpenClawConfig | undefined;
+  cfg: Config | undefined;
   provider: string;
   modelId: string;
 }): Record<string, unknown> | undefined {
@@ -34,7 +34,7 @@ type CacheRetentionStreamOptions = Partial<SimpleStreamOptions> & {
  * Resolve cacheRetention from extraParams, supporting both new `cacheRetention`
  * and legacy `cacheControlTtl` values for backwards compatibility.
  *
- * Mapping: "5m" → "short", "1h" → "long"
+ * Mapping: "5m" â†’ "short", "1h" â†’ "long"
  *
  * Only applies to Anthropic provider (OpenRouter uses openai-completions API
  * with hardcoded cache_control, not the cacheRetention stream option).
@@ -103,7 +103,7 @@ function createStreamFnWithExtraParams(
 
 /**
  * Create a streamFn wrapper that adds OpenRouter app attribution headers.
- * These headers allow OpenClaw to appear on OpenRouter's leaderboard.
+ * These headers allow  to appear on OpenRouter's leaderboard.
  */
 function createOpenRouterHeadersWrapper(baseStreamFn: StreamFn | undefined): StreamFn {
   const underlying = baseStreamFn ?? streamSimple;
@@ -125,7 +125,7 @@ function createOpenRouterHeadersWrapper(baseStreamFn: StreamFn | undefined): Str
  */
 export function applyExtraParamsToAgent(
   agent: { streamFn?: StreamFn },
-  cfg: OpenClawConfig | undefined,
+  cfg: Config | undefined,
   provider: string,
   modelId: string,
   extraParamsOverride?: Record<string, unknown>,
@@ -154,3 +154,4 @@ export function applyExtraParamsToAgent(
     agent.streamFn = createOpenRouterHeadersWrapper(agent.streamFn);
   }
 }
+

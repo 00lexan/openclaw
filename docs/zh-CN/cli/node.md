@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 运行无头节点主机
-  - 为 system.run 配对非 macOS 节点
-summary: "`openclaw node` 的 CLI 参考（无头节点主机）"
+  - è¿è¡Œæ— å¤´èŠ‚ç‚¹ä¸»æœº
+  - ä¸º system.run é…å¯¹éž macOS èŠ‚ç‚¹
+summary: "` node` çš„ CLI å‚è€ƒï¼ˆæ— å¤´èŠ‚ç‚¹ä¸»æœºï¼‰"
 title: node
 x-i18n:
   generated_at: "2026-02-03T07:45:07Z"
@@ -13,28 +13,28 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw node`
+# ` node`
 
-运行一个**无头节点主机**，连接到 Gateway 网关 WebSocket 并在此机器上暴露
-`system.run` / `system.which`。
+è¿è¡Œä¸€ä¸ª**æ— å¤´èŠ‚ç‚¹ä¸»æœº**ï¼Œè¿žæŽ¥åˆ° Gateway ç½‘å…³ WebSocket å¹¶åœ¨æ­¤æœºå™¨ä¸Šæš´éœ²
+`system.run` / `system.which`ã€‚
 
-## 为什么使用节点主机？
+## ä¸ºä»€ä¹ˆä½¿ç”¨èŠ‚ç‚¹ä¸»æœºï¼Ÿ
 
-当你希望智能体**在网络中的其他机器上运行命令**，而无需在那里安装完整的 macOS 配套应用时，请使用节点主机。
+å½“ä½ å¸Œæœ›æ™ºèƒ½ä½“**åœ¨ç½‘ç»œä¸­çš„å…¶ä»–æœºå™¨ä¸Šè¿è¡Œå‘½ä»¤**ï¼Œè€Œæ— éœ€åœ¨é‚£é‡Œå®‰è£…å®Œæ•´çš„ macOS é…å¥—åº”ç”¨æ—¶ï¼Œè¯·ä½¿ç”¨èŠ‚ç‚¹ä¸»æœºã€‚
 
-常见用例：
+å¸¸è§ç”¨ä¾‹ï¼š
 
-- 在远程 Linux/Windows 机器上运行命令（构建服务器、实验室机器、NAS）。
-- 在 Gateway 网关上保持执行的**沙箱隔离**，但将批准的运行委托给其他主机。
-- 为自动化或 CI 节点提供轻量级、无头的执行目标。
+- åœ¨è¿œç¨‹ Linux/Windows æœºå™¨ä¸Šè¿è¡Œå‘½ä»¤ï¼ˆæž„å»ºæœåŠ¡å™¨ã€å®žéªŒå®¤æœºå™¨ã€NASï¼‰ã€‚
+- åœ¨ Gateway ç½‘å…³ä¸Šä¿æŒæ‰§è¡Œçš„**æ²™ç®±éš”ç¦»**ï¼Œä½†å°†æ‰¹å‡†çš„è¿è¡Œå§”æ‰˜ç»™å…¶ä»–ä¸»æœºã€‚
+- ä¸ºè‡ªåŠ¨åŒ–æˆ– CI èŠ‚ç‚¹æä¾›è½»é‡çº§ã€æ— å¤´çš„æ‰§è¡Œç›®æ ‡ã€‚
 
-执行仍然受**执行批准**和节点主机上的每智能体允许列表保护，因此你可以保持命令访问的范围明确。
+æ‰§è¡Œä»ç„¶å—**æ‰§è¡Œæ‰¹å‡†**å’ŒèŠ‚ç‚¹ä¸»æœºä¸Šçš„æ¯æ™ºèƒ½ä½“å…è®¸åˆ—è¡¨ä¿æŠ¤ï¼Œå› æ­¤ä½ å¯ä»¥ä¿æŒå‘½ä»¤è®¿é—®çš„èŒƒå›´æ˜Žç¡®ã€‚
 
-## 浏览器代理（零配置）
+## æµè§ˆå™¨ä»£ç†ï¼ˆé›¶é…ç½®ï¼‰
 
-如果节点上的 `browser.enabled` 未被禁用，节点主机会自动广播浏览器代理。这让智能体无需额外配置即可在该节点上使用浏览器自动化。
+å¦‚æžœèŠ‚ç‚¹ä¸Šçš„ `browser.enabled` æœªè¢«ç¦ç”¨ï¼ŒèŠ‚ç‚¹ä¸»æœºä¼šè‡ªåŠ¨å¹¿æ’­æµè§ˆå™¨ä»£ç†ã€‚è¿™è®©æ™ºèƒ½ä½“æ— éœ€é¢å¤–é…ç½®å³å¯åœ¨è¯¥èŠ‚ç‚¹ä¸Šä½¿ç”¨æµè§ˆå™¨è‡ªåŠ¨åŒ–ã€‚
 
-如需在节点上禁用：
+å¦‚éœ€åœ¨èŠ‚ç‚¹ä¸Šç¦ç”¨ï¼š
 
 ```json5
 {
@@ -46,70 +46,71 @@ x-i18n:
 }
 ```
 
-## 运行（前台）
+## è¿è¡Œï¼ˆå‰å°ï¼‰
 
 ```bash
-openclaw node run --host <gateway-host> --port 18789
+ node run --host <gateway-host> --port 18789
 ```
 
-选项：
+é€‰é¡¹ï¼š
 
-- `--host <host>`：Gateway 网关 WebSocket 主机（默认：`127.0.0.1`）
-- `--port <port>`：Gateway 网关 WebSocket 端口（默认：`18789`）
-- `--tls`：为 Gateway 网关连接使用 TLS
-- `--tls-fingerprint <sha256>`：预期的 TLS 证书指纹（sha256）
-- `--node-id <id>`：覆盖节点 id（清除配对 token）
-- `--display-name <name>`：覆盖节点显示名称
+- `--host <host>`ï¼šGateway ç½‘å…³ WebSocket ä¸»æœºï¼ˆé»˜è®¤ï¼š`127.0.0.1`ï¼‰
+- `--port <port>`ï¼šGateway ç½‘å…³ WebSocket ç«¯å£ï¼ˆé»˜è®¤ï¼š`18789`ï¼‰
+- `--tls`ï¼šä¸º Gateway ç½‘å…³è¿žæŽ¥ä½¿ç”¨ TLS
+- `--tls-fingerprint <sha256>`ï¼šé¢„æœŸçš„ TLS è¯ä¹¦æŒ‡çº¹ï¼ˆsha256ï¼‰
+- `--node-id <id>`ï¼šè¦†ç›–èŠ‚ç‚¹ idï¼ˆæ¸…é™¤é…å¯¹ tokenï¼‰
+- `--display-name <name>`ï¼šè¦†ç›–èŠ‚ç‚¹æ˜¾ç¤ºåç§°
 
-## 服务（后台）
+## æœåŠ¡ï¼ˆåŽå°ï¼‰
 
-将无头节点主机安装为用户服务。
+å°†æ— å¤´èŠ‚ç‚¹ä¸»æœºå®‰è£…ä¸ºç”¨æˆ·æœåŠ¡ã€‚
 
 ```bash
-openclaw node install --host <gateway-host> --port 18789
+ node install --host <gateway-host> --port 18789
 ```
 
-选项：
+é€‰é¡¹ï¼š
 
-- `--host <host>`：Gateway 网关 WebSocket 主机（默认：`127.0.0.1`）
-- `--port <port>`：Gateway 网关 WebSocket 端口（默认：`18789`）
-- `--tls`：为 Gateway 网关连接使用 TLS
-- `--tls-fingerprint <sha256>`：预期的 TLS 证书指纹（sha256）
-- `--node-id <id>`：覆盖节点 id（清除配对 token）
-- `--display-name <name>`：覆盖节点显示名称
-- `--runtime <runtime>`：服务运行时（`node` 或 `bun`）
-- `--force`：如果已安装则重新安装/覆盖
+- `--host <host>`ï¼šGateway ç½‘å…³ WebSocket ä¸»æœºï¼ˆé»˜è®¤ï¼š`127.0.0.1`ï¼‰
+- `--port <port>`ï¼šGateway ç½‘å…³ WebSocket ç«¯å£ï¼ˆé»˜è®¤ï¼š`18789`ï¼‰
+- `--tls`ï¼šä¸º Gateway ç½‘å…³è¿žæŽ¥ä½¿ç”¨ TLS
+- `--tls-fingerprint <sha256>`ï¼šé¢„æœŸçš„ TLS è¯ä¹¦æŒ‡çº¹ï¼ˆsha256ï¼‰
+- `--node-id <id>`ï¼šè¦†ç›–èŠ‚ç‚¹ idï¼ˆæ¸…é™¤é…å¯¹ tokenï¼‰
+- `--display-name <name>`ï¼šè¦†ç›–èŠ‚ç‚¹æ˜¾ç¤ºåç§°
+- `--runtime <runtime>`ï¼šæœåŠ¡è¿è¡Œæ—¶ï¼ˆ`node` æˆ– `bun`ï¼‰
+- `--force`ï¼šå¦‚æžœå·²å®‰è£…åˆ™é‡æ–°å®‰è£…/è¦†ç›–
 
-管理服务：
+ç®¡ç†æœåŠ¡ï¼š
 
 ```bash
-openclaw node status
-openclaw node stop
-openclaw node restart
-openclaw node uninstall
+ node status
+ node stop
+ node restart
+ node uninstall
 ```
 
-使用 `openclaw node run` 运行前台节点主机（无服务）。
+ä½¿ç”¨ ` node run` è¿è¡Œå‰å°èŠ‚ç‚¹ä¸»æœºï¼ˆæ— æœåŠ¡ï¼‰ã€‚
 
-服务命令接受 `--json` 以获取机器可读输出。
+æœåŠ¡å‘½ä»¤æŽ¥å— `--json` ä»¥èŽ·å–æœºå™¨å¯è¯»è¾“å‡ºã€‚
 
-## 配对
+## é…å¯¹
 
-首次连接会在 Gateway 网关上创建待处理的节点配对请求。
-通过以下方式批准：
+é¦–æ¬¡è¿žæŽ¥ä¼šåœ¨ Gateway ç½‘å…³ä¸Šåˆ›å»ºå¾…å¤„ç†çš„èŠ‚ç‚¹é…å¯¹è¯·æ±‚ã€‚
+é€šè¿‡ä»¥ä¸‹æ–¹å¼æ‰¹å‡†ï¼š
 
 ```bash
-openclaw nodes pending
-openclaw nodes approve <requestId>
+ nodes pending
+ nodes approve <requestId>
 ```
 
-节点主机将其节点 id、token、显示名称和 Gateway 网关连接信息存储在
-`~/.openclaw/node.json` 中。
+èŠ‚ç‚¹ä¸»æœºå°†å…¶èŠ‚ç‚¹ idã€tokenã€æ˜¾ç¤ºåç§°å’Œ Gateway ç½‘å…³è¿žæŽ¥ä¿¡æ¯å­˜å‚¨åœ¨
+`~/./node.json` ä¸­ã€‚
 
-## 执行批准
+## æ‰§è¡Œæ‰¹å‡†
 
-`system.run` 受本地执行批准限制：
+`system.run` å—æœ¬åœ°æ‰§è¡Œæ‰¹å‡†é™åˆ¶ï¼š
 
-- `~/.openclaw/exec-approvals.json`
-- [执行批准](/tools/exec-approvals)
-- `openclaw approvals --node <id|name|ip>`（从 Gateway 网关编辑）
+- `~/./exec-approvals.json`
+- [æ‰§è¡Œæ‰¹å‡†](/tools/exec-approvals)
+- ` approvals --node <id|name|ip>`ï¼ˆä»Ž Gateway ç½‘å…³ç¼–è¾‘ï¼‰
+

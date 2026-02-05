@@ -1,4 +1,4 @@
-import type { SlackEventMiddlewareArgs } from "@slack/bolt";
+﻿import type { SlackEventMiddlewareArgs } from "@slack/bolt";
 import type { SlackAppMentionEvent, SlackMessageEvent } from "../../types.js";
 import type { SlackMonitorContext } from "../context.js";
 import type { SlackMessageHandler } from "../message-handler.js";
@@ -133,3 +133,4 @@ export function registerSlackMessageEvents(params: {
     }
   });
 }
+

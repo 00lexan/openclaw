@@ -1,4 +1,4 @@
-import { Mock, vi } from "vitest";
+﻿import { Mock, vi } from "vitest";
 
 type SlackHandler = (args: unknown) => Promise<void>;
 
@@ -46,7 +46,7 @@ export async function waitForSlackEvent(name: string) {
 export const defaultSlackTestConfig = () => ({
   messages: {
     responsePrefix: "PFX",
-    ackReaction: "👀",
+    ackReaction: "ðŸ‘€",
     ackReactionScope: "group-mentions",
   },
   channels: {
@@ -104,7 +104,7 @@ vi.mock("../pairing/pairing-store.js", () => ({
 }));
 
 vi.mock("../config/sessions.js", () => ({
-  resolveStorePath: vi.fn(() => "/tmp/openclaw-sessions.json"),
+  resolveStorePath: vi.fn(() => "/tmp/-sessions.json"),
   updateLastRoute: (...args: unknown[]) => slackTestState.updateLastRouteMock(...args),
   resolveSessionKey: vi.fn(),
   readSessionUpdatedAt: vi.fn(() => undefined),
@@ -153,3 +153,4 @@ vi.mock("@slack/bolt", () => {
   }
   return { App, HTTPReceiver, default: { App, HTTPReceiver } };
 });
+

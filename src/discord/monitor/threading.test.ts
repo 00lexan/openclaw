@@ -1,4 +1,4 @@
-import type { Client } from "@buape/carbon";
+﻿import type { Client } from "@buape/carbon";
 import { describe, expect, it } from "vitest";
 import { buildAgentSessionKey } from "../../routing/resolve-route.js";
 import {
@@ -142,3 +142,4 @@ describe("resolveDiscordAutoThreadReplyPlan", () => {
     expect(plan.autoThreadContext).toBeNull();
   });
 });
+

@@ -1,4 +1,4 @@
-import { html, nothing } from "lit";
+﻿import { html, nothing } from "lit";
 import type { GoogleChatStatus } from "../types.ts";
 import type { ChannelsProps } from "./channels.types.ts";
 import { formatAgo } from "../format.ts";
@@ -35,7 +35,7 @@ export function renderGoogleChatCard(params: {
           <span>
             ${
               googleChat?.audienceType
-                ? `${googleChat.audienceType}${googleChat.audience ? ` · ${googleChat.audience}` : ""}`
+                ? `${googleChat.audienceType}${googleChat.audience ? ` Â· ${googleChat.audience}` : ""}`
                 : "n/a"
             }
           </span>
@@ -61,7 +61,7 @@ export function renderGoogleChatCard(params: {
       ${
         googleChat?.probe
           ? html`<div class="callout" style="margin-top: 12px;">
-            Probe ${googleChat.probe.ok ? "ok" : "failed"} ·
+            Probe ${googleChat.probe.ok ? "ok" : "failed"} Â·
             ${googleChat.probe.status ?? ""} ${googleChat.probe.error ?? ""}
           </div>`
           : nothing
@@ -77,3 +77,4 @@ export function renderGoogleChatCard(params: {
     </div>
   `;
 }
+

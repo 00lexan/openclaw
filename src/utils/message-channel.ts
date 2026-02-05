@@ -1,4 +1,4 @@
-import type { ChannelId } from "../channels/plugins/types.js";
+﻿import type { ChannelId } from "../channels/plugins/types.js";
 import {
   CHANNEL_IDS,
   listChatChannelAliases,
@@ -146,3 +146,4 @@ export function isMarkdownCapableMessageChannel(raw?: string | null): boolean {
   }
   return MARKDOWN_CAPABLE_CHANNELS.has(channel);
 }
+

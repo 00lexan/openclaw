@@ -1,5 +1,5 @@
-{
-  "name": "openclaw-control-ui",
+﻿{
+  "name": "-control-ui",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,3 +21,4 @@
     "vitest": "4.0.18"
   }
 }
+

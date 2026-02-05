@@ -1,4 +1,4 @@
-import type { ChannelMessageActionAdapter, ChannelMessageActionName } from "../types.js";
+﻿import type { ChannelMessageActionAdapter, ChannelMessageActionName } from "../types.js";
 import {
   createActionGate,
   readNumberParam,
@@ -202,3 +202,4 @@ export const telegramMessageActions: ChannelMessageActionAdapter = {
     throw new Error(`Action ${action} is not supported for provider ${providerId}.`);
   },
 };
+

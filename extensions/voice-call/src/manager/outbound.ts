@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+﻿import crypto from "node:crypto";
 import type { CallMode } from "../config.js";
 import type { CallManagerContext } from "./context.js";
 import {
@@ -273,3 +273,4 @@ export async function endCall(
     return { success: false, error: err instanceof Error ? err.message : String(err) };
   }
 }
+

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizeMediaUnderstandingChatType, resolveMediaUnderstandingScope } from "./scope.js";
 
 describe("media understanding scope", () => {
@@ -16,3 +16,4 @@ describe("media understanding scope", () => {
     expect(resolveMediaUnderstandingScope({ scope, chatType: "channel" })).toBe("deny");
   });
 });
+

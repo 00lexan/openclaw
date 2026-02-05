@@ -1,4 +1,4 @@
-import type { FollowupRun, QueueDropPolicy, QueueMode, QueueSettings } from "./types.js";
+﻿import type { FollowupRun, QueueDropPolicy, QueueMode, QueueSettings } from "./types.js";
 
 export type FollowupQueueState = {
   items: FollowupRun[];
@@ -74,3 +74,4 @@ export function clearFollowupQueue(key: string): number {
   FOLLOWUP_QUEUES.delete(cleaned);
   return cleared;
 }
+

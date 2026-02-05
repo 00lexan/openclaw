@@ -1,4 +1,4 @@
-import { getMe, ZaloApiError, type ZaloBotInfo, type ZaloFetch } from "./api.js";
+﻿import { getMe, ZaloApiError, type ZaloBotInfo, type ZaloFetch } from "./api.js";
 
 export type ZaloProbeResult = {
   ok: boolean;
@@ -44,3 +44,4 @@ export async function probeZalo(
     return { ok: false, error: String(err), elapsedMs };
   }
 }
+

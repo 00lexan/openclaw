@@ -1,4 +1,4 @@
-import { theme } from "../terminal/theme.js";
+﻿import { theme } from "../terminal/theme.js";
 
 export type HelpExample = readonly [command: string, description: string];
 
@@ -25,3 +25,4 @@ export function formatHelpExampleGroup(
 ) {
   return `${theme.muted(label)}\n${formatHelpExamples(examples, inline)}`;
 }
+

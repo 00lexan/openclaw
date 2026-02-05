@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import type { DiscordExecApprovalConfig } from "../../config/types.discord.js";
 import {
   buildExecApprovalCustomId,
@@ -199,3 +199,4 @@ describe("DiscordExecApprovalHandler.shouldHandle", () => {
     ).toBe(false);
   });
 });
+

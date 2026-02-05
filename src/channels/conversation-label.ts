@@ -1,4 +1,4 @@
-import type { MsgContext } from "../auto-reply/templating.js";
+﻿import type { MsgContext } from "../auto-reply/templating.js";
 import { normalizeChatType } from "./chat-type.js";
 
 function extractConversationId(from?: string): string | undefined {
@@ -67,3 +67,4 @@ export function resolveConversationLabel(ctx: MsgContext): string | undefined {
   }
   return `${base} id:${id}`;
 }
+

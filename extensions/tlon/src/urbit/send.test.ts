@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+﻿import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@urbit/aura", () => ({
   scot: vi.fn(() => "mocked-ud"),
@@ -36,3 +36,4 @@ describe("sendDm", () => {
     expect(result.messageId).toBe("~zod/mocked-ud");
   });
 });
+

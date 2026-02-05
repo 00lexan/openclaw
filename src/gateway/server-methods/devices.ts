@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import {
   approveDevicePairing,
   listDevicePairing,
@@ -188,3 +188,4 @@ export const deviceHandlers: GatewayRequestHandlers = {
     );
   },
 };
+

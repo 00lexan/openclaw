@@ -1,4 +1,4 @@
-/** Distance (px) from the bottom within which we consider the user "near bottom". */
+﻿/** Distance (px) from the bottom within which we consider the user "near bottom". */
 const NEAR_BOTTOM_THRESHOLD = 450;
 
 type ScrollHost = {
@@ -54,7 +54,7 @@ export function scheduleChatScroll(host: ScrollHost, force = false) {
         effectiveForce || host.chatUserNearBottom || distanceFromBottom < NEAR_BOTTOM_THRESHOLD;
 
       if (!shouldStick) {
-        // User is scrolled up — flag that new content arrived below.
+        // User is scrolled up â€” flag that new content arrived below.
         host.chatNewMessagesBelow = true;
         return;
       }
@@ -146,7 +146,7 @@ export function exportLogs(lines: string[], label: string) {
   const anchor = document.createElement("a");
   const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-");
   anchor.href = url;
-  anchor.download = `openclaw-logs-${label}-${stamp}.log`;
+  anchor.download = `-logs-${label}-${stamp}.log`;
   anchor.click();
   URL.revokeObjectURL(url);
 }
@@ -167,3 +167,4 @@ export function observeTopbar(host: ScrollHost) {
   host.topbarObserver = new ResizeObserver(() => update());
   host.topbarObserver.observe(topbar);
 }
+

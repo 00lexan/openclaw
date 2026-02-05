@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   ProviderUsageSnapshot,
   UsageProviderId,
   UsageSummary,
@@ -106,3 +106,4 @@ export async function loadProviderUsageSummary(
 
   return { updatedAt: now, providers };
 }
+

@@ -1,4 +1,4 @@
----
+﻿---
 description: Review a PR thoroughly without merging
 ---
 
@@ -66,7 +66,7 @@ Goal: produce a thorough review and a clear recommendation (READY for /landpr vs
 A) TL;DR recommendation
 
 - One of: READY FOR /landpr | NEEDS WORK | NEEDS DISCUSSION
-- 1–3 sentence rationale.
+- 1â€“3 sentence rationale.
 
 B) What changed
 
@@ -103,3 +103,4 @@ Rules / Guardrails
 
 - Review only: do not merge (`gh pr merge`), do not push branches, do not edit code.
 - If you need clarification, ask questions rather than guessing.
+

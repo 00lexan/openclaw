@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   BlockStreamingCoalesceConfig,
   DmPolicy,
   GroupPolicy,
@@ -93,7 +93,7 @@ export type GoogleChatAccountConfig = {
    * Typing indicator mode (default: "message").
    * - "none": No indicator
    * - "message": Send "_<name> is typing..._" then edit with response
-   * - "reaction": React with 👀 to user message, remove on reply
+   * - "reaction": React with ðŸ‘€ to user message, remove on reply
    *   NOTE: Reaction mode requires user OAuth (not supported with service account auth).
    *   If configured, falls back to message mode with a warning.
    */
@@ -108,3 +108,4 @@ export type GoogleChatConfig = {
   /** Optional default account id when multiple accounts are configured. */
   defaultAccount?: string;
 } & GoogleChatAccountConfig;
+

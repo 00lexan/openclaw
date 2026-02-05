@@ -1,7 +1,7 @@
----
+﻿---
 read_when:
-  - 你想从终端搜索实时 OpenClaw 文档
-summary: "`openclaw docs` 的 CLI 参考（搜索实时文档索引）"
+  - ä½ æƒ³ä»Žç»ˆç«¯æœç´¢å®žæ—¶  æ–‡æ¡£
+summary: "` docs` çš„ CLI å‚è€ƒï¼ˆæœç´¢å®žæ—¶æ–‡æ¡£ç´¢å¼•ï¼‰"
 title: docs
 x-i18n:
   generated_at: "2026-02-03T07:44:50Z"
@@ -12,11 +12,12 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw docs`
+# ` docs`
 
-搜索实时文档索引。
+æœç´¢å®žæ—¶æ–‡æ¡£ç´¢å¼•ã€‚
 
 ```bash
-openclaw docs browser extension
-openclaw docs sandbox allowHostControl
+ docs browser extension
+ docs sandbox allowHostControl
 ```
+

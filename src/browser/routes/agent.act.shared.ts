@@ -1,4 +1,4 @@
-export const ACT_KINDS = [
+﻿export const ACT_KINDS = [
   "click",
   "close",
   "drag",
@@ -50,3 +50,4 @@ export function parseClickModifiers(raw: string[]): {
   }
   return { modifiers: raw.length ? (raw as ClickModifier[]) : undefined };
 }
+

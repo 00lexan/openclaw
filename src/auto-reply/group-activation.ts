@@ -1,4 +1,4 @@
-import { normalizeCommandBody } from "./commands-registry.js";
+﻿import { normalizeCommandBody } from "./commands-registry.js";
 
 export type GroupActivationMode = "mention" | "always";
 
@@ -32,3 +32,4 @@ export function parseActivationCommand(raw?: string): {
   const mode = normalizeGroupActivation(match[1]);
   return { hasCommand: true, mode };
 }
+

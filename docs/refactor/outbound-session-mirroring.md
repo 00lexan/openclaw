@@ -1,4 +1,4 @@
----
+﻿---
 title: Outbound Session Mirroring Refactor (Issue #1520)
 description: Track outbound session mirroring refactor notes, decisions, tests, and open items.
 ---
@@ -83,3 +83,4 @@ Outbound sends were mirrored into the _current_ agent session (tool session key)
   - `src/infra/outbound/outbound-session.test.ts`
   - `src/agents/tools/message-tool.test.ts`
   - `src/gateway/server-methods/send.test.ts`
+

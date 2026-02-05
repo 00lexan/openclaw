@@ -1,4 +1,4 @@
-import type { OpenClawConfig } from "../config/config.js";
+﻿import type { Config } from "../config/config.js";
 import { loadSessionStore } from "../config/sessions.js";
 import { parseSessionLabel } from "../sessions/session-label.js";
 import {
@@ -16,7 +16,7 @@ import {
 export type SessionsResolveResult = { ok: true; key: string } | { ok: false; error: ErrorShape };
 
 export function resolveSessionKeyFromResolveParams(params: {
-  cfg: OpenClawConfig;
+  cfg: Config;
   p: SessionsResolveParams;
 }): SessionsResolveResult {
   const { cfg, p } = params;
@@ -137,3 +137,4 @@ export function resolveSessionKeyFromResolveParams(params: {
 
   return { ok: true, key: String(list.sessions[0]?.key ?? "") };
 }
+

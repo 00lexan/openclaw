@@ -1,12 +1,12 @@
----
+﻿---
 name: 1password
 description: Set up and use 1Password CLI (op). Use when installing the CLI, enabling desktop app integration, signing in (single or multi-account), or reading/injecting/running secrets via op.
 homepage: https://developer.1password.com/docs/cli/get-started/
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "🔐",
+        "emoji": "ðŸ”",
         "requires": { "bins": ["op"] },
         "install":
           [
@@ -48,9 +48,9 @@ The shell tool uses a fresh TTY per command. To avoid re-prompts and failures, a
 Example (see `tmux` skill for socket conventions, do not reuse old session names):
 
 ```bash
-SOCKET_DIR="${OPENCLAW_TMUX_SOCKET_DIR:-${CLAWDBOT_TMUX_SOCKET_DIR:-${TMPDIR:-/tmp}/openclaw-tmux-sockets}}"
+SOCKET_DIR="${_TMUX_SOCKET_DIR:-${CLAWDBOT_TMUX_SOCKET_DIR:-${TMPDIR:-/tmp}/-tmux-sockets}}"
 mkdir -p "$SOCKET_DIR"
-SOCKET="$SOCKET_DIR/openclaw-op.sock"
+SOCKET="$SOCKET_DIR/-op.sock"
 SESSION="op-auth-$(date +%Y%m%d-%H%M%S)"
 
 tmux -S "$SOCKET" new -d -s "$SESSION" -n shell
@@ -68,3 +68,4 @@ tmux -S "$SOCKET" kill-session -t "$SESSION"
 - If sign-in without app integration is needed, use `op account add`.
 - If a command returns "account is not signed in", re-run `op signin` inside tmux and authorize in the app.
 - Do not run `op` outside tmux; stop and ask if tmux is unavailable.
+

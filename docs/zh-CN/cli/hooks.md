@@ -1,8 +1,8 @@
----
+﻿---
 read_when:
-  - 你想管理智能体钩子
-  - 你想安装或更新钩子
-summary: CLI 参考：`openclaw hooks`（智能体钩子）
+  - ä½ æƒ³ç®¡ç†æ™ºèƒ½ä½“é’©å­
+  - ä½ æƒ³å®‰è£…æˆ–æ›´æ–°é’©å­
+summary: CLI å‚è€ƒï¼š` hooks`ï¼ˆæ™ºèƒ½ä½“é’©å­ï¼‰
 title: hooks
 x-i18n:
   generated_at: "2026-02-03T10:04:32Z"
@@ -13,110 +13,110 @@ x-i18n:
   workflow: 15
 ---
 
-# `openclaw hooks`
+# ` hooks`
 
-管理智能体钩子（针对 `/new`、`/reset` 等命令以及 Gateway 网关启动的事件驱动自动化）。
+ç®¡ç†æ™ºèƒ½ä½“é’©å­ï¼ˆé’ˆå¯¹ `/new`ã€`/reset` ç­‰å‘½ä»¤ä»¥åŠ Gateway ç½‘å…³å¯åŠ¨çš„äº‹ä»¶é©±åŠ¨è‡ªåŠ¨åŒ–ï¼‰ã€‚
 
-相关内容：
+ç›¸å…³å†…å®¹ï¼š
 
-- 钩子：[钩子](/hooks)
-- 插件钩子：[插件](/plugin#plugin-hooks)
+- é’©å­ï¼š[é’©å­](/hooks)
+- æ’ä»¶é’©å­ï¼š[æ’ä»¶](/plugin#plugin-hooks)
 
-## 列出所有钩子
+## åˆ—å‡ºæ‰€æœ‰é’©å­
 
 ```bash
-openclaw hooks list
+ hooks list
 ```
 
-列出从工作区、托管目录和内置目录中发现的所有钩子。
+åˆ—å‡ºä»Žå·¥ä½œåŒºã€æ‰˜ç®¡ç›®å½•å’Œå†…ç½®ç›®å½•ä¸­å‘çŽ°çš„æ‰€æœ‰é’©å­ã€‚
 
-**选项：**
+**é€‰é¡¹ï¼š**
 
-- `--eligible`：仅显示符合条件的钩子（满足要求）
-- `--json`：以 JSON 格式输出
-- `-v, --verbose`：显示详细信息，包括缺失的要求
+- `--eligible`ï¼šä»…æ˜¾ç¤ºç¬¦åˆæ¡ä»¶çš„é’©å­ï¼ˆæ»¡è¶³è¦æ±‚ï¼‰
+- `--json`ï¼šä»¥ JSON æ ¼å¼è¾“å‡º
+- `-v, --verbose`ï¼šæ˜¾ç¤ºè¯¦ç»†ä¿¡æ¯ï¼ŒåŒ…æ‹¬ç¼ºå¤±çš„è¦æ±‚
 
-**示例输出：**
+**ç¤ºä¾‹è¾“å‡ºï¼š**
 
 ```
 Hooks (4/4 ready)
 
 Ready:
-  🚀 boot-md ✓ - Run BOOT.md on gateway startup
-  📝 command-logger ✓ - Log all command events to a centralized audit file
-  💾 session-memory ✓ - Save session context to memory when /new command is issued
-  😈 soul-evil ✓ - Swap injected SOUL content during a purge window or by random chance
+  ðŸš€ boot-md âœ“ - Run BOOT.md on gateway startup
+  ðŸ“ command-logger âœ“ - Log all command events to a centralized audit file
+  ðŸ’¾ session-memory âœ“ - Save session context to memory when /new command is issued
+  ðŸ˜ˆ soul-evil âœ“ - Swap injected SOUL content during a purge window or by random chance
 ```
 
-**示例（详细模式）：**
+**ç¤ºä¾‹ï¼ˆè¯¦ç»†æ¨¡å¼ï¼‰ï¼š**
 
 ```bash
-openclaw hooks list --verbose
+ hooks list --verbose
 ```
 
-显示不符合条件的钩子缺失的要求。
+æ˜¾ç¤ºä¸ç¬¦åˆæ¡ä»¶çš„é’©å­ç¼ºå¤±çš„è¦æ±‚ã€‚
 
-**示例（JSON）：**
+**ç¤ºä¾‹ï¼ˆJSONï¼‰ï¼š**
 
 ```bash
-openclaw hooks list --json
+ hooks list --json
 ```
 
-返回结构化 JSON，供程序化使用。
+è¿”å›žç»“æž„åŒ– JSONï¼Œä¾›ç¨‹åºåŒ–ä½¿ç”¨ã€‚
 
-## 获取钩子信息
+## èŽ·å–é’©å­ä¿¡æ¯
 
 ```bash
-openclaw hooks info <name>
+ hooks info <name>
 ```
 
-显示特定钩子的详细信息。
+æ˜¾ç¤ºç‰¹å®šé’©å­çš„è¯¦ç»†ä¿¡æ¯ã€‚
 
-**参数：**
+**å‚æ•°ï¼š**
 
-- `<name>`：钩子名称（例如 `session-memory`）
+- `<name>`ï¼šé’©å­åç§°ï¼ˆä¾‹å¦‚ `session-memory`ï¼‰
 
-**选项：**
+**é€‰é¡¹ï¼š**
 
-- `--json`：以 JSON 格式输出
+- `--json`ï¼šä»¥ JSON æ ¼å¼è¾“å‡º
 
-**示例：**
+**ç¤ºä¾‹ï¼š**
 
 ```bash
-openclaw hooks info session-memory
+ hooks info session-memory
 ```
 
-**输出：**
+**è¾“å‡ºï¼š**
 
 ```
-💾 session-memory ✓ Ready
+ðŸ’¾ session-memory âœ“ Ready
 
 Save session context to memory when /new command is issued
 
 Details:
-  Source: openclaw-bundled
-  Path: /path/to/openclaw/hooks/bundled/session-memory/HOOK.md
-  Handler: /path/to/openclaw/hooks/bundled/session-memory/handler.ts
-  Homepage: https://docs.openclaw.ai/hooks#session-memory
+  Source: -bundled
+  Path: /path/to//hooks/bundled/session-memory/HOOK.md
+  Handler: /path/to//hooks/bundled/session-memory/handler.ts
+  Homepage: https://docs..ai/hooks#session-memory
   Events: command:new
 
 Requirements:
-  Config: ✓ workspace.dir
+  Config: âœ“ workspace.dir
 ```
 
-## 检查钩子资格
+## æ£€æŸ¥é’©å­èµ„æ ¼
 
 ```bash
-openclaw hooks check
+ hooks check
 ```
 
-显示钩子资格状态摘要（有多少已就绪，有多少未就绪）。
+æ˜¾ç¤ºé’©å­èµ„æ ¼çŠ¶æ€æ‘˜è¦ï¼ˆæœ‰å¤šå°‘å·²å°±ç»ªï¼Œæœ‰å¤šå°‘æœªå°±ç»ªï¼‰ã€‚
 
-**选项：**
+**é€‰é¡¹ï¼š**
 
-- `--json`：以 JSON 格式输出
+- `--json`ï¼šä»¥ JSON æ ¼å¼è¾“å‡º
 
-**示例输出：**
+**ç¤ºä¾‹è¾“å‡ºï¼š**
 
 ```
 Hooks Status
@@ -126,186 +126,187 @@ Ready: 4
 Not ready: 0
 ```
 
-## 启用钩子
+## å¯ç”¨é’©å­
 
 ```bash
-openclaw hooks enable <name>
+ hooks enable <name>
 ```
 
-通过将特定钩子添加到配置（`~/.openclaw/config.json`）来启用它。
+é€šè¿‡å°†ç‰¹å®šé’©å­æ·»åŠ åˆ°é…ç½®ï¼ˆ`~/./config.json`ï¼‰æ¥å¯ç”¨å®ƒã€‚
 
-**注意：** 由插件管理的钩子在 `openclaw hooks list` 中显示 `plugin:<id>`，
-无法在此处启用/禁用。请改为启用/禁用该插件。
+**æ³¨æ„ï¼š** ç”±æ’ä»¶ç®¡ç†çš„é’©å­åœ¨ ` hooks list` ä¸­æ˜¾ç¤º `plugin:<id>`ï¼Œ
+æ— æ³•åœ¨æ­¤å¤„å¯ç”¨/ç¦ç”¨ã€‚è¯·æ”¹ä¸ºå¯ç”¨/ç¦ç”¨è¯¥æ’ä»¶ã€‚
 
-**参数：**
+**å‚æ•°ï¼š**
 
-- `<name>`：钩子名称（例如 `session-memory`）
+- `<name>`ï¼šé’©å­åç§°ï¼ˆä¾‹å¦‚ `session-memory`ï¼‰
 
-**示例：**
+**ç¤ºä¾‹ï¼š**
 
 ```bash
-openclaw hooks enable session-memory
+ hooks enable session-memory
 ```
 
-**输出：**
+**è¾“å‡ºï¼š**
 
 ```
-✓ Enabled hook: 💾 session-memory
+âœ“ Enabled hook: ðŸ’¾ session-memory
 ```
 
-**执行操作：**
+**æ‰§è¡Œæ“ä½œï¼š**
 
-- 检查钩子是否存在且符合条件
-- 在配置中更新 `hooks.internal.entries.<name>.enabled = true`
-- 将配置保存到磁盘
+- æ£€æŸ¥é’©å­æ˜¯å¦å­˜åœ¨ä¸”ç¬¦åˆæ¡ä»¶
+- åœ¨é…ç½®ä¸­æ›´æ–° `hooks.internal.entries.<name>.enabled = true`
+- å°†é…ç½®ä¿å­˜åˆ°ç£ç›˜
 
-**启用后：**
+**å¯ç”¨åŽï¼š**
 
-- 重启 Gateway 网关以重新加载钩子（macOS 上重启菜单栏应用，或在开发环境中重启 Gateway 网关进程）。
+- é‡å¯ Gateway ç½‘å…³ä»¥é‡æ–°åŠ è½½é’©å­ï¼ˆmacOS ä¸Šé‡å¯èœå•æ åº”ç”¨ï¼Œæˆ–åœ¨å¼€å‘çŽ¯å¢ƒä¸­é‡å¯ Gateway ç½‘å…³è¿›ç¨‹ï¼‰ã€‚
 
-## 禁用钩子
+## ç¦ç”¨é’©å­
 
 ```bash
-openclaw hooks disable <name>
+ hooks disable <name>
 ```
 
-通过更新配置来禁用特定钩子。
+é€šè¿‡æ›´æ–°é…ç½®æ¥ç¦ç”¨ç‰¹å®šé’©å­ã€‚
 
-**参数：**
+**å‚æ•°ï¼š**
 
-- `<name>`：钩子名称（例如 `command-logger`）
+- `<name>`ï¼šé’©å­åç§°ï¼ˆä¾‹å¦‚ `command-logger`ï¼‰
 
-**示例：**
+**ç¤ºä¾‹ï¼š**
 
 ```bash
-openclaw hooks disable command-logger
+ hooks disable command-logger
 ```
 
-**输出：**
+**è¾“å‡ºï¼š**
 
 ```
-⏸ Disabled hook: 📝 command-logger
+â¸ Disabled hook: ðŸ“ command-logger
 ```
 
-**禁用后：**
+**ç¦ç”¨åŽï¼š**
 
-- 重启 Gateway 网关以重新加载钩子
+- é‡å¯ Gateway ç½‘å…³ä»¥é‡æ–°åŠ è½½é’©å­
 
-## 安装钩子
+## å®‰è£…é’©å­
 
 ```bash
-openclaw hooks install <path-or-spec>
+ hooks install <path-or-spec>
 ```
 
-从本地文件夹/压缩包或 npm 安装钩子包。
+ä»Žæœ¬åœ°æ–‡ä»¶å¤¹/åŽ‹ç¼©åŒ…æˆ– npm å®‰è£…é’©å­åŒ…ã€‚
 
-**执行操作：**
+**æ‰§è¡Œæ“ä½œï¼š**
 
-- 将钩子包复制到 `~/.openclaw/hooks/<id>`
-- 在 `hooks.internal.entries.*` 中启用已安装的钩子
-- 在 `hooks.internal.installs` 下记录安装信息
+- å°†é’©å­åŒ…å¤åˆ¶åˆ° `~/./hooks/<id>`
+- åœ¨ `hooks.internal.entries.*` ä¸­å¯ç”¨å·²å®‰è£…çš„é’©å­
+- åœ¨ `hooks.internal.installs` ä¸‹è®°å½•å®‰è£…ä¿¡æ¯
 
-**选项：**
+**é€‰é¡¹ï¼š**
 
-- `-l, --link`：链接本地目录而不是复制（将其添加到 `hooks.internal.load.extraDirs`）
+- `-l, --link`ï¼šé“¾æŽ¥æœ¬åœ°ç›®å½•è€Œä¸æ˜¯å¤åˆ¶ï¼ˆå°†å…¶æ·»åŠ åˆ° `hooks.internal.load.extraDirs`ï¼‰
 
-**支持的压缩包格式：** `.zip`、`.tgz`、`.tar.gz`、`.tar`
+**æ”¯æŒçš„åŽ‹ç¼©åŒ…æ ¼å¼ï¼š** `.zip`ã€`.tgz`ã€`.tar.gz`ã€`.tar`
 
-**示例：**
+**ç¤ºä¾‹ï¼š**
 
 ```bash
-# 本地目录
-openclaw hooks install ./my-hook-pack
+# æœ¬åœ°ç›®å½•
+ hooks install ./my-hook-pack
 
-# 本地压缩包
-openclaw hooks install ./my-hook-pack.zip
+# æœ¬åœ°åŽ‹ç¼©åŒ…
+ hooks install ./my-hook-pack.zip
 
-# NPM 包
-openclaw hooks install @openclaw/my-hook-pack
+# NPM åŒ…
+ hooks install @/my-hook-pack
 
-# 链接本地目录而不复制
-openclaw hooks install -l ./my-hook-pack
+# é“¾æŽ¥æœ¬åœ°ç›®å½•è€Œä¸å¤åˆ¶
+ hooks install -l ./my-hook-pack
 ```
 
-## 更新钩子
+## æ›´æ–°é’©å­
 
 ```bash
-openclaw hooks update <id>
-openclaw hooks update --all
+ hooks update <id>
+ hooks update --all
 ```
 
-更新已安装的钩子包（仅限 npm 安装）。
+æ›´æ–°å·²å®‰è£…çš„é’©å­åŒ…ï¼ˆä»…é™ npm å®‰è£…ï¼‰ã€‚
 
-**选项：**
+**é€‰é¡¹ï¼š**
 
-- `--all`：更新所有已跟踪的钩子包
-- `--dry-run`：显示将要进行的更改，但不写入
+- `--all`ï¼šæ›´æ–°æ‰€æœ‰å·²è·Ÿè¸ªçš„é’©å­åŒ…
+- `--dry-run`ï¼šæ˜¾ç¤ºå°†è¦è¿›è¡Œçš„æ›´æ”¹ï¼Œä½†ä¸å†™å…¥
 
-## 内置钩子
+## å†…ç½®é’©å­
 
 ### session-memory
 
-在你执行 `/new` 时将会话上下文保存到记忆中。
+åœ¨ä½ æ‰§è¡Œ `/new` æ—¶å°†ä¼šè¯ä¸Šä¸‹æ–‡ä¿å­˜åˆ°è®°å¿†ä¸­ã€‚
 
-**启用：**
+**å¯ç”¨ï¼š**
 
 ```bash
-openclaw hooks enable session-memory
+ hooks enable session-memory
 ```
 
-**输出：** `~/.openclaw/workspace/memory/YYYY-MM-DD-slug.md`
+**è¾“å‡ºï¼š** `~/./workspace/memory/YYYY-MM-DD-slug.md`
 
-**参见：** [session-memory 文档](/hooks#session-memory)
+**å‚è§ï¼š** [session-memory æ–‡æ¡£](/hooks#session-memory)
 
 ### command-logger
 
-将所有命令事件记录到集中的审计文件中。
+å°†æ‰€æœ‰å‘½ä»¤äº‹ä»¶è®°å½•åˆ°é›†ä¸­çš„å®¡è®¡æ–‡ä»¶ä¸­ã€‚
 
-**启用：**
-
-```bash
-openclaw hooks enable command-logger
-```
-
-**输出：** `~/.openclaw/logs/commands.log`
-
-**查看日志：**
+**å¯ç”¨ï¼š**
 
 ```bash
-# 最近的命令
-tail -n 20 ~/.openclaw/logs/commands.log
-
-# 格式化输出
-cat ~/.openclaw/logs/commands.log | jq .
-
-# 按操作过滤
-grep '"action":"new"' ~/.openclaw/logs/commands.log | jq .
+ hooks enable command-logger
 ```
 
-**参见：** [command-logger 文档](/hooks#command-logger)
+**è¾“å‡ºï¼š** `~/./logs/commands.log`
+
+**æŸ¥çœ‹æ—¥å¿—ï¼š**
+
+```bash
+# æœ€è¿‘çš„å‘½ä»¤
+tail -n 20 ~/./logs/commands.log
+
+# æ ¼å¼åŒ–è¾“å‡º
+cat ~/./logs/commands.log | jq .
+
+# æŒ‰æ“ä½œè¿‡æ»¤
+grep '"action":"new"' ~/./logs/commands.log | jq .
+```
+
+**å‚è§ï¼š** [command-logger æ–‡æ¡£](/hooks#command-logger)
 
 ### soul-evil
 
-在清除窗口期间或随机情况下，将注入的 `SOUL.md` 内容替换为 `SOUL_EVIL.md`。
+åœ¨æ¸…é™¤çª—å£æœŸé—´æˆ–éšæœºæƒ…å†µä¸‹ï¼Œå°†æ³¨å…¥çš„ `SOUL.md` å†…å®¹æ›¿æ¢ä¸º `SOUL_EVIL.md`ã€‚
 
-**启用：**
+**å¯ç”¨ï¼š**
 
 ```bash
-openclaw hooks enable soul-evil
+ hooks enable soul-evil
 ```
 
-**参见：** [SOUL Evil 钩子](/hooks/soul-evil)
+**å‚è§ï¼š** [SOUL Evil é’©å­](/hooks/soul-evil)
 
 ### boot-md
 
-在 Gateway 网关启动时（渠道启动后）运行 `BOOT.md`。
+åœ¨ Gateway ç½‘å…³å¯åŠ¨æ—¶ï¼ˆæ¸ é“å¯åŠ¨åŽï¼‰è¿è¡Œ `BOOT.md`ã€‚
 
-**事件**：`gateway:startup`
+**äº‹ä»¶**ï¼š`gateway:startup`
 
-**启用**：
+**å¯ç”¨**ï¼š
 
 ```bash
-openclaw hooks enable boot-md
+ hooks enable boot-md
 ```
 
-**参见：** [boot-md 文档](/hooks#boot-md)
+**å‚è§ï¼š** [boot-md æ–‡æ¡£](/hooks#boot-md)
+

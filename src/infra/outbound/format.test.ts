@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   buildOutboundDeliveryJson,
   formatGatewaySummary,
@@ -8,10 +8,10 @@ import {
 describe("formatOutboundDeliverySummary", () => {
   it("falls back when result is missing", () => {
     expect(formatOutboundDeliverySummary("telegram")).toBe(
-      "✅ Sent via Telegram. Message ID: unknown",
+      "âœ… Sent via Telegram. Message ID: unknown",
     );
     expect(formatOutboundDeliverySummary("imessage")).toBe(
-      "✅ Sent via iMessage. Message ID: unknown",
+      "âœ… Sent via iMessage. Message ID: unknown",
     );
   });
 
@@ -22,7 +22,7 @@ describe("formatOutboundDeliverySummary", () => {
         messageId: "m1",
         chatId: "c1",
       }),
-    ).toBe("✅ Sent via Telegram. Message ID: m1 (chat c1)");
+    ).toBe("âœ… Sent via Telegram. Message ID: m1 (chat c1)");
 
     expect(
       formatOutboundDeliverySummary("discord", {
@@ -30,7 +30,7 @@ describe("formatOutboundDeliverySummary", () => {
         messageId: "d1",
         channelId: "chan",
       }),
-    ).toBe("✅ Sent via Discord. Message ID: d1 (channel chan)");
+    ).toBe("âœ… Sent via Discord. Message ID: d1 (channel chan)");
   });
 });
 
@@ -91,7 +91,7 @@ describe("buildOutboundDeliveryJson", () => {
 describe("formatGatewaySummary", () => {
   it("formats gateway summaries with channel", () => {
     expect(formatGatewaySummary({ channel: "whatsapp", messageId: "m1" })).toBe(
-      "✅ Sent via gateway (whatsapp). Message ID: m1",
+      "âœ… Sent via gateway (whatsapp). Message ID: m1",
     );
   });
 
@@ -102,6 +102,7 @@ describe("formatGatewaySummary", () => {
         channel: "discord",
         messageId: "p1",
       }),
-    ).toBe("✅ Poll sent via gateway (discord). Message ID: p1");
+    ).toBe("âœ… Poll sent via gateway (discord). Message ID: p1");
   });
 });
+

@@ -1,4 +1,4 @@
-import path from "node:path";
+﻿import path from "node:path";
 import { pathToFileURL } from "node:url";
 import type { HookMessageChannel } from "./hooks.js";
 import { CONFIG_PATH, type HookMappingConfig, type HooksConfig } from "../config/config.js";
@@ -436,3 +436,4 @@ function getByPath(input: Record<string, unknown>, pathExpr: string): unknown {
   }
   return current;
 }
+

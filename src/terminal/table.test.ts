@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { visibleWidth } from "./ansi.js";
 import { renderTable } from "./table.js";
 
@@ -14,7 +14,7 @@ describe("renderTable", () => {
     });
 
     expect(out).toContain("Dashboard");
-    expect(out).toMatch(/│ Dashboard\s+│/);
+    expect(out).toMatch(/â”‚ Dashboard\s+â”‚/);
   });
 
   it("expands flex columns to fill available width", () => {
@@ -107,7 +107,7 @@ describe("renderTable", () => {
     const lines = out.split("\n").filter((line) => line.includes("a"));
     for (const line of lines) {
       const resetIndex = line.lastIndexOf(reset);
-      const lastSep = line.lastIndexOf("│");
+      const lastSep = line.lastIndexOf("â”‚");
       expect(resetIndex).toBeGreaterThan(-1);
       expect(lastSep).toBeGreaterThan(resetIndex);
     }
@@ -130,3 +130,4 @@ describe("renderTable", () => {
     expect(line2Index).toBe(line1Index + 1);
   });
 });
+

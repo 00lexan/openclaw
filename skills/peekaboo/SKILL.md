@@ -1,12 +1,12 @@
----
+﻿---
 name: peekaboo
 description: Capture and automate macOS UI with the Peekaboo CLI.
 homepage: https://peekaboo.boo
 metadata:
   {
-    "openclaw":
+    "":
       {
-        "emoji": "👀",
+        "emoji": "ðŸ‘€",
         "os": ["darwin"],
         "requires": { "bins": ["peekaboo"] },
         "install":
@@ -188,3 +188,4 @@ Notes
 
 - Requires Screen Recording + Accessibility permissions.
 - Use `peekaboo see --annotate` to identify targets before clicking.
+

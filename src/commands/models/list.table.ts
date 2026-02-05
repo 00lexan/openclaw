@@ -1,4 +1,4 @@
-import type { RuntimeEnv } from "../../runtime.js";
+﻿import type { RuntimeEnv } from "../../runtime.js";
 import type { ModelRow } from "./list.types.js";
 import { colorize, theme } from "../../terminal/theme.js";
 import { formatTag, isRich, pad, truncate } from "./list.format.js";
@@ -89,3 +89,4 @@ export function printModelTable(
     runtime.log(line);
   }
 }
+

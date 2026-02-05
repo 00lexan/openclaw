@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { normalizeChatType } from "./chat-type.js";
 
 describe("normalizeChatType", () => {
@@ -16,3 +16,4 @@ describe("normalizeChatType", () => {
     expect(normalizeChatType("room")).toBeUndefined();
   });
 });
+

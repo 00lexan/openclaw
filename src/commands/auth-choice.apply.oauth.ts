@@ -1,4 +1,4 @@
-import type { ApplyAuthChoiceParams, ApplyAuthChoiceResult } from "./auth-choice.apply.js";
+﻿import type { ApplyAuthChoiceParams, ApplyAuthChoiceResult } from "./auth-choice.apply.js";
 import { loginChutes } from "./chutes-oauth.js";
 import { isRemoteEnvironment } from "./oauth-env.js";
 import { createVpsAwareOAuthHandlers } from "./oauth-flow.js";
@@ -43,7 +43,7 @@ export async function applyAuthChoiceOAuth(
       "Chutes OAuth",
     );
 
-    const spin = params.prompter.progress("Starting OAuth flow…");
+    const spin = params.prompter.progress("Starting OAuth flowâ€¦");
     try {
       const { onAuth, onPrompt } = createVpsAwareOAuthHandlers({
         isRemote,
@@ -51,7 +51,7 @@ export async function applyAuthChoiceOAuth(
         runtime: params.runtime,
         spin,
         openUrl,
-        localBrowserMessage: "Complete sign-in in browser…",
+        localBrowserMessage: "Complete sign-in in browserâ€¦",
       });
 
       const creds = await loginChutes({
@@ -96,3 +96,4 @@ export async function applyAuthChoiceOAuth(
 
   return null;
 }
+

@@ -1,4 +1,4 @@
-import type { GatewayRequestHandlers } from "./types.js";
+﻿import type { GatewayRequestHandlers } from "./types.js";
 import { listChannelPlugins } from "../../channels/plugins/index.js";
 import {
   ErrorCodes,
@@ -122,3 +122,4 @@ export const webHandlers: GatewayRequestHandlers = {
     }
   },
 };
+

@@ -1,4 +1,4 @@
-import type { ChannelOutboundAdapter } from "../types.js";
+﻿import type { ChannelOutboundAdapter } from "../types.js";
 import { sendMessageSlack } from "../../../slack/send.js";
 
 export const slackOutbound: ChannelOutboundAdapter = {
@@ -27,3 +27,4 @@ export const slackOutbound: ChannelOutboundAdapter = {
     return { channel: "slack", ...result };
   },
 };
+

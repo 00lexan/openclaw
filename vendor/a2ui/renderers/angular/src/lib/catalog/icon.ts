@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright 2025 Google LLC
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,3 +42,4 @@ export class Icon extends DynamicComponent {
   readonly name = input.required<Primitives.StringValue | null>();
   protected readonly resolvedName = computed(() => this.resolvePrimitive(this.name()));
 }
+

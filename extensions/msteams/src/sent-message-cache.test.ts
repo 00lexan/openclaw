@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import {
   clearMSTeamsSentMessageCache,
   recordMSTeamsSentMessage,
@@ -13,3 +13,4 @@ describe("msteams sent message cache", () => {
     expect(wasMSTeamsMessageSent("conv-1", "msg-2")).toBe(false);
   });
 });
+

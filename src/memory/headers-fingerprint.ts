@@ -1,4 +1,4 @@
-function normalizeHeaderName(name: string): string {
+﻿function normalizeHeaderName(name: string): string {
   return name.trim().toLowerCase();
 }
 
@@ -17,3 +17,4 @@ export function fingerprintHeaderNames(headers: Record<string, string> | undefin
   out.sort((a, b) => a.localeCompare(b));
   return out;
 }
+

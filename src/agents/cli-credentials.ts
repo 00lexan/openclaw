@@ -1,4 +1,4 @@
-import type { OAuthCredentials, OAuthProvider } from "@mariozechner/pi-ai";
+﻿import type { OAuthCredentials, OAuthProvider } from "@mariozechner/pi-ai";
 import { execSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs";
@@ -605,3 +605,4 @@ export function readMiniMaxCliCredentialsCached(options?: {
   }
   return value;
 }
+
