@@ -1,17 +1,15 @@
 ﻿{
-  "name": "@/discord",
+  "name": "@link-ai/discord",
   "version": "2026.2.4",
-  "description": " Discord channel plugin",
+  "description": "Discord provider plugin",
   "type": "module",
-  "devDependencies": {
-    "": "*"
-  },
-  "": {
+  "dependencies": {},
+  "devDependencies": {},
+  "openclaw": {
     "extensions": [
       "./index.ts"
     ]
   }
 }
-
 
 
