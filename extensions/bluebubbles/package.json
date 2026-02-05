@@ -4,8 +4,8 @@
   "description": " BlueBubbles channel plugin",
   "type": "module",
   "devDependencies": {
-    "": "workspace:*"
-  },
+  "@mariozechner/pi-agent-core": "*"
+},
   "": {
     "extensions": [
       "./index.ts"
