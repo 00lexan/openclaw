@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -83,7 +83,7 @@ LOGINCTL
   npm_bin="/tmp/npm-prefix/bin/openclaw"
   npm_entry="/tmp/npm-prefix/lib/node_modules/openclaw/dist/index.js"
   git_entry="/app/dist/index.js"
-  git_cli="/app/openclaw.mjs"
+  git_cli="/app/link-ai.mjs"
 
   assert_entrypoint() {
     local unit_path="$1"
@@ -146,3 +146,4 @@ LOGINCTL
     "$npm_bin doctor --repair --force" \
     "$npm_entry"
 '
+

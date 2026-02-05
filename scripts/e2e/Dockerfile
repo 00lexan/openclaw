@@ -1,4 +1,4 @@
-FROM node:22-bookworm
+﻿FROM node:22-bookworm
 
 RUN corepack enable
 
@@ -6,7 +6,7 @@ WORKDIR /app
 
 ENV NODE_OPTIONS="--disable-warning=ExperimentalWarning"
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json vitest.config.ts vitest.e2e.config.ts openclaw.mjs ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json vitest.config.ts vitest.e2e.config.ts link-ai.mjs ./
 COPY src ./src
 COPY test ./test
 COPY scripts ./scripts
@@ -21,3 +21,4 @@ RUN pnpm build
 RUN pnpm ui:build
 
 CMD ["bash"]
+

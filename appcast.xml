@@ -1,7 +1,7 @@
-<?xml version="1.0" standalone="yes"?>
+﻿<?xml version="1.0" standalone="yes"?>
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
-        <title>OpenClaw</title>
+        <title>LINK AI</title>
         <item>
             <title>2026.2.4</title>
             <pubDate>Wed, 04 Feb 2026 17:47:10 -0800</pubDate>
@@ -50,7 +50,7 @@
 </ul>
 <p><a href="https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
 ]]></description>
-            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.2.4/OpenClaw-2026.2.4.zip" length="22530161" type="application/octet-stream" sparkle:edSignature="7eHUaQC6cx87HWbcaPh9T437+LqfE9VtQBf4p9JBjIyBrqGYxxp9KPvI5unEjg55j9j2djCXhseSMeyyRmvYBg=="/>
+            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.2.4/LINK-AI-2026.2.4.zip" length="22530161" type="application/octet-stream" sparkle:edSignature="7eHUaQC6cx87HWbcaPh9T437+LqfE9VtQBf4p9JBjIyBrqGYxxp9KPvI5unEjg55j9j2djCXhseSMeyyRmvYBg=="/>
         </item>
         <item>
             <title>2026.2.2</title>
@@ -62,7 +62,7 @@
             <description><![CDATA[<h2>OpenClaw 2026.2.2</h2>
 <h3>Changes</h3>
 <ul>
-<li>Feishu: add Feishu/Lark plugin support + docs. (#7313) Thanks @jiulingyun (openclaw-cn).</li>
+<li>Feishu: add Feishu/Lark plugin support + docs. (#7313) Thanks @jiulingyun (LINK-AI-cn).</li>
 <li>Web UI: add Agents dashboard for managing agent files, tools, skills, models, channels, and cron jobs.</li>
 <li>Memory: implement the opt-in QMD backend for workspace memory. (#3160) Thanks @vignesh07.</li>
 <li>Security: add healthcheck skill and bootstrap audit guidance. (#7641) Thanks @Takhoffman.</li>
@@ -94,7 +94,7 @@
 </ul>
 <p><a href="https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
 ]]></description>
-            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.2.2/OpenClaw-2026.2.2.zip" length="22519052" type="application/octet-stream" sparkle:edSignature="a6viD+aS5EfY/RkPIPMfoQQNkJCk6QTdV5WobXFxyYwURskUm8/nXTHVXsCh1c5+0WKUnmlDIyf0i+6IWiavAA=="/>
+            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.2.2/LINK-AI-2026.2.2.zip" length="22519052" type="application/octet-stream" sparkle:edSignature="a6viD+aS5EfY/RkPIPMfoQQNkJCk6QTdV5WobXFxyYwURskUm8/nXTHVXsCh1c5+0WKUnmlDIyf0i+6IWiavAA=="/>
         </item>
         <item>
             <title>2026.2.1</title>
@@ -160,7 +160,7 @@
 </ul>
 <p><a href="https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
 ]]></description>
-            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.2.1/OpenClaw-2026.2.1.zip" length="22458919" type="application/octet-stream" sparkle:edSignature="kA/8VQlVdtYphcB1iuFrhWczwWKgkVZMfDfQ7T9WD405D8JKTv5CZ1n8lstIVkpk4xog3UhrfaaoTG8Bf8DMAQ=="/>
+            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.2.1/LINK-AI-2026.2.1.zip" length="22458919" type="application/octet-stream" sparkle:edSignature="kA/8VQlVdtYphcB1iuFrhWczwWKgkVZMfDfQ7T9WD405D8JKTv5CZ1n8lstIVkpk4xog3UhrfaaoTG8Bf8DMAQ=="/>
         </item>
     </channel>
 </rss>
