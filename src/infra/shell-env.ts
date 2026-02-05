@@ -171,3 +171,4 @@ export function getShellEnvAppliedKeys(): string[] {
   return [...lastAppliedKeys];
 }
 
+

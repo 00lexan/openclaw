@@ -132,3 +132,4 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
+

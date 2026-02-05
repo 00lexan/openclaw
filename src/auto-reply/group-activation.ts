@@ -33,3 +33,4 @@ export function parseActivationCommand(raw?: string): {
   return { hasCommand: true, mode };
 }
 
+

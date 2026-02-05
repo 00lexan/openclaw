@@ -179,3 +179,4 @@ export function resolveNextcloudTalkMentionGate(params: {
   return { shouldSkip: result.shouldSkip, shouldBypassMention: result.shouldBypassMention };
 }
 
+

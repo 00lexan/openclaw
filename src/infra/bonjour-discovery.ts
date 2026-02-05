@@ -602,3 +602,4 @@ export async function discoverGatewayBeacons(
   return [];
 }
 
+

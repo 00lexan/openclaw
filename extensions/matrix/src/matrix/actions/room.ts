@@ -84,3 +84,4 @@ export async function getMatrixRoomInfo(roomId: string, opts: MatrixActionClient
   }
 }
 
+

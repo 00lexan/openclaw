@@ -116,3 +116,4 @@ export function resolveOwnerList(mentionCfg: MentionConfig, selfE164?: string | 
     .filter((entry): entry is string => Boolean(entry));
 }
 
+

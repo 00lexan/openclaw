@@ -52,3 +52,4 @@ export const SANDBOX_STATE_DIR = path.join(resolvedSandboxStateDir, "sandbox");
 export const SANDBOX_REGISTRY_PATH = path.join(SANDBOX_STATE_DIR, "containers.json");
 export const SANDBOX_BROWSER_REGISTRY_PATH = path.join(SANDBOX_STATE_DIR, "browsers.json");
 
+

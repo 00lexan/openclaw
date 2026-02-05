@@ -244,3 +244,4 @@ also update `MEMORY.md` (long-term memory is optional and only used in private s
 If the session cannot write to the workspace, ask for permission or provide exact entries
 the user can paste into the memory files.
 
+

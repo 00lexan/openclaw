@@ -76,3 +76,4 @@ Notes
 - Requires Apple Notes.app to be accessible.
 - For automation, grant permissions in System Settings > Privacy & Security > Automation.
 
+

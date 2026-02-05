@@ -168,3 +168,4 @@ export function shouldMigrateState(argv: string[]): boolean {
   return shouldMigrateStateFromPath(getCommandPath(argv, 2));
 }
 
+

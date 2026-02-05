@@ -54,3 +54,4 @@ export function countMismatches<T extends { imageMatch: boolean }>(items: T[]): 
   return items.filter((item) => !item.imageMatch).length;
 }
 
+

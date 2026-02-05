@@ -19,3 +19,4 @@ export function createSlackWebClient(token: string, options: WebClientOptions = 
   return new WebClient(token, resolveSlackWebClientOptions(options));
 }
 
+

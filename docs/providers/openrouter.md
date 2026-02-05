@@ -36,3 +36,4 @@ endpoint and API key. It is OpenAI-compatible, so most OpenAI SDKs work by switc
 - For more model/provider options, see [/concepts/model-providers](/concepts/model-providers).
 - OpenRouter uses a Bearer token with your API key under the hood.
 
+

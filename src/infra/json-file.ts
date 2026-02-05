@@ -22,3 +22,4 @@ export function saveJsonFile(pathname: string, data: unknown) {
   fs.chmodSync(pathname, 0o600);
 }
 
+

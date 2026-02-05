@@ -302,3 +302,4 @@ export function filterBootstrapFilesForSession(
   return files.filter((file) => SUBAGENT_BOOTSTRAP_ALLOWLIST.has(file.name));
 }
 
+

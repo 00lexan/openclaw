@@ -34,3 +34,4 @@ export function canvasSnapshotTempPath(opts: { ext: string; tmpDir?: string; id?
   return path.join(tmpDir, `${cliName}-canvas-snapshot-${id}${ext}`);
 }
 
+

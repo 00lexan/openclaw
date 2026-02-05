@@ -89,3 +89,4 @@ function linearToMulaw(sample: number): number {
   return ~(sign | (exponent << 4) | mantissa) & 0xff;
 }
 
+

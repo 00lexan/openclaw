@@ -208,3 +208,4 @@ export CLAWHUB_DISABLE_TELEMETRY=1
 - `CLAWHUB_WORKDIR`ï¼šè¦†ç›–é»˜è®¤å·¥ä½œç›®å½•ã€‚
 - `CLAWHUB_DISABLE_TELEMETRY=1`ï¼šç¦ç”¨ `sync` çš„é¥æµ‹åŠŸèƒ½ã€‚
 
+

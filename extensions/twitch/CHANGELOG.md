@@ -50,3 +50,4 @@
 - Added plugin descriptor (.plugin.json)
 - Added comprehensive README and documentation
 
+

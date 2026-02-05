@@ -16,3 +16,4 @@ export const GatewayClientModeSchema = Type.Union(
   Object.values(GATEWAY_CLIENT_MODES).map((value) => Type.Literal(value)),
 );
 
+

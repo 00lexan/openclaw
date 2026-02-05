@@ -95,3 +95,4 @@ packaging and Nix builds (which do not rely on a full Xcode toolchain).
 - [Wizard](/start/wizard) â€” non-Nix CLI setup
 - [Docker](/install/docker) â€” containerized setup
 
+

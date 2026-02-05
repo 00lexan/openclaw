@@ -220,3 +220,4 @@ E2EE é…ç½®ï¼ˆå¯ç”¨ç«¯åˆ°ç«¯åŠ å¯†ï¼‰ï¼�
 - `channels.matrix.autoJoinAllowlist`ï¼šè‡ªåŠ¨åŠ å…¥çš„å…è®¸æˆ¿é—´ ID/åˆ«åã€‚
 - `channels.matrix.actions`ï¼šæ¯ä¸ªæ“ä½œçš„å·¥å…·é™åˆ¶ï¼ˆreactions/messages/pins/memberInfo/channelInfoï¼‰ã€‚
 
+

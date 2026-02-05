@@ -54,3 +54,4 @@ Qwen ä¸º Qwen Coder å’Œ Qwen Vision æ¨¡åž‹æä¾›å…è´
 - é»˜è®¤åŸºç¡€ URLï¼š`https://portal.qwen.ai/v1`ï¼ˆå¦‚æžœ Qwen æä¾›ä¸åŒçš„ç«¯ç‚¹ï¼Œä½¿ç”¨ `models.providers.qwen-portal.baseUrl` è¦†ç›–ï¼‰ã€‚
 - å‚é˜…[æ¨¡åž‹æä¾›å•†](/concepts/model-providers)äº†è§£æä¾›å•†çº§åˆ«çš„è§„åˆ™ã€‚
 
+

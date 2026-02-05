@@ -61,3 +61,4 @@ export PEEKABOO_BRIDGE_SOCKET=/path/to/bridge.sock
 - å¦‚æžœ `peekaboo` æŠ¥å‘Š"bridge client is not authorized"ï¼Œè¯·ç¡®ä¿å®¢æˆ·ç«¯å·²æ­£ç¡®ç­¾åï¼Œæˆ–ä»…åœ¨**è°ƒè¯•**æ¨¡å¼ä¸‹ä½¿ç”¨ `PEEKABOO_ALLOW_UNSIGNED_SOCKET_CLIENTS=1` è¿è¡Œå®¿ä¸»ã€‚
 - å¦‚æžœæœªæ‰¾åˆ°å®¿ä¸»ï¼Œè¯·æ‰“å¼€å…¶ä¸­ä¸€ä¸ªå®¿ä¸»åº”ç”¨ï¼ˆPeekaboo.app æˆ– .appï¼‰å¹¶ç¡®è®¤å·²æŽˆäºˆæƒé™ã€‚
 
+

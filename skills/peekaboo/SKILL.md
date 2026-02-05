@@ -189,3 +189,4 @@ Notes
 - Requires Screen Recording + Accessibility permissions.
 - Use `peekaboo see --annotate` to identify targets before clicking.
 
+

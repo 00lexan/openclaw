@@ -9,3 +9,4 @@ export function applyGatewayLaneConcurrency(cfg: ReturnType<typeof loadConfig>) 
   setCommandLaneConcurrency(CommandLane.Subagent, resolveSubagentMaxConcurrent(cfg));
 }
 
+

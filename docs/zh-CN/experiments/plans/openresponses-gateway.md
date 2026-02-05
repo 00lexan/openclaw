@@ -120,3 +120,4 @@ Open Responses æ˜¯åŸºäºŽ OpenAI Responses API çš„å¼€æ”¾æŽ
 - ä¸º `/v1/responses` ä½¿ç”¨å’Œç¤ºä¾‹æ·»åŠ æ–°æ–‡æ¡£é¡µé¢ã€‚
 - æ›´æ–° `/gateway/openai-http-api`ï¼Œæ·»åŠ é—ç•™è¯´æ˜Žå’ŒæŒ‡å‘ `/v1/responses` çš„æŒ‡é’ˆã€‚
 
+

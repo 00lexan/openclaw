@@ -59,3 +59,4 @@ Windows åŽŸç”Ÿé…å¥—åº”ç”¨ä¹Ÿåœ¨è®¡åˆ’ä¸­
 - macOSï¼šLaunchAgentï¼ˆ`bot.molt.gateway` æˆ– `bot.molt.<profile>`ï¼›æ—§ç‰ˆ `com..*`ï¼‰
 - Linux/WSL2ï¼šsystemd ç”¨æˆ·æœåŠ¡ï¼ˆ`-gateway[-<profile>].service`ï¼‰
 
+

@@ -91,3 +91,4 @@ export async function resolveOpenAiEmbeddingClient(
   return { baseUrl, headers, model };
 }
 
+

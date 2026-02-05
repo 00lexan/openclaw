@@ -348,3 +348,4 @@ OpenProse ä¸Ž Lobster é…åˆè‰¯å¥½ï¼šä½¿ç”¨ `/prose` 
 - å¸–å­ï¼šhttps://x.com/plattenschieber/status/2014508656335770033
 - ä»“åº“ï¼šhttps://github.com/bloomedai/brain-cli
 
+

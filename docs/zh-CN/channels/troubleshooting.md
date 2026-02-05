@@ -35,3 +35,4 @@ x-i18n:
 - æ—¥å¿—æ˜¾ç¤º `HttpError: Network request for 'sendMessage' failed` æˆ– `sendChatAction` â†’ æ£€æŸ¥ IPv6 DNSã€‚å¦‚æžœ `api.telegram.org` ä¼˜å…ˆè§£æžä¸º IPv6 è€Œä¸»æœºç¼ºå°‘ IPv6 å‡ºç«™è¿žæŽ¥ï¼Œè¯·å¼ºåˆ¶ä½¿ç”¨ IPv4 æˆ–å¯ç”¨ IPv6ã€‚å‚è§ [/channels/telegram#troubleshooting](/channels/telegram#troubleshooting)ã€‚
 - æ—¥å¿—æ˜¾ç¤º `setMyCommands failed` â†’ æ£€æŸ¥åˆ° `api.telegram.org` çš„å‡ºç«™ HTTPS å’Œ DNS å¯è¾¾æ€§ï¼ˆå¸¸è§äºŽé™åˆ¶ä¸¥æ ¼çš„ VPS æˆ–ä»£ç†çŽ¯å¢ƒï¼‰ã€‚
 
+

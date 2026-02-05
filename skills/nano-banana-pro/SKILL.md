@@ -57,3 +57,4 @@ Notes
 - The script prints a `MEDIA:` line for  to auto-attach on supported chat providers.
 - Do not read the image back; report the saved path only.
 
+

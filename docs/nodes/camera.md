@@ -155,3 +155,4 @@ Notes:
 
 - Requires macOS **Screen Recording** permission (TCC).
 
+

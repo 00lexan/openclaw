@@ -357,3 +357,4 @@ echo 'wireless-power off' | sudo tee -a /etc/network/interfaces
 - [Tailscale](/gateway/tailscale) â€” remote access
 - [Nodes](/nodes) â€” pair your laptop/phone with the Pi gateway
 
+

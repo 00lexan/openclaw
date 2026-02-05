@@ -25,3 +25,4 @@ export function getChannelMessageAdapter(channel: ChannelId): ChannelMessageAdap
   return DEFAULT_ADAPTER;
 }
 
+

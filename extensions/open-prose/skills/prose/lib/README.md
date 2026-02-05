@@ -107,3 +107,4 @@ Both recommend `--backend sqlite+` for durable persistence.
 5. **Clear contracts** â€” Well-defined inputs and outputs
 6. **Incremental value** â€” Useful in simple mode, more powerful with depth
 
+

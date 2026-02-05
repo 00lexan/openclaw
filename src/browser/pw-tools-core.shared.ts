@@ -69,3 +69,4 @@ export function toAIFriendlyError(error: unknown, selector: string): Error {
   return error instanceof Error ? error : new Error(message);
 }
 
+

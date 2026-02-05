@@ -4,3 +4,4 @@
   error: (message: string, meta?: Record<string, unknown>) => void;
 };
 
+

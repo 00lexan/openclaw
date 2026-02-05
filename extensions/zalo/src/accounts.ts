@@ -79,3 +79,4 @@ export function listEnabledZaloAccounts(cfg: Config): ResolvedZaloAccount[] {
     .filter((account) => account.enabled);
 }
 
+

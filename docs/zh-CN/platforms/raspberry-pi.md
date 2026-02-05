@@ -364,3 +364,4 @@ echo 'wireless-power off' | sudo tee -a /etc/network/interfaces
 - [Tailscale](/gateway/tailscale) â€” è¿œç¨‹è®¿é—®
 - [èŠ‚ç‚¹](/nodes) â€” å°†ä½ çš„ç¬”è®°æœ¬ç”µè„‘/æ‰‹æœºä¸Ž Pi Gateway ç½‘å…³é…å¯¹
 
+

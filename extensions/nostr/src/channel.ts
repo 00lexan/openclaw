@@ -352,3 +352,4 @@ export async function getNostrProfileState(accountId: string = DEFAULT_ACCOUNT_I
   return bus.getProfileState();
 }
 
+

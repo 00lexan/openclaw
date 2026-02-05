@@ -154,3 +154,4 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.claude-max-api.plist
 - [Anthropic æä¾›å•†](/providers/anthropic) -  ä¸Ž Claude çš„åŽŸç”Ÿé›†æˆï¼Œä½¿ç”¨ setup-token æˆ– API å¯†é’¥
 - [OpenAI æä¾›å•†](/providers/openai) - é€‚ç”¨äºŽ OpenAI/Codex è®¢é˜…
 
+

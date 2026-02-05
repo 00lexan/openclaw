@@ -65,3 +65,4 @@ export async function resolveMatrixClient(opts: {
   return { client, stopOnDone: true };
 }
 
+

@@ -328,3 +328,4 @@ _DIAGNOSTICS=telegram.http,telegram.payload
 - **æ—¥å¿—ä¸ºç©ºï¼Ÿ** æ£€æŸ¥ Gateway ç½‘å…³æ˜¯å¦æ­£åœ¨è¿è¡Œå¹¶å†™å…¥ `logging.file` ä¸­çš„æ–‡ä»¶è·¯å¾„ã€‚
 - **éœ€è¦æ›´å¤šç»†èŠ‚ï¼Ÿ** å°† `logging.level` è®¾ç½®ä¸º `debug` æˆ– `trace` å¹¶é‡è¯•ã€‚
 
+

@@ -134,3 +134,4 @@ Legend:
 - `sendMessageDraft`: Telegram draft bubble (not a real message).
 - `final reply`: normal Telegram message send.
 
+

@@ -93,3 +93,4 @@ export type SignalConfig = {
   accounts?: Record<string, SignalAccountConfig>;
 } & SignalAccountConfig;
 
+

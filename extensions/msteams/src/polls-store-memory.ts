@@ -31,3 +31,4 @@ export function createMSTeamsPollStoreMemory(initial: MSTeamsPoll[] = []): MSTea
   return { createPoll, getPoll, recordVote };
 }
 
+

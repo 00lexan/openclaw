@@ -7,3 +7,4 @@ export const anthropicProvider: MediaUnderstandingProvider = {
   describeImage: describeImageWithModel,
 };
 
+

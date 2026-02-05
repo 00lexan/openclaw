@@ -101,3 +101,4 @@ indicator (Active/Idle/Stale) based on the age of the last update.
   - confirm periodic beacons use the same `instanceId`
   - check whether the connectionâ€‘derived entry is missing `instanceId` (duplicates are expected)
 
+

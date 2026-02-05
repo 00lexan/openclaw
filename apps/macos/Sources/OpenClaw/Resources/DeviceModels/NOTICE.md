@@ -8,3 +8,4 @@ This directory includes model identifier â†’ human-readable name mappings d
 
 See `LICENSE.apple-device-identifiers.txt` for license terms.
 
+

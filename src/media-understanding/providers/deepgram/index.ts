@@ -7,3 +7,4 @@ export const deepgramProvider: MediaUnderstandingProvider = {
   transcribeAudio: transcribeDeepgramAudio,
 };
 
+

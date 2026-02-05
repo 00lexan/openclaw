@@ -36,3 +36,4 @@ export function normalizeTestText(input: string): string {
     .replace(/[\uD800-\uDFFF]/g, "?");
 }
 
+

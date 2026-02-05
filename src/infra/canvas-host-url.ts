@@ -80,3 +80,4 @@ export function resolveCanvasHostUrl(params: CanvasHostUrlParams) {
   return `${scheme}://${formatted}:${port}`;
 }
 
+

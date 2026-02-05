@@ -29,3 +29,4 @@ export async function resolveDocsPath(params: {
   return fs.existsSync(packageDocs) ? packageDocs : null;
 }
 
+

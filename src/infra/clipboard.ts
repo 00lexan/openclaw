@@ -24,3 +24,4 @@ export async function copyToClipboard(value: string): Promise<boolean> {
   return false;
 }
 
+

@@ -160,3 +160,4 @@ describe("installUnhandledRejectionHandler - fatal detection", () => {
   });
 });
 
+

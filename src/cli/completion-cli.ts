@@ -655,3 +655,4 @@ function generateFishCompletion(program: Command): string {
   return script;
 }
 
+

@@ -127,3 +127,4 @@ export function listEnabledMattermostAccounts(cfg: Config): ResolvedMattermostAc
     .filter((account) => account.enabled);
 }
 
+

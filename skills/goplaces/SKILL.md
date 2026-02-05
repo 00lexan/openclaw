@@ -51,3 +51,4 @@ Notes
 - Price levels: 0..4 (free â†’ very expensive).
 - Type filter sends only the first `--type` value (API accepts one).
 
+

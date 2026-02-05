@@ -33,3 +33,4 @@ How to see whether the linked channel is healthy from the menu bar app.
 
 - You can still use the CLI flow in [Gateway health](/gateway/health) (` status`, ` status --deep`, ` health --json`) and tail `/tmp//-*.log` for `web-heartbeat` / `web-reconnect`.
 
+

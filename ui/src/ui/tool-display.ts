@@ -232,3 +232,4 @@ function shortenHomeInString(input: string): string {
   return input.replace(/\/Users\/[^/]+/g, "~").replace(/\/home\/[^/]+/g, "~");
 }
 
+

@@ -24,3 +24,4 @@ export function resolveMSTeamsStorePath(params: MSTeamsStorePathOptions): string
   return path.join(stateDir, params.filename);
 }
 
+

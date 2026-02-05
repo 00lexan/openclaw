@@ -24,3 +24,4 @@ export const ZaloConfigSchema = zaloAccountSchema.extend({
   defaultAccount: z.string().optional(),
 });
 
+

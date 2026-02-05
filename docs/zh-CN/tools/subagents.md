@@ -155,3 +155,4 @@ x-i18n:
 - `sessions_spawn` å§‹ç»ˆæ˜¯éžé˜»å¡žçš„ï¼šå®ƒç«‹å³è¿”å›ž `{ status: "accepted", runId, childSessionKey }`ã€‚
 - å­æ™ºèƒ½ä½“ä¸Šä¸‹æ–‡ä»…æ³¨å…¥ `AGENTS.md` + `TOOLS.md`ï¼ˆæ—  `SOUL.md`ã€`IDENTITY.md`ã€`USER.md`ã€`HEARTBEAT.md` æˆ– `BOOTSTRAP.md`ï¼‰ã€‚
 
+

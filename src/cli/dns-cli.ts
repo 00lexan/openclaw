@@ -261,3 +261,4 @@ export function registerDnsCli(program: Command) {
     });
 }
 
+

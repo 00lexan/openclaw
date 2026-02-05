@@ -22,3 +22,4 @@ x-i18n:
 - Canvas ä¸»æœºæ˜¯ä¸€ä¸ª HTTP æ–‡ä»¶æœåŠ¡å™¨ï¼Œè¿è¡Œåœ¨ `canvasHost.port`ï¼ˆé»˜è®¤ `18793`ï¼‰ä¸Šï¼Œæä¾› `/____/canvas/` è·¯å¾„ä¾›èŠ‚ç‚¹ WebView ä½¿ç”¨ã€‚å‚è§ [Gateway ç½‘å…³é…ç½®](/gateway/configuration)ï¼ˆ`canvasHost`ï¼‰ã€‚
 - è¿œç¨‹ä½¿ç”¨é€šå¸¸é€šè¿‡ SSH éš§é“æˆ– Tailscale VPNã€‚å‚è§[è¿œç¨‹è®¿é—®](/gateway/remote)å’Œ[è®¾å¤‡å‘çŽ°](/gateway/discovery)ã€‚
 
+

@@ -62,3 +62,4 @@ Directory lookups for channels that support it (contacts/peers, groups, and Ã¢â‚
  directory groups members --channel zalouser --group-id <id>
 ```
 
+

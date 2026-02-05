@@ -355,3 +355,4 @@ export function resolveContextWindowTokens(model?: ExtensionContext["model"]): n
   return Math.max(1, Math.floor(model?.contextWindow ?? DEFAULT_CONTEXT_TOKENS));
 }
 
+

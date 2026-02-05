@@ -133,3 +133,4 @@ export const handleCompactCommand: CommandHandler = async (params) => {
   return { shouldContinue: false, reply: { text: `âš™ï¸ ${line}` } };
 };
 
+

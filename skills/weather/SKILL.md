@@ -53,3 +53,4 @@ Find coordinates for a city, then query. Returns JSON with temp, windspeed, weat
 
 Docs: https://open-meteo.com/en/docs
 
+

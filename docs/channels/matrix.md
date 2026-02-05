@@ -232,3 +232,4 @@ Provider options:
 - `channels.matrix.autoJoinAllowlist`: allowed room IDs/aliases for auto-join.
 - `channels.matrix.actions`: per-action tool gating (reactions/messages/pins/memberInfo/channelInfo).
 
+

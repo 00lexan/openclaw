@@ -78,3 +78,4 @@ The framework includes a two-tiered rate limiting system:
 1. **Proactive Limiting**: Locally tracks token and request usage to stay within configured limits (defined in `src/models.ts`).
 2. **Reactive Circuit Breaker**: Automatically pauses requests to a model if a `RESOURCE_EXHAUSTED` (429) error is received, resuming only after the requested retry duration.
 
+

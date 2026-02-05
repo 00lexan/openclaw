@@ -27,3 +27,4 @@ export interface A2UIAction extends BaseEventDetail<`${Namespace}.action`> {
   readonly sourceComponent: AnyComponentNode | null;
 }
 
+

@@ -1375,3 +1375,4 @@ function assertIsDataMap(obj: DataValue): asserts obj is DataMap {
   assert.ok(obj instanceof Map, `Data should be a DataMap`);
 }
 
+

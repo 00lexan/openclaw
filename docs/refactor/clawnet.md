@@ -416,3 +416,4 @@ Pick one before implementation to avoid drift.
 - Proposal: one WS protocol with explicit roles + scopes, unified pairing + TLS pinning, gatewayâ€‘hosted approvals, stable device IDs + cute slugs.
 - Outcome: simpler UX, stronger security, less duplication, better mobile routing.
 
+

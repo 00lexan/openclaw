@@ -8,3 +8,4 @@ declare module "qrcode-terminal/vendor/QRCode/QRErrorCorrectLevel.js" {
   export default QRErrorCorrectLevel;
 }
 
+

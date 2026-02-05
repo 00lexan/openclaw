@@ -106,3 +106,4 @@ timeout = "5s"
 - Use `--enable-callback` when you need to read data back from Bear
 - Some operations require a valid token (add-text, tags, open-note --selected)
 
+

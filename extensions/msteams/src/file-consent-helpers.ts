@@ -72,3 +72,4 @@ export function requiresFileConsent(params: {
   return isPersonal && (isLargeFile || !isImage);
 }
 
+

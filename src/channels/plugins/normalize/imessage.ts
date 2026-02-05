@@ -48,3 +48,4 @@ export function looksLikeIMessageTargetId(raw: string): boolean {
   return /^\+?\d{3,}$/.test(trimmed);
 }
 
+

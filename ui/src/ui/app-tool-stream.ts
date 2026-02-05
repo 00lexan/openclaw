@@ -280,3 +280,4 @@ export function handleAgentEvent(host: ToolStreamHost, payload?: AgentEventPaylo
   scheduleToolStreamSync(host, phase === "result");
 }
 
+

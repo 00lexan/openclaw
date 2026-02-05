@@ -83,3 +83,4 @@ Only the owner number (from `channels.whatsapp.allowFrom`, or the botâ€™s o
 - Session store entries will appear as `agent:<agentId>:whatsapp:group:<jid>` in the session store (`~/./agents/<agentId>/sessions/sessions.json` by default); a missing entry just means the group hasnâ€™t triggered a run yet.
 - Typing indicators in groups follow `agents.defaults.typingMode` (default: `message` when unmentioned).
 
+

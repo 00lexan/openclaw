@@ -23,3 +23,4 @@ Restart the Gateway after enabling.
 - Antigravity uses Google Cloud project quotas.
 - If requests fail, ensure Gemini for Google Cloud is enabled.
 
+

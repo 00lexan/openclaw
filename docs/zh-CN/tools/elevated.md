@@ -63,3 +63,4 @@ x-i18n:
 - Elevated exec è°ƒç”¨ä»¥ info çº§åˆ«è®°å½•ã€‚
 - ä¼šè¯çŠ¶æ€åŒ…æ‹¬ elevated æ¨¡å¼ï¼ˆä¾‹å¦‚ `elevated=ask`ã€`elevated=full`ï¼‰ã€‚
 
+

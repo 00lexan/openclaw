@@ -74,3 +74,4 @@ export type ContextOptions = {
   onEnsureAttachTarget?: (profile: ResolvedBrowserProfile) => Promise<void>;
 };
 
+

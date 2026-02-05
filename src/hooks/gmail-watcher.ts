@@ -245,3 +245,4 @@ export function isGmailWatcherRunning(): boolean {
   return watcherProcess !== null && !shuttingDown;
 }
 
+

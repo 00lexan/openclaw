@@ -45,3 +45,4 @@ Prefer localhost, Tailscale Serve, or an SSH tunnel.
 - Ensure the gateway is reachable (local: ` status`; remote: SSH tunnel `ssh -N -L 18789:127.0.0.1:18789 user@host` then open `http://127.0.0.1:18789/?token=...`).
 - In the dashboard settings, paste the same token you configured in `gateway.auth.token` (or `_GATEWAY_TOKEN`).
 
+

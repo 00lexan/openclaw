@@ -9,3 +9,4 @@ export function resolveVideoMaxBase64Bytes(maxBytes: number): number {
   return Math.min(expanded, DEFAULT_VIDEO_MAX_BASE64_BYTES);
 }
 
+

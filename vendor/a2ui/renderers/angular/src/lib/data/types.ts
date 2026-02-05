@@ -28,3 +28,4 @@ export interface A2DataPayload {
 
 export type A2AServerPayload = Array<A2DataPayload | A2TextPayload> | { error: string };
 
+

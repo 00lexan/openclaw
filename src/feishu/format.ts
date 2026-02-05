@@ -266,3 +266,4 @@ export function containsMarkdown(text: string): boolean {
   return markdownPatterns.some((pattern) => pattern.test(text));
 }
 
+

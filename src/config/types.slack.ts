@@ -151,3 +151,4 @@ export type SlackConfig = {
   accounts?: Record<string, SlackAccountConfig>;
 } & SlackAccountConfig;
 
+

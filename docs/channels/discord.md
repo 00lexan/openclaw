@@ -475,3 +475,4 @@ Emoji can be unicode (e.g., `âœ…`) or custom emoji syntax like `<:party_blob
 - Only grant the bot permissions it needs (typically Read/Send Messages).
 - If the bot is stuck or rate limited, restart the gateway (` gateway --force`) after confirming no other processes own the Discord session.
 
+

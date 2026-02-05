@@ -127,3 +127,4 @@ export const resolveCommitHash = (options: { cwd?: string; env?: NodeJS.ProcessE
   }
 };
 
+

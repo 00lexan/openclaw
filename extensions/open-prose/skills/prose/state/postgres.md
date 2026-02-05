@@ -879,3 +879,4 @@ The core contract: the VM manages execution flow and spawns subagents; subagents
 
 **PostgreSQL state is for power users.** If you don't need concurrent writes, network access, or team collaboration, filesystem or SQLite state will be simpler and sufficient.
 
+

@@ -75,3 +75,4 @@ export function hasPendingHeartbeatWake() {
   return pendingReason !== null || Boolean(timer) || scheduled;
 }
 
+

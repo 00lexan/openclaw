@@ -104,3 +104,4 @@ function isInsideInlineSpan(index: number, spans: Array<[number, number]>): bool
   return spans.some(([start, end]) => index >= start && index < end);
 }
 
+

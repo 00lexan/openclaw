@@ -80,3 +80,4 @@ export type IMessageConfig = {
   accounts?: Record<string, IMessageAccountConfig>;
 } & IMessageAccountConfig;
 
+

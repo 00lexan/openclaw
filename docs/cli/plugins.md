@@ -61,3 +61,4 @@ Use `--link` to avoid copying a local directory (adds to `plugins.load.paths`):
 
 Updates only apply to plugins installed from npm (tracked in `plugins.installs`).
 
+

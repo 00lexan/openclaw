@@ -327,3 +327,4 @@ Windows installs should use **WSL2** and follow the Linux systemd section above.
 - Retire uses of ` gateway` and the legacy TCP control port.
 - Update clients to speak the WS protocol with mandatory connect and structured presence.
 
+

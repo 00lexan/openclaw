@@ -29,3 +29,4 @@ export function recordHookInstall(cfg: Config, update: HookInstallUpdate): Confi
   };
 }
 
+

@@ -459,3 +459,4 @@ export type LineMessageContext = NonNullable<Awaited<ReturnType<typeof buildLine
 export type LinePostbackContext = NonNullable<Awaited<ReturnType<typeof buildLinePostbackContext>>>;
 export type LineInboundContext = LineMessageContext | LinePostbackContext;
 
+

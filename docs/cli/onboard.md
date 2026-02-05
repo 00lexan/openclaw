@@ -28,3 +28,4 @@ Flow notes:
 - `manual`: full prompts for port/bind/auth (alias of `advanced`).
 - Fastest first chat: ` dashboard` (Control UI, no channel setup).
 
+

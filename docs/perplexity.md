@@ -79,3 +79,4 @@ If no base URL is set,  chooses a default based on the API key source:
 
 See [Web tools](/tools/web) for the full web_search configuration.
 
+

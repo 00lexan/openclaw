@@ -178,3 +178,4 @@ export async function ensureCompletionCacheExists(binName = ""): Promise<boolean
   return generateCompletionCache();
 }
 
+

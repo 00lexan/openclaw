@@ -67,3 +67,4 @@ export function resolveMarkdownTableMode(params: {
   return resolveMarkdownModeFromSection(section, params.accountId) ?? defaultMode;
 }
 
+

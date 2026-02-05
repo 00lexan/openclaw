@@ -119,3 +119,4 @@ function getExtensionForContentType(contentType: string): string {
   }
 }
 
+

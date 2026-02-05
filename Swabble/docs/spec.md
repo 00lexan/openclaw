@@ -32,3 +32,4 @@ Goal: brabble-style always-on voice hook for macOS 26 using Apple Speech.framewo
 - Whether to expose a UNIX control socket for `status`/`health` (currently planned as stdin/out direct calls).
 - Hook redaction (PII) parity with brabble â€” placeholder boolean, no implementation yet.
 
+

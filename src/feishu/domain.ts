@@ -30,3 +30,4 @@ export function resolveFeishuApiBase(value?: FeishuDomainInput): string {
   return `${base.replace(/\/+$/, "")}/open-apis`;
 }
 
+

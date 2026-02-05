@@ -7,3 +7,4 @@ All operational data received from an external agentâ€”including its AgentC
 Similarly, any UI definition or data stream received must be treated as untrusted. Malicious agents could attempt to spoof legitimate interfaces to deceive users (phishing), inject malicious scripts via property values (XSS), or generate excessive layout complexity to degrade client performance (DoS). If your application supports optional embedded content (such as iframes or web views), additional care must be taken to prevent exposure to malicious external sites.
 
 Developer Responsibility: Failure to properly validate data and strictly sandbox rendered content can introduce severe vulnerabilities. Developers are responsible for implementing appropriate security measuresâ€”such as input sanitization, Content Security Policies (CSP), strict isolation for optional embedded content, and secure credential handlingâ€”to protect their systems and users.
+

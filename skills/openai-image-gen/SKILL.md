@@ -88,3 +88,4 @@ Different models support different parameter values. The script automatically se
 - `prompts.json` (prompt â†’ file mapping)
 - `index.html` (thumbnail gallery)
 
+

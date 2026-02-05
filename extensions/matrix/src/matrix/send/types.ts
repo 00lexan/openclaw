@@ -108,3 +108,4 @@ export type MatrixFormattedContent = MessageEventContent & {
   formatted_body?: string;
 };
 
+

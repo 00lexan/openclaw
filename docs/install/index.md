@@ -186,3 +186,4 @@ Then open a new terminal (or `rehash` in zsh / `hash -r` in bash).
 - Migrate to a new machine: [Migrating](/install/migrating)
 - Uninstall: [Uninstall](/install/uninstall)
 
+

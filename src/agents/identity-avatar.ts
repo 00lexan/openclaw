@@ -101,3 +101,4 @@ export function resolveAgentAvatar(cfg: Config, agentId: string): AgentAvatarRes
   return { kind: "local", filePath: resolved.filePath };
 }
 
+

@@ -29,3 +29,4 @@ export function replaceCliName(command: string, cliName = resolveCliName()): str
   });
 }
 
+

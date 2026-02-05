@@ -36,3 +36,4 @@ export async function runNonInteractiveOnboarding(
   await runNonInteractiveOnboardingLocal({ opts, runtime, baseConfig });
 }
 
+

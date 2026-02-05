@@ -263,3 +263,4 @@ export async function describeStickerImage(params: DescribeStickerParams): Promi
   }
 }
 
+

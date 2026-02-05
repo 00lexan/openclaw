@@ -128,3 +128,4 @@ Details: [Gateway protocol](/gateway/protocol), [Pairing](/start/pairing),
 - Handshake is mandatory; any nonâ€‘JSON or nonâ€‘connect first frame is a hard close.
 - Events are not replayed; clients must refresh on gaps.
 
+

@@ -180,3 +180,4 @@ export function isAgentBootstrapEvent(event: InternalHookEvent): event is AgentB
   return Array.isArray(context.bootstrapFiles);
 }
 
+

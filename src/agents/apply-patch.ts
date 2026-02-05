@@ -502,3 +502,4 @@ function parseUpdateFileChunk(
   return { chunk, consumed: parsedLines + startIndex };
 }
 
+

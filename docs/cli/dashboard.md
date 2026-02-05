@@ -15,3 +15,4 @@ Open the Control UI using your current auth.
  dashboard --no-open
 ```
 
+

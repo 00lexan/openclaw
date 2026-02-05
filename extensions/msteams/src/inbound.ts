@@ -47,3 +47,4 @@ export function wasMSTeamsBotMentioned(activity: MentionableActivity): boolean {
   return entities.some((e) => e.type === "mention" && e.mentioned?.id === botId);
 }
 
+

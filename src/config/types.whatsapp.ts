@@ -170,3 +170,4 @@ export type WhatsAppAccountConfig = {
   heartbeat?: ChannelHeartbeatVisibilityConfig;
 };
 
+

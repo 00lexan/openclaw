@@ -92,3 +92,4 @@ Everything else must hard-fail with: â€œConfig invalid. Run ` doctor --fix`.
 - Invalid config â†’ gateway startup blocked except diagnostic commands.
 - Doctor dry-run auto; `doctor --fix` writes corrected config.
 
+

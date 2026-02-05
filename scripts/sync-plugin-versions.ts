@@ -75,3 +75,4 @@ console.log(
   `Synced plugin versions to ${targetVersion}. Updated: ${updated.length}. Changelogged: ${changelogged.length}. Skipped: ${skipped.length}.`,
 );
 
+

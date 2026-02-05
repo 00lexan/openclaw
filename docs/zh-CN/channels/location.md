@@ -62,3 +62,4 @@ Meet here
 - **WhatsApp**ï¼š`locationMessage.comment` å’Œ `liveLocationMessage.caption` ä½œä¸ºæ ‡é¢˜è¡Œé™„åŠ ã€‚
 - **Matrix**ï¼š`geo_uri` è§£æžä¸ºå›¾é’‰ä½ç½®ï¼›å¿½ç•¥æµ·æ‹”é«˜åº¦ï¼Œ`LocationIsLive` å§‹ç»ˆä¸º falseã€‚
 
+

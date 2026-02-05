@@ -42,3 +42,4 @@ describe("resolveAssistantIdentity avatar normalization", () => {
   });
 });
 
+

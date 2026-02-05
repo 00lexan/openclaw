@@ -375,3 +375,4 @@ export function cleanSchemaForGemini(schema: unknown): unknown {
   return cleanSchemaForGeminiWithDefs(schema, defs, undefined);
 }
 
+

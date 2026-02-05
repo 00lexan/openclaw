@@ -67,3 +67,4 @@ ${theme.muted("Docs:")} ${formatDocsLink("/cli/message", "docs..ai/cli/message")
   registerMessageDiscordAdminCommands(message, helpers);
 }
 
+

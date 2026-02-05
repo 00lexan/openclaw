@@ -2498,3 +2498,4 @@ export function resolveWebhookPathFromConfig(config?: BlueBubblesAccountConfig):
   return DEFAULT_WEBHOOK_PATH;
 }
 
+

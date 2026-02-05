@@ -46,3 +46,4 @@ describe("browser screenshot normalization", () => {
   });
 });
 
+

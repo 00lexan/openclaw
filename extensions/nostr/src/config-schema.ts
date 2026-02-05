@@ -89,3 +89,4 @@ export type NostrConfig = z.infer<typeof NostrConfigSchema>;
  */
 export const nostrChannelConfigSchema = buildChannelConfigSchema(NostrConfigSchema);
 
+

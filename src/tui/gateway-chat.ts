@@ -265,3 +265,4 @@ export function resolveGatewayConnection(opts: GatewayConnectionOptions) {
   return { url, token, password };
 }
 
+

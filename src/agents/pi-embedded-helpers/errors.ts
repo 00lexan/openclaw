@@ -642,3 +642,4 @@ export function isFailoverAssistantError(msg: AssistantMessage | undefined): boo
   return isFailoverErrorMessage(msg.errorMessage ?? "");
 }
 
+

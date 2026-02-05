@@ -68,3 +68,4 @@ cat /tmp/cost.json | python {baseDir}/scripts/model_usage.py --input - --mode cu
 
 - Read `references/codexbar-cli.md` for CLI flags and cost JSON fields.
 
+

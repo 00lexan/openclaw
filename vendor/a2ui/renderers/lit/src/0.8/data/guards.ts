@@ -235,3 +235,4 @@ export function isResolvedVideo(props: unknown): props is ResolvedVideo {
   return isObject(props) && "url" in props && isStringValue(props.url);
 }
 
+

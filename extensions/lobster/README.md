@@ -74,3 +74,4 @@ Notes:
 - Uses timeouts, stdout caps, and strict JSON envelope parsing.
 - Prefer an absolute `lobsterPath` in production to avoid PATH hijack.
 
+

@@ -153,3 +153,4 @@ export type LineChannelData = {
   templateMessage?: LineTemplateMessagePayload;
 };
 
+

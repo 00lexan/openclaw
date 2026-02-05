@@ -490,3 +490,4 @@ export function createTelegramWebhookCallback(bot: Bot, path = "/telegram-webhoo
   return { path, handler: webhookCallback(bot, "http") };
 }
 
+

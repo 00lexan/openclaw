@@ -121,3 +121,4 @@ Filter by action:
 grep '"action":"new"' ~/./logs/commands.log | jq .
 ```
 
+

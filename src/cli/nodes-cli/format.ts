@@ -44,3 +44,4 @@ export function formatPermissions(raw: unknown) {
   return `[${parts.join(", ")}]`;
 }
 
+

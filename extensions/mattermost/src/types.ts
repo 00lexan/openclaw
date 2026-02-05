@@ -51,3 +51,4 @@ export type MattermostConfig = {
   accounts?: Record<string, MattermostAccountConfig>;
 } & MattermostAccountConfig;
 
+

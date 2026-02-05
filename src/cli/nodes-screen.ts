@@ -48,3 +48,4 @@ export async function writeScreenRecordToFile(filePath: string, base64: string) 
   return writeBase64ToFile(filePath, base64);
 }
 
+

@@ -192,3 +192,4 @@ export PATH="$(npm prefix -g)/bin:$PATH"
 - è¿ç§»åˆ°æ–°æœºå™¨ï¼š[è¿ç§»](/install/migrating)
 - å¸è½½ï¼š[å¸è½½](/install/uninstall)
 
+

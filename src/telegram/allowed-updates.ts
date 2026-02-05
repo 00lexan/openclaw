@@ -10,3 +10,4 @@ export function resolveTelegramAllowedUpdates(): ReadonlyArray<TelegramUpdateTyp
   return updates;
 }
 
+

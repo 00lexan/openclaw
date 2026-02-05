@@ -4,3 +4,4 @@ export default function register(_api: PluginApi) {
   // OpenProse is delivered via plugin-shipped skills.
 }
 
+

@@ -272,3 +272,4 @@ export function isMSTeamsGroupAllowed(params: {
   return resolveMSTeamsAllowlistMatch(params).allowed;
 }
 
+

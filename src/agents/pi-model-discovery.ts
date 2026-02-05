@@ -12,3 +12,4 @@ export function discoverModels(authStorage: AuthStorage, agentDir: string): Mode
   return new ModelRegistry(authStorage, path.join(agentDir, "models.json"));
 }
 
+

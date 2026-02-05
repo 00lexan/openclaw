@@ -65,3 +65,4 @@ export type ColorPalettes = {
   error: CreatePalette<"e">;
 };
 
+

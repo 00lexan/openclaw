@@ -547,3 +547,4 @@ Slack tool actions can be gated with `channels.slack.actions.*`:
 - For the Slack tool, reaction removal semantics are in [/tools/reactions](/tools/reactions).
 - Attachments are downloaded to the media store when permitted and under the size limit.
 
+

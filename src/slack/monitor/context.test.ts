@@ -118,3 +118,4 @@ describe("isChannelAllowed with groupPolicy and channelsConfig", () => {
   });
 });
 
+

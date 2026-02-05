@@ -403,3 +403,4 @@ function truncateForSummary(text: string, maxLength: number = 50): string {
   return cleaned.slice(0, maxLength - 3) + "...";
 }
 
+

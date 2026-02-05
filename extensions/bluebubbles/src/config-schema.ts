@@ -50,3 +50,4 @@ export const BlueBubblesConfigSchema = bluebubblesAccountSchema.extend({
   actions: bluebubblesActionSchema,
 });
 
+

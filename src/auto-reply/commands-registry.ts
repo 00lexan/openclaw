@@ -519,3 +519,4 @@ export function shouldHandleTextCommands(params: ShouldHandleTextCommandsParams)
   return !isNativeCommandSurface(params.surface);
 }
 
+

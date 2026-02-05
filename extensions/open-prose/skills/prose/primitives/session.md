@@ -592,3 +592,4 @@ As a subagent in an OpenProse program:
 
 Your memory is what makes you persistent. The VM's efficiency depends on you writing outputs and returning confirmationsâ€”not dumping full content back through the substrate.
 
+

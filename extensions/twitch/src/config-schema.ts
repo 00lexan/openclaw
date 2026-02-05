@@ -83,3 +83,4 @@ const MultiAccountSchema = z.intersection(
  */
 export const TwitchConfigSchema = z.union([SimplifiedSchema, MultiAccountSchema]);
 
+

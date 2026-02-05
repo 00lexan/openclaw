@@ -71,3 +71,4 @@ pip install detect-secrets==1.5.0
 detect-secrets scan --baseline .secrets.baseline
 ```
 
+

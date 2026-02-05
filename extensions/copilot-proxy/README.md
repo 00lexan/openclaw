@@ -23,3 +23,4 @@ Restart the Gateway after enabling.
 - Copilot Proxy must be running in VS Code.
 - Base URL must include `/v1`.
 
+

@@ -20,3 +20,4 @@ Related:
  pairing approve whatsapp <code> --notify
 ```
 
+

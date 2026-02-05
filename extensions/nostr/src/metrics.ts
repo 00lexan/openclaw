@@ -477,3 +477,4 @@ export function createNoopMetrics(): NostrMetrics {
   };
 }
 
+

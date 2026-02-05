@@ -92,3 +92,4 @@
 - Auto-join invites with allowlist support.
 - Status + probe reporting for health checks.
 
+

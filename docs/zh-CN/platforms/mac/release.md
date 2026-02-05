@@ -91,3 +91,4 @@ SPARKLE_PRIVATE_KEY_FILE=/path/to/ed25519-private-key scripts/make_appcast.sh di
 
 å®Œæˆå®šä¹‰ï¼šå·²ç­¾åçš„åº”ç”¨ + appcast å·²å‘å¸ƒï¼Œä»Žæ—§ç‰ˆæœ¬çš„æ›´æ–°æµç¨‹æ­£å¸¸å·¥ä½œï¼Œä¸”å‘å¸ƒèµ„æºå·²é™„åŠ åˆ° GitHub å‘å¸ƒã€‚
 
+

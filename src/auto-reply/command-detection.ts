@@ -87,3 +87,4 @@ export function shouldComputeCommandAuthorized(
   return isControlCommandMessage(text, cfg, options) || hasInlineCommandTokens(text);
 }
 
+

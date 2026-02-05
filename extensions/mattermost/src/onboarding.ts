@@ -185,3 +185,4 @@ export const mattermostOnboardingAdapter: ChannelOnboardingAdapter = {
   }),
 };
 
+

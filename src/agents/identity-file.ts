@@ -106,3 +106,4 @@ export function loadAgentIdentityFromWorkspace(workspace: string): AgentIdentity
   return loadIdentityFromFile(identityPath);
 }
 
+

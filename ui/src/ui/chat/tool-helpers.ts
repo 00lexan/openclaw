@@ -36,3 +36,4 @@ export function getTruncatedPreview(text: string): string {
   return lines.length < allLines.length ? preview + "â€¦" : preview;
 }
 
+

@@ -115,3 +115,4 @@ describe("browser extension install", () => {
   });
 });
 
+

@@ -256,3 +256,4 @@ RUST_LOG=trace RUST_BACKTRACE=1 himalaya envelope list
 - For composing rich emails with attachments, use MML syntax (see `references/message-composition.md`).
 - Store passwords securely using `pass`, system keyring, or a command that outputs the password.
 
+

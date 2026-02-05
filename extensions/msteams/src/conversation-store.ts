@@ -40,3 +40,4 @@ export type MSTeamsConversationStore = {
   findByUserId: (id: string) => Promise<MSTeamsConversationStoreEntry | null>;
 };
 
+

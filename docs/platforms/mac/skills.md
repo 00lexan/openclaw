@@ -32,3 +32,4 @@ The macOS app surfaces  skills via the gateway; it does not parse skills locally
 
 - Install + config updates happen on the gateway host (not the local Mac).
 
+

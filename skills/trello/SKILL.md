@@ -94,3 +94,4 @@ curl -s "https://api.trello.com/1/members/me/boards?key=$TRELLO_API_KEY&token=$T
 curl -s "https://api.trello.com/1/boards/{boardId}/cards?key=$TRELLO_API_KEY&token=$TRELLO_TOKEN" | jq '.[] | {name, list: .idList}'
 ```
 
+

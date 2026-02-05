@@ -181,3 +181,4 @@ export async function installSignalCli(runtime: RuntimeEnv): Promise<SignalInsta
   return { ok: true, cliPath, version };
 }
 
+

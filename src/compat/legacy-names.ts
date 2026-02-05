@@ -14,3 +14,4 @@ export const MACOS_APP_SOURCES_DIR = "apps/macos/Sources/" as const;
 
 export const LEGACY_MACOS_APP_SOURCES_DIRS = [] as const;
 
+

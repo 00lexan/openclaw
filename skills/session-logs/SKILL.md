@@ -114,3 +114,4 @@ rg -l "phrase" ~/./agents/<agentId>/sessions/*.jsonl
 jq -r 'select(.type=="message") | .message.content[]? | select(.type=="text") | .text' ~/./agents/<agentId>/sessions/<id>.jsonl | rg 'keyword'
 ```
 
+

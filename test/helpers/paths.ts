@@ -15,3 +15,4 @@ export function isPathWithinBase(base: string, target: string): boolean {
   return rel === "" || (!rel.startsWith("..") && !path.isAbsolute(rel));
 }
 
+

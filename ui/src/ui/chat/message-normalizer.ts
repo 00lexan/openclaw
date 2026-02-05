@@ -89,3 +89,4 @@ export function isToolResultMessage(message: unknown): boolean {
   return role === "toolresult" || role === "tool_result";
 }
 
+

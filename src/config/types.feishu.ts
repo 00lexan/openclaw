@@ -99,3 +99,4 @@ export type FeishuConfig = {
   appSecretFile?: string;
 } & Omit<FeishuAccountConfig, "appId" | "appSecret" | "appSecretFile">;
 
+

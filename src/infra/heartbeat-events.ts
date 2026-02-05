@@ -57,3 +57,4 @@ export function getLastHeartbeatEvent(): HeartbeatEventPayload | null {
   return lastHeartbeat;
 }
 
+

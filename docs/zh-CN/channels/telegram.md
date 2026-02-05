@@ -750,3 +750,4 @@ Telegram ååº”ä½œä¸º**å•ç‹¬çš„ `message_reaction` ä�
 - `commands.native`ï¼ˆé»˜è®¤ä¸º `"auto"` â†’ Telegram/Discord å¼€å¯ï¼ŒSlack å…³é—­ï¼‰ã€`commands.text`ã€`commands.useAccessGroups`ï¼ˆå‘½ä»¤è¡Œä¸ºï¼‰ã€‚ä½¿ç”¨ `channels.telegram.commands.native` è¦†ç›–ã€‚
 - `messages.responsePrefix`ã€`messages.ackReaction`ã€`messages.ackReactionScope`ã€`messages.removeAckAfterReply`ã€‚
 
+

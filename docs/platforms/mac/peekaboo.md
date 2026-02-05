@@ -64,3 +64,4 @@ If you need longer retention, reâ€‘capture from the client.
 - If no hosts are found, open one of the host apps (Peekaboo.app or .app)
   and confirm permissions are granted.
 
+

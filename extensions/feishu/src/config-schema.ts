@@ -46,3 +46,4 @@ export const FeishuConfigSchema = FeishuAccountSchema.extend({
   accounts: z.object({}).catchall(FeishuAccountSchema).optional(),
 });
 
+

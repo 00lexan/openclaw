@@ -98,3 +98,4 @@ apps/macos/Sources//Resources/Info.plist
 - [å‘å¯¼](/start/wizard) â€” éž Nix CLI è®¾ç½®
 - [Docker](/install/docker) â€” å®¹å™¨åŒ–è®¾ç½®
 
+

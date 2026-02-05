@@ -175,3 +175,4 @@ export function listEnabledWhatsAppAccounts(cfg: Config): ResolvedWhatsAppAccoun
     .filter((account) => account.enabled);
 }
 
+

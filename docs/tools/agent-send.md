@@ -52,3 +52,4 @@ If the Gateway is unreachable, the CLI **falls back** to the embedded local run.
 - `--timeout <seconds>`: override agent timeout
 - `--json`: output structured JSON
 
+

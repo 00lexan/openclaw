@@ -164,3 +164,4 @@ export async function resolveGeminiEmbeddingClient(
   return { baseUrl, headers, model, modelPath };
 }
 
+

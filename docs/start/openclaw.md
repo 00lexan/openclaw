@@ -240,3 +240,4 @@ Logs live under `/tmp//` (default: `-YYYY-MM-DD.log`).
 - Linux status: [Linux app](/platforms/linux)
 - Security: [Security](/gateway/security)
 
+

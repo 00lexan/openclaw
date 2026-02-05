@@ -423,3 +423,4 @@ describe("image tool response validation", () => {
   });
 });
 
+

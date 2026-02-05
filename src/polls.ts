@@ -68,3 +68,4 @@ export function normalizePollDurationHours(
   return Math.min(Math.max(base, 1), options.maxHours);
 }
 
+

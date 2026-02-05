@@ -13,3 +13,4 @@ const wrapper = `#!/usr/bin/env node\nimport { spawnSync } from "node:child_proc
 
 fs.writeFileSync(binPath, wrapper, { mode: 0o755 });
 
+

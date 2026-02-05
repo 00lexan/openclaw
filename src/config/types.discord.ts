@@ -166,3 +166,4 @@ export type DiscordConfig = {
   accounts?: Record<string, DiscordAccountConfig>;
 } & DiscordAccountConfig;
 
+

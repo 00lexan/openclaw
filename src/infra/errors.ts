@@ -39,3 +39,4 @@ export function formatUncaughtError(err: unknown): string {
   return formatErrorMessage(err);
 }
 
+

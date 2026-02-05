@@ -714,3 +714,4 @@ export function pubkeyToNpub(hexPubkey: string): string {
   return nip19.npubEncode(normalized);
 }
 
+

@@ -283,3 +283,4 @@ This triggers an immediate wake event â€” Skippy gets pinged in seconds, no
 - **submit vs write:** Use `submit` to send input + Enter, `write` for raw data without newline.
 - **Sass works:** Codex responds well to playful prompts. Asked it to write a haiku about being second fiddle to a space lobster, got: _"Second chair, I code / Space lobster sets the tempo / Keys glow, I follow"_ ðŸ¦ž
 
+

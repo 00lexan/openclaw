@@ -245,3 +245,4 @@ export function resolveDefaultModel(params: { cfg: Config; agentId?: string }): 
   return { defaultProvider, defaultModel, aliasIndex };
 }
 
+

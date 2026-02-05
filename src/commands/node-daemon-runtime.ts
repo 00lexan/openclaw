@@ -15,3 +15,4 @@ export function isNodeDaemonRuntime(value: string | undefined): value is NodeDae
   return isGatewayDaemonRuntime(value);
 }
 
+

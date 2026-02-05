@@ -638,3 +638,4 @@ export default function (api) {
 - ä»“åº“å†…æ’ä»¶å¯ä»¥åœ¨ `src/**` ä¸‹ä¿ç•™ Vitest æµ‹è¯•ï¼ˆä¾‹å¦‚ï¼š`src/plugins/voice-call.plugin.test.ts`ï¼‰ã€‚
 - å•ç‹¬å‘å¸ƒçš„æ’ä»¶åº”è¿è¡Œè‡ªå·±çš„ CIï¼ˆlint/æž„å»º/æµ‹è¯•ï¼‰å¹¶éªŒè¯ `.extensions` æŒ‡å‘æž„å»ºçš„å…¥å£ç‚¹ï¼ˆ`dist/index.js`ï¼‰ã€‚
 
+

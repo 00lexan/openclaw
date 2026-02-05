@@ -146,3 +146,4 @@ export function listEnabledGoogleChatAccounts(cfg: Config): ResolvedGoogleChatAc
     .filter((account) => account.enabled);
 }
 
+

@@ -198,3 +198,4 @@ himalaya message write \
 - MML parts are compiled to proper MIME when sending.
 - Use `himalaya message export --full` to inspect the raw MIME structure of received emails.
 
+

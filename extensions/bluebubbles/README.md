@@ -44,3 +44,4 @@ If youâ€™re looking for **how to use BlueBubbles as an agent/tool user**, s
   Example:
   `action=react target=+15551234567 messageId=ABC123 emoji=â¤ï¸`
 
+

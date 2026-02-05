@@ -324,3 +324,4 @@ function renderGenericAccount(account: ChannelAccountSnapshot) {
   `;
 }
 
+

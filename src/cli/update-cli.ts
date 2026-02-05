@@ -1366,3 +1366,4 @@ ${theme.muted("Docs:")} ${formatDocsLink("/cli/update", "docs..ai/cli/update")}`
     });
 }
 
+

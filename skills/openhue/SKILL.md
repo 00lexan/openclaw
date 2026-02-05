@@ -50,3 +50,4 @@ Notes
 - You may need to press the Hue Bridge button during setup.
 - Use `--room "Room Name"` when light names are ambiguous.
 
+

@@ -42,3 +42,4 @@ Notes
 - If auth is required, run `gemini` once interactively and follow the login flow.
 - Avoid `--yolo` for safety.
 
+

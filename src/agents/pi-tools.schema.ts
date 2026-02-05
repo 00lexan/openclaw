@@ -178,3 +178,4 @@ export function cleanToolSchemaForGemini(schema: Record<string, unknown>): unkno
   return cleanSchemaForGemini(schema);
 }
 
+

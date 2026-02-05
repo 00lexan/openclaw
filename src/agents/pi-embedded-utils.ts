@@ -418,3 +418,4 @@ export function inferToolMetaFromArgs(toolName: string, args: unknown): string |
   return formatToolDetail(display);
 }
 
+

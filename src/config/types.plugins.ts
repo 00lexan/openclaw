@@ -35,3 +35,4 @@ export type PluginsConfig = {
   installs?: Record<string, PluginInstallRecord>;
 };
 
+

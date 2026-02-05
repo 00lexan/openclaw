@@ -122,3 +122,4 @@ export type ConfigFileSnapshot = {
   legacyIssues: LegacyConfigIssue[];
 };
 
+

@@ -424,3 +424,4 @@ export function resetBashChatCommandForTests() {
   activeJob = null;
 }
 
+

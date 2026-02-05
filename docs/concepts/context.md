@@ -160,3 +160,4 @@ Docs: [Session](/concepts/session), [Compaction](/concepts/compaction), [Session
 
 Either way, it reports sizes and top contributors; it does **not** dump the full system prompt or tool schemas.
 
+

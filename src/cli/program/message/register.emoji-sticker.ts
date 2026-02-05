@@ -56,3 +56,4 @@ export function registerMessageStickerCommands(message: Command, helpers: Messag
     });
 }
 
+

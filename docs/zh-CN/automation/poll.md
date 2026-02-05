@@ -75,3 +75,4 @@ x-i18n:
 Teams æŠ•ç¥¨ä»¥ Adaptive Cards å½¢å¼æ¸²æŸ“ï¼Œéœ€è¦ Gateway ç½‘å…³ä¿æŒåœ¨çº¿
 ä»¥å°†æŠ•ç¥¨è®°å½•åˆ° `~/./msteams-polls.json`ã€‚
 
+

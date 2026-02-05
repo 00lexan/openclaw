@@ -19,3 +19,4 @@ export function parseSessionLabel(raw: unknown): ParsedSessionLabel {
   return { ok: true, label: trimmed };
 }
 
+

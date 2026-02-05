@@ -151,3 +151,4 @@ Sandbox settings live in `~/./.json` under `agents.defaults.sandbox` (per-agent 
 - [Agent Configuration](/concepts/agent-workspace)
 - [Doctor Command](/gateway/doctor) - Check sandbox setup
 
+

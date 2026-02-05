@@ -208,3 +208,4 @@ message action=react channel=signal target=signal:group:<groupId> targetAuthor=u
 - `messages.groupChat.mentionPatterns`ï¼ˆå…¨å±€å›žé€€ï¼‰ã€‚
 - `messages.responsePrefix`ã€‚
 
+

@@ -33,3 +33,4 @@ export async function modelsSetImageCommand(modelRaw: string, runtime: RuntimeEn
   runtime.log(`Image model: ${updated.agents?.defaults?.imageModel?.primary ?? modelRaw}`);
 }
 
+

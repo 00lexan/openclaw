@@ -82,3 +82,4 @@ export function gatewayInstallErrorHint(platform = process.platform): string {
     : `Tip: rerun \`${formatCliCommand(" gateway install")}\` after fixing the error.`;
 }
 
+

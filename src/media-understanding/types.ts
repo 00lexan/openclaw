@@ -113,3 +113,4 @@ export type MediaUnderstandingProvider = {
   describeImage?: (req: ImageDescriptionRequest) => Promise<ImageDescriptionResult>;
 };
 
+

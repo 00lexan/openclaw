@@ -15,3 +15,4 @@
   export function supportsOscProgress(env: NodeJS.ProcessEnv, isTty: boolean): boolean;
 }
 
+

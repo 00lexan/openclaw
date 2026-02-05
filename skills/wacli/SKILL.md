@@ -71,3 +71,4 @@ Notes
 - WhatsApp CLI is not needed for routine user chats; itâ€™s for messaging other people.
 - JIDs: direct chats look like `<number>@s.whatsapp.net`; groups look like `<id>@g.us` (use `wacli chats list` to find).
 
+

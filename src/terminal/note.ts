@@ -96,3 +96,4 @@ export function note(message: string, title?: string) {
   clackNote(wrapNoteMessage(message), stylePromptTitle(title));
 }
 
+

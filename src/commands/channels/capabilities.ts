@@ -555,3 +555,4 @@ export async function channelsCapabilitiesCommand(
   runtime.log(lines.join("\n").trimEnd());
 }
 
+

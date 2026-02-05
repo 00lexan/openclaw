@@ -197,3 +197,4 @@ export function ensureProfileCleanExit(userDataDir: string) {
   safeWriteJson(preferencesPath, prefs);
 }
 
+

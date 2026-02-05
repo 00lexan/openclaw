@@ -19,3 +19,4 @@ export function resolveSubagentMaxConcurrent(cfg?: Config): number {
   return DEFAULT_SUBAGENT_MAX_CONCURRENT;
 }
 
+

@@ -57,3 +57,4 @@ export class ComponentRegistry {
 
 export const componentRegistry = new ComponentRegistry();
 
+

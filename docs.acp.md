@@ -196,3 +196,4 @@ updates. Terminal Gateway states map to ACP `done` with stop reasons:
 - Session model: `docs/concepts/session.md`
 - Session management internals: `docs/reference/session-management-compaction.md`
 
+

@@ -54,3 +54,4 @@ export function createMatrixRoomInfoResolver(client: MatrixClient) {
   };
 }
 
+

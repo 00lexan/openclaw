@@ -38,3 +38,4 @@ export function looksLikeNextcloudTalkTargetId(raw: string): boolean {
   return /^[a-z0-9]{8,}$/i.test(trimmed);
 }
 
+

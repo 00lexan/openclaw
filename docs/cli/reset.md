@@ -16,3 +16,4 @@ Reset local config/state (keeps the CLI installed).
  reset --scope config+creds+sessions --yes --non-interactive
 ```
 
+

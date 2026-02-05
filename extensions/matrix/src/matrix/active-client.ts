@@ -10,3 +10,4 @@ export function getActiveMatrixClient(): MatrixClient | null {
   return activeClient;
 }
 
+

@@ -311,3 +311,4 @@ export type ChannelSecurityAdapter<ResolvedAccount = unknown> = {
   collectWarnings?: (ctx: ChannelSecurityContext<ResolvedAccount>) => Promise<string[]> | string[];
 };
 
+

@@ -47,3 +47,4 @@ export function addTranscriptEntry(call: CallRecord, speaker: "bot" | "user", te
   call.transcript.push(entry);
 }
 
+

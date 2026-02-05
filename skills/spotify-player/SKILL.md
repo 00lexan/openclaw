@@ -63,3 +63,4 @@ Notes
 - For Spotify Connect integration, set a user `client_id` in config.
 - TUI shortcuts are available via `?` in the app.
 
+

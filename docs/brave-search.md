@@ -40,3 +40,4 @@ title: "Brave Search"
 
 See [Web tools](/tools/web) for the full web_search configuration.
 
+

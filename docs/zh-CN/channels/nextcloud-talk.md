@@ -141,3 +141,4 @@ Nextcloud Talk ä»¥æ’ä»¶å½¢å¼æä¾›ï¼Œä¸åŒ…å
 - `channels.nextcloud-talk.blockStreamingCoalesce`ï¼šåˆ†å—æµå¼ä¼ è¾“åˆå¹¶è°ƒä¼˜ã€‚
 - `channels.nextcloud-talk.mediaMaxMb`ï¼šå…¥ç«™åª’ä½“å¤§å°ä¸Šé™ï¼ˆMBï¼‰ã€‚
 
+

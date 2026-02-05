@@ -122,3 +122,4 @@ Common Windows issues:
 - **"" is not recognized**: your npm global bin folder is not on PATH. Most systems use
   `%AppData%\\npm`. You can also run `npm config get prefix` and add `\\bin` to PATH, then reopen PowerShell.
 
+

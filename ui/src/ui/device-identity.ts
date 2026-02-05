@@ -111,3 +111,4 @@ export async function signDevicePayload(privateKeyBase64Url: string, payload: st
   return base64UrlEncode(sig);
 }
 
+

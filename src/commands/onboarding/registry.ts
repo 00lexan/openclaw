@@ -25,3 +25,4 @@ export function listChannelOnboardingAdapters(): ChannelOnboardingAdapter[] {
 export const getProviderOnboardingAdapter = getChannelOnboardingAdapter;
 export const listProviderOnboardingAdapters = listChannelOnboardingAdapters;
 
+

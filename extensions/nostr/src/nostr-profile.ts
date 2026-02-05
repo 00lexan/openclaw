@@ -276,3 +276,4 @@ export function sanitizeProfileForDisplay(profile: NostrProfile): NostrProfile {
   };
 }
 
+

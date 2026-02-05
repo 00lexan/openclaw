@@ -367,3 +367,4 @@ When you fix a provider/model issue discovered in live:
   - provider request conversion/replay bug â†’ direct models test
   - gateway session/history/tool pipeline bug â†’ gateway live smoke or CI-safe gateway mock test
 
+

@@ -103,3 +103,4 @@ curl -fsSL https://.ai/install.sh | bash -s -- --beta --verbose
 
 å¦‚æžœå¯ä»¥çš„è¯ï¼ŒåŒ…å«æ¥è‡ª ` logs --follow` çš„ç›¸å…³æ—¥å¿—å°¾éƒ¨ã€‚
 
+

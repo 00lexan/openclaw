@@ -302,3 +302,4 @@ tar -czvf -backup.tar.gz ~/. ~/./workspace
 - [DigitalOcean guide](/platforms/digitalocean) â€” if you want paid + easier signup
 - [Hetzner guide](/platforms/hetzner) â€” Docker-based alternative
 
+

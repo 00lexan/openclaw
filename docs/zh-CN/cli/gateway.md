@@ -205,3 +205,4 @@ CLI ç­‰æ•ˆå‘½ä»¤ï¼š
  gateway discover --json | jq '.beacons[].wsUrl'
 ```
 
+

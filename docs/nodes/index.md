@@ -340,3 +340,4 @@ Notes:
 - The macOS menubar app connects to the Gateway WS server as a node (so ` nodes â€¦` works against this Mac).
 - In remote mode, the app opens an SSH tunnel for the Gateway port and connects to `localhost`.
 
+

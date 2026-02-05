@@ -175,3 +175,4 @@ source ~/.bashrc
 - If you prefer a managed key flow, you can also place an OpenAIâ€‘compatible
   proxy in front of Bedrock and configure it as an OpenAI provider instead.
 
+

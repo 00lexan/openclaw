@@ -577,3 +577,4 @@ CalVer uses date-based versions like...
 versioning options: semver (1.2.3), calver (2026.01.04), or yolo (`latest` forever). what fits your release cadence?
 ```
 
+

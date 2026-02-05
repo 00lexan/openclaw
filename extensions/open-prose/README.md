@@ -24,3 +24,4 @@ Restart the Gateway after enabling.
 - OpenProse VM semantics (`.prose` programs + multi-agent orchestration)
 - Telemetry support (best-effort, per OpenProse spec)
 
+

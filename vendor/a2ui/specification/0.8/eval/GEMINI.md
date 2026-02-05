@@ -75,3 +75,4 @@ For each component in the `components` array, the following rules apply:
 - **Required**: Must have a `delete` property set to `true`.
 - No other properties are allowed.
 
+

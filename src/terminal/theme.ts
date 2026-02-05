@@ -29,3 +29,4 @@ export const isRich = () => Boolean(baseChalk.level > 0);
 export const colorize = (rich: boolean, color: (value: string) => string, value: string) =>
   rich ? color(value) : value;
 
+

@@ -48,3 +48,4 @@ Notes
 - WAV/MP3 decode native; other formats use ffmpeg if available.
 - Multiple `--viz` renders a grid.
 
+

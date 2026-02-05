@@ -959,3 +959,4 @@ export function computeGoogleChatMediaMaxMb(params: { account: ResolvedGoogleCha
   return params.account.config.mediaMaxMb ?? 20;
 }
 
+

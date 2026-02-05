@@ -290,3 +290,4 @@ export function formatToolSummary(display: ToolDisplay): string {
     : `${display.emoji} ${display.label}`;
 }
 
+

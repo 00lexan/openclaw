@@ -50,3 +50,4 @@ export function buildWaitingStatusMessage(params: {
   return `${cute} â€¢ ${params.elapsed} | ${params.connectionStatus}`;
 }
 
+

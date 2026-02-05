@@ -40,3 +40,4 @@ export function buildCopilotModelDefinition(modelId: string): ModelDefinitionCon
   };
 }
 
+

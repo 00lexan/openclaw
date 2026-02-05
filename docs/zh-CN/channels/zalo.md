@@ -195,3 +195,4 @@ Zalo æ˜¯ä¸€æ¬¾ä¸“æ³¨äºŽè¶Šå—å¸‚åœºçš„å
 - `channels.zalo.accounts.<id>.webhookPath`ï¼šæ¯è´¦æˆ· webhook è·¯å¾„ã€‚
 - `channels.zalo.accounts.<id>.proxy`ï¼šæ¯è´¦æˆ·ä»£ç† URLã€‚
 
+

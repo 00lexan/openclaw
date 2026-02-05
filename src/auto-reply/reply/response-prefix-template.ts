@@ -100,3 +100,4 @@ export function hasTemplateVariables(template: string | undefined): boolean {
   return TEMPLATE_VAR_PATTERN.test(template);
 }
 
+

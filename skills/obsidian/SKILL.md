@@ -80,3 +80,4 @@ Delete
 
 Prefer direct edits when appropriate: open the `.md` file and change it; Obsidian will pick it up.
 
+

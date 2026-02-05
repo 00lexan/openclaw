@@ -62,3 +62,4 @@ export class List extends DynamicComponent<Types.ListNode> {
   readonly direction = input<'vertical' | 'horizontal'>('vertical');
 }
 
+

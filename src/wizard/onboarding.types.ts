@@ -24,3 +24,4 @@ export type GatewayWizardSettings = {
   tailscaleResetOnExit: boolean;
 };
 
+

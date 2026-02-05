@@ -34,3 +34,4 @@ export function getCompactionSafeguardRuntime(
   return REGISTRY.get(sessionManager) ?? null;
 }
 
+

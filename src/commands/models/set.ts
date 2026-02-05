@@ -33,3 +33,4 @@ export async function modelsSetCommand(modelRaw: string, runtime: RuntimeEnv) {
   runtime.log(`Default model: ${updated.agents?.defaults?.model?.primary ?? modelRaw}`);
 }
 
+

@@ -32,3 +32,4 @@ The payload is an array (one per provider).
   - Claude: ~/.config/claude/projects/**/\*.jsonl or ~/.claude/projects/**/\*.jsonl
 - If web usage is required (non-local), use codexbar usage (not cost).
 
+

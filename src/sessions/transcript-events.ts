@@ -24,3 +24,4 @@ export function emitSessionTranscriptUpdate(sessionFile: string): void {
   }
 }
 
+

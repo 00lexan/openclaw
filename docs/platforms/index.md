@@ -52,3 +52,4 @@ The service target depends on OS:
 - macOS: LaunchAgent (`bot.molt.gateway` or `bot.molt.<profile>`; legacy `com..*`)
 - Linux/WSL2: systemd user service (`-gateway[-<profile>].service`)
 
+

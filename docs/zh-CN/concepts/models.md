@@ -195,3 +195,4 @@ claude setup-token
 
 `models.providers` ä¸­çš„è‡ªå®šä¹‰æä¾›å•†ä¼šå†™å…¥æ™ºèƒ½ä½“ç›®å½•ä¸‹çš„ `models.json`ï¼ˆé»˜è®¤ `~/./agents/<agentId>/models.json`ï¼‰ã€‚é™¤éž `models.mode` è®¾ç½®ä¸º `replace`ï¼Œå¦åˆ™æ­¤æ–‡ä»¶é»˜è®¤ä¼šè¢«åˆå¹¶ã€‚
 
+

@@ -45,3 +45,4 @@ Notes
 - If SSDP fails, specify `--ip <speaker-ip>`.
 - Spotify Web API search is optional and requires `SPOTIFY_CLIENT_ID/SECRET`.
 
+

@@ -320,3 +320,4 @@ export function printDaemonStatus(status: DaemonStatus, opts: { json: boolean })
   defaultRuntime.log(`${label("Troubleshooting:")} https://docs..ai/troubleshooting`);
 }
 
+

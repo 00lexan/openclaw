@@ -120,3 +120,4 @@ export function formatGatewaySummary(params: {
   return `âœ… ${action} via gateway${channelSuffix}. Message ID: ${messageId}`;
 }
 
+

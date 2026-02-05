@@ -39,3 +39,4 @@ test("encodePaste wraps bracketed sequences by default", () => {
   expect(payload.endsWith(BRACKETED_PASTE_END)).toBe(true);
 });
 
+

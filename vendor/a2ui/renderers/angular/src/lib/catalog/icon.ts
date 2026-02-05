@@ -43,3 +43,4 @@ export class Icon extends DynamicComponent {
   protected readonly resolvedName = computed(() => this.resolvePrimitive(this.name()));
 }
 
+

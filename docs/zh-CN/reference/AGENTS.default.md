@@ -130,3 +130,4 @@ git commit -m "Add Clawd workspace"
 - å¯¹äºŽ DOM æ£€æŸ¥ï¼Œä½¿ç”¨ ` browser eval|query|dom|snapshot`ï¼ˆéœ€è¦æœºå™¨è¾“å‡ºæ—¶ä½¿ç”¨ `--json`/`--out`ï¼‰ã€‚
 - å¯¹äºŽäº¤äº’ï¼Œä½¿ç”¨ ` browser click|type|hover|drag|select|upload|press|wait|navigate|back|evaluate|run`ï¼ˆclick/type éœ€è¦ snapshot å¼•ç”¨ï¼›CSS é€‰æ‹©å™¨ä½¿ç”¨ `evaluate`ï¼‰ã€‚
 
+

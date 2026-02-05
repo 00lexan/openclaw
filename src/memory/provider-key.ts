@@ -32,3 +32,4 @@ export function computeEmbeddingProviderKey(params: {
   return hashText(JSON.stringify({ provider: params.providerId, model: params.providerModel }));
 }
 
+

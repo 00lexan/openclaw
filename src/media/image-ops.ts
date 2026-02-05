@@ -472,3 +472,4 @@ async function normalizeExifOrientationSips(buffer: Buffer): Promise<Buffer> {
   }
 }
 
+

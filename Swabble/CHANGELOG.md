@@ -10,3 +10,4 @@
 - CLI wake-word matching/stripping routed through `SwabbleKit` helpers.
 - Speech pipeline types now explicitly gated to macOS 26 / iOS 26 availability.
 
+

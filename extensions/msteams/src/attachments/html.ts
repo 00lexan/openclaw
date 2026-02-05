@@ -89,3 +89,4 @@ export function buildMSTeamsAttachmentPlaceholder(
   return `<media:document>${count > 1 ? ` (${count} files)` : ""}`;
 }
 
+

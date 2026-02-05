@@ -38,3 +38,4 @@ export function looksLikeTelegramTargetId(raw: string): boolean {
   return /^-?\d{6,}$/.test(trimmed);
 }
 
+

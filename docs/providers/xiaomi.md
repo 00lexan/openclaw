@@ -63,3 +63,4 @@ the `xiaomi` provider with a Xiaomi MiMo API key.
 - The provider is injected automatically when `XIAOMI_API_KEY` is set (or an auth profile exists).
 - See [/concepts/model-providers](/concepts/model-providers) for provider rules.
 
+

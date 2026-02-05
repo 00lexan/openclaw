@@ -4,3 +4,4 @@
   return withoutPrefix.replace(/[^a-fA-F0-9]/g, "").toLowerCase();
 }
 
+

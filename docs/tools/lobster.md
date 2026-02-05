@@ -341,3 +341,4 @@ One public example: a â€œsecond brainâ€ CLI + Lobster pipelines that ma
 - Thread: https://x.com/plattenschieber/status/2014508656335770033
 - Repo: https://github.com/bloomedai/brain-cli
 
+

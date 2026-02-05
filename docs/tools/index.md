@@ -511,3 +511,4 @@ Tools are exposed in two parallel channels:
 That means the agent sees both â€œwhat tools existâ€ and â€œhow to call them.â€ If a tool
 doesnâ€™t appear in the system prompt or the schema, the model cannot call it.
 
+

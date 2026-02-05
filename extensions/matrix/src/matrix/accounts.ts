@@ -64,3 +64,4 @@ export function listEnabledMatrixAccounts(cfg: CoreConfig): ResolvedMatrixAccoun
     .filter((account) => account.enabled);
 }
 
+

@@ -80,3 +80,4 @@ export function isSafeFenceBreak(spans: FenceSpan[], index: number): boolean {
   return !findFenceSpanAt(spans, index);
 }
 
+

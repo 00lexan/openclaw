@@ -130,3 +130,4 @@ export async function renderQrPngBase64(
   return png.toString("base64");
 }
 
+

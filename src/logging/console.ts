@@ -271,3 +271,4 @@ export function enableConsoleCapture(): void {
   console.trace = forward("trace", original.trace);
 }
 
+

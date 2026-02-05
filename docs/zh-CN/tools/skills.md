@@ -278,3 +278,4 @@ total = 195 + Î£ (97 + len(name_escaped) + len(description_escaped) + len(loca
 
 ---
 
+

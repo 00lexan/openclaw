@@ -418,3 +418,4 @@ export function renderTable(opts: RenderTableOptions): string {
   return `${lines.join("\n")}\n`;
 }
 
+

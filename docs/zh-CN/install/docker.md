@@ -531,3 +531,4 @@ docker build -t my--sbx -f Dockerfile.sandbox .
 - æ²™ç®±ä¸­çš„æƒé™é”™è¯¯ï¼šå°† `docker.user` è®¾ç½®ä¸ºä¸Žä½ æŒ‚è½½çš„å·¥ä½œåŒºæ‰€æœ‰æƒåŒ¹é…çš„ UID:GIDï¼ˆæˆ– chown å·¥ä½œåŒºæ–‡ä»¶å¤¹ï¼‰ã€‚
 - æ‰¾ä¸åˆ°è‡ªå®šä¹‰å·¥å…·ï¼š ä½¿ç”¨ `sh -lc`ï¼ˆç™»å½• shellï¼‰è¿è¡Œå‘½ä»¤ï¼Œè¿™ä¼š source `/etc/profile` å¹¶å¯èƒ½é‡ç½® PATHã€‚è®¾ç½® `docker.env.PATH` ä»¥åœ¨å‰é¢æ·»åŠ ä½ çš„è‡ªå®šä¹‰å·¥å…·è·¯å¾„ï¼ˆä¾‹å¦‚ `/custom/bin:/usr/local/share/npm-global/bin`ï¼‰ï¼Œæˆ–åœ¨ä½ çš„ Dockerfile ä¸­åœ¨ `/etc/profile.d/` ä¸‹æ·»åŠ è„šæœ¬ã€‚
 
+

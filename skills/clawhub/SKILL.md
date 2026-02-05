@@ -76,3 +76,4 @@ Notes
 - Default workdir: cwd (falls back to  workspace); install dir: ./skills (override with --workdir / --dir / CLAWHUB_WORKDIR)
 - Update command hashes local files, resolves matching version, and upgrades to latest unless --version is set
 
+

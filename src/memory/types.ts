@@ -79,3 +79,4 @@ export interface MemorySearchManager {
   close?(): Promise<void>;
 }
 
+

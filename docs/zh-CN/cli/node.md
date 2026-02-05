@@ -114,3 +114,4 @@ x-i18n:
 - [æ‰§è¡Œæ‰¹å‡†](/tools/exec-approvals)
 - ` approvals --node <id|name|ip>`ï¼ˆä»Ž Gateway ç½‘å…³ç¼–è¾‘ï¼‰
 
+

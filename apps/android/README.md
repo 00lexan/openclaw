@@ -50,3 +50,4 @@ More details: `docs/platforms/android.md`.
   - `CAMERA` for `camera.snap` and `camera.clip`
   - `RECORD_AUDIO` for `camera.clip` when `includeAudio=true`
 
+

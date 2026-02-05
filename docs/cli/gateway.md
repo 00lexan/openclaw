@@ -201,3 +201,4 @@ Examples:
  gateway discover --json | jq '.beacons[].wsUrl'
 ```
 
+

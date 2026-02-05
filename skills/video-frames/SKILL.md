@@ -45,3 +45,4 @@ At a timestamp:
 - Prefer `--time` for â€œwhat is happening around here?â€.
 - Use a `.jpg` for quick share; use `.png` for crisp UI frames.
 
+

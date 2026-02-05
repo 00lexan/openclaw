@@ -38,3 +38,4 @@ export function resolvePreferredProviderForAuthChoice(choice: AuthChoice): strin
   return PREFERRED_PROVIDER_BY_AUTH_CHOICE[choice];
 }
 
+

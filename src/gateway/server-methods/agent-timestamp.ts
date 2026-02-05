@@ -79,3 +79,4 @@ export function timestampOptsFromConfig(cfg: Config): TimestampInjectionOptions 
   };
 }
 
+

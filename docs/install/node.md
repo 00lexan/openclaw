@@ -77,3 +77,4 @@ Common choices:
 
 If you use a version manager (nvm/fnm/asdf/etc), ensure itâ€™s initialized in the shell you use day-to-day (zsh vs bash) so the PATH it sets is present when you run installers.
 
+

@@ -433,3 +433,4 @@ export const handleSubagentsCommand: CommandHandler = async (params, allowTextCo
   return { shouldContinue: false, reply: { text: buildSubagentsHelp() } };
 };
 
+

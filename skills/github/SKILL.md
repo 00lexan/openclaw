@@ -76,3 +76,4 @@ Most commands support `--json` for structured output. You can use `--jq` to filt
 gh issue list --repo owner/repo --json number,title --jq '.[] | "\(.number): \(.title)"'
 ```
 
+

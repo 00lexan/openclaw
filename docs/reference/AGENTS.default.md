@@ -123,3 +123,4 @@ git commit -m "Add Clawd workspace"
 - For DOM inspection, use ` browser eval|query|dom|snapshot` (and `--json`/`--out` when you need machine output).
 - For interactions, use ` browser click|type|hover|drag|select|upload|press|wait|navigate|back|evaluate|run` (click/type require snapshot refs; use `evaluate` for CSS selectors).
 
+

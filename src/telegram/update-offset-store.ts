@@ -81,3 +81,4 @@ export async function writeTelegramUpdateOffset(params: {
   await fs.rename(tmp, filePath);
 }
 
+

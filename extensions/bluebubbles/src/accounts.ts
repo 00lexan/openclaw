@@ -87,3 +87,4 @@ export function listEnabledBlueBubblesAccounts(cfg: Config): ResolvedBlueBubbles
     .filter((account) => account.enabled);
 }
 
+

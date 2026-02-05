@@ -78,3 +78,4 @@ Environment tweaks
 - `GIFGREP_SOFTWARE_ANIM=1` to force software animation
 - `GIFGREP_CELL_ASPECT=0.5` to tweak preview geometry
 
+

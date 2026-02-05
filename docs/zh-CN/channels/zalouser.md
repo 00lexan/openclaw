@@ -146,3 +146,4 @@ Gateway ç½‘å…³æœºå™¨å¿…é¡»åœ¨ `PATH` ä¸­æœ‰å�
 - ` channels status --probe`
 - é‡æ–°ç™»å½•ï¼š` channels logout --channel zalouser &&  channels login --channel zalouser`
 
+

@@ -43,3 +43,4 @@ export async function readLastGatewayErrorLine(env: NodeJS.ProcessEnv): Promise<
   return (await readLastLogLine(stderrPath)) ?? (await readLastLogLine(stdoutPath));
 }
 
+

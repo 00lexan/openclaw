@@ -17,3 +17,4 @@ export function logConfigUpdated(runtime: RuntimeEnv, opts: LogConfigUpdatedOpti
   runtime.log(`Updated ${path}${suffix}`);
 }
 
+

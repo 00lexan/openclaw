@@ -40,3 +40,4 @@ export type BrowserConfig = {
   snapshotDefaults?: BrowserSnapshotDefaults;
 };
 
+

@@ -19,3 +19,4 @@ export function formatPairingApproveHint(channelId: string): string {
   return `Approve via: ${listCmd} / ${approveCmd}`;
 }
 
+

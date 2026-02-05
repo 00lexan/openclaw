@@ -132,3 +132,4 @@ Telegramï¼ˆç§èŠ + ä¸»é¢˜ï¼‰
 - `sendMessageDraft`ï¼šTelegram è‰ç¨¿æ°”æ³¡ï¼ˆä¸æ˜¯çœŸæ­£çš„æ¶ˆæ¯ï¼‰ã€‚
 - `final reply`ï¼šæ™®é€š Telegram æ¶ˆæ¯å‘é€ã€‚
 
+

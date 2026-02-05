@@ -112,3 +112,4 @@ Notes:
 - Always: â€œAllow background location. Requires system permission.â€
 - Precise: â€œUse precise GPS location. Toggle off to share approximate location.â€
 
+

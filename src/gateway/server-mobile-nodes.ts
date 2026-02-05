@@ -13,3 +13,4 @@ export function hasConnectedMobileNode(registry: NodeRegistry): boolean {
   return connected.some((n) => isMobilePlatform(n.platform));
 }
 
+

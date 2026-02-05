@@ -71,3 +71,4 @@ export function generateNextcloudTalkSignature(params: { body: string; secret: s
   return { random, signature };
 }
 
+

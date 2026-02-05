@@ -59,3 +59,4 @@ export const isSenderAllowed = (params: {
   return allow.entries.includes(senderId);
 };
 
+

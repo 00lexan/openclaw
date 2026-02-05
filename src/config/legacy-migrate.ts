@@ -18,3 +18,4 @@ export function migrateLegacyConfig(raw: unknown): {
   return { config: validated.config, changes };
 }
 
+

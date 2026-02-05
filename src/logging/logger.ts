@@ -250,3 +250,4 @@ function pruneOldRollingLogs(dir: string): void {
   }
 }
 
+

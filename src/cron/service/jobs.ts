@@ -337,3 +337,4 @@ export function resolveJobPayloadTextForMain(job: CronJob): string | undefined {
   return text.trim() ? text : undefined;
 }
 
+

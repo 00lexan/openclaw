@@ -28,3 +28,4 @@ export const handleBashCommand: CommandHandler = async (params, allowTextCommand
   return { shouldContinue: false, reply };
 };
 
+

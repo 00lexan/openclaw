@@ -110,3 +110,4 @@ Environment variables:
 - JSON logging + PII redaction toggle
 - Stronger wake-word detection and control socket status/health
 
+

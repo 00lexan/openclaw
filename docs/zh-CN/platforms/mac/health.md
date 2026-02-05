@@ -40,3 +40,4 @@ x-i18n:
 
 - ä½ ä»ç„¶å¯ä»¥ä½¿ç”¨ [Gateway ç½‘å…³å¥åº·](/gateway/health) ä¸­çš„ CLI æµç¨‹ï¼ˆ` status`ã€` status --deep`ã€` health --json`ï¼‰ï¼Œå¹¶åœ¨ `/tmp//-*.log` ä¸­è·Ÿè¸ª `web-heartbeat` / `web-reconnect`ã€‚
 
+

@@ -64,3 +64,4 @@ bun pm trust @whiskeysockets/baileys protobufjs
 
 - ä¸€äº›è„šæœ¬ä»ç„¶ç¡¬ç¼–ç  pnpmï¼ˆä¾‹å¦‚ `docs:build`ã€`ui:*`ã€`protocol:check`ï¼‰ã€‚ç›®å‰è¯·é€šè¿‡ pnpm è¿è¡Œè¿™äº›è„šæœ¬ã€‚
 
+

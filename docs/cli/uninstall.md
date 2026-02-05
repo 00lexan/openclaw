@@ -16,3 +16,4 @@ Uninstall the gateway service + local data (CLI remains).
  uninstall --dry-run
 ```
 
+

@@ -123,3 +123,4 @@ Gateway ç½‘å…³ä¼šå°†æµè§ˆå™¨æ“ä½œä»£ç†
 - Tailscale Funnel æ¦‚è¿°ï¼šhttps://tailscale.com/kb/1223/tailscale-funnel
 - `tailscale funnel` å‘½ä»¤ï¼šhttps://tailscale.com/kb/1311/tailscale-funnel
 
+

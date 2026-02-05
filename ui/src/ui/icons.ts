@@ -255,3 +255,4 @@ export function setEmojiIcon(target: HTMLElement | null, icon: string): void {
   target.textContent = icon;
 }
 
+
